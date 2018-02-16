@@ -4,6 +4,10 @@ plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
 
+node_modules
+*.sass-cache*
+vendor
+
 # Uploads directory
 uploads
 

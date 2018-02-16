@@ -1,0 +1,3 @@
+/**
+ * Generic site JavaScript.
+ */
