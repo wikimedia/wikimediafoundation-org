@@ -155,11 +155,6 @@ require get_template_directory() . '/inc/fields.php';
 require get_template_directory() . '/inc/taxonomies.php';
 
 /**
- * Register Custom Navigation Walker.
- */
-require get_template_directory() . '/inc/classes/class-wp-bootstrap-navwalker.php';
-
-/**
  * Add Custom Post Types.
  */
 require get_template_directory() . '/inc/post-types/profile.php';
