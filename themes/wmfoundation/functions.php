@@ -1,6 +1,6 @@
 <?php
 /**
- * wmfoundation functions and definitions.
+ * Wikimedia Foundation functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
