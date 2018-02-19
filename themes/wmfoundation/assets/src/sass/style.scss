@@ -1,5 +1,5 @@
 /*!
- * Theme Name: Reaktiv Starter Theme
+ * Theme Name: WikiMedia Foundation Theme
  * Theme URI: https://github.com/reaktivstudios/rkv-starter-theme/
  * Author: Reaktiv Studios
  * Author URI: http://reaktivstudios.com/
@@ -10,24 +10,11 @@
  * Text Domain: wmfoundation
 **/
 
-@import "vars";
+/* ==================
+    # Mule CSS
+  =================== */
+@import "css/style";
 
 /* ==================
-    # BOOTSTRAP
+    # Custom CSS
   =================== */
-/** Bootstrap Files **/
-
-/* ==================
-    # CUSTOM CSS
-  =================== */
-@import "components/icons";
-@import "components/comments";
-@import "components/accessibility";
-@import "components/bg";
-@import "components/borders";
-@import "components/buttons";
-@import "components/containers";
-@import "components/hero";
-@import "components/positioning";
-@import "components/spacing";
-@import "components/svg";

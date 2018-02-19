@@ -1,0 +1,153 @@
+// Utilities, helpers, etc.
+.clear-fix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.visually-hidden {
+	position: absolute !important;
+	height: 1px; width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.display-none {
+	display: none;
+}
+
+.display-none_small {
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+
+.center {
+	text-align: center;
+}
+
+
+// Font Colors
+.color-white {
+	color: #fff;
+	transition: 0.3s all;
+}
+.color-blue {
+	color: $color-blue;
+}
+a.color-blue {
+	color: $color-blue;
+	&:hover { color: $color-dk-purple; }
+}
+.color-dark-blue {
+	color: $color-dark-blue;
+}
+.color-turquoise{
+	color: $color-turquoise;
+}
+.color-dark-turquoise {
+	color: $color-dark-turquoise;
+}
+.color-pink {
+	color: $color-pink;
+}
+.color-dark-pink {
+	color: $color-dark-pink;
+}
+.color-gray {
+	color: $color-gray;
+}
+.color-black {
+	color: $color-black;
+}
+
+
+// Background Colors
+.bg-blue {
+	background: $color-blue;
+}
+.bg-dark-blue {
+	background: $color-dark-blue;
+}
+.bg-turquoise{
+	background: $color-turquoise;
+}
+.bg-dark-turquoise {
+	background: $color-dark-turquoise;
+}
+.bg-pink {
+	background: $color-pink;
+}
+.bg-dark-pink {
+	background: $color-dark-pink;
+}
+.bg-gray {
+	background: $color-gray;
+}
+.bg-black {
+	background: #000;
+	color: #fff;
+}
+
+
+// Buttons and links
+.btn {
+	
+	// Colors
+	&.btn-blue {
+		@include button($color-blue, $color-dk-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+	}
+
+	&.btn-pink {
+		@include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+	}
+}
+
+// Control button color from module parent container - like for CTAs
+.btn-blue {
+	.btn {
+		@include button($color-blue, $color-dk-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+	}
+}
+
+.btn-pink {
+	.btn {
+		@include button($color-pink, $color-purple, $color-white, $color-white, .8rem 1.5rem, .6rem 1rem);
+	}
+}
+
+// Spacing
+.mar-top {
+ margin-top: $space;
+}
+.mar-right {
+ margin-right: $space;
+}
+.mar-bottom_sm {
+ margin-bottom: $space/2;
+}
+.mar-bottom {
+ margin-bottom: $space;
+}
+.mar-bottom_lg {
+	 margin-bottom: $space*2;
+}
+
+
+// z-index
+
+.rise-up {
+	z-index: 1000;
+}
