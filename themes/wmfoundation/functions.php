@@ -1,6 +1,6 @@
 <?php
 /**
- * wmfoundation functions and definitions.
+ * Wikimedia Foundation functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -132,6 +132,16 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/fields.php';
 
 /**
+ * Custom Taxonomies.
+ */
+require get_template_directory() . '/inc/taxonomies.php';
+
+/**
  * Register Custom Navigation Walker.
  */
 require get_template_directory() . '/inc/classes/class-wp-bootstrap-navwalker.php';
+
+/**
+ * Add Custom Post Types.
+ */
+require get_template_directory() . '/inc/post-types/profile.php';
