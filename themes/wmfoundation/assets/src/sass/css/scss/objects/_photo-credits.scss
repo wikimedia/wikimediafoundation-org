@@ -1,0 +1,72 @@
+
+
+// Photo Credits
+.photo-credits {
+
+  .h3 {
+    margin-bottom: 2rem;
+    @include marginBottom(24, 32, $medium-bp);
+  }
+
+  p {
+    @include font-size(16, 12);
+  }
+
+  a {
+    transition: 0.3s all;
+
+    &:hover {
+      color: $color-blue;
+
+      i {
+        color: $color-blue;
+      }
+    }
+  }
+
+  i {
+    @include font-size(32, 24);
+    vertical-align: bottom;
+    margin-right: .5rem;
+    transition: 0.3s all;
+  }
+
+  .w-50p {
+    @include marginBottom(16, 40, $medium-bp);
+
+    &:nth-child(odd) {
+      @include paddingRight(0, 64, $medium-bp);
+    }
+
+    &:nth-child(even) {
+      @include paddingLeft(0, 64, $medium-bp);
+    }
+  }
+
+  .credit {
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  // Image appears on hover
+  .credit-desc {
+    position: relative;
+  }
+
+  #preview {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 250px;
+    max-width: 250px;
+    z-index: 9;
+    opacity: 0;
+    transition: 0.3s all;
+
+    &.preview-visible {
+      opacity: 1;
+    }
+  }
+}

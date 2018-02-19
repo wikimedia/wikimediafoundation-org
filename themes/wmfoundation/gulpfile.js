@@ -1,7 +1,6 @@
 var gulp         = require( 'gulp' );
 var sass         = require( 'gulp-sass' );
 var autoprefixer = require( 'gulp-autoprefixer' );
-var stylelint    = require( 'gulp-stylelint' );
 var sourcemaps   = require( 'gulp-sourcemaps' );
 
 var concat       = require( 'gulp-concat' );
@@ -42,18 +41,6 @@ gulp.task( 'sass', function() {
 					sourceRoot: './'
 			   }))
 			   .pipe( gulp.dest( './' ) );
-} );
-
-gulp.task( 'csslint', function() {
-	return gulp.src( paths.sassFiles )
-			   .pipe( stylelint({ 
-					reporters: [
-						{
-							formatter: 'string',
-							console: true
-						}
-					]
-				}) );
 } );
 
 gulp.task( 'svg', function() {
@@ -110,8 +97,8 @@ gulp.task( 'watch', function() {
 
 
 
-gulp.task( 'styles', [ 'csslint', 'sass' ] );
+gulp.task( 'styles', [ 'sass' ] );
 gulp.task( 'scripts', [ 'jslint', 'concat' ] );
-gulp.task( 'lint', [ 'csslint', 'jslint', 'phplint' ] );
+gulp.task( 'lint', [ 'jslint', 'phplint' ] );
 gulp.task( 'build', [ 'svg', 'styles', 'scripts' ] );
 gulp.task( 'default', [ 'build', 'watch' ] );
