@@ -15,7 +15,7 @@
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php wmfoundation_posted_on(); ?>
+			<?php wmf_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -25,6 +25,6 @@
 	</div><!-- .entry-summary -->
 
 	<footer class="entry-footer">
-		<?php wmfoundation_entry_footer(); ?>
+		<?php wmf_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

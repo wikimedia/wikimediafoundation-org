@@ -9,8 +9,7 @@
  * Registers the `profile_type` taxonomy,
  * for use with 'profile'.
  */
-function profile_type_init() {
-
+function wmf_profile_type_init() {
 	$default_args = array(
 		'hierarchical'      => true,
 		'public'            => true,
@@ -85,6 +84,5 @@ function profile_type_init() {
 		)
 	);
 	register_taxonomy( 'team', array( 'profile' ), $team_args );
-
 }
-add_action( 'init', 'profile_type_init' );
+add_action( 'init', 'wmf_profile_type_init' );
