@@ -102,6 +102,7 @@ add_action( 'widgets_init', 'wmfoundation_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wmfoundation_scripts() {
+	wp_enqueue_style( 'wmfoundation-gfonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Material+Icons' );
 	wp_enqueue_style( 'wmfoundation-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery' ), '0.0.1', true );
 
