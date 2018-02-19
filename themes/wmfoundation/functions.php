@@ -153,3 +153,8 @@ require get_template_directory() . '/inc/classes/class-wp-bootstrap-navwalker.ph
  * Add Custom Post Types.
  */
 require get_template_directory() . '/inc/post-types/profile.php';
+
+/**
+ * Add Template Data Helper.
+ */
+require get_template_directory() . '/inc/classes/class-rkv-template-data.php';
