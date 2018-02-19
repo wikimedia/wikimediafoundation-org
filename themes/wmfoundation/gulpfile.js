@@ -16,6 +16,7 @@ var paths = {
 	sassRoot: 'assets/src/sass',
 	sassFiles: ['assets/src/sass/**/*.scss', '!assets/src/sass/base/**/*.scss', '!assets/src/sass/_vars.scss'],
 	jsFiles: 'assets/src/js/**/*.js',
+	jsLintFiles: ['assets/src/js/**/*.js', '!assets/src/js/mule-js/**/*.js'],
 	phpFiles: [ '*.php', 'inc/**/*.php', 'template-parts/**/*.php' ],
 	svgFiles: 'assets/src/svg/individual/*.svg'
 }
@@ -57,7 +58,7 @@ gulp.task( 'concat', function() {
 } );
 
 gulp.task( 'jslint', function() {
-	return gulp.src( paths.jsFiles )
+	return gulp.src( paths.jsLintFiles )
 			   .pipe( eslint() )
 			   .pipe( eslint.format() )
 } );
