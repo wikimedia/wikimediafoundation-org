@@ -44,10 +44,10 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 					<div class="flickity-viewport" style="height: 45px;"><div class="flickity-slider" style="left: 0px; transform: translateX(0%);"><li class="is-selected" style="position: absolute; left: 0%;"><a href="#">English</a></li><li class="divider" style="position: absolute; left: 5.8500000000000005%;">—</li><li style="position: absolute; left: 8%;"><a href="#">العربية</a></li><li class="divider" style="position: absolute; left: 12.35%;">—</li><li style="position: absolute; left: 14.51%;"><a href="#">български</a></li><li class="divider" style="position: absolute; left: 22.650000000000002%;">—</li><li style="position: absolute; left: 24.810000000000002%;"><a href="#">dansk</a></li><li class="divider" style="position: absolute; left: 29.87%;">—</li><li style="position: absolute; left: 32.02%;"><a href="#">Deutsch</a></li><li class="divider" style="position: absolute; left: 38.46%;">—</li><li style="position: absolute; left: 40.62%;"><a href="#">Ελληνικά</a></li><li class="divider" style="position: absolute; left: 47.65%;">—</li><li style="position: absolute; left: 49.81%;"><a href="#">español</a></li><li class="divider" style="position: absolute; left: 56.050000000000004%;">—</li><li style="position: absolute; left: 58.2%;"><a href="#">فارسی</a></li><li class="divider" style="position: absolute; left: 62.690000000000005%;">—</li><li style="position: absolute; left: 64.84%;"><a href="#">français</a></li><li class="divider" style="position: absolute; left: 71.09%;">—</li><li style="position: absolute; left: 73.25%;"><a href="#">galego</a></li><li class="divider" style="position: absolute; left: 78.85000000000001%;">—</li><li style="position: absolute; left: 81.01%;"><a href="#">interlingua</a></li><li class="divider" style="position: absolute; left: 89.16%;">—</li><li style="position: absolute; left: 91.32000000000001%;"><a href="#">Bahasa Indonesian</a></li><li class="divider" style="position: absolute; left: 104.55%;">—</li><li style="position: absolute; left: 106.71000000000001%;"><a href="#">italiano</a></li><li class="divider" style="position: absolute; left: 112.66%;">—</li><li style="position: absolute; left: 114.82000000000001%;"><a href="#">македо</a></li></div></div></ul>
 
 				<div class="arrow-wrap">
-					  <span>
+					<span>
 						<span class="elipsis">...</span>
 						<i class="material-icons">trending_flat</i>
-					  </span>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -118,11 +118,13 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 
 						<?php
 						if ( has_nav_menu( 'menu-1' ) ) {
-							wp_nav_menu( array(
-								'menu'       => 'menu-1',
-								'menu_class' => 'nav-links list-inline',
-								'container'  => '',
-							) );
+							wp_nav_menu(
+								array(
+									'menu'       => 'menu-1',
+									'menu_class' => 'nav-links list-inline',
+									'container'  => '',
+								)
+							);
 						}
 						?>
 					</nav>

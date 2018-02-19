@@ -17,7 +17,6 @@ class Header extends Base {
 	 * Add Customizer fields for header section.
 	 */
 	public function setup_fields() {
-
 		$header_section = $this->customize->get_section( 'header_image' );
 
 		$header_image_title = $header_section->title;
@@ -35,12 +34,11 @@ class Header extends Base {
 		$this->customize->add_control(
 			new \WP_Customize_Image_Control(
 				$this->customize, $control_id, array(
-					'label'   => __( 'Mobile Logo', 'bisk' ),
+					'label'   => __( 'Mobile Logo', 'wmfoundation' ),
 					'section' => $section_id,
 				)
 			)
 		);
-
 
 		$section_id = 'wmf_header_content';
 		$this->customize->add_section(
@@ -104,9 +102,9 @@ class Header extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Donate button URI', 'wmfoundation' ),
-				'section'     => $section_id,
-				'type'        => 'text',
+				'label'   => __( 'Donate button URI', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
 			)
 		);
 
@@ -124,7 +122,6 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-
 	}
 
 }

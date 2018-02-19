@@ -142,7 +142,7 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/classes/customizer/base.php';
+require get_template_directory() . '/inc/classes/customizer/class-base.php';
 
 /**
  * Custom Fields functions.
