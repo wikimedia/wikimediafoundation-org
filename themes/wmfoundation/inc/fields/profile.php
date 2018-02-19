@@ -8,7 +8,7 @@
 /**
  * Add fields to profile post type.
  */
-function wmfoundation_profile_fields() {
+function wmf_profile_fields() {
 	$contact_links = new Fieldmanager_Group(
 		array(
 			'label'          => __( 'Contact Link', 'wmfoundation' ),
@@ -33,4 +33,4 @@ function wmfoundation_profile_fields() {
 	);
 	$info->add_meta_box( __( 'Profile Info', 'wmfoundation' ), 'profile' );
 }
-add_action( 'fm_post_profile', 'wmfoundation_profile_fields' );
+add_action( 'fm_post_profile', 'wmf_profile_fields' );
