@@ -72,6 +72,7 @@ ul li {
 // .blockquote-container wrapped around blockquote via JS
 $blockquote-bp: 1230px;
 
+.blockquote-container,
 blockquote {
 	margin: 3rem 0;
 
@@ -80,6 +81,7 @@ blockquote {
 	}
 }
 
+.blockquote-container blockquote,
 blockquote p {
 	font-size: 1.2rem;
 	line-height: 1.8;
@@ -90,17 +92,21 @@ blockquote p {
 
 	@media (min-width: $blockquote-bp) {
 		font-size: 2rem;
-		margin-left: 93px;
 		padding-left: 0;
 	}
 }
 
+.blockquote-container blockquote,
 blockquote p:first-child {
     position: relative;
     font-weight: 300;
 	display: inline;
 	margin-left: rem(30);
 	padding-left: rem(20);
+
+	@media (min-width: $blockquote-bp) {
+		margin-left: 93px;
+	}
 
 	&:before {
 		content: "";
