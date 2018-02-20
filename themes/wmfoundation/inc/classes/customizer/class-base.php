@@ -60,23 +60,6 @@ abstract class Base {
 	abstract public function setup_fields();
 }
 
-spl_autoload_register( __NAMESPACE__ . '\autoload' );
-/**
- * Autoloader callback for customizer classes.
- *
- * @param string $class The class being checked.
- */
-function autoload( $class ) {
-	if ( false !== strpos( $class, __NAMESPACE__ ) ) {
-		$file = strtolower( str_replace( array( __NAMESPACE__ . '\\', '_' ), array( '', '-' ), $class ) );
-		$path = sprintf( '%1$sclass-%2$s.php', trailingslashit( dirname( __FILE__ ) ), $file );
-
-		if ( file_exists( $path ) && 0 === validate_file( $path ) ) {
-			require $path;
-		}
-	}
-}
-
 /**
  * Instantiates and loads the various customizer classes.
  */
@@ -84,6 +67,8 @@ function load_customizer_classes() {
 	// Add customizer class name to list to instantiate.
 	$customizers = array(
 		'Header',
+		'Footer',
+		'Social',
 	);
 
 	foreach ( $customizers as $customizer ) {
