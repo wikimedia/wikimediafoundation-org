@@ -40,8 +40,8 @@ $wmf_translations         = wmf_get_translations();
 				</div>
 
 				<ul class="list-inline">
-				<?php foreach ( $wmf_translations as $index => $wmf_translation ) : ?>
-					<?php if ( 0 !== $index ) : ?>
+				<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
+					<?php if ( 0 !== $wmf_index ) : ?>
 					<li class="divider">&mdash;</li>
 					<?php endif; ?>
 					<li>
@@ -130,9 +130,9 @@ $wmf_translations         = wmf_get_translations();
 						if ( has_nav_menu( 'header' ) ) {
 							wp_nav_menu(
 								array(
-									'menu'           => 'header',
-									'menu_class'     => 'nav-links list-inline',
-									'container'      => '',
+									'menu'       => 'header',
+									'menu_class' => 'nav-links list-inline',
+									'container'  => '',
 								)
 							);
 						}
