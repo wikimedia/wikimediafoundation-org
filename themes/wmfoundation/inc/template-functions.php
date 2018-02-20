@@ -32,7 +32,6 @@ add_filter( 'body_class', 'wmf_body_classes' );
  * @return string Container classes to add.
  */
 function wmf_get_header_container_class() {
-
 	$class = '';
 
 	if ( has_post_thumbnail() ) {
