@@ -15,7 +15,7 @@ $wmf_facebook_url                     = get_theme_mod( 'wmf_facebook_url' );
 $wmf_instagram_url                    = get_theme_mod( 'wmf_instagram_url' );
 $wmf_projects_menu_label              = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'wmfoundation' ) );
 $wmf_movement_affiliates_menu_label   = get_theme_mod( 'wmf_movement_affiliates_menu_label', __( 'Movement Affiliates', 'wmfoundation' ) );
-$wmf_footer_copyright                 = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="#">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="#">CC BY-SA</a>.', 'wmfoundation' ) );
+$wmf_footer_copyright                 = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'wmfoundation' ) );
 ?>
 
 	</div><!-- #content -->

@@ -84,7 +84,7 @@ class Footer extends Base {
 		$control_id = 'wmf_footer_copyright';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'This work is licensed under a <a href="#">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="#">CC BY-SA</a>.', 'wmfoundation' ),
+				'default' => __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'wmfoundation' ),
 			)
 		);
 		$this->customize->add_control(
