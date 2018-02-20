@@ -19,7 +19,6 @@ class Profile extends Base {
 	 * Add Customizer fields for header section.
 	 */
 	public function setup_fields() {
-
 		$section_id = 'wmf_profile_content';
 		$this->customize->add_section(
 			$section_id, array(
@@ -35,8 +34,8 @@ class Profile extends Base {
 				$this->customize,
 				$control_id,
 				array(
-					'label' => __( 'Profile Container Image', 'wmfoundation' ),
-					'section' => 'wmf_profile_content',
+					'label'    => __( 'Profile Container Image', 'wmfoundation' ),
+					'section'  => 'wmf_profile_content',
 					'settings' => $control_id,
 				)
 			)

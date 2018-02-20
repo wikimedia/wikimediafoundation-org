@@ -5,7 +5,7 @@
  * @package wmfoundation
  */
 
-$data = rkv_get_template_data();
+$data = wmf_get_template_data();
 
 if ( empty( $data['container_image'] ) || empty( $data['inner_image'] ) ) {
 	return;
