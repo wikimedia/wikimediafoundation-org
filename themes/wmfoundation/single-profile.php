@@ -19,7 +19,7 @@ while ( have_posts() ) :
 <?php
 rkv_get_template_part( 'template-parts/thumbnail-framed',
 	array(
-		'container_image' => 'https://muledesign.github.io/wmf-pl-prototypes/images/staff-profile-pattern.jpg',
+		'container_image' => get_theme_mod( 'wmf_profile_container_image' ),
 		'inner_image'     => get_post_thumbnail_id( get_the_ID() ),
 		'container_class' => 'mod-margin-bottom',
 	)
