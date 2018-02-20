@@ -71,12 +71,8 @@ ul li {
 
 // .blockquote-container wrapped around blockquote via JS
 $blockquote-bp: 1230px;
-.wysiwyg blockquote {
-	display: block;
-}
 
-.blockquote-container,
-.wysiwyg blockquote {
+blockquote {
 	margin: 3rem 0;
 
 	@media (min-width: $blockquote-bp) {
@@ -84,8 +80,7 @@ $blockquote-bp: 1230px;
 	}
 }
 
-blockquote,
-.wysiwyg blockquote p {
+blockquote p {
     position: relative;
     font-size: 1.2rem;
     font-weight: 300;
