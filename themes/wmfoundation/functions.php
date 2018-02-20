@@ -51,7 +51,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'wmfoundation' ),
+			'menu-1'   => esc_html__( 'Primary', 'wmfoundation' ),
+			'footer-1' => esc_html__( 'Footer Under Text', 'wmfoundation' ),
+			'footer-2' => esc_html__( 'Footer Projects', 'wmfoundation' ),
+			'footer-3' => esc_html__( 'Footer Movement Affiliates', 'wmfoundation' ),
+			'footer-4' => esc_html__( 'Footer Legal', 'wmfoundation' ),
 		)
 	);
 
@@ -138,6 +142,11 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Class autoloader.
+ */
+require get_template_directory() . '/inc/classes/class-autoload.php';
 
 /**
  * Customizer additions.
