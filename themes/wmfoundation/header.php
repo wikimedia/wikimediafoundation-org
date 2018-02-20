@@ -131,11 +131,3 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 				</div>
 			</div>
 
-
-			<?php get_template_part( 'template-parts/header/index' ); ?>
-		</div>
-
-
-	</header>
-
-	<div id="content" class="site-content">
