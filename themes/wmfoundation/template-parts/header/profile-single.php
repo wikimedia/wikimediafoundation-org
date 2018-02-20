@@ -5,15 +5,13 @@
  * @package wmfoundation
  */
 
-$back_to_link = get_post_type_archive_link( 'profile' );
+$profile_header_data = wmf_get_template_data();
 
-// Need to confirm that this is either Staff or Community / separate taxonomy.
-$staff_name = 'Staff';
-
-$role        = get_post_meta( get_the_ID(), 'profile_role', true );
-$team_name   = get_the_terms( get_the_ID(), 'team' );
-$team_name   = ! empty( $team_name ) && isset( $team_name[0]->name ) ? $team_name[0]->name : '';
-$share_links = get_post_meta( get_the_ID(), 'contact_links', true );
+$back_to_link = ! empty( $profile_header_data['back_to_link'] ) ? $profile_header_data['back_to_link'] : '';
+$staff_name   = ! empty( $profile_header_data['back_to_label'] ) ? $profile_header_data['back_to_label'] : '';
+$team_name    = ! empty( $profile_header_data['team_name'] ) ? $profile_header_data['team_name'] : '';
+$role         = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : '';
+$share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header_data['share_links'] : '';
 
 ?>
 

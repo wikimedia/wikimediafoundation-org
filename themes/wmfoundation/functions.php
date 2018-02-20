@@ -161,4 +161,4 @@ require get_template_directory() . '/inc/post-types/profile.php';
 /**
  * Add Template Data Helper.
  */
-require get_template_directory() . '/inc/classes/class-rkv-template-data.php';
+require get_template_directory() . '/inc/classes/class-wmf-template-data.php';
