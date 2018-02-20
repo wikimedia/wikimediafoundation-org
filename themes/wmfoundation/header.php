@@ -45,9 +45,11 @@ $wmf_translations         = wmf_get_translations();
 					<li class="divider">&mdash;</li>
 					<?php endif; ?>
 					<li>
-						<a href="<?php echo esc_url( $wmf_translation['selected'] ? '#' : $wmf_translation['uri'] ); ?>">
-							<?php echo esc_html( $wmf_translation['name'] ); ?>
-						</a>
+						<?php if ( $wmf_translation['selected'] ) : ?>
+						<span><?php echo esc_html( $wmf_translation['name'] ); ?></span>
+						<?php else : ?>
+						<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
 				</ul>
