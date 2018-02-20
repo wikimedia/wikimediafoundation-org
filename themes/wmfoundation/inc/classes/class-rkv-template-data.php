@@ -31,7 +31,7 @@ class Rkv_Template_Data {
 	 *
 	 * @var string
 	 */
-	protected $path = '';
+	public static $path = '';
 
 	/**
 	 * The constructor.
