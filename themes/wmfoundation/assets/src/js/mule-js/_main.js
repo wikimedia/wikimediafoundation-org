@@ -3,7 +3,7 @@
  * Main site JS
  *
  */
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 
   // Related News module.  Keep h3 headings the same height so the images stay the same height as well.
   var headings = $('.related-news h3'),

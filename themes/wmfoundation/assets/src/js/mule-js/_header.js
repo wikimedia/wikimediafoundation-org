@@ -5,7 +5,7 @@
  */
 
 
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 
   // Transation bar into slider
   $('.translation-bar ul').flickity({

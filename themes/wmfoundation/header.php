@@ -9,10 +9,11 @@
  * @package wmfoundation
  */
 
-$wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate Now', 'wmfoundation' ) );
-$wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', '#' );
-$wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfoundation' ) );
-
+$wmf_donate_button        = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate Now', 'wmfoundation' ) );
+$wmf_donate_uri           = get_theme_mod( 'wmf_donate_now_uri', '#' );
+$wmf_menu_button          = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfoundation' ) );
+$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Selected', 'wmfoundation' ) );
+$wmf_translations         = wmf_get_translations();
 
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
@@ -30,18 +31,28 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 
 	<header class="header-default <?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
 
-		<?php // Todo: Make translation bare dynamic. ?>
-		<div class="translation-bar">
+		<?php if ( false !== $wmf_translations ) : ?>
+			<div class="translation-bar">
 			<div class="translation-bar-inner mw-1360">
 				<div class="translation-icon">
 					<i class="material-icons mar-right">translate</i>
-					<span class="bold">Selected</span>
-
+					<span class="bold"><?php echo esc_html( $wmf_translation_selected ); ?></span>
 				</div>
 
-				<ul class="list-inline flickity-enabled is-draggable" tabindex="0">
-
-					<div class="flickity-viewport" style="height: 45px;"><div class="flickity-slider" style="left: 0px; transform: translateX(0%);"><li class="is-selected" style="position: absolute; left: 0%;"><a href="#">English</a></li><li class="divider" style="position: absolute; left: 5.8500000000000005%;">—</li><li style="position: absolute; left: 8%;"><a href="#">العربية</a></li><li class="divider" style="position: absolute; left: 12.35%;">—</li><li style="position: absolute; left: 14.51%;"><a href="#">български</a></li><li class="divider" style="position: absolute; left: 22.650000000000002%;">—</li><li style="position: absolute; left: 24.810000000000002%;"><a href="#">dansk</a></li><li class="divider" style="position: absolute; left: 29.87%;">—</li><li style="position: absolute; left: 32.02%;"><a href="#">Deutsch</a></li><li class="divider" style="position: absolute; left: 38.46%;">—</li><li style="position: absolute; left: 40.62%;"><a href="#">Ελληνικά</a></li><li class="divider" style="position: absolute; left: 47.65%;">—</li><li style="position: absolute; left: 49.81%;"><a href="#">español</a></li><li class="divider" style="position: absolute; left: 56.050000000000004%;">—</li><li style="position: absolute; left: 58.2%;"><a href="#">فارسی</a></li><li class="divider" style="position: absolute; left: 62.690000000000005%;">—</li><li style="position: absolute; left: 64.84%;"><a href="#">français</a></li><li class="divider" style="position: absolute; left: 71.09%;">—</li><li style="position: absolute; left: 73.25%;"><a href="#">galego</a></li><li class="divider" style="position: absolute; left: 78.85000000000001%;">—</li><li style="position: absolute; left: 81.01%;"><a href="#">interlingua</a></li><li class="divider" style="position: absolute; left: 89.16%;">—</li><li style="position: absolute; left: 91.32000000000001%;"><a href="#">Bahasa Indonesian</a></li><li class="divider" style="position: absolute; left: 104.55%;">—</li><li style="position: absolute; left: 106.71000000000001%;"><a href="#">italiano</a></li><li class="divider" style="position: absolute; left: 112.66%;">—</li><li style="position: absolute; left: 114.82000000000001%;"><a href="#">македо</a></li></div></div></ul>
+				<ul class="list-inline">
+				<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
+					<?php if ( 0 !== $wmf_index ) : ?>
+					<li class="divider">&mdash;</li>
+					<?php endif; ?>
+					<li>
+						<?php if ( $wmf_translation['selected'] ) : ?>
+						<span><?php echo esc_html( $wmf_translation['name'] ); ?></span>
+						<?php else : ?>
+						<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+						<?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+				</ul>
 
 				<div class="arrow-wrap">
 					<span>
@@ -51,6 +62,7 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 				</div>
 			</div>
 		</div>
+		<?php endif; ?>
 
 		<div class="header-inner mw-1360">
 			<div class="logo-nav-container">
@@ -117,10 +129,10 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 						<button class="mobile-nav-toggle bold"><i class="material-icons">menu</i><?php echo esc_html( $wmf_menu_button ); ?></button>
 
 						<?php
-						if ( has_nav_menu( 'menu-1' ) ) {
+						if ( has_nav_menu( 'header' ) ) {
 							wp_nav_menu(
 								array(
-									'menu'       => 'menu-1',
+									'menu'       => 'header',
 									'menu_class' => 'nav-links list-inline',
 									'container'  => '',
 								)

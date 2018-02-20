@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 
   // Hover on an element, and add class to closest parent.
   function hoverAddClass(container, parent, elem, className) {
