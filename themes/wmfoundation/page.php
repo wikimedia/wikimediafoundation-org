@@ -12,27 +12,33 @@
  * @package wmfoundation
  */
 
-get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
-			<?php
-			while ( have_posts() ) :
-				the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+get_header();
+while ( have_posts() ) :
+	the_post();
+?>
 
 <?php
-get_sidebar();
+$parent_page = wp_get_post_parent_id( get_the_ID() );
+
+if ( has_post_thumbnail() ) :
+	wmf_get_template_part(
+		'template-parts/header/page-image',
+		array(
+			'img'                  => get_the_post_thumbnail_url( get_the_ID(), 'large' ),
+			'parent_section_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
+			'parent_section_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
+		)
+	);
+else :
+	wmf_get_template_part(
+		'template-parts/header/page-noimage',
+		array(
+			'parent_section_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
+			'parent_section_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
+		)
+	);
+endif;
+
+get_template_part( 'template-parts/content', 'page' );
+endwhile;
 get_footer();

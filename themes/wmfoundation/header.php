@@ -28,7 +28,7 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wmfoundation' ); ?></a>
 
-	<header class="header-default minimal--short" role="banner">
+	<header class="header-default <?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
 
 		<?php // Todo: Make translation bare dynamic. ?>
 		<div class="translation-bar">
