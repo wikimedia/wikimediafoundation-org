@@ -1,3 +1,6 @@
 [submodule "plugins/fieldmanager"]
 	path = plugins/fieldmanager
 	url = git@github.com:alleyinteractive/wordpress-fieldmanager.git
+[submodule "plugins/multilingual-press"]
+	path = plugins/multilingual-press
+	url = https://github.com/inpsyde/MultilingualPress
