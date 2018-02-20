@@ -10,7 +10,7 @@
 /**
  * Template data store class
  */
-class Rkv_Template_Data {
+class Wmf_Template_Data {
 
 	/**
 	 * Instances of the data store.
@@ -31,7 +31,7 @@ class Rkv_Template_Data {
 	 *
 	 * @var string
 	 */
-	protected $path = '';
+	public static $path = '';
 
 	/**
 	 * The constructor.
@@ -48,11 +48,11 @@ class Rkv_Template_Data {
 	 *
 	 * @param strin $path The path to the template partial.
 	 *
-	 * @return Rkv_Template_Data
+	 * @return Wmf_Template_Data
 	 */
 	public static function get_instance( $path ) {
 		if ( empty( static::$instances[ $path ] ) ) {
-			static::$instances[ $path ] = new Rkv_Template_Data( $path );
+			static::$instances[ $path ] = new Wmf_Template_Data( $path );
 		}
 
 		return static::$instances[ $path ];
@@ -95,13 +95,13 @@ class Rkv_Template_Data {
 }
 
 /**
- * Load the template path and pass data through Rkv_Template_Data.
+ * Load the template path and pass data through Wmf_Template_Data.
  *
  * @param string $slug The path to the partial.
  * @param array  $args The data to pass to the partial.
  * @param string $name The name extension of the partial.
  */
-function rkv_get_template_part( $slug, $args, $name = '' ) {
+function wmf_get_template_part( $slug, $args, $name = '' ) {
 	// Get the path.
 	$path = $slug;
 	if ( '' !== $name ) {
@@ -110,10 +110,10 @@ function rkv_get_template_part( $slug, $args, $name = '' ) {
 	}
 
 	// Save the last path to be reset after the current path is used.
-	$last_path = Rkv_Template_Data::$path;
+	$last_path = Wmf_Template_Data::$path;
 
 	// Get an instance of the data store with the key $path.
-	$temp_data_store = Rkv_Template_Data::get_instance( $path );
+	$temp_data_store = Wmf_Template_Data::get_instance( $path );
 
 	// Set the data in the data store.
 	$temp_data_store->set_data( $args );
@@ -125,7 +125,7 @@ function rkv_get_template_part( $slug, $args, $name = '' ) {
 	$temp_data_store->destroy();
 
 	// Reset the last path in the data store.
-	Rkv_Template_Data::$path = $last_path;
+	Wmf_Template_Data::$path = $last_path;
 }
 
 /**
@@ -137,7 +137,7 @@ function rkv_get_template_part( $slug, $args, $name = '' ) {
  *
  * @return mixed
  */
-function rkv_get_template_data( $args = array() ) {
+function wmf_get_template_data( $args = array() ) {
 	// Get the path to use.
 	$path = '';
 	if ( empty( $args['path'] ) ) {
@@ -147,13 +147,13 @@ function rkv_get_template_data( $args = array() ) {
 		}
 
 		if ( '' === $path ) {
-			// Set the path name to the last active path in Rkv_Template_Data if none is set.
-			$path = Rkv_Template_Data::$path;
+			// Set the path name to the last active path in Wmf_Template_Data if none is set.
+			$path = Wmf_Template_Data::$path;
 		}
 	}
 
 	// Get an instance of the data store.
-	$data_store = Rkv_Template_Data::get_instance( $path );
+	$data_store = Wmf_Template_Data::get_instance( $path );
 
 	// Get the key to use.
 	$key = ! empty( $args['key'] ) ? $args['key'] : '';

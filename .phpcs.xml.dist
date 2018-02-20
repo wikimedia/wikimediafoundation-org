@@ -31,7 +31,7 @@
 	<!-- Rules: WordPress Coding Standards -->
 	<config name="minimum_supported_wp_version" value="4.5"/>
 	<rule ref="WordPress">
-		
+  		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>

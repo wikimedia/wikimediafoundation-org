@@ -2,9 +2,12 @@
 /**
  * The header main index.
  *
- * This displays the main header component for various templates as needed.
+ * This closes out the parent header component for baseline templates
  *
  * @package wmfoundation
  */
 
-// Todo: Add logic for other templates.
+?>
+
+</div>
+</header>

@@ -69,6 +69,7 @@ function load_customizer_classes() {
 		'Header',
 		'Footer',
 		'Social',
+		'Profile',
 	);
 
 	foreach ( $customizers as $customizer ) {
