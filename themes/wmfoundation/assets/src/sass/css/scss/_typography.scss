@@ -81,13 +81,8 @@ blockquote {
 }
 
 blockquote p {
-    position: relative;
-    font-size: 1.2rem;
-    font-weight: 300;
-    line-height: 1.8;
-	display: inline;
-	margin-left: rem(30);
-	padding-left: rem(20);
+	font-size: 1.2rem;
+	line-height: 1.8;
 
 	@media (min-width: $medium-bp) {
 		font-size: 1.5rem;
@@ -98,6 +93,14 @@ blockquote p {
 		margin-left: 93px;
 		padding-left: 0;
 	}
+}
+
+blockquote p:first-child {
+    position: relative;
+    font-weight: 300;
+	display: inline;
+	margin-left: rem(30);
+	padding-left: rem(20);
 
 	&:before {
 		content: "";
