@@ -9,11 +9,6 @@
  * @package wmfoundation
  */
 
-/**
- * Todo:
- * - make footer copyright customizable
- */
-
 $wmf_footer_text                      = get_theme_mod( 'wmf_footer_text', __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'wmfoundation' ) );
 $wmf_twitter_url                      = get_theme_mod( 'wmf_twitter_url' );
 $wmf_facebook_url                     = get_theme_mod( 'wmf_facebook_url' );
