@@ -16,7 +16,7 @@ while ( have_posts() ) :
 
 <?php
 $team_name = get_the_terms( get_the_ID(), 'team' );
-$team_name = ! empty( $team_name ) && isset( $team_name[0]->name ) ? $team_name[0]->name : '';
+$team_name = 'test';
 
 wmf_get_template_part(
 	'template-parts/header/profile-single',
