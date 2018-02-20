@@ -9,21 +9,9 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
 
-	<div class="entry-content">
-		<?php
-			the_content();
-
-			wp_link_pages(
-				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'wmfoundation' ),
-					'after'  => '</div>',
-				)
-			);
-		?>
-	</div><!-- .entry-content -->
-</article><!-- #post-<?php the_ID(); ?> -->
+<article class="mw-900 mod-margin-bottom">
+	<div class="article-main wysiwyg">
+		<?php the_content(); ?>
+	</div>
+</article>

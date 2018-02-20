@@ -23,3 +23,6 @@ $parent_section_link  = ! empty( $page_header_data['parent_section_link'] ) ? $p
 		<h1 class="mar-bottom"><?php the_title(); ?></h1>
 	</div>
 </div>
+
+</div>
+</header>

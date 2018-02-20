@@ -12,27 +12,22 @@
  * @package wmfoundation
  */
 
-get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
-			<?php
-			while ( have_posts() ) :
-				the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+get_header();
+while ( have_posts() ) :
+	the_post();
+?>
 
 <?php
-get_sidebar();
+$parent_page = wp_get_post_parent_id( get_the_ID() );
+wmf_get_template_part(
+	'template-parts/header/page-default',
+	array(
+		'parent_section_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
+		'parent_section_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
+	)
+);
+
+get_template_part( 'template-parts/content', 'page' );
+
+endwhile;
 get_footer();
