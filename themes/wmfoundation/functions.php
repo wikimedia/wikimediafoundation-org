@@ -125,7 +125,9 @@ add_action( 'widgets_init', 'wmf_widgets_init' );
 function wmf_scripts() {
 	wp_enqueue_style( 'wmfoundation-gfonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Material+Icons' );
 	wp_enqueue_style( 'wmfoundation-style', get_stylesheet_uri() );
-	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery' ), '0.0.1', true );
+
+	wp_enqueue_script( 'wmfoundation-flickity', get_stylesheet_directory_uri() . '/assets/dist/flickity-min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'wmfoundation-flickity' ), '0.0.1', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -167,3 +169,8 @@ require get_template_directory() . '/inc/taxonomies.php';
  * Add Custom Post Types.
  */
 require get_template_directory() . '/inc/post-types/profile.php';
+
+/**
+ * Add Template Data Helper.
+ */
+require get_template_directory() . '/inc/classes/class-rkv-template-data.php';
