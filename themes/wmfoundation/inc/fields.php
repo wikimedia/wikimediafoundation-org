@@ -11,9 +11,8 @@
  * @param mixed $template_name Template to check against, without .php as a string (single template) or array (multiple templates).
  * @return bool
  */
-function wmfoundation_using_template( $template_name ) {
-
-	$id = wmfoundation_get_fields_post_id();
+function wmf_using_template( $template_name ) {
+	$id = wmf_get_fields_post_id();
 
 	if ( empty( $id ) ) {
 		return false;
@@ -39,7 +38,7 @@ function wmfoundation_using_template( $template_name ) {
  *
  * @return int
  */
-function wmfoundation_get_fields_post_id() {
+function wmf_get_fields_post_id() {
 	$post_request_id = filter_input(
 		INPUT_POST, 'post_ID', FILTER_CALLBACK, array(
 			'options' => 'intval',

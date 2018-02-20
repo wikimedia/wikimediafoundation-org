@@ -7,8 +7,6 @@ var concat       = require( 'gulp-concat' );
 var uglify       = require( 'gulp-uglify' );
 var eslint       = require( 'gulp-eslint' );
 
-var phpcs        = require( 'gulp-phpcs' );
-
 var svgsprite    = require( 'gulp-svg-sprite' );
 var wppot        = require( 'gulp-wp-pot' );
 var themeConfig  = require( './package.json' ).themeConfig;
@@ -18,6 +16,7 @@ var paths = {
 	sassRoot: 'assets/src/sass',
 	sassFiles: ['assets/src/sass/**/*.scss', '!assets/src/sass/base/**/*.scss', '!assets/src/sass/_vars.scss'],
 	jsFiles: 'assets/src/js/**/*.js',
+	jsLintFiles: ['assets/src/js/**/*.js', '!assets/src/js/mule-js/**/*.js'],
 	phpFiles: [ '*.php', 'inc/**/*.php', 'template-parts/**/*.php' ],
 	svgFiles: 'assets/src/svg/individual/*.svg'
 }
@@ -59,15 +58,9 @@ gulp.task( 'concat', function() {
 } );
 
 gulp.task( 'jslint', function() {
-	return gulp.src( paths.jsFiles )
+	return gulp.src( paths.jsLintFiles )
 			   .pipe( eslint() )
 			   .pipe( eslint.format() )
-} );
-
-gulp.task( 'phplint', function() {
-	return gulp.src( paths.phpFiles )
-			   .pipe( phpcs() )
-			   .pipe( phpcs.reporter( 'log' ) )
 } );
 
 gulp.task( 'pot', function() {
@@ -99,6 +92,6 @@ gulp.task( 'watch', function() {
 
 gulp.task( 'styles', [ 'sass' ] );
 gulp.task( 'scripts', [ 'jslint', 'concat' ] );
-gulp.task( 'lint', [ 'jslint', 'phplint' ] );
+gulp.task( 'lint', [ 'jslint' ] );
 gulp.task( 'build', [ 'svg', 'styles', 'scripts' ] );
 gulp.task( 'default', [ 'build', 'watch' ] );

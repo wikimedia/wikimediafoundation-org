@@ -1,0 +1,38 @@
+{
+  "name": "wmfoundation",
+  "description": "Theme and plugins for WikiMedia Foundation project",
+  "keywords": [],
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0+",
+  "homepage": "https://github.com/reaktivstudios/wmfoundation",
+  "authors": [
+    {
+      "name": "reaktivstudios",
+      "homepage": "http://reaktivstudios.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/reaktivstudios/wmfoundation/issues",
+    "source": "https://github.com/reaktivstudios/wmfoundation"
+  },
+  "config": {
+    "sort-order": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^5.2|^7",
+    "composer/installers": "^1.0",
+    "roave/security-advisories": "dev-master"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+    "squizlabs/php_codesniffer": "^3.2",
+    "wimg/php-compatibility": "dev-master",
+    "wp-coding-standards/wpcs": "0.14.0"
+  },
+  "scripts": {
+    "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+  }
+}
