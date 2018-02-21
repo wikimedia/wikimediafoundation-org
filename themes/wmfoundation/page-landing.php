@@ -23,5 +23,12 @@ while ( have_posts() ) {
 	} else {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
+
+	$template_args = array(
+		'intro' => get_post_meta( get_the_ID(), 'page_intro', true ),
+	);
+
+	wmf_get_template_part( 'template-parts/modules/intro/page', $template_args );
+
 }
 get_footer();
