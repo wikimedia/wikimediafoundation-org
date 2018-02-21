@@ -29,5 +29,7 @@ while ( have_posts() ) {
 	);
 
 	wmf_get_template_part( 'template-parts/modules/intro/page', $template_args );
+
+	get_template_part( 'template-parts/landing/mu', 'text' );
 }
 get_footer();
