@@ -35,10 +35,10 @@ function wmf_get_header_container_class() {
 	$class = '';
 
 	if ( has_post_thumbnail() ) {
-		$template = get_page_template();
+		$template = basename( get_page_template() );
 
 		switch ( $template ) {
-			case 'landing':
+			case 'page-landing.php':
 				$class .= ' featured-photo--content-left';
 				break;
 
