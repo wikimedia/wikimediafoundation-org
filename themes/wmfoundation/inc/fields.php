@@ -53,4 +53,5 @@ function wmf_get_fields_post_id() {
 	return ! empty( $get_request_id ) ? $get_request_id : $post_request_id;
 }
 
+require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/profile.php';
