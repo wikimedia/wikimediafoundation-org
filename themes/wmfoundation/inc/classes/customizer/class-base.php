@@ -55,6 +55,28 @@ abstract class Base {
 	}
 
 	/**
+	 * Gets the array of choices for the page select.
+	 *
+	 * @return array the choices.
+	 */
+	public function page_choices() {
+		$choices = array();
+
+		$posts = get_posts(
+			array(
+				'post_type'      => 'page',
+				'posts_per_page' => 100,
+			)
+		);
+
+		foreach ( $posts as $post_choice ) {
+			$choices[ $post_choice->ID ] = $post_choice->post_title;
+		}
+
+		return $choices;
+	}
+
+	/**
 	 * Add customizer fields.
 	 */
 	abstract public function setup_fields();

@@ -40,6 +40,18 @@ class Profile extends Base {
 				)
 			)
 		);
+
+		$control_id = 'wmf_profile_parent_page';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Profiles Parent Page', 'wmfoundation' ),
+				'description' => __( 'This changes the parent link at the top of individual profile pages like Staff & Contractors.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'select',
+				'choices'     => $this->page_choices(),
+			)
+		);
 	}
 
 }

@@ -73,3 +73,22 @@ function wmf_get_header_cta_button_class() {
 
 	return $class;
 }
+
+function wmf_get_the_title() {
+	$title = '';
+
+	if ( is_single() ) {
+		$title = get_the_title();
+	}
+
+	if ( is_post_type_archive() ) {
+		$post_type_object = get_post_type_object( $post_type );
+		$title            = isset( $post_type_object->labels->singular_name ) ? $post_type_object->labels->singular_name : '';
+	}
+
+	if ( is_tax() ) {
+		$title = single_term_title( '', false );
+	}
+
+	return $title;
+}
