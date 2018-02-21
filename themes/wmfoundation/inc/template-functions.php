@@ -71,6 +71,5 @@ function wmf_get_header_cta_button_class() {
 
 	$class .= is_page() && isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? ' btn-blue' : ' btn-pink';
 
-
 	return $class;
 }
