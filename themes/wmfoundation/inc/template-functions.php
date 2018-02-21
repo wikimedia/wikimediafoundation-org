@@ -39,16 +39,37 @@ function wmf_get_header_container_class() {
 
 		switch ( $template ) {
 			case 'landing':
-				$class .= 'featured-photo--content-left';
+				$class .= ' featured-photo--content-left';
 				break;
 
 			default:
-				$class .= 'featured-photo--content-centered';
+				$class .= ' featured-photo--content-centered';
 				break;
 		}
 	} else {
-		$class .= 'minimal--short';
+		$class .= ' minimal--short';
 	}
+
+	if ( is_page() ) {
+		$bg_opts = get_post_meta( get_the_ID(), 'page_header_background', true );
+
+		$class .= isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? ' header-pink' : '';
+	}
+
+	return $class;
+}
+
+/**
+ * Parse template data, get back header button class.
+ *
+ * @return string button classes to add.
+ */
+function wmf_get_header_cta_button_class() {
+	$class = '';
+
+	$bg_opts = get_post_meta( get_the_ID(), 'page_header_background', true );
+
+	$class .= is_page() && isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? ' btn-blue' : ' btn-pink';
 
 	return $class;
 }

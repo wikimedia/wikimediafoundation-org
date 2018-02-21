@@ -31,6 +31,7 @@ $wmf_translations         = wmf_get_translations();
 
 	<header class="header-default <?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
 
+		<?php get_template_part( 'template-parts/header/background' ); ?>
 		<?php if ( false !== $wmf_translations ) : ?>
 			<div class="translation-bar">
 			<div class="translation-bar-inner mw-1360">
@@ -121,7 +122,7 @@ $wmf_translations         = wmf_get_translations();
 				<div class="nav-container">
 					<div class="search-cta-container">
 						<?php get_search_form( true ); ?>
-						<a class="nav-cta btn btn-pink" href="<?php echo esc_url( $wmf_donate_uri ); ?>"><?php echo esc_html( $wmf_donate_button ); ?></a>
+						<a class="nav-cta btn <?php echo esc_attr( wmf_get_header_cta_button_class() ); ?>" href="<?php echo esc_url( $wmf_donate_uri ); ?>"><?php echo esc_html( $wmf_donate_button ); ?></a>
 					</div>
 
 					<nav class="main-nav">
