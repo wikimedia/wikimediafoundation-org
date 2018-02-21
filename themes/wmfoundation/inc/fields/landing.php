@@ -39,7 +39,7 @@ function wmf_landing_fields() {
 				'heading'   => new Fieldmanager_Textfield( __( 'Heading', 'wmfoundation' ) ),
 				'copy'      => new Fieldmanager_RichTextArea( __( 'Content', 'wmfoundation' ) ),
 				'link_url'  => new Fieldmanager_Link( __( 'Link URI', 'wmfoundation' ) ),
-				'link_text'   => new Fieldmanager_Textfield( __( 'Link Text', 'wmfoundation' ) ),
+				'link_text' => new Fieldmanager_Textfield( __( 'Link Text', 'wmfoundation' ) ),
 			),
 		)
 	);

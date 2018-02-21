@@ -5,7 +5,6 @@
  * @package wmfoundation
  */
 
-
 $text_ctas = get_post_meta( get_the_ID(), 'text_cta', true );
 
 if ( empty( $text_ctas ) ) {
