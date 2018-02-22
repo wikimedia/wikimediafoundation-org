@@ -7,7 +7,19 @@
  * @package wmfoundation
  */
 
-get_header(); ?>
+get_header();
+
+?>
+
+<?php
+	wmf_get_template_part(
+		'template-parts/header/page-noimage',
+		array(
+			'h1_title' => get_the_archive_title(),
+		)
+	);
+
+?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
