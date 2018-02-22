@@ -81,11 +81,11 @@ function wmf_get_header_cta_button_class() {
  * @param string $taxonomy  Taxonomy name.
  * @return array List of organized IDs.
  */
-function wmf_get_term_hierarchy( $parent_id, $taxonomy ) {
+function wmf_get_role_hierarchy( $parent_id ) {
 	$children   = array();
 	$term_array = array();
 	$terms      = get_terms(
-		$taxonomy, array(
+		'role', array(
 			'orderby' => 'id',
 			'fields'  => 'id=>parent',
 			'get'     => 'all',
@@ -112,8 +112,8 @@ function wmf_get_term_hierarchy( $parent_id, $taxonomy ) {
  * @param string $taxonomy Taxonomy name.
  * @return array List of and term name.
  */
-function wmf_get_term_posts( $term_id, $taxonomy ) {
-	$term_query = get_term( $term_id, $taxonomy );
+function wmf_get_role_posts( $term_id ) {
+	$term_query = get_term( $term_id, 'role' );
 	$posts      = new WP_Query(
 		array(
 			'post_type' => 'profile',
@@ -141,28 +141,52 @@ function wmf_get_term_posts( $term_id, $taxonomy ) {
  * @param string $taxonomy Taxonomy to check against.
  * @return array list of organized posts or empty array.
  */
-function wmf_get_posts_by_child_terms( $term_id, $taxonomy = 'role' ) {
+function wmf_get_posts_by_child_roles( $term_id ) {
+	$post_list = wp_cache_get( 'wmf_terms_list_' . $term_id );
+
+	if ( ! empty( $post_list ) ) {
+		return $post_list;
+	}
+
 	$post_list = array();
 
-	$child_terms = wmf_get_term_hierarchy( $term_id, 'role' );
+	$child_terms = wmf_get_role_hierarchy( $term_id, 'role' );
 
 	foreach ( $child_terms as $parent_id => $children ) {
 		$featured_term = get_term_meta( $parent_id, 'featured_term', true );
 
 		if ( true === boolval( $featured_term ) ) {
 			$post_list = array(
-				$parent_id => wmf_get_term_posts( $parent_id, $taxonomy ),
+				$parent_id => wmf_get_role_posts( $parent_id ),
 			) + $post_list;
 		} else {
-			$post_list[ $parent_id ] = wmf_get_term_posts( $parent_id, $taxonomy );
+			$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
 		}
 
 		$post_list[ $parent_id ]['children'] = array();
 
 		foreach ( $children as $child_id ) {
-			$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_term_posts( $child_id, $taxonomy );
+			$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
 		}
 	}
 
+	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
+
 	return $post_list;
 }
+
+/**
+ * Clear cache for a term and its parent
+ *
+ * @param int $term_id Term ID to clear.
+ */
+function wmf_clear_role_cache( $term_id ) {
+	wp_cache_delete( 'wmf_terms_list_' . $term_id );
+
+	if ( ! empty( $term->parent ) ) {
+		wp_cache_delete( 'wmf_terms_list_' . $term->parent );
+	}
+}
+add_action( 'edit_role', 'wmf_clear_role_cache', 10, 1 );
+add_action( 'create_role', 'wmf_clear_role_cache', 10, 1 );
+add_action( 'delete_role', 'wmf_clear_role_cahce', 10, 1 );

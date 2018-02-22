@@ -28,7 +28,7 @@ $button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring'
 $button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
 
 $current_term_id = get_queried_object_id();
-$post_list       = wmf_get_posts_by_child_terms( $current_term_id, 'role' );
+$post_list       = wmf_get_posts_by_child_roles( $current_term_id );
 
 ?>
 
