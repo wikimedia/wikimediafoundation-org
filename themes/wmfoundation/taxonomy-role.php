@@ -36,7 +36,7 @@ $post_list       = wmf_get_posts_by_child_roles( $current_term_id );
 	wmf_get_template_part(
 		'template-parts/header/page-noimage',
 		array(
-			'h1_title' => 'Staff and Contractors',
+			'h1_title' => single_term_title( '', false ),
 			'h4_link'  => $h4_link,
 			'h4_title' => $h4_title,
 		)
@@ -64,6 +64,10 @@ $post_list       = wmf_get_posts_by_child_roles( $current_term_id );
 			<?php wmf_get_template_part( 'template-parts/profiles/role-list', $post_list ); ?>
 		</div>
 
+	</div>
+
+	<div class="w-32p display-none_small">
+		<?php wmf_get_template_part( 'template-parts/profiles/role-sidebar', $post_list ); ?>
 	</div>
 </div>
 

@@ -137,18 +137,27 @@ function wmf_get_role_posts( $term_id ) {
 /**
  * Organize posts by their child terms in taxonomy
  *
+ * For posts that are not parent posts (i.e. Staff & Contractors)
+ * This will simply return a list of posts for a term.
+ *
  * @param int    $term_id  ID of parent term.
  * @param string $taxonomy Taxonomy to check against.
  * @return array list of organized posts or empty array.
  */
 function wmf_get_posts_by_child_roles( $term_id ) {
-	$post_list = wp_cache_get( 'wmf_terms_list_' . $term_id );
+	$post_list = array();
 
-	if ( ! empty( $post_list ) ) {
+	$term = get_term( $term_id );
+	if ( 0 !== $term->parent ) {
+		$post_list[ $term_id ] = wmf_get_role_posts( $term_id );
 		return $post_list;
 	}
 
-	$post_list = array();
+	$cached_posts = wp_cache_get( 'wmf_terms_list_' . $term_id );
+
+	if ( ! empty( $cached_posts ) ) {
+		return $cached_posts;
+	}
 
 	$child_terms = wmf_get_role_hierarchy( $term_id, 'role' );
 
