@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles simple text CTA.
+ * Handles simple text CTA module.
  *
  * @package wmfoundation
  */
