@@ -7,6 +7,8 @@
 
 namespace WMF\Customizer;
 
+use WP_Query;
+
 /**
  * Setups the customizer and related settings.
  */
@@ -62,14 +64,14 @@ abstract class Base {
 	public function page_choices() {
 		$choices = array();
 
-		$posts = get_posts(
+		$posts = new WP_Query(
 			array(
 				'post_type'      => 'page',
 				'posts_per_page' => 100,
 			)
 		);
 
-		foreach ( $posts as $post_choice ) {
+		foreach ( $posts->posts as $post_choice ) {
 			$choices[ $post_choice->ID ] = $post_choice->post_title;
 		}
 

@@ -14,13 +14,13 @@
 
 get_header();
 
-$parent_section_title = '';
-$parent_section_link  = '';
+$h4_title = '';
+$h4_link  = '';
 
 $profile_parent_page = get_theme_mod( 'wmf_profile_parent_page' );
 if ( ! empty( $profile_parent_page ) ) {
-	$parent_section_title = get_the_title( $profile_parent_page );
-	$parent_section_link  = get_the_permalink( $profile_parent_page );
+	$h4_title = get_the_title( $profile_parent_page );
+	$h4_link  = get_the_permalink( $profile_parent_page );
 }
 
 $description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'wmfoundation' ) );
@@ -36,9 +36,9 @@ $post_list       = wmf_get_posts_by_child_terms( $current_term_id, 'role' );
 	wmf_get_template_part(
 		'template-parts/header/page-noimage',
 		array(
-			'title'                => 'Staff and Contractors',
-			'parent_section_link'  => $parent_section_link,
-			'parent_section_title' => $parent_section_title,
+			'h1_title' => 'Staff and Contractors',
+			'h4_link'  => $h4_link,
+			'h4_title' => $h4_title,
 		)
 	);
 

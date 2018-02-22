@@ -34,7 +34,7 @@ add_filter( 'body_class', 'wmf_body_classes' );
 function wmf_get_header_container_class() {
 	$class = '';
 
-	if ( has_post_thumbnail() ) {
+	if ( is_single() && has_post_thumbnail() ) {
 		$template = basename( get_page_template() );
 
 		switch ( $template ) {
@@ -82,22 +82,23 @@ function wmf_get_header_cta_button_class() {
  * @return array List of organized IDs.
  */
 function wmf_get_term_hierarchy( $parent_id, $taxonomy ) {
-	$children = array();
+	$children   = array();
 	$term_array = array();
-	$terms = get_terms( $taxonomy, array(
-		'orderby' => 'id',
-		'fields'  => 'id=>parent',
-		'get'     => 'all',
-	) );
+	$terms      = get_terms(
+		$taxonomy, array(
+			'orderby' => 'id',
+			'fields'  => 'id=>parent',
+			'get'     => 'all',
+		)
+	);
 
 	foreach ( $terms as $term_id => $parent ) {
-
 		if ( 0 < $parent ) {
 			$children[ $parent ][] = $term_id;
 		}
 	}
 
-	foreach( $children[ $parent_id ] as $child_id ) {
+	foreach ( $children[ $parent_id ] as $child_id ) {
 		$term_array[ $child_id ] = $children[ $child_id ];
 	}
 
@@ -113,7 +114,7 @@ function wmf_get_term_hierarchy( $parent_id, $taxonomy ) {
  */
 function wmf_get_term_posts( $term_id, $taxonomy ) {
 	$term_query = get_term( $term_id, $taxonomy );
-	$posts              = new WP_Query(
+	$posts      = new WP_Query(
 		array(
 			'post_type' => 'profile',
 			'fields'    => 'ids',
@@ -131,7 +132,6 @@ function wmf_get_term_posts( $term_id, $taxonomy ) {
 		'posts' => $posts->posts,
 		'name'  => $term_query->name,
 	);
-
 }
 
 /**
@@ -142,18 +142,17 @@ function wmf_get_term_posts( $term_id, $taxonomy ) {
  * @return array list of organized posts or empty array.
  */
 function wmf_get_posts_by_child_terms( $term_id, $taxonomy = 'role' ) {
-	$post_list   = array();
+	$post_list = array();
 
 	$child_terms = wmf_get_term_hierarchy( $term_id, 'role' );
 
 	foreach ( $child_terms as $parent_id => $children ) {
-
 		$featured_term = get_term_meta( $parent_id, 'featured_term', true );
 
 		if ( true === boolval( $featured_term ) ) {
 			$post_list = array(
-				$parent_id => wmf_get_term_posts( $parent_id, $taxonomy )
-			 ) + $post_list;
+				$parent_id => wmf_get_term_posts( $parent_id, $taxonomy ),
+			) + $post_list;
 		} else {
 			$post_list[ $parent_id ] = wmf_get_term_posts( $parent_id, $taxonomy );
 		}
@@ -166,23 +165,4 @@ function wmf_get_posts_by_child_terms( $term_id, $taxonomy = 'role' ) {
 	}
 
 	return $post_list;
-}
-
-function wmf_get_the_title() {
-	$title = '';
-
-	if ( is_single() ) {
-		$title = get_the_title();
-	}
-
-	if ( is_post_type_archive() ) {
-		$post_type_object = get_post_type_object( $post_type );
-		$title            = isset( $post_type_object->labels->singular_name ) ? $post_type_object->labels->singular_name : '';
-	}
-
-	if ( is_tax() ) {
-		$title = single_term_title( '', false );
-	}
-
-	return $title;
 }
