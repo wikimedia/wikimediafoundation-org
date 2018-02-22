@@ -41,12 +41,11 @@ add_action( 'fm_post_profile', 'wmf_profile_fields' );
 function wmf_role_fields() {
 	$featured_term = new Fieldmanager_Checkbox(
 		array(
-			'name'  => 'featured_term',
-			'label' => __( 'Featured Term?', 'wmfoundation' ),
+			'name' => 'featured_term',
 		)
 	);
 
-	$featured_term->add_term_meta_box( 'Featured Image', 'role' );
+	$featured_term->add_term_meta_box( 'Featured Term?', 'role' );
 
 	$button = new Fieldmanager_Group(
 		array(

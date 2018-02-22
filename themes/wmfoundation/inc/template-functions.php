@@ -77,8 +77,7 @@ function wmf_get_header_cta_button_class() {
 /**
  * Get all the child terms for a parent organized by hierarchy
  *
- * @param int    $parent_id ID to query against.
- * @param string $taxonomy  Taxonomy name.
+ * @param int $parent_id ID to query against.
  * @return array List of organized IDs.
  */
 function wmf_get_role_hierarchy( $parent_id ) {
@@ -108,8 +107,7 @@ function wmf_get_role_hierarchy( $parent_id ) {
 /**
  * Get posts for an individual term.
  *
- * @param int    $term_id  Term to query against.
- * @param string $taxonomy Taxonomy name.
+ * @param int $term_id  Term to query against.
  * @return array List of and term name.
  */
 function wmf_get_role_posts( $term_id ) {
@@ -140,8 +138,7 @@ function wmf_get_role_posts( $term_id ) {
  * For posts that are not parent posts (i.e. Staff & Contractors)
  * This will simply return a list of posts for a term.
  *
- * @param int    $term_id  ID of parent term.
- * @param string $taxonomy Taxonomy to check against.
+ * @param int $term_id  ID of parent term.
  * @return array list of organized posts or empty array.
  */
 function wmf_get_posts_by_child_roles( $term_id ) {
