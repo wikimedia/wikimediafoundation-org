@@ -60,6 +60,7 @@ function wmf_landing_fields() {
 						'sortable'       => true,
 						'limit'          => 0,
 						'children'       => array(
+							'image'     => new Fieldmanager_Media( __( 'Image', 'wmfoundation' ) ),
 							'heading'   => new Fieldmanager_Textfield( __( 'Copy Heading', 'wmfoundation' ) ),
 							'copy'      => new Fieldmanager_RichTextArea( __( 'Content', 'wmfoundation' ) ),
 							'link_url'  => new Fieldmanager_Link( __( 'Link URI', 'wmfoundation' ) ),
