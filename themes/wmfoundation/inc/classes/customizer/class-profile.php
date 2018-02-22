@@ -52,6 +52,44 @@ class Profile extends Base {
 				'choices'     => $this->page_choices(),
 			)
 		);
+
+		$control_id = 'wmf_profile_archive_text';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Profiles List Page Text', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'textarea',
+			)
+		);
+
+		$control_id = 'wmf_profile_archive_button';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'We\'re Hiring', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Profiles List Page Button Label', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_profile_archive_button_link';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Profiles List Page Button Link', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
 	}
 
 }
