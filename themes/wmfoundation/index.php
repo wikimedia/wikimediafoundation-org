@@ -61,5 +61,9 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 		<?php endif; ?>
 	</div>
 </div>
+
+<?php if ( have_posts() ) : ?>
+	<?php get_template_part( 'template-parts/pagination' ); ?>
+<?php endif; ?>
 <?php
 get_footer();

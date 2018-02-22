@@ -1,4 +1,9 @@
 <?php
+/**
+ * Basic index horizantal card
+ *
+ * @package wmfoundation
+ */
 
 $card_data = wmf_get_template_data();
 
@@ -22,12 +27,12 @@ $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '
 		</a>
 	<?php endif; ?>
 
-	<div class="card-content <?php echo $image_id ?? esc_attr( 'w-50p' ) ;?>">
+	<div class="card-content <?php echo esc_attr( $image_id ?? 'w-50p' ); ?>">
 		<div class="module-mu">
 			<?php if ( ! empty( $categories ) ) : ?>
 			<h4 class="category">
 				<?php foreach ( $categories as $category ) : ?>
-				<?php printf( '<a href="%1$s">%2$s</a>', esc_url( get_category_link( $category->term_id )), esc_html( $category->name ) ); ?>
+				<?php printf( '<a href="%1$s">%2$s</a>', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) ); ?>
 				<?php endforeach; ?>
 			</h4>
 			<?php endif; ?>
