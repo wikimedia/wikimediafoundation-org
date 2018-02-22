@@ -18,10 +18,9 @@ while ( have_posts() ) {
 	$parent_page = wp_get_post_parent_id( get_the_ID() );
 
 	$template_args = array(
-		'eyebrow_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
-		'eyebrow_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
-		'eyebrow_class' => 'h4 uppercase',
-		'mar_bottom'    => get_the_title(),
+		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
+		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
+		'h1_title' => get_the_title(),
 	);
 
 	if ( has_post_thumbnail() ) {
