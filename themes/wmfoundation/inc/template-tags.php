@@ -143,3 +143,41 @@ function wmf_show_icon( $name ) {
 	</svg>
 <?php
 }
+
+/**
+ * Builds the URI for social sharing.
+ *
+ * @param string $service The service to build URi for.
+ * @param array  $args    Args for building the URI.
+ *
+ * @return string
+ */
+function wmf_get_share_url( $service, $args ) {
+	$default = array(
+		'uri'     => get_permalink(),
+		'message' => '',
+	);
+
+	$args = wp_parse_args( $args, $default );
+
+	$uri = '';
+
+	switch ( $service ) {
+		case 'facebook':
+			$uri = sprintf(
+				'http://www.facebook.com/sharer/sharer.php?s=100&p[url]=%1$s&&p[title]=%2$s',
+				$args['uri'],
+				$args['message']
+			);
+			break;
+		case 'twitter':
+			$uri = sprintf(
+				'http://twitter.com/intent/tweet?text=%2$s %1$s',
+				$args['uri'],
+				$args['message']
+			);
+			break;
+	}
+
+	return $uri;
+}
