@@ -7,17 +7,41 @@
 
 $page_header_data = wmf_get_template_data();
 
-$parent_section_link  = ! empty( $page_header_data['link'] ) ? $page_header_data['link'] : '';
-$parent_section_title = ! empty( $page_header_data['parent_section_title'] ) ? $page_header_data['parent_section_title'] : '';
+$h4_link  = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
+$h4_title = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
+$h2_link  = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
+$h2_title = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
+$title    = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 
 ?>
 
 <div class="header-content">
-	<h2 class="h4 uppercase eyebrow">
-		<a href="<?php echo esc_url( $parent_section_link ); ?>">
-			<?php echo esc_html( $parent_section_title ); ?>
-		</a>
-	</h2>
 
-	<h1 class="mar-bottom"><?php the_title(); ?></h1>
+	<?php if ( ! empty( $h4_title ) ) : ?>
+	<h2 class="h4 uppercase eyebrow">
+		<?php if ( ! empty( $h4_link ) ) : ?>
+		<a href="<?php echo esc_url( $h4_link ); ?>">
+		<?php endif; ?>
+			<?php echo esc_html( $h4_title ); ?>
+		<?php if ( ! empty( $h4_link ) ) : ?>
+		</a>
+		<?php endif; ?>
+	</h2>
+	<?php endif; ?>
+
+	<?php if ( ! empty( $h2_title ) ) : ?>
+		<h2 class="h2 uppercase eyebrow">
+			<?php if ( ! empty( $h2_link ) ) : ?>
+			<a href="<?php echo esc_url( $h2_link ); ?>">
+				<?php endif; ?>
+				<?php echo esc_html( $h2_title ); ?>
+				<?php if ( ! empty( $h2_link ) ) : ?>
+			</a>
+		<?php endif; ?>
+		</h2>
+	<?php endif; ?>
+
+	<?php if ( ! empty( $mar_bottom ) ) : ?>
+	<h1 class="mar-bottom"><?php echo esc_html( $mar_bottom ); ?></h1>
+	<?php endif; ?>
 </div>
