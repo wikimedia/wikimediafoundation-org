@@ -55,4 +55,5 @@ function wmf_get_fields_post_id() {
 
 require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/landing.php';
+require get_template_directory() . '/inc/fields/page-cta.php';
 require get_template_directory() . '/inc/fields/profile.php';
