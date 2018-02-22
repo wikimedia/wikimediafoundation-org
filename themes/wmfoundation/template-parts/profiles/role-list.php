@@ -48,27 +48,26 @@ foreach ( $post_list as $term_id => $term_data ) :
 	<?php
 	foreach ( $term_data['children'] as $child_term_id => $child_term_data ) :
 		$name        = $child_term_data['name'];
-		$link        = get_term_link( $child_term_id );
 		$description = term_description( $child_term_id, 'role' );
 		$button      = get_term_meta( $child_term_id, 'role_button', true );
+		$link        = ! empty( $button['link'] ) ? $button['link'] : '';
 	?>
 
 		<h3 class="mar-bottom">
+			<?php if ( ! empty( $link ) ) : ?>
 			<a href="<?php echo esc_url( $link ); ?>">
+			<?php endif; ?>
+
 				<?php echo esc_html( $name ); ?>
+
+			<?php if ( ! empty( $link ) ) : ?>
+			<i class="material-icons external-link-icon">open_in_new</i>
 			</a>
+			<?php endif; ?>
 		</h3>
 
 		<?php if ( ! empty( $description ) ) : ?>
 		<p class="mar-bottom_lg"><?php echo wp_kses_post( $description ); ?></p>
-		<?php endif; ?>
-
-		<?php if ( ! empty( $button ) ) : ?>
-		<div class="link-list hover-highlight uppercase">
-			<a href="<?php echo esc_url( $button['link'] ); ?>">
-				<?php echo esc_html( $button['text'] ); ?>
-			</a>
-		</div>
 		<?php endif; ?>
 
 		<div class="mod-margin-bottom staff-list">
