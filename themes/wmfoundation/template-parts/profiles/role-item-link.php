@@ -13,6 +13,10 @@ if ( empty( $post_data ) ) {
 
 $term_id = ! empty( $post_data['term_id'] ) ? $post_data['term_id'] : 0;
 $name    = ! empty( $post_data['name'] ) ? $post_data['name'] : '';
+
+if ( empty( $name ) ) {
+	return;
+}
 ?>
 <li>
 	<a href="#section-<?php echo absint( $term_id ); ?>">

@@ -34,20 +34,26 @@ add_filter( 'body_class', 'wmf_body_classes' );
 function wmf_get_header_container_class() {
 	$class = '';
 
-	if ( is_single() && has_post_thumbnail() ) {
-		$template = basename( get_page_template() );
+	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
+		$post_type = get_post_type();
 
-		switch ( $template ) {
-			case 'page-landing.php':
-				$class .= ' featured-photo--content-left';
-				break;
+		if ( in_array( $post_type, array( 'profile' ), true ) ) {
+			$class = ' minimal--short';
+		} else {
+			$template = basename( get_page_template() );
 
-			default:
-				$class .= ' featured-photo--content-centered';
-				break;
+			switch ( $template ) {
+				case 'page-landing.php':
+					$class = ' featured-photo--content-left';
+					break;
+
+				default:
+					$class = ' featured-photo--content-centered';
+					break;
+			}
 		}
 	} else {
-		$class .= ' minimal--short';
+		$class = ' minimal--short';
 	}
 
 	if ( is_page() ) {

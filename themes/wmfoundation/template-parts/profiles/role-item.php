@@ -12,6 +12,11 @@ if ( empty( $post_data['id'] ) ) {
 }
 
 $post_id = $post_data['id'];
+$post    = get_post( $post_id );
+
+if ( ! $post ) {
+	return;
+}
 
 ?>
 

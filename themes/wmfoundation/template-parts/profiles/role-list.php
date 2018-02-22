@@ -12,12 +12,14 @@ if ( empty( $post_list ) ) {
 }
 
 foreach ( $post_list as $term_id => $term_data ) :
-	$name        = $term_data['name'];
+	$name        = ! empty( $term_data['name'] ) ? $term_data['name'] : '';
 	$description = term_description( $term_id, 'role' );
 	$button      = get_term_meta( $term_id, 'role_button', true );
 ?>
 
+<?php if ( ! empty( $name ) ) : ?>
 <h2><?php echo esc_html( $name ); ?></h2>
+<?php endif; ?>
 
 <?php if ( ! empty( $description ) ) : ?>
 <p class="mar-bottom"><?php echo wp_kses_post( $description ); ?></p>
@@ -31,6 +33,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 </div>
 <?php endif; ?>
 
+<?php if ( ! empty( $term_data ) ) : ?>
 <div class="mod-margin-bottom staff-list">
 	<?php
 	foreach ( $term_data['posts'] as $post_id ) :
@@ -42,17 +45,19 @@ foreach ( $post_list as $term_id => $term_data ) :
 	endforeach;
 	?>
 </div>
+<?php endif; ?>
 
 <?php if ( ! empty( $term_data['children'] ) ) : ?>
 <div>
 	<?php
 	foreach ( $term_data['children'] as $child_term_id => $child_term_data ) :
-		$name        = $child_term_data['name'];
+		$name        = ! empty( $child_term_data['name'] ) ? $child_term_data['name'] : '';
 		$description = term_description( $child_term_id, 'role' );
 		$button      = get_term_meta( $child_term_id, 'role_button', true );
 		$link        = ! empty( $button['link'] ) ? $button['link'] : '';
 	?>
 
+		<?php if ( ! empty( $name ) ) : ?>
 		<h3 class="mar-bottom">
 			<?php if ( ! empty( $link ) ) : ?>
 			<a href="<?php echo esc_url( $link ); ?>">
@@ -65,6 +70,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 			</a>
 			<?php endif; ?>
 		</h3>
+		<?php endif; ?>
 
 		<?php if ( ! empty( $description ) ) : ?>
 		<p class="mar-bottom_lg"><?php echo wp_kses_post( $description ); ?></p>
