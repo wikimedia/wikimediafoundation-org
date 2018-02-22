@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles page fact module.
+ * Handles page fact module for a single fact.
  *
  * @package wmfoundation
  */

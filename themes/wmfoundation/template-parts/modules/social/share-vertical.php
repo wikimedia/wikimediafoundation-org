@@ -11,9 +11,11 @@
 
 $share_text = get_theme_mod( 'social_share_text', __( 'Share', 'wmfoundation' ) );
 
-$args = wp_parse_args( array(
-	'uri' => wmf_get_current_url(),
-), wmf_get_template_data() );
+$args = wp_parse_args(
+	array(
+		'uri' => wmf_get_current_url(),
+	), wmf_get_template_data()
+);
 ?>
 
 <div class="social-share text-center">

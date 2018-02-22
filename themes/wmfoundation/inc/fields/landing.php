@@ -75,14 +75,20 @@ function wmf_landing_fields() {
 
 	$facts = new Fieldmanager_Group(
 		array(
-			'name'           => 'page_facts',
-			'add_more_label' => __( 'Add Fact', 'wmfoundation' ),
-			'sortable'       => true,
-			'limit'          => 3,
+			'name'     => 'page_facts',
 			'children' => array(
-				'image'    => new Fieldmanager_Media( __( 'Background Image', 'wmfoundation' ) ),
-				'heading'  => new Fieldmanager_Textfield( __( 'Heading', 'wmfoundation' ) ),
-				'content'  => new Fieldmanager_Textfield( __( 'Content', 'wmfoundation' ) ),
+				'image' => new Fieldmanager_Media( __( 'Background Image', 'wmfoundation' ) ),
+				'facts' => new Fieldmanager_Group(
+					array(
+						'add_more_label' => __( 'Add Fact', 'wmfoundation' ),
+						'sortable'       => true,
+						'limit'          => 3,
+						'children'       => array(
+							'heading' => new Fieldmanager_Textfield( __( 'Heading', 'wmfoundation' ) ),
+							'content' => new Fieldmanager_Textfield( __( 'Content', 'wmfoundation' ) ),
+						),
+					)
+				),
 			),
 		)
 	);

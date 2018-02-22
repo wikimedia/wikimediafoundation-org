@@ -50,11 +50,18 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/single/page', 'cta' );
 
 	// Facts.
-	$facts = get_post_meta( get_the_ID(), 'page_facts', true );
+	$template_args = get_post_meta( get_the_ID(), 'page_facts', true );
 
-	if ( ! empty( $facts ) && is_array( $facts ) ) {
-		foreach ( $facts as $template_args ) {
-			wmf_get_template_part( 'template-parts/modules/fact/page', $template_args );
+	if ( ! empty( $template_args ) ) {
+		$facts = empty( $template_args['facts'] ) ? array() : $template_args['facts'];
+
+		if ( ! empty( $facts ) && is_array( $facts ) ) {
+			if ( 1 === count( $facts ) ) {
+				$template_args = $template_args + $facts[0];
+				wmf_get_template_part( 'template-parts/modules/fact/single', $template_args );
+			} else {
+				wmf_get_template_part( 'template-parts/modules/fact/multiple', $template_args );
+			}
 		}
 	}
 }
