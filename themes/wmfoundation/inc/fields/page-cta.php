@@ -9,7 +9,6 @@
  * Add page_cta page options.
  */
 function wmf_page_cta_fields() {
-
 	$cta = new Fieldmanager_Group(
 		array(
 			'name'     => 'page_cta',
@@ -23,7 +22,6 @@ function wmf_page_cta_fields() {
 		)
 	);
 	$cta->add_meta_box( __( 'Page CTA', 'wmfoundation' ), array( 'page', 'post' ) );
-
 }
 add_action( 'fm_post_post', 'wmf_page_cta_fields' );
 add_action( 'fm_post_page', 'wmf_page_cta_fields' );
