@@ -72,5 +72,20 @@ function wmf_landing_fields() {
 		)
 	);
 	$framing_copy->add_meta_box( __( 'Framing Copy', 'wmfoundation' ), 'page' );
+
+	$facts = new Fieldmanager_Group(
+		array(
+			'name'           => 'page_facts',
+			'add_more_label' => __( 'Add Fact', 'wmfoundation' ),
+			'sortable'       => true,
+			'limit'          => 3,
+			'children' => array(
+				'image'    => new Fieldmanager_Media( __( 'Background Image', 'wmfoundation' ) ),
+				'heading'  => new Fieldmanager_Textfield( __( 'Heading', 'wmfoundation' ) ),
+				'content'  => new Fieldmanager_Textfield( __( 'Content', 'wmfoundation' ) ),
+			),
+		)
+	);
+	$facts->add_meta_box( __( 'Facts', 'wmfoundation' ), 'page' );
 }
 add_action( 'fm_post_page', 'wmf_landing_fields' );

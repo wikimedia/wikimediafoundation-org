@@ -48,5 +48,14 @@ while ( have_posts() ) {
 
 	// Page Specific CTA.
 	get_template_part( 'template-parts/single/page', 'cta' );
+
+	// Facts.
+	$facts = get_post_meta( get_the_ID(), 'page_facts', true );
+
+	if ( ! empty( $facts ) && is_array( $facts ) ) {
+		foreach ( $facts as $template_args ) {
+			wmf_get_template_part( 'template-parts/modules/fact/page', $template_args );
+		}
+	}
 }
 get_footer();
