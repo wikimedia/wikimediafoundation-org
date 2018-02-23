@@ -34,3 +34,30 @@ function wmf_profile_fields() {
 	$info->add_meta_box( __( 'Profile Info', 'wmfoundation' ), 'profile' );
 }
 add_action( 'fm_post_profile', 'wmf_profile_fields' );
+
+/**
+ * Add fields for the role taxonomy
+ */
+function wmf_role_fields() {
+	$featured_term = new Fieldmanager_Checkbox(
+		array(
+			'name' => 'featured_term',
+		)
+	);
+
+	$featured_term->add_term_meta_box( 'Featured Term?', 'role' );
+
+	$button = new Fieldmanager_Group(
+		array(
+			'name'     => 'role_button',
+			'label'    => __( 'Button', 'wmfoundation' ),
+			'children' => array(
+				'text' => new Fieldmanager_Textfield( __( 'Button Text', 'wmfoundation' ) ),
+				'link' => new Fieldmanager_Link( __( 'Button Link', 'wmfoundation' ) ),
+			),
+		)
+	);
+
+	$button->add_term_meta_box( '', 'role' );
+}
+add_action( 'fm_term_role', 'wmf_role_fields' );

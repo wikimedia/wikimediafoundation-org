@@ -15,15 +15,28 @@ while ( have_posts() ) :
 ?>
 
 <?php
-$team_name = get_the_terms( get_the_ID(), 'team' );
-$team_name = ! empty( $team_name ) && isset( $team_name[0]->name ) ? $team_name[0]->name : '';
+$team_name   = '';
+$parent_name = '';
+$parent_link = '';
+$role        = get_the_terms( get_the_ID(), 'role' );
+
+if ( ! empty( $role ) && ! is_wp_error( $role ) ) {
+	$team_name = $role[0]->name;
+	$ancestors = get_ancestors( $role[0]->term_id, 'role' );
+	$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
+
+	if ( $parent_id ) {
+		$parent_term = get_term( $parent_id );
+		$parent_name = $parent_term->name;
+		$parent_link = get_term_link( $parent_id );
+	}
+}
 
 wmf_get_template_part(
 	'template-parts/header/profile-single',
 	array(
-		'back_to_link'  => get_post_type_archive_link( 'profile' ),
-		// TODO: Need to confirm that this is either Staff or Community / separate taxonomy.
-		'back_to_label' => 'Staff',
+		'back_to_link'  => $parent_link,
+		'back_to_label' => $parent_name,
 		'role'          => get_post_meta( get_the_ID(), 'profile_role', true ),
 		'team_name'     => $team_name,
 		'share_links'   => get_post_meta( get_the_ID(), 'contact_links', true ),
