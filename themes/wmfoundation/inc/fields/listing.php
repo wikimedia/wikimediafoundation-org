@@ -9,6 +9,11 @@
  * Add listing page options.
  */
 function wmf_listing_fields() {
+
+	if ( 'fm_post_page' === current_filter() && ! wmf_using_template( 'page-landing' ) ) {
+		return;
+	}
+
 	$listing = new Fieldmanager_Group(
 		array(
 			'name'     => 'listings',
@@ -30,7 +35,7 @@ function wmf_listing_fields() {
 			),
 		)
 	);
-	$listing->add_meta_box( __( 'Connect', 'wmfoundation' ), array( 'page', 'profile' ) );
+	$listing->add_meta_box( __( 'Employment Listings', 'wmfoundation' ), array( 'page', 'profile' ) );
 }
 add_action( 'fm_post_page', 'wmf_listing_fields' );
 add_action( 'fm_post_profile', 'wmf_listing_fields' );
