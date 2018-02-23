@@ -9,7 +9,6 @@
  * Add listing page options.
  */
 function wmf_listing_fields() {
-
 	if ( 'fm_post_page' === current_filter() && ! wmf_using_template( 'page-landing' ) ) {
 		return;
 	}
