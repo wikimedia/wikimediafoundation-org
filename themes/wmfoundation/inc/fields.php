@@ -57,3 +57,5 @@ require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/landing.php';
 require get_template_directory() . '/inc/fields/page-cta.php';
 require get_template_directory() . '/inc/fields/profile.php';
+require get_template_directory() . '/inc/fields/connect.php';
+require get_template_directory() . '/inc/fields/listing.php';

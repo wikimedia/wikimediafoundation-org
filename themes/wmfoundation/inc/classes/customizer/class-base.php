@@ -17,7 +17,7 @@ abstract class Base {
 	/**
 	 * Holds customizer instance
 	 *
-	 * @var WP_Customize_Manager $wp_customize Theme Customizer object.
+	 * @var \WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
 	protected $customize;
 
@@ -90,6 +90,7 @@ abstract class Base {
 function load_customizer_classes() {
 	// Add customizer class name to list to instantiate.
 	$customizers = array(
+		'Connect',
 		'Header',
 		'Footer',
 		'Social',
