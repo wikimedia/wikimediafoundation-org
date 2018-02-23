@@ -38,7 +38,7 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 				the_post();
 
 				wmf_get_template_part(
-					'template-parts/modules/cards/card-horizantal', array(
+					'template-parts/modules/cards/card-horizontal', array(
 						'link'       => get_the_permalink(),
 						'image_id'   => get_post_thumbnail_id(),
 						'title'      => get_the_title(),

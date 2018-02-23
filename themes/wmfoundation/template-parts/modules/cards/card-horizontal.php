@@ -23,11 +23,11 @@ $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '
 <div class="card card-horizontal">
 	<?php if ( ! empty( $image_id ) ) : ?>
 		<a href="<?php echo esc_url( $link ); ?>" class="w-50p img-container">
-			<?php echo wp_get_attachment_image( $image_id, 'card_thumb' ); ?>
+			<?php echo wp_get_attachment_image( $image_id, 'image_4x3_large' ); ?>
 		</a>
 	<?php endif; ?>
 
-	<div class="card-content <?php echo esc_attr( $image_id ?? 'w-50p' ); ?>">
+	<div class="card-content <?php echo esc_attr( $image_id ? 'w-50p' : '' ); ?>">
 		<div class="module-mu">
 			<?php if ( ! empty( $categories ) ) : ?>
 			<h4 class="category">

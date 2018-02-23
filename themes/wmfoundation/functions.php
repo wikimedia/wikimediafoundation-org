@@ -86,7 +86,8 @@ function wmf_setup() {
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
 	add_image_size( 'profile_thumb', '206', '257', true );
-	add_image_size( 'card_thumb', '602', '438', true );
+	add_image_size( 'image_4x3_small', '400', '300', true );
+	add_image_size( 'image_4x3_large', '800', '600', true );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
