@@ -21,6 +21,7 @@ $title    = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_tit
 	<h2 class="h4 uppercase eyebrow">
 		<?php if ( ! empty( $h4_link ) ) : ?>
 		<a href="<?php echo esc_url( $h4_link ); ?>">
+		<i class="material-icons" style="vertical-align: sub;">arrow_back</i>
 		<?php endif; ?>
 			<?php echo esc_html( $h4_title ); ?>
 		<?php if ( ! empty( $h4_link ) ) : ?>
@@ -41,7 +42,7 @@ $title    = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_tit
 		</h2>
 	<?php endif; ?>
 
-	<?php if ( ! empty( $mar_bottom ) ) : ?>
-	<h1 class="mar-bottom"><?php echo esc_html( $mar_bottom ); ?></h1>
+	<?php if ( ! empty( $title ) ) : ?>
+	<h1 class="mar-bottom"><?php echo esc_html( $title ); ?></h1>
 	<?php endif; ?>
 </div>

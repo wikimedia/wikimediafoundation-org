@@ -43,7 +43,7 @@ function wmf_profile_init() {
 			'show_ui'           => true,
 			'show_in_nav_menus' => true,
 			'supports'          => array( 'title', 'editor', 'revisions', 'custom-fields', 'thumbnail', 'excerpt' ),
-			'has_archive'       => true,
+			'has_archive'       => false,
 			'rewrite'           => true,
 			'query_var'         => true,
 			'menu_icon'         => 'dashicons-groups',
