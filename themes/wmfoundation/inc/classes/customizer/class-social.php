@@ -25,11 +25,55 @@ class Social extends Base {
 			)
 		);
 
+		$control_id = 'wmf_social_follow_text';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Follow', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Follow Text', 'wmfoundation' ),
+				'description' => __( 'This is used above follow links in multiple modules.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_social_share_text';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Share', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Share Text', 'wmfoundation' ),
+				'description' => __( 'This is used above share links in multiple modules.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$control_id = 'wmf_twitter_url';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Twitter URI', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_twitter_id';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => 'Wikimedia',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Twitter @', 'wmfoundation' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -50,6 +94,16 @@ class Social extends Base {
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Instagrams URI', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_blog_url';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Blog URI', 'wmfoundation' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)

@@ -41,7 +41,7 @@ $title    = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_tit
 		</h2>
 	<?php endif; ?>
 
-	<?php if ( ! empty( $mar_bottom ) ) : ?>
-	<h1 class="mar-bottom"><?php echo esc_html( $mar_bottom ); ?></h1>
+	<?php if ( ! empty( $title ) ) : ?>
+	<h1 class="mar-bottom"><?php echo esc_html( $title ); ?></h1>
 	<?php endif; ?>
 </div>

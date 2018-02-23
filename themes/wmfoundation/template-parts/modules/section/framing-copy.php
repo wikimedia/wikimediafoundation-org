@@ -22,7 +22,7 @@ if ( empty( $template_args['pre_heading'] ) && empty( $template_args['heading'] 
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
 		<h3 class="h3 color-gray"><?php echo esc_html( $template_args['pre_heading'] ); ?>— <span><?php // Need a function to get a random translation of this field. ?></span></h3>
 		<?php endif; ?>
-		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
+		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 		<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
 		<?php endif; ?>
 	</div>
