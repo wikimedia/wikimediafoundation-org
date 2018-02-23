@@ -1,52 +1,67 @@
 <?php
 /**
- * The template for displaying search results pages.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ * Template for displaying search results
  *
  * @package wmfoundation
  */
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<?php
+$template_args = array(
+	'h1_title' => sprintf( __( 'Search results for %s' ), get_search_query() ),
+);
 
-		<?php
-		if ( have_posts() ) :
-		?>
+wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 
-			<header class="page-header">
-				<h1 class="page-title">
-				<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'wmfoundation' ), '<span>' . get_search_query() . '</span>' );
-				?>
-				</h1>
-			</header><!-- .page-header -->
+$post_types = get_post_types();
+var_dump( $post_types );
 
+?>
+
+<div class="mw-1360 mod-margin-bottom flex flex-medium news-card-list">
+		<?php if ( have_posts() ) : ?>
+		<div class="card-list-container w-68p">
 			<?php
-			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-endwhile;
+				wmf_get_template_part(
+					'template-parts/modules/cards/card-horizantal', array(
+						'link'       => get_the_permalink(),
+						'image_id'   => get_post_thumbnail_id(),
+						'title'      => get_the_title(),
+						'authors'    => get_the_author_link(),
+						'date'       => get_the_date(),
+						'excerpt'    => get_the_excerpt(),
+						'categories' => get_the_category(),
+					)
+				);
+			endwhile;
+			?>
+		</div>
 
-			the_posts_navigation();
-else :
-	get_template_part( 'template-parts/content', 'none' );
-endif;
+		<div class="module-mu wysiwyg w-32p">
+			<div class="mar-bottom_lg">
+				<h4 class="uppercase small mar-bottom">Result Type</h4>
+				<form role="serach" method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+
+				</form>
+
+
+			</div>
+		</div>
+		<?php
+		else :
+			get_template_part( 'template-parts/content', 'none' );
+		endif;
 		?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
+</div>
 
 <?php
-get_sidebar();
+if ( have_posts() ) :
+	get_template_part( 'template-parts/pagination' );
+endif;
+
 get_footer();
