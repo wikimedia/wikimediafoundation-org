@@ -5,6 +5,9 @@
  * @package wmfoundation
  */
 
+$newer = get_theme_mod( 'wmf_pagination_newer', __( 'Newer', 'wmfoundation' ) );
+$older = get_theme_mod( 'wmf_pagination_older', __( 'Older', 'wmfoundation' ) );
+
 $previous_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <title>Scroll Arrow</title>
 <g id="Canvas" transform="translate(-7418 13076)">
@@ -43,7 +46,7 @@ $next_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" 
 	<div class="pagination-container">
 		<div class="pagination-inner p bold mw-1360">
 			<div class="nav-newer uppercase">
-				<?php previous_posts_link( $previous_arrow . 'Newer' ); ?>
+				<?php previous_posts_link( $previous_arrow . $newer ); ?>
 			</div>
 
 			<div class="page-number-list">
@@ -58,7 +61,7 @@ $next_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" 
 			</div>
 
 			<div class="nav-older uppercase">
-				<?php next_posts_link( 'Older ' . $next_arrow ); ?>
+				<?php next_posts_link( $older . $next_arrow ); ?>
 			</div>
 		</div>
 	</div>

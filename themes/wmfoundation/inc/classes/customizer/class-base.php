@@ -94,6 +94,7 @@ function load_customizer_classes() {
 		'Footer',
 		'Social',
 		'Profile',
+		'Page',
 	);
 
 	foreach ( $customizers as $customizer ) {

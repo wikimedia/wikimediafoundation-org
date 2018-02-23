@@ -48,22 +48,20 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 						'categories' => get_the_category(),
 					)
 				);
-
-
+			endwhile;
 			?>
-
-
-			<?php endwhile; ?>
-
 		</div>
-		<?php else : ?>
-		<div>No results</div>
-		<?php endif; ?>
+		<?php
+		else :
+			get_template_part( 'template-parts/content', 'none' );
+		endif;
+		?>
 	</div>
 </div>
 
-<?php if ( have_posts() ) : ?>
-	<?php get_template_part( 'template-parts/pagination' ); ?>
-<?php endif; ?>
 <?php
+if ( have_posts() ) :
+	get_template_part( 'template-parts/pagination' );
+endif;
+
 get_footer();

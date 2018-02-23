@@ -7,47 +7,16 @@
  * @package wmfoundation
  */
 
+$header      = get_theme_mod( 'wmf_no_results_title', __( 'Nothing Found', 'wmfoundation' ) );
+$description = get_theme_mod( 'wmf_no_results_description', __( 'Sorry, but no results were found. Perhaps searching can help.', 'wmfoundation' ) );
 ?>
 
-<section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'wmfoundation' ); ?></h1>
-	</header><!-- .page-header -->
+<div class="w-100p news-list-container news-card-list mod-margin-bottom">
+	<div class="mw-1360">
+		<h3><?php echo esc_html( $header ); ?></h3>
 
-	<div class="page-content">
-		<?php
-		if ( is_home() && current_user_can( 'publish_posts' ) ) :
-		?>
-
-			<p>
-			<?php
-				printf(
-					wp_kses(
-						/* translators: 1: link to WP admin new post page. */
-						__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'wmfoundation' ),
-						array(
-							'a' => array(
-								'href' => array(),
-							),
-						)
-					),
-					esc_url( admin_url( 'post-new.php' ) )
-				);
-			?>
-			</p>
-
-		<?php elseif ( is_search() ) : ?>
-
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'wmfoundation' ); ?></p>
-			<?php
-				get_search_form();
-else :
-		?>
-
-			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'wmfoundation' ); ?></p>
-			<?php
-				get_search_form();
-endif;
-		?>
-	</div><!-- .page-content -->
-</section><!-- .no-results -->
+		<div class="wysiwyg">
+			<?php echo esc_html( $description ); ?>
+		</div>
+	</div>
+</div>
