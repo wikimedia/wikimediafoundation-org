@@ -181,3 +181,13 @@ function wmf_get_share_url( $service, $args ) {
 
 	return $uri;
 }
+
+/**
+ * Gets the current URL.
+ *
+ * @return string
+ */
+function wmf_get_current_url() {
+	global $wp;
+	return add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+}
