@@ -97,3 +97,4 @@ require get_template_directory() . '/inc/fields/post.php';
 require get_template_directory() . '/inc/fields/profile.php';
 require get_template_directory() . '/inc/fields/connect.php';
 require get_template_directory() . '/inc/fields/listing.php';
+require get_template_directory() . '/inc/fields/links.php';
