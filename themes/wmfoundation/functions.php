@@ -121,6 +121,12 @@ function wmf_scripts() {
 	wp_enqueue_script( 'wmfoundation-flickity', get_stylesheet_directory_uri() . '/assets/dist/flickity-min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'wmfoundation-flickity' ), '0.0.1', true );
 
+	wp_enqueue_script( 'wmfoundation-search', get_stylesheet_directory_uri() . '/assets/src/js/rkv/search.js', array( 'jquery' ), '0.0.1', true );
+
+	wp_localize_script( 'wmfoundation-search', 'wmfoundation', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' ),
+	) );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -141,6 +147,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Custom functions to handle translation.
  */
 require get_template_directory() . '/inc/template-translations.php';
+
+/**
+ * Ajax related functions
+ */
+require get_template_directory() . '/inc/ajax.php';
 
 /**
  * Class autoloader.
