@@ -64,6 +64,68 @@ class General extends Base {
 				'type'        => 'text',
 			)
 		);
+
+		// Support Module.
+		$section_id = 'wmf_general_support_module';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Support Module', 'wmfoundation' ),
+				'priority' => 70,
+				'panel'    => $panel_id,
+			)
+		);
+
+		$control_id = 'wmf_support_image';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			new \WP_Customize_Media_Control(
+				$this->customize, $control_id, array(
+					'label'       => __( 'Image', 'wmfoundation' ),
+					'description' => __( 'Image should be 16:9 aspect ratio with min width of 1200px for best appearance. The image will automatically crop to that size if larger.', 'wmfoundation' ),
+					'section'     => $section_id,
+				)
+			)
+		);
+
+		$control_id = 'wmf_support_heading';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Heading', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_support_content';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Content', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'textarea',
+			)
+		);
+
+		$control_id = 'wmf_support_link_uri';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'CTA Link URI', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_support_link_text';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'CTA Link Text', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
 	}
 
 }

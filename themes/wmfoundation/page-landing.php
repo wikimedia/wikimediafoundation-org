@@ -100,5 +100,11 @@ while ( have_posts() ) {
 	// Off Site Links.
 	$template_args = get_post_meta( get_the_ID(), 'off_site_links', true );
 	wmf_get_template_part( 'template-parts/modules/links/off-site-links', $template_args );
+
+	// Support Module.
+	$hide_support_module = get_post_meta( get_the_ID(), 'hide_support_module', true );
+	if ( empty( $hide_support_module ) ) {
+		get_template_part( 'template-parts/modules/cta/support' );
+	}
 }
 get_footer();

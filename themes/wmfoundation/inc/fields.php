@@ -100,3 +100,4 @@ require get_template_directory() . '/inc/fields/profile.php';
 require get_template_directory() . '/inc/fields/connect.php';
 require get_template_directory() . '/inc/fields/listing.php';
 require get_template_directory() . '/inc/fields/links.php';
+require get_template_directory() . '/inc/fields/support.php';
