@@ -5,17 +5,24 @@
  * @package wmfoundation
  */
 
- /**
-  * Set up search AJAX endpoint.
-  */
+/**
+ * Sanitize and verify an array of post types.
+ *
+ * @param array $post_types List of post types to check.
+ */
+function wmf_sanitize_post_type_array( $post_types ) {
+	$post_types = (array) $post_types;
+
+	return array_filter( $post_types, 'post_type_exists' );
+}
+
+/**
+ * Set up search AJAX endpoint.
+ */
 function wmf_ajax_search() {
-	$post_types = ! empty( $_POST['post_type'] ) ? (array) $_POST['post_type'] : '';
+	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : ''; // Input var CSRF okay.
 
-	if ( is_array( $post_types ) ) {
-		$post_types = array_filter( $post_types, 'post_type_exists' );
-	}
-
-	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( $_POST['s'] ) : '';
+	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : ''; // Input var CSRF okay.
 
 	$default_args = array(
 		'post_status' => 'publish',
@@ -56,7 +63,7 @@ function wmf_ajax_search() {
 
 	if ( $search_query->have_posts() ) {
 		global $wp_query;
-		$wp_query = $search_query;
+		$wp_query = $search_query; // override ok.
 		set_query_var( 'search_args', $custom_args );
 		ob_start();
 		get_template_part( 'template-parts/pagination' );

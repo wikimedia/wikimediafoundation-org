@@ -10,18 +10,11 @@ get_header(); ?>
 
 <?php
 $template_args = array(
-	'h1_title' => sprintf( __( 'Search results for %s' ), get_search_query() ),
+	/* translators: Query that is currently being searched */
+	'h1_title' => sprintf( __( 'Search results for %s', 'wmfoundation' ), get_search_query() ),
 );
 
 wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
-
-$post_types = get_post_types();
-$post_types = array(
-	'News' => 'post',
-	'Profiles' => 'profile',
-);
-
-$current_post_types = get_query_var( 'post_type' );
 
 ?>
 
@@ -54,28 +47,11 @@ $current_post_types = get_query_var( 'post_type' );
 		?>
 	</div>
 
-	<div class="module-mu wysiwyg w-32p">
-		<div class="mar-bottom_lg">
-			<h4 class="uppercase small mar-bottom">Result Type</h4>
-			<form id="searchFilter" role="serach" method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<?php foreach( $post_types as $post_type_name => $post_type_label ) :
-				$is_checked = in_array( $post_type_label, (array) $current_post_types, true ) ? 'checked' : '';
-					?>
-				<div class="checkbox-row">
-					<input type="checkbox" name="post_type[]" value="<?php echo esc_attr( $post_type_label ); ?>" id="<?php echo esc_attr( $post_type_label ); ?>" <?php echo esc_attr( $is_checked ); ?> />
-					<label for="<?php echo esc_attr( $post_type_label ); ?>">
-						<?php echo esc_html( $post_type_name ); ?>
-					</label>
-				</div>
-				<?php endforeach; ?>
-
-				<input type="hidden" id="keyword" name="s" value="<?php the_search_query(); ?>" />
-				<input type="submit" id="searchsubmit" value="Submit" />
-			</form>
-
-
-		</div>
-	</div>
+	<?php
+	if ( have_posts() ) {
+		get_sidebar( 'search' );
+	}
+	?>
 </div>
 
 <div id="pagination">
