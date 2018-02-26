@@ -88,6 +88,8 @@ function wmf_setup() {
 	add_image_size( 'profile_thumb', '206', '257', true );
 	add_image_size( 'image_4x3_small', '400', '300', true );
 	add_image_size( 'image_4x3_large', '800', '600', true );
+	add_image_size( 'image_4x5_small', '400', '500', true );
+	add_image_size( 'image_4x5_large', '800', '1000', true );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 

@@ -33,7 +33,7 @@ $current_post_types = get_query_var( 'post_type' );
 				the_post();
 
 				wmf_get_template_part(
-					'template-parts/modules/cards/card-horizantal', array(
+					'template-parts/modules/cards/card-horizontal', array(
 						'link'       => get_the_permalink(),
 						'image_id'   => get_post_thumbnail_id(),
 						'title'      => get_the_title(),
@@ -41,6 +41,7 @@ $current_post_types = get_query_var( 'post_type' );
 						'date'       => get_the_date(),
 						'excerpt'    => get_the_excerpt(),
 						'categories' => get_the_category(),
+						'sidebar'    => true,
 					)
 				);
 			endwhile;
