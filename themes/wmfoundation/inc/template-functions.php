@@ -202,3 +202,40 @@ function wmf_clear_role_cache( $term_id ) {
 add_action( 'edit_role', 'wmf_clear_role_cache', 10, 1 );
 add_action( 'create_role', 'wmf_clear_role_cache', 10, 1 );
 add_action( 'delete_role', 'wmf_clear_role_cahce', 10, 1 );
+
+/**
+ * Clears the `wmf_landing_pages_opts` cache when a page is updated.
+ *
+ * @param int $post_id The post ID.
+ */
+function wmf_clear_page_cache( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	wp_cache_delete( 'wmf_landing_pages_opts' );
+}
+add_action( 'save_post_page', 'wmf_clear_page_cache' );
+
+/**
+ * Clears the `wmf_featured_posts_for` context cache when a post is updated.
+ *
+ * @param int $post_id The post ID.
+ */
+function wmf_clear_post_cache( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	$contexts = array(
+		'home' => 'Home', // We don't need this to translate.
+	);
+
+	$contexts = $contexts + wmf_get_landing_pages_options();
+
+	foreach ( $contexts as $context ) {
+		$cache_key = md5( 'wmf_featured_posts_for' . $context );
+		wp_cache_delete( $cache_key );
+	}
+}
+add_action( 'save_post_post', 'wmf_clear_post_cache' );

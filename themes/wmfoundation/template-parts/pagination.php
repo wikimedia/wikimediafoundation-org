@@ -51,12 +51,14 @@ $next_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" 
 
 			<div class="page-number-list">
 				<?php
-				echo wp_kses_post( paginate_links(
-					array(
-						'prev_next' => false,
-						'type'      => 'list',
+				echo wp_kses_post(
+					paginate_links(
+						array(
+							'prev_next' => false,
+							'type'      => 'list',
+						)
 					)
-				) );
+				);
 				?>
 			</div>
 

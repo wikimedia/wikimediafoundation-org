@@ -1,0 +1,34 @@
+<?php
+/**
+ * Handles off site links module.
+ *
+ * @package wmfoundation
+ */
+
+$template_args = wmf_get_template_data();
+
+if ( empty( $template_args['links'] ) || ! is_array( $template_args['links'] ) ) {
+	return;
+}
+
+$pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'wmfoundation' ) );
+$heading     = empty( $template_args['heading'] ) ? '' : $template_args['heading'];
+?>
+
+<div class="elsewhere-wikimedia white-bg mod-margin-bottom mw-1360">
+	<div class="mw-1360">
+		<?php if ( ! empty( $pre_heading ) ) : ?>
+		<h3 class="h3 small uppercase color-gray"><?php echo esc_html( $pre_heading ); // Todo: magic function to get random translation. ?> — <span>Elders in Wikimedia</span></h3>
+		<?php endif; ?>
+		<?php if ( ! empty( $heading ) ) : ?>
+		<h2 class="h2"><?php echo esc_html( $heading ); ?></h2>
+		<?php endif; ?>
+		<div class="flex flex-medium flex-wrap fifty-fifty">
+			<?php
+			foreach ( $template_args['links'] as $link ) {
+				wmf_get_template_part( 'template-parts/modules/links/off-site-link', $link );
+			}
+			?>
+		</div>
+	</div>
+</div>

@@ -91,6 +91,7 @@ function load_customizer_classes() {
 	// Add customizer class name to list to instantiate.
 	$customizers = array(
 		'Connect',
+		'General',
 		'Header',
 		'Footer',
 		'Social',
