@@ -96,5 +96,9 @@ while ( have_posts() ) {
 		'class'    => 'bg-black',
 	);
 	wmf_get_template_part( 'template-parts/modules/featured/posts', $template_args );
+
+	// Off Site Links.
+	$template_args = get_post_meta( get_the_ID(), 'off_site_links', true );
+	wmf_get_template_part( 'template-parts/modules/links/off-site-links', $template_args );
 }
 get_footer();

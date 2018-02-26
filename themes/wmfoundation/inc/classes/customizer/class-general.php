@@ -49,6 +49,21 @@ class General extends Base {
 				'type'        => 'text',
 			)
 		);
+
+		$control_id = 'wmf_off_site_links_pre_heading';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'ELSEWHERE IN WIKIMEDIA', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Off Site Links Pre Heading', 'wmfoundation' ),
+				'description' => __( 'Shows above off site links module throughout the site.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
 	}
 
 }
