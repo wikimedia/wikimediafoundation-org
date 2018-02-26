@@ -65,6 +65,21 @@ class General extends Base {
 			)
 		);
 
+		$control_id = 'wmf_image_credit_header';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Photo credits', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Photo Credits Heading', 'wmfoundation' ),
+				'description' => __( 'Shows above photo credits module throughout the site.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		// Support Module.
 		$section_id = 'wmf_general_support_module';
 		$this->customize->add_section(

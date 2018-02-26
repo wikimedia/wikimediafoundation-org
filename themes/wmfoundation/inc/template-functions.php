@@ -239,3 +239,19 @@ function wmf_clear_post_cache( $post_id ) {
 	}
 }
 add_action( 'save_post_post', 'wmf_clear_post_cache' );
+
+/**
+ * Clears the `wmf_image_credits_{id}` cache when any content is updated.
+ *
+ * @param int $post_id The post ID.
+ */
+function wmf_clear_credits_cache( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	$cache_key = md5( sprintf( 'wmf_image_credits_%s', $this->request_id ) );
+
+	wp_cache_delete( $cache_key );
+}
+add_action( 'save_post', 'wmf_clear_credits_cache' );
