@@ -23,7 +23,9 @@ if ( empty( $featured_posts ) ) {
 	$featured_posts = new WP_Query(
 		array(
 			'post_type'      => 'post',
+			'post_status'    => 'publish',
 			'posts_per_page' => 2,
+			'no_found_rows'  => true,
 			'meta_query'     => array(
 				array(
 					'key'     => 'featured_on',

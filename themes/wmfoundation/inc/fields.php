@@ -66,6 +66,8 @@ function wmf_get_landing_pages_options() {
 
 		$args  = array(
 			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
 			'posts_per_page' => 100,
 			'meta_query'     => array(
 				array(
