@@ -306,18 +306,14 @@ a.hover-img-zoom {
 		display: flex;
 	}
 
-	li {
-
-		&.active {
-
-			a {
-				background: $color-blue;
-				color: #fff;
-			}
-		}
+	li.active a,
+	.current {
+		background: $color-blue;
+		color: #fff;
 	}
 
-	a {
+	a,
+	span {
 		width: 40px;
 		height: 40px;
 		display: block;

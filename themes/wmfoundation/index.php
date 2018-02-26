@@ -14,41 +14,54 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<?php
+$template_args = array(
+	'h1_title' => get_the_archive_title(),
+);
 
-		<?php
-		if ( have_posts() ) :
-			if ( is_home() && ! is_front_page() ) :
-						?>
-							<header>
-								<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+if ( ! is_home() ) {
+	$posts_page                = get_option( 'page_for_posts' );
+	$template_args['h4_link']  = get_permalink( $posts_page );
+	$template_args['h4_title'] = get_the_title( $posts_page );
+}
 
+wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+
+?>
+
+<div class="w-100p news-list-container news-card-list mod-margin-bottom">
+	<div class="mw-1360">
+		<?php if ( have_posts() ) : ?>
+		<div class="card-list-container">
 			<?php
-			endif;
-
-			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
-endwhile;
-
-			the_posts_navigation();
-else :
-	get_template_part( 'template-parts/content', 'none' );
-endif;
+				wmf_get_template_part(
+					'template-parts/modules/cards/card-horizontal', array(
+						'link'       => get_the_permalink(),
+						'image_id'   => get_post_thumbnail_id(),
+						'title'      => get_the_title(),
+						'authors'    => get_the_author_link(),
+						'date'       => get_the_date(),
+						'excerpt'    => get_the_excerpt(),
+						'categories' => get_the_category(),
+					)
+				);
+			endwhile;
+			?>
+		</div>
+		<?php
+		else :
+			get_template_part( 'template-parts/content', 'none' );
+		endif;
 		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	</div>
+</div>
 
 <?php
-get_sidebar();
+if ( have_posts() ) :
+	get_template_part( 'template-parts/pagination' );
+endif;
+
 get_footer();
