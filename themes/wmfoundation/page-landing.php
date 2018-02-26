@@ -72,6 +72,7 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/modules/general/connect', $template_args );
 	}
 
+	// Todo: add profile module here.
 	// Listings.
 	$template_args = get_post_meta( get_the_ID(), 'listings', true );
 
@@ -87,5 +88,12 @@ while ( have_posts() ) {
 			}
 		}
 	}
+
+	// Featured Posts.
+	$template_args = array(
+		'context'  => get_the_ID(),
+		'subtitle' => get_post_meta( get_the_ID(), 'featured_post_sub_title', true ),
+	);
+	wmf_get_template_part( 'template-parts/modules/featured/posts', $template_args );
 }
 get_footer();
