@@ -9,6 +9,7 @@ $template_args = wmf_get_template_data();
 
 $context  = empty( $template_args['context'] ) ? '' : $template_args['context'];
 $subtitle = empty( $template_args['subtitle'] ) ? '' : $template_args['subtitle'];
+$class    = empty( $template_args['class'] ) ? 'white-bg' : $template_args['class'];
 $title    = get_theme_mod( 'wmf_featured_post_pre_heading', __( 'NEWS', 'wmfoundation' ) );
 
 if ( empty( $context ) ) {
@@ -39,7 +40,7 @@ if ( ! $featured_posts->have_posts() ) {
 	return;
 }
 ?>
-<div class="w-100p white-bg mod-margin-bottom">
+<div class="w-100p <?php echo esc_attr( $class ); ?> related-news-container mod-margin-bottom">
 	<div class="mw-1360 std-mod">
 		<h3 class="h3 color-gray"><?php echo esc_html( $title ); // Todo: magic method to get a random translation for this title. ?> —&nbsp;<span>HABER&nbsp;</span></h3>
 		<?php if ( ! empty( $subtitle ) ) : ?>
