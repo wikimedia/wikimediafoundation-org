@@ -31,9 +31,11 @@ $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '
 		<div class="module-mu">
 			<?php if ( ! empty( $categories ) ) : ?>
 			<h4 class="category">
-				<?php foreach ( $categories as $category ) : ?>
-				<?php printf( '<a href="%1$s">%2$s</a>', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) ); ?>
-				<?php endforeach; ?>
+				<?php
+				foreach ( $categories as $category ) {
+					printf( '<a href="%1$s">%2$s</a>', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
+				}
+				?>
 			</h4>
 			<?php endif; ?>
 
