@@ -5,29 +5,25 @@
  * @package wmfoundation
  */
 
-/**
- * Todo: Add span with random translation next to h3 title.
- * - remove placeholder text
- */
-
 $template_args = wmf_get_template_data();
 
 $defaults = array(
 	// Headings.
-	'pre_heading'           => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'wmfoundation' ) ),
-	'heading'               => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'wmfoundation' ) ),
+	'pre_heading'            => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'wmfoundation' ) ),
+	'heading'                => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'wmfoundation' ) ),
+	'rand_translation_title' => wmf_get_random_translation( 'wmf_connect_pre_heading' ),
 
 	// Subscribe box.
-	'subscribe_heading'     => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'wmfoundation' ) ),
-	'subscribe_content'     => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'wmfoundation' ) ),
-	'subscribe_placeholder' => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'wmfoundation' ) ),
-	'subscribe_button'      => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'wmfoundation' ) ),
+	'subscribe_heading'      => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'wmfoundation' ) ),
+	'subscribe_content'      => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'wmfoundation' ) ),
+	'subscribe_placeholder'  => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'wmfoundation' ) ),
+	'subscribe_button'       => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'wmfoundation' ) ),
 
 	// Contact box.
-	'contact_heading'       => get_theme_mod( 'wmf_contact_heading', __( 'Say hello', 'wmfoundation' ) ),
-	'contact_content'       => get_theme_mod( 'wmf_contact_content', __( 'How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box.', 'wmfoundation' ) ),
-	'contact_link'          => get_theme_mod( 'wmf_contact_link', __( 'email@domain.url', 'wmfoundation' ) ),
-	'contact_link_text'     => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'wmfoundation' ) ),
+	'contact_heading'        => get_theme_mod( 'wmf_contact_heading', __( 'Say hello', 'wmfoundation' ) ),
+	'contact_content'        => get_theme_mod( 'wmf_contact_content', __( 'How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box.', 'wmfoundation' ) ),
+	'contact_link'           => get_theme_mod( 'wmf_contact_link', __( 'email@domain.url', 'wmfoundation' ) ),
+	'contact_link_text'      => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'wmfoundation' ) ),
 );
 
 // We don't want empty fields from the page to affect the output.
@@ -43,7 +39,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 <div class="connect-container white-bg mod-margin-bottom">
 	<div class="mw-1360">
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
-			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['pre_heading'] ); ?>— <span><?php // Need a function to get a random translation of this field. ?></span></h3>
+			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['pre_heading'] ); ?> — <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span></h3>
 		<?php endif; ?>
 		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 			<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
