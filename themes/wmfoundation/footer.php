@@ -9,13 +9,21 @@
  * @package wmfoundation
  */
 
-$wmf_footer_text                      = get_theme_mod( 'wmf_footer_text', __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'wmfoundation' ) );
-$wmf_twitter_url                      = get_theme_mod( 'wmf_twitter_url' );
-$wmf_facebook_url                     = get_theme_mod( 'wmf_facebook_url' );
-$wmf_instagram_url                    = get_theme_mod( 'wmf_instagram_url' );
-$wmf_projects_menu_label              = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'wmfoundation' ) );
-$wmf_movement_affiliates_menu_label   = get_theme_mod( 'wmf_movement_affiliates_menu_label', __( 'Movement Affiliates', 'wmfoundation' ) );
-$wmf_footer_copyright                 = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'wmfoundation' ) );
+use WMF\Images\Credits;
+
+$wmf_footer_text                    = get_theme_mod( 'wmf_footer_text', __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'wmfoundation' ) );
+$wmf_twitter_url                    = get_theme_mod( 'wmf_twitter_url' );
+$wmf_facebook_url                   = get_theme_mod( 'wmf_facebook_url' );
+$wmf_instagram_url                  = get_theme_mod( 'wmf_instagram_url' );
+$wmf_projects_menu_label            = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'wmfoundation' ) );
+$wmf_movement_affiliates_menu_label = get_theme_mod( 'wmf_movement_affiliates_menu_label', __( 'Movement Affiliates', 'wmfoundation' ) );
+$wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'wmfoundation' ) );
+
+// Automatically add credits to all content that is not an archive or search.
+if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
+	wmf_get_template_part( 'template-parts/modules/images/credits', Credits::get_instance()->get_ids() );
+}
+
 ?>
 
 <footer class="bg-black">
