@@ -250,7 +250,7 @@ function wmf_clear_credits_cache( $post_id ) {
 		return;
 	}
 
-	$cache_key = md5( sprintf( 'wmf_image_credits_%s', $this->request_id ) );
+	$cache_key = md5( sprintf( 'wmf_image_credits_%s', $post_id ) );
 
 	wp_cache_delete( $cache_key );
 }
