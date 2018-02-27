@@ -62,6 +62,13 @@ wmf_get_template_part(
 </article>
 
 <?php
+
+// Related Profiles.
+$template_args = get_post_meta( get_the_ID(), 'profiles', true );
+if ( ! empty( $template_args ) ) {
+	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
+	wmf_get_template_part( 'template-parts/modules/profiles/list', $template_args );
+}
 endwhile;
 
 get_footer();

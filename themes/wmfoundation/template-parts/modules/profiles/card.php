@@ -36,7 +36,9 @@ $img_id = ! empty( $template_data['img_id'] ) ? $template_data
 
 		<?php if ( ! empty( $role ) || ! empty( $team ) ) : ?>
 			<span class="person-title p color-gray">
-				<?php printf( esc_html__( '%1$s, %2$s', 'wmfoundation' ), esc_html( $role ), esc_html( $team ) ); ?>
+				<?php
+					printf( '%1$s, %2$s', esc_html( $role ), esc_html( $team ) );
+				?>
 			</span>
 		<?php endif; ?>
 	</div>

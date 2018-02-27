@@ -1,6 +1,8 @@
 <?php
 /**
  * Profiles Module
+ *
+ * @package wmfoundation
  */
 
 $template_data = wmf_get_template_data();
@@ -13,13 +15,14 @@ if ( empty( $profiles ) || ! is_array( $profiles ) || count( $profiles ) < 3 ) {
 
 $profile_list = array_rand( array_flip( $profiles ), 3 );
 $headline     = ! empty( $template_data['headline'] ) ? $template_data['headline'] : '';
+$description  = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 
 $default_pre_heading = get_post_type_object( 'profile' )->label;
 $pre_heading         = ! empty( $template_data['pre_heading'] ) ? $template_data['pre_heading'] : $default_pre_heading;
 ?>
 
 <div class="w-100p white-bg mod-margin-bottom">
-	<div class="mw-1360 std-mod people-container">
+	<div class="mw-1360 std-mod mod-margin-bottom">
 		<h3 class="h3 color-gray">
 			<?php echo esc_html( $pre_heading ); ?>
 		</h3>
@@ -28,6 +31,14 @@ $pre_heading         = ! empty( $template_data['pre_heading'] ) ? $template_data
 		<h2><?php echo esc_html( $headline ); ?></h2>
 		<?php endif; ?>
 
+		<?php if ( ! empty( $description ) ) : ?>
+		<div class="h3 color-gray mar-bottom_lg">
+			<?php echo wp_kses_post( $description ); ?>
+		</div>
+		<?php endif; ?>
+	</div>
+
+	<div class="mw-1360 std-mod mod-margin-bottom">
 		<div class="people slider-on-mobile flex flex-medium">
 		<?php
 		foreach ( $profile_list as $profile_id ) {
@@ -48,5 +59,6 @@ $pre_heading         = ! empty( $template_data['pre_heading'] ) ? $template_data
 		}
 		?>
 		</div>
+	</div>
 	</div>
 </div>

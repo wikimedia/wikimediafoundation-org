@@ -107,7 +107,7 @@ function wmf_get_profiles_options() {
 			'post_type'      => 'profile',
 			'post_status'    => 'publish',
 			'no_found_rows'  => true,
-			'posts_per_page' => 500,
+			'posts_per_page' => 100,
 		);
 		$pages = new WP_Query( $args );
 

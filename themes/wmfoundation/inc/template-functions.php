@@ -122,7 +122,7 @@ function wmf_get_role_posts( $term_id ) {
 		array(
 			'post_type' => 'profile',
 			'fields'    => 'ids',
-			'tax_query' => array( // Slow query ok.
+			'tax_query' => array(
 				array(
 					'taxonomy' => 'role',
 					'field'    => 'term_id',
@@ -130,7 +130,7 @@ function wmf_get_role_posts( $term_id ) {
 				),
 			),
 		)
-	);
+	); // WPCS: slow query ok.
 
 	return array(
 		'posts' => $posts->posts,
@@ -255,3 +255,49 @@ function wmf_clear_credits_cache( $post_id ) {
 	wp_cache_delete( $cache_key );
 }
 add_action( 'save_post', 'wmf_clear_credits_cache' );
+
+/**
+ * Get a list of related profiles by terms
+ *
+ * To avoid a slow query, we get a lot more than we need,
+ * and still allow random entries to be selected from the list.
+ *
+ * @param int $profile_id Profile ID to check against.
+ * @return array List of profile IDs.
+ */
+function wmf_get_related_profiles( $profile_id ) {
+	$profile_list = array();
+
+	if ( empty( $profile_id ) ) {
+		return $profile_list;
+	}
+
+	$profile_id = absint( $profile_id );
+
+	$terms    = get_the_terms( $profile_id, 'role' );
+	$term_ids = wp_list_pluck( $terms, 'term_id' );
+
+	$profiles_query = new WP_Query(
+		array(
+			'posts_per_page' => 100,
+			'no_found_rows'  => true,
+			'fields'         => 'ids',
+			'post_type'      => 'profile',
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'role',
+					'terms'    => $terms[0],
+				),
+			),
+		)
+	); // WPCS: slow query ok.
+
+	$profile_list = $profiles_query->posts;
+
+	$key = array_search( $profile_id, $profile_list, true );
+	if ( false !== $key ) {
+		unset( $profile_list[ $key ] );
+	}
+
+	return $profile_list;
+}
