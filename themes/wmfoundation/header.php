@@ -9,6 +9,8 @@
  * @package wmfoundation
  */
 
+use WMF\Images\Credits;
+
 $wmf_donate_button        = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate Now', 'wmfoundation' ) );
 $wmf_donate_uri           = get_theme_mod( 'wmf_donate_now_uri', '#' );
 $wmf_menu_button          = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfoundation' ) );
@@ -144,3 +146,8 @@ $wmf_translations         = wmf_get_translations();
 				</div>
 			</div>
 
+<?php
+// Automatically add credits to all content that is not an archive or search.
+if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
+	Credits::get_instance( get_the_ID() );
+}
