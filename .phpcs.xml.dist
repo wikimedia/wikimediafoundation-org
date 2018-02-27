@@ -39,6 +39,11 @@
 			<property name="prefixes" type="array" value="wmf,rkv"/>
 		</properties>
 	</rule>
+	<rule ref="WordPress.VIP.ValidatedSanitizedInput">
+        <properties>
+            <property name="customSanitizingFunctions" value="wmf_sanitize_post_type_array" type="array" />
+        </properties>
+    </rule>
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array" value="wmfoundation"/>

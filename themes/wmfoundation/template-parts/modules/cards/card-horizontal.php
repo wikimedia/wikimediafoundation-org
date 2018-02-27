@@ -18,12 +18,14 @@ $authors    = ! empty( $card_data['authors'] ) ? $card_data['authors'] : '';
 $date       = ! empty( $card_data['date'] ) ? $card_data['date'] : '';
 $excerpt    = ! empty( $card_data['excerpt'] ) ? $card_data['excerpt'] : '';
 $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '';
+$sidebar    = true === $card_data['sidebar'] ? true : false;
+$image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 
 ?>
-<div class="card card-horizontal">
+<div class="card card-horizontal <?php echo esc_attr( $sidebar ? 'w-75p' : '' ); ?>">
 	<?php if ( ! empty( $image_id ) ) : ?>
 		<a href="<?php echo esc_url( $link ); ?>" class="w-50p img-container">
-			<?php echo wp_get_attachment_image( $image_id, 'image_4x3_large' ); ?>
+			<?php echo wp_get_attachment_image( $image_id, $image_size ); ?>
 		</a>
 	<?php endif; ?>
 
