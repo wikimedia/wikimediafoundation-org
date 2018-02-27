@@ -218,6 +218,21 @@ function wmf_clear_page_cache( $post_id ) {
 add_action( 'save_post_page', 'wmf_clear_page_cache' );
 
 /**
+ * Clears the wmf_profiles_opts cache when a profile is
+ * created or updated.
+ *
+ * @param int $post_id The post ID.
+ */
+function wmf_clear_profile_cache( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	wp_cache_delete( 'wmf_profiles_opts' );
+}
+add_action( 'save_post_profile', 'wmf_clear_profile_cache' );
+
+/**
  * Clears the `wmf_featured_posts_for` context cache when a post is updated.
  *
  * @param int $post_id The post ID.
