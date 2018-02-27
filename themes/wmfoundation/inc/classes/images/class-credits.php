@@ -19,6 +19,13 @@ class Credits {
 	public $image_ids = array();
 
 	/**
+	 * Holds image matches from preg_match_all().
+	 *
+	 * @var array
+	 */
+	public $image_matches = array();
+
+	/**
 	 * Post, post, or other request ID.
 	 *
 	 * Used to build cache.
@@ -38,6 +45,7 @@ class Credits {
 
 		if ( false === $this->image_ids ) {
 			add_filter( 'image_downsize', array( $this, 'set_id' ), 10, 2 );
+			add_filter( 'the_content', array( $this, 'set_images_from_content' ), 10, 2 );
 		}
 	}
 
@@ -66,6 +74,42 @@ class Credits {
 		}
 
 		return $bool;
+	}
+
+	/**
+	 * Does a preg_match_all to get image sources if there is no caption.
+	 *
+	 * @param string $content The content.
+	 *
+	 * @return string
+	 */
+	public function set_images_from_content( $content ) {
+		preg_match_all( '/src="([^" >]+?)"(?!.*?\[\/caption\])/', $content, $this->image_matches );
+
+		$this->process_image_matches();
+
+		return $content;
+	}
+
+	/**
+	 * Processes the matched images to get image IDs for credits.
+	 */
+	public function process_image_matches() {
+		$urls = isset( $this->image_matches[1] ) ? $this->image_matches[1] : '';
+
+		if ( empty( $urls ) || ! is_array( $urls ) ) {
+			return;
+		}
+
+		foreach ( $urls as $url ) {
+			$image_id = wpcom_vip_attachment_url_to_postid( $url );
+
+			if ( empty( $image_id ) ) {
+				continue;
+			}
+
+			$this->set_id( true, $image_id );
+		}
 	}
 
 	/**
