@@ -40,6 +40,9 @@ $next_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" 
 <path id="path0_fillright" d="M 46 0L 46 6L 0 6L 0 10L 46 10L 46 16L 54 8L 46 0Z"></path>
 </defs>
 </svg></i>';
+
+$additional_args = get_query_var( 'search_args' );
+$additional_args = ! empty( $additional_args ) ? $additional_args : array();
 ?>
 
 <div class="mod-margin-bottom">
@@ -56,6 +59,9 @@ $next_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" 
 						array(
 							'prev_next' => false,
 							'type'      => 'list',
+							'base'      => home_url( '/%_%' ),
+							'format'    => 'page/%#%/',
+							'add_args'  => $additional_args,
 						)
 					)
 				);

@@ -1,52 +1,66 @@
 <?php
 /**
- * The template for displaying search results pages.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ * Template for displaying search results
  *
  * @package wmfoundation
  */
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<?php
+$template_args = array(
+	/* translators: Query that is currently being searched */
+	'h1_title' => sprintf( __( 'Search results for %s', 'wmfoundation' ), get_search_query() ),
+);
 
-		<?php
-		if ( have_posts() ) :
-		?>
+wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 
-			<header class="page-header">
-				<h1 class="page-title">
-				<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'wmfoundation' ), '<span>' . get_search_query() . '</span>' );
-				?>
-				</h1>
-			</header><!-- .page-header -->
+?>
 
+<div class="mw-1360 mod-margin-bottom flex flex-medium news-card-list">
+	<div id="search-results" class="card-list-container w-68p">
+		<?php if ( have_posts() ) : ?>
 			<?php
-			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-endwhile;
+				wmf_get_template_part(
+					'template-parts/modules/cards/card-horizontal', array(
+						'link'       => get_the_permalink(),
+						'image_id'   => get_post_thumbnail_id(),
+						'title'      => get_the_title(),
+						'authors'    => get_the_author_link(),
+						'date'       => get_the_date(),
+						'excerpt'    => get_the_excerpt(),
+						'categories' => get_the_category(),
+						'sidebar'    => true,
+					)
+				);
+			endwhile;
+			?>
 
-			the_posts_navigation();
-else :
-	get_template_part( 'template-parts/content', 'none' );
-endif;
+		<?php
+		else :
+			get_template_part( 'template-parts/content', 'none' );
+		endif;
 		?>
+	</div>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
+	<?php
+	if ( have_posts() ) {
+		get_sidebar( 'search' );
+	}
+	?>
+</div>
+
+<div id="pagination">
+	<?php
+	if ( have_posts() ) :
+		get_template_part( 'template-parts/pagination' );
+	endif;
+	?>
+</div>
 
 <?php
-get_sidebar();
 get_footer();
