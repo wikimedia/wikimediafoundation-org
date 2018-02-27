@@ -134,6 +134,22 @@ function wmf_scripts() {
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
 
 /**
+ * Adds publicly querable option to page so it can be filtered
+ *
+ * @param array  $args      List of Post type args.
+ * @param string $post_type Current Post Type name.
+ * @return array Filtered args.
+ */
+function wmf_edit_page_post_type( $args, $post_type ) {
+	if ( 'page' === $post_type ) {
+		$args['publicly_queryable'] = true;
+	}
+
+	return $args;
+}
+add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
