@@ -152,6 +152,13 @@ function wmf_edit_page_post_type( $args, $post_type ) {
 	return $args;
 }
 add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
+/*
+ * Enqueue admin scripts and styles.
+ */
+function wmf_admin_scripts() {
+	wp_enqueue_style( 'wmfoundation-editor', get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css' );
+}
+add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
 
 /**
  * Custom template tags for this theme.

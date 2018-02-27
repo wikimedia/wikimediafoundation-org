@@ -44,5 +44,40 @@ while ( have_posts() ) {
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
+
+	// Connect.
+	$template_args = get_post_meta( get_the_ID(), 'connect', true );
+
+	if ( empty( $template_args['hide'] ) ) {
+		wmf_get_template_part( 'template-parts/modules/general/connect', $template_args );
+	}
+
+	// Listings.
+	$template_args = get_post_meta( get_the_ID(), 'listings', true );
+
+	if ( ! empty( $template_args ) ) {
+		$listings = empty( $template_args['listings'] ) ? array() : $template_args['listings'];
+
+		if ( ! empty( $listings ) && is_array( $listings ) ) {
+			if ( 1 === count( $listings ) ) {
+				$template_args = $template_args + $listings[0];
+				wmf_get_template_part( 'template-parts/modules/employment/single', $template_args );
+			} else {
+				wmf_get_template_part( 'template-parts/modules/employment/multiple', $template_args );
+			}
+		}
+	}
+
+	// Featured Posts.
+	$template_args = array(
+		'context'  => get_the_ID(),
+		'subtitle' => get_post_meta( get_the_ID(), 'featured_post_sub_title', true ),
+		'class'    => 'bg-black',
+	);
+	wmf_get_template_part( 'template-parts/modules/featured/posts', $template_args );
+
+	// Off Site Links.
+	$template_args = get_post_meta( get_the_ID(), 'off_site_links', true );
+	wmf_get_template_part( 'template-parts/modules/links/off-site-links', $template_args );
 }
 get_footer();
