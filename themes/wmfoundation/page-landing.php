@@ -27,6 +27,22 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 
-	get_template_part( 'template-parts/content', 'landing' );
+	$modules = array(
+		'intro',
+		'social',
+		'framing-copy',
+		'cta',
+		'facts',
+		'connect',
+		// Todo: add profile module here.
+		'listings',
+		'featured-posts',
+		'offsite-links',
+		'support',
+	);
+
+	foreach ( $modules as $module ) {
+		get_template_part( 'template-parts/page/page', $module );
+	}
 }
 get_footer();
