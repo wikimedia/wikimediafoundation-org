@@ -35,6 +35,35 @@ class Credits {
 	public $request_id = 0;
 
 	/**
+	 * Indicates to pause the capture of image_ids.
+	 *
+	 * @var bool
+	 */
+	public $pause = false;
+
+	/**
+	 * The instance of this object.
+	 *
+	 * @var Credits
+	 */
+	protected static $instance;
+
+	/**
+	 * Gets the instance of this object.
+	 *
+	 * @param int $request_id The ID for the request.
+	 *
+	 * @return Credits
+	 */
+	public static function get_instance( $request_id = 0 ) {
+		if ( empty( static::$instance ) ) {
+			static::$instance = new static( $request_id );
+		}
+
+		return static::$instance;
+	}
+
+	/**
 	 * Credits constructor.
 	 *
 	 * @param int $request_id The ID for the request.
@@ -47,6 +76,20 @@ class Credits {
 			add_filter( 'image_downsize', array( $this, 'set_id' ), 10, 2 );
 			add_filter( 'the_content', array( $this, 'set_images_from_content' ), 10, 2 );
 		}
+	}
+
+	/**
+	 * Pauses capture of the image_ids.
+	 */
+	public function pause() {
+		$this->pause = true;
+	}
+
+	/**
+	 * Resumes capture of the image_ids.
+	 */
+	public function resume() {
+		$this->pause = false;
 	}
 
 	/**
@@ -69,7 +112,7 @@ class Credits {
 	 * @return mixed
 	 */
 	public function set_id( $bool, $image_id ) {
-		if ( ! in_array( $image_id, $this->image_ids, true ) ) {
+		if ( true !== $this->pause && ! in_array( $image_id, $this->image_ids, true ) ) {
 			$this->image_ids[] = $image_id;
 		}
 

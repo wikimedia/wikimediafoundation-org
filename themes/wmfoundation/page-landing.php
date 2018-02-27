@@ -13,7 +13,7 @@ get_header();
 while ( have_posts() ) {
 	the_post();
 
-	$credits = new Credits( get_the_ID() );
+	Credits::get_instance( get_the_ID() );
 
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
@@ -112,6 +112,6 @@ while ( have_posts() ) {
 	}
 
 	// Photo Credits Module.
-	wmf_get_template_part( 'template-parts/modules/images/credits', $credits->get_ids() );
+	wmf_get_template_part( 'template-parts/modules/images/credits', Credits::get_instance()->get_ids() );
 }
 get_footer();

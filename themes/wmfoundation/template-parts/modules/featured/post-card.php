@@ -5,7 +5,11 @@
  * @package wmfoundation
  */
 
+use WMF\Images\Credits;
+
+Credits::get_instance()->pause();
 $image = get_the_post_thumbnail( get_the_ID(), 'image_4x3_large' );
+Credits::get_instance()->resume();
 ?>
 
 <a href="<?php the_permalink(); ?>" class="card card-vertical card-news hover-img-zoom w-50p">
