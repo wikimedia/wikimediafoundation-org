@@ -1,22 +1,22 @@
 (function($) {
 
+	'use strict';
+
 	$( '#searchFilter' ).on( 'submit', function(e) {
 		e.preventDefault();
 
-		var post_types = [],
-			selectedFilter = $( '#sortSelect :selected' ),
+		var selectedFilter = $( '#sortSelect :selected' ),
 			order = $( selectedFilter ).val(),
 			orderby = $( selectedFilter ).data( 'type' ),keyword = $( '#keyword' ).val(),
 			data = {
 				s: keyword,
-				post_type: post_types,
 				order: order,
 				orderby: orderby,
 			};
 
-		post_types = $( '#searchFilter input:checkbox:checked' ).map( function() {
+		data.post_type = $( '#searchFilter input:checkbox:checked' ).map( function() {
 			return $(this).val();
-		}).get();
+		}).get() || [];
 
 		doSearch( data );
 	})
