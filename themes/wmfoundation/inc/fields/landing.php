@@ -93,5 +93,12 @@ function wmf_landing_fields() {
 		)
 	);
 	$facts->add_meta_box( __( 'Facts', 'wmfoundation' ), 'page' );
+
+	$featured_post = new Fieldmanager_Textfield(
+		array(
+			'name' => 'featured_post_sub_title',
+		)
+	);
+	$featured_post->add_meta_box( __( 'Featured Post Subtitle', 'wmfoundation' ), 'page' );
 }
 add_action( 'fm_post_page', 'wmf_landing_fields' );
