@@ -73,6 +73,8 @@ class Credits {
 		$this->image_ids  = $this->get_cache();
 
 		if ( false === $this->image_ids ) {
+			$this->image_ids = array();
+
 			add_filter( 'image_downsize', array( $this, 'set_id' ), 10, 2 );
 			add_filter( 'the_content', array( $this, 'set_images_from_content' ), 10, 2 );
 		}
