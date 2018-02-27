@@ -6,7 +6,8 @@
 		"_": false,
 		"Backbone": false,
 		"jQuery": false,
-		"wp": false
+		"wp": false,
+		"wmfoundation": false,
 	},
 	"rules": {
 		"accessor-pairs": [2],

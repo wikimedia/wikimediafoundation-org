@@ -88,6 +88,8 @@ function wmf_setup() {
 	add_image_size( 'profile_thumb', '206', '257', true );
 	add_image_size( 'image_4x3_small', '400', '300', true );
 	add_image_size( 'image_4x3_large', '800', '600', true );
+	add_image_size( 'image_4x5_small', '400', '500', true );
+	add_image_size( 'image_4x5_large', '800', '1000', true );
 	add_image_size( 'image_16x9_large', '1200', '675', true );
 	add_image_size( 'image_16x9_small', '600', '338', true );
 }
@@ -123,11 +125,31 @@ function wmf_scripts() {
 	wp_enqueue_script( 'wmfoundation-flickity', get_stylesheet_directory_uri() . '/assets/dist/flickity-min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'wmfoundation-flickity' ), '0.0.1', true );
 
+	wp_localize_script( 'wmfoundation-script', 'wmfoundation', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' ),
+	) );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
+
+/**
+ * Adds publicly querable option to page so it can be filtered
+ *
+ * @param array  $args      List of Post type args.
+ * @param string $post_type Current Post Type name.
+ * @return array Filtered args.
+ */
+function wmf_edit_page_post_type( $args, $post_type ) {
+	if ( 'page' === $post_type ) {
+		$args['publicly_queryable'] = true;
+	}
+
+	return $args;
+}
+add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
 
 /**
  * Custom template tags for this theme.
@@ -143,6 +165,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Custom functions to handle translation.
  */
 require get_template_directory() . '/inc/template-translations.php';
+
+/**
+ * Ajax related functions
+ */
+require get_template_directory() . '/inc/ajax.php';
 
 /**
  * Class autoloader.
