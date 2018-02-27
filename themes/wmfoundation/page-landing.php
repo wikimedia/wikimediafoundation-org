@@ -39,7 +39,7 @@ while ( have_posts() ) {
 		'featured-posts',
 		'offsite-links',
 		'support',
-		'profiles'
+		'profiles',
 	);
 
 	foreach ( $modules as $module ) {
