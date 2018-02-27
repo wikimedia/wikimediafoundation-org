@@ -3,16 +3,20 @@
 	$( '#searchFilter' ).on( 'submit', function(e) {
 		e.preventDefault();
 
-		var post_types = [];
-		post_types = $( '#searchFilter input:checkbox:checked' ).map( function() {
-			return $(this).val();
-		}).get();
-
-		var keyword = $( '#keyword' ).val(),
+		var post_types = [],
+			selectedFilter = $( '#sortSelect :selected' ),
+			order = $( selectedFilter ).val(),
+			orderby = $( selectedFilter ).data( 'type' ),keyword = $( '#keyword' ).val(),
 			data = {
 				s: keyword,
 				post_type: post_types,
+				order: order,
+				orderby: orderby,
 			};
+
+		post_types = $( '#searchFilter input:checkbox:checked' ).map( function() {
+			return $(this).val();
+		}).get();
 
 		doSearch( data );
 	})

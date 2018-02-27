@@ -23,6 +23,8 @@ function wmf_ajax_search() {
 	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : ''; // Input var CSRF okay.
 
 	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : ''; // Input var CSRF okay.
+	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc'; // Input var CSRF okay.
+	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title'; // Input var CSRF okay.
 
 	$default_args = array(
 		'post_status' => 'publish',
@@ -30,6 +32,8 @@ function wmf_ajax_search() {
 	$custom_args  = array(
 		'post_type' => $post_types,
 		's'         => $keyword,
+		'order'     => $order,
+		'orderby'   => $orderby,
 	);
 	$custom_args  = array_filter( $custom_args );
 	$args         = wp_parse_args( $custom_args, $default_args );
