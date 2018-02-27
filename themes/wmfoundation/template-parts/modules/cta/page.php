@@ -13,14 +13,16 @@ if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && e
 
 $image = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
+
+$class = empty( $template_args['class'] ) ? 'cta-secondary bg-img--blue btn-pink' : $template_args['class'];
 ?>
 
-<div class="w-100p cta mod-margin-bottom cta-secondary bg-img--blue btn-pink">
+<div class="w-100p cta mod-margin-bottom <?php echo esc_attr( $class ); ?>">
 	<div class="mw-1360">
 		<div class="card">
 			<?php if ( ! empty( $image ) ) : ?>
 			<div class="bg-img-container">
-				<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>"></div>
+				<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>)"></div>
 			</div>
 			<?php endif; ?>
 

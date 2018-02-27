@@ -90,6 +90,8 @@ function wmf_setup() {
 	add_image_size( 'image_4x3_large', '800', '600', true );
 	add_image_size( 'image_4x5_small', '400', '500', true );
 	add_image_size( 'image_4x5_large', '800', '1000', true );
+	add_image_size( 'image_16x9_large', '1200', '675', true );
+	add_image_size( 'image_16x9_small', '600', '338', true );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
