@@ -46,8 +46,6 @@ function wmf_is_home() {
 	}
 	$posts_page = get_option( 'page_for_posts' );
 
-	error_log( print_r( $posts_page, true ) );
-
 	return absint( $id ) === absint( $posts_page );
 }
 
