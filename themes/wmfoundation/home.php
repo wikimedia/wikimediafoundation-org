@@ -88,4 +88,13 @@ if ( have_posts() ) :
 	get_template_part( 'template-parts/pagination' );
 endif;
 
+$modules = array(
+	'support',
+	'connect',
+);
+
+foreach ( $modules as $module ) {
+	get_template_part( 'template-parts/page/page', $module );
+}
+
 get_footer();
