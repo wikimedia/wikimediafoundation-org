@@ -33,6 +33,7 @@
 	<config name="minimum_supported_wp_version" value="4.5"/>
 	<rule ref="WordPress">
   		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
+  		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog"/>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>

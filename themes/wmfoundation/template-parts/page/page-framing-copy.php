@@ -13,4 +13,13 @@ $template_args = array(
 	'heading'     => isset( $framing_copy['heading'] ) ? $framing_copy['heading'] : '',
 	'modules'     => isset( $framing_copy['copy'] ) ? $framing_copy['copy'] : array(),
 );
+
+$rand_translation = wmf_get_random_translation(
+	'framing_copy', array(
+		'source' => 'meta',
+	)
+);
+
+$template_args['rand_translation_title'] = empty( $rand_translation['pre_heading'] ) ? '' : $rand_translation['pre_heading'];
+
 wmf_get_template_part( 'template-parts/modules/section/framing-copy', $template_args );

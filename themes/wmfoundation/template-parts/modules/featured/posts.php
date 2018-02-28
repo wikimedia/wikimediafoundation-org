@@ -12,6 +12,8 @@ $subtitle = empty( $template_args['subtitle'] ) ? '' : $template_args['subtitle'
 $class    = empty( $template_args['class'] ) ? 'white-bg' : $template_args['class'];
 $title    = get_theme_mod( 'wmf_featured_post_pre_heading', __( 'NEWS', 'wmfoundation' ) );
 
+$rand_translation_title = wmf_get_random_translation( 'wmf_featured_post_pre_heading' );
+
 if ( empty( $context ) ) {
 	return;
 }
@@ -44,7 +46,7 @@ if ( ! $featured_posts->have_posts() ) {
 ?>
 <div class="w-100p <?php echo esc_attr( $class ); ?> related-news-container mod-margin-bottom">
 	<div class="mw-1360 std-mod">
-		<h3 class="h3 color-gray"><?php echo esc_html( $title ); // Todo: magic method to get a random translation for this title. ?> —&nbsp;<span>HABER&nbsp;</span></h3>
+		<h3 class="h3 color-gray"><?php echo esc_html( $title ); ?> —&nbsp;<span><?php echo esc_html( $rand_translation_title ); ?>&nbsp;</span></h3>
 		<?php if ( ! empty( $subtitle ) ) : ?>
 		<h2><?php echo esc_html( $subtitle ); ?></h2>
 		<?php endif; ?>
