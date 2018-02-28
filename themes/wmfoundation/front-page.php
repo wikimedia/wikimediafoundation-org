@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Landing Page
+ * Front Page Template
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -27,23 +27,26 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 
+?>
+<div class="home-subnav mw-1360 white-bg">
+	<?php get_template_part( 'template-parts/header/navigation' ); ?>
+</div>
+<?php
+
 	$modules = array(
 		'intro',
-		'social',
-		'framing-copy',
-		'cta',
-		'facts',
-		'connect',
-		// Todo: add profile module here.
-		'listings',
+		'focus-blocks', // Todo: build this.
 		'featured-posts',
-		'offsite-links',
+		'projects', // Todo: build this.
+		'profiles', // Todo: waiting on this.
+		'facts',
+		'framing-copy',
 		'support',
-		'profiles',
+		'connect',
 	);
 
-	foreach ( $modules as $module ) {
-		get_template_part( 'template-parts/page/page', $module );
-	}
+foreach ( $modules as $module ) {
+	get_template_part( 'template-parts/page/page', $module );
+}
 }
 get_footer();

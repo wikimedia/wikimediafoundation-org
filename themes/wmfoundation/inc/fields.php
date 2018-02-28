@@ -46,6 +46,8 @@ function wmf_is_home() {
 	}
 	$posts_page = get_option( 'page_for_posts' );
 
+	error_log( print_r( $posts_page, true ) );
+
 	return absint( $id ) === absint( $posts_page );
 }
 
@@ -109,6 +111,34 @@ function wmf_get_landing_pages_options() {
 }
 
 /**
+ * Gets available profiles and formats them for Fieldmanager
+ *
+ * @return array
+ */
+function wmf_get_profiles_options() {
+	$profiles = wp_cache_get( 'wmf_profiles_opts' );
+	if ( empty( $profiles ) ) {
+		$profiles = array();
+		$args  = array(
+			'post_type'      => 'profile',
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
+			'posts_per_page' => 100,
+		);
+		$pages = new WP_Query( $args );
+		if ( $pages->have_posts() ) {
+			while ( $pages->have_posts() ) {
+				$pages->the_post();
+				$profiles[ get_the_ID() ] = get_the_title();
+			}
+		}
+		wp_reset_postdata();
+		wp_cache_add( 'wmf_profiles_opts', $profiles );
+	}
+	return $profiles;
+}
+
+/**
  * Gets available posts in an array suitable for fieldmanager options.
  *
  * @return array
@@ -130,6 +160,7 @@ function wmf_get_posts_options() {
 		if ( $pages->have_posts() ) {
 			while ( $pages->have_posts() ) {
 				$pages->the_post();
+				$profiles[ get_the_ID() ] = get_the_title();
 				$posts[ get_the_ID() ] = get_the_title();
 			}
 		}
@@ -141,30 +172,8 @@ function wmf_get_posts_options() {
 	return $posts;
 }
 
-/**
- * Gets all categories and formats fro Fieldmanager
- *
- * @return array
- */
-function wmf_get_categories_options() {
-	$category_list = wp_cache_get( 'wmf_categories_opts' );
-
-	if ( empty( $category_list ) ) {
-		$category_list = array();
-		$categories = get_categories();
-
-		if ( ! empty( $categories ) ) {
-			foreach ( $categories as $category ) {
-				$category_list[ $category->term_id ] = $category->name;
-			}
-		}
-		wp_cache_add( 'wmf_categories_opts', $category_list );
-	}
-
-	return $category_list;
-}
-
 require get_template_directory() . '/inc/fields/header.php';
+require get_template_directory() . '/inc/fields/home.php';
 require get_template_directory() . '/inc/fields/landing.php';
 require get_template_directory() . '/inc/fields/page-cta.php';
 require get_template_directory() . '/inc/fields/post.php';
@@ -173,4 +182,5 @@ require get_template_directory() . '/inc/fields/connect.php';
 require get_template_directory() . '/inc/fields/listing.php';
 require get_template_directory() . '/inc/fields/links.php';
 require get_template_directory() . '/inc/fields/support.php';
+require get_template_directory() . '/inc/fields/profiles.php';
 require get_template_directory() . '/inc/fields/home.php';

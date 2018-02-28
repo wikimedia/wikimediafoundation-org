@@ -13,12 +13,14 @@ if ( empty( $template_args['links'] ) || ! is_array( $template_args['links'] ) )
 
 $pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'wmfoundation' ) );
 $heading     = empty( $template_args['heading'] ) ? '' : $template_args['heading'];
+
+$rand_translation_title = wmf_get_random_translation( 'wmf_off_site_links_pre_heading' );
 ?>
 
 <div class="elsewhere-wikimedia white-bg mod-margin-bottom mw-1360">
 	<div class="mw-1360">
 		<?php if ( ! empty( $pre_heading ) ) : ?>
-		<h3 class="h3 small uppercase color-gray"><?php echo esc_html( $pre_heading ); // Todo: magic function to get random translation. ?> — <span>Elders in Wikimedia</span></h3>
+		<h3 class="h3 small uppercase color-gray"><?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span></h3>
 		<?php endif; ?>
 		<?php if ( ! empty( $heading ) ) : ?>
 		<h2 class="h2"><?php echo esc_html( $heading ); ?></h2>

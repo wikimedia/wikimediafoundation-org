@@ -90,6 +90,18 @@ class Profile extends Base {
 				'type'    => 'text',
 			)
 		);
+
+		$control_id = 'wmf_related_profiles_heading';
+		$this->customize->add_setting( $control_id, array(
+			'default' => __( 'Other members of ', 'wmfoundation' ),
+		) );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Related Profiles default headline', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
 	}
 
 }
