@@ -46,8 +46,6 @@ function wmf_is_posts_page() {
 	}
 	$posts_page = get_option( 'page_for_posts' );
 
-	error_log( print_r( $posts_page, true ) );
-
 	return absint( $id ) === absint( $posts_page );
 }
 
@@ -119,13 +117,13 @@ function wmf_get_profiles_options() {
 	$profiles = wp_cache_get( 'wmf_profiles_opts' );
 	if ( empty( $profiles ) ) {
 		$profiles = array();
-		$args  = array(
+		$args     = array(
 			'post_type'      => 'profile',
 			'post_status'    => 'publish',
 			'no_found_rows'  => true,
 			'posts_per_page' => 100,
 		);
-		$pages = new WP_Query( $args );
+		$pages    = new WP_Query( $args );
 		if ( $pages->have_posts() ) {
 			while ( $pages->have_posts() ) {
 				$pages->the_post();
@@ -161,7 +159,7 @@ function wmf_get_posts_options() {
 			while ( $pages->have_posts() ) {
 				$pages->the_post();
 				$profiles[ get_the_ID() ] = get_the_title();
-				$posts[ get_the_ID() ] = get_the_title();
+				$posts[ get_the_ID() ]    = get_the_title();
 			}
 		}
 		wp_reset_postdata();
@@ -186,7 +184,7 @@ function wmf_get_categories_options() {
 		$categories = get_categories();
 
 		if ( ! empty( $categories ) ) {
-			foreach( $categories as $category ) {
+			foreach ( $categories as $category ) {
 				$category_list[ $category->term_id ] = $category->name;
 			}
 		}
@@ -207,4 +205,4 @@ require get_template_directory() . '/inc/fields/links.php';
 require get_template_directory() . '/inc/fields/support.php';
 require get_template_directory() . '/inc/fields/profiles.php';
 require get_template_directory() . '/inc/fields/home.php';
-require get_template_directory() . '/inc/fields/posts_page.php';
+require get_template_directory() . '/inc/fields/posts-page.php';

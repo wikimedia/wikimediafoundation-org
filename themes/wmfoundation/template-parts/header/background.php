@@ -5,7 +5,6 @@
  * @package wmfoundation
  */
 
-
 if ( ! is_page() && ! is_home() ) {
 	return;
 }

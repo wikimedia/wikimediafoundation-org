@@ -24,8 +24,8 @@ function wmf_featured_post() {
 
 	$featured_categories = new Fieldmanager_Checkboxes(
 		array(
-			'name'        => 'featured_categories',
-			'options'     => wmf_get_categories_options(),
+			'name'    => 'featured_categories',
+			'options' => wmf_get_categories_options(),
 		)
 	);
 	$featured_categories->add_meta_box( __( 'Category Filter List', 'wmfoundation' ), array( 'page' ) );
