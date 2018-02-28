@@ -188,90 +188,6 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 }
 
 /**
- * Clear cache for a term and its parent
- *
- * @param int $term_id Term ID to clear.
- */
-function wmf_clear_role_cache( $term_id ) {
-	wp_cache_delete( 'wmf_terms_list_' . $term_id );
-
-	if ( ! empty( $term->parent ) ) {
-		wp_cache_delete( 'wmf_terms_list_' . $term->parent );
-	}
-}
-add_action( 'edit_role', 'wmf_clear_role_cache', 10, 1 );
-add_action( 'create_role', 'wmf_clear_role_cache', 10, 1 );
-add_action( 'delete_role', 'wmf_clear_role_cahce', 10, 1 );
-
-/**
- * Clears the `wmf_landing_pages_opts` cache when a page is updated.
- *
- * @param int $post_id The post ID.
- */
-function wmf_clear_page_cache( $post_id ) {
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-	}
-
-	wp_cache_delete( 'wmf_landing_pages_opts' );
-}
-add_action( 'save_post_page', 'wmf_clear_page_cache' );
-
-/**
- * Clears the wmf_profiles_opts cache when a profile is
- * created or updated.
- *
- * @param int $post_id The post ID.
- */
-function wmf_clear_profile_cache( $post_id ) {
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-	}
-
-	wp_cache_delete( 'wmf_profiles_opts' );
-}
-add_action( 'save_post_profile', 'wmf_clear_profile_cache' );
-
-/**
- * Clears the `wmf_featured_posts_for` context cache when a post is updated.
- *
- * @param int $post_id The post ID.
- */
-function wmf_clear_post_cache( $post_id ) {
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-	}
-
-	$contexts = array(
-		'home' => 'Home', // We don't need this to translate.
-	);
-
-	$contexts = $contexts + wmf_get_landing_pages_options();
-
-	foreach ( $contexts as $context ) {
-		$cache_key = md5( 'wmf_featured_posts_for' . $context );
-		wp_cache_delete( $cache_key );
-	}
-}
-add_action( 'save_post_post', 'wmf_clear_post_cache' );
-
-/**
- * Clears the `wmf_image_credits_{id}` cache when any content is updated.
- *
- * @param int $post_id The post ID.
- */
-function wmf_clear_credits_cache( $post_id ) {
-	if ( wp_is_post_revision( $post_id ) ) {
-		return;
-	}
-
-	$cache_key = md5( sprintf( 'wmf_image_credits_%s', $post_id ) );
-
-	wp_cache_delete( $cache_key );
-}
-add_action( 'save_post', 'wmf_clear_credits_cache' );
-
-/**
  * Get a list of related profiles by terms
  *
  * To avoid a slow query, we get a lot more than we need,
@@ -292,22 +208,33 @@ function wmf_get_related_profiles( $profile_id ) {
 	$terms    = get_the_terms( $profile_id, 'role' );
 	$term_ids = wp_list_pluck( $terms, 'term_id' );
 
-	$profiles_query = new WP_Query(
-		array(
-			'posts_per_page' => 100,
-			'no_found_rows'  => true,
-			'fields'         => 'ids',
-			'post_type'      => 'profile',
-			'tax_query'      => array(
-				array(
-					'taxonomy' => 'role',
-					'terms'    => $terms[0],
-				),
-			),
-		)
-	); // WPCS: slow query ok.
+	if ( empty( $term_ids ) ) {
+		return $profile_list;
+	}
 
-	$profile_list = $profiles_query->posts;
+	$cache_key = md5( sprintf( 'wmf_profiles_for_term_%s', $term_ids[0] ) );
+
+	$profile_list = wp_cache_get( $cache_key );
+
+	if ( empty( $profile_list ) ) {
+		$profiles_query = new WP_Query(
+			array(
+				'posts_per_page' => 100,
+				'no_found_rows'  => true,
+				'fields'         => 'ids',
+				'post_type'      => 'profile',
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'role',
+						'terms'    => $term_ids[0],
+					),
+				),
+			)
+		); // WPCS: slow query ok.
+
+		$profile_list = $profiles_query->posts;
+		wp_cache_add( $cache_key, $profile_list );
+	}
 
 	$key = array_search( $profile_id, $profile_list, true );
 	if ( false !== $key ) {

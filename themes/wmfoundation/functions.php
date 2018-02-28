@@ -210,3 +210,8 @@ require get_template_directory() . '/inc/post-types/profile.php';
  * Add Template Data Helper.
  */
 require get_template_directory() . '/inc/classes/class-wmf-template-data.php';
+
+/**
+ * Add Cache related functions.
+ */
+require get_template_directory() . '/inc/cache.php';
