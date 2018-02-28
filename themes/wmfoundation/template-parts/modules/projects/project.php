@@ -33,7 +33,7 @@ $class = empty( $template_args['class'] ) ? '_map' : $template_args['class'];
 		<div class="home-project-list-item-content">
 			<?php if ( ! empty( $image ) ) : ?>
 			<div class="home-project-logo">
-				<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" width="250">
+				<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 			</div>
 			<?php endif; ?>
 
