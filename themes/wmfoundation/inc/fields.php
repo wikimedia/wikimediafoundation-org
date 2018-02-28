@@ -126,6 +126,7 @@ function wmf_get_profiles_options() {
 }
 
 require get_template_directory() . '/inc/fields/header.php';
+require get_template_directory() . '/inc/fields/intro.php';
 require get_template_directory() . '/inc/fields/home.php';
 require get_template_directory() . '/inc/fields/landing.php';
 require get_template_directory() . '/inc/fields/page-cta.php';

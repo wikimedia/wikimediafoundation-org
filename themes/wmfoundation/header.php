@@ -11,9 +11,6 @@
 
 use WMF\Images\Credits;
 
-$wmf_donate_button        = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate Now', 'wmfoundation' ) );
-$wmf_donate_uri           = get_theme_mod( 'wmf_donate_now_uri', '#' );
-$wmf_menu_button          = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfoundation' ) );
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Selected', 'wmfoundation' ) );
 $wmf_translations         = wmf_get_translations();
 
@@ -68,11 +65,16 @@ $wmf_translations         = wmf_get_translations();
 		<?php endif; ?>
 
 		<div class="header-inner mw-1360">
-			<?php
-			if ( ! is_front_page() ) {
-				get_template_part( 'template-parts/header/navigation' );
-			}
-			?>
+			<div class="logo-nav-container">
+				<?php get_template_part( 'template-parts/header/logo' ); ?>
+				<div class="nav-container">
+					<?php
+					if ( ! is_front_page() ) {
+						get_template_part( 'template-parts/header/navigation' );
+					}
+					?>
+				</div>
+			</div>
 
 <?php
 // Automatically add credits to all content that is not an archive or search.

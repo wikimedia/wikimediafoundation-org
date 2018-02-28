@@ -30,4 +30,4 @@ function wmf_header_fields() {
 
 	$header_opts->add_meta_box( __( 'Header Options', 'wmfoundation' ), 'page' );
 }
-add_action( 'fm_post_page', 'wmf_header_fields' );
+add_action( 'fm_post_page', 'wmf_header_fields', 1 );
