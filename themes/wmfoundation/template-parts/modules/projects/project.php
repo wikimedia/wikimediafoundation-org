@@ -16,7 +16,7 @@ $bg_image = is_numeric( $bg_image ) ? wp_get_attachment_image_url( $bg_image, 'f
 
 $image     = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $image_alt = is_numeric( $image ) ? get_post_meta( $image, '_wp_attachment_image_alt', true ) : __( 'Logo image.', 'wmfoundation' );
-$image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'medium-square' ) : $image;
+$image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'image_square_medium' ) : $image;
 
 $class = empty( $template_args['class'] ) ? '_map' : $template_args['class'];
 
