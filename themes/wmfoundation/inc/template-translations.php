@@ -8,7 +8,7 @@
 /**
  * Gets a formatted array of available translations.
  *
- * @param  bool $strict When TRUE (default) sites with a matching translation for requested page will be included.
+ * @param  bool $strict When TRUE (default) only sites with a matching translation for requested page will be included.
  * @return mixed array|bool
  */
 function wmf_get_translations( $strict = true ) {
