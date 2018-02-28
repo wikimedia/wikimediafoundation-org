@@ -35,9 +35,9 @@ while ( have_posts() ) {
 
 	$modules = array(
 		'intro',
-		'focus-blocks', // Todo: build this.
+		'focus-blocks',
 		'featured-posts',
-		'projects', // Todo: build this.
+		'projects',
 		'profiles', // Todo: waiting on this.
 		'facts',
 		'framing-copy',
