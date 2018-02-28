@@ -37,7 +37,20 @@ $img_id = ! empty( $template_data['img_id'] ) ? $template_data
 		<?php if ( ! empty( $role ) || ! empty( $team ) ) : ?>
 			<span class="person-title p color-gray">
 				<?php
-					printf( '%1$s, %2$s', esc_html( $role ), esc_html( $team ) );
+					$count = empty( $role ) || empty( $team ) ? 1 : 2;
+					printf(
+						// Translators: the placeholders are for the $role and $team.
+						// @codingStandardsIgnoreStart.
+						_n(
+							'%1$s',
+							'%1$s, %2$s',
+							$count,
+							'wmfoundation'
+						),
+						// @codingStandardsIgnoreEnd.
+						empty( $role ) ? esc_html( $team ) : esc_html( $role ),
+						esc_html( $team )
+					);
 				?>
 			</span>
 		<?php endif; ?>

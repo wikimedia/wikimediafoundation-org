@@ -67,7 +67,7 @@ wmf_get_template_part(
 // Related Profiles.
 $template_args                  = get_post_meta( get_the_ID(), 'profiles', true );
 $template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
-$template_args['pre_heading']   = ! empty( $template_args['pre_heading'] ) ? $template_args['pre_heading'] : $default_heading . $team_name;
+$template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . $team_name;
 wmf_get_template_part( 'template-parts/modules/profiles/list', $template_args );
 endwhile;
 
