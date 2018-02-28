@@ -52,6 +52,8 @@ function wmf_get_header_container_class() {
 					break;
 			}
 		}
+	} elseif ( is_home() ) {
+		$class = ' featured-photo--content-left';
 	} else {
 		$class = ' minimal--short';
 	}
