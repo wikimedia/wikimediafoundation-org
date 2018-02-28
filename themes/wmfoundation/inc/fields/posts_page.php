@@ -9,7 +9,7 @@
  * Add connect page options.
  */
 function wmf_featured_post() {
-	if ( ! wmf_is_home() ) {
+	if ( ! wmf_is_posts_page() ) {
 		return;
 	}
 

@@ -38,7 +38,7 @@ function wmf_using_template( $template_name ) {
  *
  * @return boolean
  */
-function wmf_is_home() {
+function wmf_is_posts_page() {
 	$id = wmf_get_fields_post_id();
 
 	if ( empty( $id ) ) {
@@ -172,8 +172,31 @@ function wmf_get_posts_options() {
 	return $posts;
 }
 
+/**
+ * Gets available posts in an array suitable for fieldmanager options.
+ *
+ * @return array
+ */
+function wmf_get_categories_options() {
+	$category_list = wp_cache_get( 'wmf_category_opts' );
+
+	if ( empty( $category_list ) ) {
+		$category_list = array();
+
+		$categories = get_categories();
+
+		if ( ! empty( $categories ) ) {
+			foreach( $categories as $category ) {
+				$category_list[ $category->term_id ] = $category->name;
+			}
+		}
+		wp_cache_add( 'wmf_category_opts', $category_list );
+	}
+
+	return $category_list;
+}
+
 require get_template_directory() . '/inc/fields/header.php';
-require get_template_directory() . '/inc/fields/home.php';
 require get_template_directory() . '/inc/fields/landing.php';
 require get_template_directory() . '/inc/fields/page-cta.php';
 require get_template_directory() . '/inc/fields/post.php';
@@ -184,3 +207,4 @@ require get_template_directory() . '/inc/fields/links.php';
 require get_template_directory() . '/inc/fields/support.php';
 require get_template_directory() . '/inc/fields/profiles.php';
 require get_template_directory() . '/inc/fields/home.php';
+require get_template_directory() . '/inc/fields/posts_page.php';

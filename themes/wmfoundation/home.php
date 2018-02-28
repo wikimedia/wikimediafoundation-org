@@ -14,6 +14,11 @@
 
 get_header();
 
+$post_id = get_option( 'page_for_posts' );
+$featured_post_id = get_post_meta( $post_id, 'featured_post', true );
+
+$featured_categories = get_post_meta( $post_id, 'featured_categories', true );
+
 ?>
 
 <?php
@@ -30,8 +35,6 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	<div class="mw-1360">
 
 	<?php
-	$post_id = get_option( 'page_for_posts' );
-	$featured_post_id = get_post_meta( $post_id, 'featured_post', true );
 	$post = get_post( $featured_post_id );
 	if ( ! empty( $post ) ) {
 		setup_postdata( $post );
@@ -48,12 +51,27 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 		wp_reset_postdata();
 	}
 	?>
-
-	<div class="news-categories">
-
 	</div>
-	<div class="w-100p news-list-container news-card-list mod-margin-bottom">
-		<div class="mw-1360">
+</div>
+
+<?php if ( ! empty( $featured_categories ) ) : ?>
+<div class="news-categories">
+	<div class="news-category-inner mw-1360">
+		<ul class="link-list color-gray uppercase bold">
+			<?php foreach ( $featured_categories as $category ) :
+				$term = get_term( absint( $category ) );
+				?>
+				<li>
+					<a data-id="<?php echo absint( $category ); ?>" class="js-category-filter" href="<?php echo esc_url( get_term_link( $term->slug, 'category' ) ); ?>"><?php echo esc_html( $term->name ); ?></a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+<?php endif; ?>
+
+<div class="w-100p news-list-container news-card-list mod-margin-bottom">
+	<div class="mw-1360">
 		<?php if ( have_posts() ) : ?>
 			<div class="card-list-container">
 			<?php
@@ -79,8 +97,6 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 			get_template_part( 'template-parts/content', 'none' );
 		endif;
 		?>
-		</div>
-	</div>
 	</div>
 </div>
 
