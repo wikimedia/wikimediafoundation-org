@@ -69,6 +69,7 @@ function wmf_ajax_search() {
 		global $wp_query;
 		$wp_query = $search_query; // override ok.
 		set_query_var( 'search_args', $custom_args );
+		set_query_var( 'pagination_base', home_url( '/%_%' ) );
 		ob_start();
 		get_template_part( 'template-parts/pagination' );
 		$pagination = ob_get_clean();

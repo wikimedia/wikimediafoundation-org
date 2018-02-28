@@ -143,6 +143,29 @@ function wmf_get_posts_options() {
 	return $posts;
 }
 
+/**
+ * Gets all categories and formats fro Fieldmanager
+ *
+ * @return array
+ */
+function wmf_get_categories_options() {
+	$category_list = wp_cache_get( 'wmf_categories_opts' );
+
+	if ( empty( $category_list ) ) {
+		$category_list = array();
+		$categories = get_categories();
+
+		if ( ! empty( $categories ) ) {
+			foreach ( $categories as $category ) {
+				$category_list[ $category->term_id ] = $category->name;
+			}
+		}
+		wp_cache_add( 'wmf_categories_opts', $category_list );
+	}
+
+	return $category_list;
+}
+
 require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/landing.php';
 require get_template_directory() . '/inc/fields/page-cta.php';

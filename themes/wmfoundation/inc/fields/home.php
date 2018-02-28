@@ -21,5 +21,13 @@ function wmf_featured_post() {
 		)
 	);
 	$featured_post->add_meta_box( __( 'Featured Post', 'wmfoundation' ), array( 'page' ) );
+
+	$featured_categories = new Fieldmanager_Checkboxes(
+		array(
+			'name'        => 'featured_categories',
+			'options'     => wmf_get_categories_options(),
+		)
+	);
+	$featured_categories->add_meta_box( __( 'Category Filter List', 'wmfoundation' ), array( 'page' ) );
 }
 add_action( 'fm_post_page', 'wmf_featured_post' );
