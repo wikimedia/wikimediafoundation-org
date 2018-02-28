@@ -15,10 +15,11 @@ while ( have_posts() ) :
 ?>
 
 <?php
-$team_name   = '';
-$parent_name = '';
-$parent_link = '';
-$role        = get_the_terms( get_the_ID(), 'role' );
+$team_name       = '';
+$parent_name     = '';
+$parent_link     = '';
+$role            = get_the_terms( get_the_ID(), 'role' );
+$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'wmfoundation' ) );
 
 if ( ! empty( $role ) && ! is_wp_error( $role ) ) {
 	$team_name = $role[0]->name;
@@ -62,6 +63,12 @@ wmf_get_template_part(
 </article>
 
 <?php
+
+// Related Profiles.
+$template_args                  = get_post_meta( get_the_ID(), 'profiles', true );
+$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
+$template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . $team_name;
+wmf_get_template_part( 'template-parts/modules/profiles/list', $template_args );
 endwhile;
 
 get_footer();

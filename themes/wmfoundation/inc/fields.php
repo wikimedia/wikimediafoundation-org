@@ -92,6 +92,39 @@ function wmf_get_landing_pages_options() {
 	return $landing_pages;
 }
 
+/**
+ * Gets available profiles and formats them for Fieldmanager
+ *
+ * @return array
+ */
+function wmf_get_profiles_options() {
+	$profiles = wp_cache_get( 'wmf_profiles_opts' );
+
+	if ( empty( $profiles ) ) {
+		$profiles = array();
+
+		$args  = array(
+			'post_type'      => 'profile',
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
+			'posts_per_page' => 100,
+		);
+		$pages = new WP_Query( $args );
+
+		if ( $pages->have_posts() ) {
+			while ( $pages->have_posts() ) {
+				$pages->the_post();
+				$profiles[ get_the_ID() ] = get_the_title();
+			}
+		}
+		wp_reset_postdata();
+
+		wp_cache_add( 'wmf_profiles_opts', $profiles );
+	}
+
+	return $profiles;
+}
+
 require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/home.php';
 require get_template_directory() . '/inc/fields/landing.php';
@@ -102,3 +135,4 @@ require get_template_directory() . '/inc/fields/connect.php';
 require get_template_directory() . '/inc/fields/listing.php';
 require get_template_directory() . '/inc/fields/links.php';
 require get_template_directory() . '/inc/fields/support.php';
+require get_template_directory() . '/inc/fields/profiles.php';
