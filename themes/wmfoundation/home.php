@@ -26,10 +26,36 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 
 ?>
 
-<div class="w-100p news-list-container news-card-list mod-margin-bottom">
+<div class="w-100p cta mod-margin-bottom cta-secondary cta-news no-duotone">
 	<div class="mw-1360">
+
+	<?php
+	$post_id = get_option( 'page_for_posts' );
+	$featured_post_id = get_post_meta( $post_id, 'featured_post', true );
+	$post = get_post( $featured_post_id );
+	if ( ! empty( $post ) ) {
+		setup_postdata( $post );
+		wmf_get_template_part( 'template-parts/modules/cards/card-featured', array(
+			'link'       => get_the_permalink(),
+			'image_id'   => get_post_thumbnail_id(),
+			'title'      => get_the_title(),
+			'authors'    => get_the_author_link(),
+			'date'       => get_the_date(),
+			'excerpt'    => get_the_excerpt(),
+			'categories' => get_the_category(),
+		));
+
+		wp_reset_postdata();
+	}
+	?>
+
+	<div class="news-categories">
+
+	</div>
+	<div class="w-100p news-list-container news-card-list mod-margin-bottom">
+		<div class="mw-1360">
 		<?php if ( have_posts() ) : ?>
-		<div class="card-list-container">
+			<div class="card-list-container">
 			<?php
 			while ( have_posts() ) :
 				the_post();
@@ -47,12 +73,14 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 				);
 			endwhile;
 			?>
-		</div>
+			</div>
 		<?php
 		else :
 			get_template_part( 'template-parts/content', 'none' );
 		endif;
 		?>
+		</div>
+	</div>
 	</div>
 </div>
 

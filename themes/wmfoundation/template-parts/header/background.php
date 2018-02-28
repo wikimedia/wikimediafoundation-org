@@ -18,8 +18,6 @@ if ( is_home() ) {
 
 $bg_opts = get_post_meta( $post_id, 'page_header_background', true );
 
-var_dump( $bg_opts );
-
 if ( empty( $bg_opts['image'] ) ) {
 	return;
 }
