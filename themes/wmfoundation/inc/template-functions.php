@@ -37,7 +37,7 @@ function wmf_get_header_container_class() {
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
 		$post_type = get_post_type();
 
-		if ( in_array( $post_type, array( 'profile' ), true ) ) {
+		if ( in_array( $post_type, array( 'profile', 'post' ), true ) ) {
 			$class = ' minimal--short';
 		} else {
 			$template = basename( get_page_template() );
@@ -242,4 +242,59 @@ function wmf_get_related_profiles( $profile_id ) {
 	}
 
 	return $profile_list;
+}
+
+/**
+ * Get a list of related posts by tags.
+ *
+ * @param int $post_id Post ID to check against.
+ * @return array List of post objects.
+ */
+function wmf_get_related_posts( $post_id ) {
+	$post_list = array();
+
+	if ( empty( $post_id ) ) {
+		return $post_list;
+	}
+
+	$post_id = absint( $post_id );
+
+	$terms    = get_the_terms( $post_id, 'post_tag' );
+	$term_ids = wp_list_pluck( $terms, 'term_id' );
+
+	if ( empty( $term_ids ) ) {
+		return $post_list;
+	}
+
+	$cache_key = md5( sprintf( 'wmf_posts_for_post_%s', $post_id ) );
+
+	$post_list = wp_cache_get( $cache_key );
+
+	if ( empty( $post_list ) ) {
+		$posts_query = new WP_Query(
+			array(
+				'posts_per_page' => 4,
+				'no_found_rows'  => true,
+				'post_type'      => 'post',
+				'ignore_sticky'  => true,
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'post_tag',
+						'terms'    => $term_ids,
+					),
+				),
+			)
+		); // WPCS: Slow query ok.
+
+		$post_list = $posts_query->posts;
+		foreach ( $post_list as $i => $post ) {
+			if ( $post->ID === $post_id ) {
+				unset( $post_list[ $i ] );
+			}
+		}
+		$post_list = array_splice( $post_list, 0, 3 );
+		wp_cache_add( $cache_key, $post_list );
+	}
+
+	return $post_list;
 }

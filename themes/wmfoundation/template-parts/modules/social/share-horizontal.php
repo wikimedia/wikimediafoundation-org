@@ -11,6 +11,9 @@
 
 $share_text = get_theme_mod( 'wmf_social_share_text', __( 'Share', 'wmfoundation' ) );
 
+$template_data = wmf_get_template_data();
+$services      = ! empty( $template_data['services'] ) ? $template_data['services'] : array( 'facebook', 'twitter' );
+
 $args = wp_parse_args(
 	array(
 		'uri' => wmf_get_current_url(),
@@ -21,7 +24,12 @@ $args = wp_parse_args(
 <div class="social-share">
 	<span class="h5 bold uppercase color-black"><?php echo esc_html( $share_text ); ?></span>
 	<span class="inline-social-list">
-		<a href="<?php echo esc_html( wmf_get_share_url( 'twitter', $args ) ); ?>" class="color-blue"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-		<a href="<?php echo esc_html( wmf_get_share_url( 'facebook', $args ) ); ?>" class="color-blue"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		<?php if ( in_array( 'twitter', $services, true ) ) : ?>
+			<a href="<?php echo esc_html( wmf_get_share_url( 'twitter', $args ) ); ?>" class="color-blue"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		<?php endif; ?>
+
+		<?php if ( in_array( 'facebook', $services, true ) ) : ?>
+			<a href="<?php echo esc_html( wmf_get_share_url( 'facebook', $args ) ); ?>" class="color-blue"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		<?php endif; ?>
 	</span>
 </div>

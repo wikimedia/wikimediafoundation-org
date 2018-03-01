@@ -20,13 +20,6 @@ function wmf_landing_fields() {
 	);
 	$header_opts->add_meta_box( __( 'Subtitle', 'wmfoundation' ), 'page' );
 
-	$intro = new Fieldmanager_Textarea(
-		array(
-			'name' => 'page_intro',
-		)
-	);
-	$intro->add_meta_box( __( 'Page Intro', 'wmfoundation' ), 'page' );
-
 	$social = new Fieldmanager_Group(
 		array(
 			'name'     => 'social_share',
