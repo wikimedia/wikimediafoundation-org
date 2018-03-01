@@ -37,6 +37,10 @@ while ( have_posts() ) :
 
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>
+
+	<div class="module-mu wysiwyg w-32p">
+		<?php get_sidebar( 'list' ); ?>
+	</div>
 </div>
 <?php
 endwhile;

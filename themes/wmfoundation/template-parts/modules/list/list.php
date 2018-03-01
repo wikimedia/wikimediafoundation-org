@@ -11,11 +11,11 @@ if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 	return;
 }
 
-foreach ( $template_args as $list_section ) {
+foreach ( $template_args as $i => $list_section ) {
 ?>
 <div class="mod-margin-bottom wysiwyg">
 	<?php if ( ! empty( $list_section['title'] ) ) : ?>
-	<h2>
+	<h2 id="section-<?php echo esc_attr( $i + 1 ); ?>">
 		<?php echo esc_html( $list_section['title'] ); ?>
 	</h2>
 	<?php endif; ?>
