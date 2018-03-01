@@ -43,6 +43,16 @@ while ( have_posts() ) :
 	</div>
 </div>
 <?php
+
+$modules = array(
+	'cta',
+	'support',
+	'connect',
+);
+
+foreach ( $modules as $module ) {
+	get_template_part( 'template-parts/page/page', $module );
+}
 endwhile;
 
 get_footer();

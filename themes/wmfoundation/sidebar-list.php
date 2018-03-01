@@ -15,11 +15,12 @@ if ( empty( $template_args ) ) {
 ?>
 
 <ul class="resource-list">
-	<?php foreach ( $template_args as $i => $list_section ) :
+	<?php
+	foreach ( $template_args as $i => $list_section ) :
 		if ( empty( $list_section['title'] ) ) {
 			continue;
 		}
-		?>
+	?>
 		<li>
 			<a href="#section-<?php echo esc_attr( $i + 1 ); ?>">
 				<span class="bold uppercase color-black">
