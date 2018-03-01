@@ -15,13 +15,13 @@ function wmf_related_pages() {
 
 	$related_pages = new Fieldmanager_Group(
 		array(
-			'name'           => 'related_pages',
-			'children'       => array(
+			'name'     => 'related_pages',
+			'children' => array(
 				'title' => new Fieldmanager_TextField( __( 'Headline', 'wmfoundation' ) ),
 				'links' => new Fieldmanager_Checkboxes(
 					array(
 						'label'       => __( 'List of Posts to pull from', 'wmfoundation' ),
-						'description' => __( 'Select as many as are applicable. Three posts will be selected from this list for display.' ),
+						'description' => __( 'Select as many as are applicable. Three posts will be selected from this list for display.', 'wmfoundation' ),
 						'options'     => wmf_get_pages_options(),
 					)
 				),

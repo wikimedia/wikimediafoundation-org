@@ -65,6 +65,21 @@ class General extends Base {
 			)
 		);
 
+		$control_id = 'wmf_related_pages_pre_heading';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Related', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Related Pages Pre Heading', 'wmfoundation' ),
+				'description' => __( 'Shows above related pages module throughout the site.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$control_id = 'wmf_image_credit_header';
 		$this->customize->add_setting(
 			$control_id, array(

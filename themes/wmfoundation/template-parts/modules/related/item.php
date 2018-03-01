@@ -11,14 +11,14 @@ if ( empty( $template_data ) || empty( $template_data['title'] ) || empty( $temp
 	return;
 }
 
-$title = $template_data['title'];
-$link  = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
+$title    = $template_data['title'];
+$link     = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 $image_id = ! empty( $template_data['img_id'] ) ? $template_data['img_id'] : false;
-$image = '';
+$image    = '';
 
 if ( false === $image_id ) {
 	$page_header = get_post_meta( $template_data['id'], 'page_header_background', true );
-	$image_id = ! empty( $page_header['image'] ) ? $page_header['image'] : false;
+	$image_id    = ! empty( $page_header['image'] ) ? $page_header['image'] : false;
 }
 
 if ( ! empty( $image_id ) ) {
