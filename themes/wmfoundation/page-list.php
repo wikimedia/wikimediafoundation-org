@@ -47,6 +47,7 @@ while ( have_posts() ) :
 $modules = array(
 	'cta',
 	'support',
+	'related',
 	'connect',
 );
 
