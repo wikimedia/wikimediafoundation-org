@@ -7,7 +7,11 @@
 
 $template_data = wmf_get_template_data();
 
-$title       = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
+if ( empty( $template_data ) || empty( $template_data['title'] ) ) {
+	return;
+}
+
+$title       = $template_data['title'];
 $subhead     = ! empty( $template_data['subhead'] ) ? $template_data['subhead'] : '';
 $description = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 $link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
