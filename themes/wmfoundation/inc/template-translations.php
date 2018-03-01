@@ -105,6 +105,9 @@ function wmf_get_random_translation( $key, $args = array() ) {
 		case 'theme_mod':
 			$translation = get_theme_mod( $key );
 			break;
+		case 'cpt_label':
+			$translation = get_post_type_object( $key )->label;
+			break;
 	}
 
 	restore_current_blog();

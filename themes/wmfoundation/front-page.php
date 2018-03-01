@@ -29,7 +29,12 @@ while ( have_posts() ) {
 
 ?>
 <div class="home-subnav mw-1360 white-bg">
-	<?php get_template_part( 'template-parts/header/navigation' ); ?>
+	<div class="logo-nav-container">
+		<?php get_template_part( 'template-parts/header/logo' ); ?>
+		<div class="subnav-container nav-container">
+			<?php get_template_part( 'template-parts/header/navigation' ); ?>
+		</div>
+	</div>
 </div>
 <?php
 
@@ -38,7 +43,7 @@ while ( have_posts() ) {
 		'focus-blocks',
 		'featured-posts',
 		'projects',
-		'profiles', // Todo: waiting on this.
+		'profiles',
 		'facts',
 		'framing-copy',
 		'support',
