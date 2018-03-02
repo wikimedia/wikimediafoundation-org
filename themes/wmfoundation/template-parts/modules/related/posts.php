@@ -5,27 +5,35 @@
  * @package wmfoundation
  */
 
-$posts = wmf_get_template_data();
+$template_data = wmf_get_template_data();
 
-if ( empty( $posts ) ) {
+if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 	return;
 }
+
+$title = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
+$description = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 
 ?>
 
 <div class="w-100p news-list-container mod-margin-bottom">
 	<div class="mw-1360">
+		<?php if ( ! empty( $title ) ) : ?>
 		<h3 class="h3 color-gray">
-			Related
+			<?php echo esc_html( $title ); ?>
 		</h3>
+		<?php endif; ?>
 
+		<?php if ( ! empty( $description ) ) : ?>
 		<h2 class="h2">
-			Read further in the pursuit of knowledge
+			<?php echo esc_html( $description ); ?>
 		</h2>
+		<?php endif; ?>
+
 
 		<div class="card-list-container alternate-img">
 			<?php
-			foreach ( $posts as $post ) :
+			foreach ( $template_data['posts'] as $post ) :
 				setup_postdata( $post );
 				wmf_get_template_part(
 					'template-parts/modules/cards/card-horizontal', array(

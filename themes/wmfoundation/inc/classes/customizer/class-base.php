@@ -97,6 +97,7 @@ function load_customizer_classes() {
 		'Social',
 		'Profile',
 		'Page',
+		'Post',
 	);
 
 	foreach ( $customizers as $customizer ) {

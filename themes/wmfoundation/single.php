@@ -25,7 +25,7 @@ while ( have_posts() ) {
 	wmf_get_template_part(
 		'template-parts/thumbnail-framed',
 		array(
-			'container_image' => get_theme_mod( 'wmf_profile_container_image' ),
+			'container_image' => get_theme_mod( 'wmf_posts_container_image' ),
 			'inner_image'     => get_post_thumbnail_id(),
 		)
 	);
