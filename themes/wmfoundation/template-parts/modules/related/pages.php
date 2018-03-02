@@ -13,6 +13,7 @@ if ( empty( $template_data ) || empty( $template_data['links'] ) ) {
 
 $headline   = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
 $preheading = ! empty( $template_data['preheading'] ) ? $template_data['preheading'] : '';
+$links      = array_rand( array_flip( $template_data['links'] ), 3 );
 
 ?>
 
@@ -28,7 +29,7 @@ $preheading = ! empty( $template_data['preheading'] ) ? $template_data['preheadi
 
 		<div class="related-pages flex flex-medium">
 			<?php
-			foreach ( $template_data['links'] as $page ) :
+			foreach ( $links as $page ) :
 				wmf_get_template_part(
 					'template-parts/modules/related/item', array(
 						'title'  => get_the_title( $page ),
