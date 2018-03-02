@@ -9,6 +9,10 @@
  * Add links page options.
  */
 function wmf_links_fields() {
+	if ( wmf_using_template( 'page-list' ) ) {
+		return;
+	}
+
 	$links = new Fieldmanager_Group(
 		array(
 			'name'     => 'off_site_links',
