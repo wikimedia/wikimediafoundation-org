@@ -142,103 +142,170 @@ class Metaboxes {
 
 		switch ( $data->field_class ) {
 			case 'radio':
-				$selected_value = __( 'Not set', 'wmfoundation' );
-
-				foreach ( $data->data as $opts ) {
-					$selected_value = $meta_data === $opts['value'] ? $opts['name'] : $selected_value;
-				}
-
-				// Translators: The placeholder is for the selected value.
-				printf( '<p><strong>%1$s</strong>: %2$s</p>', esc_html( $opt_label ), sprintf( esc_html__( 'Selected value is: %s', 'wmfoundation' ), esc_html( $selected_value ) ) );
+				$this->radio_field( $opt_label, $meta_data, $data );
 				break;
 
 			case 'media':
-				switch_to_blog( $remote_blog_id );
-
-				$text = empty( $meta_data ) ? __( 'Image not selected', 'wmfoundation' ) : __( 'Selected image is:', 'wmfoundation' );
-
-				printf(
-					'<p><strong>%1$s</strong>: %2$s</p>%3$s', esc_html( $opt_label ), esc_html( $text ), wp_get_attachment_image(
-						$meta_data, 'thumbnail', false, array(
-							'style' => 'max-width: 200px; max-height: 200px; background: #333;',
-						)
-					)
-				);
-
-				restore_current_blog();
+				$this->media_field( $opt_label, $meta_data, $remote_blog_id );
 				break;
 
 			case 'text':
 			case 'textarea':
 			case 'richtext':
-				$lines = substr_count( $meta_data, "\n" ) + 1;
-				$rows  = min( $lines, 10 );
-
-				$text_area = sprintf(
-					'<textarea class="large-text" cols="80" rows="%d$1" placeholder="%2$s" readonly>%3$s</textarea>',
-					esc_attr( $rows ),
-					esc_attr_x( 'No content yet.', 'placeholder for empty translation textarea', 'wmfoundation' ),
-					esc_textarea( $meta_data )
-				);
-				printf( '<p><strong>%1$s</strong>:</p>%2$s', esc_html( $opt_label ), $text_area ); // WPCS: xss ok.
+				$this->text_field( $opt_label, $meta_data );
 				break;
 
 			case 'element':
 				if ( is_a( $data, 'Fieldmanager_Checkbox' ) ) {
-					$text = empty( $meta_data ) ? __( 'Is not checked', 'wmfoundation' ) : __( 'Is checked', 'wmfoundation' );
-					printf( '<p><strong>%1$s</strong>: %2$s</p>', esc_html( $opt_label ), esc_html( $text ) );
+					$this->checkbox_field( $opt_label, $meta_data );
 				}
 				break;
 
 			case 'checkboxes':
-				$checked = array();
-
-				foreach ( $meta_data as $value ) {
-					$is_remote_post = false;
-
-					if ( is_numeric( $value ) ) {
-						switch_to_blog( $remote_blog_id );
-
-						$post = get_post( $value );
-
-						if ( $post && ! is_wp_error( $post ) ) {
-							$checked[]      = $post->post_title;
-							$is_remote_post = true;
-						}
-
-						restore_current_blog();
-					}
-
-					if ( false === $is_remote_post && isset( $data->options[ $value ] ) ) {
-						$checked[] = $data->options[ $value ];
-					}
-				}
-				printf(
-					'<p><strong>%1$s</strong>: %2$s <strong>%3$s</strong></p>', esc_html( $opt_label ), esc_html(
-						_n(
-							'Checked option is:',
-							'Checked options are:',
-							count( $checked ),
-							'wmfoundation'
-						)
-					), esc_html( implode( ', ', $checked ) )
-				);
+				$this->checkboxes_field( $opt_label, $meta_data, $data, $remote_blog_id );
 				break;
 			case 'group':
-				if ( empty( $meta_data ) ) {
-					return;
+				$this->group_field( $meta_data, $data, $remote_blog_id );
+				break;
+		}
+	}
+
+	/**
+	 * Outputs details about a Radio field.
+	 *
+	 * @param string  $opt_label      Label for the option.
+	 * @param mixed   $meta_data      The metadata.
+	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
+	 */
+	public function radio_field( $opt_label, $meta_data, $data ) {
+		$selected_value = __( 'Not set', 'wmfoundation' );
+
+		foreach ( $data->data as $opts ) {
+			$selected_value = $meta_data === $opts['value'] ? $opts['name'] : $selected_value;
+		}
+
+		// Translators: The placeholder is for the selected value.
+		printf( '<p><strong>%1$s</strong>: %2$s</p>', esc_html( $opt_label ), sprintf( esc_html__( 'Selected value is: %s', 'wmfoundation' ), esc_html( $selected_value ) ) );
+	}
+
+	/**
+	 * Outputs details about a Media field.
+	 *
+	 * @param string $opt_label      Label for the option.
+	 * @param mixed  $meta_data      The metadata.
+	 * @param int    $remote_blog_id The remote blog ID.
+	 */
+	public function media_field( $opt_label, $meta_data, $remote_blog_id ) {
+		switch_to_blog( $remote_blog_id );
+
+		$text = empty( $meta_data ) ? __( 'Image not selected', 'wmfoundation' ) : __( 'Selected image is:', 'wmfoundation' );
+
+		printf(
+			'<p><strong>%1$s</strong>: %2$s</p>%3$s', esc_html( $opt_label ), esc_html( $text ), wp_get_attachment_image(
+				$meta_data, 'thumbnail', false, array(
+					'style' => 'max-width: 200px; max-height: 200px; background: #333;',
+				)
+			)
+		);
+
+		restore_current_blog();
+	}
+
+	/**
+	 * Outputs details about a Text field.
+	 *
+	 * This includes inputs, rich text fields, and text areas.
+	 *
+	 * @param string $opt_label Label for the option.
+	 * @param mixed  $meta_data The metadata.
+	 */
+	public function text_field( $opt_label, $meta_data ) {
+		$lines = substr_count( $meta_data, "\n" ) + 1;
+		$rows  = min( $lines, 10 );
+
+		$text_area = sprintf(
+			'<textarea class="large-text" cols="80" rows="%d$1" placeholder="%2$s" readonly>%3$s</textarea>',
+			esc_attr( $rows ),
+			esc_attr_x( 'No content yet.', 'placeholder for empty translation textarea', 'wmfoundation' ),
+			esc_textarea( $meta_data )
+		);
+		printf( '<p><strong>%1$s</strong>:</p>%2$s', esc_html( $opt_label ), $text_area ); // WPCS: xss ok.
+	}
+
+	/**
+	 * Outputs details about a Checkbox field.
+	 *
+	 * @param string $opt_label Label for the option.
+	 * @param mixed  $meta_data The metadata.
+	 */
+	public function checkbox_field( $opt_label, $meta_data ) {
+		$text = empty( $meta_data ) ? __( 'Is not checked', 'wmfoundation' ) : __( 'Is checked', 'wmfoundation' );
+		printf( '<p><strong>%1$s</strong>: %2$s</p>', esc_html( $opt_label ), esc_html( $text ) );
+	}
+
+	/**
+	 * Outputs details about a Checkboxes field.
+	 *
+	 * @param string  $opt_label      Label for the option.
+	 * @param mixed   $meta_data      The metadata.
+	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
+	 * @param int     $remote_blog_id The remote blog ID.
+	 */
+	public function checkboxes_field( $opt_label, $meta_data, $data, $remote_blog_id ) {
+		$checked = array();
+
+		foreach ( $meta_data as $value ) {
+			$is_remote_post = false;
+
+			if ( is_numeric( $value ) ) {
+				switch_to_blog( $remote_blog_id );
+
+				$post = get_post( $value );
+
+				if ( $post && ! is_wp_error( $post ) ) {
+					$checked[]      = $post->post_title;
+					$is_remote_post = true;
 				}
 
-				foreach ( $meta_data as $group_item ) {
-					printf( '<div class="wmf-translation-group"><strong class="wmf-translation-group-heading">%s</strong>', esc_html__( 'Group', 'wmfoundation' ) );
-					foreach ( $group_item as $single_key => $single_value ) {
-						if ( ! empty( $data->children[ $single_key ] ) ) {
-							$this->show_remote_meta( $remote_blog_id, $single_value, $data->children[ $single_key ] );
-						}
-					}
-					echo '</div>';
+				restore_current_blog();
+			}
+
+			if ( false === $is_remote_post && isset( $data->options[ $value ] ) ) {
+				$checked[] = $data->options[ $value ];
+			}
+		}
+		printf(
+			'<p><strong>%1$s</strong>: %2$s <strong>%3$s</strong></p>', esc_html( $opt_label ), esc_html(
+				_n(
+					'Checked option is:',
+					'Checked options are:',
+					count( $checked ),
+					'wmfoundation'
+				)
+			), esc_html( implode( ', ', $checked ) )
+		);
+	}
+
+	/**
+	 * Outputs details about a Group field.
+	 *
+	 * @param mixed   $meta_data      The metadata.
+	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
+	 * @param int     $remote_blog_id The remote blog ID.
+	 */
+	public function group_field( $meta_data, $data, $remote_blog_id ) {
+		if ( empty( $meta_data ) ) {
+			return;
+		}
+
+		foreach ( $meta_data as $group_item ) {
+			printf( '<div class="wmf-translation-group"><strong class="wmf-translation-group-heading">%s</strong>', esc_html__( 'Group', 'wmfoundation' ) );
+			foreach ( $group_item as $single_key => $single_value ) {
+				if ( ! empty( $data->children[ $single_key ] ) ) {
+					$this->show_remote_meta( $remote_blog_id, $single_value, $data->children[ $single_key ] );
 				}
-				break;
+			}
+			echo '</div>';
 		}
 	}
 
