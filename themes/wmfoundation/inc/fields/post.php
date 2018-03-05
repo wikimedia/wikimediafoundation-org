@@ -20,5 +20,25 @@ function wmf_post_fields() {
 		)
 	);
 	$featured_on->add_meta_box( __( 'Featured On:', 'wmfoundation' ), 'post' );
+
+	$featured_profile = new Fieldmanager_Group(
+		array(
+			'name'     => 'featured_profile',
+			'children' => array(
+				'headline'   => new Fieldmanager_TextField( __( 'Profile Headline', 'wmfoundation' ) ),
+				'teaser'     => new Fieldmanager_TextArea( __( 'Profile Teaser', 'wmfoundation' ) ),
+				'link_title' => new Fieldmanager_TextField( __( 'Link Title', 'wmfoundation' ) ),
+				'profile_id' => new Fieldmanager_Select(
+					array(
+						'options' => wmf_get_profiles_options(),
+						'first_empty' => true,
+					)
+				),
+
+			),
+
+		)
+	);
+	$featured_profile->add_meta_box( __( 'Featured Profile', 'wmfoundation' ), 'post' );
 }
 add_action( 'fm_post_post', 'wmf_post_fields' );

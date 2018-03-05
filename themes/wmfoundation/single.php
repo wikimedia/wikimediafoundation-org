@@ -57,6 +57,7 @@ while ( have_posts() ) {
 }
 
 $modules = array(
+	'profile',
 	'offsite-links',
 	'page-cta',
 	'related-posts',
