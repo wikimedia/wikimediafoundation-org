@@ -11,10 +11,10 @@ if ( empty( $template_data ) || empty( $template_data['title'] ) || empty( $temp
 	return;
 }
 
-$title    = $template_data['title'];
-$link     = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
-$image_id = ! empty( $template_data['img_id'] ) ? $template_data['img_id'] : false;
-$image    = '';
+$title     = $template_data['title'];
+$link      = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
+$image_id  = ! empty( $template_data['image'] ) ? $template_data['image'] : false;
+$image_src = '';
 
 if ( false === $image_id ) {
 	$page_header = get_post_meta( $template_data['id'], 'page_header_background', true );
@@ -22,7 +22,7 @@ if ( false === $image_id ) {
 }
 
 if ( ! empty( $image_id ) ) {
-	$image = wp_get_attachment_image_src( $image_id, 'image_4x5_large' );
+	$image_src = wp_get_attachment_image_src( $image_id, 'image_4x5_large' );
 }
 
 ?>
@@ -30,8 +30,8 @@ if ( ! empty( $image_id ) ) {
 
 <div class="img-container">
 	<div class="bg-img-container">
-		<?php if ( ! empty( $image ) ) : ?>
-			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image[0] ); ?>)"></div>
+		<?php if ( ! empty( $image_src ) ) : ?>
+			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image_src[0] ); ?>)"></div>
 		<?php endif; ?>
 	</div>
 </div>
