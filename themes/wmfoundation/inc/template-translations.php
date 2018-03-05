@@ -5,6 +5,11 @@
  * @package wmfoundation
  */
 
+// Actions and filters.
+add_action( 'mlp_translation_meta_box_bottom', array( 'WMF\Translations\Metaboxes', 'mlp_translation_meta_box_bottom' ), 10, 3 );
+add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
+
+// Functions.
 /**
  * Gets a formatted array of available translations.
  *
