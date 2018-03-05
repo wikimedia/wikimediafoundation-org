@@ -10,14 +10,14 @@ namespace WMF\Roles;
 /**
  * Adds translation role for Translator.
  */
-abstract class Base {
+class Base {
 
 	/**
 	 * Role versioning. Uses float versioning instead of semantic.
 	 *
 	 * @var float
 	 */
-	public static $version = 1.0;
+	public static $version = 0.1;
 
 	/**
 	 * The option key for role version control.
@@ -25,25 +25,20 @@ abstract class Base {
 	 * @var string
 	 */
 	public static $version_option = 'wmf_version_option';
+
 	/**
 	 * Role ID.
 	 *
 	 * @var string
 	 */
 	public $role = '';
+
 	/**
 	 * Details about the role.
 	 *
 	 * @var array
 	 */
 	public $role_data = array();
-
-	/**
-	 * The object instance.
-	 *
-	 * @var Base
-	 */
-	public static $instance;
 
 	/**
 	 * The WP roles object.
@@ -53,29 +48,12 @@ abstract class Base {
 	public static $wp_roles;
 
 	/**
-	 * Gets the current instance of the object.
-	 *
-	 * @return Base
-	 */
-	public static function get_instance() {
-		if ( empty( static::$instance ) ) {
-			static::$instance = new static();
-		}
-
-		return static::$instance;
-	}
-
-	/**
-	 * Checks the role version against the option and updates roles conditionally.
+	 * Callback function that starts the engine.
 	 */
 	public static function callback() {
-		if ( static::$version <= (float) get_option( static::$version_option ) ) {
-			return;
-		}
+		$base = new static();
 
-		update_option( static::$version_option, static::$version );
-
-		static::get_instance()->update_role();
+		$base->maybe_update_roles();
 	}
 
 	/**
@@ -96,10 +74,47 @@ abstract class Base {
 	}
 
 	/**
+	 * Sets the role data property.
+	 */
+	public function set_role_data() {
+	}
+
+	/**
+	 * Checks the role version against the option and updates roles conditionally.
+	 */
+	public function maybe_update_roles() {
+		if ( static::$version <= (float) get_option( static::$version_option ) ) {
+			return;
+		}
+
+		update_option( static::$version_option, static::$version );
+
+		foreach ( glob( dirname( __FILE__ ) . '/*.php' ) as $file ) {
+			if ( __FILE__ === $file ) {
+				continue; // we don't need this file.
+			}
+
+			$class      = ucfirst( str_replace( array( 'class-', '.php' ), '', basename( $file ) ) );
+			$class_name = __NAMESPACE__ . '\\' . $class;
+
+			if ( class_exists( $class_name ) && is_a( $class_name, __NAMESPACE__ . '\BASE', true ) ) {
+				/**
+				 * Object will be type of Base.
+				 *
+				 * @var Base $object
+				 */
+				$object = new $class_name();
+				$object->set_role_data();
+				$object->update_role();
+			}
+		}
+	}
+
+	/**
 	 * Updates the role.
 	 */
 	public function update_role() {
-		if ( ! empty( $this->role_data['new_role'] ) ) {
+		if ( ! empty( $this->role_data['name'] ) ) {
 			$this->add_role();
 		}
 
