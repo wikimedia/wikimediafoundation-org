@@ -229,9 +229,8 @@ class Metaboxes {
 					return;
 				}
 
-
 				foreach ( $meta_data as $group_item ) {
-					printf( '<div class="wmf-translation-group"><strong class="wmf-translation-group-heading">%s</strong>', __( 'Group', 'wmfoundation' ) );
+					printf( '<div class="wmf-translation-group"><strong class="wmf-translation-group-heading">%s</strong>', esc_html__( 'Group', 'wmfoundation' ) );
 					foreach ( $group_item as $single_key => $single_value ) {
 						if ( ! empty( $data->children[ $single_key ] ) ) {
 							$this->show_remote_meta( $remote_blog_id, $single_value, $data->children[ $single_key ] );
