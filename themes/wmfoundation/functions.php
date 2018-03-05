@@ -158,9 +158,17 @@ add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
  * Enqueue admin scripts and styles.
  */
 function wmf_admin_scripts() {
-	wp_enqueue_style( 'wmfoundation-editor', get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css' );
+	wp_enqueue_style(
+		'wmfoundation-editor',
+		get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css',
+		array(),
+		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/dist/admin/admin.css' )
+	);
 }
 add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
+
+add_action( 'mlp_translation_meta_box_bottom', array( 'WMF\Translations\Metaboxes', 'mlp_translation_meta_box_bottom' ), 10, 3 );
+add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
 
 /**
  * Custom template tags for this theme.
