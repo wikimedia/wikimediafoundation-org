@@ -11,7 +11,7 @@ if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 	return;
 }
 
-$title = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
+$title       = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
 $description = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 
 ?>

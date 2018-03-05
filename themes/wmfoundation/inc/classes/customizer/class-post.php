@@ -33,11 +33,11 @@ class Post extends Base {
 			new WP_Customize_Image_Control(
 				$this->customize,
 				$control_id,
-					array(
-						'label'    => __( 'Posts Page Frame Image', 'wmfoundation' ),
-						'section'  => $section_id,
-						'settings' => $control_id,
-					)
+				array(
+					'label'    => __( 'Posts Page Frame Image', 'wmfoundation' ),
+					'section'  => $section_id,
+					'settings' => $control_id,
+				)
 			)
 		);
 
@@ -49,10 +49,10 @@ class Post extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Related Posts Section Title', 'wmfoundation' ),
+				'label'       => __( 'Related Posts Section Title', 'wmfoundation' ),
 				'description' => __( 'This displays at the bottom of each single post.', 'wmfoundation' ),
-				'section' => $section_id,
-				'type'    => 'text',
+				'section'     => $section_id,
+				'type'        => 'text',
 			)
 		);
 
@@ -64,9 +64,9 @@ class Post extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Related Posts Section Description', 'wmfoundation' ),
-				'section'     => $section_id,
-				'type'        => 'textarea',
+				'label'   => __( 'Related Posts Section Description', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'textarea',
 			)
 		);
 	}
