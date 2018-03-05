@@ -1,6 +1,6 @@
 <?php
 /**
- * Front Page Template
+ * Template Name: List Page
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -8,7 +8,7 @@
  */
 
 get_header();
-while ( have_posts() ) {
+while ( have_posts() ) :
 	the_post();
 
 	// Page Header.
@@ -26,32 +26,33 @@ while ( have_posts() ) {
 	} else {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
-
 ?>
-<div class="home-subnav mw-1360 white-bg">
-	<div class="logo-nav-container">
-		<?php get_template_part( 'template-parts/header/logo' ); ?>
-		<div class="subnav-container nav-container">
-			<?php get_template_part( 'template-parts/header/navigation' ); ?>
+<div class="mw-1360 mod-margin-bottom flex flex-medium">
+	<div class="module-mu w-68p">
+		<?php if ( get_the_content() ) : ?>
+		<div class="mod-margin-bottom wysiwyg h3 color-gray">
+			<?php the_content(); ?>
 		</div>
+		<?php endif; ?>
+
+		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+	</div>
+
+	<div class="module-mu wysiwyg w-32p">
+		<?php get_sidebar( 'list' ); ?>
 	</div>
 </div>
 <?php
 
-	$modules = array(
-		'intro',
-		'focus-blocks',
-		'featured-posts',
-		'projects',
-		'profiles',
-		'facts',
-		'framing-copy',
-		'support',
-		'connect',
-	);
+$modules = array(
+	'cta',
+	'support',
+	'connect',
+);
 
 foreach ( $modules as $module ) {
 	get_template_part( 'template-parts/page/page', $module );
 }
-}
+endwhile;
+
 get_footer();
