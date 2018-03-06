@@ -40,7 +40,7 @@ function wmf_landing_fields() {
 							),
 						)
 					),
-				)
+				),
 			)
 		);
 		$social->add_meta_box( __( 'Social Share', 'wmfoundation' ), 'page' );
