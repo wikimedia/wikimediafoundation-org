@@ -30,7 +30,7 @@ function wmf_post_fields() {
 				'link_title' => new Fieldmanager_TextField( __( 'Link Title', 'wmfoundation' ) ),
 				'profile_id' => new Fieldmanager_Select(
 					array(
-						'options' => wmf_get_profiles_options(),
+						'options'     => wmf_get_profiles_options(),
 						'first_empty' => true,
 					)
 				),
