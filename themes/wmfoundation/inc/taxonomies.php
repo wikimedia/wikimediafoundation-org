@@ -51,5 +51,14 @@ function wmf_add_taxonomies() {
 		)
 	);
 	register_taxonomy( 'role', array( 'profile' ), $profile_type_args );
+
+	$profile_type_args =  array(
+		'hierarchical'      => false,
+		'public'            => false,
+		'rewrite'           => false,
+		'show_admin_column' => (int) get_main_site_id() !== (int) get_current_blog_id(),
+		'label'             => __( 'Translation Status', 'wmfoundation' ),
+	);
+	register_taxonomy( 'translation-status', array( 'post', 'page', 'profile' ), $profile_type_args );
 }
 add_action( 'init', 'wmf_add_taxonomies' );
