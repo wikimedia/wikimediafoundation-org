@@ -17,14 +17,14 @@ class Base {
 	 *
 	 * @var float
 	 */
-	public static $version = 0.4;
+	private $version = 0.4;
 
 	/**
 	 * The option key for role version control.
 	 *
 	 * @var string
 	 */
-	public static $version_option = 'wmf_version_option';
+	private $version_option = 'wmf_version_option';
 
 	/**
 	 * Role ID.
@@ -109,11 +109,11 @@ class Base {
 	 * Checks the role version against the option and updates roles conditionally.
 	 */
 	public function maybe_update_roles() {
-		if ( static::$version <= (float) get_option( static::$version_option ) ) {
+		if ( $this->version <= (float) get_option( $this->version_option ) ) {
 			return;
 		}
 
-		update_option( static::$version_option, static::$version );
+		update_option( $this->version_option, $this->version );
 
 		foreach ( glob( dirname( __FILE__ ) . '/*.php' ) as $file ) {
 			if ( __FILE__ === $file ) {
