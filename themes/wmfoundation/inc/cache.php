@@ -78,6 +78,8 @@ function wmf_clear_post_cache( $post_id ) {
 		$cache_key = md5( 'wmf_featured_posts_for' . $context );
 		wp_cache_delete( $cache_key );
 	}
+
+	wp_cache_delete( 'wmf_posts_for_post_' . $post_id );
 }
 add_action( 'save_post_post', 'wmf_clear_post_cache' );
 

@@ -7,11 +7,14 @@
 
 $page_header_data = wmf_get_template_data();
 
-$h4_link  = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
-$h4_title = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
-$h2_link  = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
-$h2_title = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
-$title    = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
+$h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
+$h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
+$h2_link              = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
+$h2_title             = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
+$title                = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
+$meta                 = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
+$allowed_tags         = wp_kses_allowed_html( 'post' );
+$allowed_tags['time'] = true;
 
 ?>
 
@@ -44,5 +47,11 @@ $title    = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_tit
 
 	<?php if ( ! empty( $title ) ) : ?>
 	<h1 class="mar-bottom"><?php echo esc_html( $title ); ?></h1>
+	<?php endif; ?>
+
+	<?php if ( ! empty( $meta ) ) : ?>
+	<div class="post-meta h4">
+		<?php echo wp_kses( $meta, $allowed_tags ); ?>
+	</div>
 	<?php endif; ?>
 </div>
