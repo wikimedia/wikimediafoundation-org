@@ -261,7 +261,7 @@ function wmf_get_related_posts( $post_id ) {
 	$post_id = absint( $post_id );
 
 	$terms    = get_the_terms( $post_id, 'post_tag' );
-	$term_ids = wp_list_pluck( $terms, 'term_id' );
+	$term_ids = ! empty( $terms ) ? wp_list_pluck( $terms, 'term_id' ) : false;
 
 	if ( empty( $term_ids ) ) {
 		return $post_list;
