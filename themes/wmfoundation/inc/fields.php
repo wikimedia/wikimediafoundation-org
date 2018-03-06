@@ -93,6 +93,39 @@ function wmf_get_landing_pages_options() {
 }
 
 /**
+ * Gets available landing pages in an array suitable for fieldmanager options.
+ *
+ * @return array
+ */
+function wmf_get_pages_options() {
+	$all_pages = wp_cache_get( 'wmf_all_pages_opts' );
+
+	if ( empty( $all_pages ) ) {
+		$all_pages = array();
+
+		$args  = array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
+			'posts_per_page' => 100,
+		);
+		$pages = new WP_Query( $args );
+
+		if ( $pages->have_posts() ) {
+			while ( $pages->have_posts() ) {
+				$pages->the_post();
+				$all_pages[ get_the_ID() ] = get_the_title();
+			}
+		}
+		wp_reset_postdata();
+
+		wp_cache_add( 'wmf_all_pages_opts', $all_pages );
+	}
+
+	return $all_pages;
+}
+
+/**
  * Gets available profiles and formats them for Fieldmanager
  *
  * @return array
@@ -138,3 +171,4 @@ require get_template_directory() . '/inc/fields/listing.php';
 require get_template_directory() . '/inc/fields/links.php';
 require get_template_directory() . '/inc/fields/support.php';
 require get_template_directory() . '/inc/fields/profiles.php';
+require get_template_directory() . '/inc/fields/related-pages.php';

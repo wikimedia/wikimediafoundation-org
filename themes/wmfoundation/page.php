@@ -31,5 +31,17 @@ while ( have_posts() ) {
 	}
 
 	get_template_part( 'template-parts/content', 'page' );
+
+	$modules = array(
+		'offsite-links',
+		'page-cta',
+		'related',
+		'support',
+		'connect',
+	);
+
+	foreach ( $modules as $module ) {
+		get_template_part( 'template-parts/page/page', $module );
+	}
 }
 get_footer();
