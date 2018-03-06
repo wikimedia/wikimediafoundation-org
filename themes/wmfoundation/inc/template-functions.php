@@ -44,6 +44,7 @@ function wmf_get_header_container_class() {
 
 			switch ( $template ) {
 				case 'page-landing.php':
+				case is_front_page():
 					$class = ' featured-photo--content-left';
 					break;
 

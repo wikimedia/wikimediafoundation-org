@@ -9,37 +9,42 @@
  * Add landing page options.
  */
 function wmf_landing_fields() {
-	if ( ! wmf_using_template( 'page-landing' ) ) {
+	$is_front_page   = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
+	$is_landing_page = wmf_using_template( 'page-landing' );
+
+	if ( ! $is_landing_page && ! $is_front_page ) {
 		return;
 	}
 
-	$header_opts = new Fieldmanager_Textfield(
-		array(
-			'name' => 'sub_title',
-		)
-	);
-	$header_opts->add_meta_box( __( 'Subtitle', 'wmfoundation' ), 'page' );
+	if ( $is_landing_page ) {
+		$header_opts = new Fieldmanager_Textfield(
+			array(
+				'name' => 'sub_title',
+			)
+		);
+		$header_opts->add_meta_box( __( 'Subtitle', 'wmfoundation' ), 'page' );
 
-	$social = new Fieldmanager_Group(
-		array(
-			'name'     => 'social_share',
-			'children' => array(
-				'heading'  => new Fieldmanager_Textfield( __( 'Section Heading', 'wmfoundation' ) ),
-				'uri'      => new Fieldmanager_Link( __( 'Share URI', 'wmfoundation' ) ),
-				'message'  => new Fieldmanager_Textfield( __( 'Message', 'wmfoundation' ) ),
-				'services' => new Fieldmanager_Checkboxes(
-					array(
-						'label'   => __( 'Services', 'wmfoundation' ),
-						'options' => array(
-							'twitter'  => __( 'Twitter', 'wmfoundation' ),
-							'facebook' => __( 'Facebook', 'wmfoundation' ),
-						),
-					)
-				),
-			),
-		)
-	);
-	$social->add_meta_box( __( 'Social Share', 'wmfoundation' ), 'page' );
+		$social = new Fieldmanager_Group(
+			array(
+				'name'     => 'social_share',
+				'children' => array(
+					'heading'  => new Fieldmanager_Textfield( __( 'Section Heading', 'wmfoundation' ) ),
+					'uri'      => new Fieldmanager_Link( __( 'Share URI', 'wmfoundation' ) ),
+					'message'  => new Fieldmanager_Textfield( __( 'Message', 'wmfoundation' ) ),
+					'services' => new Fieldmanager_Checkboxes(
+						array(
+							'label'   => __( 'Services', 'wmfoundation' ),
+							'options' => array(
+								'twitter'  => __( 'Twitter', 'wmfoundation' ),
+								'facebook' => __( 'Facebook', 'wmfoundation' ),
+							),
+						)
+					),
+				)
+			)
+		);
+		$social->add_meta_box( __( 'Social Share', 'wmfoundation' ), 'page' );
+	}
 
 	$framing_copy = new Fieldmanager_Group(
 		array(
