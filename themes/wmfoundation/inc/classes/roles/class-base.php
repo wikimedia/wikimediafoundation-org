@@ -17,7 +17,7 @@ class Base {
 	 *
 	 * @var float
 	 */
-	public static $version = 0.1;
+	public static $version = 0.4;
 
 	/**
 	 * The option key for role version control.
@@ -74,10 +74,36 @@ class Base {
 	}
 
 	/**
+	 * Adds custom caps to the pages post type.
+	 *
+	 * @param array  $args Post type args.
+	 * @param string $name Post type name.
+	 *
+	 * @return array
+	 */
+	public static function post_type_args_filter( $args, $name ) {
+		if ( empty( $args['capabilities']['create_posts'] ) || false !== strpos( $args['capabilities']['create_posts'], 'edit' ) ) {
+			switch ( $name ) {
+				case 'page':
+					$cap = 'create_pages';
+					break;
+				default:
+					$cap = 'create_posts';
+					break;
+			}
+
+			$args['capabilities'] = array(
+				'create_posts' => $cap,
+			);
+		}
+
+		return $args;
+	}
+
+	/**
 	 * Sets the role data property.
 	 */
-	public function set_role_data() {
-	}
+	public function set_role_data() {}
 
 	/**
 	 * Checks the role version against the option and updates roles conditionally.

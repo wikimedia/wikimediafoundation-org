@@ -26,6 +26,8 @@ class Translator extends Base {
 			'name'        => __( 'Translator', 'wmfoundation' ),
 			'clone'       => 'editor',
 			'remove_caps' => array(
+				'create_posts',
+				'create_pages',
 				'delete_others_pages',
 				'delete_others_posts',
 				'delete_pages',
