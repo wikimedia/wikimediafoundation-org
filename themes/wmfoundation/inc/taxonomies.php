@@ -52,8 +52,8 @@ function wmf_add_taxonomies() {
 	);
 	register_taxonomy( 'role', array( 'profile' ), $profile_type_args );
 
-	$profile_type_args =  array(
-		'hierarchical'      => false,
+	$profile_type_args = array(
+		'hierarchical'      => true,
 		'public'            => false,
 		'rewrite'           => false,
 		'show_admin_column' => (int) get_main_site_id() !== (int) get_current_blog_id(),

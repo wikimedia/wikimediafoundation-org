@@ -10,15 +10,21 @@ add_action( 'mlp_translation_meta_box_bottom', array( 'WMF\Translations\Metaboxe
 add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
 add_filter( 'admin_init', array( 'WMF\Roles\Base', 'callback' ), 10, 2 );
 add_filter( 'register_post_type_args', array( 'WMF\Roles\Base', 'post_type_args_filter' ), 10, 2 );
+add_action( 'restrict_manage_posts', array( 'WMF\Translations\Edit_Posts', 'restrict_manage_posts' ), 10, 2 );
+add_action( 'mlp_show_translation_completed_checkbox', array( 'WMF\Translations\Flow', 'publish_actions_callback' ) );
+add_action( 'mlp_pre_save_post_meta', array( 'WMF\Translations\Flow', 'pre_post_meta_callback' ), 10, 2 );
+add_action( 'save_post', array( 'WMF\Translations\Flow', 'save_post_callback' ) );
 
 // Functions.
 /**
  * Gets a formatted array of available translations.
  *
- * @param  bool $strict When TRUE (default) only sites with a matching translation for requested page will be included.
- * @return mixed array|bool
+ * @param  bool   $strict     When TRUE (default) only sites with a matching translation for requested page will be included.
+ * @param  int    $content_id The ID for the content. e.g post ID.
+ * @param  string $type       The type of content. Usually post.
+ * @return mixed  array|bool
  */
-function wmf_get_translations( $strict = true ) {
+function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 	$mlp_language_api = apply_filters( 'mlp_language_api', null ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 	if ( ! is_a( $mlp_language_api, 'Mlp_Language_Api_Interface' ) ) {
@@ -29,6 +35,14 @@ function wmf_get_translations( $strict = true ) {
 		'strict'       => $strict,
 		'include_base' => true,
 	);
+
+	if ( ! empty( $content_id ) ) {
+		$args['content_id'] = $content_id;
+	}
+
+	if ( ! empty( $type ) ) {
+		$args['type'] = $type;
+	}
 
 	/**
 	 * From MultilingualPress.
