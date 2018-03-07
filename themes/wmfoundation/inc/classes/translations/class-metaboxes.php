@@ -93,8 +93,16 @@ class Metaboxes {
 
 		$header = '';
 
+		if ( empty( $meta ) || ! is_array( $meta ) ) {
+			return;
+		}
+
 		foreach ( $meta as $name => $value ) {
 			if ( empty( $this->translation_meta_opts[ $name ] ) ) {
+				continue;
+			}
+
+			if ( empty( $value[0] ) || ! is_array( $value[0] ) ) {
 				continue;
 			}
 
