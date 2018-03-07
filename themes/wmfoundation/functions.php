@@ -169,7 +169,7 @@ function wmf_admin_scripts() {
 		'wmfoundation-editor-js',
 		get_stylesheet_directory_uri() . '/assets/src/admin/post-meta.js',
 		array( 'jquery' ),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/dist/admin/admin.css' ),
+		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/post-meta.js' ),
 		true
 	);
 }
