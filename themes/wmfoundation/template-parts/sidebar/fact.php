@@ -27,7 +27,8 @@ $caption       = ! empty( $template_data['caption'] ) ? $template_data['caption'
 
 	<?php
 	$template_args = array(
-		'message' => sprintf( '%1$s - %2$s', $callout, $caption ),
+		'message'    => sprintf( '%1$s - %2$s', $callout, $caption ),
+		'list_class' => '',
 	);
 	wmf_get_template_part( 'template-parts/modules/social/share', $template_args, 'vertical' );
 	?>

@@ -83,6 +83,21 @@ class Page extends Base {
 				'type'        => 'text',
 			)
 		);
+
+		$control_id = 'wmf_downloads_header';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Downloads', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Downloads Section Header', 'wmfoundation' ),
+				'description' => __( 'This displays in the sidebar before the downloads list.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
 	}
 
 }

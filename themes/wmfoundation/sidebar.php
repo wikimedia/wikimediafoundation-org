@@ -7,9 +7,10 @@
  * @package wmfoundation
  */
 
-$facts = get_post_meta( get_the_ID(), 'sidebar_facts', true );
+$facts     = get_post_meta( get_the_ID(), 'sidebar_facts', true );
+$downloads = get_post_meta( get_the_ID(), 'sidebar_downloads', true );
 
-if ( empty( $facts ) ) {
+if ( empty( $facts ) && empty( $downloads ) ) {
 	return;
 }
 ?>
@@ -18,6 +19,12 @@ if ( empty( $facts ) ) {
 	<?php
 	if ( ! empty( $facts ) ) {
 		wmf_get_template_part( 'template-parts/sidebar/fact', $facts );
+	}
+	?>
+
+	<?php
+	if ( ! empty( $facts ) ) {
+		wmf_get_template_part( 'template-parts/sidebar/downloads', $downloads );
 	}
 	?>
 </div>
