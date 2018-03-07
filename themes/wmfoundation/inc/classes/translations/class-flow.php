@@ -174,9 +174,61 @@ class Flow {
 
 		add_filter( 'wp_insert_post', array( $this, 'set_new_translate_term' ) );
 
-		return array(
-			'_wp_page_template' => get_post_meta( $post_id, '_wp_page_template', true ),
-		);
+		$meta = get_post_custom( $post_id );
+
+		$meta = $this->meta_build( $meta );
+
+		$meta = $this->remove_numeric_r( $meta );
+
+		return $meta;
+	}
+
+	/**
+	 * Gets the array values so they save correctly.
+	 *
+	 * @param array $meta The meta array.
+	 *
+	 * @return array
+	 */
+	public function meta_build( $meta ) {
+		$ret_meta = array();
+
+		foreach ( $meta as $key => $array ) {
+			if ( '_edit_lock' === $key ) {
+				continue; // We don't want this value.
+			}
+
+			if ( ! empty( $array[0] ) ) {
+				$ret_meta[ $key ] = $array[0];
+			}
+		}
+
+		return $ret_meta;
+	}
+
+	/**
+	 * Remove any values that are numeric.
+	 *
+	 * @param array $array The array to parse.
+	 *
+	 * @return array
+	 */
+	public function remove_numeric_r( $array ) {
+		if ( ! is_array( $array ) ) {
+			return $array;
+		}
+
+		foreach ( $array as $key => $value ) {
+			$value = maybe_unserialize( $value );
+
+			if ( is_array( $value ) ) {
+				$array[ $key ] = $this->remove_numeric_r( $value );
+			} elseif ( is_numeric( $value ) ) {
+				unset( $array[ $key ] );
+			}
+		}
+
+		return $array;
 	}
 
 	/**
