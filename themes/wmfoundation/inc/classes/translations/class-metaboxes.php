@@ -93,8 +93,22 @@ class Metaboxes {
 
 		$header = '';
 
+		if ( empty( $meta ) || ! is_array( $meta ) ) {
+			return;
+		}
+
 		foreach ( $meta as $name => $value ) {
 			if ( empty( $this->translation_meta_opts[ $name ] ) ) {
+				continue;
+			}
+
+			if ( empty( $value[0] ) ) {
+				continue;
+			}
+
+			$value = maybe_unserialize( $value[0] );
+
+			if ( empty( $value ) || ! is_array( $value ) ) {
 				continue;
 			}
 
@@ -117,8 +131,6 @@ class Metaboxes {
 			if ( ! empty( $label ) ) {
 				printf( '<h4>%s</h4>', esc_html( $label ) );
 			}
-
-			$value = maybe_unserialize( $value[0] );
 
 			foreach ( $value as $key => $meta_data ) {
 				if ( ! empty( $this->translation_meta_opts[ $name ]->children[ $key ] ) ) {

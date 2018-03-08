@@ -164,6 +164,14 @@ function wmf_admin_scripts() {
 		array(),
 		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/dist/admin/admin.css' )
 	);
+
+	wp_enqueue_script(
+		'wmfoundation-editor-js',
+		get_stylesheet_directory_uri() . '/assets/src/admin/post-meta.js',
+		array( 'jquery' ),
+		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/post-meta.js' ),
+		true
+	);
 }
 add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
 
