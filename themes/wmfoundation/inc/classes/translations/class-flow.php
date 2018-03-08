@@ -33,6 +33,33 @@ class Flow {
 	public $status_terms = array();
 
 	/**
+	 * Array of IDs for the new translations.
+	 *
+	 * @var array
+	 */
+	public $new_translations = array();
+
+	/**
+	 * The object instance.
+	 *
+	 * @var Metaboxes
+	 */
+	public static $instance;
+
+	/**
+	 * Gets the current instance of the object.
+	 *
+	 * @return Metaboxes
+	 */
+	public static function get_instance() {
+		if ( empty( static::$instance ) ) {
+			static::$instance = new static();
+		}
+
+		return static::$instance;
+	}
+
+	/**
 	 * Flow constructor.
 	 */
 	public function __construct() {
@@ -80,8 +107,7 @@ class Flow {
 	 * @return bool
 	 */
 	public static function publish_actions_callback( $pre ) {
-		$flow = new static();
-		return $flow->publish_actions( $pre );
+		return static::get_instance()->publish_actions( $pre );
 	}
 
 	/**
@@ -157,9 +183,7 @@ class Flow {
 	 * @return array
 	 */
 	public static function pre_post_meta_callback( $meta_array, $save_context ) {
-		$flow = new static();
-
-		return array_merge( $meta_array, $flow->get_post_meta( $save_context ) );
+		return array_merge( $meta_array, static::get_instance()->get_post_meta( $save_context ) );
 	}
 
 	/**
@@ -237,6 +261,8 @@ class Flow {
 	 * @param int $post_id The post id.
 	 */
 	public function set_new_translate_term( $post_id ) {
+		$this->new_translations[] = absint( $post_id );
+
 		// We need to update this for each site here.
 		$this->maybe_register_translation_status_terms();
 		$this->set_translate_term( $post_id );
@@ -258,9 +284,7 @@ class Flow {
 	 * @param int $post_id The post ID.
 	 */
 	public static function save_post_callback( $post_id ) {
-		$flow = new static();
-
-		$flow->save_post( $post_id );
+		static::get_instance()->save_post( $post_id );
 	}
 
 	/**
@@ -292,6 +316,11 @@ class Flow {
 				if ( (int) get_main_site_id() === (int) $remote_post['site_id'] ) {
 					continue;
 				}
+
+				if ( in_array( (int) $remote_post['content_id'], $this->new_translations, true ) ) {
+					continue;
+				}
+
 				switch_to_blog( $remote_post['site_id'] );
 
 				// We need to update this for each site here.
