@@ -90,10 +90,13 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_content';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'Content', 'wmfoundation' ),
-				'section' => $section_id,
-				'type'    => 'textarea',
+			new Rich_Text_Control(
+				$this->customize,
+				$control_id,
+				array(
+					'label'   => __( 'Content', 'wmfoundation' ),
+					'section' => $section_id,
+				)
 			)
 		);
 
@@ -148,10 +151,13 @@ class Connect extends Base {
 		$control_id = 'wmf_contact_content';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'Content', 'wmfoundation' ),
-				'section' => $section_id,
-				'type'    => 'textarea',
+			new Rich_Text_Control(
+				$this->customize,
+				$control_id,
+				array(
+					'label'   => __( 'Content', 'wmfoundation' ),
+					'section' => $section_id,
+				)
 			)
 		);
 
