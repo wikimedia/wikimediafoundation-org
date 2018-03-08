@@ -10,9 +10,6 @@
 
 	$( '#translate_post_global' ).change( function(){
 		var checked = $( this ).is( ':checked' );
-
-		console.log( checked );
-
 		$( 'input[name="mlp_to_translate[]"]' ).prop( 'checked', checked );
 	} );
 
