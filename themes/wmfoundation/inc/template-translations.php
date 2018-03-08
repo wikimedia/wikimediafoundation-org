@@ -13,7 +13,7 @@ add_filter( 'register_post_type_args', array( 'WMF\Roles\Base', 'post_type_args_
 add_action( 'restrict_manage_posts', array( 'WMF\Translations\Edit_Posts', 'restrict_manage_posts' ), 10, 2 );
 add_action( 'mlp_show_translation_completed_checkbox', array( 'WMF\Translations\Flow', 'publish_actions_callback' ) );
 add_action( 'mlp_pre_save_post_meta', array( 'WMF\Translations\Flow', 'pre_post_meta_callback' ), 10, 2 );
-add_action( 'save_post', array( 'WMF\Translations\Flow', 'save_post_callback' ) );
+add_action( 'save_post', array( 'WMF\Translations\Flow', 'save_post_callback' ), 99 );
 
 // Functions.
 /**
