@@ -1,17 +1,30 @@
 <?php
 /**
- * The sidebar containing the main widget area.
+ * The sidebar that adds metadata to floated container
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package wmfoundation
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+$facts     = get_post_meta( get_the_ID(), 'sidebar_facts', true );
+$downloads = get_post_meta( get_the_ID(), 'sidebar_downloads', true );
+
+if ( empty( $facts ) && empty( $downloads ) ) {
 	return;
 }
 ?>
 
-<aside id="secondary" class="widget-area" role="complementary">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
-</aside><!-- #secondary -->
+<div class="sidebar-float">
+	<?php
+	if ( ! empty( $facts ) ) {
+		wmf_get_template_part( 'template-parts/sidebar/fact', $facts );
+	}
+	?>
+
+	<?php
+	if ( ! empty( $downloads ) ) {
+		wmf_get_template_part( 'template-parts/sidebar/downloads', $downloads );
+	}
+	?>
+</div>
