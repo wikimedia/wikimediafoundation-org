@@ -23,7 +23,7 @@ if ( empty( $facts ) && empty( $downloads ) ) {
 	?>
 
 	<?php
-	if ( ! empty( $facts ) ) {
+	if ( ! empty( $downloads ) ) {
 		wmf_get_template_part( 'template-parts/sidebar/downloads', $downloads );
 	}
 	?>
