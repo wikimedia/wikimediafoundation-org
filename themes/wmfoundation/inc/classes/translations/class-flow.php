@@ -40,16 +40,23 @@ class Flow {
 	public $new_translations = array();
 
 	/**
+	 * The post meta.
+	 *
+	 * @var array
+	 */
+	public $meta = array();
+
+	/**
 	 * The object instance.
 	 *
-	 * @var Metaboxes
+	 * @var Flow
 	 */
 	public static $instance;
 
 	/**
 	 * Gets the current instance of the object.
 	 *
-	 * @return Metaboxes
+	 * @return Flow
 	 */
 	public static function get_instance() {
 		if ( empty( static::$instance ) ) {
@@ -189,12 +196,12 @@ class Flow {
 	/**
 	 * Build meta content for cloning to new posts..
 	 *
-	 * @param array $save_context The context of the existing post.
+	 * @param mixed|int|array $save_context The context of the existing post.
 	 *
 	 * @return array
 	 */
 	public function get_post_meta( $save_context ) {
-		$post_id = $save_context['real_post_id'];
+		$post_id = is_numeric( $save_context ) ? $save_context : $save_context['real_post_id'];
 
 		add_filter( 'wp_insert_post', array( $this, 'set_new_translate_term' ) );
 
@@ -309,6 +316,8 @@ class Flow {
 			$this->set_translate_term( $post_id, 'complete' );
 		}
 
+		$this->set_post_meta( $post_id );
+
 		if ( ! empty( $_POST['_translate_post_global'] ) ) { // Input var okay.
 			$remote_posts = wmf_get_translations( false, $post_id, 'post' );
 
@@ -318,6 +327,7 @@ class Flow {
 				}
 
 				if ( in_array( (int) $remote_post['content_id'], $this->new_translations, true ) ) {
+					$this->clone_meta( $remote_post['content_id'], $remote_post['site_id'] );
 					continue;
 				}
 
@@ -331,5 +341,32 @@ class Flow {
 				restore_current_blog();
 			}
 		}
+	}
+
+	/**
+	 * Sets the $meta property.
+	 *
+	 * @param int $post_id The post ID.
+	 */
+	public function set_post_meta( $post_id ) {
+		wp_cache_delete( $post_id, 'post_meta' );
+
+		$this->meta = $this->get_post_meta( $post_id );
+	}
+
+	/**
+	 * Set the post meta for the remote post.
+	 *
+	 * @param int $remote_post_id The remote post ID.
+	 * @param int $remote_site_id The remote site ID.
+	 */
+	public function clone_meta( $remote_post_id, $remote_site_id ) {
+		switch_to_blog( $remote_site_id );
+
+		foreach ( $this->meta as $key => $value ) {
+			update_post_meta( $remote_post_id, $key, $value );
+		}
+
+		restore_current_blog();
 	}
 }
