@@ -18,7 +18,7 @@ while ( have_posts() ) {
 			'h4_link'   => get_the_permalink( $parent_page ),
 			'h4_title'  => get_the_title( $parent_page ),
 			'h1_title'  => get_the_title(),
-			'page_meta' => sprintf( '<span>%s</span><time>%s</time>', get_the_author(), get_the_date() ),
+			'page_meta' => sprintf( '<span>%s</span><time>%s</time>', coauthors_links( null, null, __( 'By ', 'wmfoundation' ), '', false ), get_the_date() ),
 		)
 	);
 
