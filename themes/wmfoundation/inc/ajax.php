@@ -50,7 +50,7 @@ function wmf_ajax_search() {
 					'link'       => get_the_permalink(),
 					'image_id'   => get_post_thumbnail_id(),
 					'title'      => get_the_title(),
-					'authors'    => get_the_author_link(),
+					'authors'    => wmf_byline(),
 					'date'       => get_the_date(),
 					'excerpt'    => get_the_excerpt(),
 					'categories' => get_the_category(),

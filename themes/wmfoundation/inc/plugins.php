@@ -12,4 +12,6 @@ if ( function_exists( 'wpcom_vip_load_plugin' ) ) {
 
 	// Safe SVG.
 	wpcom_vip_load_plugin( 'safe-svg' );
+
+	wpcom_vip_load_plugin( 'co-authors-plus' );
 }

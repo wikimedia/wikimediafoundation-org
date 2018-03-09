@@ -4,3 +4,6 @@
 [submodule "plugins/multilingual-press"]
 	path = plugins/multilingual-press
 	url = https://github.com/inpsyde/MultilingualPress
+[submodule "plugins/co-authors-plus"]
+	path = plugins/co-authors-plus
+	url = git@github.com:Automattic/Co-Authors-Plus.git
