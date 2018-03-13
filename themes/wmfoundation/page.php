@@ -34,7 +34,7 @@ while ( have_posts() ) {
 
 	$modules = array(
 		'offsite-links',
-		'page-cta',
+		'cta',
 		'related',
 		'support',
 		'connect',
