@@ -52,7 +52,7 @@ gulp.task( 'concat', function() {
 	return gulp.src( paths.jsFiles )
 			   .pipe( concat( 'scripts.min.js' ) )
 			   .pipe( sourcemaps.init() )
-			   .pipe( uglify() )
+			   //.pipe( uglify() )
 			   .pipe( sourcemaps.write( 'maps' ) )
 			   .pipe( gulp.dest( 'assets/dist' ) )
 } );

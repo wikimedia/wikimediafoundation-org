@@ -42,28 +42,6 @@ $header-bp-mw: 1049px;
 	}
 
 	// Header content positioning classes
-	.bg-pattern-container {
-		position: absolute;
-		bottom: 7%;
-		top: 0;
-		right: 0;
-		left: 0;
-
-		@media (min-width: $header-bp) {
-		  	bottom: 0;
-		}
-	}
-
-	.bg-img-container.bg-pattern {
-		width: 100%;
-		position: absolute;
-		top: 0; bottom: 0; left: 0; right: 0;
-		z-index: 0;
-
-		.bg-img {
-		  	mix-blend-mode: multiply;
-		}
-	}
 
 	// Default page, blog page
 	&.minimal {
@@ -95,6 +73,29 @@ $header-bp-mw: 1049px;
 
 		// Main image on the right, content on the left
 		&--content-left {
+
+			.bg-pattern-container {
+				position: absolute;
+				bottom: 7%;
+				top: 0;
+				right: 0;
+				left: 0;
+
+				@media (min-width: $header-bp) {
+					bottom: 0;
+				}
+			}
+
+			.bg-img-container.bg-pattern {
+				width: 100%;
+				position: absolute;
+				top: 0; bottom: 0; left: 0; right: 0;
+				z-index: 0;
+
+				.bg-img {
+					mix-blend-mode: multiply;
+				}
+			}
 
 			.logo-nav-container {
 				@include paddingBottom(48, 40, $header-bp);

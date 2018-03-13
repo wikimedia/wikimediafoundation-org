@@ -72,8 +72,7 @@ ul li {
 // .blockquote-container wrapped around blockquote via JS
 $blockquote-bp: 1230px;
 
-.blockquote-container,
-blockquote {
+.blockquote-container {
 	margin: 3rem 0;
 
 	@media (min-width: $blockquote-bp) {
@@ -81,10 +80,14 @@ blockquote {
 	}
 }
 
-.blockquote-container blockquote,
-blockquote p {
-	font-size: 1.2rem;
-	line-height: 1.8;
+blockquote {
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.8;
+	display: inline;
+	margin-left: rem(30);
+	padding-left: rem(20);
 
 	@media (min-width: $medium-bp) {
 		font-size: 1.5rem;
@@ -92,26 +95,14 @@ blockquote p {
 
 	@media (min-width: $blockquote-bp) {
 		font-size: 2rem;
-		padding-left: 0;
-	}
-}
-
-.blockquote-container blockquote,
-blockquote p:first-child {
-    position: relative;
-    font-weight: 300;
-	display: inline;
-	margin-left: rem(30);
-	padding-left: rem(20);
-
-	@media (min-width: $blockquote-bp) {
 		margin-left: 93px;
+		padding-left: 0;
 	}
 
 	&:before {
 		content: "";
 		position: absolute;
-		background-image: url(assets/dist/images/quote-left.svg);
+		background-image: url(../images/quote-left.svg);
 		background-repeat: no-repeat;
 		background-size: contain;
 
@@ -140,7 +131,7 @@ blockquote p:first-child {
 		width: 41px;
 		right: -50px;
 		bottom: -7px;
-		background-image: url(assets/dist/images/quote-right.svg);
+		background-image: url(../images/quote-right.svg);
 		background-repeat: no-repeat;
 		background-size: contain;
 
