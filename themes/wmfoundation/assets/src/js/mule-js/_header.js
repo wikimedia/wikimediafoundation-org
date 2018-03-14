@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
   }
 
   function toggleSearch() {
-    $('.logo-nav-container').toggleClass('search-open');
+    $('.logo-nav-container, .search-overlay').toggleClass('search-open');
     $('.search-toggle').blur();
     $('.search-bar-container input').focus();
   }
@@ -74,7 +74,7 @@ jQuery(document).ready(function($) {
     if( !$(e.target).is('.search-toggle *, .search-toggle') ) {
       if( !$(e.target).is('.search-bar-container *, .search-bar-container') ) {
         if ($('.search-open').length) {
-          $('.logo-nav-container').removeClass('search-open');
+          $('.logo-nav-container, .search-overlay').removeClass('search-open');
         }
       }
     }

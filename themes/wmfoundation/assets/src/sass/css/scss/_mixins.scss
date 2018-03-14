@@ -13,6 +13,20 @@
 		font-size: rem($desktop);
 	}
 }
+@mixin line-height($desktop, $mobile) {
+	// Mobile
+	line-height: rem($mobile);
+
+	// Tablet (halfway between desktop and mobile size
+	@media (min-width: $medium-bp) and (max-width: 1280px) {
+		line-height: rem($desktop - (($desktop - $mobile) / 2));
+	}
+
+	// Desktop
+	@media (min-width: 1281px) {
+		line-height: rem($desktop);
+	}
+}
 
 @mixin category() {
 	text-transform: uppercase;

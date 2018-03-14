@@ -81,7 +81,6 @@
 	&.flex-all {
 		@include flexbox(wrap, wrap, $small-bp, row);
 	}
-
 	// Becomes a flex container at medium-bp
 	&.flex-medium {
 		@include flexbox(column, nowrap, $medium-bp, row);

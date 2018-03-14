@@ -11,7 +11,7 @@ $header-bp-mw: 1049px;
   position: relative;
 
   @media (min-width: $header-bp) and (max-height: 930px) {
-    min-height: 150vh;
+    min-height: 100vh;
   }
 
   a {
