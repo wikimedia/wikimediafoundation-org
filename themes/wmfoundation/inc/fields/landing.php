@@ -16,14 +16,14 @@ function wmf_landing_fields() {
 		return;
 	}
 
-	if ( $is_landing_page ) {
-		$header_opts = new Fieldmanager_Textfield(
-			array(
-				'name' => 'sub_title',
-			)
-		);
-		$header_opts->add_meta_box( __( 'Subtitle', 'wmfoundation' ), 'page' );
+	$header_opts = new Fieldmanager_Textfield(
+		array(
+			'name' => 'sub_title',
+		)
+	);
+	$header_opts->add_meta_box( __( 'Subtitle', 'wmfoundation' ), 'page' );
 
+	if ( $is_landing_page ) {
 		$social = new Fieldmanager_Group(
 			array(
 				'name'     => 'social_share',

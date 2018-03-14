@@ -85,6 +85,12 @@ a.teal {
 	}
 }
 
+.subnav-container {
+	.icon-search {
+		fill: $color-blue;
+	}
+}
+
 .search-open .search-bar-container .icon-search {
 	display: block;
 }

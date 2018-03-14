@@ -13,11 +13,11 @@ while ( have_posts() ) {
 
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
+	$subtitle      = get_post_meta( get_the_ID(), 'sub_title', true );
 	$template_args = array(
 		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
 		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
-		'h2_title' => get_the_title(),
-		'h1_title' => get_post_meta( get_the_ID(), 'sub_title', true ),
+		'h1_title' => get_the_title(),
 	);
 
 	if ( has_post_thumbnail() ) {
@@ -36,10 +36,16 @@ while ( have_posts() ) {
 		</div>
 	</div>
 </div>
+
+<div class="page-intro mw-1360 mod-margin-bottom wysiwyg">
+	<div class="w-75p">
+		<h2><?php echo esc_html( $subtitle ); ?></h2>
+		<?php the_content(); ?>
+	</div>
+</div>
 <?php
 
 	$modules = array(
-		'intro',
 		'focus-blocks',
 		'featured-posts',
 		'projects',
