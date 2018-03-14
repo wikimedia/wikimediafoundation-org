@@ -162,6 +162,7 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 	</div><!-- End .footer-legal -->
 
 </footer>
+<div class="search-overlay"></div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
