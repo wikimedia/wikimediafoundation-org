@@ -38,9 +38,9 @@ a.teal {
 	.icon {
 		fill: $color-blue;
 	}
-
-	&:hover .icon { fill: $color-dk-purple; }
 }
+
+.color-blue	a:hover .icon { fill: $color-dk-purple; }
 
 .material {
 	width: 24px;
