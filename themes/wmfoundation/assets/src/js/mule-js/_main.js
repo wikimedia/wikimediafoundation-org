@@ -33,10 +33,21 @@ jQuery(document).ready(function($) {
     watchCSS: true
   });
 
+
+
   // Run a quick resize event on flickity - in case cards don't get spread properly spaces out cards.
   setTimeout(function(){
     $('.people.slider-on-mobile').flickity( 'resize' );
   }, 500);
+
+
+  $('.news-categories .slider-on-mobile').flickity({
+    cellAlign: 'left',
+    contain: true,
+    pageDots: false,
+    prevNextButtons: false,
+    watchCSS: true
+  });
 
 
   // Photo credits hover effect
@@ -66,11 +77,27 @@ jQuery(document).ready(function($) {
 
 
 
-$('#dismiss-notification').click( function(){
-  $('.notification-bar').fadeOut("slow", function(){
+  $('#dismiss-notification').click( function(){
+    $('.notification-bar').fadeOut("slow", function(){
+    });
+  });
+
+  $('.static-list-heading').click( function(){
+    if ( $(this).hasClass( "active" ) ) {
+      $(this).removeClass('active');
+      $(this).next('.static-list-contents').removeClass('active');
+    } else {
+      $(this).addClass('active');
+      $(this).next('.static-list-contents').addClass('active');   
+    }
 
   });
-});
 
+  $('a.niceScroll').on('click', function(event){
+      event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 2000);
+  });
 
 });

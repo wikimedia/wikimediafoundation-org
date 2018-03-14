@@ -13,7 +13,9 @@
 		list-style-type: none;
 		margin-left: 0;
 		clear: both;
-		margin-bottom: 100px;
+    @media (min-width: 768px) {
+  		margin-bottom: 100px;
+    }
 	}
 
 	&.hover-highlight a {
@@ -39,20 +41,97 @@
 }
 
 
-.resource-list {
-	@include font-size(20, 16);
+// This is for the ridealong nav on the static lists
+.toc {
+  top: 0;
+  bottom: 0;
 
-	li {
-		list-style-type: none;
-		padding-left: 20px;
-		margin-bottom: 15px;
-	}
+  // Terrible hack to make sure fixed width stays relative to parent
+  @media (min-width: $medium-bp) {
+  	position: sticky;
+    &.fixedsticky-on {
+      width: 320px;
+  	}
 
-	li.active {
-		color: #000;
+  	// Less terrible hack to make sure TOC can't intersect with footer
+    padding-top: 40px;
+    padding-bottom: 120px;
+  }
+
+}
+.toc-link-item {
+	list-style-type: none;
+}
+.toc-link {
+	display:block;
+	padding-left: 20px;
+	margin-bottom: 15px;
+	color:$color-gray;
+
+
+  &.-active {
+    color: #000;
 		border-left: 4px solid $color-turquoise;
-	}
+  }
+}
 
+
+
+
+// Static list tabs on mobile
+
+.static-list-item {
+  @media (max-width: 767px) {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-bottom: 1px solid $color-ltgray;
+    margin-bottom: 0;
+  }
+}
+.static-list-item:first-of-type {
+  @media (max-width: 767px) {
+    border-top: 1px solid $color-ltgray;
+  }
+}
+.static-list-heading {
+  @include font-size(48, 18);
+  pointer-events: none;
+  @media (max-width: 767px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    pointer-events: all;
+  }
+  &:after {
+    display: none;
+    @media (max-width: 767px) {
+      content: 'keyboard_arrow_down';
+      font-family: 'Material Icons';
+      display: inline;
+      float: right;
+      padding-top:5px;
+    }
+  }
+}
+.static-list-heading.active {
+  &:after {
+    display: none;
+    @media (max-width: 767px) {
+      content: 'keyboard_arrow_up';
+      font-family: 'Material Icons';
+      display: inline;
+      float: right;
+    }
+  }
+}
+.static-list-contents {
+  @media (max-width: 767px) {
+    display: none;
+    &.active {
+      display:block;
+    }
+  }
 }
 
 .link-list_image {
@@ -70,3 +149,6 @@
 		margin-bottom: 0;
 	}
 }
+
+
+
