@@ -51,11 +51,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header'   => esc_html__( 'Header', 'wmfoundation' ),
-			'footer-1' => esc_html__( 'Footer Under Text', 'wmfoundation' ),
-			'footer-2' => esc_html__( 'Footer Projects', 'wmfoundation' ),
-			'footer-3' => esc_html__( 'Footer Movement Affiliates', 'wmfoundation' ),
-			'footer-4' => esc_html__( 'Footer Legal', 'wmfoundation' ),
+			'header'            => esc_html__( 'Header', 'wmfoundation' ),
+			'footer-under-text' => esc_html__( 'Footer Under Text', 'wmfoundation' ),
+			'footer-projects'   => esc_html__( 'Footer Projects', 'wmfoundation' ),
+			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'wmfoundation' ),
+			'footer-legal'      => esc_html__( 'Footer Legal', 'wmfoundation' ),
 		)
 	);
 
