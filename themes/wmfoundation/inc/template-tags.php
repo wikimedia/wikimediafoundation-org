@@ -103,7 +103,7 @@ add_action( 'save_post', 'wmf_category_transient_flusher' );
  */
 function wmf_show_icon( $name ) {
 ?>
-	<svg class="icon icon-<?php echo esc_attr( $name ); ?>">
+	<svg class="i icon icon-<?php echo esc_attr( $name ); ?>">
 		<use xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/dist/icons.svg#' . $name ); ?>"></use>
 	</svg>
 <?php

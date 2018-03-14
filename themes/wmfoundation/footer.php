@@ -78,19 +78,19 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 						<?php if ( ! empty( $wmf_twitter_url ) ) : ?>
 						<a href="<?php echo esc_url( $wmf_twitter_url ); ?>" class="teal" target="__blank">
 							<span class="sr-only"><?php esc_html_e( 'Twitter', 'wmfoundation' ); ?></span>
-							<i class="fa fa-twitter" aria-hidden="true"></i>
+							<?php wmf_show_icon( 'social-twitter' ); ?>
 						</a>
 						<?php endif ?>
 						<?php if ( ! empty( $wmf_facebook_url ) ) : ?>
 						<a href="<?php echo esc_url( $wmf_facebook_url ); ?>" class="teal" target="__blank">
 							<span class="sr-only"><?php esc_html_e( 'Facebook', 'wmfoundation' ); ?></span>
-							<i class="fa fa-facebook" aria-hidden="true"></i>
+							<?php wmf_show_icon( 'social-facebook' ); ?>
 						</a>
 						<?php endif ?>
 						<?php if ( ! empty( $wmf_instagram_url ) ) : ?>
 						<a href="<?php echo esc_url( $wmf_instagram_url ); ?>" class="teal" target="__blank">
 							<span class="sr-only"><?php esc_html_e( 'Instagram', 'wmfoundation' ); ?></span>
-							<i class="fa fa-instagram" aria-hidden="true"></i>
+							<?php wmf_show_icon( 'social-instagram' ); ?>
 						</a>
 						<?php endif ?>
 					</span>

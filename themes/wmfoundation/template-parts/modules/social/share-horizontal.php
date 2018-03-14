@@ -25,11 +25,15 @@ $args = wp_parse_args(
 	<span class="h5 bold uppercase color-black"><?php echo esc_html( $share_text ); ?></span>
 	<span class="inline-social-list">
 		<?php if ( in_array( 'twitter', $services, true ) ) : ?>
-			<a href="<?php echo esc_html( wmf_get_share_url( 'twitter', $args ) ); ?>" class="color-blue"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+			<a href="<?php echo esc_html( wmf_get_share_url( 'twitter', $args ) ); ?>" class="color-blue">
+				<?php wmf_show_icon( 'social-twitter' ); ?>
+			</a>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'facebook', $services, true ) ) : ?>
-			<a href="<?php echo esc_html( wmf_get_share_url( 'facebook', $args ) ); ?>" class="color-blue"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			<a href="<?php echo esc_html( wmf_get_share_url( 'facebook', $args ) ); ?>" class="color-blue">
+				<?php wmf_show_icon( 'social-facebook' ); ?>
+			</a>
 		<?php endif; ?>
 	</span>
 </div>
