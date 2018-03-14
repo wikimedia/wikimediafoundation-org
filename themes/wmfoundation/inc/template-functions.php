@@ -310,5 +310,4 @@ function wmf_get_related_posts( $post_id ) {
 function wmf_remove_category_body_class( $classes ) {
 	return str_replace( 'category', '', $classes );
 }
-
 add_filter( 'body_class', 'wmf_remove_category_body_class' );
