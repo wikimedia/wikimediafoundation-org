@@ -18,7 +18,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 ?>
 
 <?php if ( ! empty( $name ) ) : ?>
-<h2><?php echo esc_html( $name ); ?></h2>
+<h2 id="section-<?php echo absint( $term_id ); ?>" class="static-list-heading"><?php echo esc_html( $name ); ?></h2>
 <?php endif; ?>
 
 <?php if ( ! empty( $description ) ) : ?>

@@ -14,16 +14,16 @@ if ( empty( $template_args ) ) {
 }
 ?>
 
-<ul class="resource-list">
+<ul class="toc fixedsticky display-none_small">
 	<?php
 	foreach ( $template_args as $i => $list_section ) :
 		if ( empty( $list_section['title'] ) ) {
 			continue;
 		}
 	?>
-		<li>
-			<a href="#section-<?php echo esc_attr( $i + 1 ); ?>">
-				<span class="bold uppercase color-black">
+		<li class="toc-link-item">
+			<a class="toc-link niceScroll" href="#section-<?php echo esc_attr( $i + 1 ); ?>">
+				<span class="bold uppercase">
 					<?php echo esc_html( $list_section['title'] ); ?>
 				</span>
 			</a>
