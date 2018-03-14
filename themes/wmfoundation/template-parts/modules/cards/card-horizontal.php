@@ -32,10 +32,10 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 	<div class="card-content <?php echo esc_attr( $image_id ? 'w-50p' : '' ); ?>">
 		<div class="module-mu">
 			<?php if ( ! empty( $categories ) ) : ?>
-			<h4 class="category">
+			<h4>
 				<?php
 				foreach ( $categories as $category ) {
-					printf( '<a href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
+					printf( '<a class="category mar-right" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
 				}
 				?>
 			</h4>
