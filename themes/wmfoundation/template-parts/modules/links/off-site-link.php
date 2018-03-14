@@ -20,7 +20,7 @@ if ( ( empty( $template_args['heading'] ) || empty( $template_args['uri'] ) ) &&
 	<h3 class="h3 link-external">
 		<a href="<?php echo esc_url( $template_args['uri'] ); ?>" target="_blank">
 			<?php echo esc_html( $template_args['heading'] ); ?>
-			<i class="material-icons external-link-icon">open_in_new</i>
+			<?php wmf_show_icon( 'open', 'external-link-icon' ); ?>
 		</a>
 	</h3>
 	<?php endif; ?>

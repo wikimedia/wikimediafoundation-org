@@ -66,7 +66,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 				<?php echo esc_html( $name ); ?>
 
 			<?php if ( ! empty( $link ) ) : ?>
-			<i class="material-icons external-link-icon">open_in_new</i>
+			<?php wmf_show_icon( 'open', 'material' ); ?>
 			</a>
 			<?php endif; ?>
 		</h3>

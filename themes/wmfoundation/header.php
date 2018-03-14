@@ -35,7 +35,7 @@ $wmf_translations         = wmf_get_translations();
 			<div class="translation-bar">
 			<div class="translation-bar-inner mw-1360">
 				<div class="translation-icon">
-					<i class="material-icons mar-right">translate</i>
+					<?php wmf_show_icon( 'translate', 'material icon-turquoise' ); ?>
 					<span class="bold"><?php echo esc_html( $wmf_translation_selected ); ?></span>
 				</div>
 
@@ -57,7 +57,7 @@ $wmf_translations         = wmf_get_translations();
 				<div class="arrow-wrap">
 					<span>
 						<span class="elipsis">...</span>
-						<i class="material-icons">trending_flat</i>
+						<?php wmf_show_icon( 'trending', 'icon-turquoise material' ); ?>
 					</span>
 				</div>
 			</div>

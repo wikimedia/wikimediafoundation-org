@@ -101,9 +101,9 @@ add_action( 'save_post', 'wmf_category_transient_flusher' );
  *
  * @param  string $name Name of SVG in sprite.
  */
-function wmf_show_icon( $name ) {
+function wmf_show_icon( $name, $classes = '' ) {
 ?>
-	<svg class="i icon icon-<?php echo esc_attr( $name ); ?>">
+	<svg class="i icon icon-<?php echo esc_attr( $name ); ?> <?php echo esc_attr( $classes ); ?>">
 		<use xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/dist/icons.svg#' . $name ); ?>"></use>
 	</svg>
 <?php
