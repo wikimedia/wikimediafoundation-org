@@ -299,3 +299,16 @@ function wmf_get_related_posts( $post_id ) {
 
 	return $post_list;
 }
+
+/**
+ * Remove the word "category" from body class since it has
+ * intherited styles.
+ *
+ * @param string $classes Class names to filter.
+ * @return string Classes with category taken out.
+ */
+function wmf_remove_category_body_class( $classes ) {
+	return str_replace( 'category', '', $classes );
+}
+
+add_filter( 'body_class', 'wmf_remove_category_body_class' );
