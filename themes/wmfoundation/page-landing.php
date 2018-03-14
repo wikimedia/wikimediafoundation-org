@@ -34,12 +34,11 @@ while ( have_posts() ) {
 		'cta',
 		'facts',
 		'connect',
-		// Todo: add profile module here.
+		'profiles',
 		'listings',
 		'featured-posts',
 		'offsite-links',
 		'support',
-		'profiles',
 	);
 
 	foreach ( $modules as $module ) {

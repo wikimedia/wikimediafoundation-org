@@ -62,10 +62,10 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 				<?php endif; ?>
 				<p>
 					<?php
-					if ( has_nav_menu( 'footer-1' ) ) {
+					if ( has_nav_menu( 'footer-under-text' ) ) {
 						wp_nav_menu(
 							array(
-								'menu'       => 'footer-1',
+								'menu'       => 'footer-under-text',
 								'menu_class' => 'nav-links list-inline',
 								'container'  => '',
 								'items_wrap' => '%3$s',
@@ -102,14 +102,14 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 			<div class="w-68p flex flex-xlarge ">
 				<h2 class="h3 w-25p"><?php echo esc_html( $wmf_projects_menu_label ); ?></h2>
 				<?php
-				if ( has_nav_menu( 'footer-2' ) ) {
+				if ( has_nav_menu( 'footer-projects' ) ) {
 					wp_nav_menu(
 						array(
-							'menu'       => 'footer-2',
-							'menu_class' => 'lists-wrap w-75p flex flex-all',
-							'container'  => '',
-							'items_wrap' => '<div id="%1$s" class="%2$s"><ul class="w-32p">%3$s</ul></div>',
-							'walker'     => new WMF\Walkers\Columns(),
+							'theme_location' => 'footer-projects',
+							'menu_class'     => 'lists-wrap w-75p flex flex-all',
+							'container'      => '',
+							'items_wrap'     => '<div id="%1$s" class="%2$s"><ul class="w-32p">%3$s</ul></div>',
+							'walker'         => new WMF\Walkers\Columns(),
 						)
 					);
 				}
@@ -120,12 +120,12 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 				<h2 class="h3 w-50p"><?php echo esc_html( $wmf_movement_affiliates_menu_label ); ?></h2>
 				<div class="lists-wrap w-50p">
 					<?php
-					if ( has_nav_menu( 'footer-3' ) ) {
+					if ( has_nav_menu( 'footer-affiliates' ) ) {
 						wp_nav_menu(
 							array(
-								'menu'       => 'footer-3',
-								'menu_class' => '',
-								'container'  => '',
+								'theme_location' => 'footer-affiliates',
+								'menu_class'     => '',
+								'container'      => '',
 							)
 						);
 					}
@@ -137,12 +137,12 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 
 	<div class="footer-legal color-gray mw-1360">
 		<?php
-		if ( has_nav_menu( 'footer-4' ) ) {
+		if ( has_nav_menu( 'footer-legal' ) ) {
 			wp_nav_menu(
 				array(
-					'menu'       => 'footer-4',
-					'menu_class' => 'list-inline bold',
-					'container'  => '',
+					'theme_location' => 'footer-legal',
+					'menu_class'     => 'list-inline bold',
+					'container'      => '',
 				)
 			);
 		}
@@ -162,6 +162,7 @@ if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
 	</div><!-- End .footer-legal -->
 
 </footer>
+<div class="search-overlay"></div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

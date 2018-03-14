@@ -59,7 +59,7 @@ while ( have_posts() ) {
 $modules = array(
 	'profile',
 	'offsite-links',
-	'page-cta',
+	'cta',
 	'related-posts',
 	'support',
 	'connect',

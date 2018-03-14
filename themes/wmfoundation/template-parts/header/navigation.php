@@ -24,9 +24,9 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 	if ( has_nav_menu( 'header' ) ) {
 		wp_nav_menu(
 			array(
-				'menu'       => 'header',
-				'menu_class' => 'nav-links list-inline',
-				'container'  => '',
+				'theme_location' => 'header',
+				'menu_class'     => 'nav-links list-inline',
+				'container'      => '',
 			)
 		);
 	}
