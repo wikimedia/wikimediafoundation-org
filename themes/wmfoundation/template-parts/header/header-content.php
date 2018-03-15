@@ -20,6 +20,12 @@ $allowed_tags['time'] = true;
 
 <div class="header-content">
 
+	<?php if ( is_front_page() ) : ?>
+	<div class="logo-nav-container">
+		<?php get_template_part( 'template-parts/header/logo-home' ); ?>
+	</div>
+	<?php endif; ?>
+
 	<?php if ( ! empty( $h4_title ) ) : ?>
 	<h2 class="h4 uppercase eyebrow">
 		<?php if ( ! empty( $h4_link ) ) : ?>

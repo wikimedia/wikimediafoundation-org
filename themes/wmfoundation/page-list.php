@@ -28,7 +28,7 @@ while ( have_posts() ) :
 	}
 ?>
 <div class="mw-1360 mod-margin-bottom flex flex-medium">
-	<div class="module-mu w-68p">
+	<div class="w-68p">
 		<?php if ( get_the_content() ) : ?>
 		<div class="mod-margin-bottom wysiwyg h3 color-gray">
 			<?php the_content(); ?>

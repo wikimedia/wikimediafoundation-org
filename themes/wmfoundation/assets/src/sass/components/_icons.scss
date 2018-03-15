@@ -85,6 +85,12 @@ a.teal {
 	}
 }
 
+.subnav-container {
+	.icon-search {
+		fill: $color-blue;
+	}
+}
+
 .search-open .search-bar-container .icon-search {
 	display: block;
 }
@@ -146,4 +152,16 @@ a.teal {
 .translation-bar .arrow-wrap:hover .icon-trending {
 	transform: translateX(0.25rem);
 	fill: white;
+}
+
+.icon-logo-horizontal {
+	width: 279px;
+	height: 62px;
+	margin: 0;
+}
+
+.icon-logo-stacked {
+	width: 179px;
+	height: 131px;
+	margin: 0;
 }

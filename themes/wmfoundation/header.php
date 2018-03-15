@@ -28,7 +28,7 @@ $wmf_translations         = wmf_get_translations();
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wmfoundation' ); ?></a>
 
-	<header class="header-default <?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
+	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
 
 		<?php get_template_part( 'template-parts/header/background' ); ?>
 		<?php if ( false !== $wmf_translations ) : ?>
@@ -65,16 +65,14 @@ $wmf_translations         = wmf_get_translations();
 		<?php endif; ?>
 
 		<div class="header-inner mw-1360">
+			<?php if ( ! is_front_page() ) : ?>
 			<div class="logo-nav-container">
 				<?php get_template_part( 'template-parts/header/logo' ); ?>
 				<div class="nav-container">
-					<?php
-					if ( ! is_front_page() ) {
-						get_template_part( 'template-parts/header/navigation' );
-					}
-					?>
+					<?php get_template_part( 'template-parts/header/navigation' ); ?>
 				</div>
 			</div>
+			<?php endif; ?>
 
 <?php
 // Automatically add credits to all content that is not an archive or search.

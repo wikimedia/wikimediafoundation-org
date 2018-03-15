@@ -14,7 +14,6 @@ function wmf_intro_fields() {
 			'name' => 'page_intro',
 		)
 	);
-	$intro->add_meta_box( __( 'Page Intro', 'wmfoundation' ), array( 'page', 'post' ) );
+	$intro->add_meta_box( __( 'Page Intro', 'wmfoundation' ), array( 'post' ) );
 }
 add_action( 'fm_post_post', 'wmf_intro_fields', 5 );
-add_action( 'fm_post_page', 'wmf_intro_fields', 5 );
