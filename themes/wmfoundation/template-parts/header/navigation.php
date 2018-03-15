@@ -18,7 +18,7 @@ $wmf_menu_button   = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfound
 
 <nav class="main-nav">
 
-	<button class="mobile-nav-toggle bold"><i class="material-icons">menu</i><?php echo esc_html( $wmf_menu_button ); ?></button>
+	<button class="mobile-nav-toggle bold"><?php wmf_show_icon( 'menu', 'icon-white material' ); ?><?php echo esc_html( $wmf_menu_button ); ?></button>
 
 	<?php
 	if ( has_nav_menu( 'header' ) ) {

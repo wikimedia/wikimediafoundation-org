@@ -11,53 +11,139 @@
   - Baseline
   =================== */
 .icon {
-	width: 1rem;
-	height: 1rem;
-	fill: index($theme-colors, primary);
+	width: 2rem;
+	height: 2rem;
+	margin: 0 .25rem;
+}
+
+.twitter-container {
+	margin-left: 5px !important;
 }
 
 
-/* ==================
-- Style Variants
-=================== */
-.icon--twitter {
-	fill: #4696cf;
-}
-
-.icon--youtube {
-	fill: #e6272a;
-}
-
-.icon---facebook {
-	fill: #3c5a99;
-}
-
-.icon--pinterest {
-	fill: #d31e2a;
-}
-
-.rotate-90 .icon {
-	transform: rotate(90deg);
-}
-
-.rotate-180 .icon {
-	transform: rotate(180deg);
-}
-
-.rotate-270 .icon {
-	transform: rotate(270deg);
-}
-
-/* ==================
-- Size Variants
-=================== */
-/**
- * Creates .container-X containers with different max widths for smaller containers.
- */
- @each $i, $s in $icon_sizes {
-	.icon-#{$i},
-	.icon-#{$i} .icon {
-		width: $s;
-		height: $s;
+a.teal {
+	.icon {
+		fill: $color-turquoise;
+		vertical-align: middle;
 	}
+}
+
+.search-toggle {
+	.icon {
+		fill: $color-light-turquoise;
+	}
+}
+
+.color-blue{
+	.icon {
+		fill: $color-blue;
+	}
+}
+
+.color-blue	a:hover .icon { fill: $color-dk-purple; }
+
+.material {
+	width: 24px;
+	height: 24px;
+}
+
+.icon-white {
+	fill: #fff;
+	vertical-align: sub;
+}
+
+.icon-turquoise {
+	fill: $color-turquoise;
+}
+
+.eyebrow {
+	.icon {
+		width: 24px;
+		height: 24px;
+		vertical-align: sub;
+	}
+}
+
+.social-share {
+	.icon {
+		vertical-align: bottom;
+	}
+}
+
+.search-bar-container {
+	.icon-search {
+		position: absolute;
+        top: 10px;
+        left: 10px;
+        fill: $color-light-turquoise;
+        display: none;
+		z-index: 9;
+
+        @media (min-width: $header-bp) {
+          top: 8px;
+        }
+	}
+}
+
+.search-open .search-bar-container .icon-search {
+	display: block;
+}
+
+.list-download {
+	.icon {
+		transition: 0.3s all;
+	}
+
+	a:hover .icon {
+		fill: $color-blue;
+		transform: scale(1.17);
+	}
+}
+
+.email-signup {
+	.icon-mail {
+		width: 1.75rem;
+		height: 1.75rem;
+		position: absolute;
+		top: .8rem;
+		left: .9rem;
+		fill: $color-gray;
+	}
+}
+
+.photo-credits {
+	.icon-image {
+		fill: $color-gray;
+		vertical-align: bottom;
+	}
+
+	.credit-desc:hover .icon-image {
+		fill: $color-blue;
+	}
+}
+
+.module-mu {
+	.external-link-icon {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
+.elsewhere-wikimedia .link-external a:hover {
+	.icon {
+		fill: $color-blue;
+	}
+}
+
+.icon-translate {
+	margin-right: 1rem;
+}
+
+.icon-trending {
+	transition: 0.3s all;
+}
+
+.translation-bar .arrow-wrap:hover .icon-trending {
+	transform: translateX(0.25rem);
+	fill: white;
 }

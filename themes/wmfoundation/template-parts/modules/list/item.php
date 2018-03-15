@@ -28,7 +28,7 @@ $link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 		<?php echo esc_html( $title ); ?>
 
 		<?php if ( ! empty( $link ) ) : ?>
-		<i class="material-icons external-link-icon">open_in_new</i>
+		<?php wmf_show_icon( 'open', 'external-link-icon' ); ?>
 		</a>
 		<?php endif; ?>
 	</h3>

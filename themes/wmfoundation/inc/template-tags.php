@@ -99,11 +99,12 @@ add_action( 'save_post', 'wmf_category_transient_flusher' );
 /**
  * Display SVG Icon based on title
  *
- * @param  string $name Name of SVG in sprite.
+ * @param  string $name    Name of SVG in sprite.
+ * @param  string $classes Classes to add to icon.
  */
-function wmf_show_icon( $name ) {
+function wmf_show_icon( $name, $classes = '' ) {
 ?>
-	<svg class="icon icon-<?php echo esc_attr( $name ); ?>">
+	<svg class="i icon icon-<?php echo esc_attr( $name ); ?> <?php echo esc_attr( $classes ); ?>">
 		<use xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/dist/icons.svg#' . $name ); ?>"></use>
 	</svg>
 <?php

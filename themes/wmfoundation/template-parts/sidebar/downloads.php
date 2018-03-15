@@ -31,7 +31,7 @@ if ( empty( $downloads ) ) {
 	?>
 	<li>
 	<a href="<?php echo esc_url( $download_file ); ?>" download>
-		<i class="material-icons">file_download</i>
+		<?php wmf_show_icon( 'download', 'material' ); ?>
 		<span class="download-content">
 			<?php echo esc_html( $title ); ?>
 		</span>
