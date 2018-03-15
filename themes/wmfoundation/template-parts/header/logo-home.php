@@ -5,7 +5,7 @@
  * @package wmfoundation
  */
 
-$wmf_header_image        = get_header_image();
+$wmf_header_image = get_header_image();
 
 ?>
 

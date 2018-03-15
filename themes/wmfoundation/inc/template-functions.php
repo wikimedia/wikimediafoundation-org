@@ -38,7 +38,6 @@ function wmf_get_header_container_class() {
 		$class = 'header-default';
 	}
 
-
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
 		$post_type = get_post_type();
 
