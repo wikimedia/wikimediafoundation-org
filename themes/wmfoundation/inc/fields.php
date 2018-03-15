@@ -159,18 +159,18 @@ function wmf_get_profiles_options() {
 }
 
 require get_template_directory() . '/inc/fields/header.php';
-require get_template_directory() . '/inc/fields/common.php';
 require get_template_directory() . '/inc/fields/intro.php';
+require get_template_directory() . '/inc/fields/common.php';
 require get_template_directory() . '/inc/fields/home.php';
 require get_template_directory() . '/inc/fields/default.php';
 require get_template_directory() . '/inc/fields/list.php';
 require get_template_directory() . '/inc/fields/landing.php';
-require get_template_directory() . '/inc/fields/page-cta.php';
-require get_template_directory() . '/inc/fields/post.php';
-require get_template_directory() . '/inc/fields/profile.php';
-require get_template_directory() . '/inc/fields/connect.php';
-require get_template_directory() . '/inc/fields/listing.php';
 require get_template_directory() . '/inc/fields/links.php';
-require get_template_directory() . '/inc/fields/support.php';
+require get_template_directory() . '/inc/fields/post.php';
 require get_template_directory() . '/inc/fields/profiles.php';
 require get_template_directory() . '/inc/fields/related-pages.php';
+require get_template_directory() . '/inc/fields/listing.php';
+require get_template_directory() . '/inc/fields/profile.php';
+require get_template_directory() . '/inc/fields/page-cta.php';
+require get_template_directory() . '/inc/fields/support.php';
+require get_template_directory() . '/inc/fields/connect.php';
