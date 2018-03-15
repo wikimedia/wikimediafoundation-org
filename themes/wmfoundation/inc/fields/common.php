@@ -9,13 +9,6 @@
  * Add landing page options.
  */
 function wmf_intro_field() {
-	$intro = new Fieldmanager_TextArea(
-		array(
-			'name' => 'page_intro',
-		)
-	);
-	$intro->add_meta_box( __( 'Page Intro', 'wmfoundation' ), array( 'post', 'page' ) );
-
 	$social = new Fieldmanager_Checkboxes(
 		array(
 			'name'          => 'share_links',
