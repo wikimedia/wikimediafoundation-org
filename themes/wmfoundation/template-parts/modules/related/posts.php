@@ -11,8 +11,9 @@ if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 	return;
 }
 
-$title       = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
-$description = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
+$title            = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
+$translated_title = ! empty( $template_data['rand_translation_title'] ) ? $template_data['rand_translation_title'] : '';
+$description      = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 
 ?>
 
@@ -21,6 +22,9 @@ $description = ! empty( $template_data['description'] ) ? $template_data['descri
 		<?php if ( ! empty( $title ) ) : ?>
 		<h3 class="h3 color-gray">
 			<?php echo esc_html( $title ); ?>
+			<?php if ( ! empty( $translated_title ) ) : ?>
+				— <span><?php echo esc_html( $translated_title ); ?></span>
+			<?php endif; ?>
 		</h3>
 		<?php endif; ?>
 
