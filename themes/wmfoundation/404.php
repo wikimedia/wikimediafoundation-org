@@ -10,7 +10,7 @@
 get_header();
 
 $template_args = array(
-	'h2_title'  => get_theme_mod( 'wmf_404_message', __( '404 Error', 'wmfoundation' ) ),
+	'h2_title' => get_theme_mod( 'wmf_404_message', __( '404 Error', 'wmfoundation' ) ),
 	'h1_title' => get_theme_mod( 'wmf_404_title', __( 'Imagine a world in which there is a page here', 'wmfoundation' ) ),
 );
 

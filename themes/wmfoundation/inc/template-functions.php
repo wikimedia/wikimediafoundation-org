@@ -57,7 +57,7 @@ function wmf_get_header_container_class() {
 					break;
 			}
 		}
-	} else if ( is_404() ) {
+	} elseif ( is_404() ) {
 		$class .= ' featured-photo--content-left';
 	} else {
 		$class .= ' minimal--short';
@@ -318,7 +318,11 @@ function wmf_remove_category_body_class( $classes ) {
 }
 add_filter( 'body_class', 'wmf_remove_category_body_class' );
 
-
+/**
+ * Get the background image in header.
+ *
+ * @return int ID of attachment.
+ */
 function wmf_get_background_image() {
 	if ( is_404() ) {
 		return array(

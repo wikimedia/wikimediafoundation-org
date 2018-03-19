@@ -180,9 +180,11 @@ class General extends Base {
 		);
 
 		$control_id = 'wmf_404_message';
-		$this->customize->add_setting( $control_id, array(
-			'default' =>  __( '404 Error', 'wmfoundation' ),
-		) );
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( '404 Error', 'wmfoundation' ),
+			)
+		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Header message', 'wmfoundation' ),
@@ -192,9 +194,11 @@ class General extends Base {
 		);
 
 		$control_id = 'wmf_404_title';
-		$this->customize->add_setting( $control_id, array(
-			'default' =>  __( 'Imagine a world in which there is a page here', 'wmfoundation' ),
-		) );
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Imagine a world in which there is a page here', 'wmfoundation' ),
+			)
+		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Header title', 'wmfoundation' ),
@@ -217,9 +221,11 @@ class General extends Base {
 		);
 
 		$control_id = 'wmf_404_search_text';
-		$this->customize->add_setting( $control_id, array(
-			'default' =>  __( 'Or try a search instead', 'wmfoundation' ),
-		) );
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Or try a search instead', 'wmfoundation' ),
+			)
+		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Text above search bar', 'wmfoundation' ),
