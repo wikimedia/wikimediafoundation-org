@@ -156,6 +156,83 @@ class General extends Base {
 				'type'    => 'text',
 			)
 		);
+
+		// 404 Page.
+		$section_id = 'wmf_404_page';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( '404 Page', 'wmfoundation' ),
+				'priority' => 70,
+				'panel'    => $panel_id,
+			)
+		);
+
+		$control_id = 'wmf_404_image';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			new \WP_Customize_Media_Control(
+				$this->customize, $control_id, array(
+					'label'       => __( 'Background Image', 'wmfoundation' ),
+					'description' => __( 'Displayed in header.', 'wmfoundation' ),
+					'section'     => $section_id,
+				)
+			)
+		);
+
+		$control_id = 'wmf_404_message';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( '404 Error', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Header message', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_404_title';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Imagine a world in which there is a page here', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Header title', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_404_copy';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			new Rich_Text_Control(
+				$this->customize,
+				$control_id,
+				array(
+					'label'   => __( 'Content', 'wmfoundation' ),
+					'section' => $section_id,
+				)
+			)
+		);
+
+		$control_id = 'wmf_404_search_text';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Or try a search instead', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Text above search bar', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
 	}
 
 }
