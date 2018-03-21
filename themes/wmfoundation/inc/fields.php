@@ -152,13 +152,13 @@ function wmf_get_profiles_options() {
 	if ( empty( $profiles ) ) {
 		$profiles = array();
 
-		$args     = array(
+		$args  = array(
 			'post_type'      => 'profile',
 			'post_status'    => 'publish',
 			'no_found_rows'  => true,
 			'posts_per_page' => 100,
 		);
-		$pages    = new WP_Query( $args );
+		$pages = new WP_Query( $args );
 
 		if ( $pages->have_posts() ) {
 			while ( $pages->have_posts() ) {
@@ -170,6 +170,7 @@ function wmf_get_profiles_options() {
 
 		wp_cache_add( 'wmf_profiles_opts', $profiles );
 	}
+
 	return $profiles;
 }
 
@@ -195,7 +196,7 @@ function wmf_get_posts_options() {
 		if ( $pages->have_posts() ) {
 			while ( $pages->have_posts() ) {
 				$pages->the_post();
-				$posts[ get_the_ID() ]    = get_the_title();
+				$posts[ get_the_ID() ] = get_the_title();
 			}
 		}
 		wp_reset_postdata();
