@@ -11,9 +11,6 @@
 
 use WMF\Images\Credits;
 
-$wmf_donate_button        = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate Now', 'wmfoundation' ) );
-$wmf_donate_uri           = get_theme_mod( 'wmf_donate_now_uri', '#' );
-$wmf_menu_button          = get_theme_mod( 'wmf_menu_button_copy', __( 'MENU', 'wmfoundation' ) );
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Selected', 'wmfoundation' ) );
 $wmf_translations         = wmf_get_translations();
 
@@ -31,14 +28,14 @@ $wmf_translations         = wmf_get_translations();
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wmfoundation' ); ?></a>
 
-	<header class="header-default <?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
+	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
 
 		<?php get_template_part( 'template-parts/header/background' ); ?>
 		<?php if ( false !== $wmf_translations ) : ?>
 			<div class="translation-bar">
 			<div class="translation-bar-inner mw-1360">
 				<div class="translation-icon">
-					<i class="material-icons mar-right">translate</i>
+					<?php wmf_show_icon( 'translate', 'material icon-turquoise' ); ?>
 					<span class="bold"><?php echo esc_html( $wmf_translation_selected ); ?></span>
 				</div>
 
@@ -60,7 +57,7 @@ $wmf_translations         = wmf_get_translations();
 				<div class="arrow-wrap">
 					<span>
 						<span class="elipsis">...</span>
-						<i class="material-icons">trending_flat</i>
+						<?php wmf_show_icon( 'trending', 'icon-turquoise material' ); ?>
 					</span>
 				</div>
 			</div>
@@ -68,11 +65,14 @@ $wmf_translations         = wmf_get_translations();
 		<?php endif; ?>
 
 		<div class="header-inner mw-1360">
-			<?php
-			if ( ! is_front_page() ) {
-				get_template_part( 'template-parts/header/navigation' );
-			}
-			?>
+			<?php if ( ! is_front_page() ) : ?>
+			<div class="logo-nav-container">
+				<?php get_template_part( 'template-parts/header/logo' ); ?>
+				<div class="nav-container">
+					<?php get_template_part( 'template-parts/header/navigation' ); ?>
+				</div>
+			</div>
+			<?php endif; ?>
 
 <?php
 // Automatically add credits to all content that is not an archive or search.

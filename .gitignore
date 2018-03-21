@@ -7,6 +7,7 @@ plugins/user-switching
 node_modules
 *.sass-cache*
 vendor
+!plugins/safe-svg/lib/vendor
 
 # Uploads directory
 uploads
@@ -17,3 +18,17 @@ mu-plugins
 # drop-ins; these are managed at the platform-level
 object-cache.php
 db.php
+/languages/admin-de_DE.mo
+/languages/admin-de_DE.po
+/languages/admin-en_GB.mo
+/languages/admin-en_GB.po
+/languages/admin-network-de_DE.mo
+/languages/admin-network-de_DE.po
+/languages/admin-network-en_GB.mo
+/languages/admin-network-en_GB.po
+/languages/continents-cities-de_DE.mo
+/languages/continents-cities-de_DE.po
+/languages/de_DE.mo
+/languages/de_DE.po
+/languages/en_GB.mo
+/languages/en_GB.po

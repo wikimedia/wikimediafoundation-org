@@ -60,7 +60,7 @@ p {
 
 ul li {
 	@include font-size(20, 16);
-	list-style-type: disc;
+	// list-style-type: disc;
 	margin-left: 2rem;
 
 	margin-bottom: 2rem;
@@ -183,6 +183,23 @@ article {
 	p {
 		margin-bottom: 2rem;
 	}
+}
+
+.page-intro-text {
+	color: $color-gray;
+}
+
+.page-intro-text,
+.page-intro-text p,
+.page-intro-text a,
+.page-intro-text li {
+	@include font-size(24, 21);
+	@include line-height(50, 32);
+
+}
+
+.page-intro-inline-link {
+	@include linkHighlight($color-turquoise, #000, 4, 4, 24, 30, $medium-bp);
 }
 
 

@@ -151,3 +151,8 @@ a.color-blue {
 .rise-up {
 	z-index: 1000;
 }
+.rise-to-top_small {
+	@media (max-width: 767px) {
+		order: -1;
+	}
+}

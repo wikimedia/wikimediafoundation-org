@@ -13,11 +13,21 @@ function wmf_page_cta_fields() {
 		array(
 			'name'     => 'page_cta',
 			'children' => array(
-				'image'     => new Fieldmanager_Media( __( 'Image', 'wmfoundation' ) ),
-				'heading'   => new Fieldmanager_Textfield( __( 'Section Heading', 'wmfoundation' ) ),
-				'content'   => new Fieldmanager_RichTextArea( __( 'Content', 'wmfoundation' ) ),
-				'link_uri'  => new Fieldmanager_Link( __( 'Share URI', 'wmfoundation' ) ),
-				'link_text' => new Fieldmanager_Textfield( __( 'Message', 'wmfoundation' ) ),
+				'image'            => new Fieldmanager_Media( __( 'Image', 'wmfoundation' ) ),
+				'heading'          => new Fieldmanager_Textfield( __( 'Section Heading', 'wmfoundation' ) ),
+				'content'          => new Fieldmanager_RichTextArea( __( 'Content', 'wmfoundation' ) ),
+				'link_uri'         => new Fieldmanager_Link( __( 'Share URI', 'wmfoundation' ) ),
+				'link_text'        => new Fieldmanager_Textfield( __( 'Message', 'wmfoundation' ) ),
+				'background_color' => new Fieldmanager_Radios(
+					array(
+						'label'         => __( 'Color', 'wmfoundation' ),
+						'default_value' => 'blue',
+						'options'       => array(
+							'blue'  => __( 'Blue', 'wmfoundation' ),
+							'green' => __( 'Green', 'wmfoundation' ),
+						),
+					)
+				),
 			),
 		)
 	);

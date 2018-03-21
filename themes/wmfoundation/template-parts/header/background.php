@@ -5,17 +5,11 @@
  * @package wmfoundation
  */
 
-if ( ! is_page() && ! is_home() ) {
+if ( ! is_page() && ! is_404() && ! is_home() ) {
 	return;
 }
 
-if ( is_home() ) {
-	$post_id = get_option( 'page_for_posts' );
-} else {
-	$post_id = get_the_ID();
-}
-
-$bg_opts = get_post_meta( $post_id, 'page_header_background', true );
+$bg_opts = wmf_get_background_image();
 
 if ( empty( $bg_opts['image'] ) ) {
 	return;

@@ -11,6 +11,7 @@
 
 
 <article class="mw-900 mod-margin-bottom">
+	<?php get_sidebar(); ?>
 	<div class="article-main wysiwyg">
 		<?php the_content(); ?>
 	</div>

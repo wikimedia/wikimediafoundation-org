@@ -51,11 +51,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header'   => esc_html__( 'Header', 'wmfoundation' ),
-			'footer-1' => esc_html__( 'Footer Under Text', 'wmfoundation' ),
-			'footer-2' => esc_html__( 'Footer Projects', 'wmfoundation' ),
-			'footer-3' => esc_html__( 'Footer Movement Affiliates', 'wmfoundation' ),
-			'footer-4' => esc_html__( 'Footer Legal', 'wmfoundation' ),
+			'header'            => esc_html__( 'Header', 'wmfoundation' ),
+			'footer-under-text' => esc_html__( 'Footer Under Text', 'wmfoundation' ),
+			'footer-projects'   => esc_html__( 'Footer Projects', 'wmfoundation' ),
+			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'wmfoundation' ),
+			'footer-legal'      => esc_html__( 'Footer Legal', 'wmfoundation' ),
 		)
 	);
 
@@ -92,6 +92,7 @@ function wmf_setup() {
 	add_image_size( 'image_4x5_large', '800', '1000', true );
 	add_image_size( 'image_16x9_large', '1200', '675', true );
 	add_image_size( 'image_16x9_small', '600', '338', true );
+	add_image_size( 'image_square_medium', '250', '250', true );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -119,11 +120,12 @@ add_action( 'widgets_init', 'wmf_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wmf_scripts() {
-	wp_enqueue_style( 'wmfoundation-gfonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Material+Icons' );
+	wp_enqueue_style( 'wmfoundation-gfonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i' );
 	wp_enqueue_style( 'wmfoundation-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'wmfoundation-flickity', get_stylesheet_directory_uri() . '/assets/dist/flickity-min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'wmfoundation-flickity' ), '0.0.1', true );
+	wp_enqueue_script( 'wmfoundation-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'wmfoundation-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'wmfoundation-flickity', 'wmfoundation-stickyfill' ), '0.0.1', true );
 
 	wp_localize_script(
 		'wmfoundation-script', 'wmfoundation', array(
@@ -157,7 +159,20 @@ add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
  * Enqueue admin scripts and styles.
  */
 function wmf_admin_scripts() {
-	wp_enqueue_style( 'wmfoundation-editor', get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css' );
+	wp_enqueue_style(
+		'wmfoundation-editor',
+		get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css',
+		array(),
+		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/dist/admin/admin.css' )
+	);
+
+	wp_enqueue_script(
+		'wmfoundation-editor-js',
+		get_stylesheet_directory_uri() . '/assets/src/admin/post-meta.js',
+		array( 'jquery' ),
+		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/post-meta.js' ),
+		true
+	);
 }
 add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
 

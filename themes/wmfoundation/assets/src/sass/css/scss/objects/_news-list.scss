@@ -3,19 +3,39 @@
   border-bottom: 1px solid $color-ltgray;
   margin-bottom: 4.5rem;
 
-  .news-category-inner {
-
-  }
 
   ul {
     text-align: center;
+
+    &.slider-on-mobile {
+
+      @media (max-width: 767px) {
+        overflow: hidden;
+
+        &:focus {
+          outline: none;
+        }
+
+        // Enable flickity slider
+        &:after {
+          content: 'flickity';
+          display: none;
+        }
+
+        .card {
+          max-width: 85%;
+          margin-right: 1rem;
+        }
+
+
+      }
+    }
   }
 
   li {
     display: inline-block;
     position: relative;
     margin-bottom: 0;
-
     padding: calc(2.5rem - 4px) 0 2.5rem 0;
     border-bottom: 4px solid #fff;
     transition: 0.3s all;
@@ -31,13 +51,13 @@
     &:not(:last-child) {
       margin-right: 2rem;
 
-      &:after {
-        content: "\2014";
-        position: absolute;
-        right: -28px;
-        opacity: .5;
-        font-weight: 300;
-      }
+      // &:after {
+      //   content: "\2014";
+      //   position: absolute;
+      //   right: -28px;
+      //   opacity: .5;
+      //   font-weight: 300;
+      // }
     }
   }
 

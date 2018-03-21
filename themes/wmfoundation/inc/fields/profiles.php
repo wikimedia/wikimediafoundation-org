@@ -9,7 +9,9 @@
  * Add landing page options.
  */
 function wmf_profiles_module() {
-	if ( 'fm_post_page' === current_filter() && ! wmf_using_template( 'page-landing' ) ) {
+	$is_front_page = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
+
+	if ( 'fm_post_page' === current_filter() && ( ! wmf_using_template( 'page-landing' ) && ! $is_front_page ) ) {
 		return;
 	}
 
@@ -22,7 +24,7 @@ function wmf_profiles_module() {
 		),
 	);
 
-	if ( 'fm_post_page' === current_filter() ) {
+	if ( 'fm_post_page' === current_filter() || $is_front_page ) {
 		$custom_fields['children']['profiles_list'] = new Fieldmanager_Checkboxes(
 			array(
 				'label'       => __( 'List of Profiles to pull from', 'wmfoundation' ),

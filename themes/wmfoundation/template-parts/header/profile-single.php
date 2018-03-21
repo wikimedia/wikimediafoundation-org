@@ -19,7 +19,7 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 	<div class="header-content">
 		<h2 class="h4 uppercase eyebrow">
 			<a href="<?php echo esc_url( $back_to_link ); ?>">
-				<i class="material-icons" style="vertical-align: sub;">arrow_back</i>
+				<?php wmf_show_icon( 'arrow-back', 'icon-white material' ); ?>
 				<?php echo esc_html( $staff_name ); ?>
 			</a>
 		</h2>

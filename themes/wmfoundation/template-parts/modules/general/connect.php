@@ -59,7 +59,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 				<div class="email-signup">
 					<label for="wmf-subscribe-input-email" class="sr-only"><?php echo esc_html( $template_args['subscribe_placeholder'] ); ?></label>
 					<input id="wmf-subscribe-input-email" type="text" placeholder="<?php echo esc_attr( $template_args['subscribe_placeholder'] ); ?>">
-					<i class="material-icons">mail_outline</i>
+					<?php wmf_show_icon( 'mail' ); ?>
 					<button class="btn btn-pink" type="button" name="button"><?php echo esc_html( $template_args['subscribe_button'] ); ?></button>
 				</div>
 			</div><!-- End .multi-use -->

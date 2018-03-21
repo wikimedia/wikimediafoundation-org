@@ -32,30 +32,35 @@ add_filter( 'body_class', 'wmf_body_classes' );
  * @return string Container classes to add.
  */
 function wmf_get_header_container_class() {
-	$class = '';
+	if ( is_front_page() ) {
+		$class = 'header-home';
+	} else {
+		$class = 'header-default';
+	}
 
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
 		$post_type = get_post_type();
 
-		if ( in_array( $post_type, array( 'profile' ), true ) ) {
-			$class = ' minimal--short';
+		if ( in_array( $post_type, array( 'profile', 'post' ), true ) ) {
+			$class .= ' minimal--short';
 		} else {
 			$template = basename( get_page_template() );
 
 			switch ( $template ) {
 				case 'page-landing.php':
-					$class = ' featured-photo--content-left';
+				case is_front_page():
+					$class .= ' featured-photo--content-left';
 					break;
 
 				default:
-					$class = ' featured-photo--content-centered';
+					$class .= ' featured-photo--content-centered';
 					break;
 			}
 		}
-	} elseif ( is_home() ) {
+	} elseif ( is_home() || is_404() ) {
 		$class = ' featured-photo--content-left';
 	} else {
-		$class = ' minimal--short';
+		$class .= ' minimal--short';
 	}
 
 	if ( is_page() ) {
@@ -244,4 +249,88 @@ function wmf_get_related_profiles( $profile_id ) {
 	}
 
 	return $profile_list;
+}
+
+/**
+ * Get a list of related posts by tags.
+ *
+ * @param int $post_id Post ID to check against.
+ * @return array List of post objects.
+ */
+function wmf_get_related_posts( $post_id ) {
+	$post_list = array();
+
+	if ( empty( $post_id ) ) {
+		return $post_list;
+	}
+
+	$post_id = absint( $post_id );
+
+	$terms    = get_the_terms( $post_id, 'post_tag' );
+	$term_ids = ! empty( $terms ) ? wp_list_pluck( $terms, 'term_id' ) : false;
+
+	if ( empty( $term_ids ) ) {
+		return $post_list;
+	}
+
+	$cache_key = md5( sprintf( 'wmf_posts_for_post_%s', $post_id ) );
+
+	$post_list = wp_cache_get( $cache_key );
+
+	if ( empty( $post_list ) ) {
+		$posts_query = new WP_Query(
+			array(
+				'posts_per_page' => 4,
+				'no_found_rows'  => true,
+				'post_type'      => 'post',
+				'ignore_sticky'  => true,
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'post_tag',
+						'terms'    => $term_ids,
+					),
+				),
+			)
+		); // WPCS: Slow query ok.
+
+		$post_list = $posts_query->posts;
+		foreach ( $post_list as $i => $post ) {
+			if ( $post->ID === $post_id ) {
+				unset( $post_list[ $i ] );
+			}
+		}
+		$post_list = array_splice( $post_list, 0, 3 );
+		wp_cache_add( $cache_key, $post_list );
+	}
+
+	return $post_list;
+}
+
+/**
+ * Remove the word "category" from body class since it has
+ * intherited styles.
+ *
+ * @param string $classes Class names to filter.
+ * @return string Classes with category taken out.
+ */
+function wmf_remove_category_body_class( $classes ) {
+	return str_replace( 'category', '', $classes );
+}
+add_filter( 'body_class', 'wmf_remove_category_body_class' );
+
+/**
+ * Get the background image in header.
+ *
+ * @return int ID of attachment.
+ */
+function wmf_get_background_image() {
+	if ( is_404() ) {
+		return array(
+			'image' => get_theme_mod( 'wmf_404_image' ),
+		);
+	}
+
+	$post_id = is_home() ? get_option( 'page_for_posts' ) : get_the_ID();
+
+	return get_post_meta( $post_id, 'page_header_background', true );
 }
