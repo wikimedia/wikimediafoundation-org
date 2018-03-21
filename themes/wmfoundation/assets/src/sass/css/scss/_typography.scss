@@ -12,6 +12,11 @@ h2,
 	margin-bottom: 3.5rem;
 	@include marginBottom(40, 56, $medium-bp);
 	@include font-size(48, 27);
+
+	&.small {
+		@include font-size(42, 36);
+		@include marginBottom(40, 56, $medium-bp);
+	}
 }
 
 h3,

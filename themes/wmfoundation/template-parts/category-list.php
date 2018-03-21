@@ -20,7 +20,7 @@ if ( ! empty( $featured_categories ) ) :
 ?>
 <div class="news-categories" id="<?php echo esc_attr( $cat_anchor ); ?>">
 	<div class="news-category-inner mw-1360">
-		<ul class="link-list color-gray uppercase bold">
+		<ul class="link-list color-gray uppercase bold slider-on-mobile">
 			<?php
 			foreach ( $featured_categories as $category ) :
 				$term  = get_term( absint( $category ) );

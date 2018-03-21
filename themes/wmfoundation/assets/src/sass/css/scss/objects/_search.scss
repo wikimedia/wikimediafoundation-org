@@ -96,7 +96,7 @@
   button {
     align-items: center;
     @include buttonNoStyles();
-    @include padding(12.8, 24, 12.8, 16);
+    @include padding(10, 24, 10, 16);
 
     &:hover {
       background: #2516B5;
@@ -158,8 +158,8 @@
 
   button {
     visibility: hidden;
-    background: $color-pink;
-    color: $color-white;
+    @include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+
   }
 }
 

@@ -31,10 +31,10 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 
 	<div class="card-content w-55p module-mu">
 		<?php if ( ! empty( $categories ) ) : ?>
-		<h4 class="category">
+		<h4 class="category-container">
 			<?php
 			foreach ( $categories as $category ) {
-				printf( '<a href="%1$s">%2$s</a>', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
+				printf( '<a class="category mar-right" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
 			}
 			?>
 		</h4>
@@ -43,7 +43,7 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 		<div class="card-content-text">
 
 			<?php if ( ! empty( $title ) ) : ?>
-			<h2 class="h2">
+			<h2 class="small">
 				<a href="<?php echo esc_url( $link ); ?>">
 					<?php echo esc_html( $title ); ?>
 				</a>
@@ -66,7 +66,7 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 
 			<?php if ( ! empty( $excerpt ) ) : ?>
 			<div class="cta-footer">
-				<?php echo wp_kses_post( wpautop( sprintf( '<p class="h4">%s</p>', $excerpt ) ) ); ?>
+				<?php echo wp_kses_post( wpautop( $excerpt ) ); ?>
 			</div>
 			<?php endif; ?>
 

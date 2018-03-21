@@ -87,6 +87,7 @@
   }
 
   .img-container {
+    display: block;
     @include marginBottom(16, 0, $medium-bp);
   }
 

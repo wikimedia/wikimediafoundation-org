@@ -18,7 +18,7 @@ $post_id          = get_option( 'page_for_posts' );
 $featured_post_id = get_post_meta( $post_id, 'featured_post', true );
 
 $template_args = array(
-	'h2_title' => get_the_archive_title(),
+	'h2_title' => get_theme_mod( 'wmf_news_title', __( 'News', 'wmfoundation' ) ),
 );
 
 wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );

@@ -58,13 +58,13 @@
 
 }
 
-@mixin highlightHeading($text-color) {
-  display: inline;
-  line-height: 1.6;
-  font-size: rem(52);
-  background: #fff;
-  color: $text-color;
-}
+// @mixin highlightHeading($text-color) {
+//   display: inline;
+//   line-height: 1.6;
+//   font-size: rem(52);
+//   background: #fff;
+//   color: $text-color;
+// }
 
 .cta-primary {
   background: $color-pink;
@@ -92,7 +92,9 @@
   }
 
   .h2 {
-    @include highlightHeading($color-pink);
+    @include highlightHeading(10px, $color-pink);
+    line-height: 1.6;
+
   }
 
   p:first-of-type {
@@ -128,6 +130,7 @@
 .cta-news {
 
   .bg-img-container {
+    left: 0;
 
     &:after {
       position: absolute;
@@ -152,6 +155,7 @@
     @include paddingTop(16, 32, $medium-bp);
     padding-bottom: 0;
     margin-top: 0;
+    right: 0;
 
     @media (min-width: $medium-bp) {
       padding-top: 5rem;
@@ -159,7 +163,6 @@
   }
 
   .h2 {
-    @include highlightHeading(#000);
 
     a {
       transition: 0.3s all;
