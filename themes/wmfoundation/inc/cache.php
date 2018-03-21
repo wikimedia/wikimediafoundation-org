@@ -80,6 +80,7 @@ function wmf_clear_post_cache( $post_id ) {
 	}
 
 	wp_cache_delete( 'wmf_posts_for_post_' . $post_id );
+	wp_cache_delete( 'wmf_posts_opts' );
 }
 add_action( 'save_post_post', 'wmf_clear_post_cache' );
 

@@ -148,8 +148,10 @@ function wmf_get_pages_options() {
  */
 function wmf_get_profiles_options() {
 	$profiles = wp_cache_get( 'wmf_profiles_opts' );
+
 	if ( empty( $profiles ) ) {
 		$profiles = array();
+
 		$args     = array(
 			'post_type'      => 'profile',
 			'post_status'    => 'publish',
@@ -157,6 +159,7 @@ function wmf_get_profiles_options() {
 			'posts_per_page' => 100,
 		);
 		$pages    = new WP_Query( $args );
+
 		if ( $pages->have_posts() ) {
 			while ( $pages->have_posts() ) {
 				$pages->the_post();
@@ -164,6 +167,7 @@ function wmf_get_profiles_options() {
 			}
 		}
 		wp_reset_postdata();
+
 		wp_cache_add( 'wmf_profiles_opts', $profiles );
 	}
 	return $profiles;
@@ -191,7 +195,6 @@ function wmf_get_posts_options() {
 		if ( $pages->have_posts() ) {
 			while ( $pages->have_posts() ) {
 				$pages->the_post();
-				$profiles[ get_the_ID() ] = get_the_title();
 				$posts[ get_the_ID() ]    = get_the_title();
 			}
 		}
