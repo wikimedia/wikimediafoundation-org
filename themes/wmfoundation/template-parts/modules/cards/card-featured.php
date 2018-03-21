@@ -29,7 +29,7 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 		</div>
 	<?php endif; ?>
 
-	<div class="card-content w-45">
+	<div class="card-content w-55p module-mu">
 		<?php if ( ! empty( $categories ) ) : ?>
 		<h4 class="category">
 			<?php
@@ -40,33 +40,37 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 		</h4>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $title ) ) : ?>
-		<h2 class="h2">
-			<a href="<?php echo esc_url( $link ); ?>">
-				<?php echo esc_html( $title ); ?>
-			</a>
-		</h3>
-		<?php endif; ?>
+		<div class="card-content-text">
 
-		<div class="post-meta ">
-			<?php if ( ! empty( $authors ) ) : ?>
-			<span>
-				<?php echo wp_kses_post( $authors ); ?>
-			</span>
+			<?php if ( ! empty( $title ) ) : ?>
+			<h2 class="h2">
+				<a href="<?php echo esc_url( $link ); ?>">
+					<?php echo esc_html( $title ); ?>
+				</a>
+			</h3>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $date ) ) : ?>
-			<time>
-				<?php echo esc_html( $date ); ?>
-			</time>
+			<div class="post-meta ">
+				<?php if ( ! empty( $authors ) ) : ?>
+				<span>
+					<?php echo wp_kses_post( $authors ); ?>
+				</span>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $date ) ) : ?>
+				<time>
+					<?php echo esc_html( $date ); ?>
+				</time>
+				<?php endif; ?>
+			</div>
+
+			<?php if ( ! empty( $excerpt ) ) : ?>
+			<div class="cta-footer">
+				<?php echo wp_kses_post( wpautop( sprintf( '<p class="h4">%s</p>', $excerpt ) ) ); ?>
+			</div>
 			<?php endif; ?>
+
 		</div>
+
 	</div>
 </div>
-
-
-<?php if ( ! empty( $excerpt ) ) : ?>
-<div class="cta-footer w-75p">
-	<?php echo wp_kses_post( wpautop( sprintf( '<p class="h4">%s</p>', $excerpt ) ) ); ?>
-</div>
-<?php endif; ?>

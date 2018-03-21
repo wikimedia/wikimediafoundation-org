@@ -18,15 +18,14 @@ $post_id          = get_option( 'page_for_posts' );
 $featured_post_id = get_post_meta( $post_id, 'featured_post', true );
 
 $template_args = array(
-	'h4_title' => get_the_archive_title(),
-	'h4_link'  => '#',
+	'h2_title' => get_the_archive_title(),
 );
 
 wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 
 ?>
 
-<div class="w-100p cta mod-margin-bottom cta-secondary cta-news no-duotone">
+<div class="w-100p cta mod-margin-bottom cta-secondary img-left-content-right cta-news header-featured-news no-duotone">
 	<div class="mw-1360">
 
 	<?php
