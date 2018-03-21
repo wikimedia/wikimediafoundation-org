@@ -483,7 +483,7 @@ $header-bp-mw: 1049px;
           border: none;
 
           @media (max-width: $header-bp-mw) {
-            padding: 0.7rem 1rem;
+            padding: rem(10) 1rem;
           }
         }
       }
@@ -495,7 +495,7 @@ $header-bp-mw: 1049px;
       button {
         align-items: center;
         @include buttonNoStyles();
-        @include padding(12.8, 24, 12.8, 16);
+        @include padding(10, 24, 10, 16);
 
         &:hover {
           background: #2516B5;

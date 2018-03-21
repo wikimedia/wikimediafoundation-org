@@ -34,6 +34,22 @@ function wmf_using_template( $template_name ) {
 }
 
 /**
+ * In Fieldmanager context, check if is on home page.
+ *
+ * @return boolean
+ */
+function wmf_is_posts_page() {
+	$id = wmf_get_fields_post_id();
+
+	if ( empty( $id ) ) {
+		return false;
+	}
+	$posts_page = get_option( 'page_for_posts' );
+
+	return absint( $id ) === absint( $posts_page );
+}
+
+/**
  * Gets the post ID for the edited post.
  *
  * @return int
@@ -158,6 +174,63 @@ function wmf_get_profiles_options() {
 	return $profiles;
 }
 
+/**
+ * Gets available posts in an array suitable for fieldmanager options.
+ *
+ * @return array
+ */
+function wmf_get_posts_options() {
+	$posts = wp_cache_get( 'wmf_posts_opts' );
+
+	if ( empty( $posts ) ) {
+		$posts = array();
+
+		$args  = array(
+			'post_type'      => 'post',
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
+			'posts_per_page' => 100,
+		);
+		$pages = new WP_Query( $args );
+
+		if ( $pages->have_posts() ) {
+			while ( $pages->have_posts() ) {
+				$pages->the_post();
+				$posts[ get_the_ID() ] = get_the_title();
+			}
+		}
+		wp_reset_postdata();
+
+		wp_cache_add( 'wmf_posts_opts', $posts );
+	}
+
+	return $posts;
+}
+
+/**
+ * Gets available posts in an array suitable for fieldmanager options.
+ *
+ * @return array
+ */
+function wmf_get_categories_options() {
+	$category_list = wp_cache_get( 'wmf_category_opts' );
+
+	if ( empty( $category_list ) ) {
+		$category_list = array();
+
+		$categories = get_categories();
+
+		if ( ! empty( $categories ) ) {
+			foreach ( $categories as $category ) {
+				$category_list[ $category->term_id ] = $category->name;
+			}
+		}
+		wp_cache_add( 'wmf_category_opts', $category_list );
+	}
+
+	return $category_list;
+}
+
 require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/intro.php';
 require get_template_directory() . '/inc/fields/common.php';
@@ -172,5 +245,6 @@ require get_template_directory() . '/inc/fields/related-pages.php';
 require get_template_directory() . '/inc/fields/listing.php';
 require get_template_directory() . '/inc/fields/profile.php';
 require get_template_directory() . '/inc/fields/page-cta.php';
+require get_template_directory() . '/inc/fields/posts-page.php';
 require get_template_directory() . '/inc/fields/support.php';
 require get_template_directory() . '/inc/fields/connect.php';

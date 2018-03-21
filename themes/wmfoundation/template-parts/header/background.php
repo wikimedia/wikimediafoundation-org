@@ -5,7 +5,7 @@
  * @package wmfoundation
  */
 
-if ( ! is_page() && ! is_404() ) {
+if ( ! is_page() && ! is_404() && ! is_home() ) {
 	return;
 }
 

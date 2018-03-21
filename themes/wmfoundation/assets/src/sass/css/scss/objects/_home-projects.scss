@@ -12,6 +12,7 @@
 }
 
 .home-project-list {
+  background: $color-blue;
   @media (max-width: $medium-bp) {
     margin-left: -40px;
     margin-right: -40px;
@@ -23,9 +24,9 @@
   padding: 40px;
 }
 
-.home-project-list-item_blue {
-  background: $color-blue;
-}
+// .home-project-list-item_blue {
+//   background: $color-blue;
+// }
 
 .home-project-list-item_map {
   .bg-img-container {
@@ -44,12 +45,16 @@
     }
 }
 .home-project-logo {
+  display: block;
   text-align: center;
   margin-bottom: 70px;
 
   img {
     max-height: 210px;
     width: auto;
+  }
+  &:hover {
+    opacity: .75;
   }
 }
 .home-project-list-item-content {

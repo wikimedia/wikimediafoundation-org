@@ -42,7 +42,21 @@ $next_arrow = '<i><svg width="54" height="16" viewBox="0 0 54 16" version="1.1" 
 </svg></i>';
 
 $additional_args = get_query_var( 'search_args' );
-$additional_args = ! empty( $additional_args ) ? $additional_args : array();
+
+$base = get_query_var( 'pagination_base' );
+
+$pagination_args = array(
+	'prev_next' => false,
+	'type'      => 'list',
+);
+
+if ( ! empty( $base ) ) {
+	$pagination_args['base'] = $base;
+}
+
+if ( ! empty( $additional_args ) ) {
+	$pagination_args['add_args'] = $additional_args;
+}
 ?>
 
 <div class="mod-margin-bottom">
@@ -55,15 +69,7 @@ $additional_args = ! empty( $additional_args ) ? $additional_args : array();
 			<div class="page-number-list">
 				<?php
 				echo wp_kses_post(
-					paginate_links(
-						array(
-							'prev_next' => false,
-							'type'      => 'list',
-							'base'      => home_url( '/%_%' ),
-							'format'    => 'page/%#%/',
-							'add_args'  => $additional_args,
-						)
-					)
+					paginate_links( $pagination_args )
 				);
 				?>
 			</div>

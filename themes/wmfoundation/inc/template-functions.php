@@ -58,7 +58,9 @@ function wmf_get_header_container_class() {
 			}
 		}
 	} elseif ( is_404() ) {
-		$class .= ' featured-photo--content-left';
+		$class = ' featured-photo--content-left';
+	} elseif ( is_home() ) {
+		$class .= ' minimal--news';
 	} else {
 		$class .= ' minimal--short';
 	}
@@ -330,5 +332,7 @@ function wmf_get_background_image() {
 		);
 	}
 
-	return get_post_meta( get_the_ID(), 'page_header_background', true );
+	$post_id = is_home() ? get_option( 'page_for_posts' ) : get_the_ID();
+
+	return get_post_meta( $post_id, 'page_header_background', true );
 }

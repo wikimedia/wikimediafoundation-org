@@ -39,7 +39,9 @@ $allowed_tags['time'] = true;
 	</h2>
 	<?php endif; ?>
 
-	<?php if ( ! empty( $h2_title ) ) : ?>
+	<?php if ( is_home() && ! empty( $h2_title ) ) : ?>
+		<h2 class="h1 eyebrow"><?php echo esc_html( $h2_title ); ?></h2>
+	<?php elseif ( ! empty( $h2_title ) ) : ?>
 		<h2 class="h2 uppercase eyebrow">
 			<?php if ( ! empty( $h2_link ) ) : ?>
 			<a href="<?php echo esc_url( $h2_link ); ?>">
