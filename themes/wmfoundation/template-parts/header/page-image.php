@@ -11,7 +11,7 @@ $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['i
 ?>
 
 <div class="header-main bg-img--blue">
-	<div class="photo-aspect-ratio">
+	<div class="<?php echo esc_attr( wmf_get_photo_class() ); ?>">
 		<div class="bg-img-container">
 			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>">
 
@@ -20,6 +20,8 @@ $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['i
 	</div>
 
 	<?php wmf_get_template_part( 'template-parts/header/header-content', $page_header_data ); ?>
+
+	<?php get_template_part( 'template-parts/header/social' ); ?>
 </div>
 
 </div>

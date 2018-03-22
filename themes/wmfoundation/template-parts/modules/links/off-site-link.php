@@ -11,10 +11,12 @@ if ( ( empty( $template_args['heading'] ) || empty( $template_args['uri'] ) ) &&
 	return;
 }
 
+$width_class = $template_args['split'] ? 'w-50p' : 'w-100p';
+
 ?>
 
 
-<div class="module-mu w-50p">
+<div class="module-mu <?php echo esc_attr( $width_class ); ?>">
 
 	<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 	<h3 class="h3 link-external">
