@@ -5,6 +5,16 @@
  * @package wmfoundation
  */
 
+if (
+	is_front_page() ||
+	is_404() ||
+	is_search() ||
+	is_singular( 'profile' ) ||
+	( is_page() && 'page-landing.php' === basename( get_page_template() ) )
+) {
+	return;
+}
+
 $services      = get_post_meta( get_the_ID(), 'share_links', true );
 $template_data = array(
 	'list_class' => '',
