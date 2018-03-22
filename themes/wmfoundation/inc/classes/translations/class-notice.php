@@ -124,7 +124,7 @@ class Notice {
 	 * @return array
 	 */
 	public static function cpt_columns( $columns ) {
-		$columns['translation_progress'] =  __( 'Translation Status', 'wmfoundation' );
+		$columns['translation_progress'] = __( 'Translation Status', 'wmfoundation' );
 		return $columns;
 	}
 
