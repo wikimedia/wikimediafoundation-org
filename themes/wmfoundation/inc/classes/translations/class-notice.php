@@ -124,10 +124,7 @@ class Notice {
 	 * @return array
 	 */
 	public static function cpt_columns( $columns ) {
-		$columns['translation_progress'] = sprintf(
-			'<span class="screen-reader-text">%s</span><span class="dashicons dashicons-unlock" style="color: #008000;"></span>/<span class="dashicons dashicons-lock" style="color: #ff0000;"></span>',
-			__( 'Translation In Progress Status', 'wmfoundation' )
-		);
+		$columns['translation_progress'] =  __( 'Translation Status', 'wmfoundation' );
 		return $columns;
 	}
 
