@@ -282,7 +282,9 @@ class Flow {
 	 * @param string $context The translation status to set.
 	 */
 	public function set_translate_term( $post_id, $context = 'new' ) {
-		wp_set_post_terms( $post_id, $this->status_terms[ $context ], $this->taxonomy );
+		$term_id = is_array( $this->status_terms[ $context ] ) ? $this->status_terms[ $context ]['term_id'] : $this->status_terms[ $context ];
+
+		wp_set_object_terms( $post_id, $term_id, $this->taxonomy, false );
 	}
 
 	/**
@@ -316,9 +318,9 @@ class Flow {
 			$this->set_translate_term( $post_id, 'complete' );
 		}
 
-		$this->set_post_meta( $post_id );
-
 		if ( ! empty( $_POST['_translate_post_global'] ) ) { // Input var okay.
+			$this->set_post_meta( $post_id );
+
 			$remote_posts = wmf_get_translations( false, $post_id, 'post' );
 
 			foreach ( $remote_posts as $remote_post ) {
