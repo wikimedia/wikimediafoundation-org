@@ -165,3 +165,21 @@ a.teal {
 	height: 131px;
 	margin: 0;
 }
+
+.header-default .social-container {
+	.icon {
+		fill: #05E9D1;
+	}
+
+	a:hover .icon {
+		fill: #05E9D1;
+	}
+}
+
+.social-container .icon {
+	transition: 0.3s all;
+}
+
+.social-container a:hover .icon {
+	transform: scale(1.17);
+}

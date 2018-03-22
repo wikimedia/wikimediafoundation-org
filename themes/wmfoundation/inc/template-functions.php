@@ -74,17 +74,24 @@ function wmf_get_header_container_class() {
 	return $class;
 }
 
+/**
+ * Get image container class based on location.
+ *
+ * @return string Class name.
+ */
 function wmf_get_photo_class() {
 	$class = 'photo-aspect-ratio';
 
-	if ( is_singular( 'page' ) ) {
-		$template = basename( get_page_template() );
+	if ( ! is_singular( 'page' ) ) {
+		return $class;
+	}
 
-		switch ( $template ) {
-			case 'page.php':
-				$class .= ' mw-900';
-				break;
-		}
+	$template = basename( get_page_template() );
+
+	switch ( $template ) {
+		case 'page.php':
+			$class .= ' mw-900';
+			break;
 	}
 
 	return $class;

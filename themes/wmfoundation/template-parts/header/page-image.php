@@ -20,6 +20,8 @@ $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['i
 	</div>
 
 	<?php wmf_get_template_part( 'template-parts/header/header-content', $page_header_data ); ?>
+
+	<?php get_template_part( 'template-parts/header/social' ); ?>
 </div>
 
 </div>
