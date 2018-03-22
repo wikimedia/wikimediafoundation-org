@@ -13,11 +13,16 @@ if ( empty( $template_args['links'] ) || ! is_array( $template_args['links'] ) )
 
 $pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'wmfoundation' ) );
 $heading     = empty( $template_args['heading'] ) ? '' : $template_args['heading'];
+$split       = empty( $template_args['split'] ) ? false : $template_args['split'];
 
 $rand_translation_title = wmf_get_random_translation( 'wmf_off_site_links_pre_heading' );
+
+$width_class = $split ? 'mw-1360' : 'mw-900';
+$wrap_class  = $split ? 'fifty-fifty' : '';
+
 ?>
 
-<div class="elsewhere-wikimedia white-bg mod-margin-bottom mw-1360">
+<div class="elsewhere-wikimedia white-bg mod-margin-bottom <?php echo esc_attr( $width_class ); ?>">
 	<div class="mw-1360">
 		<?php if ( ! empty( $pre_heading ) ) : ?>
 		<h3 class="h3 small uppercase color-gray"><?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span></h3>
@@ -25,9 +30,10 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_off_site_links_pre_he
 		<?php if ( ! empty( $heading ) ) : ?>
 		<h2 class="h2"><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
-		<div class="flex flex-medium flex-wrap fifty-fifty">
+		<div class="flex flex-medium flex-wrap <?php echo esc_attr( $wrap_class ); ?>">
 			<?php
 			foreach ( $template_args['links'] as $link ) {
+				$link['split'] = $split;
 				wmf_get_template_part( 'template-parts/modules/links/off-site-link', $link );
 			}
 			?>
