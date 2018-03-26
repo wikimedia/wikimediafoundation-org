@@ -14,7 +14,7 @@ if ( empty( $template_data ) || empty( $template_data['links'] ) ) {
 $headline         = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
 $preheading       = ! empty( $template_data['preheading'] ) ? $template_data['preheading'] : '';
 $translated_title = ! empty( $template_data['rand_translation_title'] ) ? $template_data['rand_translation_title'] : '';
-$links            = array_rand( array_flip( $template_data['links'] ), 3 );
+$links            = count( $template_data['links'] ) > 2 ? array_rand( array_flip( $template_data['links'] ), 3 ) : $template_data['links'];
 
 ?>
 

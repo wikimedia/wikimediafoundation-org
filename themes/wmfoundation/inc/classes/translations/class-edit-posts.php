@@ -32,6 +32,10 @@ class Edit_Posts {
 	 * @param string $which     The context.
 	 */
 	public static function restrict_manage_posts( $post_type, $which ) {
+		if ( (int) get_main_site_id() === (int) get_current_blog_id() ) {
+			return;
+		}
+
 		if ( 'top' !== $which ) {
 			return;
 		}

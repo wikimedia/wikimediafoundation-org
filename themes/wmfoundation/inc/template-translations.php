@@ -14,6 +14,32 @@ add_action( 'restrict_manage_posts', array( 'WMF\Translations\Edit_Posts', 'rest
 add_action( 'mlp_show_translation_completed_checkbox', array( 'WMF\Translations\Flow', 'publish_actions_callback' ) );
 add_action( 'mlp_pre_save_post_meta', array( 'WMF\Translations\Flow', 'pre_post_meta_callback' ), 10, 2 );
 add_action( 'save_post', array( 'WMF\Translations\Flow', 'save_post_callback' ), 99 );
+add_filter( 'manage_edit-post_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
+add_filter( 'manage_edit-page_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
+add_filter( 'manage_edit-profile_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
+add_action( 'manage_post_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
+add_action( 'manage_page_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
+add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
+
+/**
+ * Conditionally outputs the translation in progress notice on the post editor.
+ */
+function wmf_progress_notice() {
+	global $typenow, $pagenow, $post;
+
+	if ( 'post.php' !== $pagenow || ! in_array( $typenow, array( 'post', 'page', 'profile' ), true ) || empty( $post->ID ) ) {
+		return;
+	}
+
+	if ( (int) get_main_site_id() !== (int) get_current_blog_id() ) {
+		return;
+	}
+
+	$notice = new WMF\Translations\Notice( $post->ID );
+	$notice->check_progress();
+	$notice->maybe_show_notice();
+}
+add_action( 'admin_notices', 'wmf_progress_notice' );
 
 // Functions.
 /**
