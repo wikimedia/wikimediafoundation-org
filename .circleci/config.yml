@@ -18,7 +18,7 @@ jobs:
 
   lint:
     docker:
-      - image: monostream/nodejs-gulp-bower
+      - image: nickthegeek/gulp:latest
     steps:
       - checkout
       - run:
