@@ -8,6 +8,7 @@
  */
 
 $template_args = array(
-	'intro' => get_the_content(),
+	'intro'  => get_the_content(),
+	'button' => get_post_meta( get_the_ID(), 'intro_button', true ),
 );
 wmf_get_template_part( 'template-parts/modules/intro/page', $template_args );
