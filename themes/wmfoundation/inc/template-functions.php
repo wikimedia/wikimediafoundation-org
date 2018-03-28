@@ -359,3 +359,13 @@ function wmf_get_background_image() {
 
 	return get_post_meta( $post_id, 'page_header_background', true );
 }
+
+/**
+ * Filter out the more excerpt text.
+ *
+ * @return string Filtered read more string.
+ */
+function wmf_filter_more() {
+	return '....';
+}
+add_filter( 'excerpt_more', 'wmf_filter_more' );

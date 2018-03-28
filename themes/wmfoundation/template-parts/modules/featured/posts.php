@@ -44,15 +44,15 @@ if ( ! $featured_posts->have_posts() ) {
 	return;
 }
 ?>
-<div class="w-100p <?php echo esc_attr( $class ); ?> related-news-container mod-margin-bottom">
+<div class="w-100p bg-white related-news-container mod-margin-bottom <?php echo esc_attr( $class ); ?>">
 	<div class="mw-1360 std-mod">
 		<h3 class="h3 color-gray"><?php echo esc_html( $title ); ?> —&nbsp;<span><?php echo esc_html( $rand_translation_title ); ?>&nbsp;</span></h3>
+
 		<?php if ( ! empty( $subtitle ) ) : ?>
 		<h2><?php echo esc_html( $subtitle ); ?></h2>
 		<?php endif; ?>
-	</div>
-	<div class="mw-1360 std-mod people-container">
-		<div class="people slider-on-mobile flex flex-medium">
+
+		<div class="related-news">
 			<?php
 			while ( $featured_posts->have_posts() ) {
 				$featured_posts->the_post();
