@@ -12,6 +12,5 @@ $context = is_front_page() ? 'home' : get_the_ID();
 $template_args = array(
 	'context'  => $context,
 	'subtitle' => get_post_meta( get_the_ID(), 'featured_post_sub_title', true ),
-	'class'    => is_front_page() ? 'white-bg' : 'bg-black',
 );
 wmf_get_template_part( 'template-parts/modules/featured/posts', $template_args );

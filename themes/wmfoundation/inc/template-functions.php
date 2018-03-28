@@ -369,3 +369,13 @@ function wmf_filter_more() {
 	return '....';
 }
 add_filter( 'excerpt_more', 'wmf_filter_more' );
+
+/**
+ * Remove coauthors filter since it doesn't return properly.
+ */
+function wmf_remove_coauthors_archive_filter() {
+	global $coauthors_plus;
+
+	remove_filter( 'get_the_archive_title', array( $coauthors_plus, 'filter_author_archive_title' ), 10, 2 );
+}
+add_action( 'init', 'wmf_remove_coauthors_archive_filter' );

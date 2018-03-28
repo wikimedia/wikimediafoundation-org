@@ -33,7 +33,7 @@ while ( have_posts() ) {
 
 	<?php if ( ! empty( $intro ) ) : ?>
 	<div class="article-title mw-900">
-		<h3 class="h3"><?php echo esc_html( $intro ); ?></h3>
+		<h3 class="h3"><?php echo wp_kses_post( $intro ); ?></h3>
 	</div>
 	<?php endif; ?>
 

@@ -29,7 +29,9 @@ while ( have_posts() ) :
 ?>
 <div class="mw-1360 mod-margin-bottom flex flex-medium">
 	<div class="w-68p">
-		<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+		<div class="page-intro mod-margin-bottom wysiwyg">
+			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>

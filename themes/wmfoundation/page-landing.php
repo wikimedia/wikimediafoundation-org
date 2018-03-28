@@ -26,9 +26,14 @@ while ( have_posts() ) {
 	} else {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
+?>
 
+<div class="page-intro mw-1360 mod-margin-bottom wysiwyg">
+	<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+</div>
+
+<?php
 	$modules = array(
-		'intro',
 		'social',
 		'framing-copy',
 		'cta',
@@ -41,8 +46,8 @@ while ( have_posts() ) {
 		'support',
 	);
 
-	foreach ( $modules as $module ) {
-		get_template_part( 'template-parts/page/page', $module );
-	}
+foreach ( $modules as $module ) {
+	get_template_part( 'template-parts/page/page', $module );
+}
 }
 get_footer();

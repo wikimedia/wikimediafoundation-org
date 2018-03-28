@@ -29,8 +29,8 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 ?>
 
 <div class="w-100p white-bg mod-margin-bottom">
-	<div class="mw-1360 std-mod mod-margin-bottom">
-		<h3 class="h3 color-gray">
+	<div class="mw-1360 std-mod people-container">
+		<h3 class="h3 color-gray uppercase">
 			<?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span>
 		</h3>
 
@@ -43,9 +43,7 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 			<?php echo wp_kses_post( $description ); ?>
 		</div>
 		<?php endif; ?>
-	</div>
 
-	<div class="mw-1360 std-mod mod-margin-bottom">
 		<div class="people slider-on-mobile flex flex-medium">
 		<?php
 		foreach ( $profile_list as $profile_id ) {
@@ -66,6 +64,5 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 		}
 		?>
 		</div>
-	</div>
 	</div>
 </div>

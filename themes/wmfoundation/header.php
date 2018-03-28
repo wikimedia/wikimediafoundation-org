@@ -53,7 +53,7 @@ $wmf_translations         = wmf_get_translations();
 				<?php endforeach; ?>
 				</ul>
 
-				<?php if ( count( $translations ) > 10 ) : ?>
+				<?php if ( count( $wmf_translations ) > 10 ) : ?>
 				<div class="arrow-wrap">
 					<span>
 						<span class="elipsis">...</span>
