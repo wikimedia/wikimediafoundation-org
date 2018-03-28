@@ -82,7 +82,7 @@ function wmf_get_header_container_class() {
 function wmf_get_photo_class() {
 	$class = 'photo-aspect-ratio';
 
-	if ( ! is_singular( 'page' ) ) {
+	if ( ! is_singular( 'page' ) || is_front_page() ) {
 		return $class;
 	}
 
