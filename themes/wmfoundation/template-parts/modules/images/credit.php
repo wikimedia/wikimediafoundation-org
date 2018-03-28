@@ -12,8 +12,13 @@ if ( empty( $image_id ) ) {
 }
 
 
-$image_url   = wp_get_attachment_image_url( $image_id, 'thumbnail' );
-$attachment  = get_post( $image_id );
+$image_url  = wp_get_attachment_image_url( $image_id, 'thumbnail' );
+$attachment = get_post( $image_id );
+
+if ( empty( $attachment ) ) {
+	return;
+}
+
 $title       = $attachment->post_title;
 $description = $attachment->post_content;
 
