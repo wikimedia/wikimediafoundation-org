@@ -10,9 +10,16 @@
   height: 100%;
   z-index: -0;
 }
+.home-project-list-container {
+  background: $color-blue; /* Old browsers */
+  @media (min-width: $large-bp) {
+    background: -moz-linear-gradient(left, $color-blue 0%, $color-blue 62%, $color-turquoise 63%, $color-turquoise 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, $color-blue 0%,$color-blue 62%,$color-turquoise 63%,$color-turquoise 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, $color-blue 0%,$color-blue 62%,$color-turquoise 63%,$color-turquoise 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+}
 
 .home-project-list {
-  background: $color-blue;
   @media (max-width: $medium-bp) {
     margin-left: -40px;
     margin-right: -40px;
@@ -24,9 +31,6 @@
   padding: 40px;
 }
 
-// .home-project-list-item_blue {
-//   background: $color-blue;
-// }
 
 .home-project-list-item_map {
   .bg-img-container {

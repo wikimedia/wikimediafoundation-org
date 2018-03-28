@@ -29,9 +29,9 @@ $translation-height: 60px;
 		padding-left: rem(115);
 		@include paddingTop(10, 19, $medium-bp);
 
-		@media (min-width: $medium-bp) {
-			margin-right: rem(40);
-		}
+		// @media (min-width: $medium-bp) {
+		// 	margin-right: rem(40);
+		// }
 
 		&:focus {
 			outline: none;
