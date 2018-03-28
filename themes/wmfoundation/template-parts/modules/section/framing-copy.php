@@ -13,9 +13,12 @@ if ( empty( $template_args['pre_heading'] ) && empty( $template_args['heading'] 
 
 $rand_translation_title = empty( $template_args['rand_translation_title'] ) ? '' : $template_args['rand_translation_title'];
 
+$has_title = ! empty( $template_args['pre_heading'] ) && ! empty( $template_args['heading'] );
+
 ?>
-<div class="flex flex-medium flex-wrap mw-1360 fifty-fifty mod-margin-bottom">
-	<?php if ( ! empty( $template_args['pre_heading'] ) && ! empty( $template_args['heading'] ) ) : ?>
+
+<?php if ( $has_title ) : ?>
+<div class="mod-margin-bottom white-bg">
 	<div class="mw-1360">
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
 		<h3 class="h3 color-gray"><?php echo esc_html( $template_args['pre_heading'] ); ?> — <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span></h3>
@@ -24,10 +27,16 @@ $rand_translation_title = empty( $template_args['rand_translation_title'] ) ? ''
 		<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
 		<?php endif; ?>
 	</div>
-	<?php endif; ?>
+<?php endif; ?>
+
+	<div class="flex flex-medium flex-wrap mw-1360 fifty-fifty mod-margin-bottom">
 	<?php
 	foreach ( $template_args['modules'] as $module ) {
 		wmf_get_template_part( 'template-parts/modules/mu/text', $module );
 	}
 	?>
+	</div>
+
+<?php if ( $has_title ) : ?>
 </div>
+<?php endif; ?>

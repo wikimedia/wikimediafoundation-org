@@ -38,6 +38,10 @@ a.teal {
 	.icon {
 		fill: $color-blue;
 	}
+
+	.icon:hover {
+		fill: $color-dk-purple;
+	}
 }
 
 .color-blue	a:hover .icon { fill: $color-dk-purple; }
