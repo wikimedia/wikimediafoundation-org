@@ -16,6 +16,8 @@ if ( empty( $profiles ) || ! is_array( $profiles ) || count( $profiles ) < 3 ) {
 $profile_list = array_rand( array_flip( $profiles ), 3 );
 $headline     = ! empty( $template_data['headline'] ) ? $template_data['headline'] : '';
 $description  = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
+$button_label = ! empty( $template_data['button_label'] ) ? $template_data['button_label'] : '';
+$button_link  = ! empty( $template_data['button_link'] ) ? $template_data['button_link'] : '';
 
 $default_pre_heading = get_post_type_object( 'profile' )->label;
 $pre_heading         = ! empty( $template_data['pre_heading'] ) ? $template_data['pre_heading'] : $default_pre_heading;
@@ -29,7 +31,7 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 ?>
 
 <div class="w-100p white-bg mod-margin-bottom">
-	<div class="mw-1360 std-mod people-container">
+	<div class="mw-1360 std-mod mod-margin-bottom">
 		<h3 class="h3 color-gray uppercase">
 			<?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span>
 		</h3>
@@ -39,10 +41,19 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 		<?php endif; ?>
 
 		<?php if ( ! empty( $description ) ) : ?>
-		<div class="h3 color-gray mar-bottom_lg">
+		<p class="h3 color-gray mar-bottom_lg">
 			<?php echo wp_kses_post( $description ); ?>
-		</div>
+		</p>
 		<?php endif; ?>
+
+		<?php if ( ! empty( $button_label ) && ! empty( $button_link ) ) : ?>
+		<a class="btn btn-pink" href="<?php echo esc_url( $button_link ); ?>">
+			<?php echo esc_html( $button_label ); ?>
+		</a>
+		<?php endif; ?>
+	</div>
+
+	<div class="mw-1360 std-mod people-container">
 
 		<div class="people slider-on-mobile flex flex-medium">
 		<?php

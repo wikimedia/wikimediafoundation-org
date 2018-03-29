@@ -9,7 +9,7 @@
  * Add default page options.
  */
 function wmf_default_fields() {
-	if ( ! wmf_using_template( 'default' ) ) {
+	if ( ! wmf_using_template( 'default' ) || (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id() ) {
 		return;
 	}
 
