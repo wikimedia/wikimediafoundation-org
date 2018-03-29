@@ -366,7 +366,7 @@ function wmf_get_background_image() {
  * @return string Filtered read more string.
  */
 function wmf_filter_more() {
-	return '....';
+	return '&hellip;.';
 }
 add_filter( 'excerpt_more', 'wmf_filter_more' );
 
