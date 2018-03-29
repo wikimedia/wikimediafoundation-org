@@ -31,7 +31,7 @@ function wmf_progress_notice() {
 		return;
 	}
 
-	if ( (int) get_main_site_id() !== (int) get_current_blog_id() ) {
+	if ( ! wmf_is_main_site() ) {
 		return;
 	}
 

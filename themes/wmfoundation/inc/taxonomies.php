@@ -56,7 +56,7 @@ function wmf_add_taxonomies() {
 		'hierarchical'      => true,
 		'public'            => false,
 		'rewrite'           => false,
-		'show_admin_column' => (int) get_main_site_id() !== (int) get_current_blog_id(),
+		'show_admin_column' => ! wmf_is_main_site(),
 		'label'             => __( 'Translation Status', 'wmfoundation' ),
 	);
 	register_taxonomy( 'translation-status', array( 'post', 'page', 'profile' ), $translation_status_type_args );
