@@ -87,7 +87,7 @@ class Metaboxes {
 	public function translation_meta_output( $remote_blog_id, $remote_post ) {
 		global $wp_meta_boxes;
 
-		if ( (int) get_main_site_id() === (int) get_current_blog_id() ) {
+		if ( wmf_is_main_site() ) {
 			return;
 		}
 

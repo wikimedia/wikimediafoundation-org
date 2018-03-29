@@ -77,7 +77,7 @@ class Flow {
 	 * Sets the status terms and optionally creates them.
 	 */
 	public function maybe_register_translation_status_terms() {
-		if ( (int) get_main_site_id() === (int) get_current_blog_id() ) {
+		if ( wmf_is_main_site() ) {
 			return;
 		}
 
@@ -131,7 +131,7 @@ class Flow {
 			<?php
 			wp_nonce_field( 'wmf-translation-flow-publish-actions', 'wmf_publish_actions' );
 
-			if ( (int) get_main_site_id() === (int) get_current_blog_id() ) {
+			if ( wmf_is_main_site() ) {
 				$this->translate_post_action();
 				$pre = false;
 			} else {
@@ -324,7 +324,7 @@ class Flow {
 			$remote_posts = wmf_get_translations( false, $post_id, 'post' );
 
 			foreach ( $remote_posts as $remote_post ) {
-				if ( (int) get_main_site_id() === (int) $remote_post['site_id'] ) {
+				if ( wmf_is_main_site( $remote_post['site_id'] ) ) {
 					continue;
 				}
 
