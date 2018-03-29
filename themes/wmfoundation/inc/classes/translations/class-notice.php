@@ -61,13 +61,13 @@ class Notice {
 	 * Checks to see if there is a linked translation in progress.
 	 */
 	public function check_progress() {
-		if ( (int) get_main_site_id() !== (int) get_current_blog_id() ) {
+		if ( ! wmf_is_main_site() ) {
 			return;
 		}
 		$remote_posts = wmf_get_translations( false, $this->post_id, 'post' );
 
 		foreach ( $remote_posts as $remote_post ) {
-			if ( (int) get_main_site_id() === (int) $remote_post['site_id'] ) {
+			if ( wmf_is_main_site( $remote_post['site_id'] ) ) {
 				continue;
 			}
 
@@ -127,7 +127,7 @@ class Notice {
 	 * @return array
 	 */
 	public static function cpt_columns( $columns ) {
-		if ( (int) get_main_site_id() === (int) get_current_blog_id() ) {
+		if ( wmf_is_main_site() ) {
 			$columns['translation_progress'] = __( 'Translation Status', 'wmfoundation' );
 		}
 		return $columns;

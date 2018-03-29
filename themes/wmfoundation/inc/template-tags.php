@@ -168,3 +168,15 @@ function wmf_byline() {
 		return get_the_author_link();
 	}
 }
+
+/**
+ * Boolean function to indicate the current site is the main site.
+ *
+ * @param int $site_id Optional site ID to check. Defaults to current site.
+ *
+ * @return bool
+ */
+function wmf_is_main_site( $site_id = 0 ) {
+	$site_id = empty( $site_id ) ? get_current_blog_id() : $site_id;
+	return (int) get_main_site_id() === (int) $site_id;
+}
