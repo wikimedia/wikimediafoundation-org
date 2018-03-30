@@ -13,7 +13,6 @@ use WMF\Images\Credits;
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Selected', 'wmfoundation' ) );
 $wmf_translations         = wmf_get_translations();
-
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -54,12 +53,14 @@ $wmf_translations         = wmf_get_translations();
 				<?php endforeach; ?>
 				</ul>
 
+				<?php if ( count( $wmf_translations ) > 10 ) : ?>
 				<div class="arrow-wrap">
 					<span>
 						<span class="elipsis">...</span>
 						<?php wmf_show_icon( 'trending', 'icon-turquoise material' ); ?>
 					</span>
 				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 		<?php endif; ?>

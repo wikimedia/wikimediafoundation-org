@@ -18,7 +18,7 @@ $project_class = '_map';
 
 ?>
 
-<div class="mod-margin-bottom">
+<div class="w-100p mod-margin-bottom home-project-list-container">
 	<div class="mw-1360 std-mod mod-margin-bottom">
 		<div class="flex flex-medium home-project-list">
 			<div class="w-50p home-project-list-item  home-project-list-item_blue">

@@ -9,6 +9,9 @@ $template_data = wmf_get_template_data();
 $callout       = ! empty( $template_data['callout'] ) ? $template_data['callout'] : '';
 $caption       = ! empty( $template_data['caption'] ) ? $template_data['caption'] : '';
 
+if ( empty( $caption ) && empty( $callout ) ) {
+	return;
+}
 
 ?>
 

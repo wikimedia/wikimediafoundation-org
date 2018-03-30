@@ -19,13 +19,14 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_off_site_links_pre_he
 
 $width_class = $split ? 'mw-1360' : 'mw-900';
 $wrap_class  = $split ? 'fifty-fifty' : '';
+$title_class = $split ? 'small' : '';
 
 ?>
 
 <div class="elsewhere-wikimedia white-bg mod-margin-bottom <?php echo esc_attr( $width_class ); ?>">
 	<div class="mw-1360">
 		<?php if ( ! empty( $pre_heading ) ) : ?>
-		<h3 class="h3 small uppercase color-gray"><?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span></h3>
+		<h3 class="h3 uppercase color-gray <?php echo esc_attr( $title_class ); ?>"><?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span></h3>
 		<?php endif; ?>
 		<?php if ( ! empty( $heading ) ) : ?>
 		<h2 class="h2"><?php echo esc_html( $heading ); ?></h2>

@@ -9,7 +9,6 @@ $template_args = wmf_get_template_data();
 
 $context  = empty( $template_args['context'] ) ? '' : $template_args['context'];
 $subtitle = empty( $template_args['subtitle'] ) ? '' : $template_args['subtitle'];
-$class    = empty( $template_args['class'] ) ? 'white-bg' : $template_args['class'];
 $title    = get_theme_mod( 'wmf_featured_post_pre_heading', __( 'NEWS', 'wmfoundation' ) );
 
 $rand_translation_title = wmf_get_random_translation( 'wmf_featured_post_pre_heading' );
@@ -44,15 +43,15 @@ if ( ! $featured_posts->have_posts() ) {
 	return;
 }
 ?>
-<div class="w-100p <?php echo esc_attr( $class ); ?> related-news-container mod-margin-bottom">
+<div class="w-100p bg-white related-news-container mod-margin-bottom white-bg">
 	<div class="mw-1360 std-mod">
 		<h3 class="h3 color-gray"><?php echo esc_html( $title ); ?> —&nbsp;<span><?php echo esc_html( $rand_translation_title ); ?>&nbsp;</span></h3>
+
 		<?php if ( ! empty( $subtitle ) ) : ?>
 		<h2><?php echo esc_html( $subtitle ); ?></h2>
 		<?php endif; ?>
-	</div>
-	<div class="mw-1360 std-mod people-container">
-		<div class="people slider-on-mobile flex flex-medium">
+
+		<div class="related-news">
 			<?php
 			while ( $featured_posts->have_posts() ) {
 				$featured_posts->the_post();

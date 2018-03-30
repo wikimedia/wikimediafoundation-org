@@ -82,7 +82,7 @@ function wmf_get_header_container_class() {
 function wmf_get_photo_class() {
 	$class = 'photo-aspect-ratio';
 
-	if ( ! is_singular( 'page' ) ) {
+	if ( ! is_singular( 'page' ) || is_front_page() ) {
 		return $class;
 	}
 
@@ -359,3 +359,23 @@ function wmf_get_background_image() {
 
 	return get_post_meta( $post_id, 'page_header_background', true );
 }
+
+/**
+ * Filter out the more excerpt text.
+ *
+ * @return string Filtered read more string.
+ */
+function wmf_filter_more() {
+	return '&hellip;.';
+}
+add_filter( 'excerpt_more', 'wmf_filter_more' );
+
+/**
+ * Remove coauthors filter since it doesn't return properly.
+ */
+function wmf_remove_coauthors_archive_filter() {
+	global $coauthors_plus;
+
+	remove_filter( 'get_the_archive_title', array( $coauthors_plus, 'filter_author_archive_title' ), 10, 2 );
+}
+add_action( 'init', 'wmf_remove_coauthors_archive_filter' );
