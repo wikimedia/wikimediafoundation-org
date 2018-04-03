@@ -9,19 +9,7 @@
  * Add landing page options.
  */
 function wmf_landing_fields() {
-	$is_front_page   = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
 	$is_landing_page = wmf_using_template( 'page-landing' );
-
-	if ( ! $is_landing_page && ! $is_front_page ) {
-		return;
-	}
-
-	$header_opts = new Fieldmanager_Textfield(
-		array(
-			'name' => 'sub_title',
-		)
-	);
-	$header_opts->add_meta_box( __( 'Subtitle', 'wmfoundation' ), 'page' );
 
 	if ( $is_landing_page ) {
 		$social = new Fieldmanager_Group(
