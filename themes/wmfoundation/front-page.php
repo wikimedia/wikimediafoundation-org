@@ -40,7 +40,11 @@ while ( have_posts() ) {
 <div class="page-intro mw-1360 mod-margin-bottom wysiwyg">
 	<div class="w-75p">
 		<h2><?php echo esc_html( $subtitle ); ?></h2>
-		<?php the_content(); ?>
+
+		<div class="page-intro-text">
+			<?php the_content(); ?>
+		</div>
+
 	</div>
 </div>
 <?php
