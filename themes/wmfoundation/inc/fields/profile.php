@@ -85,9 +85,14 @@ function wmf_save_user_profile( $meta_id, $post_id, $meta_key, $meta_value ) {
 		return;
 	}
 
+	$current_user = get_metadata( 'post', $post_id, 'connected_user', true );
+	if ( ! empty( $current_user ) ) {
+		delete_user_meta( absint( $current_user ), 'profile_id' );
+	}
+
 	$user = get_user_by( 'ID', absint( $meta_value ) );
 	if ( $user ) {
 		update_user_meta( $user->ID, 'profile_id', $post_id );
 	}
 }
-add_action( 'updated_postmeta', 'wmf_save_user_profile', 10, 4 );
+add_action( 'update_postmeta', 'wmf_save_user_profile', 10, 4 );
