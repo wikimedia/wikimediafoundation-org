@@ -37,6 +37,8 @@
 	<rule ref="WordPress">
   		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
   		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_update_user_meta"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_get_user_meta"/>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>

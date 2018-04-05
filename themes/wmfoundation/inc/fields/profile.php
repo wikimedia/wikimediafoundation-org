@@ -72,13 +72,22 @@ function wmf_role_fields() {
 }
 add_action( 'fm_term_role', 'wmf_role_fields' );
 
+/**
+ * Save User profile to author meta, so it can be filtered later.
+ *
+ * @param int    $meta_id    ID of meta key.
+ * @param int    $post_id    ID of attached post.
+ * @param string $meta_key   Meta key value, connected_user.
+ * @param string $meta_value Value of Meta key.
+ */
 function wmf_save_user_profile( $meta_id, $post_id, $meta_key, $meta_value ) {
-	if ( 'connected_user' === $meta_key ) {
-		$user = get_user_by( 'ID', absint( $meta_value ) );
+	if ( 'connected_user' !== $meta_key ) {
+		return;
+	}
 
-		if ( $user ) {
-			update_user_meta( $user->ID, 'profile_id', $post_id );
-		}
+	$user = get_user_by( 'ID', absint( $meta_value ) );
+	if ( $user ) {
+		update_user_meta( $user->ID, 'profile_id', $post_id );
 	}
 }
 add_action( 'updated_postmeta', 'wmf_save_user_profile', 10, 4 );
