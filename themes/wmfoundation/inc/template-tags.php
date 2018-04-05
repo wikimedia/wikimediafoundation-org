@@ -163,11 +163,29 @@ function wmf_get_current_url() {
  */
 function wmf_byline() {
 	if ( function_exists( 'coauthors_links' ) ) {
-		return coauthors_links( null, null, __( 'By ', 'wmfoundation' ), '', false );
+		return coauthors_posts_links( null, null, __( 'By ', 'wmfoundation' ), '', false );
 	} else {
 		return get_the_author_link();
 	}
 }
+
+/**
+ * 'Filter author link to include profile ID'
+ *
+ * @param string $link      Original author link.
+ * @param int    $author_id User ID.
+ * @return string           Filtered link, if applicable.
+ */
+function wmf_filter_posts_link( $link, $author_id ) {
+	$author_profile_id = get_user_meta( $author_id, 'profile_id', true );
+
+	if ( $author_profile_id ) {
+		$link = get_the_permalink( $author_profile_id );
+	}
+
+	return $link;
+}
+add_filter( 'author_link', 'wmf_filter_posts_link', 99, 2 );
 
 /**
  * Boolean function to indicate the current site is the main site.

@@ -32,6 +32,16 @@ function wmf_profile_fields() {
 		)
 	);
 	$info->add_meta_box( __( 'Profile Info', 'wmfoundation' ), 'profile' );
+
+	$user = new Fieldmanager_Autocomplete(
+		array(
+			'name'       => 'connected_user',
+			'datasource' => new Fieldmanager_Datasource_User( array(
+				'store_property' => 'ID',
+			)),
+		)
+	);
+	$user->add_meta_box( __( 'Connected User', 'wmfoundation' ), 'profile' );
 }
 add_action( 'fm_post_profile', 'wmf_profile_fields' );
 
@@ -61,3 +71,14 @@ function wmf_role_fields() {
 	$button->add_term_meta_box( '', 'role' );
 }
 add_action( 'fm_term_role', 'wmf_role_fields' );
+
+function wmf_save_user_profile( $meta_id, $post_id, $meta_key, $meta_value ) {
+	if ( 'connected_user' === $meta_key ) {
+		$user = get_user_by( 'ID', absint( $meta_value ) );
+
+		if ( $user ) {
+			update_user_meta( $user->ID, 'profile_id', $post_id );
+		}
+	}
+}
+add_action( 'updated_postmeta', 'wmf_save_user_profile', 10, 4 );
