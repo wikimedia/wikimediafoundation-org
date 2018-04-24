@@ -9,10 +9,14 @@ $template_args = wmf_get_template_data();
 
 if (
 	( empty( $template_args['projects'] ) || ! is_array( $template_args['projects'] ) ) ||
-	( empty( $template_args['pre_heading'] ) && empty( $template_args['heading'] ) && empty( $template_args['content'] ) && empty( $template_args['link_uri'] ) )
+	( empty( $template_args['heading'] ) && empty( $template_args['content'] ) && empty( $template_args['link_uri'] ) )
 ) {
 	return;
 }
+
+
+$title                  = get_theme_mod( 'wmf_projects_pre_heading', __( 'Projects', 'wmfoundation' ) );
+$rand_translation_title = wmf_get_random_translation( 'wmf_projects_pre_heading' );
 
 $project_class = '_map';
 
@@ -22,8 +26,8 @@ $project_class = '_map';
 	<div class="mw-1360 std-mod mod-margin-bottom">
 		<div class="flex flex-medium home-project-list">
 			<div class="w-50p home-project-list-item  home-project-list-item_blue">
-				<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
-					<h3 class="h3 color-white"><?php echo esc_html( $template_args['pre_heading'] ); ?> — <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span></h3>
+				<?php if ( ! empty( $title ) ) : ?>
+					<h3 class="h3 color-white"><?php echo esc_html( $title ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span></h3>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['heading'] ) ) : ?>

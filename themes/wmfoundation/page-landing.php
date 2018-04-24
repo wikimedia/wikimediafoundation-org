@@ -42,6 +42,7 @@ while ( have_posts() ) {
 		'profiles',
 		'listings',
 		'featured-posts',
+		'projects',
 		'offsite-links',
 		'support',
 	);
