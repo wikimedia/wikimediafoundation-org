@@ -36,9 +36,11 @@ function wmf_profile_fields() {
 	$user = new Fieldmanager_Autocomplete(
 		array(
 			'name'       => 'connected_user',
-			'datasource' => new Fieldmanager_Datasource_User( array(
-				'store_property' => 'ID',
-			)),
+			'datasource' => new Fieldmanager_Datasource_User(
+				array(
+					'store_property' => 'ID',
+				)
+			),
 		)
 	);
 	$user->add_meta_box( __( 'Connected User', 'wmfoundation' ), 'profile' );

@@ -239,6 +239,7 @@ require get_template_directory() . '/inc/fields/home.php';
 require get_template_directory() . '/inc/fields/default.php';
 require get_template_directory() . '/inc/fields/list.php';
 require get_template_directory() . '/inc/fields/landing.php';
+require get_template_directory() . '/inc/fields/projects.php';
 require get_template_directory() . '/inc/fields/links.php';
 require get_template_directory() . '/inc/fields/post.php';
 require get_template_directory() . '/inc/fields/profiles.php';
