@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<ruleset name="wmfoundation">
+	<description>The code standard for wmfoundation.</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+    <exclude-pattern>client-mu-plugins/plugin-loader.php</exclude-pattern>
+    <exclude-pattern>mu-plugins/</exclude-pattern>
+    <exclude-pattern>plugins/hello.php</exclude-pattern>
+    <exclude-pattern>plugins/index.php</exclude-pattern>
+    <exclude-pattern>plugins/fieldmanager/</exclude-pattern>
+    <exclude-pattern>plugins/multilingual-press/</exclude-pattern>
+	<exclude-pattern>plugins/co-authors-plus/</exclude-pattern>
+    <exclude-pattern>plugins/safe-svg/</exclude-pattern>
+    <exclude-pattern>plugins/user-switching/</exclude-pattern>
+    <exclude-pattern>tests/</exclude-pattern>
+    <exclude-pattern>themes/twentyseventeen</exclude-pattern>
+    <exclude-pattern>vendor/</exclude-pattern>
+    <exclude-pattern>vip-config/</exclude-pattern>
+	<!-- Add additional exclude directories here-->
+
+	<!-- How to scan -->
+	<arg value="sp"/> <!-- Show sniff and progress -->
+	<arg name="basepath" value="."/><!-- Strip the file paths down to the relevant bit -->
+	<arg name="colors" />
+	<arg name="extensions" value="php"/>
+	<arg name="report" value="full"/>
+	<arg name="report" value="summary"/>
+	<arg name="report" value="source"/>
+
+	<!-- Rules: Check PHP version compatibility -->
+	<config name="testVersion" value="7.0"/>
+	<rule ref="PHPCompatibility"/>
+
+	<!-- Rules: WordPress Coding Standards -->
+	<config name="minimum_supported_wp_version" value="4.5"/>
+	<rule ref="WordPress">
+  		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
+  		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_update_user_meta"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_get_user_meta"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_delete_user_meta"/>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="wmf,rkv"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.VIP.ValidatedSanitizedInput">
+        <properties>
+            <property name="customSanitizingFunctions" value="wmf_sanitize_post_type_array" type="array" />
+        </properties>
+    </rule>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="wmfoundation"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+		<properties>
+			<property name="blank_line_check" value="true"/>
+		</properties>
+	</rule>
+</ruleset>

@@ -1,0 +1,47 @@
+version: 2
+
+jobs:
+
+  wpcs:
+      docker:
+        - image: notnoopci/php:7.0-apache-node
+      steps:
+        - checkout
+        - run:
+            name: Install WPCS
+            command: |
+              sudo composer self-update
+              composer install
+        - run:
+            name: Run WPCS
+            command: vendor/bin/phpcs
+
+  lint:
+    docker:
+      - image: nickthegeek/gulp:latest
+    steps:
+      - checkout
+      - run:
+          name: NPM Install
+          command: |
+            cd themes/wmfoundation
+            npm install
+      - run:
+          name: Gulp Lint
+          command: |
+            cd themes/wmfoundation
+            gulp lint
+
+
+workflows:
+  version: 2
+  test_and_standards:
+    jobs:
+      - lint:
+          filters:
+            branches:
+              ignore: develop
+      - wpcs:
+          filters:
+            branches:
+              ignore: develop

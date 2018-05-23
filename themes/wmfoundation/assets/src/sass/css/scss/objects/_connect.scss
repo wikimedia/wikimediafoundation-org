@@ -1,0 +1,57 @@
+
+// Connect
+.connect-container {
+
+  .social-list {
+
+    li {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1155px) {
+
+    .flex-medium {
+      flex-wrap: wrap;
+    }
+
+    .w-50p:nth-child(odd) {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 3.5rem;
+
+      & + .w-32p {
+        padding-left: 0;
+        width: 50%;
+
+        @media (max-width: 767px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .w-18p {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 767px) {
+
+    .w-32p {
+      margin-bottom: 3.5rem;
+
+      & + .w-18p {
+        width: 100%;
+        padding-left: 0;
+      }
+    }
+
+    .social-list {
+      margin-top: 1.5rem;
+
+      li {
+        width: 46%;
+      }
+    }
+  }
+}

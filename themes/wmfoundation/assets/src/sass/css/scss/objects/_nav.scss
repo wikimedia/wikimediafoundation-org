@@ -1,0 +1,77 @@
+
+.nav-newer,
+.nav-older {
+  @include font-size(20, 16);
+  font-weight: bold;
+  color: $color-gray;
+  transition: 0.3s all;
+
+  a {
+    transition: 0.3s all;
+
+    &:hover {
+      color: $color-blue;
+
+      svg {
+        fill: $color-blue;
+      }
+    }
+  }
+
+  i {
+    display: inline-block;
+    font-size: 2.3rem;
+    transition: 0.3s all;
+  }
+
+  svg {
+    fill: $color-gray;
+    transition: 0.3s all;
+    display: block;
+
+    @media (max-width: 767px) {
+      max-width: 2.5rem;
+    }
+
+  }
+}
+
+.nav-newer {
+  i {
+    margin-right: .5rem;
+  }
+
+  .active {
+    opacity: .5;
+    color: $color-gray;
+
+    &:hover {
+      opacity: 1;
+
+      i {
+        transform: translateX(-.25rem);
+      }
+    }
+  }
+
+  .inactive {
+    color: $color-ltgray;
+    svg { fill: $color-ltgray; }
+  }
+
+}
+
+.nav-older {
+  i {
+    margin-left: .5rem;
+  }
+
+  &:hover {
+    i {
+      transform: translateX(.25rem);
+    }
+  }
+}
+
+
+

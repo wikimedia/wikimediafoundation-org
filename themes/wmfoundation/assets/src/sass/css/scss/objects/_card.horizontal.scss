@@ -1,0 +1,10 @@
+.card-horizontal {
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+  .card-content {
+    display: flex;
+    align-items: center;
+  }
+}
