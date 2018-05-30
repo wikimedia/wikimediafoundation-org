@@ -48,6 +48,7 @@ function wmf_profile_init() {
 			'query_var'         => true,
 			'menu_icon'         => 'dashicons-groups',
 			'show_in_rest'      => true,
+			'map_meta_cap'      => true,
 		)
 	);
 }
