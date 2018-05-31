@@ -174,7 +174,7 @@ if ( ! class_exists( 'safe_svg' ) ) {
 		 */
 		public function fix_admin_preview( $response, $attachment, $meta ) {
 
-			if ( $response['mime'] == 'image/svg+xml' ) {
+			if ( $response['mime'] === 'image/svg+xml' ) {
 				$possible_sizes = apply_filters( 'image_size_names_choose', array(
 					'thumbnail' => __( 'Thumbnail' ),
 					'medium'    => __( 'Medium' ),
@@ -213,7 +213,7 @@ if ( ! class_exists( 'safe_svg' ) ) {
 		 * @return array
 		 */
 		public function one_pixel_fix( $image, $attachment_id, $size, $icon ) {
-			if ( get_post_mime_type( $attachment_id ) == 'image/svg+xml' ) {
+			if ( get_post_mime_type( $attachment_id ) === 'image/svg+xml' ) {
 				$image['1'] = false;
 				$image['2'] = false;
 			}
@@ -281,7 +281,7 @@ if ( ! class_exists( 'safe_svg' ) ) {
 		 */
 		function skip_svg_regeneration( $metadata, $attachment_id ) {
 			if ( 'image/svg+xml' === get_post_mime_type( $attachment_id ) ) {
-//				return new WP_Error( 'skip_svg_generate', __( 'Skipping SVG file.', 'safe-svg' ) );
+//				do nothing.
 			}
 
 			return $metadata;

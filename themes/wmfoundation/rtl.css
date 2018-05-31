@@ -8,10 +8,3 @@ of your CSS stylesheet in a separate stylesheet file named rtl.css.
 https://codex.wordpress.org/Right_to_Left_Language_Support
 
 */
-
-/*
-body {
-	direction: rtl;
-	unicode-bidi: embed;
-}
-*/

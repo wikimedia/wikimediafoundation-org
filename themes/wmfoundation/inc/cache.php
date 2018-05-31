@@ -13,6 +13,12 @@
 function wmf_clear_role_cache( $term_id ) {
 	wp_cache_delete( 'wmf_terms_list_' . $term_id );
 
+	$term = get_term( $term_id, 'role' );
+
+	if ( ! $term || is_wp_error( $term ) ) {
+		return;
+	}
+
 	if ( ! empty( $term->parent ) ) {
 		wp_cache_delete( 'wmf_terms_list_' . $term->parent );
 	}
@@ -50,6 +56,11 @@ function wmf_clear_profile_cache( $post_id ) {
 	wp_cache_delete( 'wmf_profiles_opts' );
 
 	$terms    = get_the_terms( $post_id, 'role' );
+
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return;
+	}
+
 	$term_ids = wp_list_pluck( $terms, 'term_id' );
 
 	if ( ! empty( $term_ids ) ) {

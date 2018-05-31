@@ -12,11 +12,6 @@
  * @return array
  */
 function wmf_body_classes( $classes ) {
-	// Adds a class of group-blog to blogs with more than 1 published author.
-	if ( is_multi_author() ) {
-		$classes[] = 'group-blog';
-	}
-
 	// Adds a class of hfeed to non-singular pages.
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
@@ -236,8 +231,12 @@ function wmf_get_related_profiles( $profile_id ) {
 	}
 
 	$profile_id = absint( $profile_id );
+	$terms      = get_the_terms( $profile_id, 'role' );
 
-	$terms    = get_the_terms( $profile_id, 'role' );
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return $profile_list;
+	}
+
 	$term_ids = wp_list_pluck( $terms, 'term_id' );
 
 	if ( empty( $term_ids ) ) {

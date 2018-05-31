@@ -20,7 +20,13 @@ if ( empty( $post_categories ) || is_wp_error( $post_categories ) ) {
 	<h5 class="h5 color-black">Read More</h5>
 	<ul class="link-list inline-block">
 		<?php foreach ( $post_categories as $cat_id => $category ) : ?>
-		<li><a href="<?php echo esc_url( get_term_link( $cat_id ) ); ?>"><?php echo esc_html( $category ); ?></a></li>
+			<?php
+			$term_link = get_term_link( $cat_id );
+			if ( is_wp_error( $term_link ) ) {
+				continue;
+			}
+			?>
+		<li><a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $category ); ?></a></li>
 		<?php endforeach; ?>
 	</ul>
 </div>
