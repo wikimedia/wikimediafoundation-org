@@ -57,17 +57,17 @@ jQuery(document).ready(function($) {
 
   function imagePreview() {
 
-    $("a.preview").hover(function(e){
-      this.t = this.title;
-      this.title = "";
+    $( 'a.preview' ).hover( function() {
+      this.t     = this.title;
+      this.title = '';
 
-      var c = (this.t != "") ? this.t : "",
+      var c = ( this.t != '' ) ? this.t : '',
           b = document.createElement( 'br' ),
-          p = document.createElement( p ),
-          i = document.createElement( img );
+          p = document.createElement( 'p' ),
+          i = document.createElement( 'img' );
 
       p.setAttribute( 'id', 'preview' );
-      i.setAttribute( 'src', encodeURI( $(this).attr('data-src') ) );
+      i.setAttribute( 'src', encodeURI( $(this).attr( 'data-src' ) ) );
       i.setAttribute( 'alt', 'Image Preview' );
 
       p.appendChild( i );
@@ -79,12 +79,12 @@ jQuery(document).ready(function($) {
 
       $(this).append( p );
 
-      $("#preview").addClass('preview-visible');
+      $( '#preview' ).addClass( 'preview-visible' );
     },
-    function(){
+    function() {
       this.title = this.t;
-      $("#preview").remove();
-    });
+      $( '#preview' ).remove();
+    } );
   };
 
   imagePreview();
