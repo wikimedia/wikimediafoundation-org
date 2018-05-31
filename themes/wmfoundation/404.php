@@ -36,7 +36,7 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 		<h3 class="h3 mar-bottom"><?php echo esc_html( $wmf_404_search_text ); ?></h3>
 		<div class="search-container">
 			<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_html( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
+				<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
 				<button class="btn btn-pink search-btn" type="submit"><?php echo esc_html( $wmf_search_button ); ?></button>
 			</form>
 		</div>

@@ -82,7 +82,7 @@ if ( post_password_required() ) {
 		<?php
 		endif; // Check for comment navigation.
 
-	endif; // Check for have_comments().
+	endif; // Check for have comments.
 
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?

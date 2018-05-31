@@ -57,20 +57,34 @@ jQuery(document).ready(function($) {
 
   function imagePreview() {
 
-    $("a.preview").hover(function(e){
-      this.t = this.title;
-      this.title = "";
+    $( 'a.preview' ).hover( function() {
+      this.t     = this.title;
+      this.title = '';
 
-      var c = (this.t != "") ? "<br/>" + this.t : "";
+      var c = ( this.t != '' ) ? this.t : '',
+          b = document.createElement( 'br' ),
+          p = document.createElement( 'p' ),
+          i = document.createElement( 'img' );
 
-      $(this).append("<p id='preview'><img src='"+ $(this).attr('data-src') +"' alt='Image preview' />"+ c +"</p>");
+      p.setAttribute( 'id', 'preview' );
+      i.setAttribute( 'src', encodeURI( $(this).attr( 'data-src' ) ) );
+      i.setAttribute( 'alt', 'Image Preview' );
 
-      $("#preview").addClass('preview-visible');
+      p.appendChild( i );
+
+      if ( c !== '' ) {
+		  p.appendChild( b );
+		  p.appendChild( document.createTextNode( c ) );
+      }
+
+      $(this).append( p );
+
+      $( '#preview' ).addClass( 'preview-visible' );
     },
-    function(){
+    function() {
       this.title = this.t;
-      $("#preview").remove();
-    });
+      $( '#preview' ).remove();
+    } );
   };
 
   imagePreview();
