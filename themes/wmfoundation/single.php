@@ -22,10 +22,12 @@ while ( have_posts() ) {
 		)
 	);
 
+	$container_theme_mod = get_theme_mod( 'wmf_posts_container_image' );
+	$container_image     = empty( $container_theme_mod ) ? get_template_directory_uri() . '/assets/dist/images/header-pattern-1.png' : $container_theme_mod;
 	wmf_get_template_part(
 		'template-parts/thumbnail-framed',
 		array(
-			'container_image' => get_theme_mod( 'wmf_posts_container_image' ),
+			'container_image' => $container_image,
 			'inner_image'     => get_post_thumbnail_id(),
 		)
 	);
