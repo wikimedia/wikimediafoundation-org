@@ -54,7 +54,7 @@ $allowed_tags['time'] = true;
 	<?php endif; ?>
 
 	<?php if ( ! empty( $title ) ) : ?>
-	<h1 class="mar-bottom"><?php echo esc_html( $title ); ?></h1>
+	<h1 class="mar-bottom"><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
 	<?php endif; ?>
 
 	<?php if ( ! empty( $meta ) ) : ?>
