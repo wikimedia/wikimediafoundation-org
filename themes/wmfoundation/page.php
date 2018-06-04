@@ -33,6 +33,7 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/content', 'page' );
 
 	$modules = array(
+		'framing-copy',
 		'offsite-links',
 		'cta',
 		'related',
