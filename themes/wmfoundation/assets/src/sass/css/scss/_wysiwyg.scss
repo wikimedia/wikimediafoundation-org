@@ -1,6 +1,7 @@
 .wysiwyg {
 
-	p a {
+	p a,
+	li a {
 		//$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
 		@include linkHighlight($color-turquoise, #000, 4, 4, 24, 30, $medium-bp);
 	}
