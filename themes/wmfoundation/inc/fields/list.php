@@ -32,6 +32,7 @@ function wmf_list_fields() {
 						'add_more_label' => __( 'Add A List Item', 'wmfoundation' ),
 						'children'       => array(
 							'title'       => new Fieldmanager_TextField( __( 'List Item Title', 'wmfoundation' ) ),
+							'image'       => new Fieldmanager_Media( __( 'Featured Image', 'wmfoundation' ) ),
 							'subhead'     => new Fieldmanager_Textarea( __( 'List Item Subheading', 'wmfoundation' ) ),
 							'description' => new Fieldmanager_RichTextArea( __( 'List Item Description', 'wmfoundation' ) ),
 							'link'        => new Fieldmanager_Link( __( 'List Item Link', 'wmfoundation' ) ),
