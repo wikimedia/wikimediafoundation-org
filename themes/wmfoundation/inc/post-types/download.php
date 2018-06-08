@@ -44,7 +44,10 @@ function wmf_download_init() {
 			'show_in_nav_menus' => true,
 			'supports'          => array( 'title', 'editor', 'revisions', 'custom-fields', 'thumbnail', 'excerpt' ),
 			'has_archive'       => false,
-			'rewrite'           => true,
+			'rewrite'           => array(
+				'with_front' => false,
+				'slug'       => __( 'download', 'wmfoundation' ),
+			),
 			'query_var'         => true,
 			'menu_icon'         => 'dashicons-groups',
 			'show_in_rest'      => true,
