@@ -11,17 +11,7 @@
  * @param int $term_id Term ID to clear.
  */
 function wmf_clear_role_cache( $term_id ) {
-	wp_cache_delete( 'wmf_terms_list_' . $term_id );
-
-	$term = get_term( $term_id, 'role' );
-
-	if ( ! $term || is_wp_error( $term ) ) {
-		return;
-	}
-
-	if ( ! empty( $term->parent ) ) {
-		wp_cache_delete( 'wmf_terms_list_' . $term->parent );
-	}
+	wmf_clear_term_list_cache( $term_id );
 }
 add_action( 'edit_role', 'wmf_clear_role_cache', 10, 1 );
 add_action( 'create_role', 'wmf_clear_role_cache', 10, 1 );
@@ -57,17 +47,40 @@ function wmf_clear_profile_cache( $post_id ) {
 
 	$terms = get_the_terms( $post_id, 'role' );
 
-	if ( ! $terms || is_wp_error( $terms ) ) {
+	if ( empty( $terms ) || is_wp_error( $terms ) ) {
 		return;
 	}
 
-	$term_ids = wp_list_pluck( $terms, 'term_id' );
+	wmf_clear_term_list_cache( $terms[0] );
 
-	if ( ! empty( $term_ids ) ) {
-		wp_cache_delete( md5( sprintf( 'wmf_profiles_for_term_%s', $term_ids[0] ) ) );
-	}
+	$term_ids = wp_list_pluck( $terms, 'term_id' );
+	wp_cache_delete( md5( sprintf( 'wmf_profiles_for_term_%s', $term_ids[0] ) ) );
 }
 add_action( 'save_post_profile', 'wmf_clear_profile_cache' );
+
+/**
+ * Clear out the list of profiles for a term and all of its
+ * direct ancestors.
+ *
+ * @param mixed $term ID or Term Object.
+ */
+function wmf_clear_term_list_cache( $term ) {
+	if ( is_int( $term ) ) {
+		$term = get_term( $term );
+	}
+
+	$term_id = $term->term_id;
+	wp_cache_delete( 'wmf_terms_list_' . $term_id );
+
+	if ( empty( $term->parent ) ) {
+		return;
+	}
+
+	do {
+		wp_cache_delete( 'wmf_terms_list' . $term->parent );
+		$term = get_term( $term->parent );
+	} while ( ! empty( $term->parent ) );
+}
 
 /**
  * Clears the `wmf_featured_posts_for` context cache when a post is updated.
