@@ -55,7 +55,7 @@ function wmf_clear_profile_cache( $post_id ) {
 
 	wp_cache_delete( 'wmf_profiles_opts' );
 
-	$terms    = get_the_terms( $post_id, 'role' );
+	$terms = get_the_terms( $post_id, 'role' );
 
 	if ( ! $terms || is_wp_error( $terms ) ) {
 		return;

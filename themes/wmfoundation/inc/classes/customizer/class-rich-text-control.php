@@ -74,8 +74,11 @@ class Rich_Text_Control extends WP_Customize_Control {
 
 	/**
 	 * Filters the editor text area so the customizer control works.
+	 *
+	 * @param  string $output The current output.
+	 * @return string
 	 */
-	function the_editor( $output ) {
+	public function the_editor( $output ) {
 		return preg_replace( '/<textarea/', '<textarea ' . $this->get_link(), $output, 1 );
 	}
 
