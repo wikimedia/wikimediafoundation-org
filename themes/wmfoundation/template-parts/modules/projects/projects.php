@@ -35,14 +35,18 @@ $project_class = '_map';
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>
-				<p class="color-white mar-bottom_lg"><?php
-					echo wp_kses( $template_args['content'], array(
-						'em'     => array(),
-						'span'   => array( 'class', 'id' ),
-						'del'    => array(),
-						'strong' => array(),
-					) );
-					?></p>
+				<p class="color-white mar-bottom_lg">
+				<?php
+					echo wp_kses(
+						$template_args['content'], array(
+							'em'     => array(),
+							'span'   => array( 'class', 'id' ),
+							'del'    => array(),
+							'strong' => array(),
+						)
+					);
+					?>
+					</p>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
