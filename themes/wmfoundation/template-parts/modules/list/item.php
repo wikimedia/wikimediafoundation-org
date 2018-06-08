@@ -12,7 +12,7 @@ if ( empty( $template_data ) || empty( $template_data['title'] ) ) {
 }
 
 $title       = $template_data['title'];
-$image       = ! empty( $template_data['image'] ) ? wp_get_attachment_image( $template_data['image'], 'image_square_medium' ) : '';
+$image       = ! empty( $template_data['image'] ) ? $template_data['image'] : '';
 $subhead     = ! empty( $template_data['subhead'] ) ? $template_data['subhead'] : '';
 $description = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 $link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
@@ -22,7 +22,7 @@ $link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 <li class="mar-bottom_lg flex flex-medium">
 	<?php if ( ! empty( $image ) ) : ?>
 	<div class="mar-right">
-		<?php echo $image; ?>
+		<?php echo wp_get_attachment_image( $image, 'image_square_medium' ); ?>
 	</div>
 	<?php endif; ?>
 
