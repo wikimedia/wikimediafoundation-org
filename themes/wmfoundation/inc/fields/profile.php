@@ -25,10 +25,16 @@ function wmf_profile_fields() {
 
 	$contact_links->add_meta_box( __( 'List of Contact Links', 'wmfoundation' ), 'profile' );
 
-	$info = new Fieldmanager_Textfield(
+	$info = new Fieldmanager_Group(
 		array(
-			'name'  => 'profile_role',
-			'label' => __( 'Role', 'wmfoundation' ),
+			'name'           => 'profile_info',
+			'label'          => __( 'Profile Info', 'wmfoundation' ),
+			'serialize_data' => false,
+			'add_to_prefix'  => false,
+			'children'       => array(
+				'profile_role'     => new Fieldmanager_Textfield( __( 'Role', 'wmfoundation' ) ),
+				'profile_featured' => new Fieldmanager_Checkbox( __( 'Featured?', 'wmfoundation' ) ),
+			),
 		)
 	);
 	$info->add_meta_box( __( 'Profile Info', 'wmfoundation' ), 'profile' );
