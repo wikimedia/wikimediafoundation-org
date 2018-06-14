@@ -1,5 +1,7 @@
 var gulp         = require( 'gulp' );
 var sass         = require( 'gulp-sass' );
+var rtlcss       = require( 'gulp-rtlcss' );
+var rename       = require( 'gulp-rename' );
 var autoprefixer = require( 'gulp-autoprefixer' );
 var sourcemaps   = require( 'gulp-sourcemaps' );
 
@@ -40,6 +42,13 @@ gulp.task( 'sass', function() {
 					sourceRoot: './'
 			   }))
 			   .pipe( gulp.dest( './' ) );
+} );
+
+gulp.task( 'rtl', function () {
+	return gulp.src( 'style.css' )
+		.pipe( rtlcss() )
+		.pipe( rename( 'rtl.css' ) )
+		.pipe( gulp.dest( './' ) );
 } );
 
 gulp.task( 'svg', function() {

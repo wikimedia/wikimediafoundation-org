@@ -29,14 +29,18 @@ $width_class = $template_args['split'] ? 'w-50p' : 'w-100p';
 
 	<?php if ( ! empty( $template_args['content'] ) ) : ?>
 	<div class="wysiwyg">
-		<p><?php
-			echo wp_kses( $template_args['content'], array(
+		<p>
+		<?php
+			echo wp_kses(
+				$template_args['content'], array(
 					'em'     => array(),
 					'span'   => array( 'class', 'id' ),
 					'del'    => array(),
 					'strong' => array(),
-			) );
-			?></p>
+				)
+			);
+			?>
+			</p>
 	</div>
 	<?php endif; ?>
 

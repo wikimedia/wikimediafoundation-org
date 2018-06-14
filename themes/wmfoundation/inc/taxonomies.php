@@ -47,7 +47,11 @@ function wmf_add_taxonomies() {
 
 	$profile_type_args = wp_parse_args(
 		$default_args, array(
-			'labels' => $profile_type_labels,
+			'labels'  => $profile_type_labels,
+			'rewrite' => array(
+				'with_front' => false,
+				'slug'       => __( 'role', 'wmfoundation' ),
+			),
 		)
 	);
 	register_taxonomy( 'role', array( 'profile' ), $profile_type_args );
