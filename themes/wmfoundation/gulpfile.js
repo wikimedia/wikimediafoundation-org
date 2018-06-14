@@ -99,7 +99,7 @@ gulp.task( 'watch', function() {
 
 
 
-gulp.task( 'styles', [ 'sass', 'rtl' ] );
+gulp.task( 'styles', [ 'sass' ] );
 gulp.task( 'scripts', [ 'jslint', 'concat' ] );
 gulp.task( 'lint', [ 'jslint' ] );
 gulp.task( 'build', [ 'svg', 'styles', 'scripts' ] );
