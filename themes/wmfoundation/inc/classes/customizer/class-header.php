@@ -49,6 +49,21 @@ class Header extends Base {
 			)
 		);
 
+		$control_id = 'wmf_selected_translation_copy';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Selected', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Selected Translations Copy', 'wmfoundation' ),
+				'description' => __( 'This changes the selected link copy found in the translation bar at the top of the page.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$control_id = 'wmf_search_button_copy';
 		$this->customize->add_setting(
 			$control_id, array(
