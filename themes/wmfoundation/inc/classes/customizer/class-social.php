@@ -55,6 +55,20 @@ class Social extends Base {
 			)
 		);
 
+		$control_id = 'wmf_twitter_id';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => 'Wikimedia',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Twitter @', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
 		$control_id = 'wmf_twitter_url';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
@@ -65,15 +79,13 @@ class Social extends Base {
 			)
 		);
 
-		$control_id = 'wmf_twitter_id';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => 'Wikimedia',
-			)
-		);
+		$control_id = 'wmf_facebook_label';
+		$this->customize->add_setting( $control_id, array(
+			'default' => __( 'Facebook', 'wmfoundation' ),
+		) );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Twitter @', 'wmfoundation' ),
+				'label'   => __( 'Facebook Label', 'wmfoundation' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -89,16 +101,39 @@ class Social extends Base {
 			)
 		);
 
-		$control_id = 'wmf_instagram_url';
-		$this->customize->add_setting( $control_id );
+		$control_id = 'wmf_instagram_label';
+		$this->customize->add_setting( $control_id, array(
+			'default' => __( 'Instagram', 'wmfoundation' ),
+		) );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Instagrams URI', 'wmfoundation' ),
+				'label'   => __( 'Instagram Label', 'wmfoundation' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
 		);
 
+		$control_id = 'wmf_instagram_url';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Instagram URI', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_blog_label';
+		$this->customize->add_setting( $control_id, array(
+			'default' => __( 'Wikimedia Blog', 'wmfoundation' ),
+		) );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Blog Label', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
 		$control_id = 'wmf_blog_url';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(

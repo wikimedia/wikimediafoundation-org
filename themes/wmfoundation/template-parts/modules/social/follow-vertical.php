@@ -8,10 +8,14 @@
 $follow_text = get_theme_mod( 'wmf_social_follow_text', __( 'Follow', 'wmfoundation' ) );
 $facebook    = get_theme_mod( 'wmf_facebook_url' );
 $twitter     = get_theme_mod( 'wmf_twitter_url' );
-$twitter_id  = get_theme_mod( 'wmf_twitter_id', 'Wikimedia' );
-$twitter_id  = sprintf( '@%s', trim( $twitter_id, '@' ) );
 $instagram   = get_theme_mod( 'wmf_instagram_url' );
 $blog        = get_theme_mod( 'wmf_blog_url' );
+
+$facebook_label  = get_theme_mod( 'wmf_facebook_label', 'Facebook' );
+$twitter_id      = get_theme_mod( 'wmf_twitter_id', 'Wikimedia' );
+$twitter_id      = sprintf( '@%s', trim( $twitter_id, '@' ) );
+$instagram_label = get_theme_mod( 'wmf_instagram_label', 'Instagram' );
+$blog_label      = get_theme_mod( 'wmf_blog_label', 'Wikimedia Blog' );
 
 if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $blog ) ) {
 	return;
@@ -31,7 +35,7 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 		<li>
 			<a href="<?php echo esc_url( $facebook ); ?>">
 				<?php wmf_show_icon( 'social-facebook' ); ?>
-				<?php esc_html_e( 'Facebook', 'wmfoundation' ); ?>
+				<?php echo esc_html( $facebook_label ); ?>
 			</a>
 		</li>
 		<?php endif; ?>
@@ -47,7 +51,7 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 		<li>
 			<a href="<?php echo esc_url( $instagram ); ?>">
 				<?php wmf_show_icon( 'social-instagram' ); ?>
-				<?php esc_html_e( 'Instagram', 'wmfoundation' ); ?>
+				<?php echo esc_html( $instagram_label ); ?>
 			</a>
 		</li>
 		<?php endif; ?>
@@ -55,7 +59,7 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 		<li>
 			<a href="<?php echo esc_url( $blog ); ?>">
 				<span class="wmf-logo-icon"><?php wmf_show_icon( 'wikimedia' ); ?></span>
-				<?php esc_html_e( 'Wikimedia Blog', 'wmfoundation' ); ?>
+				<?php echo esc_html( $blog_label ); ?>
 			</a>
 		</li>
 		<?php endif; ?>
