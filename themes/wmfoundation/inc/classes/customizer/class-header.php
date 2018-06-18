@@ -28,18 +28,6 @@ class Header extends Base {
 		$header_section->panel = 'header_image';
 		$header_section->title = $header_image_title;
 
-		$section_id = 'header_image';
-		$control_id = 'wmf_mobile_logo';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			new \WP_Customize_Image_Control(
-				$this->customize, $control_id, array(
-					'label'   => __( 'Mobile Logo', 'wmfoundation' ),
-					'section' => $section_id,
-				)
-			)
-		);
-
 		$section_id = 'wmf_header_content';
 		$this->customize->add_section(
 			$section_id, array(

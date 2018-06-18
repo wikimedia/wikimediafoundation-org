@@ -7,11 +7,10 @@
 
 $data = wmf_get_template_data();
 
-if ( empty( $data['container_image'] ) || empty( $data['inner_image'] ) ) {
+if ( empty( $data['inner_image'] ) ) {
 	return;
 }
 
-$container_image = $data['container_image'];
 $inner_image     = $data['inner_image'];
 $container_class = empty( $data['container_class'] ) ? '' : ' ' . $data['container_class'];
 $attachment      = get_post( $inner_image );
@@ -34,7 +33,7 @@ $has_caption     = ! empty( $caption ) || ! empty( $credit );
 <?php if ( $has_caption ) : ?>
 <div class="img-caption mw-900">
 	<?php if ( ! empty( $caption ) ) : ?>
-		<span class="photo-caption"><?php echo esc_html( $caption ); ?></span>
+		<span class="photo-caption"><?php echo wp_kses_post( $caption ); ?></span>
 	<?php endif; ?>
 
 	<?php if ( ! empty( $credit ) ) : ?>
