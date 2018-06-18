@@ -46,6 +46,15 @@
     box-shadow: $padding 0 0 white, -$padding 0 0 white;
 }
 
+@mixin highlightText($padding, $color) {
+    background: white;
+    line-height: 2;
+    color: $color;
+    display: inline;
+    padding: $padding 0;
+    box-shadow: $padding 0 0 white, -$padding 0 0 white;
+}
+
 @mixin linkHighlight($highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint) {
 	background-image: linear-gradient(to top, $highlightColor, $highlightColor);
 	background-size: 100% rem($underlineThicknessMobile);

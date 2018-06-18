@@ -151,6 +151,20 @@
 	}
 }
 
+@mixin yellow-gradient {
+
+	&:after {
+		@include absoluteFull();
+		opacity: .35;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#01b7b1+0,ffffff+87,ffffff+87&1+0,0+87 */
+		background: -moz-linear-gradient(left, $color-yellow 0%, rgba(255,255,255,0) 87%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, $color-yellow 0%,rgba(255,255,255,0) 87%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, $color-yellow 0%,rgba(255,255,255,0) 87%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01b7b1', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+	}
+}
+
 @mixin white-gradient {
 
 	&:after {
@@ -184,12 +198,6 @@
 
 	&--pink {
 
-		.card-content {
-			p {
-				text-shadow: 1px 1px 1px $color-pink;
-			}
-		}
-
 		.bg-img-container {
 			@include duoToneBg($color-pink, 50%, 1, screen);
 			@include pink-gradient();
@@ -217,6 +225,13 @@
 		.bg-img-container {
 			@include duoToneBg($color-turquoise, 50%, 1, multiply);
 			@include turquoise-gradient();
+			@include bgImgPositioning();
+		}
+	}
+
+	&--yellow {
+		.bg-img-container {
+			@include duoToneBg($color-yellow, 100%, 1, multiply);
 			@include bgImgPositioning();
 		}
 	}

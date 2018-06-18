@@ -28,13 +28,12 @@ while ( have_posts() ) {
 	}
 
 ?>
-<div class="home-subnav mw-1360 white-bg">
+<div class="site-main-nav home-subnav mw-1360 white-bg">
 	<div class="logo-nav-container">
 		<?php get_template_part( 'template-parts/header/logo' ); ?>
-		<div class="subnav-container nav-container">
-			<?php get_template_part( 'template-parts/header/navigation' ); ?>
-		</div>
+		<?php get_template_part( 'template-parts/header/nav-container' ); ?>
 	</div>
+	<?php get_template_part( 'template-parts/header/navigation' ); ?>
 </div>
 
 <div class="page-intro mw-1360 mod-margin-bottom wysiwyg">

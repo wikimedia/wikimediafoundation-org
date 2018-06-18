@@ -1,6 +1,8 @@
 // Header translation bar
 
-$translation-height: 60px;
+$translation-height: rem(60);
+$translation-font: rem(22);
+$translation-label-width: rem(160);
 
 .translation-bar {
 	position: relative;
@@ -26,8 +28,8 @@ $translation-height: 60px;
 
 	ul {
 		overflow: hidden;
-		padding-left: rem(115);
-		@include paddingTop(10, 19, $medium-bp);
+		padding-left: $translation-label-width;
+		@include paddingTop(11, 17, $medium-bp);
 
 		// @media (min-width: $medium-bp) {
 		// 	margin-right: rem(40);
@@ -41,22 +43,31 @@ $translation-height: 60px;
 	li {
 		white-space: nowrap;
 		font-size: 1rem;
-		@include paddingBottom(13, 18, $medium-bp);
+		@include paddingBottom(7, 13, $medium-bp);
 		margin-bottom: 0;
 		margin-right: 2rem;
 		border-bottom: 4px solid rgba(0,0,0,0);
 		transition: 0.3s all;
+		color: $color-white;
+		@media (min-width: $header-bp) {
+			font-size: $translation-font;
+		}
 
 		&.divider {
-			margin-left: -6px;
+			margin-left: -4px;
 		}
 
 		&.hover-underline {
-			border-color: $color-light-turquoise;
+			border-color: $color-white;
 		}
 
-		.is-selected {
+		&.is-selected {
 			font-weight: bold;
+			border-color: $color-white;
+
+			&.hover-underline {
+				border-color: $color-white;
+			}
 		}
 	}
 
@@ -72,8 +83,8 @@ $translation-height: 60px;
 		top: 0;
 		background: $color-dark-dark-blue;
 		z-index: 1;
+		height: rem(45);
 
-		height: $translation-height - 20px;
 		@media (min-width: $medium-bp) {
 			height: $translation-height;
 		}
@@ -81,11 +92,11 @@ $translation-height: 60px;
 
 	.translation-icon {
 		left: rem(20);
-		width: rem(115);
 		background: $color-dark-dark-blue;
-
-		@media (min-width: $medium-bp) {
-			left: rem(40);
+		padding-right: rem(10);
+		vertical-align: middle;
+		@media (min-width: $header-bp) {
+			font-size: $translation-font;
 		}
 	}
 
@@ -101,6 +112,7 @@ $translation-height: 60px;
 	.arrow-wrap {
 		right: -10px;
 		width: 4.5rem;
+		padding-right: 6px;
 
 		@media (min-width: $header-bp) {
 			width: rem(90);
@@ -109,8 +121,6 @@ $translation-height: 60px;
 		@media (max-width: 767px) {
 			display: none;
 		}
-
-		padding-right: 6px;
 
 		i {
 			transition: 0.3s all;

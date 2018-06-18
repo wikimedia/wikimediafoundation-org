@@ -62,16 +62,16 @@
 
 
       &::-webkit-input-placeholder {
-        color: #E1DEFF;
+        color: $color-blue;
       }
       &::-moz-placeholder { /* Firefox 19+ */
-        color: #E1DEFF;
+        color: $color-blue;
       }
       &:-ms-input-placeholder { /* IE 10+ */
-        color: #E1DEFF;
+        color: $color-blue;
       }
       &:-moz-placeholder { /* Firefox 18- */
-        color: #E1DEFF;
+        color: $color-blue;
       }
     }
 
@@ -110,7 +110,7 @@
   display: flex;
   position: relative;
   z-index: 99;
-  color: $color-light-turquoise;
+  color: $color-blue;
 }
 
 .search-bar-container {
@@ -132,7 +132,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    color: $color-light-turquoise;
+    color: $color-blue;
     display: none;
     @include font-size(32, 24);
 
@@ -149,8 +149,8 @@
   }
 
   input {
-    background: #2516B5;
-    color: #fff;
+    background: $color-white;;
+    color: $color-blue;
     border: none;
     opacity: 0;
     width: 0px;

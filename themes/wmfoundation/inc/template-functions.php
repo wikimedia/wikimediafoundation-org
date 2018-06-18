@@ -392,8 +392,18 @@ function wmf_remove_coauthors_archive_filter() {
 }
 add_action( 'init', 'wmf_remove_coauthors_archive_filter' );
 
+/**
+ * Add a wrapper around images that are added through the editor,
+ * and are not aligned left or right, or have a caption.
+ *
+ * @param string $html    Full HTML of image.
+ * @param string $id      ID of image.
+ * @param string $caption Caption.
+ * @param string $title   Title attribute.
+ * @param string $align   Align attributes.
+ * @return string Modified HTML string.
+ */
 function wmf_add_image_container( $html, $id, $caption, $title, $align ) {
-
 	if ( 'left' === $align || 'right' === $align || ! empty( $caption ) ) {
 		return $html;
 	}
@@ -407,6 +417,14 @@ function wmf_add_image_container( $html, $id, $caption, $title, $align ) {
 }
 add_filter( 'image_send_to_editor', 'wmf_add_image_container', 10, 5 );
 
+/**
+ * Also wrap the caption in a container that sets image markup properly.
+ *
+ * @param string $output Current output of caption shortcode.
+ * @param array  $attr List of shortcode attributes.
+ * @param string $content Full shortcode.
+ * @return string HTML to output.
+ */
 function wmf_filter_caption_shortcode( $output, $attr, $content ) {
 	$attachment_id = str_replace( 'attachment_', '', $attr['id'] );
 	$attachment    = get_post( $attachment_id );
