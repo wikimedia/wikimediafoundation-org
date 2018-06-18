@@ -25,12 +25,8 @@ $has_caption     = ! empty( $caption ) || ! empty( $credit );
 <div class="article-img article-img-main mw-1017">
 <?php endif; ?>
 
-<div class="mw-1017 staff-image-container<?php echo esc_attr( $container_class ); ?>">
-	<div class="staff-image-bkg duotone-inline-img-container--blue">
-		<img src="<?php echo esc_url( $container_image ); ?>" alt="">
-	</div>
-
-	<div class="staff-image">
+<div class="mw-1017 <?php echo esc_attr( $container_class ); ?>">
+	<div class="mar-bottom">
 		<?php echo wp_get_attachment_image( $inner_image, 'large' ); ?>
 	</div>
 </div>

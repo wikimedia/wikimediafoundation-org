@@ -21,7 +21,7 @@ $args = wp_parse_args(
 );
 ?>
 
-<div class="social-share">
+<div class="social-share social-share-home">
 	<span class="h5 bold uppercase color-black"><?php echo esc_html( $share_text ); ?></span>
 	<span class="inline-social-list">
 		<?php if ( in_array( 'twitter', $services, true ) ) : ?>
