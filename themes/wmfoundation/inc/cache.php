@@ -96,7 +96,7 @@ function wmf_clear_post_cache( $post_id ) {
 		'home' => 'Home', // We don't need this to translate.
 	);
 
-	$contexts = $contexts + wmf_get_landing_pages_options();
+	$contexts = array_keys( $contexts + wmf_get_landing_pages_options() );
 
 	foreach ( $contexts as $context ) {
 		$cache_key = md5( 'wmf_featured_posts_for' . $context );

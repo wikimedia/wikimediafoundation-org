@@ -101,13 +101,8 @@ blockquote p {
 	}
 }
 
-.blockquote-container blockquote,
-blockquote p:first-child {
-    position: relative;
-    font-weight: 300;
-	display: inline;
+.blockquote-container blockquote {
 	margin-left: rem(30);
-	padding-left: rem(20);
 
 	@media (min-width: $blockquote-bp) {
 		margin-left: 93px;
@@ -156,6 +151,14 @@ blockquote p:first-child {
 			bottom: -20px;
 		}
 	}
+}
+
+.blockquote-container blockquote,
+blockquote p:first-child {
+    position: relative;
+    font-weight: 300;
+	display: inline;
+	padding-left: rem(20);
 }
 
 .category {
