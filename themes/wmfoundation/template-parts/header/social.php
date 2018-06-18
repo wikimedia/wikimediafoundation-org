@@ -7,6 +7,7 @@
 
 if (
 	is_front_page() ||
+	is_home() ||
 	is_404() ||
 	is_search() ||
 	is_singular( 'profile' ) ||
