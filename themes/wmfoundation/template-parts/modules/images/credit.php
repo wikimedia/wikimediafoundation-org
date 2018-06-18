@@ -28,6 +28,6 @@ if ( empty( $image_url ) ) {
 ?>
 
 <div class="w-50p p">
-	<span class="credit-desc"><strong><a href="#" data-src="<?php echo esc_url( $image_url ); ?>" class="preview" title=""><?php wmf_show_icon( 'image' ); ?><?php echo esc_html( $title ); ?></a></strong></span>
+	<span class="credit-desc"><strong><a href="#" data-src="<?php echo esc_url( $image_url ); ?>" class="preview" title=""><?php echo esc_html( $title ); ?></a></strong></span>
 	<span class="credit"><?php echo wp_kses_post( $description ); ?></span>
 </div>
