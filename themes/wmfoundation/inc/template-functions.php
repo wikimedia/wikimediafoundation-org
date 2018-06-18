@@ -118,7 +118,7 @@ function wmf_get_role_hierarchy( $parent_id ) {
 	$term_array = array();
 	$terms      = get_terms(
 		'role', array(
-			'orderby' => 'id',
+			'orderby' => 'name',
 			'fields'  => 'id=>parent',
 			'get'     => 'all',
 		)
@@ -131,7 +131,7 @@ function wmf_get_role_hierarchy( $parent_id ) {
 	}
 
 	foreach ( $children[ $parent_id ] as $child_id ) {
-		$term_array[ $child_id ] = $children[ $child_id ];
+		$term_array[ $child_id ] = isset( $children[ $child_id ] ) ? $children[ $child_id ] : array();
 	}
 
 	return $term_array;
@@ -149,6 +149,8 @@ function wmf_get_role_posts( $term_id ) {
 		array(
 			'post_type' => 'profile',
 			'fields'    => 'ids',
+			'orderby'   => 'title',
+			'order'     => 'ASC',
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'role',
@@ -159,8 +161,19 @@ function wmf_get_role_posts( $term_id ) {
 		)
 	); // WPCS: slow query ok.
 
+	$post_list = $posts->posts;
+
+	foreach ( $posts->posts as $i => $post_id ) {
+		$featured = get_post_meta( $post_id, 'profile_featured', true );
+
+		if ( $featured ) {
+			unset( $post_list[ $i ] );
+			array_unshift( $post_list, $post_id );
+		}
+	}
+
 	return array(
-		'posts' => $posts->posts,
+		'posts' => $post_list,
 		'name'  => $term_query->name,
 	);
 }
