@@ -197,6 +197,11 @@ require get_template_directory() . '/inc/template-translations.php';
 require get_template_directory() . '/inc/ajax.php';
 
 /**
+ * Adjustments to queries.
+ */
+require get_template_directory() . '/inc/queries.php';
+
+/**
  * Class autoloader.
  */
 require get_template_directory() . '/inc/classes/class-autoload.php';
