@@ -77,6 +77,7 @@ class Notice {
 
 			if ( (int) $this->get_progress_term_id() === (int) $this->translation_status( $remote_post['content_id'] ) ) {
 				$this->has_post_in_progress = true;
+				restore_current_blog();
 				return;
 			}
 
