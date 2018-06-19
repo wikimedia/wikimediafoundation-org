@@ -177,6 +177,14 @@ function wmf_admin_scripts() {
 		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/post-meta.js' ),
 		true
 	);
+
+	wp_enqueue_script(
+		'wmfoundation-media-js',
+		get_stylesheet_directory_uri() . '/assets/src/admin/media.js',
+		array( 'jquery' ),
+		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/media.js' ),
+		true
+	);
 }
 add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
 

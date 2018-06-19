@@ -250,3 +250,4 @@ require get_template_directory() . '/inc/fields/page-cta.php';
 require get_template_directory() . '/inc/fields/posts-page.php';
 require get_template_directory() . '/inc/fields/support.php';
 require get_template_directory() . '/inc/fields/connect.php';
+require get_template_directory() . '/inc/fields/media.php';
