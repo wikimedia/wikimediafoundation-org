@@ -37,31 +37,6 @@ $header-bp-mw: 1049px;
 
 
 
-  // // Top part of header
-  // .logo-nav-container {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   padding-top: rem(25);
-  //   @include paddingBottom(48, 120, $header-bp);
-
-  //   nav {
-
-  //     a {
-  //       //$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
-  //       @include linkHighlight($color-turquoise, $color-blue, 0, 0, 27, 27, $medium-bp);
-  //       font-weight: normal;
-  //       z-index: 1;
-
-  //       &:hover {
-  //         color: $color-blue;
-  //       }
-  //     }
-  //   }
-  // }
-
-
-
 
 
 

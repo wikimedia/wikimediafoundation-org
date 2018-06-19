@@ -431,7 +431,7 @@ function wmf_filter_caption_shortcode( $output, $attr, $content ) {
 	$caption       = $attachment->post_excerpt;
 	$credit        = $attachment->post_content;
 
-	$html = sprintf( '<div class="article-img img-in-text" id="%1$s"><div class="img-in-text">%2$s</div><div class="img-caption"><span class="photo-caption">%3$s</span> <span class="photo-credit">%4$s</span></div></div>', esc_attr( $attr['id'] ), do_shortcode( $content ), wp_kses_post( $caption ), wp_kses_post( $credit ) );
+	$html = sprintf( '<div class="article-img img-in-text" id="%1$s"><div class="img-in-text">%2$s</div><div class="img-caption"><span class="photo-caption">%3$s</span> <span class="photo-credit">%4$s</span></div></div>', esc_attr( $attr['id'] ), wp_kses_post( do_shortcode( $content ) ), wp_kses_post( $caption ), wp_kses_post( $credit ) );
 
 	return $html;
 }
