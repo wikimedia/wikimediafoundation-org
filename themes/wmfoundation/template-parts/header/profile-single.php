@@ -40,9 +40,12 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 
 	<?php if ( ! empty( $share_links ) ) : ?>
 	<div class="rise-up">
-		<?php foreach ( $share_links as $link ) : ?>
+		<?php
+		foreach ( $share_links as $link ) :
+			$link_url = strpos( $link['link'], 'mailto' ) !== false ? wmf_encode_email( $link['link'] ) : $link['link'];
+			?>
 		<span class="link-list hover-highlight color-white uppercase mar-right">
-			<a href="<?php echo esc_url( $link['link'] ); ?>" class="color-white">
+			<a href="<?php echo esc_html( $link_url ); ?>" class="color-white">
 				<?php echo esc_html( $link['title'] ); ?>
 			</a>
 		</span>

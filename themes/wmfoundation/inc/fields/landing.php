@@ -53,14 +53,16 @@ function wmf_landing_fields() {
 								'copy'      => new Fieldmanager_RichTextArea( __( 'Content', 'wmfoundation' ) ),
 								'link_url'  => new Fieldmanager_Link( __( 'Link URI', 'wmfoundation' ) ),
 								'link_text' => new Fieldmanager_Textfield( __( 'Link Text', 'wmfoundation' ) ),
-								'links'     => new Fieldmanager_Group( array(
-									'add_more_label' => __( 'Add Link', 'wmfoundation' ),
-									'limit' => 2,
-									'children' => array(
-										'link_url'  => new Fieldmanager_Link( __( 'Link URI', 'wmfoundation' ) ),
-										'link_text' => new Fieldmanager_Textfield( __( 'Link Text', 'wmfoundation' ) ),
-									),
-								)),
+								'links'     => new Fieldmanager_Group(
+									array(
+										'add_more_label' => __( 'Add Link', 'wmfoundation' ),
+										'limit'          => 2,
+										'children'       => array(
+											'link_url'  => new Fieldmanager_Link( __( 'Link URI', 'wmfoundation' ) ),
+											'link_text' => new Fieldmanager_Textfield( __( 'Link Text', 'wmfoundation' ) ),
+										),
+									)
+								),
 							),
 						)
 					),
@@ -74,10 +76,12 @@ function wmf_landing_fields() {
 		array(
 			'name'     => 'page_facts',
 			'children' => array(
-				'image' => new Fieldmanager_Media( array(
-					'label' => __( 'Background Image*', 'wmfoundation' ),
-					'description' => __( '*This is a required element for the facts to show properly.', 'wmfoundation' ),
-				) ),
+				'image' => new Fieldmanager_Media(
+					array(
+						'label'       => __( 'Background Image*', 'wmfoundation' ),
+						'description' => __( '*This is a required element for the facts to show properly.', 'wmfoundation' ),
+					)
+				),
 				'facts' => new Fieldmanager_Group(
 					array(
 						'add_more_label' => __( 'Add Fact', 'wmfoundation' ),

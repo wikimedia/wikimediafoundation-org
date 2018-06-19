@@ -30,8 +30,10 @@ $links = ! empty( $template_args['links'] ) ? $template_args['links'] : '';
 		<?php echo wp_kses_post( wpautop( $template_args['copy'] ) ); ?>
 	</div>
 	<?php endif; ?>
-	<?php if ( ! empty( $links ) ) :
-		foreach( $links as $link ) : ?>
+	<?php
+	if ( ! empty( $links ) ) :
+		foreach ( $links as $link ) :
+		?>
 		<div class="link-list hover-highlight uppercase mar-bottom">
 			<!-- Single link -->
 			<a href="<?php echo esc_url( $link['link_url'] ); ?>"><?php echo esc_html( $link['link_text'] ); ?></a>
