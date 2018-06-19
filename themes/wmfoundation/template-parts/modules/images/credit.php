@@ -20,9 +20,6 @@ if ( empty( $attachment ) ) {
 $title       = $attachment->post_title;
 $description = $attachment->post_content;
 
-if ( empty( $image_url ) ) {
-	return;
-}
 ?>
 
 <div class="photo-credit-container w-32p p flex flex-all">
