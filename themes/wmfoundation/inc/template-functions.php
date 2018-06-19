@@ -344,6 +344,43 @@ function wmf_get_related_posts( $post_id ) {
 }
 
 /**
+ * Get a list of recent posts by an author
+ *
+ * @param int $author_id Author ID to check against.
+ * @return array List of post objects.
+ */
+function wmf_get_recent_author_posts( $author_id ) {
+	$post_list = array();
+
+	if ( empty( $author_id ) ) {
+		return $post_list;
+	}
+
+	$author_id = absint( $author_id );
+
+	$cache_key = md5( sprintf( 'wmf_author_posts_for_%s', $author_id ) );
+
+	$post_list = wp_cache_get( $cache_key );
+
+	if ( empty( $post_list ) ) {
+		$posts_query = new WP_Query(
+			array(
+				'posts_per_page' => 3,
+				'no_found_rows'  => true,
+				'post_type'      => 'post',
+				'ignore_sticky'  => true,
+				'author'         => $author_id,
+			)
+		); // WPCS: Slow query ok.
+
+		$post_list = $posts_query->posts;
+		wp_cache_add( $cache_key, $post_list );
+	}
+
+	return $post_list;
+}
+
+/**
  * Remove the word "category" from body class since it has
  * intherited styles.
  *

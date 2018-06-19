@@ -74,4 +74,6 @@ endwhile;
 
 get_template_part( 'template-parts/page/page', 'listings' );
 
+get_template_part( 'template-parts/profiles/related-posts' );
+
 get_footer();
