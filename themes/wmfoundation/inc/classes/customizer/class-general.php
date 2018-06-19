@@ -25,6 +25,27 @@ class General extends Base {
 			)
 		);
 
+		// RTL.
+		$section_id = 'wmf_general_rtl';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'RTL Support', 'wmfoundation' ),
+				'priority' => 10,
+				'panel'    => $panel_id,
+			)
+		);
+
+		$control_id = 'wmf_enable_rtl';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Enable RTL', 'wmfoundation' ),
+				'description' => __( 'If checked, this will cause the front end of site to shift from left to right to right to left display.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'checkbox',
+			)
+		);
+
 		// Headings.
 		$section_id = 'wmf_general_labels';
 		$this->customize->add_section(
