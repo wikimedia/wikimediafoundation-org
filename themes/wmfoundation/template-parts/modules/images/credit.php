@@ -11,8 +11,6 @@ if ( empty( $image_id ) ) {
 	return;
 }
 
-
-$image_url  = wp_get_attachment_image_url( $image_id, 'thumbnail' );
 $attachment = get_post( $image_id );
 
 if ( empty( $attachment ) ) {
@@ -27,7 +25,13 @@ if ( empty( $image_url ) ) {
 }
 ?>
 
-<div class="w-50p p">
-	<span class="credit-desc"><strong><a href="#" data-src="<?php echo esc_url( $image_url ); ?>" class="preview" title=""><?php echo esc_html( $title ); ?></a></strong></span>
-	<span class="credit"><?php echo wp_kses_post( $description ); ?></span>
+<div class="photo-credit-container w-32p p flex flex-all">
+	<div class="photo-credit-img_container">
+		<?php echo wp_get_attachment_image( $image_id, 'thumbnail' ); ?>
+	</div>
+
+	<div>
+		<p class="credit-desc"><?php echo esc_html( $title ); ?></p>
+		<p class="credit"><?php echo wp_kses_post( $description ); ?></p>
+	</div>
 </div>

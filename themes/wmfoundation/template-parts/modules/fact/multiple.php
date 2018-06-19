@@ -24,7 +24,10 @@ $fact_width = 3 === count( $template_args['facts'] ) ? 'w-32p' : 'w-45p';
 		<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>);"></div>
 	</div>
 	<div class="mw-1360 flex flex-medium flex-wrap">
-		<?php foreach ( $template_args['facts'] as $fact ) : ?>
+		<?php
+		foreach ( $template_args['facts'] as $i => $fact ) :
+			$fact_width = 0 !== $i ? $fact_width . ' hide-sm' : $fact_width;
+			?>
 		<div class="fact-inner module-mu <?php echo esc_attr( $fact_width ); ?> mar-bottom_lg">
 			<div class="fact-text-wrap">
 				<?php if ( ! empty( $fact['heading'] ) ) : ?>

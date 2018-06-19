@@ -31,16 +31,8 @@
     transition: 0.3s all;
   }
 
-  .w-50p {
+  .photo-credit-container {
     @include marginBottom(16, 40, $medium-bp);
-
-    &:nth-child(odd) {
-      @include paddingRight(0, 64, $medium-bp);
-    }
-
-    &:nth-child(even) {
-      @include paddingLeft(0, 64, $medium-bp);
-    }
   }
 
   .credit {
@@ -49,24 +41,16 @@
       text-decoration: underline;
     }
   }
+}
 
-  // Image appears on hover
-  .credit-desc {
-    position: relative;
-  }
-
-  #preview {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    width: 250px;
-    max-width: 250px;
-    z-index: 9;
-    opacity: 0;
-    transition: 0.3s all;
-
-    &.preview-visible {
-      opacity: 1;
-    }
-  }
+.photo-credit-img_container {
+  width: rem(100);
+  height: rem(100);
+  overflow: hidden;
+  margin-right: rem(15);
+}
+.photo-credit-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }

@@ -25,7 +25,7 @@ while ( have_posts() ) {
 	wmf_get_template_part(
 		'template-parts/thumbnail-framed',
 		array(
-			'inner_image'     => get_post_thumbnail_id(),
+			'inner_image' => get_post_thumbnail_id(),
 		)
 	);
 	?>

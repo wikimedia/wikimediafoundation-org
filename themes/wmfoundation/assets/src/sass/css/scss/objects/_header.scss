@@ -194,9 +194,13 @@ $header-bp-mw: 1049px;
 
 		&--photo-centered {
 			margin-bottom: rem(75);
-			@media (min-width: $medium-bp) {
+			@media (min-width: $large-bp) {
         margin-bottom: rem(400);
-      }
+	  }
+
+			@media (min-width: $medium-bp) {
+				margin-bottom: rem(100);
+			}
 
 			.photo-aspect-ratio  {
 				@include aspect-ratio(2, 1);

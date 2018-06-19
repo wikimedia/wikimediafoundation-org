@@ -2,7 +2,7 @@
 
 $translation-height: rem(60);
 $translation-font: rem(22);
-$translation-label-width: rem(160);
+$translation-label-width: rem(180);
 
 .translation-bar {
 	position: relative;
@@ -31,18 +31,16 @@ $translation-label-width: rem(160);
 		padding-left: $translation-label-width;
 		@include paddingTop(11, 17, $medium-bp);
 
-		// @media (min-width: $medium-bp) {
-		// 	margin-right: rem(40);
-		// }
-
 		&:focus {
 			outline: none;
+		}
+		@media (max-width: $small-bp) {
+			padding-left: rem(5);
 		}
 	}
 
 	li {
 		white-space: nowrap;
-		font-size: 1rem;
 		@include paddingBottom(7, 13, $medium-bp);
 		margin-bottom: 0;
 		margin-right: 2rem;
@@ -88,17 +86,21 @@ $translation-label-width: rem(160);
 		@media (min-width: $medium-bp) {
 			height: $translation-height;
 		}
+
 	}
 
 	.translation-icon {
-		left: rem(20);
-		background: $color-dark-dark-blue;
-		padding-right: rem(10);
-		vertical-align: middle;
-		@media (min-width: $header-bp) {
-			font-size: $translation-font;
+		// 	left: rem(20);
+		// 	background: $color-dark-dark-blue;
+			padding-right: rem(10);
+		// 	vertical-align: middle;
+			@media (min-width: $header-bp) {
+				font-size: $translation-font;
+			}
+			@media (max-width: $small-bp) {
+				display: none;
+			}
 		}
-	}
 
 	.elipsis {
 		color: #2087E8;
@@ -122,7 +124,8 @@ $translation-label-width: rem(160);
 			display: none;
 		}
 
-		i {
+
+		.i {
 			transition: 0.3s all;
 		}
 
@@ -130,7 +133,7 @@ $translation-label-width: rem(160);
 			cursor: pointer;
 			user-select: none;
 
-			i {
+			.i {
 				color: $color-light-turquoise;
 				transform: translateX(.25rem);
 			}
