@@ -147,11 +147,12 @@ function wmf_get_role_posts( $term_id ) {
 	$term_query = get_term( $term_id, 'role' );
 	$posts      = new WP_Query(
 		array(
-			'post_type' => 'profile',
-			'fields'    => 'ids',
-			'orderby'   => 'title',
-			'order'     => 'ASC',
-			'tax_query' => array(
+			'post_type'      => 'profile',
+			'fields'         => 'ids',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'posts_per_page' => 100,
+			'tax_query'      => array(
 				array(
 					'taxonomy' => 'role',
 					'field'    => 'term_id',
