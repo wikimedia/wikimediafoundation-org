@@ -14,6 +14,8 @@ if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && e
 $image     = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
 $image_alt = is_numeric( $image ) ? wp_get_attachment_image( $image )->src : '';
+
+$links = ! empty( $template_args['links'] ) ? $template_args['links'] : '';
 ?>
 
 <div class="module-mu w-50p">
@@ -28,10 +30,12 @@ $image_alt = is_numeric( $image ) ? wp_get_attachment_image( $image )->src : '';
 		<?php echo wp_kses_post( wpautop( $template_args['copy'] ) ); ?>
 	</div>
 	<?php endif; ?>
-	<?php if ( ! empty( $template_args['link_url'] ) && ! empty( $template_args['link_text'] ) ) : ?>
-	<div class="link-list hover-highlight uppercase">
-		<!-- Single link -->
-		<a href="<?php echo esc_url( $template_args['link_url'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></a>
-	</div>
+	<?php if ( ! empty( $links ) ) :
+		foreach( $links as $link ) : ?>
+		<div class="link-list hover-highlight uppercase mar-bottom">
+			<!-- Single link -->
+			<a href="<?php echo esc_url( $link['link_url'] ); ?>"><?php echo esc_html( $link['link_text'] ); ?></a>
+		</div>
+		<?php endforeach; ?>
 	<?php endif; ?>
 </div>
