@@ -16,11 +16,6 @@
 function wmf_add_media_custom_fields( $attachment_fields, $post ) {
 	$credit_info    = get_post_meta( $post->ID, 'credit_info', true );
 
-	$attachment_fields['credit_name'] = array(
-		'value' => ! empty( $credit_info['name'] ) ? $credit_info['name'] : '',
-		'label' => __( 'Credit Name', 'wmfoundation' ),
-	);
-
 	$attachment_fields['credit_license'] = array(
 		'value' => ! empty( $credit_info['license'] ) ? $credit_info['license'] : '',
 		'label' => __( 'License', 'wmfoundation' ),
