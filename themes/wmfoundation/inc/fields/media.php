@@ -16,6 +16,11 @@
 function wmf_add_media_custom_fields( $attachment_fields, $post ) {
 	$credit_info    = get_post_meta( $post->ID, 'credit_info', true );
 
+	$attachment_fields['credit_author'] = array(
+		'value' => ! empty( $credit_info['author'] ) ? $credit_info['author'] : '',
+		'label' => __( 'Credit Author', 'wmfoundation' ),
+	);
+
 	$attachment_fields['credit_license'] = array(
 		'value' => ! empty( $credit_info['license'] ) ? $credit_info['license'] : '',
 		'label' => __( 'License', 'wmfoundation' ),
@@ -44,7 +49,7 @@ function wmf_save_attachment_custom_fields( $attachment_id ) {
 	}
 
 	$credit_info = array(
-		'name' => ! empty( $request['credit_name'] ) ? $request['credit_name'] : '',
+		'author' => ! empty( $request['credit_author'] ) ? $request['credit_author'] : '',
 		'license' => ! empty( $request['credit_license'] ) ? $request['credit_license'] : '',
 		'url' => ! empty( $request['credit_url'] ) ? $request['credit_url'] : '',
 	);
