@@ -171,16 +171,22 @@ article {
 }
 
 .article-img {
-
-	color: $color-gray;
 	@include marginBottom(40, 80, $medium-bp);
 	@include marginTop(40, 64, $medium-bp);
 
 	&.article-img-main {
-		@include marginTop(0, 0, $medium-bp);
+		position: relative;
+		max-height: 570px;
+		overflow: hidden;
+
+		@media (min-width: 640px) {
+			margin-top: -125px;
+		}
 	}
 
 	.img-caption {
+		color: $color-ltgray;
+		font-style: italic;
 		a {
 			transition: 0.3s all;
 			&:hover {
@@ -204,6 +210,8 @@ article {
 
 .article-title .h3 {
 	color: $color-gray;
+	line-height: 1.8;
+	font-weight: 600;
 	font-weight: 300;
 	@include marginBottom(30, 60, $medium-bp);
 }

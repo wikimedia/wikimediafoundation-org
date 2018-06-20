@@ -27,20 +27,6 @@ class Post extends Base {
 			)
 		);
 
-		$control_id = 'wmf_posts_container_image';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			new WP_Customize_Image_Control(
-				$this->customize,
-				$control_id,
-				array(
-					'label'    => __( 'Posts Page Frame Image', 'wmfoundation' ),
-					'section'  => $section_id,
-					'settings' => $control_id,
-				)
-			)
-		);
-
 		$control_id = 'wmf_related_posts_title';
 		$this->customize->add_setting(
 			$control_id, array(

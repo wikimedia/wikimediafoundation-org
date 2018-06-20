@@ -35,7 +35,9 @@ $class    = empty( $template_args['class'] ) ? $bg_class . ' cta-secondary' : $t
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>
-				<?php echo wp_kses_post( wpautop( $template_args['content'] ) ); ?>
+				<div class="mar-bottom mar-top">
+					<?php echo wp_kses_post( '<p class="cta-description">' . $template_args['content'] . '</p>' ); ?>
+				</div>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>

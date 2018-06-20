@@ -11,7 +11,7 @@
 
 use WMF\Images\Credits;
 
-$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Selected', 'wmfoundation' ) );
+$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'wmfoundation' ) );
 $wmf_translations         = wmf_get_translations();
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
@@ -35,13 +35,13 @@ $wmf_translations         = wmf_get_translations();
 			<div class="translation-bar-inner mw-1360">
 				<div class="translation-icon">
 					<?php wmf_show_icon( 'translate', 'material icon-turquoise' ); ?>
-					<span class="bold"><?php echo esc_html( $wmf_translation_selected ); ?></span>
+					<span class="bold"><?php echo esc_html( $wmf_translation_selected ); ?>:</span>
 				</div>
 
 				<ul class="list-inline">
 				<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
 					<?php if ( 0 !== $wmf_index ) : ?>
-					<li class="divider">&mdash;</li>
+					<li class="divider">&middot;</li>
 					<?php endif; ?>
 					<li>
 						<?php if ( $wmf_translation['selected'] ) : ?>
@@ -67,11 +67,12 @@ $wmf_translations         = wmf_get_translations();
 
 		<div class="header-inner mw-1360">
 			<?php if ( ! is_front_page() ) : ?>
-			<div class="logo-nav-container">
-				<?php get_template_part( 'template-parts/header/logo' ); ?>
-				<div class="nav-container">
-					<?php get_template_part( 'template-parts/header/navigation' ); ?>
+			<div class="site-main-nav">
+				<div class="logo-nav-container">
+					<?php get_template_part( 'template-parts/header/logo' ); ?>
+					<?php get_template_part( 'template-parts/header/nav-container' ); ?>
 				</div>
+				<?php get_template_part( 'template-parts/header/navigation' ); ?>
 			</div>
 			<?php endif; ?>
 

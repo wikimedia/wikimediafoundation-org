@@ -64,7 +64,7 @@ function wmf_landing_fields() {
 			'name'     => 'page_facts',
 			'children' => array(
 				'image' => new Fieldmanager_Media( array(
-					'label' => __( 'Background Image*', 'wmfoundation' ),
+					'label'       => __( 'Background Image*', 'wmfoundation' ),
 					'description' => __( '*This is a required element for the facts to show properly.', 'wmfoundation' ),
 				) ),
 				'facts' => new Fieldmanager_Group(
