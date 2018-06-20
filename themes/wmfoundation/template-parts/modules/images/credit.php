@@ -18,7 +18,10 @@ if ( empty( $attachment ) ) {
 }
 
 $title       = $attachment->post_title;
-$description = $attachment->post_content;
+$credit_info = get_post_meta( $image_id, 'credit_info', true );
+$author      = ! empty( $credit_info['author'] ) ? $credit_info['author'] : '';
+$license     = ! empty( $credit_info['license'] ) ? $credit_info['license'] : '';
+$url         = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
 
 ?>
 
@@ -28,7 +31,22 @@ $description = $attachment->post_content;
 	</div>
 
 	<div>
-		<p class="credit-desc"><?php echo esc_html( $title ); ?></p>
-		<p class="credit"><?php echo wp_kses_post( $description ); ?></p>
+		<p class="credit-desc">
+			<?php if ( ! empty( $url ) ) : ?>
+				<a href="<?php echo esc_url( $url ); ?>">
+			<?php endif; ?>
+					<?php echo esc_html( $title ); ?>
+			<?php if ( ! empty( $url ) ) : ?>
+				</a>
+			<?php endif; ?>
+		</p>
+
+		<?php if ( ! empty( $author ) ) : ?>
+			<p class="credit"><?php echo esc_html( $author ); ?></p>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $license ) ) : ?>
+			<p class="credit"><?php echo esc_html( $license ); ?></p>
+		<?php endif; ?>
 	</div>
 </div>
