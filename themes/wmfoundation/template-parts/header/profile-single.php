@@ -42,10 +42,10 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 	<div class="rise-up">
 		<?php
 		foreach ( $share_links as $link ) :
-			// Use esc_html for encoded links so encoding is not stripped.
+
 			?>
 		<span class="link-list hover-highlight color-white uppercase mar-right">
-			<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_html( wmf_encode_email( $link['link'] ) ) : esc_url( $link['link'] ); ?>" class="color-white">
+			<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>" class="color-white">
 				<?php echo esc_html( $link['title'] ); ?>
 			</a>
 		</span>

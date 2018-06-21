@@ -198,32 +198,3 @@ function wmf_is_main_site( $site_id = 0 ) {
 	$site_id = empty( $site_id ) ? get_current_blog_id() : $site_id;
 	return (int) get_main_site_id() === (int) $site_id;
 }
-
-/**
- * Encode email string to prevent spam.
- *
- * @param string $string String / email to encode.
- * @return string Encoded string.
- */
-function wmf_encode_email( $string ) {
-	$chars = str_split( $string );
-	$seed  = mt_rand( 0, (int) abs( crc32( $string ) / strlen( $string ) ) );
-
-	foreach ( $chars as $key => $char ) {
-		$ord = ord( $char );
-
-		if ( $ord < 128 ) {
-			$r = ( $seed * ( 1 + $key ) ) % 100;
-
-			if ( $r > 60 && '@' !== $char && '.' !== $char ) {
-				continue;
-			} elseif ( $r < 45 ) {
-				$chars[ $key ] = '&#x' . dechex( $ord ) . ';';
-			} else {
-				$chars[ $key ] = '&#' . $ord . ';';
-			}
-		}
-	}
-
-	return implode( '', $chars );
-}
