@@ -38,7 +38,8 @@ add_filter( 'attachment_fields_to_edit', 'wmf_add_media_custom_fields', 10, 2 );
 /**
  * Save custom fields when attachments are saved.
  *
- * @param int $attachment_id Attachmend post ID.
+ * @param array $post Full attachment post data.
+ * @param array $attachment All data from saved attachment.
  */
 function wmf_save_attachment_custom_fields( $post, $attachment ) {
 	$credit_info = array(
