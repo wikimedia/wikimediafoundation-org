@@ -130,6 +130,10 @@ function wmf_get_role_hierarchy( $parent_id ) {
 		}
 	}
 
+	if ( empty( $children[ $parent_id ] ) ) {
+		return $term_array;
+	}
+
 	foreach ( $children[ $parent_id ] as $child_id ) {
 		$term_array[ $child_id ] = isset( $children[ $child_id ] ) ? $children[ $child_id ] : array();
 	}

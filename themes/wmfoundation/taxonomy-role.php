@@ -17,7 +17,10 @@ get_header();
 $h4_title = '';
 $h4_link  = '';
 
-$profile_parent_page = get_theme_mod( 'wmf_profile_parent_page' );
+$current_term_id = get_queried_object_id();
+$term            = get_term( $current_term_id );
+
+$profile_parent_page = 'community' === $term->slug ? get_theme_mod( 'wmf_community_profile_parent_page' ) : get_theme_mod( 'wmf_profile_parent_page' );
 if ( ! empty( $profile_parent_page ) ) {
 	$h4_title = get_the_title( $profile_parent_page );
 	$h4_link  = get_the_permalink( $profile_parent_page );
@@ -27,7 +30,6 @@ $description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Fo
 $button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'wmfoundation' ) );
 $button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
 
-$current_term_id = get_queried_object_id();
 $post_list       = wmf_get_posts_by_child_roles( $current_term_id );
 
 ?>
