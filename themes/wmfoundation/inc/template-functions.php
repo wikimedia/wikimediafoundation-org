@@ -230,7 +230,6 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 
 	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
 
-	error_log( print_r( $post_list, true ) );
 	return $post_list;
 }
 
