@@ -30,7 +30,7 @@ $description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Fo
 $button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'wmfoundation' ) );
 $button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
 
-$post_list       = wmf_get_posts_by_child_roles( $current_term_id );
+$post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 ?>
 

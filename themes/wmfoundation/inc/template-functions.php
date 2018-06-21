@@ -131,7 +131,7 @@ function wmf_get_role_hierarchy( $parent_id ) {
 	}
 
 	if ( empty( $children[ $parent_id ] ) ) {
-		return $term_array;
+		return false;
 	}
 
 	foreach ( $children[ $parent_id ] as $child_id ) {
@@ -151,12 +151,12 @@ function wmf_get_role_posts( $term_id ) {
 	$term_query = get_term( $term_id, 'role' );
 	$posts      = new WP_Query(
 		array(
-			'post_type' => 'profile',
-			'fields'    => 'ids',
-			'orderby'   => 'title',
-			'order'     => 'ASC',
+			'post_type'      => 'profile',
+			'fields'         => 'ids',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
 			'posts_per_page' => 100,
-			'tax_query' => array(
+			'tax_query'      => array(
 				array(
 					'taxonomy'         => 'role',
 					'field'            => 'term_id',
@@ -210,21 +210,25 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 
 	$child_terms = wmf_get_role_hierarchy( $term_id, 'role' );
 
-	foreach ( $child_terms as $parent_id => $children ) {
-		$featured_term = get_term_meta( $parent_id, 'featured_term', true );
+	if ( empty( $child_terms ) ) {
+		$post_list[ $term_id ] = wmf_get_role_posts( $term_id );
+	} else {
+		foreach ( $child_terms as $parent_id => $children ) {
+			$featured_term = get_term_meta( $parent_id, 'featured_term', true );
 
-		if ( true === boolval( $featured_term ) ) {
-			$post_list = array(
-				$parent_id => wmf_get_role_posts( $parent_id ),
-			) + $post_list;
-		} else {
-			$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
-		}
+			if ( true === boolval( $featured_term ) ) {
+				$post_list = array(
+					$parent_id => wmf_get_role_posts( $parent_id ),
+				) + $post_list;
+			} else {
+				$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
+			}
 
-		$post_list[ $parent_id ]['children'] = array();
+			$post_list[ $parent_id ]['children'] = array();
 
-		foreach ( $children as $child_id ) {
-			$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
+			foreach ( $children as $child_id ) {
+				$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
+			}
 		}
 	}
 

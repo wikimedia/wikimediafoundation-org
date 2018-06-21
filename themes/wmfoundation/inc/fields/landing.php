@@ -63,10 +63,12 @@ function wmf_landing_fields() {
 		array(
 			'name'     => 'page_facts',
 			'children' => array(
-				'image' => new Fieldmanager_Media( array(
-					'label' => __( 'Background Image*', 'wmfoundation' ),
-					'description' => __( '*This is a required element for the facts to show properly.', 'wmfoundation' ),
-				) ),
+				'image' => new Fieldmanager_Media(
+					array(
+						'label'       => __( 'Background Image*', 'wmfoundation' ),
+						'description' => __( '*This is a required element for the facts to show properly.', 'wmfoundation' ),
+					)
+				),
 				'facts' => new Fieldmanager_Group(
 					array(
 						'add_more_label' => __( 'Add Fact', 'wmfoundation' ),

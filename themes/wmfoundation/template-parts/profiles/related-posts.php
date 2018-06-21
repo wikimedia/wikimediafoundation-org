@@ -12,7 +12,8 @@ if ( empty( $connected_user ) ) {
 }
 
 $author_posts = wmf_get_recent_author_posts( $connected_user );
-$title        = __( sprintf( 'Recent posts by %s', get_the_title() ), 'wmfoundation' );
+/* translators: %s: Title of Author */
+$title = sprintf( __( 'Recent posts by %s', 'wmfoundation' ), get_the_title() );
 
 wmf_get_template_part(
 	'template-parts/modules/related/posts', array(
