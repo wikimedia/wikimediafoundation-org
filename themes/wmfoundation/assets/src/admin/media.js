@@ -8,11 +8,11 @@
  */
 
 var OriginalAttachmentCompat = wp.media.view.AttachmentCompat;
-wp.media.view.AttachmentCompat = OriginalAttachmentCompat.extend({
+wp.media.view.AttachmentCompat = OriginalAttachmentCompat.extend( {
 
 	initialize: function() {
 		OriginalAttachmentCompat.prototype.initialize.apply( this, arguments );
 
 		this.stopListening( this.model, 'change:compat', this.render );
 	}
-});
+} );
