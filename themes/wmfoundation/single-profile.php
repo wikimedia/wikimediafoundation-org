@@ -7,6 +7,8 @@
  * @package wmfoundation
  */
 
+use WMF\Images\Credits;
+
 get_header();
 
 while ( have_posts() ) :
@@ -66,11 +68,13 @@ wmf_get_template_part(
 
 get_template_part( 'template-parts/page/page', 'offsite-links' );
 
+Credits::get_instance()->pause();
 $template_args                  = get_post_meta( get_the_ID(), 'profiles', true );
 $template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
 $template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . $team_name;
 wmf_get_template_part( 'template-parts/modules/profiles/list', $template_args );
 endwhile;
+Credits::get_instance()->resume();
 
 get_template_part( 'template-parts/page/page', 'listings' );
 

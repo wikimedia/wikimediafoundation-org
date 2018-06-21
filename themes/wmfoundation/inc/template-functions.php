@@ -151,11 +151,13 @@ function wmf_get_role_posts( $term_id ) {
 			'fields'    => 'ids',
 			'orderby'   => 'title',
 			'order'     => 'ASC',
+			'posts_per_page' => 100,
 			'tax_query' => array(
 				array(
-					'taxonomy' => 'role',
-					'field'    => 'term_id',
-					'terms'    => $term_id,
+					'taxonomy'         => 'role',
+					'field'            => 'term_id',
+					'terms'            => $term_id,
+					'include_children' => false,
 				),
 			),
 		)
@@ -224,6 +226,7 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 
 	wp_cache_set( 'wmf_terms_list_' . $term_id, $post_list );
 
+	error_log( print_r( $post_list, true ) );
 	return $post_list;
 }
 
