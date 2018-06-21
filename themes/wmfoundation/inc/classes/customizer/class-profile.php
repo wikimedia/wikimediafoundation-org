@@ -27,20 +27,6 @@ class Profile extends Base {
 			)
 		);
 
-		$control_id = 'wmf_profile_container_image';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			new WP_Customize_Image_Control(
-				$this->customize,
-				$control_id,
-				array(
-					'label'    => __( 'Profile Container Image', 'wmfoundation' ),
-					'section'  => 'wmf_profile_content',
-					'settings' => $control_id,
-				)
-			)
-		);
-
 		$control_id = 'wmf_profile_parent_page';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(

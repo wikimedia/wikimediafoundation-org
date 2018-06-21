@@ -392,3 +392,48 @@ function wmf_remove_coauthors_archive_filter() {
 	remove_filter( 'get_the_archive_title', array( $coauthors_plus, 'filter_author_archive_title' ), 10, 2 );
 }
 add_action( 'init', 'wmf_remove_coauthors_archive_filter' );
+
+/**
+ * Add a wrapper around images that are added through the editor,
+ * and are not aligned left or right, or have a caption.
+ *
+ * @param string $html    Full HTML of image.
+ * @param string $id      ID of image.
+ * @param string $caption Caption.
+ * @param string $title   Title attribute.
+ * @param string $align   Align attributes.
+ * @return string Modified HTML string.
+ */
+function wmf_add_image_container( $html, $id, $caption, $title, $align ) {
+	if ( 'left' === $align || 'right' === $align || ! empty( $caption ) ) {
+		return $html;
+	}
+
+	$output  = '<div class="article-img img-in-text">';
+	$output .= '<div class="img-container mar-bottom">';
+	$output .= $html;
+	$output .= '</div></div>';
+
+	return $output;
+}
+add_filter( 'image_send_to_editor', 'wmf_add_image_container', 10, 5 );
+
+/**
+ * Also wrap the caption in a container that sets image markup properly.
+ *
+ * @param string $output Current output of caption shortcode.
+ * @param array  $attr List of shortcode attributes.
+ * @param string $content Full shortcode.
+ * @return string HTML to output.
+ */
+function wmf_filter_caption_shortcode( $output, $attr, $content ) {
+	$attachment_id = str_replace( 'attachment_', '', $attr['id'] );
+	$attachment    = get_post( $attachment_id );
+	$caption       = $attachment->post_excerpt;
+	$credit        = $attachment->post_content;
+
+	$html = sprintf( '<div class="article-img img-in-text" id="%1$s"><div class="img-in-text">%2$s</div><div class="img-caption"><span class="photo-caption">%3$s</span> <span class="photo-credit">%4$s</span></div></div>', esc_attr( $attr['id'] ), wp_kses_post( do_shortcode( $content ) ), wp_kses_post( $caption ), wp_kses_post( $credit ) );
+
+	return $html;
+}
+add_filter( 'img_caption_shortcode', 'wmf_filter_caption_shortcode', 10, 3 );

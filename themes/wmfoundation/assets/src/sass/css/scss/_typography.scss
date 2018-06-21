@@ -55,8 +55,8 @@ h6 {
 }
 
 p {
-	@include font-size(20, 16);
-	line-height: 2;
+	@include font-size(22, 18);
+	line-height: 1.8;
 }
 
 .p {

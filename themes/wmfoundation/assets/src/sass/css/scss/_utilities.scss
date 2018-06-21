@@ -107,7 +107,7 @@ a.color-blue {
 
 // Buttons and links
 .btn {
-	
+
 	// Colors
 	&.btn-blue {
 		@include button($color-blue, $color-dk-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
@@ -131,6 +131,9 @@ a.color-blue {
 	}
 }
 
+
+// ** FUNCTIONAL STYLES **
+
 // Spacing
 .mar-top {
  margin-top: $space;
@@ -145,9 +148,26 @@ a.color-blue {
  margin-bottom: $space;
 }
 .mar-bottom_lg {
-	 margin-bottom: $space*2;
+	margin-bottom: $space*2;
+	@media (max-width: 767px) {
+	 margin-bottom: $space;
+	}
 }
 
+
+// hide on mobile
+.hide-sm.hide-sm {
+	@media (max-width: $small-bp) {
+	 display:none;
+	}
+}
+
+// hide overflow.
+// useful for one-off full-width boxes
+// without being too opinionated in other places that need overlap
+.hide-overflow {
+	overflow:hidden;
+}
 
 // z-index
 

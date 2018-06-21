@@ -1,7 +1,7 @@
 .module-mu {
 
 	.h3 {
-		@include marginBottom(8, 24, $medium-bp);
+		@include marginBottom(8, 8, $medium-bp);
 	}
 
 	h5 {
@@ -385,10 +385,6 @@ a.hover-img-zoom {
 
 	.mw-1360 {
 		@include padding(0, 0, 0, 0);
-	}
-
-	.h3 {
-		@include marginBottom(20, 40, $medium-bp);
 	}
 
 	.h4 {
