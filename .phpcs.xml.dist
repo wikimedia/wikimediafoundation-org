@@ -12,6 +12,7 @@
     <exclude-pattern>plugins/multilingual-press/</exclude-pattern>
 	<exclude-pattern>plugins/co-authors-plus/</exclude-pattern>
     <exclude-pattern>plugins/safe-svg/</exclude-pattern>
+	<exclude-pattern>plugins/safe-redirect-manager/</exclude-pattern>
     <exclude-pattern>plugins/user-switching/</exclude-pattern>
     <exclude-pattern>tests/</exclude-pattern>
     <exclude-pattern>themes/twentyseventeen</exclude-pattern>
