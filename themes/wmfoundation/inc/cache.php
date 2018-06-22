@@ -80,7 +80,7 @@ function wmf_clear_term_list_cache( $term ) {
 	do {
 		wp_cache_delete( 'wmf_terms_list' . $term->parent );
 		$term = get_term( $term->parent );
-		wpcom_vip_purge_edge_cache_for_term( $term->parent );
+		wpcom_vip_purge_edge_cache_for_term( $term );
 	} while ( ! empty( $term->parent ) );
 }
 
