@@ -156,8 +156,8 @@ function wmf_get_profiles_options() {
 			'post_type'      => 'profile',
 			'post_status'    => 'publish',
 			'no_found_rows'  => true,
-			'posts_per_page' => 100,
-		);
+			'posts_per_page' => 400,
+		); // WPCS: Slow query okay.
 		$pages = new WP_Query( $args );
 
 		if ( $pages->have_posts() ) {

@@ -130,6 +130,10 @@ function wmf_get_role_hierarchy( $parent_id ) {
 		}
 	}
 
+	if ( empty( $children[ $parent_id ] ) ) {
+		return false;
+	}
+
 	foreach ( $children[ $parent_id ] as $child_id ) {
 		$term_array[ $child_id ] = isset( $children[ $child_id ] ) ? $children[ $child_id ] : array();
 	}
@@ -154,9 +158,10 @@ function wmf_get_role_posts( $term_id ) {
 			'posts_per_page' => 100,
 			'tax_query'      => array(
 				array(
-					'taxonomy' => 'role',
-					'field'    => 'term_id',
-					'terms'    => $term_id,
+					'taxonomy'         => 'role',
+					'field'            => 'term_id',
+					'terms'            => $term_id,
+					'include_children' => false,
 				),
 			),
 		)
@@ -205,21 +210,25 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 
 	$child_terms = wmf_get_role_hierarchy( $term_id, 'role' );
 
-	foreach ( $child_terms as $parent_id => $children ) {
-		$featured_term = get_term_meta( $parent_id, 'featured_term', true );
+	if ( empty( $child_terms ) ) {
+		$post_list[ $term_id ] = wmf_get_role_posts( $term_id );
+	} else {
+		foreach ( $child_terms as $parent_id => $children ) {
+			$featured_term = get_term_meta( $parent_id, 'featured_term', true );
 
-		if ( true === boolval( $featured_term ) ) {
-			$post_list = array(
-				$parent_id => wmf_get_role_posts( $parent_id ),
-			) + $post_list;
-		} else {
-			$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
-		}
+			if ( true === boolval( $featured_term ) ) {
+				$post_list = array(
+					$parent_id => wmf_get_role_posts( $parent_id ),
+				) + $post_list;
+			} else {
+				$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
+			}
 
-		$post_list[ $parent_id ]['children'] = array();
+			$post_list[ $parent_id ]['children'] = array();
 
-		foreach ( $children as $child_id ) {
-			$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
+			foreach ( $children as $child_id ) {
+				$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
+			}
 		}
 	}
 
@@ -338,6 +347,43 @@ function wmf_get_related_posts( $post_id ) {
 			}
 		}
 		$post_list = array_splice( $post_list, 0, 3 );
+		wp_cache_add( $cache_key, $post_list );
+	}
+
+	return $post_list;
+}
+
+/**
+ * Get a list of recent posts by an author
+ *
+ * @param int $author_id Author ID to check against.
+ * @return array List of post objects.
+ */
+function wmf_get_recent_author_posts( $author_id ) {
+	$post_list = array();
+
+	if ( empty( $author_id ) ) {
+		return $post_list;
+	}
+
+	$author_id = absint( $author_id );
+
+	$cache_key = md5( sprintf( 'wmf_author_posts_for_%s', $author_id ) );
+
+	$post_list = wp_cache_get( $cache_key );
+
+	if ( empty( $post_list ) ) {
+		$posts_query = new WP_Query(
+			array(
+				'posts_per_page' => 3,
+				'no_found_rows'  => true,
+				'post_type'      => 'post',
+				'ignore_sticky'  => true,
+				'author'         => $author_id,
+			)
+		); // WPCS: Slow query ok.
+
+		$post_list = $posts_query->posts;
 		wp_cache_add( $cache_key, $post_list );
 	}
 

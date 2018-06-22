@@ -39,6 +39,18 @@ class Profile extends Base {
 			)
 		);
 
+		$control_id = 'wmf_community_profile_parent_page';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Community Profiles Parent Page', 'wmfoundation' ),
+				'description' => __( 'This changes the parent link at the top of the Wikimedia Community profile.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'select',
+				'choices'     => $this->page_choices(),
+			)
+		);
+
 		$control_id = 'wmf_profile_archive_text';
 		$this->customize->add_setting(
 			$control_id, array(

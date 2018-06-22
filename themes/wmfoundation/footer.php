@@ -20,7 +20,7 @@ $wmf_movement_affiliates_menu_label = get_theme_mod( 'wmf_movement_affiliates_me
 $wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'wmfoundation' ) );
 
 // Automatically add credits to all content that is not an archive or search.
-if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
+if ( ! is_archive() && ! is_home() ) {
 	wmf_get_template_part( 'template-parts/modules/images/credits', Credits::get_instance()->get_ids() );
 }
 

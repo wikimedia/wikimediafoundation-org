@@ -78,6 +78,6 @@ $wmf_translations         = wmf_get_translations();
 
 <?php
 // Automatically add credits to all content that is not an archive or search.
-if ( ! is_archive() || ! is_home() || ! is_front_page() ) {
+if ( ! is_archive() && ! is_home() ) {
 	Credits::get_instance( get_the_ID() );
 }
