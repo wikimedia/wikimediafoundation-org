@@ -71,6 +71,7 @@ function wmf_clear_term_list_cache( $term ) {
 
 	$term_id = $term->term_id;
 	wp_cache_delete( 'wmf_terms_list_' . $term_id );
+	wpcom_vip_purge_edge_cache_for_term( $term_id );
 
 	if ( empty( $term->parent ) ) {
 		return;
@@ -79,6 +80,7 @@ function wmf_clear_term_list_cache( $term ) {
 	do {
 		wp_cache_delete( 'wmf_terms_list' . $term->parent );
 		$term = get_term( $term->parent );
+		wpcom_vip_purge_edge_cache_for_term( $term->parent );
 	} while ( ! empty( $term->parent ) );
 }
 
