@@ -1,5 +1,5 @@
-$header-bp: 1050px;
-$header-bp-mw: 1049px;
+$header-bp: 1024px;
+$header-bp-mw: 1023px;
 
 @mixin blueTextShadow() {
   text-shadow: 0 2px 2px $color-blue;
@@ -34,7 +34,6 @@ $header-bp-mw: 1049px;
       background: #fff;
     }
   }
-
 
 
 
@@ -370,102 +369,35 @@ $header-bp-mw: 1049px;
 
 .home-subnav {
   position: relative;
-}
 
-.home-subnav .logo-container {
-  svg {
+  .logo-container {
+    svg {
+      fill: #000;
+      max-width: 20em;
+    }
+  }
+  .search-toggle,
+  .search-label {
+    color: $color-blue;
+  }
+
+  .search-toggle .icon {
+    fill: $color-blue;
+  }
+
+  .icon-white {
     fill: #000;
-    max-width: 100%;
   }
-}
 
-
-  .subnav-container {
-    @media (max-width: $header-bp-mw) {
-      width: 50%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    .search-toggle {
-      color: $color-blue;
-    }
-
-    .search-label {
-      color: $color-blue;
-
-      &:hover {
-        color: $color-turquoise;
-      }
-    }
-
-    .nav-cta.btn {
-      position: relative;
-      z-index: 999;
-
-      @media (max-width: $header-bp-mw) {
-        display: none;
-      }
-    }
-
-    .main-nav {
-
-      @media (min-width: $header-bp) {
-
-        .mobile-nav-toggle {
-          display: none;
-
-          i {
-            margin-right: 5px;
-          }
-        }
-      }
-
-      @media (max-width: $header-bp-mw) {
-
-        .mobile-nav-toggle {
-          display: flex;
-          padding: 0;
-          @include buttonNoStyles();
-          transition: 0.3s all;
-
-          &:hover {
-            color: $color-light-turquoise;
-          }
-        }
-
-        ul.list-inline {
-
-          display: none;
-
-          &.open {
-            display: block;
-            position: absolute;
-            width: 100%;
-            background: $color-blue;
-            left: 0;
-            color: #fff;
-            z-index: 100;
-            top: 100px;
-          }
-
-          li {
-            display: block;
-            text-align: center;
-            margin-right: 0;
-            margin-bottom: 0;
-            padding: 1rem 0;
-            border-bottom: 1px solid $color-dark-blue;
-
-            &:last-child {
-              border-bottom: none;
-            }
-          }
-        }
+  .nav-container.search-open {
+    .search-bar-container {
+      @media (min-width: 1024px) {
+        right: 190px;
+        width: 60%;
       }
     }
   }
+}
 
 
 

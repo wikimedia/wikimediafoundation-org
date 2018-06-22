@@ -15,44 +15,44 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
 
-  @media (min-width: $header-bp) {
+  @media (min-width: 1024px) {
     margin-bottom: 1.5rem;
   }
 }
 
 
-@keyframes expand {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 70%;
-  }
-}
+// @keyframes expand {
+//   0% {
+//     width: 0;
+//   }
+//   100% {
+//     width: 60%;
+//   }
+// }
 
 // When search is open.
-.logo-nav-container.search-open {
+.nav-container.search-open {
 
   .search-toggle {
     z-index: 0;
   }
-
-  .search-container {
-    @media (min-width: $header-bp) {
-      width: 70%;
-    }
-  }
-
   .search-bar-container {
     z-index: 2000;
+    @media (min-width: 1024px) {
+      height: 43px;
+      top: 25px;
+      right: 160px;
+      width: 60%;
+    }
 
     @keyframes expandInput {
       0% {
         width: 0;
       }
       100% {
-        width: 100%;
+        width: 60%;
       }
     }
 
@@ -75,16 +75,15 @@
       }
     }
 
-    i {
+    .i {
       display: block;
       z-index: 9;
     }
 
     button {
-      visibility: visible;
       border: none;
 
-      @media (max-width: $header-bp-mw) {
+      @media (max-width: $medium-landscape) {
         padding: 0.7rem 1rem;
       }
     }
@@ -92,51 +91,62 @@
 }
 
 .search-container {
-  position: relative;
+  display: flex;
+  justify-content: end;
 
-  button {
-    align-items: center;
-    @include buttonNoStyles();
-    @include padding(10, 24, 10, 16);
-    transition: 0.3s all;
-    &:hover {
-      background: #2516B5;
-      color: $color-turquoise;
+  @media (min-width: 1024px) {
+    position: relative;
+  }
+
+}
+
+.search-bar-container {
+  width: 125px;
+  transition: width 0.4s ease-in-out;
+  .search-submit {
+    opacity: 0;
+  }
+
+  &.is-open {
+    .search-submit {
+      opacity: 1;
     }
   }
 }
 
 .search-toggle {
+  @include buttonNoStyles();
   display: flex;
   position: relative;
   z-index: 99;
   color: $color-blue;
+  align-items: center;
+  @include padding(10, 24, 10, 16);
+  transition: 0.4s all;
+  &:hover {
+    background: #2516B5;
+    color: $color-turquoise;
+  }
 }
 
 .search-bar-container {
   position: absolute;
-
-  top: 90px;
-  left: 20px;
-  right: 20px;
-  z-index: 9;
-
-  @media (min-width: $header-bp) {
-    top: 0;
-    bottom: 0;
+   @media (max-width: 1023px) {
+    top: 90px;
     left: 0;
     right: 0;
+    z-index: -1;
+    width: 100%;
+    padding: 0 20px;
   }
-
-  i {
+  .i {
     position: absolute;
     top: 10px;
     left: 10px;
-    color: $color-blue;
     display: none;
     @include font-size(32, 24);
 
-    @media (min-width: $header-bp) {
+    @media (min-width: 1024px) {
       top: 8px;
     }
   }
@@ -149,7 +159,7 @@
   }
 
   input {
-    background: $color-white;;
+    background: $color-white;
     color: $color-blue;
     border: none;
     opacity: 0;
@@ -158,7 +168,6 @@
   }
 
   button {
-    visibility: hidden;
     @include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
 
   }
@@ -172,13 +181,17 @@
     color: $color-turquoise;
   }
 
-  @media (max-width: $header-bp-mw) {
+  @media (max-width: 1024px) {
     display: none;
   }
 
-  i {
-    color: $color-light-turquoise;
+  .i {
+    fill: $color-light-turquoise;
   }
+}
+
+.search-toggle {
+  color: $color-light-turquoise;
 }
 
 

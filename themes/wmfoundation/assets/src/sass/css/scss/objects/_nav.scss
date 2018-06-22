@@ -1,6 +1,6 @@
   // Top part of header
   .site-main-nav {
-    @include paddingBottom(48, 120, $header-bp);
+    @include paddingBottom(48, 120, $medium-landscape);
     padding-top: rem(25);
   }
   .logo-nav-container {
@@ -8,8 +8,13 @@
     justify-content: space-between;
     align-items: center;
   }
+  // hide mobile only things to start with
+  .mobile-nav-toggle,
+  .logo-container_sm {
+    display:none;
+  }
   .main-nav {
-    @media (min-width: $header-bp) {
+    @media (min-width: 1024px) {
       float: right;
     }
     .current-menu-item {
@@ -29,11 +34,6 @@
   }
 
   .logo-container {
-
-    @media (max-width: $header-bp-mw) {
-      width: 50%;
-    }
-
     a {
       display: block;
 
@@ -44,17 +44,17 @@
 
     svg {
       fill: #fff;
-      max-width: 100%;
-    }
-
-    .logo-full {
+      width: 100%;
       max-width: rem(279);
+      margin-right: rem(10);
     }
   }
 
   .nav-container {
     width: 100%;
-    @media (max-width: $header-bp-mw) {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: $medium-landscape) {
       width: 50%;
       display: flex;
       justify-content: flex-end;
@@ -66,14 +66,14 @@
     position: relative;
     z-index: 500;
 
-    @media (max-width: $header-bp-mw) {
+    @media (max-width: $medium-landscape) {
       display: none;
     }
   }
 
   .main-nav {
 
-    @media (min-width: $header-bp) {
+    @media (min-width: 1024px) {
 
       .mobile-nav-toggle {
         display: none;
@@ -84,12 +84,22 @@
       }
     }
 
-    @media (max-width: $header-bp-mw) {
-
+    @media (max-width: $medium-landscape) {
+      .logo-container_sm {
+        display:flex;
+      }
       .mobile-nav-toggle {
+      //   position: absolute;
+      //   right: rem(10);
+      //   top: rem(20);
+      //   // display: flex;
+      //   padding: 0;
         display: flex;
-        padding: 0;
+        flex-direction: row;
+        align-items: center;
         @include buttonNoStyles();
+        padding-right: 0;
+        text-align: right;
         transition: 0.3s all;
 
         &:hover {
@@ -160,6 +170,7 @@
     display: block;
 
     @media (max-width: 767px) {
+      width: 100%;
       max-width: 2.5rem;
     }
 
@@ -204,4 +215,23 @@
 }
 
 
-
+// MOBILE STYLES
+@media (max-width: $medium-landscape) {
+  .logo-container_sm {
+    display:block;
+  }
+  .logo-container_lg {
+    display:none;
+  }
+  .site-main-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .mobile-nav-toggle {
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
