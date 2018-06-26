@@ -43,6 +43,11 @@ $wmf_translations         = wmf_get_translations();
 					<?php if ( 0 !== $wmf_index ) : ?>
 					<li class="divider">&middot;</li>
 					<?php endif; ?>
+					<?php
+					if ( false !== strpos( $wmf_translation['uri'], '/master-translation/') ) {
+						continue; // This site shouldn't show. It's for admin functionality only.
+					}
+					?>
 					<li>
 						<?php if ( $wmf_translation['selected'] ) : ?>
 						<span><?php echo esc_html( $wmf_translation['name'] ); ?></span>
