@@ -40,14 +40,14 @@ $wmf_translations         = wmf_get_translations();
 
 				<ul class="list-inline">
 				<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
-					<?php if ( 0 !== $wmf_index ) : ?>
-					<li class="divider">&middot;</li>
-					<?php endif; ?>
 					<?php
 					if ( false !== strpos( $wmf_translation['uri'], '/master-translation/') ) {
 						continue; // This site shouldn't show. It's for admin functionality only.
 					}
 					?>
+					<?php if ( 0 !== $wmf_index ) : ?>
+					<li class="divider">&middot;</li>
+					<?php endif; ?>
 					<li>
 						<?php if ( $wmf_translation['selected'] ) : ?>
 						<span><?php echo esc_html( $wmf_translation['name'] ); ?></span>
