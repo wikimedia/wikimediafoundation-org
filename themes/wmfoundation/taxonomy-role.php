@@ -51,7 +51,7 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php if ( ! empty( $description ) ) : ?>
 			<p class="h3 color-gray">
-				<?php echo wp_kses_post( $description ); ?>
+				<?php echo esc_html( $description ); ?>
 			</p>
 			<?php endif; ?>
 
