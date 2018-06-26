@@ -8,6 +8,7 @@
  */
 
 $template_args = get_post_meta( get_the_ID(), 'connect', true );
+$template_args = empty( $template_args ) || is_string( $template_args ) ? array() : $template_args;
 
 $rand_translation = wmf_get_random_translation(
 	'connect', array(

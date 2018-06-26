@@ -96,6 +96,7 @@
   }
 }
 .static-list-heading {
+  margin-bottom: 1.5rem;
   @include font-size(48, 18);
   pointer-events: none;
   @media (max-width: 767px) {

@@ -34,22 +34,21 @@ jQuery(document).ready(function($) {
     $('.search-bar-container input').focus();
   }
 
-
   function openSearch() {
 
     $('.search-overlay').fadeIn(500, function(){
-      $('.logo-nav-container').show("slide", { direction: "left" }, 1000).addClass('search-open');
-      $('.logo-nav-container, .search-overlay').addClass('search-open');
+      $('.nav-container, .search-overlay').addClass('search-open');
+      $('.search-bar-container').addClass('is-open');
       toggleSearch();
     })
   }
 
   function closeSearch() {
-    $('.logo-nav-container').show("slide", { direction: "right" }, 1000).removeClass('search-open');
-    setTimeout(function(){
-      $('.search-overlay').fadeOut(500);
-    }, 50);
-    toggleSearch();
+    $( '.search-bar-container' ).removeClass('is-open');
+    $('.search-overlay').fadeOut(400, function(){
+      $('.nav-container, .search-overlay').removeClass('search-open');
+      toggleSearch();
+    });
   }
 
 
@@ -94,33 +93,4 @@ jQuery(document).ready(function($) {
     }
   });
 
-
-
-
-  // Move search bar container just below logo-nav-container for mobile
-  function searchBar() {
-    if (window.matchMedia("(max-width: 1049px)").matches) {
-      $('.logo-nav-container').prepend($('.search-bar-container'));
-    } else {
-      $('.search-bar-container').insertAfter($('.search-toggle'));
-    }
-  }
-
-
-  // Logo swapping depending on screen size.
-  var logoStacked = $('.header-inner .logo-stacked'),
-    logoFull = $('.header-inner .logo-full');
-
-  function swapLogos() {
-    if (window.matchMedia("(max-width: 1049px)").matches) {
-        $('.header-inner .logo-container a').prepend(logoFull);
-    } else {
-      $('.header-inner .logo-container a').prepend(logoStacked);
-    }
-  }
-
-  $(window).on('resize load', function() {
-    swapLogos();
-    searchBar();
-  });
  });

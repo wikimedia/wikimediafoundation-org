@@ -73,10 +73,10 @@ $wmf_translations         = wmf_get_translations();
 		<div class="header-inner mw-1360">
 			<?php if ( ! is_front_page() ) : ?>
 			<div class="site-main-nav">
-				<div class="logo-nav-container">
+				<div class="logo-container logo-container_sm">
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
-					<?php get_template_part( 'template-parts/header/nav-container' ); ?>
 				</div>
+				<?php get_template_part( 'template-parts/header/nav-container' ); ?>
 				<?php get_template_part( 'template-parts/header/navigation' ); ?>
 			</div>
 			<?php endif; ?>

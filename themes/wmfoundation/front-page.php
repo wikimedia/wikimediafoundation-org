@@ -29,10 +29,10 @@ while ( have_posts() ) {
 
 ?>
 <div class="site-main-nav home-subnav mw-1360 white-bg">
-	<div class="logo-nav-container">
+	<div class="logo-container logo-container_sm">
 		<?php get_template_part( 'template-parts/header/logo' ); ?>
-		<?php get_template_part( 'template-parts/header/nav-container' ); ?>
 	</div>
+	<?php get_template_part( 'template-parts/header/nav-container' ); ?>
 	<?php get_template_part( 'template-parts/header/navigation' ); ?>
 </div>
 

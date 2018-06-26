@@ -174,9 +174,12 @@ article {
 	@include marginBottom(40, 80, $medium-bp);
 	@include marginTop(40, 64, $medium-bp);
 
+	img {
+		width: 100%;
+	}
+
 	&.article-img-main {
 		position: relative;
-		max-height: 570px;
 		overflow: hidden;
 
 		@media (min-width: 640px) {
