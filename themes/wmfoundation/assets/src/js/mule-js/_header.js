@@ -34,7 +34,6 @@ jQuery(document).ready(function($) {
     $('.search-bar-container input').focus();
   }
 
-// TODO: these need to get updated to make search work again
   function openSearch() {
 
     $('.search-overlay').fadeIn(500, function(){
