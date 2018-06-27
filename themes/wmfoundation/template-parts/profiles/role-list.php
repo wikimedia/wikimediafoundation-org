@@ -17,7 +17,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$button      = get_term_meta( $term_id, 'role_button', true );
 ?>
 
-<div class="static-list-item mod-margin-bottom wysiwyg">
+<div class="static-list-item mod-margin-bottom_xs wysiwyg">
 
 	<?php if ( ! empty( $name ) ) : ?>
 	<h2 class="static-list-heading" id="section-<?php echo absint( $term_id ); ?>" class="static-list-heading"><?php echo esc_html( $name ); ?></h2>
