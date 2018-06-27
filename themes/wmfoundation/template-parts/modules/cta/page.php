@@ -36,7 +36,7 @@ $class    = empty( $template_args['class'] ) ? $bg_class . ' cta-secondary' : $t
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>
 				<div class="mar-bottom mar-top">
-					<?php echo wp_kses_post( '<p class="cta-description">' . $template_args['content'] . '</p>' ); ?>
+					<?php echo wp_kses_post( str_replace( '<p>', '<p class="cta-description">', wpautop( $template_args['content'] ) ) ); ?>
 				</div>
 				<?php endif; ?>
 
