@@ -37,7 +37,7 @@ while ( have_posts() ) {
 </div>
 
 <div class="page-intro mw-1360 mod-margin-bottom wysiwyg">
-	<div class="w-75p">
+	<div>
 		<h2><?php echo esc_html( $subtitle ); ?></h2>
 
 		<div class="page-intro-text">
