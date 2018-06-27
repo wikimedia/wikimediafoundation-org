@@ -37,7 +37,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 		<?php endif; ?>
 
 		<?php if ( ! empty( $term_data ) ) : ?>
-		<div class="mod-margin-bottom staff-list">
+		<div class="mod-margin-bottom_sm staff-list">
 			<?php
 			foreach ( $term_data['posts'] as $post_id ) {
 				wmf_get_template_part(
@@ -79,7 +79,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 				<p class="mar-bottom_lg"><?php echo wp_kses_post( $description ); ?></p>
 				<?php endif; ?>
 
-				<div class="mod-margin-bottom staff-list">
+				<div class="mod-margin-bottom_sm staff-list">
 					<?php
 					foreach ( $child_term_data['posts'] as $post_id ) :
 						wmf_get_template_part(
