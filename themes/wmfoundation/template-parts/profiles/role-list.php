@@ -17,7 +17,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$button      = get_term_meta( $term_id, 'role_button', true );
 ?>
 
-<div class="static-list-item mod-margin-bottom wysiwyg">
+<div class="static-list-item mod-margin-bottom_xs wysiwyg">
 
 	<?php if ( ! empty( $name ) ) : ?>
 	<h2 class="static-list-heading" id="section-<?php echo absint( $term_id ); ?>" class="static-list-heading"><?php echo esc_html( $name ); ?></h2>
@@ -37,7 +37,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 		<?php endif; ?>
 
 		<?php if ( ! empty( $term_data ) ) : ?>
-		<div class="mod-margin-bottom_sm staff-list">
+		<div class="mod-margin-bottom_xs staff-list">
 			<?php
 			foreach ( $term_data['posts'] as $post_id ) {
 				wmf_get_template_part(
@@ -79,7 +79,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 				<p class="mar-bottom_lg"><?php echo wp_kses_post( $description ); ?></p>
 				<?php endif; ?>
 
-				<div class="mod-margin-bottom_sm staff-list">
+				<div class="mod-margin-bottom_xs staff-list">
 					<?php
 					foreach ( $child_term_data['posts'] as $post_id ) :
 						wmf_get_template_part(
