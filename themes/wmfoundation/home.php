@@ -60,6 +60,10 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 			while ( have_posts() ) :
 				the_post();
 
+				if ( get_the_ID() === intval( $featured_post_id ) ) {
+					continue;
+				}
+
 				wmf_get_template_part(
 					'template-parts/modules/cards/card-horizontal', array(
 						'link'       => get_the_permalink(),
