@@ -41,7 +41,7 @@ $wmf_translations         = wmf_get_translations();
 				<ul class="list-inline">
 				<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
 					<?php
-					if ( false !== strpos( $wmf_translation['uri'], '/master-translation/') ) {
+					if ( false !== strpos( $wmf_translation['uri'], '/master-translation/' ) ) {
 						continue; // This site shouldn't show. It's for admin functionality only.
 					}
 					?>

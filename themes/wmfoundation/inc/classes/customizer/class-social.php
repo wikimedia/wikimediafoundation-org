@@ -80,9 +80,11 @@ class Social extends Base {
 		);
 
 		$control_id = 'wmf_facebook_label';
-		$this->customize->add_setting( $control_id, array(
-			'default' => __( 'Facebook', 'wmfoundation' ),
-		) );
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Facebook', 'wmfoundation' ),
+			)
+		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Facebook Label', 'wmfoundation' ),
@@ -102,9 +104,11 @@ class Social extends Base {
 		);
 
 		$control_id = 'wmf_instagram_label';
-		$this->customize->add_setting( $control_id, array(
-			'default' => __( 'Instagram', 'wmfoundation' ),
-		) );
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Instagram', 'wmfoundation' ),
+			)
+		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Instagram Label', 'wmfoundation' ),
@@ -124,9 +128,11 @@ class Social extends Base {
 		);
 
 		$control_id = 'wmf_blog_label';
-		$this->customize->add_setting( $control_id, array(
-			'default' => __( 'Wikimedia Blog', 'wmfoundation' ),
-		) );
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Wikimedia Blog', 'wmfoundation' ),
+			)
+		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'   => __( 'Blog Label', 'wmfoundation' ),
