@@ -18,7 +18,7 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 
 ?>
 
-<div class="w-100p cta mod-margin-bottom_sm bg-img--turquoise <?php echo esc_attr( $class ); ?>">
+<div class="w-100p cta mod-margin-bottom_sm cta-secondary bg-img--turquoise <?php echo esc_attr( $class ); ?>">
 	<div class="mw-1360">
 		<div class="card">
 			<?php if ( ! empty( $image ) ) : ?>
@@ -30,7 +30,9 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 			<div class="card-content w-45p">
 
 				<?php if ( ! empty( $template_args['heading'] ) ) : ?>
-				<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
+				<div class="mar-bottom">
+					<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
+				</div>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>
@@ -40,9 +42,9 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
-				<div class="link-list hover-highlight_dk uppercase">
+				<div class="uppercase">
 					<!-- Single link -->
-					<a href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></a>
+					<a class="btn btn-white cta-btn" href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></a>
 				</div>
 				<?php endif; ?>
 
