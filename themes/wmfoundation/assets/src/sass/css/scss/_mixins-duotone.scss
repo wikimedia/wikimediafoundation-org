@@ -215,9 +215,12 @@
 
 	&--turquoise {
 		.bg-img-container {
-			@include duoToneBg($color-turquoise, 50%, 1, screen);
+			@include duoToneBg($color-turquoise, 50%, 1, darken);
 			@include turquoise-gradient();
 			@include bgImgPositioning();
+			.bg-img.bg-img {
+				opacity: 0.6;
+			}
 		}
 	}
 
