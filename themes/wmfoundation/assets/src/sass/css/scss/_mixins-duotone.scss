@@ -221,6 +221,16 @@
 		}
 	}
 
+
+	&--transparent-turquoise {
+		.bg-img-container {
+			@include duoToneBg($color-turquoise, 50%, 1, multiply);
+			@include bgImgPositioning();
+			opacity: 0.8;
+
+		}
+	}
+
 	&--turquoise-dark {
 		.bg-img-container {
 			@include duoToneBg($color-turquoise, 50%, 1, multiply);

@@ -18,7 +18,7 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 
 ?>
 
-<div class="w-100p cta mod-margin-bottom bg-img--turquoise <?php echo esc_attr( $class ); ?>">
+<div class="w-100p cta mod-margin-bottom_sm bg-img--turquoise <?php echo esc_attr( $class ); ?>">
 	<div class="mw-1360">
 		<div class="card">
 			<?php if ( ! empty( $image ) ) : ?>
@@ -34,7 +34,9 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>
-				<p><?php echo esc_html( $template_args['content'] ); ?></p>
+				<div class="mar-bottom">
+					<p class="cta-description"><?php echo esc_html( $template_args['content'] ); ?></p>
+				</div>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
