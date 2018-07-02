@@ -113,6 +113,11 @@ a.color-blue {
 		@include button($color-blue, $color-dk-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
 	}
 
+	&.btn-white {
+		@include button($color-white, $color-blue, $color-blue, $color-white, 11px 1.5rem, .6rem 1rem);
+		font-size: 20px;
+	}
+
 	&.btn-pink {
 		@include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
 	}

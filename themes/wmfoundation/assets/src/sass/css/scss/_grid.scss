@@ -109,6 +109,14 @@
 	}
 }
 
+.mod-margin-bottom_sm {
+  margin-bottom: rem(32);
+
+  @media (min-width: $medium-bp) {
+	margin-bottom: rem(56);
+  }
+}
+
 .mod-margin-bottom_xs {
   margin-bottom: rem(64/3);
 
