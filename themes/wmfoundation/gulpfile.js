@@ -1,6 +1,7 @@
 var gulp         = require( 'gulp' );
 var sass         = require( 'gulp-sass' );
 var rtlcss       = require( 'gulp-rtlcss' );
+var footer       = require('gulp-footer');
 var rename       = require( 'gulp-rename' );
 var autoprefixer = require( 'gulp-autoprefixer' );
 var sourcemaps   = require( 'gulp-sourcemaps' );
@@ -47,6 +48,7 @@ gulp.task( 'sass', function() {
 gulp.task( 'rtl', function () {
 	return gulp.src( 'style.css' )
 		.pipe( rtlcss() )
+		.pipe( footer( 'body{direction:rtl}' ) )
 		.pipe( rename( 'rtl.css' ) )
 		.pipe( gulp.dest( './' ) );
 } );
@@ -99,7 +101,7 @@ gulp.task( 'watch', function() {
 
 
 
-gulp.task( 'styles', [ 'sass' ] );
+gulp.task( 'styles', [ 'sass', 'rtl' ] );
 gulp.task( 'scripts', [ 'jslint', 'concat' ] );
 gulp.task( 'lint', [ 'jslint' ] );
 gulp.task( 'build', [ 'svg', 'styles', 'scripts' ] );
