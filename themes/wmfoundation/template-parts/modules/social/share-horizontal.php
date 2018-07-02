@@ -5,10 +5,6 @@
  * @package wmfoundation
  */
 
-/**
- * Todo: We may need to add a way to specify the services to use for this.
- */
-
 $share_text = get_theme_mod( 'wmf_social_share_text', __( 'Share', 'wmfoundation' ) );
 
 $template_data = wmf_get_template_data();
