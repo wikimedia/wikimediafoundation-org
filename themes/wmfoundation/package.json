@@ -36,7 +36,8 @@
     "stylelint-config-wordpress": "^11.0.0"
   },
   "dependencies": {
-    "bootstrap": "^4.1.1"
+    "bootstrap": "^4.1.1",
+    "gulp-footer": "^2.0.1"
   },
   "themeConfig": {
     "rename": {

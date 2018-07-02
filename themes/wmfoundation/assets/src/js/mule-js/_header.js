@@ -8,13 +8,14 @@
 jQuery(document).ready(function($) {
 
   // Transation bar into slider
-  $('.translation-bar ul').flickity({
-    cellAlign: 'left',
-    contain: true,
-    pageDots: false,
-    prevNextButtons: false,
-    freeScroll: true
-  });
+  $( '.translation-bar ul' ).flickity({
+      rightToLeft: wmfrtl.enable,
+      cellAlign: 'left',
+      contain: true,
+      pageDots: false,
+      prevNextButtons: false,
+      freeScroll: true
+  } );
 
   $('.arrow-wrap').on('click', function() {
     $('.translation-bar ul').flickity('next');

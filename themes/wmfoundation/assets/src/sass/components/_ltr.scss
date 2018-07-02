@@ -1,4 +1,13 @@
 /* Adds some LTR specific styling meant to be reverse for RTL stylesheet. */
 body {
 	text-align: left;
+	direction: ltr;
+}
+
+.header-home.featured-photo--content-left .bg-img-container {
+	left: auto;
+}
+
+.translation-bar ul {
+	padding-right: 0;
 }
