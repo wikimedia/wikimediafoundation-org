@@ -40,7 +40,8 @@ $fact_width = 3 === count( $template_args['facts'] ) ? 'w-32p' : 'w-45p';
 			<?php
 
 			$template_args = array(
-				'message' => sprintf( '%1$s - %2$s', $fact['heading'], $fact['content'] ),
+				'message'  => sprintf( '%1$s - %2$s', $fact['heading'], $fact['content'] ),
+				'services' => array( 'twitter' ),
 			);
 			wmf_get_template_part( 'template-parts/modules/social/share', $template_args, 'horizontal' );
 			?>
