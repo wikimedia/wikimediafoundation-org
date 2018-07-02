@@ -106,7 +106,7 @@ function wmf_clear_post_cache( $post_id ) {
 	}
 
 	$post      = get_post( $post_id );
-	$author_id = $post['post_author'];
+	$author_id = $post->post_author;
 
 	wp_cache_delete( 'wmf_posts_for_post_' . $post_id );
 	wp_cache_delete( md5( sprintf( 'wmf_author_posts_for_%s', $author_id ) ) );
