@@ -32,6 +32,7 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	$post = get_post( $featured_post_id );
 	if ( ! empty( $post ) ) {
 		setup_postdata( $post );
+		$featured_post_id = (int) $post->ID;
 		wmf_get_template_part(
 			'template-parts/modules/cards/card-featured', array(
 				'link'       => get_the_permalink(),
