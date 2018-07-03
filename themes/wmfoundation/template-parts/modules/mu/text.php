@@ -15,7 +15,9 @@ $image     = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
 $image_alt = is_numeric( $image ) ? wp_get_attachment_image( $image )->src : '';
 
-$links = ! empty( $template_args['links'] ) ? $template_args['links'] : '';
+$links      = ! empty( $template_args['links'] ) ? $template_args['links'] : '';
+$link_count = count( $links );
+$count      = 0;
 ?>
 
 <div class="module-mu w-50p">
@@ -33,8 +35,11 @@ $links = ! empty( $template_args['links'] ) ? $template_args['links'] : '';
 	<?php
 	if ( ! empty( $links ) ) :
 		foreach ( $links as $link ) :
+		$count++;
+
+		$class = ( $count > 1 && $count === $link_count ) ? 'mar-bottom_lg' : 'mar-bottom';
 		?>
-		<div class="link-list hover-highlight uppercase mar-bottom">
+		<div class="link-list hover-highlight uppercase <?php echo esc_attr( $class ); ?>">
 			<!-- Single link -->
 			<a href="<?php echo esc_url( $link['link_url'] ); ?>"><?php echo esc_html( $link['link_text'] ); ?></a>
 		</div>
