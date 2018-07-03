@@ -4,7 +4,9 @@ body {
 	direction: ltr;
 }
 
-.header-home.featured-photo--content-left .bg-img-container {
+.header-home.featured-photo--content-left .bg-img-container,
+.header-default.featured-photo--content-left .bg-img-container,
+.cta-secondary .bg-img-container {
 	left: auto;
 }
 
