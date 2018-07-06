@@ -5,9 +5,18 @@ body {
 }
 
 .header-home.featured-photo--content-left .bg-img-container,
-.header-default.featured-photo--content-left .bg-img-container,
-.cta-secondary .bg-img-container {
+.header-default.featured-photo--content-left .bg-img-container {
 	left: auto;
+}
+
+.img-right-content-left .bg-img-container {
+	left: auto;
+	right: 0;
+}
+
+.img-left-content-right .bg-img-container {
+	left: 0;
+	right: auto;
 }
 
 .translation-bar ul {
