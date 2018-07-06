@@ -31,7 +31,7 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 ?>
 
 <div class="w-100p white-bg mod-margin-bottom">
-	<div class="mw-1360 std-mod mod-margin-bottom">
+	<div class="mw-1360 std-mod">
 		<h3 class="h3 color-gray uppercase">
 			<?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span>
 		</h3>
@@ -39,21 +39,9 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 		<?php if ( ! empty( $headline ) ) : ?>
 		<h2><?php echo esc_html( $headline ); ?></h2>
 		<?php endif; ?>
-
-		<?php if ( ! empty( $description ) ) : ?>
-		<p class="h3 color-gray mar-bottom_lg">
-			<?php echo wp_kses_post( $description ); ?>
-		</p>
-		<?php endif; ?>
-
-		<?php if ( ! empty( $button_label ) && ! empty( $button_link ) ) : ?>
-		<a class="btn btn-pink" href="<?php echo esc_url( $button_link ); ?>">
-			<?php echo esc_html( $button_label ); ?>
-		</a>
-		<?php endif; ?>
 	</div>
 
-	<div class="mw-1360 std-mod people-container">
+	<div class="mw-1360 std-mod people-container mod-margin-bottom_xs">
 
 		<div class="people slider-on-mobile flex flex-medium">
 		<?php
@@ -75,5 +63,19 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 		}
 		?>
 		</div>
+	</div>
+
+	<div class="mw-1360">
+		<?php if ( ! empty( $description ) ) : ?>
+		<p class="h3 color-gray mar-bottom_lg">
+			<?php echo wp_kses_post( $description ); ?>
+		</p>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $button_label ) && ! empty( $button_link ) ) : ?>
+		<a class="btn btn-pink" href="<?php echo esc_url( $button_link ); ?>">
+			<?php echo esc_html( $button_label ); ?>
+		</a>
+		<?php endif; ?>
 	</div>
 </div>
