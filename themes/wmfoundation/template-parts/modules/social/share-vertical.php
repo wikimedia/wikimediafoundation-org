@@ -5,7 +5,7 @@
  * @package wmfoundation
  */
 
-$share_text = get_theme_mod( 'social_share_text', __( 'Share', 'wmfoundation' ) );
+$share_text = empty( $template_data['title'] ) ? get_theme_mod( 'social_share_text', __( 'Share', 'wmfoundation' ) ) : empty( $template_data['title'] );
 
 $template_data = wmf_get_template_data();
 $services      = ! empty( $template_data['services'] ) ? $template_data['services'] : array( 'facebook', 'twitter' );
@@ -20,7 +20,9 @@ $args = wp_parse_args(
 ?>
 
 <div class="social-share text-center social-container social-stacked">
+	<?php if ( ! empty( $share_text ) ) : ?>
 	<h4 class="h5 uppercase mar-bottom_sm"><?php echo esc_html( $share_text ); ?></h4>
+	<?php endif; ?>
 	<ul class="color-blue <?php echo esc_attr( $args['list_class'] ); ?>">
 		<?php if ( in_array( 'twitter', $services, true ) ) : ?>
 		<li class="mar-bottom_sm">
