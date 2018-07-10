@@ -167,7 +167,7 @@ function wmf_get_role_posts( $term_id ) {
 		)
 	); // WPCS: slow query ok.
 
-	$post_list = $posts->posts;
+	$post_list = wmf_sort_by_last_name( $posts->posts );
 
 	foreach ( $posts->posts as $i => $post_id ) {
 		$featured = get_post_meta( $post_id, 'profile_featured', true );
