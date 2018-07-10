@@ -18,7 +18,7 @@ $allowed_tags['time'] = true;
 
 ?>
 
-<div class="header-content">
+<div class="header-content mar-bottom_lg">
 
 	<?php if ( is_front_page() ) : ?>
 	<div class="logo-nav-container">

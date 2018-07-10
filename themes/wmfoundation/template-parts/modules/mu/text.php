@@ -15,7 +15,7 @@ $image     = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
 $image_alt = is_numeric( $image ) ? wp_get_attachment_image( $image )->src : '';
 
-$links      = ! empty( $template_args['links'] ) ? $template_args['links'] : '';
+$links      = ! empty( $template_args['links'] ) ? $template_args['links'] : array();
 $link_count = count( $links );
 $count      = 0;
 ?>

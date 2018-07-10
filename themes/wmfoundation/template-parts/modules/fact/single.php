@@ -38,7 +38,9 @@ $image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : 
 		<?php
 
 		$template_args = array(
-			'message' => sprintf( '%1$s - %2$s', $template_args['heading'], $template_args['content'] ),
+			'message'  => sprintf( '%1$s - %2$s', $template_args['heading'], $template_args['content'] ),
+			'services' => array( 'twitter' ),
+			'title'    => '',
 		);
 		wmf_get_template_part( 'template-parts/modules/social/share', $template_args, 'vertical' );
 		?>
