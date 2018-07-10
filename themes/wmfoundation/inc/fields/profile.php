@@ -9,6 +9,16 @@
  * Add fields to profile post type.
  */
 function wmf_profile_fields() {
+	$last_name = new Fieldmanager_Textfield(
+		array(
+			'label'       => __( 'Last Name', 'wmfoundation' ),
+			'description' => __( 'This field is required to enable correct sorting via last name.', 'wmfoundation' ),
+			'name'        => 'last_name',
+		)
+	);
+
+	$last_name->add_meta_box( __( 'List of Contact Links', 'wmfoundation' ), 'profile' );
+
 	$contact_links = new Fieldmanager_Group(
 		array(
 			'label'          => __( 'Contact Link', 'wmfoundation' ),

@@ -483,3 +483,16 @@ function wmf_filter_caption_shortcode( $output, $attr, $content ) {
 	return $html;
 }
 add_filter( 'img_caption_shortcode', 'wmf_filter_caption_shortcode', 10, 3 );
+
+/**
+ * Initiates a new Profile\Sorter and returns the sorted posts.
+ *
+ * @param array $posts The posts to sort.
+ *
+ * @return array
+ */
+function wmf_sort_by_last_name( $posts ) {
+	$sorter = new WMF\Profiles\Sorter( $posts );
+
+	return $sorter->get_sorted();
+}

@@ -35,9 +35,9 @@ $count      = 0;
 	<?php
 	if ( ! empty( $links ) ) :
 		foreach ( $links as $link ) :
-		$count++;
+			$count++;
 
-		$class = ( $count > 1 && $count === $link_count ) ? 'mar-bottom_lg' : 'mar-bottom';
+			$class = ( $count > 1 && $count === $link_count ) ? 'mar-bottom_lg' : 'mar-bottom';
 		?>
 		<div class="link-list hover-highlight uppercase <?php echo esc_attr( $class ); ?>">
 			<!-- Single link -->
