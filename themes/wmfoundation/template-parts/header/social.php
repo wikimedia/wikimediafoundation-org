@@ -16,6 +16,10 @@ if (
 	return;
 }
 
+if ( is_singular() && get_post_meta( get_the_ID(), 'sharing_disabled', true ) ) {
+	return;
+}
+
 $services      = get_post_meta( get_the_ID(), 'share_links', true );
 $template_data = array(
 	'list_class' => '',
