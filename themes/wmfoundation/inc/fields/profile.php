@@ -17,7 +17,7 @@ function wmf_profile_fields() {
 		)
 	);
 
-	$last_name->add_meta_box( __( 'Sorting', 'wmfoundation' ), 'profile', 'high' );
+	$last_name->add_meta_box( __( 'Sorting', 'wmfoundation' ), 'profile', 'normal', 'high' );
 
 	$contact_links = new Fieldmanager_Group(
 		array(
