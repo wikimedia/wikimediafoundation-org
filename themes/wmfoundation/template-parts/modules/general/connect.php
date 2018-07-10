@@ -81,7 +81,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 				<?php endif; ?>
 			</div><!-- End .multi-use -->
 
-			<?php get_template_part( 'template-parts/modules/social/follow', 'vertical' ); ?>
+			<?php wmf_get_template_part( 'template-parts/modules/social/follow', $template_args, 'vertical' ); ?>
 		</div>
 	</div>
 </div>

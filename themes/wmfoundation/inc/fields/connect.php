@@ -9,7 +9,10 @@
  * Add connect page options.
  */
 function wmf_connect_fields() {
-	$connect = new Fieldmanager_Group(
+	$blog = get_theme_mod( 'wmf_blog_url' );
+
+	$blog_label = get_theme_mod( 'wmf_blog_label', 'Wikimedia Blog' );
+	$connect    = new Fieldmanager_Group(
 		array(
 			'name'     => 'connect',
 			'children' => array(
@@ -30,6 +33,16 @@ function wmf_connect_fields() {
 				'contact_content'       => new Fieldmanager_RichTextArea( __( 'Contact Content', 'wmfoundation' ) ),
 				'contact_link'          => new Fieldmanager_Textfield( __( 'Contact Link', 'wmfoundation' ) ),
 				'contact_link_text'     => new Fieldmanager_Textfield( __( 'Contact Link Text', 'wmfoundation' ) ),
+
+				'follow_text'           => new Fieldmanager_Textfield( __( 'Follow Text', 'wmfoundation' ) ),
+				'facebook_url'          => new Fieldmanager_Link( __( 'Facebook URL', 'wmfoundation' ) ),
+				'facebook_label'        => new Fieldmanager_Textfield( __( 'Facebook Label', 'wmfoundation' ) ),
+				'twitter_url'           => new Fieldmanager_Link( __( 'Twitter URL', 'wmfoundation' ) ),
+				'twitter_id'            => new Fieldmanager_Textfield( __( 'Twitter ID', 'wmfoundation' ) ),
+				'instagram_url'         => new Fieldmanager_Link( __( 'Instagram URL', 'wmfoundation' ) ),
+				'instagram_label'       => new Fieldmanager_Textfield( __( 'Instagram Label', 'wmfoundation' ) ),
+				'blog_url'              => new Fieldmanager_Link( __( 'Blog URI', 'wmfoundation' ) ),
+				'blog_label'            => new Fieldmanager_Textfield( __( 'Blog Label', 'wmfoundation' ) ),
 
 			),
 		)

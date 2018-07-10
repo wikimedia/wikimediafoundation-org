@@ -5,17 +5,19 @@
  * @package wmfoundation
  */
 
-$follow_text = get_theme_mod( 'wmf_social_follow_text', __( 'Follow', 'wmfoundation' ) );
-$facebook    = get_theme_mod( 'wmf_facebook_url' );
-$twitter     = get_theme_mod( 'wmf_twitter_url' );
-$instagram   = get_theme_mod( 'wmf_instagram_url' );
-$blog        = get_theme_mod( 'wmf_blog_url' );
+$template_args = wmf_get_template_data();
 
-$facebook_label  = get_theme_mod( 'wmf_facebook_label', 'Facebook' );
-$twitter_id      = get_theme_mod( 'wmf_twitter_id', 'Wikimedia' );
+$follow_text = ! empty( $template_args['follow_text'] ) ? $template_args['follow_text'] : get_theme_mod( 'wmf_social_follow_text', __( 'Follow', 'wmfoundation' ) );
+$facebook    = ! empty( $template_args['facebook_url'] ) ? $template_args['facebook_url'] : get_theme_mod( 'wmf_facebook_url' );
+$twitter     = ! empty( $template_args['twitter_url'] ) ? $template_args['twitter_url'] : get_theme_mod( 'wmf_twitter_url' );
+$instagram   = ! empty( $template_args['instagram_url'] ) ? $template_args['instagram_url'] : get_theme_mod( 'wmf_instagram_url' );
+$blog        = ! empty( $template_args['blog_url'] ) ? $template_args['blog_url'] : get_theme_mod( 'wmf_blog_url' );
+
+$facebook_label  = ! empty( $template_args['facebook_label'] ) ? $template_args['facebook_label'] : get_theme_mod( 'wmf_facebook_label', 'Facebook' );
+$twitter_id      = ! empty( $template_args['twitter_id'] ) ? $template_args['twitter_id'] : get_theme_mod( 'wmf_twitter_id', 'Wikimedia' );
 $twitter_id      = sprintf( '@%s', trim( $twitter_id, '@' ) );
-$instagram_label = get_theme_mod( 'wmf_instagram_label', 'Instagram' );
-$blog_label      = get_theme_mod( 'wmf_blog_label', 'Wikimedia Blog' );
+$instagram_label = ! empty( $template_args['instagram_label'] ) ? $template_args['instagram_label'] : get_theme_mod( 'wmf_instagram_label', 'Instagram' );
+$blog_label      = ! empty( $template_args['blog_label'] ) ? $template_args['blog_label'] : get_theme_mod( 'wmf_blog_label', 'Wikimedia Blog' );
 
 if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $blog ) ) {
 	return;
