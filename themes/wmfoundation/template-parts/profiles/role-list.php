@@ -39,7 +39,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 		<?php if ( ! empty( $term_data ) ) : ?>
 		<div class="mod-margin-bottom_xs staff-list">
 			<?php
-			foreach ( $term_data['posts'] as $post_id ) {
+			foreach ( wmf_sort_by_last_name( $term_data['posts'] ) as $post_id ) {
 				wmf_get_template_part(
 					'template-parts/profiles/role-item', array(
 						'id' => $post_id,
