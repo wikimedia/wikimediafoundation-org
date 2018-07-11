@@ -13,6 +13,8 @@ wp.media.view.AttachmentCompat = OriginalAttachmentCompat.extend( {
 	initialize: function() {
 		OriginalAttachmentCompat.prototype.initialize.apply( this, arguments );
 
-		this.stopListening( this.model, 'change:compat', this.render );
+		if ( true === this.model.hasChanged() ) {
+			this.stopListening( this.model, 'change:compat', this.render );
+		}
 	}
 } );
