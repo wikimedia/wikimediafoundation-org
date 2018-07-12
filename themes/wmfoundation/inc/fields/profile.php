@@ -52,16 +52,16 @@ function wmf_profile_fields() {
 	$user = new Fieldmanager_Autocomplete(
 		array(
 			'name'       => 'connected_user',
-			'datasource' => new Fieldmanager_Datasource_User(
-				array(
-					'store_property' => 'ID',
-				)
-			),
+			'datasource'    => new Fieldmanager_Datasource_Post( array(
+				'query_args' => array(
+					'post_type' => 'guest-author',
+				),
+			) ),
 		)
 	);
 	$user->add_meta_box( __( 'Connected User', 'wmfoundation' ), 'profile' );
 }
-add_action( 'fm_post_profile', 'wmf_profile_fields' );
+add_action( 'init', 'wmf_profile_fields', 101 );
 
 /**
  * Add fields for the role taxonomy
