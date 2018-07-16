@@ -1,3 +1,12 @@
-.single-profile .minimal--short {
-	padding-bottom: 4.8125rem;
+.single-profile {
+  .header-default {
+
+	// Default page, blog page
+	&.minimal {
+
+	  &--short:not(.featured-photo--content-left):not(.featured-photo--photo-centered) {
+		padding-bottom: 4.8125rem;
+	  }
+	}
+  }
 }
