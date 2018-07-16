@@ -39,13 +39,20 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 ?>
 
 <?php
+	$header_args = array(
+		'h1_title' => single_term_title( '', false ),
+		'h4_link'  => $h4_link,
+		'h4_title' => $h4_title,
+	);
+
+	if ( ! get_term_meta( $current_term_id, 'h1_heading', true ) ) {
+		$header_args['h1_alt_title'] = $header_args['h1_title'];
+		unset( $header_args['h1_title'] );
+	}
+
 	wmf_get_template_part(
 		'template-parts/header/page-noimage',
-		array(
-			'h1_title' => single_term_title( '', false ),
-			'h4_link'  => $h4_link,
-			'h4_title' => $h4_title,
-		)
+		$header_args
 	);
 
 ?>
