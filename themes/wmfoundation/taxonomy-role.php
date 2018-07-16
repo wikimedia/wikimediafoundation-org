@@ -26,9 +26,13 @@ if ( ! empty( $profile_parent_page ) ) {
 	$h4_link  = get_the_permalink( $profile_parent_page );
 }
 
-$description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'wmfoundation' ) );
-$button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'wmfoundation' ) );
-$button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
+$display_intro = get_term_meta( $current_term_id, 'display_intro', true );
+
+if ( ! empty( $display_intro ) ) {
+	$description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'wmfoundation' ) );
+	$button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'wmfoundation' ) );
+	$button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
+}
 
 $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
