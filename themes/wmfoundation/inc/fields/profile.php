@@ -61,7 +61,7 @@ function wmf_profile_fields() {
 	);
 	$user->add_meta_box( __( 'Connected User', 'wmfoundation' ), 'profile' );
 }
-add_action( 'fm_post_profile', 'wmf_profile_fields', 101 );
+add_action( 'fm_post_profile', 'wmf_profile_fields' );
 
 /**
  * Add fields for the role taxonomy
