@@ -26,22 +26,33 @@ if ( ! empty( $profile_parent_page ) ) {
 	$h4_link  = get_the_permalink( $profile_parent_page );
 }
 
-$description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'wmfoundation' ) );
-$button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'wmfoundation' ) );
-$button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
+$display_intro = get_term_meta( $current_term_id, 'display_intro', true );
+
+if ( ! empty( $display_intro ) ) {
+	$description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'wmfoundation' ) );
+	$button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'wmfoundation' ) );
+	$button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
+}
 
 $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 ?>
 
 <?php
+	$header_args = array(
+		'h1_title' => single_term_title( '', false ),
+		'h4_link'  => $h4_link,
+		'h4_title' => $h4_title,
+	);
+
+	if ( ! get_term_meta( $current_term_id, 'h1_heading', true ) ) {
+		$header_args['h1_alt_title'] = $header_args['h1_title'];
+		unset( $header_args['h1_title'] );
+	}
+
 	wmf_get_template_part(
 		'template-parts/header/page-noimage',
-		array(
-			'h1_title' => single_term_title( '', false ),
-			'h4_link'  => $h4_link,
-			'h4_title' => $h4_title,
-		)
+		$header_args
 	);
 
 ?>

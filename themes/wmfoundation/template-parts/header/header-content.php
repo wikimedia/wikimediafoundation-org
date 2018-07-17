@@ -12,6 +12,7 @@ $h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_
 $h2_link              = ! empty( $page_header_data['h2_link'] ) ? $page_header_data['h2_link'] : '';
 $h2_title             = ! empty( $page_header_data['h2_title'] ) ? $page_header_data['h2_title'] : '';
 $title                = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
+$alt_title            = ! empty( $page_header_data['h1_alt_title'] ) ? $page_header_data['h1_alt_title'] : '';
 $meta                 = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags         = wp_kses_allowed_html( 'post' );
 $allowed_tags['time'] = true;
@@ -55,6 +56,10 @@ $allowed_tags['time'] = true;
 
 	<?php if ( ! empty( $title ) ) : ?>
 	<h1 class="mar-bottom"><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
+	<?php endif; ?>
+
+	<?php if ( ! empty( $alt_title ) ) : ?>
+		<h2 class="h1 mar-bottom"><?php echo wp_kses( $alt_title, array( 'span' => array( 'class' ) ) ); ?></h2>
 	<?php endif; ?>
 
 	<?php if ( ! empty( $meta ) ) : ?>

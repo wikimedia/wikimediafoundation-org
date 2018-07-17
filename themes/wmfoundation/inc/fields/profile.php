@@ -67,6 +67,22 @@ add_action( 'fm_post_profile', 'wmf_profile_fields' );
  * Add fields for the role taxonomy
  */
 function wmf_role_fields() {
+	$display_intro = new Fieldmanager_Checkbox(
+		array(
+			'name' => 'display_intro',
+		)
+	);
+
+	$display_intro->add_term_meta_box( 'Display Intro?', 'role' );
+
+	$h1_heading = new Fieldmanager_Checkbox(
+		array(
+			'name' => 'h1_heading',
+		)
+	);
+
+	$h1_heading->add_term_meta_box( 'Output H1 Heading?', 'role' );
+
 	$featured_term = new Fieldmanager_Checkbox(
 		array(
 			'name' => 'featured_term',
