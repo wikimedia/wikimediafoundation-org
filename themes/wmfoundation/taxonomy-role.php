@@ -45,10 +45,6 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 		'h4_title' => $h4_title,
 	);
 
-	if ( ! get_term_meta( $current_term_id, 'h1_heading', true ) ) {
-		unset( $header_args['h1_title'] );
-	}
-
 	wmf_get_template_part(
 		'template-parts/header/page-noimage',
 		$header_args

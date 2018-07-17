@@ -11,11 +11,15 @@ if ( empty( $post_list ) ) {
 	return;
 }
 
+$show_heading = get_term_meta( get_queried_object_id(), 'term_heading', true );
+
 foreach ( $post_list as $term_id => $term_data ) :
 	$name        = ! empty( $term_data['name'] ) ? $term_data['name'] : '';
 	$description = term_description( $term_id, 'role' );
 	$button      = get_term_meta( $term_id, 'role_button', true );
-?>
+	$term        = get_term( $term_id, 'role' );
+	$name        = ( ! $show_heading && ( is_wp_error( $term ) || empty( $term->parent ) ) ) ? '' : $name;
+	?>
 
 <div class="static-list-item mod-margin-bottom_xs wysiwyg">
 
