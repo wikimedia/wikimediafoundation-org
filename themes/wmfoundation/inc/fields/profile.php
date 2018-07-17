@@ -52,11 +52,13 @@ function wmf_profile_fields() {
 	$user = new Fieldmanager_Autocomplete(
 		array(
 			'name'       => 'connected_user',
-			'datasource'    => new Fieldmanager_Datasource_Post( array(
-				'query_args' => array(
-					'post_type' => 'guest-author',
-				),
-			) ),
+			'datasource' => new Fieldmanager_Datasource_Post(
+				array(
+					'query_args' => array(
+						'post_type' => 'guest-author',
+					),
+				)
+			),
 		)
 	);
 	$user->add_meta_box( __( 'Connected User', 'wmfoundation' ), 'profile' );

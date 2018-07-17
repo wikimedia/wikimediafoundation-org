@@ -382,14 +382,13 @@ function wmf_get_recent_author_posts( $author_id ) {
 					'no_found_rows'  => true,
 					'post_type'      => 'post',
 					'ignore_sticky'  => true,
-					'author_name'         => $post->post_name,
+					'author_name'    => $post->post_name,
 				)
 			); // WPCS: Slow query ok.
 
 			$post_list = $posts_query->posts;
+			wp_cache_add( $cache_key, $post_list );
 		}
-
-		wp_cache_add( $cache_key, $post_list );
 	}
 
 	return $post_list;
