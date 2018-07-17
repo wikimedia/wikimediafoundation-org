@@ -373,18 +373,22 @@ function wmf_get_recent_author_posts( $author_id ) {
 	$post_list = wp_cache_get( $cache_key );
 
 	if ( empty( $post_list ) ) {
-		$posts_query = new WP_Query(
-			array(
-				'posts_per_page' => 3,
-				'no_found_rows'  => true,
-				'post_type'      => 'post',
-				'ignore_sticky'  => true,
-				'author'         => $author_id,
-			)
-		); // WPCS: Slow query ok.
+		$post = get_post( $author_id );
 
-		$post_list = $posts_query->posts;
-		wp_cache_add( $cache_key, $post_list );
+		if ( ! empty( $post ) ) {
+			$posts_query = new WP_Query(
+				array(
+					'posts_per_page' => 3,
+					'no_found_rows'  => true,
+					'post_type'      => 'post',
+					'ignore_sticky'  => true,
+					'author_name'    => $post->post_name,
+				)
+			); // WPCS: Slow query ok.
+
+			$post_list = $posts_query->posts;
+			wp_cache_add( $cache_key, $post_list );
+		}
 	}
 
 	return $post_list;
