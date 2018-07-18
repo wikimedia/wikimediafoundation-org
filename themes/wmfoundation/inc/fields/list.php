@@ -36,6 +36,7 @@ function wmf_list_fields() {
 							'subhead'     => new Fieldmanager_Textarea( __( 'List Item Subheading', 'wmfoundation' ) ),
 							'description' => new Fieldmanager_RichTextArea( __( 'List Item Description', 'wmfoundation' ) ),
 							'link'        => new Fieldmanager_Link( __( 'List Item Link', 'wmfoundation' ) ),
+							'offsite'     => new Fieldmanager_Checkbox( __( 'Show Off Site Link Icon', 'wmfoundation' ) ),
 						),
 					)
 				),

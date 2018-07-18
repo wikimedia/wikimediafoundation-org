@@ -22,7 +22,11 @@ $width_class = $template_args['split'] ? 'w-50p' : 'w-100p';
 	<h3 class="h3 link-external">
 		<a href="<?php echo esc_url( $template_args['uri'] ); ?>" target="_blank">
 			<?php echo esc_html( $template_args['heading'] ); ?>
-			<?php wmf_show_icon( 'open', 'external-link-icon' ); ?>
+			<?php
+			if ( ! empty( $template_args['offsite'] ) ) {
+				wmf_show_icon( 'open', 'external-link-icon' );
+			}
+			?>
 		</a>
 	</h3>
 	<?php endif; ?>
