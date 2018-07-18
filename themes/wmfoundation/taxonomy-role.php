@@ -45,11 +45,6 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 		'h4_title' => $h4_title,
 	);
 
-	if ( ! get_term_meta( $current_term_id, 'h1_heading', true ) ) {
-		$header_args['h1_alt_title'] = $header_args['h1_title'];
-		unset( $header_args['h1_title'] );
-	}
-
 	wmf_get_template_part(
 		'template-parts/header/page-noimage',
 		$header_args
@@ -59,6 +54,7 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 <div class="mw-1360 mod-margin-bottom flex flex-medium">
 	<div class="w-68p">
+		<?php if ( ! empty( $display_intro ) ) : ?>
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php if ( ! empty( $description ) ) : ?>
 			<p class="h3 color-gray">
@@ -67,11 +63,12 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 			<?php endif; ?>
 
 			<?php if ( ! empty( $button_label ) ) : ?>
-				<a href="<?php echo esc_url( $button_link ); ?>" class="btn btn-pink search-btn">
+				<a href="<?php echo esc_url( isset( $button_link ) ? $button_link : '#' ); ?>" class="btn btn-pink search-btn">
 					<?php echo esc_html( $button_label ); ?>
 				</a>
 			<?php endif; ?>
 		</div>
+		<?php endif; ?>
 
 		<div class="mod-margin-bottom">
 			<?php wmf_get_template_part( 'template-parts/profiles/role-list', $post_list ); ?>
