@@ -5,10 +5,9 @@
  * @package wmfoundation
  */
 
-$share_text = empty( $template_data['title'] ) ? get_theme_mod( 'social_share_text', __( 'Share', 'wmfoundation' ) ) : empty( $template_data['title'] );
-
 $template_data = wmf_get_template_data();
 $services      = ! empty( $template_data['services'] ) ? $template_data['services'] : array( 'facebook', 'twitter' );
+$share_text    = isset( $template_data['title'] ) ? $template_data['title'] : get_theme_mod( 'social_share_text', __( 'Share', 'wmfoundation' ) );
 
 $args = wp_parse_args(
 	$template_data,
