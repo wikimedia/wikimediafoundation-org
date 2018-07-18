@@ -37,7 +37,11 @@ $link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 			<?php echo esc_html( $title ); ?>
 
 			<?php if ( ! empty( $link ) ) : ?>
-			<?php wmf_show_icon( 'open', 'external-link-icon' ); ?>
+				<?php
+				if ( ! empty( $template_data['offsite'] ) ) {
+					wmf_show_icon( 'open', 'external-link-icon' );
+				}
+				?>
 			</a>
 			<?php endif; ?>
 		</h3>
