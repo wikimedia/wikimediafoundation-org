@@ -100,6 +100,26 @@ class Connect extends Base {
 			)
 		);
 
+		$control_id = 'wmf_subscribe_action';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Subscribe form action URL', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_subscribe_additional_fields';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Subscribe form additional fields', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'textarea',
+			)
+		);
+
 		$control_id = 'wmf_subscribe_placeholder';
 		$this->customize->add_setting(
 			$control_id, array(
