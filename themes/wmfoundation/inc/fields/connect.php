@@ -25,8 +25,6 @@ function wmf_connect_fields() {
 				// Subscribe Box.
 				'subscribe_heading'           => new Fieldmanager_Textfield( __( 'Subscribe Heading', 'wmfoundation' ) ),
 				'subscribe_content'           => new Fieldmanager_RichTextArea( __( 'Subscribe Content', 'wmfoundation' ) ),
-				'subscribe_action'            => new Fieldmanager_Textfield( __( 'Subscribe form action URL', 'wmfoundation' ) ),
-				'subscribe_additional_fields' => new Fieldmanager_TextArea( __( 'Subscribe form additional fields', 'wmfoundation' ) ),
 				'subscribe_placeholder'       => new Fieldmanager_Textfield( __( 'Email Input Placeholder', 'wmfoundation' ) ),
 				'subscribe_button'            => new Fieldmanager_Textfield( __( 'Subscribe Button Text', 'wmfoundation' ) ),
 
