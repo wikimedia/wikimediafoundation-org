@@ -7,23 +7,32 @@
 
 $template_args = wmf_get_template_data();
 
+$additional_fields_default = sprintf(
+	'<label for="mce-group[4037]-4037-0"><input type="radio" value="1" name="group[4037]" id="mce-group[4037]-4037-0" checked="CHECKED"> %1$s</label>
+	<label for="mce-group[4037]-4037-1"><input type="radio" value="2" name="group[4037]" id="mce-group[4037]-4037-1"> %2$s</label>',
+	__( 'Daily update', 'wmfoundation' ),
+	__( 'Weekly update', 'wmfoundation' )
+);
+
 $defaults = array(
 	// Headings.
-	'pre_heading'            => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'wmfoundation' ) ),
-	'heading'                => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'wmfoundation' ) ),
-	'rand_translation_title' => wmf_get_random_translation( 'wmf_connect_pre_heading' ),
+	'pre_heading'                 => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'wmfoundation' ) ),
+	'heading'                     => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'wmfoundation' ) ),
+	'rand_translation_title'      => wmf_get_random_translation( 'wmf_connect_pre_heading' ),
 
 	// Subscribe box.
-	'subscribe_heading'      => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'wmfoundation' ) ),
-	'subscribe_content'      => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'wmfoundation' ) ),
-	'subscribe_placeholder'  => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'wmfoundation' ) ),
-	'subscribe_button'       => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'wmfoundation' ) ),
+	'subscribe_action'            => get_theme_mod( 'wmf_subscribe_action', 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56' ),
+	'subscribe_additional_fields' => get_theme_mod( 'wmf_subscribe_additional_fields', $additional_fields_default ),
+	'subscribe_heading'           => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'wmfoundation' ) ),
+	'subscribe_content'           => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'wmfoundation' ) ),
+	'subscribe_placeholder'       => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'wmfoundation' ) ),
+	'subscribe_button'            => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'wmfoundation' ) ),
 
 	// Contact box.
-	'contact_heading'        => get_theme_mod( 'wmf_contact_heading', __( 'Say hello', 'wmfoundation' ) ),
-	'contact_content'        => get_theme_mod( 'wmf_contact_content', __( 'How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box.', 'wmfoundation' ) ),
-	'contact_link'           => get_theme_mod( 'wmf_contact_link', __( 'email@domain.url', 'wmfoundation' ) ),
-	'contact_link_text'      => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'wmfoundation' ) ),
+	'contact_heading'             => get_theme_mod( 'wmf_contact_heading', __( 'Say hello', 'wmfoundation' ) ),
+	'contact_content'             => get_theme_mod( 'wmf_contact_content', __( 'How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box.', 'wmfoundation' ) ),
+	'contact_link'                => get_theme_mod( 'wmf_contact_link', __( 'email@domain.url', 'wmfoundation' ) ),
+	'contact_link_text'           => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'wmfoundation' ) ),
 );
 
 // We don't want empty fields from the page to affect the output.
@@ -57,10 +66,44 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 					</div>
 				<?php endif; ?>
 				<div class="email-signup">
-					<label for="wmf-subscribe-input-email" class="sr-only"><?php echo esc_html( $template_args['subscribe_placeholder'] ); ?></label>
-					<input id="wmf-subscribe-input-email" type="text" placeholder="<?php echo esc_attr( $template_args['subscribe_placeholder'] ); ?>">
-					<?php wmf_show_icon( 'mail' ); ?>
-					<button class="btn btn-pink" type="button" name="button"><?php echo esc_html( $template_args['subscribe_button'] ); ?></button>
+					<form action="<?php echo esc_url( $template_args['subscribe_action'] ); ?>" method="post" target="_blank">
+						<label for="wmf-subscribe-input-email" class="sr-only"><?php echo esc_html( $template_args['subscribe_placeholder'] ); ?></label>
+						<input id="wmf-subscribe-input-email" type="email" placeholder="<?php echo esc_attr( $template_args['subscribe_placeholder'] ); ?>" name="EMAIL" required>
+						<?php wmf_show_icon( 'mail' ); ?>
+						<?php if ( ! empty( $template_args['subscribe_additional_fields'] ) ) : ?>
+						<div class="field-group input-group">
+							<?php
+							echo wp_kses( $template_args['subscribe_additional_fields'], array(
+								'input' => array(
+									'type'        => array(),
+									'name'        => array(),
+									'id'          => array(),
+									'class'       => array(),
+									'required'    => array(),
+									'value'       => array(),
+									'checked'     => array(),
+									'placeholder' => array(),
+								),
+								'label' => array(
+									'for'   => array(),
+									'class' => array(),
+								),
+								'select' => array(
+									'name'     => array(),
+									'id'       => array(),
+									'class'    => array(),
+									'required' => array(),
+								),
+								'option' => array(
+									'value'    => array(),
+									'selected' => array(),
+								),
+							) );
+							?>
+						</div>
+						<?php endif; ?>
+						<button class="btn btn-pink" type="button" name="button"><?php echo esc_html( $template_args['subscribe_button'] ); ?></button>
+					</form>
 				</div>
 			</div><!-- End .multi-use -->
 
