@@ -52,7 +52,7 @@ wmf_get_template_part(
 	'template-parts/thumbnail-framed',
 	array(
 		'inner_image'     => get_post_thumbnail_id( get_the_ID() ),
-		'container_class' => 'mod-margin-bottom',
+		'container_class' => '',
 	)
 );
 ?>
