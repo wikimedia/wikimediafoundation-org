@@ -97,6 +97,7 @@
 }
 .static-list-heading {
   margin-bottom: 1.5rem;
+  position: relative;
   @include font-size(48, 18);
   pointer-events: none;
   @media (max-width: 767px) {
@@ -107,11 +108,15 @@
   &:after {
     display: none;
     @media (max-width: 767px) {
-      content: 'keyboard_arrow_down';
-      font-family: 'Material Icons';
-      display: inline;
-      float: right;
+      content: '';
+      display: inline-block;
       padding-top:5px;
+	  width: 35px;
+	  height: 35px;
+	  background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
+	  position: absolute;
+	  right: -20px;
+	  left: auto;
     }
   }
 }
@@ -119,10 +124,7 @@
   &:after {
     display: none;
     @media (max-width: 767px) {
-      content: 'keyboard_arrow_up';
-      font-family: 'Material Icons';
-      display: inline;
-      float: right;
+	  background: url('assets/dist/fonts/raw-icons/arrow-up.svg') no-repeat;
     }
   }
 }

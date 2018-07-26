@@ -22,14 +22,17 @@ input, textarea {
   position: relative;
 
   &:after {
-    content: 'keyboard_arrow_down';
-    font-family: 'Material Icons';
+    content: '';
     position: absolute;
     right: 5px;
     top: 5px;
     font-size: 35px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
     pointer-events: none;
-    color: $color-gray;
+    fill: $color-gray;
   }
 }
 
