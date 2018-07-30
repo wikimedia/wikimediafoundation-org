@@ -95,7 +95,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 							?>
 						</div>
 						<?php endif; ?>
-						<button class="btn btn-pink" type="button" name="button"><?php echo esc_html( $template_args['subscribe_button'] ); ?></button>
+						<button class="btn btn-pink" type="submit" name="button"><?php echo esc_html( $template_args['subscribe_button'] ); ?></button>
 					</form>
 				</div>
 			</div><!-- End .multi-use -->
