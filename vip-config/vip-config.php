@@ -18,6 +18,10 @@ $redirect_to_domain = 'wikimediafoundation.org';
 $redirect_domains   = [
     'www.wikimediafoundation.org',
     'm.wikimediafoundation.org',
+	'wikimediafoundation.com',
+	'wikimediafoundation.info',
+	'wikimediafoundation.net',
+	'wikipediazero.org',
 ];
 if (
     	'/cache-healthcheck?' !== $request_uri &&
