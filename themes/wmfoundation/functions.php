@@ -277,3 +277,8 @@ require get_template_directory() . '/inc/classes/class-wmf-template-data.php';
  * Add Cache related functions.
  */
 require get_template_directory() . '/inc/cache.php';
+
+/**
+ * Safe Redirect mods.
+ */
+require get_template_directory() . '/inc/safe-redirect.php';
