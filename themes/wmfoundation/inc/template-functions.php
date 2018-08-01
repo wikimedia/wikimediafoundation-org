@@ -444,6 +444,20 @@ function wmf_remove_coauthors_archive_filter() {
 add_action( 'init', 'wmf_remove_coauthors_archive_filter' );
 
 /**
+ * Add the coauthors template tag to feed.
+ *
+ * @param string $the_author Author name for feed.
+ * @return string Coatuhors version of author name.
+ */
+function wmf_coauthors_in_rss( $the_author ) {
+	if ( ! is_feed() || ! function_exists( 'coauthors' ) ) {
+		return $the_author;
+	}
+	return coauthors( null, null, null, null, false );
+}
+add_filter( 'the_author', 'wmf_coauthors_in_rss' );
+
+/**
  * Add a wrapper around images that are added through the editor,
  * and are not aligned left or right, or have a caption.
  *
@@ -479,6 +493,11 @@ add_filter( 'image_send_to_editor', 'wmf_add_image_container', 10, 5 );
 function wmf_filter_caption_shortcode( $output, $attr, $content ) {
 	$attachment_id = str_replace( 'attachment_', '', $attr['id'] );
 	$attachment    = get_post( $attachment_id );
+
+	if ( empty( $attachment ) ) {
+		return '';
+	}
+
 	$caption       = $attachment->post_excerpt;
 	$credit        = $attachment->post_content;
 
