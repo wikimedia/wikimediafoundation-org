@@ -493,6 +493,11 @@ add_filter( 'image_send_to_editor', 'wmf_add_image_container', 10, 5 );
 function wmf_filter_caption_shortcode( $output, $attr, $content ) {
 	$attachment_id = str_replace( 'attachment_', '', $attr['id'] );
 	$attachment    = get_post( $attachment_id );
+
+	if ( empty( $attachment ) ) {
+		return '';
+	}
+
 	$caption       = $attachment->post_excerpt;
 	$credit        = $attachment->post_content;
 
