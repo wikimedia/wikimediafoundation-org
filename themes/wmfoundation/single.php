@@ -36,7 +36,7 @@ while ( have_posts() ) {
 	</div>
 	<?php endif; ?>
 
-	<article class="mw-900">
+	<article class="mw-900 wysiwyg">
 		<?php the_content(); ?>
 	</article>
 
