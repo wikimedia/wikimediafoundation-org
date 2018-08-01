@@ -53,7 +53,7 @@ function wmf_get_header_container_class() {
 			}
 		}
 	} elseif ( is_404() ) {
-		$class = ' featured-photo--content-left';
+		$class .= ' featured-photo--content-left';
 	} elseif ( is_home() ) {
 		$class .= ' minimal--news';
 	} else {
