@@ -11,7 +11,7 @@ if ( ! is_page() && ! is_404() && ! is_home() ) {
 
 $bg_opts = wmf_get_background_image();
 
-if ( empty( $bg_opts['image'] ) || ! has_post_thumbnail() ) {
+if ( empty( $bg_opts['image'] ) || ( is_page() && ! has_post_thumbnail() ) ) {
 	return;
 }
 
