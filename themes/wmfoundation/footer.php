@@ -76,19 +76,19 @@ if ( ! is_archive() && ! is_home() ) {
 					?>
 					<span class="inline-social-list">
 						<?php if ( ! empty( $wmf_twitter_url ) ) : ?>
-						<a href="<?php echo esc_url( $wmf_twitter_url ); ?>" class="teal" target="__blank">
+						<a href="<?php echo esc_url( $wmf_twitter_url ); ?>" class="teal" target="_blank">
 							<span class="sr-only"><?php esc_html_e( 'Twitter', 'wmfoundation' ); ?></span>
 							<?php wmf_show_icon( 'social-twitter' ); ?>
 						</a>
 						<?php endif ?>
 						<?php if ( ! empty( $wmf_facebook_url ) ) : ?>
-						<a href="<?php echo esc_url( $wmf_facebook_url ); ?>" class="teal" target="__blank">
+						<a href="<?php echo esc_url( $wmf_facebook_url ); ?>" class="teal" target="_blank">
 							<span class="sr-only"><?php esc_html_e( 'Facebook', 'wmfoundation' ); ?></span>
 							<?php wmf_show_icon( 'social-facebook' ); ?>
 						</a>
 						<?php endif ?>
 						<?php if ( ! empty( $wmf_instagram_url ) ) : ?>
-						<a href="<?php echo esc_url( $wmf_instagram_url ); ?>" class="teal" target="__blank">
+						<a href="<?php echo esc_url( $wmf_instagram_url ); ?>" class="teal" target="_blank">
 							<span class="sr-only"><?php esc_html_e( 'Instagram', 'wmfoundation' ); ?></span>
 							<?php wmf_show_icon( 'social-instagram' ); ?>
 						</a>
