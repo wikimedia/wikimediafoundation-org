@@ -63,14 +63,17 @@ p {
 	@extend p;
 }
 
-ul li {
-	@include font-size(20, 16);
-	// list-style-type: disc;
-	margin-left: 2rem;
+ul,
+ol {
+	li {
+		@include font-size(20, 16);
+		// list-style-type: disc;
+		margin-left: 2rem;
 
-	margin-bottom: 2rem;
-	&:last-child {
-		margin-bottom: 0;
+		margin-bottom: 2rem;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }
 
