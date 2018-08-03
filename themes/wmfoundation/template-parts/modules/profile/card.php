@@ -24,7 +24,7 @@ $link_title = ! empty( $template_data['link_title'] ) ? $template_data['link_tit
 	<div class="mw-1360">
 		<div class="card">
 			<div class="bg-img-container">
-				<div class="bg-img" style="background-image: url(<?php echo esc_url( $image[0] ); ?>)"></div>
+				<div class="bg-img" style="background-image: url(<?php echo esc_url( $image[0] ); ?>);"></div>
 			</div>
 			<div class="card-content w-45p">
 				<?php if ( ! empty( $title ) ) : ?>
