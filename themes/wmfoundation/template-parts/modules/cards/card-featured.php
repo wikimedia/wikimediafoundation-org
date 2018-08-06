@@ -25,7 +25,7 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 <div class="card">
 	<?php if ( ! empty( $image_id ) ) : ?>
 		<div class="bg-img-container">
-			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image[0] ); ?>)"></div>
+			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image[0] ); ?>);"></div>
 		</div>
 	<?php endif; ?>
 

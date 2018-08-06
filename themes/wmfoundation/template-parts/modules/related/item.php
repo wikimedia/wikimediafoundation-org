@@ -31,7 +31,7 @@ if ( ! empty( $image_id ) ) {
 <div class="img-container">
 	<div class="bg-img-container">
 		<?php if ( ! empty( $image_src ) ) : ?>
-			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image_src[0] ); ?>)"></div>
+			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image_src[0] ); ?>);"></div>
 		<?php endif; ?>
 	</div>
 </div>
