@@ -152,9 +152,10 @@ if ( ! is_archive() && ! is_home() ) {
 			<?php
 			echo wp_kses(
 				$wmf_footer_copyright, array(
-					'a' => array(
+					'a'  => array(
 						'href' => array(),
 					),
+					'br' => array(),
 				)
 			);
 			?>
