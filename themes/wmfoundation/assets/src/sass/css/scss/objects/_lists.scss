@@ -95,6 +95,16 @@
     border-top: 1px solid $color-ltgray;
   }
 }
+.static-list-heading {
+  margin-bottom: 1.5rem;
+  position: relative;
+  pointer-events: none;
+  @media (max-width: 767px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    pointer-events: all;
+  }
+}
 
 .link-list_image {
 	float: right;
