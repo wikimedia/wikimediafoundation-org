@@ -169,7 +169,7 @@ function wmf_get_role_posts( $term_id ) {
 
 	$post_list = wmf_sort_by_last_name( $posts->posts );
 
-	foreach ( $post_list as $i => $post_id ) {
+	foreach ( array_reverse( $post_list, true ) as $i => $post_id ) {
 		$featured = get_post_meta( $post_id, 'profile_featured', true );
 
 		if ( $featured ) {

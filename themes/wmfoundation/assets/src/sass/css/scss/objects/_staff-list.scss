@@ -5,22 +5,15 @@
 }
 
 .staff-list-item {
-  margin-right: 20px;
+  margin-right: 2%;
 
   @media (max-width: 767px) {
     width: 46%;
-    &:nth-of-type(even) {
-      margin-right: 0;
-    }
   }
   
   @media (min-width: 768px) {
     width: 23%;
-    &:nth-of-type(4n) {
-      margin-right: 0;
-    }
   }
-
 
 }
 
