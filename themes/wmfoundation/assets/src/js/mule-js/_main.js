@@ -96,17 +96,6 @@ jQuery(document).ready(function($) {
     });
   });
 
-  $('.static-list-heading').click( function(){
-    if ( $(this).hasClass( "active" ) ) {
-      $(this).removeClass('active');
-      $(this).next('.static-list-contents').removeClass('active');
-    } else {
-      $(this).addClass('active');
-      $(this).next('.static-list-contents').addClass('active');   
-    }
-
-  });
-
   $('a.niceScroll').on('click', function(event){
       event.preventDefault();
     $('html, body').animate({

@@ -76,9 +76,8 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 	</div>
 
-	<div class="w-32p display-none_small">
-		<?php wmf_get_template_part( 'template-parts/profiles/role-sidebar', $post_list ); ?>
-	</div>
+
+	<?php wmf_get_template_part( 'template-parts/profiles/role-sidebar', $post_list ); ?>
 </div>
 
 <?php
