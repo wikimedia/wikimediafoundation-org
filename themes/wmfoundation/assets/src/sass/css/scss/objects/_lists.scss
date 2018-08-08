@@ -98,42 +98,11 @@
 .static-list-heading {
   margin-bottom: 1.5rem;
   position: relative;
-  @include font-size(48, 18);
   pointer-events: none;
   @media (max-width: 767px) {
     margin-top: 10px;
     margin-bottom: 10px;
     pointer-events: all;
-  }
-  &:after {
-    display: none;
-    @media (max-width: 767px) {
-      content: '';
-      display: inline-block;
-      padding-top:5px;
-	  width: 35px;
-	  height: 35px;
-	  background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
-	  position: absolute;
-	  right: -20px;
-	  left: auto;
-    }
-  }
-}
-.static-list-heading.active {
-  &:after {
-    display: none;
-    @media (max-width: 767px) {
-	  background: url('assets/dist/fonts/raw-icons/arrow-up.svg') no-repeat;
-    }
-  }
-}
-.static-list-contents {
-  @media (max-width: 767px) {
-    display: none;
-    &.active {
-      display:block;
-    }
   }
 }
 

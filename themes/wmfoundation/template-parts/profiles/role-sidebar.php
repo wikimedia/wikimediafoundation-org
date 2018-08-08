@@ -12,6 +12,7 @@ if ( empty( $post_list ) || count( $post_list ) === 1 ) {
 }
 
 ?>
+<div class="w-32p display-none_small">
 <ul class="toc fixedsticky">
 <?php
 foreach ( $post_list as $term_id => $post_data ) :
@@ -24,3 +25,4 @@ foreach ( $post_list as $term_id => $post_data ) :
 endforeach;
 ?>
 </ul>
+</div>
