@@ -12,7 +12,7 @@ if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && e
 }
 
 $image = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
-$image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
+$image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'large' ) : $image;
 
 $bg_class = empty( $template_args['background_color'] ) || 'blue' === $template_args['background_color'] ? 'bg-img--blue btn-pink' : 'bg-img--turquoise btn-blue';
 $class    = empty( $template_args['class'] ) ? $bg_class . ' cta-secondary' : $template_args['class'];

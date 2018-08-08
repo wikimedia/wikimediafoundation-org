@@ -12,7 +12,7 @@ if ( empty( $template_args['image'] ) && empty( $template_args['facts'] ) ) {
 }
 
 $image = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
-$image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
+$image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'large' ) : $image;
 
 $fact_width = 3 === count( $template_args['facts'] ) ? 'w-32p' : 'w-45p';
 

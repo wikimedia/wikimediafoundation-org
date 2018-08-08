@@ -12,7 +12,7 @@ if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && e
 }
 
 $image     = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
-$image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'full' ) : $image;
+$image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'image_16x9_small' ) : $image;
 $image_alt = is_numeric( $image ) ? wp_get_attachment_image( $image )->src : '';
 
 $links      = ! empty( $template_args['links'] ) ? $template_args['links'] : array();
