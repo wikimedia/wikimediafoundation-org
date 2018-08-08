@@ -167,19 +167,20 @@ function wmf_get_role_posts( $term_id ) {
 		)
 	); // WPCS: slow query ok.
 
-	$post_list = wmf_sort_by_last_name( $posts->posts );
+	$post_list      = wmf_sort_by_last_name( $posts->posts );
+	$featured_list  = array();
 
-	foreach ( array_reverse( $post_list, true ) as $i => $post_id ) {
+	foreach ( $post_list as $i => $post_id ) {
 		$featured = get_post_meta( $post_id, 'profile_featured', true );
 
 		if ( $featured ) {
 			unset( $post_list[ $i ] );
-			array_unshift( $post_list, $post_id );
+			$featured_list[$i] = $post_id;
 		}
 	}
 
 	return array(
-		'posts' => $post_list,
+		'posts' => $featured_list + $post_list,
 		'name'  => $term_query->name,
 	);
 }
