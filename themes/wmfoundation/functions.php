@@ -120,7 +120,6 @@ add_action( 'widgets_init', 'wmf_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wmf_scripts() {
-	wp_enqueue_style( 'wmfoundation-gfonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i' );
 	wp_enqueue_style( 'wmfoundation-style', get_stylesheet_uri() );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
