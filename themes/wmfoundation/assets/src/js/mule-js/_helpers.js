@@ -26,3 +26,5 @@ jQuery(document).ready(function($) {
   hoverAddClass('.card-list-container', '.card', '.h3 a', 'darken-img');
 
 });
+
+svg4everybody();
