@@ -315,6 +315,7 @@ class Flow {
 
 		if ( ! empty( $_POST['_post_is_translated'] ) ) { // Input var okay.
 			delete_post_meta( $post_id, '_translation_in_progress' );
+			update_post_meta( $post_id, '_translation_complete', 1 );
 			$this->set_translate_term( $post_id, 'complete' );
 		}
 

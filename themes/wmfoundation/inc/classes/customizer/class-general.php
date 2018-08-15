@@ -56,6 +56,23 @@ class General extends Base {
 			)
 		);
 
+		if ( ! wmf_is_main_site() ) {
+			$control_id = 'wmf_incomplete_translation';
+			$this->customize->add_setting(
+				$control_id, array(
+					'default' => __( 'This content has not yet been translated into the current language.', 'wmfoundation' ),
+				)
+			);
+			$this->customize->add_control(
+				$control_id, array(
+					'label'       => __( 'Incomplete Translation Notice', 'wmfoundation' ),
+					'description' => __( 'Shows in the header if the content has not been marked as having a complete translation.', 'wmfoundation' ),
+					'section'     => $section_id,
+					'type'        => 'text',
+				)
+			);
+		}
+
 		$control_id = 'wmf_featured_post_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
