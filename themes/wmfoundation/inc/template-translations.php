@@ -161,3 +161,24 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	return $translation;
 }
+
+/**
+ * Displays alert if the translation was never completed for the current content.
+ */
+function wmf_translation_alert() {
+	if ( wmf_is_main_site() ) {
+		return; // Never show alert on main site.
+	}
+
+	if ( ! is_page() && ! is_single() && ! is_front_page() ) {
+		return; // Can't check status of archives.
+	}
+
+	if ( get_post_meta( get_the_ID(), '_translation_complete', true ) ) {
+		return; // This has been marked as translation complete, no alert to show.
+	}
+
+	$alert = get_theme_mod( 'wmf_incomplete_translation', __( 'This content has not yet been translated into the current language.', 'wmfoundation' ) );
+
+	printf( '<div class="alert alert-warning" role="alert">%s</div>', esc_html( $alert ) );
+}

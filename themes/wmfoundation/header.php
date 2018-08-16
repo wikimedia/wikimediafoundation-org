@@ -80,6 +80,7 @@ $wmf_translations         = wmf_get_translations();
 				<?php get_template_part( 'template-parts/header/navigation' ); ?>
 			</div>
 			<?php endif; ?>
+			<?php wmf_translation_alert(); ?>
 
 <?php
 // Automatically add credits to all content that is not an archive or search.

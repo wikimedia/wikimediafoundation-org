@@ -66,32 +66,34 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 						<?php if ( ! empty( $template_args['subscribe_additional_fields'] ) ) : ?>
 						<div class="field-group input-group">
 							<?php
-							echo wp_kses( $template_args['subscribe_additional_fields'], array(
-								'input' => array(
-									'type'        => array(),
-									'name'        => array(),
-									'id'          => array(),
-									'class'       => array(),
-									'required'    => array(),
-									'value'       => array(),
-									'checked'     => array(),
-									'placeholder' => array(),
-								),
-								'label' => array(
-									'for'   => array(),
-									'class' => array(),
-								),
-								'select' => array(
-									'name'     => array(),
-									'id'       => array(),
-									'class'    => array(),
-									'required' => array(),
-								),
-								'option' => array(
-									'value'    => array(),
-									'selected' => array(),
-								),
-							) );
+							echo wp_kses(
+								$template_args['subscribe_additional_fields'], array(
+									'input'  => array(
+										'type'        => array(),
+										'name'        => array(),
+										'id'          => array(),
+										'class'       => array(),
+										'required'    => array(),
+										'value'       => array(),
+										'checked'     => array(),
+										'placeholder' => array(),
+									),
+									'label'  => array(
+										'for'   => array(),
+										'class' => array(),
+									),
+									'select' => array(
+										'name'     => array(),
+										'id'       => array(),
+										'class'    => array(),
+										'required' => array(),
+									),
+									'option' => array(
+										'value'    => array(),
+										'selected' => array(),
+									),
+								)
+							);
 							?>
 						</div>
 						<?php endif; ?>
