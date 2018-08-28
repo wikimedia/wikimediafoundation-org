@@ -1,0 +1,6 @@
+data_sync:
+  domain_map:
+    wikimediafoundation.org: wikimediafoundation-org-develop.go-vip.co
+    wikimediafoundation.org/master-translation: wikimediafoundation-org-develop.go-vip.co/master-translation
+    wikimediafoundation.org/ar: wikimediafoundation-org-develop.go-vip.co/ar
+    wikimediafoundation.org/de: wikimediafoundation-org-develop.go-vip.co/de
