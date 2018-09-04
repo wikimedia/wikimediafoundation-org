@@ -36,7 +36,7 @@ if ( ! is_archive() && ! is_home() ) {
 					$wmf_footer_image = get_theme_mod( 'wmf_footer_logo' );
 
 					if ( empty( $wmf_footer_image ) ) :
-					?>
+						?>
 					<svg width="279" height="62" viewBox="0 0 279 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<title><?php esc_html_e( 'Wikimedia Foundation', 'wmfoundation' ); ?></title>
 						<g transform="translate(1992 17360)">

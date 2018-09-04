@@ -17,7 +17,7 @@ $current_category = get_query_var( 'cat' );
 $cat_anchor       = 'card-list';
 
 if ( ! empty( $featured_categories ) ) :
-?>
+	?>
 <div class="news-categories" id="<?php echo esc_attr( $cat_anchor ); ?>">
 	<div class="news-category-inner mw-1360">
 		<ul class="link-list color-gray uppercase bold slider-on-mobile">
@@ -38,5 +38,5 @@ if ( ! empty( $featured_categories ) ) :
 		</ul>
 	</div>
 </div>
-<?php
+	<?php
 endif;

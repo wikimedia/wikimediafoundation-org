@@ -20,7 +20,7 @@ if ( empty( $template_args ) ) {
 		if ( empty( $list_section['title'] ) ) {
 			continue;
 		}
-	?>
+		?>
 		<li class="toc-link-item">
 			<a class="toc-link niceScroll" href="#section-<?php echo esc_attr( $i + 1 ); ?>">
 				<span class="bold uppercase">

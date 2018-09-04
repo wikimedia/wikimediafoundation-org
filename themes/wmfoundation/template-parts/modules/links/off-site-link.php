@@ -39,7 +39,7 @@ $width_class = $template_args['split'] ? 'w-50p' : 'w-100p';
 					'strong' => array(),
 				)
 			);
-			?>
+		?>
 			</p>
 	</div>
 	<?php endif; ?>

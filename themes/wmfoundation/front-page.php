@@ -27,7 +27,7 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 
-?>
+	?>
 <div class="site-main-nav home-subnav mw-1360 white-bg">
 	<div class="logo-container logo-container_sm">
 		<?php get_template_part( 'template-parts/header/logo' ); ?>
@@ -46,7 +46,7 @@ while ( have_posts() ) {
 
 	</div>
 </div>
-<?php
+	<?php
 
 	$modules = array(
 		'focus-blocks',
@@ -59,8 +59,8 @@ while ( have_posts() ) {
 		'connect',
 	);
 
-foreach ( $modules as $module ) {
-	get_template_part( 'template-parts/page/page', $module );
-}
+	foreach ( $modules as $module ) {
+		get_template_part( 'template-parts/page/page', $module );
+	}
 }
 get_footer();

@@ -62,7 +62,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 				$description = term_description( $child_term_id, 'role' );
 				$button      = get_term_meta( $child_term_id, 'role_button', true );
 				$link        = ! empty( $button['link'] ) ? $button['link'] : '';
-			?>
+				?>
 
 				<?php if ( ! empty( $name ) ) : ?>
 				<h3 class="mar-bottom">
@@ -73,7 +73,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 						<?php echo esc_html( $name ); ?>
 
 					<?php if ( ! empty( $link ) ) : ?>
-					<?php wmf_show_icon( 'open', 'material' ); ?>
+						<?php wmf_show_icon( 'open', 'material' ); ?>
 					</a>
 					<?php endif; ?>
 				</h3>
@@ -102,5 +102,5 @@ foreach ( $post_list as $term_id => $term_data ) :
 	</div>
 
 </div>
-<?php
+	<?php
 endforeach;

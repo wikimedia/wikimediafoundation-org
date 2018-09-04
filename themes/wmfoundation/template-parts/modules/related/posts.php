@@ -53,7 +53,7 @@ $description      = ! empty( $template_data['description'] ) ? $template_data['d
 				);
 				wp_reset_postdata();
 		endforeach;
-		?>
+			?>
 		</div>
 	</div>
 </div>
