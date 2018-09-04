@@ -67,7 +67,7 @@ class Base {
 		global $wp_roles;
 
 		if ( empty( $wp_roles ) ) {
-			$wp_roles = new \WP_Roles(); // phpcs:ignore WordPress.Variables.GlobalVariables.OverrideProhibited
+			$wp_roles = new \WP_Roles(); // WPCS: override ok.
 		}
 
 		static::$wp_roles = $wp_roles;
