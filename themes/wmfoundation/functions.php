@@ -282,3 +282,18 @@ require get_template_directory() . '/inc/cache.php';
  * Safe Redirect mods.
  */
 require get_template_directory() . '/inc/safe-redirect.php';
+
+/**
+ * Filter X-hacker output.
+ */
+add_filter( 'wp_headers', function( $headers ) {
+    if ( isset( $headers['X-hacker'] ) ) {
+        unset( $headers['X-hacker'] );
+    }
+    return $headers;
+}, 999 );
+
+/**
+ * Honor do not track requests for stats.
+ */
+add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
