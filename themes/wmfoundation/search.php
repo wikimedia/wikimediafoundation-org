@@ -40,7 +40,7 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 			endwhile;
 			?>
 
-		<?php
+			<?php
 		else :
 			get_template_part( 'template-parts/content', 'none' );
 		endif;

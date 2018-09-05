@@ -31,7 +31,7 @@ $allowed_tags['time'] = true;
 	<h2 class="h4 uppercase eyebrow">
 		<?php if ( ! empty( $h4_link ) ) : ?>
 		<a href="<?php echo esc_url( $h4_link ); ?>">
-		<?php wmf_show_icon( 'arrow-back', 'icon-white material' ); ?>
+			<?php wmf_show_icon( 'arrow-back', 'icon-white material' ); ?>
 		<?php endif; ?>
 			<?php echo esc_html( $h4_title ); ?>
 		<?php if ( ! empty( $h4_link ) ) : ?>

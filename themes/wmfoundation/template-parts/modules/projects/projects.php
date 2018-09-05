@@ -36,7 +36,7 @@ $project_class = '_map';
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>
 				<p class="color-white mar-bottom_lg">
-				<?php
+					<?php
 					echo wp_kses(
 						$template_args['content'], array(
 							'em'     => array(),

@@ -20,11 +20,11 @@ function wmf_sanitize_post_type_array( $post_types ) {
  * Set up search AJAX endpoint.
  */
 function wmf_ajax_search() {
-	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : ''; // Input var CSRF okay.
+	$post_types = isset( $_POST['post_type'] ) ? wmf_sanitize_post_type_array( wp_unslash( $_POST['post_type'] ) ) : ''; // WPCS: CSRF ok, input var ok, sanitization ok.
 
-	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : ''; // Input var CSRF okay.
-	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc'; // Input var CSRF okay.
-	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title'; // Input var CSRF okay.
+	$keyword = ! empty( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : ''; // WPCS: CSRF ok, input var ok.
+	$order   = ! empty( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : 'desc'; // WPCS: CSRF ok, input var ok.
+	$orderby = ! empty( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : 'title'; // WPCS: CSRF ok, input var ok.
 
 	$default_args = array(
 		'post_status' => 'publish',

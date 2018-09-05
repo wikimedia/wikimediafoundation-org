@@ -12,7 +12,7 @@ if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 }
 
 foreach ( $template_args as $i => $list_section ) {
-?>
+	?>
 <div class="mod-margin-bottom wysiwyg">
 	<?php if ( ! empty( $list_section['title'] ) ) : ?>
 	<h2 id="section-<?php echo esc_attr( $i + 1 ); ?>">
@@ -35,5 +35,5 @@ foreach ( $template_args as $i => $list_section ) {
 	</ul>
 </div>
 
-<?php
+	<?php
 }

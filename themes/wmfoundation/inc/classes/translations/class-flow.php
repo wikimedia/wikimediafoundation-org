@@ -137,7 +137,7 @@ class Flow {
 			} else {
 				$this->in_progress_action();
 			}
-		?>
+			?>
 		</div>
 		<?php
 		return $pre;
@@ -159,14 +159,14 @@ class Flow {
 	 * HTML for the translation status and checkbox to indicate translation is in progress.
 	 */
 	public function in_progress_action() {
-?>
+		?>
 <p><strong><?php esc_html_e( 'Translation Status:', 'wmfoundation' ); ?></strong> <?php echo esc_html( $this->translation_status() ); ?></p>
 <label for="translation_in_progress">
 	<input type="checkbox" name="_translation_in_progress" value="1" id="translation_in_progress"
 		<?php checked( 1, get_post_meta( get_the_ID(), '_translation_in_progress', true ) ); ?>>
-	<?php esc_html_e( 'Translation in progress', 'wmfoundation' ); ?>
+		<?php esc_html_e( 'Translation in progress', 'wmfoundation' ); ?>
 </label>
-<?php
+		<?php
 	}
 
 	/**

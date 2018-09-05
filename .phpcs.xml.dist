@@ -33,10 +33,11 @@
 
 	<!-- Rules: Check PHP version compatibility -->
 	<config name="testVersion" value="7.0"/>
-	<rule ref="PHPCompatibility"/>
+	<rule ref="PHPCompatibilityWP" />
 
 	<!-- Rules: WordPress Coding Standards -->
 	<config name="minimum_supported_wp_version" value="4.5"/>
+	<rule ref="WordPress-VIP-Go" />
 	<rule ref="WordPress">
   		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
   		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog"/>
@@ -49,7 +50,7 @@
 			<property name="prefixes" type="array" value="wmf,rkv"/>
 		</properties>
 	</rule>
-	<rule ref="WordPress.VIP.ValidatedSanitizedInput">
+	<rule ref="WordPress.Security.ValidatedSanitizedInput">
         <properties>
             <property name="customSanitizingFunctions" value="wmf_sanitize_post_type_array" type="array" />
         </properties>

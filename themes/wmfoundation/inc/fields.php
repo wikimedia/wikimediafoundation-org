@@ -72,6 +72,8 @@ function wmf_get_fields_post_id() {
 /**
  * Gets available landing pages in an array suitable for fieldmanager options.
  *
+ * phpcs:disable WordPress.WP.PostsPerPage.posts_per_page_posts_per_page
+ *
  * @return array
  */
 function wmf_get_landing_pages_options() {

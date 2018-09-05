@@ -26,7 +26,7 @@ while ( have_posts() ) :
 	} else {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
-?>
+	?>
 <div class="mw-1360 mod-margin-bottom flex flex-medium">
 	<div class="w-68p">
 		<div class="page-intro mod-margin-bottom wysiwyg">
@@ -40,18 +40,18 @@ while ( have_posts() ) :
 		<?php get_sidebar( 'list' ); ?>
 	</div>
 </div>
-<?php
+	<?php
 
-$modules = array(
-	'cta',
-	'related',
-	'support',
-	'connect',
-);
+	$modules = array(
+		'cta',
+		'related',
+		'support',
+		'connect',
+	);
 
-foreach ( $modules as $module ) {
-	get_template_part( 'template-parts/page/page', $module );
-}
+	foreach ( $modules as $module ) {
+		get_template_part( 'template-parts/page/page', $module );
+	}
 endwhile;
 
 get_footer();

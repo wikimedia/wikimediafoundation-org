@@ -28,7 +28,7 @@ if ( empty( $downloads ) ) {
 		if ( empty( $title ) || empty( $download_file ) ) {
 			continue;
 		}
-	?>
+		?>
 	<li>
 	<a href="<?php echo esc_url( $download_file ); ?>" download>
 		<?php wmf_show_icon( 'download', 'material' ); ?>
