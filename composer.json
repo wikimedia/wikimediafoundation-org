@@ -3,7 +3,7 @@
   "description": "Theme and plugins for WikiMedia Foundation project",
   "keywords": [],
   "type": "wordpress-plugin",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/reaktivstudios/wmfoundation",
   "authors": [
     {
