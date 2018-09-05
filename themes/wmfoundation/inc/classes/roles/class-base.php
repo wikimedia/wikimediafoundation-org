@@ -87,6 +87,8 @@ class Base {
 				case 'page':
 					$cap = 'create_pages';
 					break;
+				case 'guest-author':
+					return $args;
 				default:
 					$cap = 'create_posts';
 					break;
