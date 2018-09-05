@@ -120,10 +120,10 @@ add_action( 'widgets_init', 'wmf_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wmf_scripts() {
-	wp_enqueue_style( 'wmfoundation-style', get_stylesheet_uri(), array(), 1.0 );
+	wp_enqueue_style( 'wmfoundation-style', get_stylesheet_uri(), array(), '1.0' );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
-		wp_enqueue_style( 'wmfoundation-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), 1.0 );
+		wp_enqueue_style( 'wmfoundation-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), '1.0' );
 	}
 
 	wp_enqueue_script( 'wmfoundation-flickity', get_stylesheet_directory_uri() . '/assets/dist/flickity-min.js', array( 'jquery' ), '0.0.1', true );
