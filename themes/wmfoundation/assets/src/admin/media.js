@@ -7,14 +7,16 @@
  * From ticket: https://core.trac.wordpress.org/ticket/40909
  */
 
-var OriginalAttachmentCompat = wp.media.view.AttachmentCompat;
-wp.media.view.AttachmentCompat = OriginalAttachmentCompat.extend( {
+if ( wp.hasOwnProperty( 'media' ) ) {
+	var OriginalAttachmentCompat = wp.media.view.AttachmentCompat;
+	wp.media.view.AttachmentCompat = OriginalAttachmentCompat.extend( {
 
-	initialize: function() {
-		OriginalAttachmentCompat.prototype.initialize.apply( this, arguments );
+		initialize: function() {
+			OriginalAttachmentCompat.prototype.initialize.apply( this, arguments );
 
-		if ( true === this.model.hasChanged() ) {
-			this.stopListening( this.model, 'change:compat', this.render );
+			if ( true === this.model.hasChanged() ) {
+				this.stopListening( this.model, 'change:compat', this.render );
+			}
 		}
-	}
-} );
+	} );
+}
