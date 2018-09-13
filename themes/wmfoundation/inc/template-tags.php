@@ -199,7 +199,6 @@ function wmf_is_main_site( $site_id = 0 ) {
 	return (int) get_main_site_id() === (int) $site_id;
 }
 
-add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
 /**
  * Filter X-hacker output.
  *
@@ -207,6 +206,8 @@ add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
  *
  * @return array
  */
+add_filter( 'wp_headers', 'wmf_remove_x_hacker_header', 999 );
+
 function wmf_remove_x_hacker_header( $headers ) {
 	if ( isset( $headers['X-hacker'] ) ) {
 		unset( $headers['X-hacker'] );
@@ -219,7 +220,6 @@ function wmf_remove_x_hacker_header( $headers ) {
  * Honor do not track requests for stats.
  */
 add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
-
 
 /**
  * Filter JetPack devicepx script.
