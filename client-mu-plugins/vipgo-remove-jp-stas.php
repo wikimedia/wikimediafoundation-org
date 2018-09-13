@@ -8,7 +8,7 @@ function vipgo_override_jp_modules( $modules ) {
     );
      
     foreach ( $disabled_modules as $module_slug ) {
-        $found = array_search( $module_slug, $modules );
+        $found = array_search( $module_slug, $modules, true );
         if ( false !== $found ) {
             unset( $modules[ $found ] );
         }
