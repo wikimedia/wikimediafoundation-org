@@ -38,8 +38,9 @@ add_filter( 'attachment_fields_to_edit', 'wmf_add_media_custom_fields', 10, 2 );
 /**
  * Save custom fields when attachments are saved.
  *
- * @param array $post Full attachment post data.
- * @param array $attachment All data from saved attachment.
+ * @param  array $post Full attachment post data.
+ * @param  array $attachment All data from saved attachment.
+ * @return array
  */
 function wmf_save_attachment_custom_fields( $post, $attachment ) {
 	$credit_info = array(
@@ -53,5 +54,6 @@ function wmf_save_attachment_custom_fields( $post, $attachment ) {
 	if ( ! empty( $credit_info ) ) {
 		update_post_meta( $post['ID'], 'credit_info', $credit_info );
 	}
+	return $post;
 }
 add_filter( 'attachment_fields_to_save', 'wmf_save_attachment_custom_fields', 10, 2 );
