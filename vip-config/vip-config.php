@@ -31,7 +31,3 @@ if (
     header( 'Location: https://' . $redirect_to_domain . $request_uri, true, 301 );
     exit;
 }
-
-if ( ! defined( 'WPCOM_VIP_USE_JETPACK_PHOTON' ) ) {
-	define( 'WPCOM_VIP_USE_JETPACK_PHOTON', true );
-}
