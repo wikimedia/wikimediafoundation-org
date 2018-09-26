@@ -28,3 +28,5 @@ $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 
 </div>
 </header>
+
+<main id="content" role="main">
