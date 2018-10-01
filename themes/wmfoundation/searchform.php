@@ -16,7 +16,7 @@ $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Ent
 		<button class="search-submit" type="submit"><?php echo esc_html( $wmf_search_button ); ?></button>
 	</form>
 </div>
-<button class="search-toggle">
+<button class="search-toggle" aria-hidden="true">
 	<?php wmf_show_icon( 'search', 'material' ); ?>
 	<span class="search-label uppercase bold"><?php echo esc_html( $wmf_search_button ); ?></span>
 </button>
