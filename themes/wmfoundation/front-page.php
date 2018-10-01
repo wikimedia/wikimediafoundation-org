@@ -29,7 +29,7 @@ while ( have_posts() ) {
 
 	?>
 <div class="site-main-nav home-subnav mw-1360 white-bg">
-	<div class="logo-container logo-container_sm">
+	<div class="logo-container logo-container_sm" aria-hidden="true">
 		<?php get_template_part( 'template-parts/header/logo' ); ?>
 	</div>
 	<?php get_template_part( 'template-parts/header/nav-container' ); ?>
