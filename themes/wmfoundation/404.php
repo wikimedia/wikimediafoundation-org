@@ -16,6 +16,7 @@ $template_args = array(
 
 $wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'wmfoundation' ) );
 $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Enter search terms', 'wmfoundation' ) );
+$wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wikimedia Foundation site', 'wmfoundation' ) );
 $wmf_404_copy           = get_theme_mod( 'wmf_404_copy' );
 $wmf_404_search_text    = get_theme_mod( 'wmf_404_search_text', __( 'Or try a search instead', 'wmfoundation' ) );
 
@@ -36,7 +37,7 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 		<h3 class="h3 mar-bottom"><?php echo esc_html( $wmf_404_search_text ); ?></h3>
 		<div class="search-container aligncenter">
 			<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
+				<input class="search-input mar-bottom" type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" aria-label="<?php echo esc_attr( $wmf_search_aria_label ); ?>">
 				<button class="btn btn-pink search-btn" type="submit"><?php echo esc_html( $wmf_search_button ); ?></button>
 			</form>
 		</div>
