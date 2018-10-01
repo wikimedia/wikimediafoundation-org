@@ -26,6 +26,7 @@ $wmf_translations         = wmf_get_translations();
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wmfoundation' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php esc_html_e( 'Skip to navigation', 'wmfoundation' ); ?></a>
 
 	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
 
