@@ -23,7 +23,9 @@ $allowed_tags['time'] = true;
 
 	<?php if ( is_front_page() ) : ?>
 	<div class="logo-nav-container">
-		<?php get_template_part( 'template-parts/header/logo-home' ); ?>
+		<div class="logo-container">
+			<?php get_template_part( 'template-parts/header/logo' ); ?>
+		</div>
 	</div>
 	<?php endif; ?>
 
