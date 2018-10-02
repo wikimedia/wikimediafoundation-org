@@ -25,20 +25,15 @@ $wmf_translations         = wmf_get_translations();
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wmfoundation' ); ?></a>
-	<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php esc_html_e( 'Skip to navigation', 'wmfoundation' ); ?></a>
-
 	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
-
 		<?php get_template_part( 'template-parts/header/background' ); ?>
 		<?php if ( false !== $wmf_translations ) : ?>
-			<div class="translation-bar">
+		<div class="translation-bar">
 			<div class="translation-bar-inner mw-1360">
 				<div class="translation-icon">
 					<?php wmf_show_icon( 'translate', 'material icon-turquoise' ); ?>
 					<span class="bold"><?php echo esc_html( $wmf_translation_selected ); ?>:</span>
 				</div>
-
 				<ul class="list-inline">
 				<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
 					<?php
@@ -70,8 +65,9 @@ $wmf_translations         = wmf_get_translations();
 			</div>
 		</div>
 		<?php endif; ?>
-
 		<div class="header-inner mw-1360">
+			<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wmfoundation' ); ?></a>
+			<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php esc_html_e( 'Skip to navigation', 'wmfoundation' ); ?></a>
 			<?php if ( ! is_front_page() ) : ?>
 			<div class="site-main-nav">
 				<div class="logo-container logo-container_sm">
