@@ -9,7 +9,7 @@ $wmf_header_image = get_header_image();
 ?>
 
 <a href="<?php echo esc_url( get_site_url() ); ?>">
-	<span class="screen-reader-text"><?php bloginfo( 'name' ); ?></span>
+	<span class="screen-reader-text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
 	<?php
 	if ( empty( $wmf_header_image ) ) {
 		wmf_show_icon( 'logo-horizontal' );
