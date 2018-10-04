@@ -131,14 +131,14 @@ function wmf_get_share_url( $service, $args ) {
 	switch ( $service ) {
 		case 'facebook':
 			$uri = sprintf(
-				'http://www.facebook.com/sharer/sharer.php?s=100&p[url]=%1$s&&p[title]=%2$s',
+				'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=%1$s&&p[title]=%2$s',
 				$args['uri'],
 				$args['message']
 			);
 			break;
 		case 'twitter':
 			$uri = sprintf(
-				'http://twitter.com/intent/tweet?text=%2$s %1$s',
+				'https://twitter.com/intent/tweet?text=%2$s %1$s',
 				$args['uri'],
 				$args['message']
 			);
@@ -224,7 +224,7 @@ add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
 /**
  * Filter JetPack devicepx script.
  */
-function remove_devicepx() { 
-wp_dequeue_script( 'devicepx' ); 
-} 
+function remove_devicepx() {
+wp_dequeue_script( 'devicepx' );
+}
 add_action( 'wp_enqueue_scripts', 'remove_devicepx' );

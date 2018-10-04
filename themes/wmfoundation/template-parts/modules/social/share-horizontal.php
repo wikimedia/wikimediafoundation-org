@@ -22,13 +22,12 @@ $args = wp_parse_args(
 	<?php endif; ?>
 	<span class="inline-social-list">
 		<?php if ( in_array( 'twitter', $services, true ) ) : ?>
-			<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>" class="color-blue">
+			<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>" class="color-blue" aria-label="<?php esc_attr_e( 'Share this fact on Twitter', 'wmfoundation' ); ?>">
 				<?php wmf_show_icon( 'social-twitter' ); ?>
 			</a>
 		<?php endif; ?>
-
 		<?php if ( in_array( 'facebook', $services, true ) ) : ?>
-			<a href="<?php echo esc_url( wmf_get_share_url( 'facebook', $args ) ); ?>" class="color-blue">
+			<a href="<?php echo esc_url( wmf_get_share_url( 'facebook', $args ) ); ?>" class="color-blue" aria-label="<?php esc_attr_e( 'Share this fact on Facebook', 'wmfoundation' ); ?>">
 				<?php wmf_show_icon( 'social-facebook' ); ?>
 			</a>
 		<?php endif; ?>
