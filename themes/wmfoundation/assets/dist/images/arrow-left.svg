@@ -10,7 +10,7 @@
 <path d="M 7371 -17795L 8811 -17795L 8811 -10227L 7371 -10227L 7371 -17795Z" fill="#FFFFFF"/>
 <g id="Pagination">
 <g id="Scroll Arrow">
-<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 7472 -13060)" fill="#6D8799" fill-opacity="0.4"/>
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 7472 -13060)" fill="#5e7a87" fill-opacity="0.4"/>
 </g>
 </g>
 </g>
