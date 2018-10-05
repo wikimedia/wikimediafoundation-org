@@ -60,7 +60,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 				<?php endif; ?>
 				<div class="email-signup">
 					<form action="<?php echo esc_url( $template_args['subscribe_action'] ); ?>" method="post" target="_blank">
-						<label for="wmf-subscribe-input-email" class="sr-only"><?php echo esc_html( $template_args['subscribe_placeholder'] ); ?></label>
+						<label for="wmf-subscribe-input-email" class="screen-reader-text"><?php echo esc_html( $template_args['subscribe_placeholder'] ); ?></label>
 						<input id="wmf-subscribe-input-email" type="email" placeholder="<?php echo esc_attr( $template_args['subscribe_placeholder'] ); ?>" name="EMAIL" required>
 						<?php wmf_show_icon( 'mail' ); ?>
 						<?php if ( ! empty( $template_args['subscribe_additional_fields'] ) ) : ?>
