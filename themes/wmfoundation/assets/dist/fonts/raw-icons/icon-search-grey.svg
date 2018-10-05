@@ -15,11 +15,11 @@
 <use xlink:href="#path0_fill" fill="white" transform="translate(14968 -1328.5)"/>
 </mask>
 <g mask="url(#mask0_outline_ins)">
-<use xlink:href="#path1_stroke_2x" transform="translate(14968 -1328.5)" fill="#6D8799"/>
+<use xlink:href="#path1_stroke_2x" transform="translate(14968 -1328.5)" fill="#5e7a87"/>
 </g>
 </g>
 <g id="Search">
-<use xlink:href="#path2_fill" transform="translate(14982 -1313)" fill="#6D8799"/>
+<use xlink:href="#path2_fill" transform="translate(14982 -1313)" fill="#5e7a87"/>
 </g>
 </g>
 </g>
