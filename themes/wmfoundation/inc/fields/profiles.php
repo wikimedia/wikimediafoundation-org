@@ -20,7 +20,7 @@ function wmf_profiles_module() {
 		'children' => array(
 			'pre_heading'  => new Fieldmanager_Textfield( __( 'Section Pre-heading', 'wmfoundation' ) ),
 			'headline'     => new Fieldmanager_Textfield( __( 'Headline', 'wmfoundation' ) ),
-			'description'  => new Fieldmanager_TextArea( __( 'Description', 'wmfoundation' ) ),
+			'description'  => new Fieldmanager_RichTextArea( __( 'Description', 'wmfoundation' ) ),
 			'button_label' => new Fieldmanager_Textfield( __( 'Button Label', 'wmfoundation' ) ),
 			'button_link'  => new Fieldmanager_Link( __( 'Button Link', 'wmfoundation' ) ),
 		),

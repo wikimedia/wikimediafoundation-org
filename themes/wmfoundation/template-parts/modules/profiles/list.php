@@ -65,7 +65,7 @@ $rand_translation_title               = ! empty( $template_data['rand_translatio
 		</div>
 	</div>
 
-	<div class="mw-1360">
+	<div class="mw-1360 wysiwyg">
 		<?php if ( ! empty( $description ) ) : ?>
 		<p class="h3 color-gray mar-bottom_lg">
 			<?php echo wp_kses_post( $description ); ?>
