@@ -96,8 +96,8 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-
-		$control_id = 'wmf_donate_now_copy';
+        
+        $control_id = 'wmf_donate_now_copy';
 		$this->customize->add_setting(
 			$control_id, array(
 				'default' => __( 'Donate Now', 'wmfoundation' ),
