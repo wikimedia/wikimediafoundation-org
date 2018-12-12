@@ -97,7 +97,22 @@ class Header extends Base {
 			)
 		);
 
-		$control_id = 'wmf_donate_now_copy';
+        $control_id = 'wmf_profiles_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Profiles', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Label for profiles', 'wmfoundation' ),
+				'description' => __( 'This is the label used to describe the profiles post type.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_donate_now_copy';
 		$this->customize->add_setting(
 			$control_id, array(
 				'default' => __( 'Donate Now', 'wmfoundation' ),

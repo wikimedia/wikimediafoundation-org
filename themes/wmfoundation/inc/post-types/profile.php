@@ -9,10 +9,13 @@
  * Registers the `profile` post type.
  */
 function wmf_profile_init() {
+    
+    $wmf_profiles_name      = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'wmfoundation' ) );
+    
 	register_post_type(
 		'profile', array(
 			'labels'            => array(
-				'name'                  => __( 'Profiles', 'wmfoundation' ),
+				'name'                  => __( $wmf_profiles_name, 'wmfoundation' ),
 				'singular_name'         => __( 'Profile', 'wmfoundation' ),
 				'all_items'             => __( 'All Profiles', 'wmfoundation' ),
 				'archives'              => __( 'Profile Archives', 'wmfoundation' ),
