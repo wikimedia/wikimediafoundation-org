@@ -9,9 +9,12 @@
 get_header(); ?>
 
 <?php
+
+$wmf_results_copy      = get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'wmfoundation' ) );
+
 $template_args = array(
 	/* translators: Query that is currently being searched */
-	'h1_title' => sprintf( __( 'Search results for %s', 'wmfoundation' ), get_search_query() ),
+	'h1_title' => sprintf( __( $wmf_results_copy, 'wmfoundation' ), get_search_query() ),
 );
 
 wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );

@@ -210,6 +210,30 @@ class General extends Base {
 			)
 		);
 
+		// Search Page.
+        $section_id = 'wmf_search_page';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Search Page', 'wmfoundation' ),
+				'priority' => 70,
+				'panel'    => $panel_id,
+			)
+		);
+        
+        $control_id = 'wmf_search_results_copy';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Search results for %s', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Search results message', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
 		// 404 Page.
 		$section_id = 'wmf_404_page';
 		$this->customize->add_section(
