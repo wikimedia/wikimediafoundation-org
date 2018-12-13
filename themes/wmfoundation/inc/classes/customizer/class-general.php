@@ -234,6 +234,112 @@ class General extends Base {
 			)
 		);
         
+        $control_id = 'wmf_search_sidebar_type';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Result Type', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Header for result type', 'wmfoundation' ),
+				'description' => __( 'Header for result type in search results sidebar.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_search_sidebar_sortby';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Sort By', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Header for sort by', 'wmfoundation' ),
+				'description' => __( 'Header for Sort By field in search results sidebar.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_search_sidebar_sort_des';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Title (descending)', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Sort by title (descending)', 'wmfoundation' ),
+				'description' => __( 'Text for Title (descending) option in search results sidebar sort by field.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_search_sidebar_sort_asc';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Title (ascending)', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Sort by title (ascending)', 'wmfoundation' ),
+				'description' => __( 'Text for Title (ascending) option in search results sidebar sort by field.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_search_sidebar_sort_new';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Newest', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Sort by newest', 'wmfoundation' ),
+				'description' => __( 'Text for Newest option in search results sidebar sort by field.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_search_sidebar_sort_old';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Oldest', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Sort by oldest', 'wmfoundation' ),
+				'description' => __( 'Text for Oldest option in search results sidebar sort by field.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_search_sidebar_submit';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Submit', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Submit button', 'wmfoundation' ),
+				'description' => __( 'Text for submit button in search results sidebar.', 'wmfoundation' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        
 		// 404 Page.
 		$section_id = 'wmf_404_page';
 		$this->customize->add_section(

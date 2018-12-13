@@ -17,10 +17,18 @@ $current_order      = strtolower( get_query_var( 'order' ) );
 $current_orderby    = get_query_var( 'orderby' );
 $current_orderby    = ! empty( $current_orderby ) ? $current_orderby : 'date';
 
+$wmf_sidebar_type       = get_theme_mod( 'wmf_search_sidebar_type', __( 'Result Type', 'wmfoundation' ) );
+$wmf_sidebar_sortby     = get_theme_mod( 'wmf_search_sidebar_sortby', __( 'Sort By', 'wmfoundation' ) );
+$wmf_sidebar_sort_des   = get_theme_mod( 'wmf_search_sidebar_sort_des', __( 'Title (descending)', 'wmfoundation' ) );
+$wmf_sidebar_sort_asc   = get_theme_mod( 'wmf_search_sidebar_sort_asc', __( 'Title (ascending)', 'wmfoundation' ) );
+$wmf_sidebar_sort_new   = get_theme_mod( 'wmf_search_sidebar_sort_new', __( 'Newest', 'wmfoundation' ) );
+$wmf_sidebar_sort_old   = get_theme_mod( 'wmf_search_sidebar_sort_old', __( 'Oldest', 'wmfoundation' ) );
+$wmf_sidebar_submit     = get_theme_mod( 'wmf_search_sidebar_submit', __( 'Submit', 'wmfoundation' ) );
+
 ?>
 <div class="module-mu wysiwyg w-32p">
 	<div class="mar-bottom_lg">
-		<h4 class="uppercase small mar-bottom">Result Type</h4>
+		<h4 class="uppercase small mar-bottom"><?php echo esc_attr( $wmf_sidebar_type ); ?></h4>
 		<form id="searchFilter" role="serach" method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<?php
 			foreach ( $post_types as $post_type_name => $post_type_label ) :
@@ -33,36 +41,36 @@ $current_orderby    = ! empty( $current_orderby ) ? $current_orderby : 'date';
 				</label>
 			</div>
 			<?php endforeach; ?>
-		<h4 class="uppercase small  mar-bottom">Sort By</h4>
+		<h4 class="uppercase small  mar-bottom"><?php echo esc_attr( $wmf_sidebar_sortby ); ?></h4>
 			<select class="mar-bottom" id="sortSelect" name="orderby[<?php echo esc_attr( $current_orderby ); ?>]">
 				<option data-type="title" value="desc"
 				<?php
 				if ( 'title' === $current_orderby && 'desc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				>Title (descending)</option>
+				><?php echo esc_attr( $wmf_sidebar_sort_des ); ?></option>
 				<option data-type="title" value="asc"
 				<?php
 				if ( 'title' === $current_orderby && 'asc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				>Title (ascending)</option>
+				><?php echo esc_attr( $wmf_sidebar_sort_asc ); ?></option>
 				<option data-type="date" value="desc"
 				<?php
 				if ( 'date' === $current_orderby && 'desc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				>Newest</option>
+				><?php echo esc_attr( $wmf_sidebar_sort_new ); ?></option>
 				<option data-type="date" value="asc"
 				<?php
 				if ( 'date' === $current_orderby && 'asc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				>Oldest</option>
+				><?php echo esc_attr( $wmf_sidebar_sort_old ); ?></option>
 			</select>
 
 			<input type="hidden" id="keyword" name="s" value="<?php the_search_query(); ?>" />
-			<input type="submit" id="searchsubmit" value="Submit" />
+			<input type="submit" id="searchsubmit" value="<?php echo esc_attr( $wmf_sidebar_submit ); ?>" />
 		</form>
 
 
