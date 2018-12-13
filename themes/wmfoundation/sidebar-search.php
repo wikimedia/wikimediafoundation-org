@@ -28,7 +28,7 @@ $wmf_sidebar_submit     = get_theme_mod( 'wmf_search_sidebar_submit', __( 'Submi
 ?>
 <div class="module-mu wysiwyg w-32p">
 	<div class="mar-bottom_lg">
-		<h4 class="uppercase small mar-bottom"><?php echo esc_attr( $wmf_sidebar_type ); ?></h4>
+		<h4 class="uppercase small mar-bottom"><?php echo esc_html( $wmf_sidebar_type ); ?></h4>
 		<form id="searchFilter" role="serach" method="GET" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<?php
 			foreach ( $post_types as $post_type_name => $post_type_label ) :
@@ -41,32 +41,32 @@ $wmf_sidebar_submit     = get_theme_mod( 'wmf_search_sidebar_submit', __( 'Submi
 				</label>
 			</div>
 			<?php endforeach; ?>
-		<h4 class="uppercase small  mar-bottom"><?php echo esc_attr( $wmf_sidebar_sortby ); ?></h4>
+		<h4 class="uppercase small  mar-bottom"><?php echo esc_html( $wmf_sidebar_sortby ); ?></h4>
 			<select class="mar-bottom" id="sortSelect" name="orderby[<?php echo esc_attr( $current_orderby ); ?>]">
 				<option data-type="title" value="desc"
 				<?php
 				if ( 'title' === $current_orderby && 'desc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				><?php echo esc_attr( $wmf_sidebar_sort_des ); ?></option>
+				><?php echo esc_html( $wmf_sidebar_sort_des ); ?></option>
 				<option data-type="title" value="asc"
 				<?php
 				if ( 'title' === $current_orderby && 'asc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				><?php echo esc_attr( $wmf_sidebar_sort_asc ); ?></option>
+				><?php echo esc_html( $wmf_sidebar_sort_asc ); ?></option>
 				<option data-type="date" value="desc"
 				<?php
 				if ( 'date' === $current_orderby && 'desc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				><?php echo esc_attr( $wmf_sidebar_sort_new ); ?></option>
+				><?php echo esc_html( $wmf_sidebar_sort_new ); ?></option>
 				<option data-type="date" value="asc"
 				<?php
 				if ( 'date' === $current_orderby && 'asc' === $current_order ) {
 					echo esc_attr( 'selected' ); }
 				?>
-				><?php echo esc_attr( $wmf_sidebar_sort_old ); ?></option>
+				><?php echo esc_html( $wmf_sidebar_sort_old ); ?></option>
 			</select>
 
 			<input type="hidden" id="keyword" name="s" value="<?php the_search_query(); ?>" />
