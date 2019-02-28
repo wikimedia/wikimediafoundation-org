@@ -9,7 +9,7 @@
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
-echo '<?xml version="1.0" encoding="'.esc_html(get_option('blog_charset')).'"?'.'>';
+echo '<?xml version="1.0" encoding="'.esc_attr(get_option('blog_charset')).'"?'.'>';
 
 /**
  * Fires between the <xml> and <rss> tags in a feed.
@@ -54,7 +54,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 <?php if (has_post_thumbnail( $post->ID ) ): ?>
   <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
 <?php endif; ?>
-	<media:content url="<?php echo esc_html($image[0]); ?>" width="500" height="300" medium="image" />
+	<media:content url="<?php echo esc_url($image[0]); ?>" width="500" height="300" medium="image" />
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
 <?php if (get_option('rss_use_excerpt')) : ?>
 
