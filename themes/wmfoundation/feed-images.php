@@ -1,8 +1,7 @@
 <?php
 /**
  * RSS2 Feed Template for displaying RSS2 Posts feed.
- * Adds an offset of "1" to display all but most recent
- * Full details at: https://wordimpress.com/anatomy-advanced-wordpress-blog-notification-email
+ * Adds media content output
  * @package WordPress
  */
 
