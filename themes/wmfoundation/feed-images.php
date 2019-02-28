@@ -1,14 +1,15 @@
 <?php
 /**
  * RSS2 Feed Template for displaying RSS2 Posts feed.
- * Adds image setup to RSS feed
+ * Adds an offset of "1" to display all but most recent
+ * Full details at: https://wordimpress.com/anatomy-advanced-wordpress-blog-notification-email
  * @package WordPress
  */
 
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
-echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
+echo '<?xml version="1.0" encoding="'.esc_html(get_option('blog_charset')).'"?'.'>';
 
 /**
  * Fires between the <xml> and <rss> tags in a feed.
@@ -34,11 +35,11 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
 	<link><?php bloginfo_rss('url') ?></link>
 	<description><?php bloginfo_rss("description") ?></description>
-	<lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
+	<lastBuildDate><?php echo esc_html(mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false)); ?></lastBuildDate>
 	<?php the_generator( 'rss2' ); ?>
-	<language><?php echo get_option('rss_language'); ?></language>
-	<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', 'hourly' ); ?></sy:updatePeriod>
-	<sy:updateFrequency><?php echo apply_filters( 'rss_update_frequency', '1' ); ?></sy:updateFrequency>
+	<language><?php echo esc_html(get_option('rss_language')); ?></language>
+	<sy:updatePeriod><?php echo esc_html(apply_filters( 'rss_update_period', 'hourly' )); ?></sy:updatePeriod>
+	<sy:updateFrequency><?php echo esc_html(apply_filters( 'rss_update_frequency', '1' )); ?></sy:updateFrequency>
 	<?php do_action('rss2_head'); ?>
 	<?php while( have_posts()) : the_post(); ?>
 
@@ -46,14 +47,14 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<title><?php the_title_rss(); ?></title>
 		<link><?php the_permalink_rss(); ?></link>
 		<comments><?php comments_link(); ?></comments>
-		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
+		<pubDate><?php echo esc_html(mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false)); ?></pubDate>
 		<dc:creator><?php the_author(); ?></dc:creator>
 <?php the_category_rss(); ?>
 
 <?php if (has_post_thumbnail( $post->ID ) ): ?>
   <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
 <?php endif; ?>
-	<media:content url="<?php echo $image[0]; ?>" width="500" height="300" medium="image" />
+	<media:content url="<?php echo esc_html($image[0]); ?>" width="500" height="300" medium="image" />
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
 <?php if (get_option('rss_use_excerpt')) : ?>
 
@@ -70,8 +71,8 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<?php endif; ?>
 <?php endif; ?>
 
-		<wfw:commentRss><?php echo get_post_comments_feed_link(); ?></wfw:commentRss>
-		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
+		<wfw:commentRss><?php echo esc_html(get_post_comments_feed_link()); ?></wfw:commentRss>
+		<slash:comments><?php echo esc_html(get_comments_number()); ?></slash:comments>
 <?php rss_enclosure(); ?>
 <?php do_action('rss2_item'); ?>
 
