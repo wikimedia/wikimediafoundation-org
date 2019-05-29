@@ -126,7 +126,7 @@ class Mlp_Content_Relations implements Mlp_Content_Relations_Interface {
 			$translation_ids['ml_source_elementid'],
 			$type
 		);
-//		wp_cache_delete( $cache_key, $this->cache_group );
+		wp_cache_delete( $cache_key, $this->cache_group );
 
 		do_action(
 			'mlp_debug',
@@ -165,10 +165,10 @@ class Mlp_Content_Relations implements Mlp_Content_Relations_Interface {
 
 		$cache_key = $this->get_cache_key( $source_site_id, $source_content_id, $type );
 
-//		$cache = wp_cache_get( $cache_key, $this->cache_group );
-//		if ( is_array( $cache ) ) {
-//			return $cache;
-//		}
+		$cache = wp_cache_get( $cache_key, $this->cache_group );
+		if ( is_array( $cache ) ) {
+			return $cache;
+		}
 
 		$sql = "
 SELECT DISTINCT t.ml_blogid as site_id, t.ml_elementid as content_id
@@ -194,7 +194,7 @@ WHERE s.ml_blogid = %d
 			$output[ (int) $set['site_id'] ] = (int) $set['content_id'];
 		}
 
-//		wp_cache_set( $cache_key, $output, $this->cache_group );
+		wp_cache_set( $cache_key, $output, $this->cache_group );
 
 		return $output;
 	}
@@ -241,8 +241,8 @@ WHERE s.ml_blogid = %d
 
 		$result = (int) $this->wpdb->delete( $this->link_table, $where, $where_format );
 
-//		$cache_key = $this->get_cache_key( $source_site_id, $source_content_id, $type );
-//		wp_cache_delete( $cache_key, $this->cache_group );
+		$cache_key = $this->get_cache_key( $source_site_id, $source_content_id, $type );
+		wp_cache_delete( $cache_key, $this->cache_group );
 
 		do_action(
 			'mlp_debug',
