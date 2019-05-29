@@ -1,0 +1,27 @@
+.notification-bar {
+  background: #000;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  z-index: 1000;
+  
+  @media (max-width: $medium-bp) {
+    padding-top: 50px;
+  }
+}
+
+
+.notification-dismiss {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  i { 
+    vertical-align: text-top;
+  }
+}

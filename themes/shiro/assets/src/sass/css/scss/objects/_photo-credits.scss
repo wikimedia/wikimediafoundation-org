@@ -1,0 +1,75 @@
+
+
+// Photo Credits
+.photo-credits {
+  overflow-wrap: break-word;
+
+  &.white-bg {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .h3 {
+    margin-bottom: 2rem;
+    @include marginBottom(24, 32, $medium-bp);
+  }
+
+  p {
+    @include font-size(13, 11);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  a {
+    transition: 0.3s all;
+
+    &:hover {
+      color: $color-blue;
+
+      i {
+        color: $color-blue;
+      }
+    }
+  }
+
+  i {
+    @include font-size(32, 24);
+    vertical-align: bottom;
+    margin-right: .5rem;
+    transition: 0.3s all;
+  }
+
+  .photo-credit-container {
+    @include marginBottom(16, 40, $medium-bp);
+    margin-right: 8px;
+  }
+
+  .credit {
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.photo-credit-img_container {
+  width: 4rem;
+  height: 4rem;
+  overflow: hidden;
+  margin-right: rem(15);
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.12);
+
+  @media (max-width: $medium-bp) {
+    width: 5rem;
+    height: 4rem;
+  }
+
+}
+.photo-credit-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

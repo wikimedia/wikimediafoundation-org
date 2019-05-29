@@ -1,0 +1,149 @@
+.mw-1360 {
+	max-width: rem(1440);
+	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+	@include padding(0, 20, 0, 40);
+	margin: 0 auto;
+}
+
+.mw-1360-bg {
+	max-width: rem(1360);
+	//padding: 0 rem(40);
+	@include padding(0, 20, 0, 40);
+	margin: 0 auto;
+}
+
+.mw-1017 {
+	max-width: rem(1017);
+	@include padding(0, 20, 0, 40);
+	margin: 0 auto;
+}
+
+.mw-980 {
+	max-width: rem(1060);
+	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+	@include padding(0, 20, 0, 40);
+	margin: 0 auto;
+}
+
+.mw-900 {
+	max-width: rem(940);
+	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+	@include padding(0, 20, 0, 40);
+	margin: 0 auto;
+}
+
+.mw-784 {
+	max-width: rem(784);
+	margin: 0 auto;
+}
+
+.w-100p {
+	width: 100%;
+	max-width: 100%;
+}
+
+.w-75p {
+	@include module-width($medium-bp, 75%);
+}
+
+.w-73p {
+	@include module-width($medium-bp, 73%);
+}
+
+.w-68p {
+	@include module-width($medium-bp, 68%);
+}
+
+.w-50p {
+	@include module-width($medium-bp, 50%);
+}
+
+.w-55p {
+	@include module-width($medium-bp, 57%);
+}
+
+.w-48p {
+	@include module-width($medium-bp, 48%);
+}
+
+.w-45p {
+	@include module-width($medium-bp, 45%);
+}
+
+.w-32p {
+	@include module-width($medium-bp, 32%);
+}
+
+.w-27p {
+	@include module-width($medium-bp, 27%);
+}
+
+.w-25p {
+	@include module-width($medium-bp, 25%);
+}
+
+.w-18p {
+	@include module-width($medium-bp, 18%);
+}
+
+
+// Flex containers
+.flex {
+	&.flex-all {
+		@include flexbox(wrap, wrap, $small-bp, row);
+	}
+	// Becomes a flex container at medium-bp
+	&.flex-medium {
+		@include flexbox(column, nowrap, $medium-bp, row);
+	}
+
+	&.flex-large {
+		@include flexbox(column, nowrap, $large-bp, row);
+	}
+
+	&.flex-xlarge {
+		@include flexbox(column, nowrap, $xlarge-bp, row);
+	}
+
+	&.flex-wrap {
+		flex-wrap: wrap;
+	}
+
+	&.flex-wrap-reverse {
+		flex-wrap: wrap-reverse;
+	}
+
+	&.flex-space-between {
+		justify-content: space-between;
+	}
+
+	&.flex-align-center {
+		align-items: center;
+	}
+}
+
+
+// Vertical Spacing
+.mod-margin-bottom {
+	margin-bottom: rem(64);
+
+	@media (min-width: $medium-bp) {
+		margin-bottom: rem(112);
+	}
+}
+
+.mod-margin-bottom_sm {
+  margin-bottom: rem(32);
+
+  @media (min-width: $medium-bp) {
+	margin-bottom: rem(56);
+  }
+}
+
+.mod-margin-bottom_xs {
+  margin-bottom: rem(64/3);
+
+  @media (min-width: $medium-bp) {
+	margin-bottom: rem(112/3);
+  }
+}

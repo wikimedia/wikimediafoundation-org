@@ -1,0 +1,38 @@
+.staff-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.staff-list-item {
+  margin-right: 2%;
+
+  h4 {
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+
+  h4 + span {
+    font-size: 0.75rem;
+  }
+
+  .staff-photo {
+    margin-top: 25px;
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    background: #d8d8d8;
+    background-position: center center;
+    background-size: cover;
+  }
+
+
+  @media (max-width: 767px) {
+    width: 46%;
+  }
+
+  @media (min-width: 768px) {
+    width: 23%;
+  }
+
+}

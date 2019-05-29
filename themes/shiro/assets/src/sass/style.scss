@@ -1,0 +1,40 @@
+/*!
+ * Theme Name: Shiro
+ * Theme URI: https://github.com/wikimedia/wikimediafoundation-org
+ * Author: WMF Design
+ * Author URI: https://design.wikimedia.org/
+ * Description: WMF website theme, forked from the Reaktiv theme
+ * Version: 1.0.0
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: shiro
+**/
+
+// Import fonts first.
+@import "components/fonts";
+
+/* ==================
+    # Mule CSS
+  =================== */
+@import "css/style";
+
+/* ==================
+    # Custom CSS
+  =================== */
+@import "components/alerts";
+@import "components/ltr";
+@import "components/header";
+@import "components/forms";
+//@import "components/comments";
+@import "components/accessibility";
+@import "components/icons";
+@import "components/fitvids";
+@import "components/profiles";
+//@import "components/bg";
+//@import "components/borders";
+//@import "components/buttons";
+//@import "components/containers";
+//@import "components/hero";
+//@import "components/positioning";
+//@import "components/spacing";
+//@import "components/svg";

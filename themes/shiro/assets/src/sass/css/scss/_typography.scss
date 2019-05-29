@@ -1,0 +1,236 @@
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+h1,
+.h1 {
+	@include font-size(64, 30);
+}
+
+h2,
+.h2 {
+	@include marginBottom(32, 32, $medium-bp);
+	@include font-size(22, 18);
+
+	&.small {
+		@include font-size(22, 18);
+		@include marginBottom(40, 56, $medium-bp);
+	}
+}
+
+h3,
+.h3 {
+	font-size: rem(15);
+	@include font-size(15, 13);
+
+	&.small {
+		@include font-size(15, 13);
+	}
+}
+
+h4,
+.h4 {
+	@include font-size(24, 18);
+
+	&.small.small {
+		@include font-size(18, 14);
+	}
+}
+
+h5,
+.h5 {
+	@include font-size(20, 16);
+	text-transform: uppercase;
+	color: $color-gray;
+
+	&.color-black {
+		color: #000;
+	}
+}
+
+h6 {
+	@include font-size(20, 16);
+	color: $color-gray;
+}
+
+p {
+	@include font-size(15, 13);
+	line-height: 1.466;
+}
+
+.article-main p {
+	@include font-size(18, 13);
+	line-height: 1.72;
+}
+
+.p {
+	@extend p;
+}
+
+ul,
+ol {
+	li {
+		@include font-size(20, 16);
+		// list-style-type: disc;
+		margin-left: 2rem;
+
+		margin-bottom: 2rem;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// .blockquote-container wrapped around blockquote via JS
+$blockquote-bp: 1230px;
+
+.blockquote-container,
+blockquote {
+	margin: 3rem 0;
+
+	@media (min-width: $blockquote-bp) {
+		margin: 5rem -100px;
+	}
+
+	@media (max-width: $medium-bp) {
+		margin: 5rem 2rem;
+	}
+}
+
+.blockquote-container blockquote,
+blockquote p {
+	font-size: 1.2rem;
+	line-height: 1.8;
+
+	@media (min-width: $medium-bp) {
+		font-size: 1.5rem;
+	}
+
+	@media (min-width: $blockquote-bp) {
+		font-size: 2rem;
+		padding-left: 0;
+	}
+}
+
+.blockquote-container blockquote {
+	margin-left: rem(30);
+
+	@media (min-width: $blockquote-bp) {
+		margin-left: 93px;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		background-image: url(assets/dist/images/quote-left.svg);
+		background-repeat: no-repeat;
+		background-size: contain;
+
+		bottom: 0;
+		height: 29px;
+		width: 41px;
+		top: -8px;
+		left: -30px;
+
+		@media (min-width: $medium-bp) {
+			top: -3px;
+		}
+
+		@media (min-width: $blockquote-bp) {
+			height: 65px;
+			width: 93px;
+			top: -30px;
+			left: -105px;
+		}
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		height: 29px;
+		width: 41px;
+		right: -50px;
+		bottom: -7px;
+		background-image: url(assets/dist/images/quote-right.svg);
+		background-repeat: no-repeat;
+		background-size: contain;
+
+		@media (min-width: $blockquote-bp) {
+			height: 65px;
+			width: 93px;
+			right: -105px;
+			bottom: -20px;
+		}
+	}
+}
+
+.blockquote-container blockquote,
+blockquote p:first-child {
+    position: relative;
+    font-weight: 300;
+	display: inline;
+	padding-left: rem(20);
+}
+
+.category {
+	text-transform: uppercase;
+	color: $color-gray;
+}
+
+article {
+
+	h2 {
+		margin-bottom: 2rem;
+	}
+
+	h3 {
+		margin-bottom: 2rem;
+	}
+
+	h4 {
+		margin-bottom: 1.5rem;
+	}
+
+	h5 {
+		margin-bottom: .5rem;
+	}
+
+	h6 {
+		margin-bottom: .5rem;
+	}
+
+	p {
+		margin-bottom: 2rem;
+	}
+}
+
+.page-intro-text,
+.page-intro-text p,
+.page-intro-text a,
+.page-intro-text li {
+	@include font-size(18, 16);
+	@include line-height(29, 25);
+
+}
+
+.page-intro-inline-link {
+	@include linkHighlight($color-turquoise, #000, 4, 4, 24, 30, $medium-bp);
+}
+
+.page-template-page-list main {
+	h2 {
+		border-bottom: 2px solid $wmui-color-base0;
+	}
+
+	.h2 {
+		margin-bottom: 0;
+	}
+}
+
+// functional styles
+.link-inline {
+	color: $color-blue;
+}
+.text-bold {
+	font-weight: bold;
+}
