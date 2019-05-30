@@ -71,6 +71,7 @@
   }
 
   .logo-container {
+    width: 145px;
     a {
       display: block;
 
@@ -81,7 +82,7 @@
 
     svg {
       fill: #000;
-      width: 50%;
+      width: 100%;
       max-width: rem(279);
       margin-right: rem(10);
     }
@@ -122,7 +123,7 @@
 
     @media (max-width: $medium-landscape) {
       &.flex.flex-medium {
-        flex-direction: row-reverse;
+        flex-direction: row;
       }
 
       ul.list-inline {
@@ -171,12 +172,13 @@
   @media (max-width: $medium-landscape) {
     .mobile-nav-toggle {
       @include buttonNoStyles();
+      box-sizing: border-box;
       border-radius: 2px;
       padding: .25rem .4375rem;
       text-align: center;
       transition: 0.3s all;
       background: #f0f0f0;
-      width: 48px;
+      width: 57px;
       height: 34px;
       margin-top: 1rem;
       margin-right: 1rem;
@@ -192,6 +194,95 @@
       }
     }
   }
+
+.main-nav {
+  justify-content: flex-end;
+}
+
+.language-dropdown {
+  button {
+    @include buttonNoStyles();
+    border-radius: 2px;
+    color: $color-blue;
+    background: $color-periwinkle;
+    border: 1px solid $color-periwinkle;
+    display: flex;
+    padding: 0 1rem;
+    height: 34px;
+    margin-left: 5px;
+
+    @media (max-width: $medium-bp) {
+      padding: 0;
+      text-align: center;
+      width: 40px;
+    }
+
+    &:focus,
+    &:hover {
+      border-color: $color-blue;
+      outline: none;
+    }
+
+    .language-icon {
+      margin-top: -2px;
+      margin-right: 10px;
+
+      @media (max-width: $medium-bp) {
+        margin: 0 auto;
+      }
+    }
+
+    .down-indicator {
+      margin-top: 3px;
+      margin-left: 4px;
+
+      @media (max-width: $medium-bp) {
+        display: none;
+      }
+    }
+
+    span {
+      @media (max-width: $medium-bp) {
+        display: none;
+      }
+    }
+  }
+}
+
+.language-list {
+  position: fixed;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.31);
+  width: 160px;
+  height: 275px;
+  overflow-y: auto;
+  display: none;
+
+  @media (max-width: $medium-bp) {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    text-align: right;
+    left: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0.4rem;
+    margin: 0;
+
+    li {
+      margin: 0;
+      padding: 0.6rem 1.2rem;
+
+      a.selected {
+        padding-bottom: 0.3rem;
+        border-bottom: 2px solid $color-blue;
+      }
+    }
+  }
+}
 
 .nav-newer,
 .nav-older {
@@ -274,6 +365,9 @@
   .logo-container_sm {
     display: flex;
     width: 100%;
+    .icon-logo-horizontal {
+      width: 63%;
+    }
   }
   .logo-container_lg {
     display:none;

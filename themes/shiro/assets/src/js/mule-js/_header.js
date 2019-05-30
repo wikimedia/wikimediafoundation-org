@@ -31,21 +31,36 @@ jQuery(document).ready(function($) {
 
     $('.mobile-nav-toggle .icon-close').toggle();
     $('.mobile-nav-toggle .icon-menu').toggle();
-    $('.mobile-cover').toggle().on('click', toggleNav);
+    $('.mobile-cover').toggle();
+
 
     $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20');
     $('.search-toggle').toggleClass('fade-20');
+    $('.language-dropdown').toggleClass('fade-20');
 
     if ($('.top-nav').hasClass('pinned')) {
-      jQuery('.list-inline.open').css('top','50px');
+      jQuery('.list-inline.open').css('top','55px');
     } else {
       jQuery('.list-inline.open').css('top','100px');
     }
   }
 
+  function closeNav() {
+    $('.nav-links').removeClass('open');
+    $('.header-inner').removeClass('nav-open');
+
+    $('.mobile-nav-toggle .icon-close').hide();
+    $('.mobile-nav-toggle .icon-menu').show();
+    $('.mobile-cover').hide();
+
+    $('.logo-container_sm .icon-logo-horizontal').removeClass('fade-20');
+    $('.search-toggle').removeClass('fade-20');
+    $('.language-dropdown').removeClass('fade-20');
+  }
+
   function toggleSearch() {
     $('.search-toggle').blur();
-    $('.search-bar-container input').focus();
+    $('.search-form input').focus();
   }
 
   function openSearch() {
@@ -60,8 +75,9 @@ jQuery(document).ready(function($) {
   $(document).keyup(function(e) {
      if (e.key === "Escape") {
         closeSearch();
+        toggleLanguages(false);
     }
-});
+  });
 
   function closeSearch() {
     $( '.search-bar-container' ).removeClass('is-open');
@@ -71,8 +87,52 @@ jQuery(document).ready(function($) {
     });
   }
 
+  function toggleLanguages(state) {
+    $list = $('.language-list');
+    $button = $('.language-dropdown');
+
+    $list.toggle(state);
+    $('.mobile-cover').toggle(state);
+
+    $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20', state);
+    $('.search-toggle').toggleClass('fade-20', state);
+    $('.mobile-nav-toggle').toggleClass('fade-20', state);
+
+    // Position the dropdown right-aligned to the button
+    if ($(window).width() > 762) {
+      $list.css('left',
+        $('.language-dropdown').position().left +
+        $('.language-dropdown').outerWidth() -
+        $list.outerWidth()
+      );
+    }
+  }
+
+  $(window).click(function() {
+    if ($('.language-list').is(':visible')) {
+      toggleLanguages(false);
+    }
+  });
+
+  $('.mobile-cover').click(function () {
+    closeNav(false);
+    toggleLanguages(false);
+    $(this).hide();
+  })
+
+  $('.language-list').click(function(event){
+    event.stopPropagation();
+  });
+
+  $('.language-dropdown').click(function () {
+    if ($(this).hasClass('fade-20')) return;
+    toggleLanguages();
+    event.stopPropagation();
+  })
+
 
   $('.mobile-nav-toggle').on('click', function() {
+    if ($(this).hasClass('fade-20')) return;
     toggleNav();
     // If search is open, close it.
     if ($('.search-open').length) {
@@ -81,6 +141,7 @@ jQuery(document).ready(function($) {
   });
 
   $('.search-toggle').on('click', function() {
+    if ($(this).hasClass('fade-20')) return;
     // If mobile nav is open, close it.
     if ($('.nav-open').length) {
       $('.nav-links').removeClass('open');
