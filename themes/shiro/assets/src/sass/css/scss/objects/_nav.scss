@@ -207,9 +207,10 @@
     background: $color-periwinkle;
     border: 1px solid $color-periwinkle;
     display: flex;
-    padding: 0 1rem;
+    padding: 0 0.4rem;
     height: 34px;
     margin-left: 5px;
+    font-size: 13px;
 
     @media (max-width: $medium-bp) {
       padding: 0;
@@ -225,7 +226,7 @@
 
     .language-icon {
       margin-top: -2px;
-      margin-right: 10px;
+      margin-right: 5px;
 
       @media (max-width: $medium-bp) {
         margin: 0 auto;
@@ -242,6 +243,7 @@
     }
 
     span {
+      margin: auto 0;
       @media (max-width: $medium-bp) {
         display: none;
       }
