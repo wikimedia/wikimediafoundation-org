@@ -121,6 +121,32 @@ footer {
     }
   }
 
+  #menu-footer-under-text {
+    margin-top: 20px;
+    float: right;
+    display: flex;
+
+    li {
+      display: block;
+
+      a {
+        background: white;
+        border-radius: 5px;
+        text-transform: uppercase;
+        color: $color-blue;
+        font-weight: bold;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+        font-size: 13px;
+
+        &:hover {
+          border: none;
+        }
+      }
+    }
+  }
+
   .footer-legal {
     text-align: left;
     color: $wmui-color-base70;

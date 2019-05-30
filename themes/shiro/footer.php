@@ -31,6 +31,19 @@ $wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __(
 	<div class="footer-inner mw-980">
 
 		<div class="footer-row">
+
+			<?php
+			if ( has_nav_menu( 'footer-under-text' ) ) {
+				wp_nav_menu(
+					array(
+						'menu'       => 'footer-under-text',
+						'menu_class' => '',
+						'container'  => '',
+					)
+				);
+			}
+			?>
+
 			<div class="footer-logo-container">
 				<div class="logo-container">
 					<?php
@@ -150,19 +163,6 @@ $wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __(
 					?>
 				</div>
 				<br>
-				<div class="lists-wrap">
-					<?php
-					if ( has_nav_menu( 'footer-under-text' ) ) {
-						wp_nav_menu(
-							array(
-								'menu'       => 'footer-under-text',
-								'menu_class' => '',
-								'container'  => '',
-							)
-						);
-					}
-					?>
-				</div>
 			</div>
 
 		</div>
