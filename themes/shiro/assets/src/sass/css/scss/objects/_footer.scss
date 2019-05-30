@@ -135,13 +135,13 @@ footer {
         text-transform: uppercase;
         color: $color-blue;
         font-weight: bold;
-        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
         padding: 0.5rem 1rem;
         margin-right: 1rem;
         font-size: 13px;
 
         &:hover {
           border: none;
+          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
         }
       }
     }
