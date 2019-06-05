@@ -107,7 +107,7 @@
 @mixin button-reset() {
 	display: inline-block;
 	font-weight: bold;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	border-radius: 5px;
 	cursor: pointer;
 	padding: 1rem 1.5rem;

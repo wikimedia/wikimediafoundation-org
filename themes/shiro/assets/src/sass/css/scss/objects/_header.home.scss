@@ -186,12 +186,10 @@ $header-bp-mw: 1023px;
         &.vision {
           z-index: 100;
           display: none;
-          background: #FEFD34;
           padding: 1rem;
-          font-size: 1.4rem !important;
+          font-size: 1.4rem ;
           width: 454px;
-          margin: 0 !important;
-          margin-top: 4rem !important;
+          margin: 0;
 
           @media (max-width: $medium-bp) {
             width: 100%;
@@ -201,6 +199,13 @@ $header-bp-mw: 1023px;
             display: block;
           }
         }
+      }
+
+      .vision_container {
+        transition: height 300ms ease;
+        display: inline-block;
+        margin-top: 4rem;
+        background: #FEFD34;
       }
 
       .page-intro-text {
