@@ -16,6 +16,10 @@
   margin: 140px auto;
   display: block;
 
+  &.no-margin {
+    margin-top: 50px;
+  }
+
   @media (max-width: $medium-bp) {
     width: 300px;
   }
@@ -31,6 +35,13 @@
     width: 100%;
     height: 50px;
     border-radius: 10px;
+
+    &.search-input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-left: 0.625rem;
+      margin: 0
+    }
   }
 
   button.btn.btn-blue {
@@ -44,6 +55,16 @@
     @media (max-width: $medium-bp) {
       margin-left: -52px;
     }
+  }
+
+  button.btn.btn-blue.search-btn {
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0.625rem 1rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    text-transform: none;
   }
 
   .search-close-esc {

@@ -35,21 +35,6 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 			</span>
 		</div>
 	</div>
-
-	<?php if ( ! empty( $share_links ) ) : ?>
-	<div class="rise-up side-list">
-		<?php
-		foreach ( $share_links as $link ) :
-
-			?>
-		<span class="link-list mar-right">
-			<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-				<?php echo esc_html( $link['title'] ); ?>
-			</a>
-		</span>
-		<?php endforeach; ?>
-	</div>
-	<?php endif; ?>
 </div>
 
 </div>

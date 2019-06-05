@@ -61,6 +61,7 @@ p {
 .article-main p {
 	@include font-size(18, 13);
 	line-height: 1.72;
+	margin-bottom: 1rem;
 }
 
 .p {

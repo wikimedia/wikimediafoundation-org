@@ -16,15 +16,44 @@ $header-bp-mw: 1023px;
       margin-top: 0 !important;
     }
   }
-
-  .vision {
-    display: none;
-
-    &.is_visible {
-      display: block;
-    }
-  }
 }
+
+@keyframes mover {
+   0% {
+     -webkit-transform: translateX(0);
+   }
+   50% {
+     -webkit-transform: translateX(calc((4237px * -1) + 100vw));
+   }
+	 100% {
+     -webkit-transform: translateX(0);
+   }
+}
+
+.header-animation {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	padding: 0;
+	height: 454px;
+	overflow: hidden;
+}
+
+.header-bg-img {
+	position: absolute;
+	height: 454px;
+	width: 4237px;
+  z-index: -1;
+	background-image: url('/wp-content/themes/shiro/assets/src/svg/header.svg');
+	background-size: cover;
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	animation: mover 300s linear infinite;
+}
+
 
 .header-home {
   position: relative;
@@ -138,7 +167,7 @@ $header-bp-mw: 1023px;
       .header-content {
         position: relative;
         z-index: 9;
-        margin-top: 140px;
+        margin-top: 120px;
 
         @media (min-width: $header-bp) {
           margin-bottom: 5rem;
@@ -154,12 +183,46 @@ $header-bp-mw: 1023px;
         margin-top: 6rem;
         margin-left: 1rem;
 
-        span {
-          background: #fffd33;
+        &.vision {
+          z-index: 100;
+          display: none;
+          background: #FEFD34;
+          padding: 1rem;
+          font-size: 1.4rem !important;
+          width: 454px;
+          margin: 0 !important;
+          margin-top: 4rem !important;
+
+          @media (max-width: $medium-bp) {
+            width: 100%;
+          }
+
+          &.is_visible {
+            display: block;
+          }
         }
       }
 
       .page-intro-text {
+        .w-68p {
+          padding-right: 2rem;
+
+          @media (max-width: $medium-bp) {
+            padding-right: 0;
+          }
+        }
+
+        .w-32p {
+          border-left: 1px solid #e5e5e5;
+          padding-left: 2rem;
+
+          @media (max-width: $medium-bp) {
+            border: none;
+            padding-left: 0;
+            padding-bottom: 2rem;
+          }
+        }
+
         .btn {
           text-transform: none;
         }

@@ -56,11 +56,11 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<!-- Site front page -->
 	<?php if ( is_front_page() ) { ?>
 		<?php if ( ! empty( $title ) ) : ?>
-			<div class="flex flex-medium header-flex">
-				<div class="w-45p">
-					<img src="<?php echo $image;?>" alt="">
+			<div class="header-animation">
+				<div class="header-bg-img">
+
 				</div>
-				<div class="w-55p">
+				<div class="mw-980">
 					<?php get_template_part( 'template-parts/header/vision'); ?>
 				</div>
 			</div>
@@ -134,16 +134,14 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<?php if ( is_front_page() ) : ?>
 		<div class="page-intro wysiwyg">
 			<div>
-				<!-- TODO This is the german text -->
-				<!-- <h2><?php echo esc_html( get_post_meta( get_the_ID(), 'sub_title', true ) ); ?></h2> -->
-
 				<div class="page-intro-text flex flex-medium">
 					<div class="w-68p">
 						<?php the_content(); ?>
 						<br>
 					</div>
-					<div class="w-32p img-container hide-sm">
-						<img src="<?php echo esc_url( wp_get_attachment_url( $bg_opts['image'] ) ); ?>" alt="">
+					<div class="w-32p">
+						<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_title', true ) ); ?>
+						<a class="btn btn-blue" href="<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_url', true ) ); ?>"><?php echo esc_html( get_post_meta( get_the_ID(), 'cta_label', true ) ); ?></a>
 					</div>
 				</div>
 

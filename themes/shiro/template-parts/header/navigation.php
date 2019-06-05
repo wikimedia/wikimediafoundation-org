@@ -35,11 +35,23 @@ $wmf_translations = wmf_get_translations();
 
 
 	<?php if ( $wmf_translations !== false ) : ?>
+		<?php
+			# Find which is the current language and display that
+			$selected = array_filter($wmf_translations, function ($lang) {
+				return $lang['selected'];
+			});
+
+			if ($selected[0]['name'] === "English") {
+				$lang_code = "en";
+			} else {
+				$lang_code = explode('/',$selected[0]['uri'])[3];
+			}
+		?>
 		<div class="language-dropdown">
 			<button>
-				<img src="./wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
-				<span>EN</span>
-				<img src="./wp-content/themes/shiro/assets/src/svg/down.svg" alt="" class="down-indicator">
+				<img src="/wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
+				<span><?php echo $lang_code; ?></span>
+				<img src="/wp-content/themes/shiro/assets/src/svg/down.svg" alt="" class="down-indicator">
 			</button>
 
 			<div class="language-list">

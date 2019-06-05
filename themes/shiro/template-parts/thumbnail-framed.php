@@ -21,17 +21,17 @@ $has_caption     = ! empty( $caption ) || ! empty( $credit );
 ?>
 
 <?php if ( is_singular( 'post' ) || is_singular( 'profile' ) ) : ?>
-<div class="article-img article-img-main mw-1017">
+<div class="article-img article-img-main">
 <?php endif; ?>
 
-<div class="mw-1017 <?php echo esc_attr( $container_class ); ?>">
-	<div class="mar-bottom">
+<div class="<?php echo esc_attr( $container_class ); ?>">
+	<div>
 		<?php echo wp_get_attachment_image( $inner_image, 'large' ); ?>
 	</div>
 </div>
 
 <?php if ( $has_caption ) : ?>
-<div class="img-caption mw-900">
+<div class="img-caption">
 	<?php if ( ! empty( $caption ) ) : ?>
 		<span class="photo-caption"><?php echo wp_kses_post( $caption ); ?></span>
 	<?php endif; ?>

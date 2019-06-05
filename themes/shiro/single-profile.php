@@ -45,23 +45,54 @@ while ( have_posts() ) :
 			'share_links'   => get_post_meta( get_the_ID(), 'contact_links', true ),
 		)
 	);
+
+	$share_links = get_post_meta( get_the_ID(), 'contact_links', true );
 	?>
 
-	<?php
-	wmf_get_template_part(
-		'template-parts/thumbnail-framed',
-		array(
-			'inner_image'     => get_post_thumbnail_id( get_the_ID() ),
-			'container_class' => '',
-		)
-	);
-	?>
+	<div class="mw-980 mar-bottom">
+		<div class="flex flex-medium flex-space-between mar-bottom_lg">
+			<div class="w-48p">
+				<?php
+				wmf_get_template_part(
+					'template-parts/thumbnail-framed',
+					array(
+						'inner_image'     => get_post_thumbnail_id( get_the_ID() ),
+						'container_class' => '',
+					)
+				);
+				?>
+				<?php if ( ! empty( $share_links ) ) : ?>
+				<div class="rise-up side-list">
+					<?php
+					foreach ( $share_links as $link ) :
 
-<article class="mw-900">
-	<div class="article-main mod-margin-bottom wysiwyg">
-		<?php the_content(); ?>
+						?>
+					<span class="link-list mar-right">
+						<?php
+						$img = "";
+						if ( is_int(strpos($link['title'],'Meta') ) ) {
+							$img = "/wp-content/themes/shiro/assets/src/svg/globe.svg";
+						}
+						if ( is_int(strpos($link['title'],'mail')) ) {
+							$img = "/wp-content/themes/shiro/assets/src/svg/email.svg";
+						}
+						?>
+						<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<img src="<?php echo($img); ?>" alt="">
+							<?php echo esc_html( $link['title'] ); ?>
+						</a>
+					</span>
+					<?php endforeach; ?>
+				</div>
+				<?php endif; ?>
+			</div>
+			<div class="w-50p">
+				<div class="article-main mod-margin-bottom wysiwyg">
+					<?php the_content(); ?>
+				</div>
+			</div>
+		</div>
 	</div>
-</article>
 
 	<?php
 

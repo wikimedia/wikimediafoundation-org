@@ -1,5 +1,6 @@
 .link-list {
-	@include font-size(20, 16);
+	@include font-size(13, 13);
+	font-weight: bold;
 
 	&.inline-block {
 
@@ -32,6 +33,16 @@
 		font-weight: bold;
 		padding-bottom: 5px;
 		line-height: 1.8;
+	}
+
+	a {
+		color: $color-blue;
+		display: inline-flex;
+
+		img {
+			height: 16px;
+			margin-right: 5px;
+		}
 	}
 }
 

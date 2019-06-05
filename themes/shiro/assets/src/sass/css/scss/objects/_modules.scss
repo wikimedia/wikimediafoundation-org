@@ -628,3 +628,23 @@ a.hover-img-zoom {
 		}
 	}
 }
+
+.module-404 {
+	margin-top: 220px;
+	text-align: center;
+	width: 100%;
+
+	h1 {
+		font-family: Courier, monospace;
+		text-transform: uppercase;
+		font-size: 1rem !important;
+	}
+
+	p {
+		font-size: 3rem;
+		font-weight: bold;
+		max-width: 600px;
+		margin: 50px auto;
+		line-height: 1.13;
+	}
+}
