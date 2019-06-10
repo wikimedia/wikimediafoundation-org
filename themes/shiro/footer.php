@@ -187,7 +187,7 @@ $wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __(
 <div class="search-overlay">
 	<div class="search-container">
 		<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<input type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
+			<input type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" aria-label="<?php echo esc_attr( $wmf_search_aria_label ); ?>">
 			<button class="btn btn-blue" type="submit"><?php wmf_show_icon( 'search', 'material icon-white' ); ?></button>
 			<a href="javascript:void(0);" class="search-close-esc">
 				<img src="./wp-content/themes/shiro/assets/src/svg/close.svg" alt="">
