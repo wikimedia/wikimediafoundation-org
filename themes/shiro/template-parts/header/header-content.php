@@ -144,6 +144,10 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 					<div class="w-32p">
 						<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_title', true ) ); ?>
 						<a class="btn btn-blue" href="<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_url', true ) ); ?>"><?php echo esc_html( get_post_meta( get_the_ID(), 'cta_label', true ) ); ?></a>
+						<span class="secure">
+							<img src="/wp-content/themes/shiro/assets/src/svg/lock.svg" alt="">
+							<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_secure', true ) ); ?>
+						</span>
 					</div>
 				</div>
 

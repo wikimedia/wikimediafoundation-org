@@ -287,7 +287,8 @@ $highlight-width: 10px;
   }
 
   .h2 {
-    @include marginBottom (0, 0, $medium-bp);
+    @include marginBottom (5, 5, $medium-bp);
+    font-size: 1.5rem;
   }
 
   .bg-img-container {
