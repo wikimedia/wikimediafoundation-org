@@ -205,7 +205,7 @@
   <div class="container">
     <div class="donation clearfix">
         <div class="wmf-emblem"></div>
-        <h3><?php esc_html_e( '<span class="ditch-on-phone fade">We do not like errors any more than you do.</span></br>Help us improve!', 'maintenance-mode' ); ?></h3><button onclick="javascript:window.location='https://donate.wikimedia.org';" class="neutral"><?php esc_html_e( 'Make $5
+        <h3><span class="ditch-on-phone fade"><?php esc_html_e( 'We do not like errors any more than you do.', 'maintenance-mode' ); ?></span></ br><?php esc_html_e( 'Help us improve!', 'maintenance-mode' ); ?></h3><button onclick="javascript:window.location='https://donate.wikimedia.org';" class="neutral"><?php esc_html_e( 'Make $5
         donation', 'maintenance-mode' ); ?></button>
         </div>
       </div>
