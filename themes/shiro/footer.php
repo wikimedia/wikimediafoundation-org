@@ -184,6 +184,11 @@ $wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __(
 	</div><!-- End .footer-legal -->
 
 </footer>
+
+<?php
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Enter search terms', 'wmfoundation' ) );
+$wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wikimedia Foundation site', 'wmfoundation' ) );
+?>
 <div class="search-overlay">
 	<div class="search-container">
 		<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">

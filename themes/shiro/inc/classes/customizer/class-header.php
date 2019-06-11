@@ -82,6 +82,21 @@ class Header extends Base {
 			)
 		);
 
+		$control_id = 'wmf_search_aria_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Search Wikimedia Foundation site', 'wmfoundation' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Search input label for assistive technology', 'wmfoundation' ),
+				'description' => __( 'This changes the search input label exposed only to assistive technology. This can be set in each translation to localize the label.', 'wmfoundation' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$control_id = 'wmf_donate_now_copy';
 		$this->customize->add_setting(
 			$control_id, array(
