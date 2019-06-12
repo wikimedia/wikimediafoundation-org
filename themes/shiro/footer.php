@@ -26,6 +26,7 @@ $wmf_instagram_url                  = get_theme_mod( 'wmf_instagram_url' );
 $wmf_projects_menu_label            = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'shiro' ) );
 $wmf_movement_affiliates_menu_label = get_theme_mod( 'wmf_movement_affiliates_menu_label', __( 'Movement Affiliates', 'shiro' ) );
 $wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'shiro' ) );
+$wmf_other_links_menu_label = get_theme_mod( 'wmf_projects_menu_label', __( 'Other', 'shiro' ) );
 ?>
 <footer class="bg-black">
 	<div class="footer-inner mw-980">

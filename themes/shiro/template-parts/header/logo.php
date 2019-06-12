@@ -9,6 +9,7 @@ $wmf_header_image = get_header_image();
 ?>
 
 <a href="<?php echo esc_url( get_site_url() ); ?>">
+	<span class='btn-label-a11y'><?php bloginfo('name'); ?></span>
 	<?php
 	if ( empty( $wmf_header_image ) ) :
 		wmf_show_icon( 'logo-horizontal' );

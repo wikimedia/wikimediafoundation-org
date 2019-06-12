@@ -13,7 +13,8 @@ use WMF\Images\Credits;
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
 $wmf_translations         = wmf_get_translations();
-?><!doctype html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -37,7 +38,8 @@ $wmf_translations         = wmf_get_translations();
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>
 				<div class="logo-container logo-container_sm">
-					<button class="mobile-nav-toggle bold">
+					<button class="mobile-nav-toggle bold" aria-label="Toggle menu">
+						<span class="btn-label-a11y">Toggle menu</span>
 						<?php wmf_show_icon( 'menu', 'material' ); ?>
 						<img src="/wp-content/themes/shiro/assets/src/svg/close.svg" alt="" class="icon-close">
 					</button>

@@ -48,7 +48,8 @@ $wmf_translations = wmf_get_translations();
 			}
 		?>
 		<div class="language-dropdown">
-			<button>
+			<button aria-label="Select language">
+				<span class="btn-label-a11y">Current language: </span>
 				<img src="/wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
 				<span><?php echo $lang_code; ?></span>
 				<img src="/wp-content/themes/shiro/assets/src/svg/down.svg" alt="" class="down-indicator">

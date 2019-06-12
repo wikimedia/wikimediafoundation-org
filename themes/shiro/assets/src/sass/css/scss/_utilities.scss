@@ -131,6 +131,13 @@ footer.bg-black {
 	content: ' →';
 }
 
+.btn-label-a11y {
+	font-size: 0;
+	height: 1px;
+	overflow: hidden;
+	display: block;
+}
+
 .btn {
 
 	// Colors

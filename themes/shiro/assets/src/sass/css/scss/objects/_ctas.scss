@@ -267,10 +267,12 @@ $highlight-width: 10px;
 .focus-block {
   background-color: #ffffff;
   overflow: hidden;
+  display: block;
 
   .card,
   .card-content {
     height: 100%;
+    display: block;
   }
 
   .card-content {
@@ -284,6 +286,7 @@ $highlight-width: 10px;
 
   .mar-bottom {
     margin-bottom: 2.5rem;
+    display: block;
   }
 
   .h2 {
@@ -294,6 +297,7 @@ $highlight-width: 10px;
   .bg-img-container {
     width: 100%;
     height: rem(200);
+    display: block;
 
     .bg-img {
       width: 100%;
