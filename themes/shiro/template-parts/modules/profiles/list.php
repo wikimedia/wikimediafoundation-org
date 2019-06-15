@@ -19,15 +19,9 @@ $description  = ! empty( $template_data['description'] ) ? $template_data['descr
 $button_label = ! empty( $template_data['button_label'] ) ? $template_data['button_label'] : '';
 $button_link  = ! empty( $template_data['button_link'] ) ? $template_data['button_link'] : '';
 
-$default_pre_heading = get_post_type_object( 'profile' )->label;
-$pre_heading         = ! empty( $template_data['pre_heading'] ) ? $template_data['pre_heading'] : $default_pre_heading;
+$pre_heading            = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro' ) );
+$rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 
-$default_rand_translation_pre_heading = wmf_get_random_translation(
-	'profile', array(
-		'source' => 'cpt_label',
-	)
-);
-$rand_translation_title               = ! empty( $template_data['rand_translation_title'] ) ? $template_data['rand_translation_title'] : $default_rand_translation_pre_heading;
 ?>
 <div class="w-100p mod-margin-bottom">
 	<div class="mw-980 std-mod">
