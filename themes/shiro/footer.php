@@ -187,7 +187,7 @@ $wmf_other_links_menu_label = get_theme_mod( 'wmf_projects_menu_label', __( 'Oth
 </footer>
 
 <?php
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Enter search terms', 'wmfoundation' ) );
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'wmfoundation' ) );
 $wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wikimedia Foundation site', 'wmfoundation' ) );
 ?>
 <div class="search-overlay">

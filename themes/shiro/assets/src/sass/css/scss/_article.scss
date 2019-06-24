@@ -201,8 +201,10 @@ article {
 	}
 
 	.img-caption {
-		color: $color-ltgray;
-		margin-top: 1rem;
+		color: #666;
+		margin-top: 0.5rem;
+		font-style: italic;
+		font-size: 13px;
 
 		a {
 			transition: 0.3s all;
@@ -210,10 +212,6 @@ article {
 				color: $color-blue;
 			}
 		}
-	}
-
-	.photo-caption {
-		font-weight: bold;
 	}
 
 	a {
@@ -226,6 +224,7 @@ article {
 }
 
 .article-title {
+	width: 40rem;
 	@media (max-width: $medium-bp) {
 		padding: 0 1.25rem;
 	}
@@ -234,10 +233,10 @@ article {
 .article-title .h3 {
 	font-size: 1.3rem;
 	font-family: sans-serif;
-	font-weight: bolder;
 	margin-bottom: 5px;
+	font-weight: lighter;
 	margin-top: 45px;
-	color: $color-gray;
+	color: $color-black;
 	line-height: 1.8;
 	@include marginBottom(30, 60, $medium-bp);
 }

@@ -6,7 +6,7 @@
  */
 
 $wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro' ) );
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Enter search terms', 'shiro' ) );
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'shiro' ) );
 ?>
 
 <button class="search-toggle" aria-label="Toggle search">

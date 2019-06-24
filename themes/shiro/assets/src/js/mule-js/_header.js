@@ -97,6 +97,8 @@ jQuery(document).ready(function($) {
     $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20', state);
     $('.search-toggle').toggleClass('fade-20', state);
     $('.mobile-nav-toggle').toggleClass('fade-20', state);
+    $('#menu-header-menu').toggleClass('fade-20', state);
+    $('.logo-container_lg').toggleClass('fade-20', state);
 
     // Position the dropdown right-aligned to the button
     if ($(window).width() > 762) {

@@ -70,7 +70,7 @@ class Header extends Base {
 		$control_id = 'wmf_search_placeholder_copy';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Enter search terms', 'shiro' ),
+				'default' => __( 'What are you looking for?', 'shiro' ),
 			)
 		);
 		$this->customize->add_control(
