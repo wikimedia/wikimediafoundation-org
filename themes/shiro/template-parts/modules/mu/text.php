@@ -22,13 +22,13 @@ $count      = 0;
 $h3_class = is_front_page() ? 'no-border' : '';
 ?>
 
-<div class="module-mu w-50p">
+<div class="module-mu w-23p">
 	<?php if ( ! empty( $image ) ) : ?>
 	<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" class="mar-bottom">
 	<?php endif; ?>
 	<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 	<h3 class="h2 <?php echo $h3_class; ?>">
-		<small>0<?php echo ($template_args['index']+1); ?></small><br>
+		<span><?php echo ($template_args['index']+1); ?></span>
 		<?php echo esc_html( $template_args['heading'] ); ?>
 	</h3>
 	<?php endif; ?>

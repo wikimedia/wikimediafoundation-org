@@ -239,4 +239,8 @@ article {
 	color: $color-black;
 	line-height: 1.8;
 	@include marginBottom(30, 60, $medium-bp);
+
+	p {
+		font-size: 1.3rem;
+	}
 }

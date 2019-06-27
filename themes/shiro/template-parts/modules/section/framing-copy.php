@@ -23,17 +23,6 @@ $has_many_modules = count($template_args['modules']) > 2;
 $has_image = get_the_post_thumbnail_url();
 ?>
 
-<?php if ( $has_title ) : ?>
-<div class="mod-margin-bottom white-bg">
-	<div class="mw-980">
-		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
-		<h3 class="h3 color-gray"><?php echo esc_html( $template_args['pre_heading'] ); ?> — <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span></h3>
-		<?php endif; ?>
-		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
-		<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
-		<?php endif; ?>
-	</div>
-<?php endif; ?>
 
 <?php if ( $has_many_modules && $has_image && !is_front_page() ) { ?>
 	<div class="framing-copy-ungrid mw-980">
@@ -83,7 +72,7 @@ $has_image = get_the_post_thumbnail_url();
 <?php } ?>
 
 <?php if ( $has_modules && (empty( $has_image) || is_front_page())) { ?>
-	<div class="flex flex-medium flex-wrap mw-980 fifty-fifty mod-margin-bottom">
+	<div class="flex flex-medium flex-wrap mw-980 mod-margin-bottom flex-space-between">
 		<?php
 			foreach ( $template_args['modules'] as $key=>$module ) {
 				$module["index"] = $key;

@@ -64,6 +64,11 @@ p {
 	margin-bottom: 1rem;
 }
 
+.single-profile .article-main p {
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+
 .p {
 	@extend p;
 }

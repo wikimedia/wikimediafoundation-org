@@ -25,15 +25,8 @@
 		display: block;
 	}
 
+	&.w-23p,
 	&.w-50p {
-		&:nth-child(odd) {
-			@include paddingRight(0, 40, $medium-bp);
-		}
-
-		&:nth-child(even) {
-			@include paddingLeft(0, 40, $medium-bp);
-		}
-
 		.h2 {
 			padding-top: 0.5rem;
 			margin-bottom: 1rem;
@@ -42,8 +35,11 @@
 			&.no-border {
 				border-top: none;
 
-				small {
-					@include font-size( 15,14 );
+				span {
+					color: #9C92FF;
+					font-size: 2.5rem;
+					display: block;
+					margin-bottom: 0.4rem;
 				}
 			}
 		}

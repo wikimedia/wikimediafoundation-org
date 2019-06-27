@@ -82,6 +82,10 @@
 	@include module-width($medium-bp, 25%);
 }
 
+.w-23p {
+	@include module-width($medium-bp, 23%);
+}
+
 .w-18p {
 	@include module-width($medium-bp, 18%);
 }

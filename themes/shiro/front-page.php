@@ -31,12 +31,12 @@ while ( have_posts() ) {
 	<?php
 
 	$modules = array(
+		'framing-copy',
+		'facts',
 		'focus-blocks',
 		'projects',
 		'featured-posts',
 		'profiles',
-		'facts',
-		'framing-copy',
 		'support',
 		'connect',
 	);
