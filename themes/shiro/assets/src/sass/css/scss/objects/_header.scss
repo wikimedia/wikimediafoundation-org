@@ -36,6 +36,7 @@ $header-bp-mw: 1049px;
 
 		&.current_page_item {
 			a {
+				color: $color-blue;
 				border-bottom: 2px solid $color-blue;
 			}
 		}
@@ -43,7 +44,7 @@ $header-bp-mw: 1049px;
 		a {
 			font-size: 14px;
 			font-weight: 600;
-			color: $color-blue;
+			color: $color-black;
 		}
 	}
 
@@ -301,7 +302,7 @@ $header-bp-mw: 1049px;
 	.header-content {
 		position: relative;
 		z-index: 2;
-		margin-top: 150px;
+		margin-top: 75px;
 		width: 100%;
 	}
 

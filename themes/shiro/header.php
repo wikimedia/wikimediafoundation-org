@@ -13,6 +13,8 @@ use WMF\Images\Credits;
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
 $wmf_translations         = wmf_get_translations();
+$wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate Now', 'shiro' ) );
+$wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikimedia.org/?utm_medium=wmfSite&utm_campaign=comms' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -45,11 +47,53 @@ $wmf_translations         = wmf_get_translations();
 					</button>
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>
-				<!-- <?php get_template_part( 'template-parts/header/nav-container' ); ?> -->
-				<?php get_template_part( 'template-parts/header/navigation' ); ?>
+				<div class="flex flex-medium">
+					<?php if ( $wmf_translations !== false ) : ?>
+						<?php
+							# Find which is the current language and display that
+							$selected = array_filter($wmf_translations, function ($lang) {
+								return $lang['selected'];
+							});
+
+							if ($selected[0]['name'] === "English") {
+								$lang_code = "en";
+							} else {
+								$lang_code = explode('/',$selected[0]['uri'])[3];
+							}
+						?>
+						<div class="language-dropdown">
+							<button aria-label="Select language">
+								<span class="btn-label-a11y">Current language: </span>
+								<img src="/wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
+								<span><?php echo $lang_code; ?></span>
+								<img src="/wp-content/themes/shiro/assets/src/svg/down.svg" alt="" class="down-indicator">
+							</button>
+
+							<div class="language-list">
+								<ul>
+									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
+										<li>
+											<?php if ( $wmf_translation['selected'] ) : ?>
+											<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+											<?php else : ?>
+											<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+											<?php endif; ?>
+										</li>
+									<?php endforeach ?>
+								</ul>
+							</div>
+						</div>
+					<?php endif ?>
+					<button type="button" class="donate-btn">
+						<a href="<?php echo($wmf_donate_uri); ?>">
+							<?php echo($wmf_donate_button);?>
+						</a>
+					</button>
+				</div>
 			</div>
 		</div>
 		<div class="header-inner mw-980">
+			<?php get_template_part( 'template-parts/header/navigation' ); ?>
 			<?php wmf_translation_alert(); ?>
 
 <?php

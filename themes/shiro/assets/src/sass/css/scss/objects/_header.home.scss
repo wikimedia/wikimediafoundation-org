@@ -78,7 +78,7 @@ $header-bp-mw: 1023px;
     a {
       font-size: 14px;
       font-weight: 600;
-      color: $color-blue;
+      color: $color-black;
     }
   }
 
@@ -167,7 +167,7 @@ $header-bp-mw: 1023px;
       .header-content {
         position: relative;
         z-index: 9;
-        margin-top: 120px;
+        margin-top: 30px;
 
         @media (min-width: $header-bp) {
           margin-bottom: 2rem;
