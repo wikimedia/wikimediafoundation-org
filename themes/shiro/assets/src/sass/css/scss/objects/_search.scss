@@ -191,16 +191,13 @@
   display: flex;
   position: relative;
   z-index: 99;
-  color: $color-blue;
-  background: $color-periwinkle;
-  border-radius: 2px;
-  border: 1px solid $color-periwinkle;
+  color: $color-black;
   align-items: center;
   @include padding(4, 3, 4, 3);
   margin-left: 1rem;
   transition: 0.4s all;
   &:hover {
-    border-color: $color-blue;
+    background: $color-periwinkle;
   }
 
   &:active {

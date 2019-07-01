@@ -427,7 +427,7 @@ $header-bp-mw: 1049px;
 
 		h1 {
 			font-weight: bold;
-			@include font-size( 40, 36);
+			@include font-size( 40, 40 );
 			padding-right: 3rem;
 		}
 

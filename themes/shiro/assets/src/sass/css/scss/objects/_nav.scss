@@ -195,9 +195,9 @@
   }
 
 .main-nav {
-  margin-top: 75px;
+  margin-top: 66px;
   border-top: 1px solid #f4f4f4;
-  padding-top: 1rem;
+  padding-top: 0.2rem;
   justify-content: space-between;
 }
 
@@ -205,12 +205,19 @@
   @include buttonNoStyles();
   border-radius: 2px;
   background: #FDE8F0;
-  color: #F62177;
+  border: 1px solid #FDE8F0;
+  color: $color-pink;
   font-weight: bold;
   padding: 0.4rem 1.3rem;
   font-size: 15px;
   height: 34px;
   margin-left: 5px;
+
+  &:focus,
+  &:hover {
+    border-color: $color-pink;
+    outline: none;
+  }
 }
 
 .language-dropdown {

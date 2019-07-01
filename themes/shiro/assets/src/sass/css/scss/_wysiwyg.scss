@@ -6,6 +6,10 @@
 		//@include linkHighlight($link-highlight-color, #000, 4, 4, 24, 30, $medium-bp);
 		color: $color-blue;
 	}
+
+	p a:hover {
+		text-decoration: underline;
+	}
 }
 
 .single-post .wysiwyg h1,
