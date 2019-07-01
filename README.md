@@ -1,10 +1,10 @@
 # Wikimedia Foundation website
 
-This repository hosts the files for the Wikimedia Foundation website (wikimediafoundation.org). More information about the site is available on Meta-Wiki: https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website
+This repository hosts the files for the Wikimedia Foundation website (wikimediafoundation.org). More information about the website is available on Meta-Wiki: https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website
 
 ## Usage
 
-The production repo is privately hosted on GitHub and maintained by Automattic Inc.
+The production repository is privately hosted on GitHub and maintained by Automattic Inc. and the Wikimedia Foundation Communications department.
 
 A public repository is mirrored and made available: https://github.com/wikimedia/wikimediafoundation-org
 
