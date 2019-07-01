@@ -132,7 +132,7 @@
 
         &.open {
           display: block;
-          position: absolute;
+          position: fixed;
           width: 100%;
           background: $color-white;
           left: 0;

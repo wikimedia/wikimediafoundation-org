@@ -12,16 +12,6 @@ $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 
 ?>
 
-<!-- TODO: This is the photo on the header -->
-<!-- <div class="header-main bg-img--<?php echo esc_attr( $bg_color ); ?>">
-	<div class="<?php echo esc_attr( wmf_get_photo_class() ); ?>">
-		<div class="bg-img-container mar-top">
-			<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>);">
-
-			</div>
-		</div>
-	</div> -->
-
 	<?php wmf_get_template_part( 'template-parts/header/header-content', $page_header_data ); ?>
 
 	<?php get_template_part( 'template-parts/header/social' ); ?>

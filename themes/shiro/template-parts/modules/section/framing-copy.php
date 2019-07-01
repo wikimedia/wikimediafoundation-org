@@ -71,8 +71,17 @@ $has_image = get_the_post_thumbnail_url();
 	</div>
 <?php } ?>
 
-<?php if ( $has_modules && (empty( $has_image) || is_front_page())) { ?>
+<?php if ( $has_modules && (empty( $has_image) && is_front_page())) { ?>
 	<div class="flex flex-medium flex-wrap mw-980 mod-margin-bottom flex-space-between">
+		<?php
+			foreach ( $template_args['modules'] as $key=>$module ) {
+				$module["index"] = $key;
+				wmf_get_template_part( 'template-parts/modules/mu/text-home', $module );
+			}
+		?>
+	</div>
+<?php } elseif ( !$has_image) { ?>
+	<div class="flex flex-medium flex-wrap mw-980 mod-margin-bottom fifty-fifty">
 		<?php
 			foreach ( $template_args['modules'] as $key=>$module ) {
 				$module["index"] = $key;

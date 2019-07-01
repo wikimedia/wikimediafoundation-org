@@ -7,9 +7,9 @@
 
 use WMF\Images\Credits;
 
-Credits::get_instance()->pause();
+
 $image = get_the_post_thumbnail_url( get_the_ID(), 'image_4x3_large' );
-Credits::get_instance()->resume();
+Credits::get_instance()->pause();
 ?>
 
 <div class="card card-vertical w-50p">
@@ -34,3 +34,4 @@ Credits::get_instance()->resume();
 	<?php // TODO: Make this a template arg ?>
 	<a class="arrow-link" href="<?php the_permalink(); ?>">Read more</a>
 </div>
+<?php Credits::get_instance()->resume(); ?>

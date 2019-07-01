@@ -133,10 +133,8 @@ jQuery(document).ready(function($) {
   jQuery(window).on('scroll', function () {
     if ( jQuery(this).scrollTop() > 0 ) {
       jQuery('.top-nav').addClass('pinned');
-      jQuery('.list-inline.open').css('top','50px');
     } else {
       jQuery('.top-nav').removeClass('pinned');
-      jQuery('.list-inline.open').css('top','100px');
     }
   })
   /* eslint-enable */
