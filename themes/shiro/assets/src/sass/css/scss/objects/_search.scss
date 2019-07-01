@@ -203,6 +203,10 @@
   &:active {
     background-color: #ccc2fe;
   }
+
+  @media (max-width: $medium-landscape) {
+    display: none;
+  }
 }
 
 .search-bar-container {

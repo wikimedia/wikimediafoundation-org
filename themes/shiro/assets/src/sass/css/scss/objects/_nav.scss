@@ -121,12 +121,13 @@
     }
 
     @media (max-width: $medium-landscape) {
+      border: none !important;
+
       &.flex.flex-medium {
         flex-direction: row;
       }
 
       ul.list-inline {
-
         display: none;
 
         &.open {
@@ -136,8 +137,8 @@
           background: $color-white;
           left: 0;
           color: #fff;
-          z-index: 100;
-          top: 50px;
+          z-index: 3000;
+          top: 65px;
         }
 
         li {
@@ -208,10 +209,14 @@
   border: 1px solid #FDE8F0;
   color: $color-pink;
   font-weight: bold;
-  padding: 0.4rem 1.3rem;
+  padding: 0.4rem 0.8rem;
   font-size: 15px;
   height: 34px;
   margin-left: 5px;
+
+  @media (max-width: $medium-landscape) {
+    display: none;
+  }
 
   &:focus,
   &:hover {

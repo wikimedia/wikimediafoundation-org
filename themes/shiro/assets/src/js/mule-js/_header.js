@@ -37,12 +37,6 @@ jQuery(document).ready(function($) {
     $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20');
     $('.search-toggle').toggleClass('fade-20');
     $('.language-dropdown').toggleClass('fade-20');
-
-    if ($('.top-nav').hasClass('pinned')) {
-      jQuery('.list-inline.open').css('top','55px');
-    } else {
-      jQuery('.list-inline.open').css('top','100px');
-    }
   }
 
   function closeNav() {

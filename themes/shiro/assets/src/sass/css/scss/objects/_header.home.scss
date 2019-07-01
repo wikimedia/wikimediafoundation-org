@@ -169,6 +169,10 @@ $header-bp-mw: 1023px;
         z-index: 9;
         margin-top: 30px;
 
+        @media (max-width: $medium-landscape) {
+          margin-top: 0;
+        }
+
         @media (min-width: $header-bp) {
           margin-bottom: 2rem;
         }

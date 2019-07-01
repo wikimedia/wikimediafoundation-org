@@ -311,7 +311,6 @@ $header-bp-mw: 1049px;
 
 		a.back-arrow-link {
 			@include font-size(16, 14);
-			text-transform: lowercase;
 		}
 
 		a.back-arrow-link::before {
