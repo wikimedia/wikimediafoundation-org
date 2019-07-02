@@ -26,6 +26,10 @@ jQuery(document).ready(function($) {
   });
 
   function toggleNav() {
+    $('#menu-header-menu').prepend(
+      $('.search-toggle').show().css('float','right')
+    );
+
     $('.nav-links').toggleClass('open');
     $('.header-inner').toggleClass('nav-open');
 
@@ -35,7 +39,6 @@ jQuery(document).ready(function($) {
 
 
     $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20');
-    $('.search-toggle').toggleClass('fade-20');
     $('.language-dropdown').toggleClass('fade-20');
   }
 
@@ -55,6 +58,7 @@ jQuery(document).ready(function($) {
   function toggleSearch() {
     $('.search-toggle').blur();
     $('.search-form input').focus();
+    closeNav();
   }
 
   function openSearch() {
