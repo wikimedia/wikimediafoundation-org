@@ -226,6 +226,7 @@ article {
 .article-title {
 	width: 40rem;
 	@media (max-width: $medium-bp) {
+		width: 100%;
 		padding: 0 1.25rem;
 	}
 }

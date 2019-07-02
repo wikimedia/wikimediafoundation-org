@@ -55,8 +55,8 @@ $wmf_other_links_menu_label = get_theme_mod( 'wmf_projects_menu_label', __( 'Oth
 					<svg width="279" height="62" viewBox="0 0 279 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<title><?php esc_html_e( 'Wikimedia Foundation', 'shiro' ); ?></title>
 						<g transform="translate(1992 17360)">
-							<g id="Horizontal Logo">
-								<g id="Horizontal Logo">
+							<g>
+								<g>
 									<use xlink:href="#path0_fillfull" transform="translate(-1992 -17360)"></use>
 								</g>
 							</g>

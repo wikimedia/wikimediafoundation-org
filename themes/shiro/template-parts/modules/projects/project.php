@@ -11,9 +11,6 @@ if ( empty( $template_args['link_uri'] ) || ( empty( $template_args['image'] ) &
 	return;
 }
 
-$bg_image = ! empty( $template_args['bg_image'] ) ? $template_args['bg_image'] : '';
-$bg_image = is_numeric( $bg_image ) ? wp_get_attachment_image_url( $bg_image, 'large' ) : $bg_image;
-
 $image     = ! empty( $template_args['image'] ) ? $template_args['image'] : '';
 $image_alt = is_numeric( $image ) ? get_post_meta( $image, '_wp_attachment_image_alt', true ) : __( 'Logo image.', 'shiro' );
 $image     = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'image_square_medium' ) : $image;
