@@ -7,6 +7,8 @@
 
 $template_args = wmf_get_template_data();
 
+$wmf_tweet_this = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro' ) );
+
 if ( empty( $template_args['image'] ) && empty( $template_args['facts'] ) ) {
 	return;
 }
@@ -39,7 +41,7 @@ $fact_width = 3 === count( $template_args['facts'] ) ? 'w-32p' : 'w-48p';
 			$template_args = array(
 				'message'  => sprintf( '%1$s - %2$s', $fact['heading'], $fact['content'] ),
 				'services' => array( 'twitter' ),
-				'title'    => 'Tweet this',
+				'title'    => $wmf_tweet_this,
 			);
 			wmf_get_template_part( 'template-parts/modules/social/share', $template_args, 'horizontal' );
 			?>
