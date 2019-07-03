@@ -25,6 +25,21 @@ class Social extends Base {
 			)
 		);
 
+		$control_id = 'wmf_tweet_this_copy';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Tweet this', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Tweet this copy', 'shiro' ),
+				'description' => __( 'Copy used for "Tweet this" label beneath facts.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$control_id = 'wmf_social_follow_text';
 		$this->customize->add_setting(
 			$control_id, array(

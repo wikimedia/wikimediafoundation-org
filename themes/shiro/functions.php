@@ -282,3 +282,31 @@ require get_template_directory() . '/inc/cache.php';
  * Safe Redirect mods.
  */
 require get_template_directory() . '/inc/safe-redirect.php';
+
+/**
+ * Modify the document title for the search and 404 pages
+ */
+
+// 404 page
+function theme_slug_filter_wp_404title( $title_parts ) {
+    if ( is_404() ) {
+        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro' ) );
+    }
+
+    return $title_parts;
+}
+
+// Hook into document_title_parts
+add_filter( 'document_title_parts', 'theme_slug_filter_wp_404title' );
+
+// Search page
+function theme_slug_filter_wp_searchtitle( $title_parts ) {
+    if ( is_search() ) {
+        $title_parts['title'] = get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro' ) );
+    }
+
+    return $title_parts;
+}
+
+// Hook into document_title_parts
+add_filter( 'document_title_parts', 'theme_slug_filter_wp_searchtitle' );

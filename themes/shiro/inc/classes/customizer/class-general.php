@@ -234,6 +234,20 @@ class General extends Base {
 			)
 		);
         
+        $control_id = 'wmf_search_toggle';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Toggle search', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Toggle search copy', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+        
         $control_id = 'wmf_no_results_title';
 		$this->customize->add_setting(
 			$control_id, array(
