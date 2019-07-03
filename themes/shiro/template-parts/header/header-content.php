@@ -18,6 +18,10 @@ $allowed_tags         = wp_kses_allowed_html( 'post' );
 $allowed_tags['time'] = true;
 $button = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
 $extra_height_class = empty($button['title']) ? '' : 'ungrid-extra-height';
+$wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro' ) );
+$wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
+$wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
+$wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
 
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
@@ -142,11 +146,13 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 						<br>
 					</div>
 					<div class="w-32p">
-						<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_title', true ) ); ?>
-						<a class="btn btn-blue" href="<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_url', true ) ); ?>"><?php echo esc_html( get_post_meta( get_the_ID(), 'cta_label', true ) ); ?></a>
+						<div>
+                            <?php echo esc_html( $wmf_homedonate_intro ); ?>
+                        </div>
+						<a class="btn btn-blue" href="<?php echo esc_html( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
 						<span class="secure">
 							<img src="/wp-content/themes/shiro/assets/src/svg/lock.svg" alt="">
-							<?php echo esc_html( get_post_meta( get_the_ID(), 'cta_secure', true ) ); ?>
+							<?php echo esc_html( $wmf_homedonate_secure ); ?>
 						</span>
 					</div>
 				</div>

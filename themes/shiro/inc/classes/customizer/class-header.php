@@ -28,10 +28,10 @@ class Header extends Base {
 		$header_section->panel = 'header_image';
 		$header_section->title = $header_image_title;
 
-		$section_id = 'wmf_header_content';
+		$section_id = 'wmf_header_general';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Content', 'shiro' ),
+				'title'    => __( 'General', 'shiro' ),
 				'priority' => 70,
 				'panel'    => 'header_image',
 			)
@@ -49,6 +49,127 @@ class Header extends Base {
 				'description' => __( 'This changes the languages label copy found in the translation bar at the top of the page.', 'shiro' ),
 				'section'     => $section_id,
 				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_menu_button_copy';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'MENU', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Menu button copy', 'shiro' ),
+				'description' => __( 'This changes the button copy for mobile devices. This can be set in each translation to localize the button.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+        
+		$section_id = 'wmf_header_donate';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Donate', 'shiro' ),
+				'priority' => 70,
+				'panel'    => 'header_image',
+			)
+		);
+
+		$control_id = 'wmf_donate_now_copy';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Donate Now', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Navigation donate button Copy', 'shiro' ),
+				'description' => __( 'This changes the donate copy. This can be set in each translation to localize the button.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_donate_now_uri';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( '#', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Navigation donate button URI', 'shiro' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_homedonate_button';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Donate now', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Homepage donate button copy', 'shiro' ),
+				'description' => __( 'This changes the homepage donate button copy. This can be set in each translation to localize the button.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_homedonate_uri';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( '#', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Homepage bonate button URI', 'shiro' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_homedonate_intro';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Protect and sustain Wikipedia', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Homepage bonate button intro', 'shiro' ),
+				'description' => __( 'This changes the homepage donate button intro copy.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+        
+        $control_id = 'wmf_homedonate_secure';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'SECURE DONATIONS', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Homepage bonate button secure copy', 'shiro' ),
+				'description' => __( 'This changes the homepage donate button secure notice copy.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+        
+		$section_id = 'wmf_header_search';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Search', 'shiro' ),
+				'priority' => 70,
+				'panel'    => 'header_image',
 			)
 		);
 
@@ -85,59 +206,38 @@ class Header extends Base {
 		$control_id = 'wmf_search_aria_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Search Wikimedia Foundation site', 'wmfoundation' ),
+				'default' => __( 'Search Wikimedia Foundation site', 'shiro' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Search input label for assistive technology', 'wmfoundation' ),
-				'description' => __( 'This changes the search input label exposed only to assistive technology. This can be set in each translation to localize the label.', 'wmfoundation' ),
+				'label'       => __( 'Search input label for assistive technology', 'shiro' ),
+				'description' => __( 'This changes the search input label exposed only to assistive technology. This can be set in each translation to localize the label.', 'shiro' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
 		);
 
-		$control_id = 'wmf_donate_now_copy';
+		$control_id = 'wmf_search_esc_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Donate Now', 'shiro' ),
+				'default' => __( 'esc', 'shiro' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Donate button Copy', 'shiro' ),
-				'description' => __( 'This changes the donate copy. This can be set in each translation to localize the button.', 'shiro' ),
+				'label'       => __( 'Label for escape button in search popup', 'shiro' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
 		);
 
-		$control_id = 'wmf_donate_now_uri';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( '#', 'shiro' ),
-			)
-		);
-		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'Donate button URI', 'shiro' ),
-				'section' => $section_id,
-				'type'    => 'text',
-			)
-		);
-
-		$control_id = 'wmf_menu_button_copy';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( 'MENU', 'shiro' ),
-			)
-		);
-		$this->customize->add_control(
-			$control_id, array(
-				'label'       => __( 'Menu button copy', 'shiro' ),
-				'description' => __( 'This changes the button copy for mobile devices. This can be set in each translation to localize the button.', 'shiro' ),
-				'section'     => $section_id,
-				'type'        => 'text',
+		$section_id = 'wmf_header_vision';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Vision', 'shiro' ),
+				'priority' => 70,
+				'panel'    => 'header_image',
 			)
 		);
 

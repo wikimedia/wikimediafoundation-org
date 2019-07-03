@@ -187,8 +187,9 @@ $wmf_other_links_menu_label = get_theme_mod( 'wmf_projects_menu_label', __( 'Oth
 </footer>
 
 <?php
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'wmfoundation' ) );
-$wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wikimedia Foundation site', 'wmfoundation' ) );
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'shiro' ) );
+$wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wikimedia Foundation site', 'shiro' ) );
+$wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shiro' ) );
 ?>
 <div class="search-overlay">
 	<div class="search-container">
@@ -197,7 +198,7 @@ $wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wi
 			<button class="btn btn-blue" type="submit"><?php wmf_show_icon( 'search', 'material icon-white' ); ?></button>
 			<a href="javascript:void(0);" class="search-close-esc">
 				<img src="./wp-content/themes/shiro/assets/src/svg/close.svg" alt="">
-				esc
+				<?php echo esc_attr( $wmf_search_esc_label ); ?>
 			</a>
 		</form>
 		<a href="#" class="search-close-mobile">

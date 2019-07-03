@@ -25,35 +25,6 @@ class Page extends Base {
 			)
 		);
 
-		$control_id = 'wmf_no_results_title';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( 'Nothing Found', 'shiro' ),
-			)
-		);
-		$this->customize->add_control(
-			$control_id, array(
-				'label'       => __( 'No Results Title', 'shiro' ),
-				'description' => __( 'This displays on archive and search pages when there are no results found.', 'shiro' ),
-				'section'     => $section_id,
-				'type'        => 'text',
-			)
-		);
-
-		$control_id = 'wmf_no_results_description';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( 'Sorry, but no results were found. Perhaps searching can help.', 'shiro' ),
-			)
-		);
-		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'No Results Description', 'shiro' ),
-				'section' => $section_id,
-				'type'    => 'textarea',
-			)
-		);
-
 		$control_id = 'wmf_pagination_newer';
 		$this->customize->add_setting(
 			$control_id, array(

@@ -84,7 +84,7 @@ class Footer extends Base {
 		$control_id = 'wmf_other_links_menu_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Other links', 'shiro' ),
+				'default' => __( 'Other', 'shiro' ),
 			)
 		);
 		$this->customize->add_control(
