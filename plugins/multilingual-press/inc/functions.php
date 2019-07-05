@@ -1,11 +1,5 @@
 <?php # -*- coding: utf-8 -*-
 
-if(defined('MLP_FUNCTIONS')) {
-    return;
-}
-
-define('MLP_FUNCTIONS', true);
-
 /**
  * Wrapper for the exit language construct.
  *
@@ -15,12 +9,9 @@ define('MLP_FUNCTIONS', true);
  *
  * @return void
  */
-if ( ! function_exists( 'mlp_exit' ) ) {
-    function mlp_exit($status = '')
-    {
+function mlp_exit( $status = '' ) {
 
-        exit(esc_html($status));
-    }
+	exit( esc_html( $status ) );
 }
 
 /**
@@ -31,11 +22,8 @@ if ( ! function_exists( 'mlp_exit' ) ) {
  * @param   bool $blogid
  * @return  bool true/false
  */
-if ( ! function_exists( 'mlp_is_redirect' ) ) {
-    function mlp_is_redirect($blogid = false)
-    {
-        return Mlp_Helpers::is_redirect($blogid);
-    }
+function mlp_is_redirect( $blogid = false ) {
+	return Mlp_Helpers::is_redirect( $blogid );
 }
 
 /**
@@ -47,11 +35,8 @@ if ( ! function_exists( 'mlp_is_redirect' ) ) {
  * @param   bool $short
  * @return  array Available languages
  */
-if ( ! function_exists( 'mlp_get_current_blog_language' ) ) {
-    function mlp_get_current_blog_language($short = false)
-    {
-        return Mlp_Helpers::get_current_blog_language($short);
-    }
+function mlp_get_current_blog_language( $short = false ) {
+	return Mlp_Helpers::get_current_blog_language( $short );
 }
 
 /**
@@ -62,11 +47,8 @@ if ( ! function_exists( 'mlp_get_current_blog_language' ) ) {
  * @param  bool $nonrelated
  * @return  array Available languages
  */
-if ( ! function_exists( 'mlp_get_available_languages' ) ) {
-    function mlp_get_available_languages($nonrelated = false)
-    {
-        return Mlp_Helpers::get_available_languages($nonrelated);
-    }
+function mlp_get_available_languages( $nonrelated = false ) {
+	return Mlp_Helpers::get_available_languages( $nonrelated );
 }
 
 /**
@@ -77,11 +59,8 @@ if ( ! function_exists( 'mlp_get_available_languages' ) ) {
  * @param  bool $related
  * @return  array Available languages
  */
-if ( ! function_exists( 'mlp_get_available_languages_titles' ) ) {
-    function mlp_get_available_languages_titles($related = true)
-    {
-        return Mlp_Helpers::get_available_languages_titles($related);
-    }
+function mlp_get_available_languages_titles( $related = true ) {
+	return Mlp_Helpers::get_available_languages_titles( $related );
 }
 
 /**
@@ -93,11 +72,8 @@ if ( ! function_exists( 'mlp_get_available_languages_titles' ) ) {
  * @param   int $blog_id ID of the selected blog
  * @return  array linked elements
  */
-if ( ! function_exists( 'mlp_get_linked_elements' ) ) {
-    function mlp_get_linked_elements($element_id = 0, $type = '', $blog_id = 0)
-    {
-        return Mlp_Helpers::load_linked_elements($element_id, $type, $blog_id);
-    }
+function mlp_get_linked_elements( $element_id = 0, $type = '', $blog_id = 0 ) {
+	return Mlp_Helpers::load_linked_elements( $element_id, $type, $blog_id );
 }
 
 /**
@@ -111,16 +87,8 @@ if ( ! function_exists( 'mlp_get_linked_elements' ) ) {
  * @param   array $param parameters for the function
  * @return  WP_Error|null
  */
-if ( ! function_exists( 'mlp_run_custom_plugin' ) ) {
-    function mlp_run_custom_plugin(
-        $element_id = 0,
-        $type = '',
-        $blog_id = 0,
-        $hook = null,
-        $param = null
-    ) {
-        return Mlp_Helpers::run_custom_plugin($element_id, $type, $blog_id, $hook, $param);
-    }
+function mlp_run_custom_plugin( $element_id = 0, $type = '', $blog_id = 0, $hook = null, $param = null ) {
+	return Mlp_Helpers::run_custom_plugin( $element_id, $type, $blog_id, $hook, $param );
 }
 
 /**
@@ -130,11 +98,8 @@ if ( ! function_exists( 'mlp_run_custom_plugin' ) ) {
  * @param   int $blog_id ID of a blog
  * @return  string url of the language image
  */
-if ( ! function_exists( 'mlp_show_linked_elements' ) ) {
-    function mlp_show_linked_elements($blog_id = 0)
-    {
-        return Mlp_Helpers::get_language_flag($blog_id);
-    }
+function mlp_get_language_flag( $blog_id = 0 ) {
+	return Mlp_Helpers::get_language_flag( $blog_id );
 }
 
 /**
@@ -148,36 +113,30 @@ if ( ! function_exists( 'mlp_show_linked_elements' ) ) {
  *
  * @return string
  */
-if ( ! function_exists( 'mlp_show_linked_elements' ) ) {
-    function mlp_show_linked_elements(
-        $args_or_deprecated_text = 'text',
-        $deprecated_echo = true,
-        $deprecated_sort = 'blogid'
-    ) {
+function mlp_show_linked_elements( $args_or_deprecated_text = 'text', $deprecated_echo = true, $deprecated_sort = 'blogid' ) {
 
-        $args = is_array($args_or_deprecated_text)
-            ? $args_or_deprecated_text
-            : array(
-                'link_text' => $args_or_deprecated_text,
-                'sort' => $deprecated_sort,
-            );
-        $defaults = array(
-            'link_text' => 'text',
-            'sort' => 'priority',
-            'show_current_blog' => false,
-            'display_flag' => false,
-            'strict' => false, // get exact translations only
-        );
-        $params = wp_parse_args($args, $defaults);
-        $output = Mlp_Helpers::show_linked_elements($params);
+	$args = is_array( $args_or_deprecated_text )
+		? $args_or_deprecated_text
+		: array(
+			'link_text' => $args_or_deprecated_text,
+			'sort'      => $deprecated_sort,
+		);
+	$defaults = array(
+		'link_text'         => 'text',
+		'sort'              => 'priority',
+		'show_current_blog' => false,
+		'display_flag'      => false,
+		'strict'            => false, // get exact translations only
+	);
+	$params = wp_parse_args( $args, $defaults );
+	$output = Mlp_Helpers::show_linked_elements( $params );
 
-        $echo = isset($params['echo']) ? $params['echo'] : $deprecated_echo;
-        if ($echo) {
-            echo wp_kses_post($output);
-        }
+	$echo = isset( $params['echo'] ) ? $params['echo'] : $deprecated_echo;
+	if ( $echo ) {
+		echo wp_kses_post( $output );
+	}
 
-        return $output;
-    }
+	return $output;
 }
 
 /**
@@ -187,11 +146,8 @@ if ( ! function_exists( 'mlp_show_linked_elements' ) ) {
  * @param   int $element_id current post / page / whatever
  * @return  array
  */
-if ( ! function_exists( 'mlp_get_interlinked_permalinks' ) ) {
-    function mlp_get_interlinked_permalinks($element_id = 0)
-    {
-        return Mlp_Helpers::get_interlinked_permalinks($element_id);
-    }
+function mlp_get_interlinked_permalinks( $element_id = 0 ) {
+	return Mlp_Helpers::get_interlinked_permalinks( $element_id );
 }
 
 /**
@@ -202,12 +158,9 @@ if ( ! function_exists( 'mlp_get_interlinked_permalinks' ) ) {
  *
  * @return string
  */
-if ( ! function_exists( 'mlp_get_blog_language' ) ) {
-    function mlp_get_blog_language($blog_id = 0, $short = true)
-    {
+function mlp_get_blog_language( $blog_id = 0, $short = true ) {
 
-        return Mlp_Helpers::get_blog_language($blog_id, $short);
-    }
+	return Mlp_Helpers::get_blog_language( $blog_id, $short );
 }
 
 // TODO: Eventually remove this, with version 2.2.0 + 4 at the earliest.
@@ -239,11 +192,8 @@ if ( ! function_exists( 'get_blog_language' ) ) {
  * @return boolean|array|string false for unknown language codes or fields,
  *               array for $field = 'all' and string for specific fields
  */
-if ( ! function_exists( 'mlp_get_lang_by_iso' ) ) {
-    function mlp_get_lang_by_iso($iso, $field = 'native_name')
-    {
-        return Mlp_Helpers::get_lang_by_iso($iso, $field);
-    }
+function mlp_get_lang_by_iso( $iso, $field = 'native_name' ) {
+	return Mlp_Helpers::get_lang_by_iso( $iso, $field );
 }
 
 

@@ -1,0 +1,8 @@
+/**
+ * Creates .container-X containers with different max widths for smaller containers.
+ */
+ @each $container, $max-width in $containers {
+	.container-#{$container} {
+		max-width: $max-width;
+	}
+}

@@ -1,0 +1,10 @@
+.header-default {
+
+  // Default page, blog page
+  &.minimal {
+
+	&--short:not(.featured-photo--content-left):not(.featured-photo--photo-centered) {
+	  padding-bottom: 0;
+	}
+  }
+}

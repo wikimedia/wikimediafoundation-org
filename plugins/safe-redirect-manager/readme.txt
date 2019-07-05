@@ -2,7 +2,7 @@
 Contributors: tlovett1, tollmanz, taylorde, 10up, jakemgold, danielbachhuber, VentureBeat
 Tags: http redirects, redirect manager, url redirection, safe http redirection, multisite redirects, redirects
 Requires at least: 3.1
-Tested up to: 5.0
+Tested up to: 5.2
 Stable tag: trunk
 
 Safely and easily manage your website's HTTP redirects.
@@ -18,6 +18,12 @@ Safe Redirect Manager is a HTTP redirect manager for WordPress. An easy-to-use U
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
 == Changelog ==
+
+= 1.9.2 =
+* Fix CLI list function name for PHP 5
+
+= 1.9.1 =
+* Fix SQL injection bug opened up by SQL search functionality.
 
 = 1.9 =
 * Add redirect notes feature.
