@@ -1,0 +1,307 @@
+// Fonts/Typography
+@mixin font-size($desktop, $mobile) {
+	// Mobile
+	font-size: rem($mobile);
+
+	// Tablet (halfway between desktop and mobile size
+	@media (min-width: $medium-bp) and (max-width: 1280px) {
+		font-size: rem($desktop - (($desktop - $mobile) / 2));
+	}
+
+	// Desktop
+	@media (min-width: 1281px) {
+		font-size: rem($desktop);
+	}
+}
+@mixin line-height($desktop, $mobile) {
+	// Mobile
+	line-height: rem($mobile);
+
+	// Tablet (halfway between desktop and mobile size
+	@media (min-width: $medium-bp) and (max-width: 1280px) {
+		line-height: rem($desktop - (($desktop - $mobile) / 2));
+	}
+
+	// Desktop
+	@media (min-width: 1281px) {
+		line-height: rem($desktop);
+	}
+}
+
+@mixin category() {
+	text-transform: uppercase;
+	background: $color-periwinkle;
+	color: $color-blue;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 5px 8px;
+	@include font-size(12, 10);
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-right: 5px;
+
+	&:hover {
+		color: $color-white;
+		background: $color-blue;
+	}
+}
+
+@mixin highlightHeading($padding, $color) {
+    background: white;
+    color: $color;
+    display: inline;
+    box-shadow: $padding 0 0 white, -$padding 0 0 white;
+}
+
+@mixin highlightText($padding, $color) {
+    background: white;
+    line-height: 2;
+    color: $color;
+    display: inline;
+    padding: $padding 0;
+    box-shadow: $padding 0 0 white, -$padding 0 0 white;
+}
+
+@mixin linkHighlight($highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint) {
+	background-image: linear-gradient(to top, $highlightColor, $highlightColor);
+	background-size: 100% rem($underlineThicknessMobile);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	transition: 0.3s all;
+
+	&:hover {
+		background-size: 100% rem($highlightHeightMobile);
+		color: $highlightTextColor;
+	}
+
+	@media (min-width: $desktopBreakpoint) {
+		background-size: 100% rem($underlineThicknessDesktop);
+
+		&:hover {
+			background-size: 100% rem($highlightHeightDesktop);
+		}
+	}
+}
+
+@mixin link-underline($color, $thickness, $uppercase) {
+	$uppercase: false !default;
+
+	@if $uppercase {
+		text-transform: uppercase;
+	}
+	@else {
+		text-transform: none;
+	}
+
+	border-bottom: $color $thickness solid;
+}
+
+
+// Accessibility
+@mixin focus-outline($style, $color) {
+	outline: 1px $style $color;
+}
+
+
+// Buttons
+@mixin button-reset() {
+	display: inline-block;
+	font-weight: bold;
+	text-transform: capitalize;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 1rem 1.5rem;
+}
+
+@mixin buttonNoStyles {
+	border: none;
+	background: none;
+}
+
+@mixin button($bg-color, $bg-color-hover, $color, $color-hover, $padding, $mobile-padding) {
+	background-color: $bg-color;
+	color: $color;
+
+	// Button tag reset.  Also given to button tag in gobal.scss
+	@include button-reset();
+
+	padding: $mobile-padding;
+	transition: $transition;
+    border: none;
+    outline: none;
+
+	&:hover {
+		background-color: $bg-color-hover;
+		color: $color-hover;
+	}
+
+	&:focus {
+		outline: 1px dotted $bg-color-hover;
+	}
+
+	@media (min-width: $large-bp) {
+		padding: $padding;
+	}
+}
+
+
+// Flexbox
+@mixin flexbox($mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction) {
+	display: flex;
+	flex-direction: $mobile-direction;
+
+	@media (min-width: $desktop-bp) {
+		flex-direction: $desktop-direction;
+		flex-wrap: $desktop-wrap;
+	}
+}
+
+
+// Module Sizing
+@mixin module-width($desktop-bp, $desktop-width) {
+	width: 100%;
+
+	@media (min-width: $desktop-bp) {
+			width: $desktop-width;
+	}
+}
+
+@mixin absoluteFull() {
+	position: absolute;
+	content: "";
+	top: 0; bottom: 0; right: 0; left: 0;
+}
+
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+
+    &:before{
+        display: block;
+        content: " ";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+}
+
+
+// Spacing
+@mixin padding($topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop) {
+
+	padding: rem($topBottomMobile) rem($leftRightMobile);
+
+	@media (min-width: $medium-bp) {
+		padding: rem($topBottomDesktop) rem($leftRightDesktop);
+	}
+}
+
+@mixin paddingTopBottom($topBottomMobile, $topBottomDesktop) {
+	padding-top: rem($topBottomMobile);
+	padding-bottom: rem($topBottomMobile);
+
+	@media (min-width: $medium-bp) {
+		padding-top: rem($topBottomDesktop);
+		padding-bottom: rem($topBottomDesktop);
+	}
+}
+
+@mixin paddingTop($topMobile, $topDesktop, $desktopBP) {
+	padding-top: rem($topMobile);
+
+	@media (min-width: $desktopBP) {
+		padding-top: rem($topDesktop);
+	}
+}
+
+@mixin paddingBottom($bottomMobile, $bottomDesktop, $desktopBP) {
+	padding-bottom: rem($bottomMobile);
+
+	@media (min-width: $desktopBP) {
+		padding-bottom: rem($bottomDesktop);
+	}
+}
+
+@mixin paddingRight($rightMobile, $rightDesktop, $desktopBP) {
+	padding-right: rem($rightMobile);
+
+	@media (min-width: $desktopBP) {
+		padding-right: rem($rightDesktop);
+	}
+}
+
+@mixin paddingLeft($leftMobile, $leftDesktop, $desktopBP) {
+	padding-left: rem($leftMobile);
+
+	@media (min-width: $desktopBP) {
+		padding-left: rem($leftDesktop);
+	}
+}
+
+@mixin marginTop($topMobile, $topDesktop, $desktopBP) {
+	margin-top: rem($topMobile);
+
+	@media (min-width: $desktopBP) {
+		margin-top: rem($topDesktop);
+	}
+}
+
+@mixin marginBottom($bottomMobile, $bottomDesktop, $desktopBP) {
+	margin-bottom: rem($bottomMobile);
+
+	@media (min-width: $desktopBP) {
+		margin-bottom: rem($bottomDesktop);
+	}
+}
+
+@mixin marginRight($rightMobile, $rightDesktop, $desktopBP) {
+	margin-right: rem($rightMobile);
+
+	@media (min-width: $desktopBP) {
+		margin-right: rem($rightDesktop);
+	}
+}
+
+
+// Grids
+@mixin bp-large {
+	@media only screen and (min-width: $large-bp) {
+		@content;
+	}
+}
+
+@mixin bp-medium {
+	@media only screen and (min-width: $medium-bp) {
+		@content;
+	}
+}
+
+@mixin bp-small {
+	@media only screen and (min-width: $small-bp) {
+		@content;
+	}
+}
+
+
+// Non-duotone gradients
+@mixin black-gradient-vertical() {
+	content: "";
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin blue-gradient-vertical() {
+	content: "";
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+37,000000+37,3a25ff+100&0+37,0.65+100 */
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 37%, rgba(58,37,255,0.65) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 37%,rgba(58,37,255,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 37%,rgba(58,37,255,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a63a25ff',GradientType=0 ); /* IE6-9 */
+}

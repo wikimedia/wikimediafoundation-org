@@ -40,7 +40,30 @@ class Mlp_Network_Site_Settings_Controller implements Mlp_Updatable {
 		$this->tab_page_data = new Mlp_Network_Site_Settings_Tab_Data();
 		$this->page_properties = new Mlp_Network_Site_Settings_Properties( $plugin_data );
 
-		new Mlp_Network_Site_Settings( $this->page_properties, $this );
+        $that = $this;
+        add_action('network_admin_menu', function () use ($that) {
+            add_submenu_page(
+                'sites.php',
+                'MultilingualPress',
+                '',
+                'manage_sites',
+                'mlp-site-settings',
+                function () use ($that) {
+                    $that->create_tab_header();
+                    $that->create_tab_content();
+                }
+            );
+        });
+
+        add_filter('network_edit_site_nav_links', function ($links) {
+            $links['mlp-site-settings'] = [
+                'label' => 'MultilingualPress',
+                'url' => add_query_arg('page', 'mlp-site-settings', 'sites.php'),
+                'cap' => 'manage_sites'
+            ];
+
+            return $links;
+        });
 
 		add_action(
 			'admin_post_' . $this->tab_page_data->get_action_name(),
@@ -175,6 +198,34 @@ class Mlp_Network_Site_Settings_Controller implements Mlp_Updatable {
 
 		return $changed;
 	}
+
+	private function create_tab_header()
+    {
+        switch_to_blog($this->get_blog_id());
+        $siteName = get_bloginfo();
+        restore_current_blog();
+
+        $title = sprintf(__('Edit Site: %s', 'multilingual-press'), $siteName);
+        ?>
+        <div class="wrap">
+            <h1 id="edit-site"><?= esc_html($title) ?></h1>
+        </div>
+        <?php settings_errors() ?>
+        <p class="edit-site-actions">
+            <a href="<?php echo esc_url(get_home_url($this->get_blog_id(), '/')) ?>">
+                <?php esc_html_e('Visit', 'multilingual-press') ?>
+            </a>
+            |
+            <a href="<?php echo esc_url(get_admin_url($this->get_blog_id())) ?>">
+                <?php esc_html_e('Dashboard', 'multilingual-press') ?>
+            </a>
+        </p>
+        <?php
+        network_edit_site_nav([
+            'blog_id' => $this->get_blog_id(),
+            'selected' => 'mlp-site-settings'
+        ]);
+    }
 
 	/**
 	 * Inner markup for the tab.
