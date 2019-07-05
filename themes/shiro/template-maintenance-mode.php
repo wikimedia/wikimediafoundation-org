@@ -198,8 +198,7 @@
 
   <div class="container error">
       <h2 class="error-title"><?php esc_html_e( 'We are taking a time out.', 'maintenance-mode' ); ?></h2><span class=
-      "error-desc"><?php esc_html_e( 'The servers seem to be under a lot of stress, this is probably
-      temporary and should be fixed soon.', 'maintenance-mode' ); ?></span>
+      "error-desc"><?php esc_html_e( 'The Wikimedia Foundation website is temporarily offline for maintenance and will return shortly. Our free knowledge projects remain online and unaffected.', 'maintenance-mode' ); ?></span>
   </div>
 
   <div class="container">
