@@ -197,7 +197,7 @@
     </div>
 
   <div class="container error">
-      <h2 class="error-title"><?php esc_html_e( 'We are taking a timeout.', 'maintenance-mode' ); ?></h2><span class=
+      <h2 class="error-title"><?php esc_html_e( 'We are taking a time out.', 'maintenance-mode' ); ?></h2><span class=
       "error-desc"><?php esc_html_e( 'The servers seem to be under a lot of stress, this is probably
       temporary and should be fixed soon.', 'maintenance-mode' ); ?></span>
   </div>
