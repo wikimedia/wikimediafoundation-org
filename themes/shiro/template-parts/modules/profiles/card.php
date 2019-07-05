@@ -21,7 +21,7 @@ $img_id = ! empty( $template_data['img_id'] ) ? $template_data
 
 <a class="card card-vertical card-person rounded shadow hover-img-zoom w-32p" href="<?php echo esc_url( $link ); ?>">
 	<?php if ( ! empty( $img_id ) ) : ?>
-	<div class="img-container" style="background-image:url(<?php echo wp_get_attachment_image_url( $img_id, 'image_4x5_large' ); ?>)">
+	<div class="img-container" style="background-image:url(<?php echo esc_url(wp_get_attachment_image_url( $img_id, 'image_4x5_large' )); ?>)">
 	</div>
 	<?php endif; ?>
 

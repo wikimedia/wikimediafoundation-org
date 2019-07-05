@@ -23,7 +23,9 @@ function wmf_remove_featured_post_from_news( $query ) {
 			return;
 		}
 
-		$query->set( 'post__not_in', array( $featured_post ) );
+        if ( in_array( $post, array( $featured_post ) ) ){
+            return;
+        }
 	}
 }
 add_action( 'pre_get_posts', 'wmf_remove_featured_post_from_news' );

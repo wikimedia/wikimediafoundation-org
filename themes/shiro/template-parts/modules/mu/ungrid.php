@@ -28,7 +28,7 @@ $h3_class = is_front_page() ? 'no-border' : '';
 	</div>
 	<div class="details-container">
 		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
-		<h3 class="h2 <?php echo $h3_class; ?>"><?php echo esc_html( $template_args['heading'] ); ?></h3>
+		<h3 class="h2 <?php echo esc_attr($h3_class); ?>"><?php echo esc_html( $template_args['heading'] ); ?></h3>
 		<?php endif; ?>
 		<?php if ( ! empty( $template_args['copy'] ) ) : ?>
 		<div class="wysiwyg">

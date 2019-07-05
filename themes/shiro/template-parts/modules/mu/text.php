@@ -27,7 +27,7 @@ $h3_class = is_front_page() ? 'no-border' : '';
 	<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" class="mar-bottom">
 	<?php endif; ?>
 	<?php if ( ! empty( $template_args['heading'] ) ) : ?>
-	<h3 class="h2 <?php echo $h3_class; ?> no-border">
+	<h3 class="h2 <?php echo esc_attr($h3_class); ?> no-border">
 		<?php echo esc_html( $template_args['heading'] ); ?>
 	</h3>
 	<?php endif; ?>

@@ -9,10 +9,10 @@
  * Add connect page options.
  */
 function wmf_connect_fields() {
-	$blog = get_theme_mod( 'wmf_blog_url' );
-
+	$blog_url = get_theme_mod( 'wmf_blog_url' );
 	$blog_label = get_theme_mod( 'wmf_blog_label', 'Wikimedia Blog' );
-	$connect    = new Fieldmanager_Group(
+
+    $connect    = new Fieldmanager_Group(
 		array(
 			'name'     => 'connect',
 			'children' => array(

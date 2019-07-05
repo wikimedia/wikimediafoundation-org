@@ -78,7 +78,7 @@ while ( have_posts() ) :
 						}
 						?>
 						<a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-							<img src="<?php echo($img); ?>" alt="">
+							<img src="<?php echo esc_url($img); ?>" alt="">
 							<?php echo esc_html( $link['title'] ); ?>
 						</a>
 					</span>

@@ -65,7 +65,7 @@ $wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikime
 							<button aria-label="Select language">
 								<span class="btn-label-a11y">Current language: </span>
 								<img src="/wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
-								<span><?php echo $lang_code; ?></span>
+								<span><?php echo esc_html($lang_code); ?></span>
 								<img src="/wp-content/themes/shiro/assets/src/svg/down.svg" alt="" class="down-indicator">
 							</button>
 
@@ -85,8 +85,8 @@ $wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikime
 						</div>
 					<?php endif ?>
 					<button type="button" class="donate-btn">
-						<a href="<?php echo($wmf_donate_uri); ?>">
-							<?php echo($wmf_donate_button);?>
+						<a href="<?php echo esc_url($wmf_donate_uri); ?>">
+							<?php echo esc_html($wmf_donate_button);?>
 						</a>
 					</button>
 				</div>

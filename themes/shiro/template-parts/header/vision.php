@@ -20,7 +20,6 @@ if (empty($visions)) {
 
 $is_visible = 'is_visible';
 foreach( $visions as $vision ) {
-  echo '<h1 class="vision '. $is_visible .'">' . $vision . '</h1>';
+  echo '<h1 class="vision '. esc_attr($is_visible) .'">' . esc_html($vision) . '</h1>';
   $is_visible = '';
 }
-?>

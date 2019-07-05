@@ -77,7 +77,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 		<!-- h2 or title as heading -->
 		<?php if ( ! empty( $single_title ) ) { ?>
 			<h2 class="h2 eyebrow">
-				<?php echo $single_title; ?>
+				<?php echo esc_html($single_title); ?>
 			</h2>
 			<?php if ( !empty( $image ) ) { ?>
 				<img src="<?php echo esc_url($image)?>" alt="">
@@ -101,7 +101,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 		<!-- h2 and title, with image -->
 		<?php if ( !empty( $image) && !empty($h2_title) && !empty($title)) { ?>
-			<div class="ungrid <?php echo $extra_height_class; ?>">
+			<div class="ungrid <?php echo esc_attr($extra_height_class); ?>">
 				<div class="mw-980">
 					<?php if ( !empty( $image) && !empty($h2_title) && !empty($title)) { ?>
 						<div class="flex flex-medium page-landing fifty-fifty">
@@ -149,7 +149,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 						<div>
                             <?php echo esc_html( $wmf_homedonate_intro ); ?>
                         </div>
-						<a class="btn btn-blue" href="<?php echo esc_html( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
+						<a class="btn btn-blue" href="<?php echo esc_url( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
 						<span class="secure">
 							<img src="/wp-content/themes/shiro/assets/src/svg/lock.svg" alt="">
 							<?php echo esc_html( $wmf_homedonate_secure ); ?>

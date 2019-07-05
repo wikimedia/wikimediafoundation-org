@@ -273,6 +273,8 @@ class Flow {
 		// We need to update this for each site here.
 		$this->maybe_register_translation_status_terms();
 		$this->set_translate_term( $post_id );
+        
+        return $this;
 	}
 
 	/**

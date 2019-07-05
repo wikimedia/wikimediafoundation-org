@@ -29,7 +29,7 @@ $url         = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
 <div class="photo-credit-container w-32p p flex flex-all">
 	<div
 		class="photo-credit-img_container w-32p"
-		style="background-image:url(<?php echo wp_get_attachment_image_src( $image_id, 'image_square_medium' )[0]; ?>)">
+		style="background-image:url(<?php echo esc_url(wp_get_attachment_image_src( $image_id, 'image_square_medium' )[0]); ?>)">
 	</div>
 
 	<div class="w-68p">
