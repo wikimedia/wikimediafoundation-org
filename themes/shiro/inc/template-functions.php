@@ -520,3 +520,20 @@ function wmf_sort_by_last_name( $posts ) {
 
 	return $sorter->get_sorted();
 }
+
+/**
+ * Register custom RSS templates.
+ */
+add_action( 'after_setup_theme', 'wmf_rss_templates' );
+function wmf_rss_templates()
+{
+    foreach( array( 'offset1', 'images' ) as $name )
+    {
+        add_feed( $name, 
+            function() use ( $name )
+            {
+                get_template_part( 'feed', $name );  
+            }
+        );
+    }
+}
