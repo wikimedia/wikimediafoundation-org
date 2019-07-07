@@ -234,20 +234,6 @@ class General extends Base {
 			)
 		);
         
-        $control_id = 'wmf_search_toggle';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( 'Toggle search', 'shiro' ),
-			)
-		);
-		$this->customize->add_control(
-			$control_id, array(
-				'label'       => __( 'Toggle search copy', 'shiro' ),
-				'section'     => $section_id,
-				'type'        => 'text',
-			)
-		);
-        
         $control_id = 'wmf_no_results_title';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -353,6 +339,116 @@ class General extends Base {
 				'type'    => 'text',
 			)
 		);
-	}
+
+		// ARIA support.
+		$section_id = 'wmf_general_aria_support';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'ARIA Support', 'shiro' ),
+				'priority' => 70,
+				'panel'    => $panel_id,
+			)
+		);
+        
+        $control_id = 'wmf_search_toggle';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Toggle search', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Toggle search copy', 'shiro' ),
+				'description' => __( 'This changes the labels exposed only to assistive technology. This can be set in each translation to localize the label.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_search_aria_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Search Wikimedia Foundation site', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Search input label for assistive technology', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_toggle_menu_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Toggle menu', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Toggle menu label', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_skip2_content_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Skip to content', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Skip to content label', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_skip2_navigation_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Skip to navigation', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Skip to navigation label', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_select_language_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Select language', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Select language label', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_current_language_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Current language:', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Current language label', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+    }
 
 }
