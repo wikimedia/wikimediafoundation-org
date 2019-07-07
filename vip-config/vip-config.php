@@ -31,4 +31,4 @@ if (
     header( 'Location: https://' . $redirect_to_domain . $request_uri, true, 301 );
     exit;
 }
-define( 'VIP_MAINTENANCE_MODE', false );
+define( 'VIP_MAINTENANCE_MODE', true );
