@@ -310,3 +310,6 @@ function theme_slug_filter_wp_searchtitle( $title_parts ) {
 
 // Hook into document_title_parts
 add_filter( 'document_title_parts', 'theme_slug_filter_wp_searchtitle' );
+
+// Rewrite URL for roles to not require /news/ prefix
+add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' ); 
