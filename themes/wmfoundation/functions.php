@@ -282,3 +282,6 @@ require get_template_directory() . '/inc/cache.php';
  * Safe Redirect mods.
  */
 require get_template_directory() . '/inc/safe-redirect.php';
+
+// Rewrite URL for roles to not require /news/ prefix
+add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' ); 
