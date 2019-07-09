@@ -5,6 +5,8 @@
  * @package shiro
  */
 
+$wmf_profiles_name      = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro' ) );
+
 /**
  * Registers the `profile` post type.
  */
@@ -12,7 +14,7 @@ function wmf_profile_init() {
 	register_post_type(
 		'profile', array(
 			'labels'            => array(
-				'name'                  => __( 'Profiles', 'shiro' ),
+				'name'                  => __( '$wmf_profiles_name', 'shiro' ),
 				'singular_name'         => __( 'Profile', 'shiro' ),
 				'all_items'             => __( 'All Profiles', 'shiro' ),
 				'archives'              => __( 'Profile Archives', 'shiro' ),
