@@ -25,7 +25,7 @@ $args = wp_parse_args(
 	<ul class="color-blue <?php echo esc_attr( $args['list_class'] ); ?>">
 		<?php if ( in_array( 'twitter', $services, true ) ) : ?>
 		<li class="mar-bottom_sm">
-			<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>">
+			<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>" target="_blank">
 				<?php wmf_show_icon( 'social-twitter' ); ?>
 			</a>
 		</li>
@@ -33,7 +33,7 @@ $args = wp_parse_args(
 
 		<?php if ( in_array( 'facebook', $services, true ) ) : ?>
 		<li>
-			<a href="<?php echo esc_url( wmf_get_share_url( 'facebook', $args ) ); ?>">
+			<a href="<?php echo esc_url( wmf_get_share_url( 'facebook', $args ) ); ?>" target="_blank">
 				<?php wmf_show_icon( 'social-facebook' ); ?>
 			</a>
 		</li>
