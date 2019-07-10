@@ -17,7 +17,7 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 
 <div class="header-main header-role">
 	<div class="header-content">
-		<h2 class="h4 eyebrow">
+		<h2 class="h4 uppercase eyebrow">
 			<a class="back-arrow-link" href="<?php echo esc_url( $back_to_link ); ?>">
 				<?php echo esc_html( $staff_name ); ?>
 			</a>
