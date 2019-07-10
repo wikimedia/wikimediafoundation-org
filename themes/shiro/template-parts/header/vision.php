@@ -14,12 +14,21 @@ $visions = [
 ];
 $visions = array_filter($visions);
 
+$visions_rtl = [
+  get_theme_mod('wmf_vision_lang1_rtl'),
+  get_theme_mod('wmf_vision_lang2_rtl'),
+  get_theme_mod('wmf_vision_lang3_rtl'),
+  get_theme_mod('wmf_vision_lang4_rtl'),
+  get_theme_mod('wmf_vision_lang5_rtl')
+];
+
 if (empty($visions)) {
   $visions[] = '<span>Imagine a world</span> in which every single human being can freely share in the sum of all knowledge.';
+  $visions_rtl[] = '';
 }
 
 $is_visible = 'is_visible';
-foreach( $visions as $vision ) {
-  echo '<h1 class="vision '. esc_attr($is_visible) .'">' . esc_html($vision) . '</h1>';
+foreach( array_combine($visions, $visions_rtl) as $vision => $vision_rtl ) {
+  echo '<h1 class="vision '. esc_attr($is_visible), esc_attr($vision_rtl) .'">' . esc_html($vision), esc_html($vision_rtl) . '</h1>';
   $is_visible = '';
 }
