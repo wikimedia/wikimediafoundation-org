@@ -351,6 +351,20 @@ class Header extends Base {
 				'type'        => 'textarea',
 			)
 		);
+
+		$control_id = 'wmf_vision_lang5_rtl';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( '', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'CSS class', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
 	}
 
 }
