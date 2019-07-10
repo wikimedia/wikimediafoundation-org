@@ -14,21 +14,38 @@ $visions = [
 ];
 $visions = array_filter($visions);
 
-$visions_rtl = [
-  get_theme_mod('wmf_vision_lang1_rtl'),
-  get_theme_mod('wmf_vision_lang2_rtl'),
-  get_theme_mod('wmf_vision_lang3_rtl'),
-  get_theme_mod('wmf_vision_lang4_rtl'),
-  get_theme_mod('wmf_vision_lang5_rtl')
+$visions_class = [
+  get_theme_mod('wmf_vision_lang1_class'),
+  get_theme_mod('wmf_vision_lang2_class'),
+  get_theme_mod('wmf_vision_lang3_class'),
+  get_theme_mod('wmf_vision_lang4_class'),
+  get_theme_mod('wmf_vision_lang5_class')
+];
+
+$visions_langcode = [
+  get_theme_mod('wmf_vision_lang1_langcode'),
+  get_theme_mod('wmf_vision_lang2_langcode'),
+  get_theme_mod('wmf_vision_lang3_langcode'),
+  get_theme_mod('wmf_vision_lang4_langcode'),
+  get_theme_mod('wmf_vision_lang5_langcode')
 ];
 
 if (empty($visions)) {
   $visions[] = '<span>Imagine a world</span> in which every single human being can freely share in the sum of all knowledge.';
-  $visions_rtl[] = '';
+  $visions_class[] = '';
+  $visions_langcode[] = 'en-US';
 }
 
 $is_visible = 'is_visible';
-foreach( array_combine($visions, $visions_rtl) as $vision => $vision_rtl ) {
-  echo '<h1 class="vision '. esc_attr($is_visible), esc_attr($vision_rtl) .'">' . esc_html($vision) . '</h1>';
+
+foreach ($visions as $id => $vision) {
+
+  $vision_output[$vision] = [
+    'text' => $visions[$id],
+    'rssclass' => $visions_class[$id],
+    'langcode' => $visions_langcode[$id],
+  ];
+    
+  echo '<h1 lang="'. esc_attr($vision_output[$vision][langcode]) .'" class="vision '. esc_attr($is_visible), esc_attr($vision_output[$vision][rssclass]) .'">' . esc_html($vision_output[$vision][text]) . '</h1>';
   $is_visible = '';
 }
