@@ -17,11 +17,11 @@ while ( have_posts() ) :
 	?>
 
 	<?php
-	$team_name       = '';
-	$parent_name     = '';
-	$parent_link     = '';
 	$role            = get_the_terms( get_the_ID(), 'role' );
 	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro' ) );
+	$team_name       = '';
+	$parent_name     = $role[0]->name;
+	$parent_link     = get_term_link( $role[0] );
 
 	if ( ! empty( $role ) && ! is_wp_error( $role ) ) {
 		$team_name = $role[0]->name;
