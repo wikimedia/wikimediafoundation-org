@@ -38,12 +38,12 @@ if (empty($visions)) {
 
 $is_visible = 'is_visible';
 
-foreach ($visions as $id => $vision) {
+foreach ($visions as $key => $vision) {
 
   $vision_output[$vision] = [
-    'text' => $visions[$id],
-    'rssclass' => $visions_class[$id],
-    'langcode' => $visions_langcode[$id],
+    'text' => $visions[$key],
+    'rssclass' => $visions_class[$key],
+    'langcode' => $visions_langcode[$key],
   ];
     
   echo '<h1 lang="'. esc_attr($vision_output[$vision][langcode]) .'" class="vision '. esc_attr($is_visible) .' '. esc_attr($vision_output[$vision][rssclass]) .'">' . esc_html($vision_output[$vision][text]) . '</h1>';
