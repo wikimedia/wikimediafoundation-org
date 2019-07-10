@@ -39,7 +39,7 @@ $fact_width = 3 === count( $template_args['facts'] ) ? 'w-32p' : 'w-48p';
 			<?php
 
 			$template_args = array(
-			'message'  => sprintf( '%1$s %2$s', str_replace('+', '%2B', $template_args['heading']), str_replace('+', '%2B', $template_args['content']) ),
+				'message'  => sprintf( '%1$s %2$s', str_replace('+', '%2B', $fact['heading']), str_replace('+', '%2B', $fact['content']) ),
 				'services' => array( 'twitter' ),
 				'title'    => $wmf_tweet_this,
 			);
