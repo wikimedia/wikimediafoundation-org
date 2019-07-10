@@ -1,0 +1,74 @@
+@mixin form-styling {
+  border: 1px solid $color-ltgray;
+  border-radius: 0;
+  padding: rem(10);
+  background: none;
+}
+
+
+
+// Form elements
+input, textarea {
+  display: block;
+  width: 100%;
+  @include form-styling;
+
+  &:focus {
+    @include focus-outline(dotted, currentColor);
+  }
+}
+
+.select-wrapper {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 35px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
+    pointer-events: none;
+    fill: $color-gray;
+  }
+}
+
+select {
+  display: block;
+  width: 100%;
+  @include form-styling;
+}
+
+.search-input,
+.search-btn {
+  @include form-styling;
+  display: inline-block;
+}
+.search-input {
+  position: relative;
+  background: url('assets/dist/fonts/raw-icons/icon-search-grey.svg') 10px 10px no-repeat;
+  padding-left: 45px;
+  width: 80%;
+}
+
+
+.checkbox-row {
+  margin-bottom: 10px;
+  input, label {
+    display:inline-block;
+    vertical-align: middle;
+    width: auto;
+  }
+  input[type="checkbox"] {
+    @include form-styling;
+    appearance: inherit;
+    margin-right: 10px;
+  }
+
+  input[type=checkbox]:checked {
+    background: $color-turquoise;
+  }
+}

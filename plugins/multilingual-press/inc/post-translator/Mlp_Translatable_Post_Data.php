@@ -69,14 +69,6 @@ class Mlp_Translatable_Post_Data implements Mlp_Translatable_Post_Data_Interface
 		}
 
 		$this->source_site_id = get_current_blog_id();
-
-//        global $wpdb;
-//        $select = 'select * from wp_multilingual_linked';
-//        $query = $wpdb->get_results($select);
-//        foreach ($query as $q) {
-//            echo "{$q->ml_id} {$q->ml_source_blogid} {$q->ml_source_elementid} {$q->ml_blogid} {$q->ml_elementid} {$q->ml_type}" . "<br>";
-//        }
-//        exit;
 	}
 
 	/**

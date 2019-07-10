@@ -1,0 +1,276 @@
+.search-overlay {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba($color-periwinkle,0.95);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3000;
+}
+
+.search-container {
+  width: 550px;
+  margin: 140px auto;
+  display: block;
+
+  &.no-margin {
+    margin-top: 50px;
+  }
+
+  @media (max-width: $medium-bp) {
+    width: 300px;
+  }
+
+
+  form {
+    width: 100%;
+    display: flex;
+  }
+
+  input {
+    background: #fff;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+
+    &.search-input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-left: 0.625rem;
+      margin: 0
+    }
+  }
+
+  button.btn.btn-blue {
+    padding: 0;
+    border-radius: 7px;
+    height: 40px;
+    width: 46px;
+    margin-top: 5px;
+    margin-left: -48px;
+
+    @media (max-width: $medium-bp) {
+      margin-left: -52px;
+    }
+  }
+
+  button.btn.btn-blue.search-btn {
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0.625rem 1rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    text-transform: none;
+  }
+
+  .search-close-esc {
+    opacity: 0.5;
+    margin-left: 10px;
+    font-variant: small-caps;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+
+    img {
+      width: 23px;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: $medium-bp) {
+      display: none;
+    }
+  }
+
+  .search-close-mobile {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+    opacity: 0.5;
+
+    @media (max-width: $medium-bp) {
+      display: block;
+    }
+  }
+}
+
+.search-cta-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// When search is open.
+.nav-container.search-open {
+
+  .search-toggle {
+    z-index: 0;
+  }
+  .search-bar-container {
+    z-index: 3000;
+    @media (min-width: 1024px) {
+      height: 43px;
+      top: 25px;
+      right: 160px;
+      width: 60%;
+    }
+
+    @keyframes expandInput {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 60%;
+      }
+    }
+
+    input {
+      width: 100%;
+      opacity: 1;
+
+
+      &::-webkit-input-placeholder {
+        color: $color-blue;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $color-blue;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $color-blue;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $color-blue;
+      }
+    }
+
+    .i {
+      display: block;
+      z-index: 9;
+    }
+
+    button {
+      border: none;
+
+      @media (max-width: $medium-landscape) {
+        padding: 0.7rem 1rem;
+      }
+    }
+  }
+}
+
+.search-container {
+  @media (min-width: 1024px) {
+    position: relative;
+  }
+}
+
+.search-bar-container {
+  width: 125px;
+  transition: width 0.4s ease-in-out;
+  display: none;
+  .search-submit {
+    opacity: 0;
+  }
+
+  &.is-open {
+    .search-submit {
+      opacity: 1;
+    }
+  }
+}
+
+.search-toggle {
+  @include buttonNoStyles();
+  display: flex;
+  position: relative;
+  z-index: 99;
+  color: $color-black;
+  align-items: center;
+  @include padding(4, 3, 4, 3);
+  margin-left: 1rem;
+  transition: 0.4s all;
+  &:hover {
+    background: $color-periwinkle;
+  }
+
+  &:active {
+    background-color: #ccc2fe;
+  }
+
+  @media (max-width: $medium-landscape) {
+    display: none;
+  }
+}
+
+.search-bar-container {
+  position: absolute;
+   @media (max-width: 1023px) {
+    top: 90px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: none;
+    @include font-size(32, 24);
+
+    @media (min-width: 1024px) {
+      top: 8px;
+    }
+  }
+
+  form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  input {
+    background: $color-white;
+    color: $color-blue;
+    border: none;
+    opacity: 0;
+    width: 0px;
+    padding-left: 3rem;
+  }
+
+  button {
+    @include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+
+  }
+}
+
+.search-label {
+  color: $color-blue;
+  display: none;
+  transition: 0.3s all;
+
+  &:hover {
+    color: $color-turquoise;
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  .i {
+    fill: $color-light-turquoise;
+  }
+}
+
+.search-toggle {
+  color: $color-blue;
+}

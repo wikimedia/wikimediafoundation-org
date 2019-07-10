@@ -1,0 +1,63 @@
+.hero-image {
+	width: 100%;
+	min-height: 500px;
+	background-color: $gray-700;
+	background-repeat: no-repeat;
+	background-position: center 0;
+	background-size: cover;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	&:before {
+		content: "";
+		width: 100%;
+		background-color: rgba($black, 0.5);
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+
+	@include media-breakpoint-up(lg) {
+		background-attachment: fixed;
+	}
+}
+
+.over-mask {
+	position: relative;
+	z-index: 2;
+}
+
+.hero-image-text {
+	font-weight: 700;
+	max-width: 700px;
+}
+
+.bg-half-image {
+	background-repeat: no-repeat;
+	background-size: 100%;
+
+	@include media-breakpoint-up(md) {
+		background-size: 50%;
+	}
+}
+
+.bg-fixed {
+	background-attachment: scroll;
+
+	@include media-breakpoint-up(md) {
+		background-attachment: fixed;
+	}
+}
+
+.bg-right {
+	background-position: top center;
+
+	@include media-breakpoint-up(md) {
+		background-position: right;
+	}
+}

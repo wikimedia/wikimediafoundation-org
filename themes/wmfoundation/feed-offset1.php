@@ -10,6 +10,13 @@ header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_opt
 
 echo '<?xml version="1.0" encoding="'.esc_attr(get_option('blog_charset')).'"?'.'>';
 
+function wpsites_exclude_latest_post( $query ) {
+if ( $query->is_main_query() && $query->is_feed( 'offset1' )) {
+    $query->set( 'offset', 1 );
+    }
+}
+add_action( 'pre_get_posts', 'wpsites_exclude_latest_post', 1 );
+
 /**
  * Fires between the <xml> and <rss> tags in a feed.
  *
@@ -75,7 +82,6 @@ do_action( 'rss_tag_pre', 'rss2' );
 	 * @since 2.0.0
 	 */
 	do_action( 'rss2_head');
-	query_posts('offset=1');
 	while( have_posts()) : the_post();
 	?>
 	<item>

@@ -257,10 +257,10 @@ class Mlp_Duplicate_Blogs {
 	 * @return int|false Number of rows affected/selected or false on error
 	 */
 	private function insert_post_relations( $source_blog_id, $target_blog_id ) {
-//
-//		if ( $this->has_related_blogs( $source_blog_id ) ) {
-//			return $this->copy_post_relationships( $source_blog_id, $target_blog_id );
-//		}
+
+		if ( $this->has_related_blogs( $source_blog_id ) ) {
+			return $this->copy_post_relationships( $source_blog_id, $target_blog_id );
+		}
 
 		return $this->create_post_relationships( $source_blog_id, $target_blog_id );
 	}
