@@ -241,11 +241,6 @@ class Header extends Base {
 		);
 
 		$control_id = 'wmf_vision_lang1_rtl';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( '', 'shiro' ),
-			)
-		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'       => __( 'CSS class', 'shiro' ),
@@ -269,11 +264,6 @@ class Header extends Base {
 		);
 
 		$control_id = 'wmf_vision_lang2_rtl';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( '', 'shiro' ),
-			)
-		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'       => __( 'CSS class', 'shiro' ),
@@ -297,11 +287,6 @@ class Header extends Base {
 		);
 
 		$control_id = 'wmf_vision_lang3_rtl';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( '', 'shiro' ),
-			)
-		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'       => __( 'CSS class', 'shiro' ),
@@ -325,11 +310,6 @@ class Header extends Base {
 		);
 
 		$control_id = 'wmf_vision_lang4_rtl';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( '', 'shiro' ),
-			)
-		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'       => __( 'CSS class', 'shiro' ),
@@ -353,11 +333,6 @@ class Header extends Base {
 		);
 
 		$control_id = 'wmf_vision_lang5_rtl';
-		$this->customize->add_setting(
-			$control_id, array(
-				'default' => __( '', 'shiro' ),
-			)
-		);
 		$this->customize->add_control(
 			$control_id, array(
 				'label'       => __( 'CSS class', 'shiro' ),
