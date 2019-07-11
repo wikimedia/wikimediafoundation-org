@@ -22,3 +22,12 @@ body {
 .translation-bar ul {
 	padding-right: 0;
 }
+
+.rtl-true {		
+    direction: rtl;		
+    text-align: right		
+}		
+.ltr-true {		
+    direction: ltr;		
+    text-align: left		
+}
