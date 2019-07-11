@@ -18,7 +18,7 @@ while ( have_posts() ) {
 			'h4_link'   => get_the_permalink( $parent_page ),
 			'h4_title'  => get_the_title( $parent_page ),
 			'h1_title'  => get_the_title(),
-			'page_meta' => sprintf( '<span>%s</span><time>%s</time>', wmf_byline(), get_the_date() ),
+			'page_meta' => sprintf( '<span>%s</span><span class="separator">&bull;</span><time>%s</time>', wmf_byline(), get_the_date() ),
 		)
 	);
 
