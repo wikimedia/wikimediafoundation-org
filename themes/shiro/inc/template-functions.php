@@ -384,8 +384,6 @@ function wmf_get_recent_author_posts( $author_id ) {
 					'post_type'      => 'post',
 					'ignore_sticky'  => true,
 					'author_name'    => $post->post_name,
-                    'orderby'        => 'date',
-                    'order'          => 'DESC',
 				)
 			); // WPCS: Slow query ok.
 
