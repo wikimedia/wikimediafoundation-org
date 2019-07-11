@@ -38,7 +38,7 @@ $image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'large' ) :
 		<?php
 
 		$template_args = array(
-			'message'  => sprintf( '%1$s - %2$s', $template_args['heading'], $template_args['content'] ),
+			'message'  => sprintf( '%1$s %2$s', str_replace(['%', '+'], ['%25', '%2B'], $template_args['heading']), str_replace(['%', '+'], ['%25', '%2B'], $template_args['content']) ),
 			'services' => array( 'twitter' ),
 			'title'    => '',
 		);

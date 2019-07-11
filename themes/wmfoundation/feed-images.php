@@ -29,7 +29,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<?php do_action('rss2_ns'); ?>
 >
 <channel>
-	<title><?php wp_title_rss(); ?></title>
+	<title><?php bloginfo_rss('name'); ?> - <?php wp_title_rss(); ?> - MailChimp Feed</title>
 	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
 	<link><?php bloginfo_rss('url') ?></link>
 	<description><?php bloginfo_rss("description") ?></description>
