@@ -37,7 +37,6 @@ gulp.task( 'sass', gulp.series(function() {
 	return gulp.src( paths.sassSrc )
 			   .pipe( sourcemaps.init() )
 			   .pipe( sass.sync( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
-			   .pipe( autoprefixer( { browsers: [ '> 5%', 'Last 2 versions', 'IE 10' ] } ) )
 			   .pipe( sourcemaps.write( 'map', {
 					includeContent: false,
 					sourceRoot: './'
@@ -94,8 +93,8 @@ gulp.task( 'pot', gulp.series(function() {
 } ) );
 
 gulp.task( 'watch', gulp.series(function() {
-	gulp.watch( paths.sassFiles, ['styles'] );
-	gulp.watch( paths.jsFiles, ['scripts'] );
+	gulp.watch( gulp.series(paths.sassFiles, ['styles'] ) );
+	gulp.watch( gulp.series(paths.jsFiles, ['scripts'] ) );
 } ) );
 
 
