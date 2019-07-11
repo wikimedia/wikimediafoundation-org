@@ -21,7 +21,7 @@ $has_caption     = ! empty( $caption ) || ! empty( $credit );
 ?>
 
 <?php if ( is_singular( 'post' ) || is_singular( 'profile' ) ) : ?>
-<div class="article-img article-img-main">
+<div class="article-img article-img-main mw-980">
 <?php endif; ?>
 
 <div class="<?php echo esc_attr( $container_class ); ?>">
