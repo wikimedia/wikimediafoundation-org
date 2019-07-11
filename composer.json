@@ -1,5 +1,5 @@
 {
-  "name": "shiro",
+  "name": "shiro/wikimediafoundation",
   "description": "Theme and plugins for Wikimedia Foundation Shiro theme",
   "keywords": [],
   "type": "wordpress-plugin",
@@ -7,7 +7,7 @@
   "homepage": "https://github.com/wpcomvip/wikimediafoundation-org",
   "authors": [
     {
-      "name": "Wikimedia Foundation Design",
+      "name": "WikimediaFoundationDesign",
       "homepage": "http://design.wikimedia.org",
       "role": "Developer"
     }

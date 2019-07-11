@@ -33,7 +33,7 @@ var svgConfig = {
 	}
 }
 
-gulp.task( 'sass', function() {
+gulp.task( 'sass', gulp.series(function() {
 	return gulp.src( paths.sassSrc )
 			   .pipe( sourcemaps.init() )
 			   .pipe( sass.sync( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
@@ -43,38 +43,38 @@ gulp.task( 'sass', function() {
 					sourceRoot: './'
 			   }))
 			   .pipe( gulp.dest( './' ) );
-} );
+} ) );
 
-gulp.task( 'rtl', function () {
+gulp.task( 'rtl', gulp.series(function () {
 	return gulp.src( 'style.css' )
 		.pipe( rtlcss() )
 		.pipe( footer( 'body{direction:rtl}' ) )
 		.pipe( rename( 'rtl.css' ) )
 		.pipe( gulp.dest( './' ) );
-} );
+} ) );
 
-gulp.task( 'svg', function() {
+gulp.task( 'svg', gulp.series(function() {
 	return gulp.src( paths.svgFiles )
 			   .pipe( svgsprite( svgConfig ) )
 			   .pipe( gulp.dest( 'assets/dist') );
-} );
+} ) );
 
-gulp.task( 'concat', function() {
+gulp.task( 'concat', gulp.series(function() {
 	return gulp.src( paths.jsFiles )
 			   .pipe( concat( 'scripts.min.js' ) )
 			   .pipe( sourcemaps.init() )
 			   .pipe( uglify() )
 			   .pipe( sourcemaps.write( 'maps' ) )
 			   .pipe( gulp.dest( 'assets/dist' ) )
-} );
+} ) );
 
-gulp.task( 'jslint', function() {
+gulp.task( 'jslint', gulp.series(function() {
 	return gulp.src( paths.jsLintFiles )
 			   .pipe( eslint() )
 			   .pipe( eslint.format() )
-} );
+} ) );
 
-gulp.task( 'pot', function() {
+gulp.task( 'pot', gulp.series(function() {
 	if ( typeof themeConfig === 'undefined' ) {
 		return;
 	}
@@ -91,18 +91,18 @@ gulp.task( 'pot', function() {
 	return gulp.src( paths.phpFiles )
 			   .pipe( wppot( { domain: text_domain } ) )
 			   .pipe( gulp.dest( 'languages/' + text_domain + '.pot' ) );
-} );
+} ) );
 
-gulp.task( 'watch', function() {
+gulp.task( 'watch', gulp.series(function() {
 	gulp.watch( paths.sassFiles, ['styles'] );
 	gulp.watch( paths.jsFiles, ['scripts'] );
-} );
+} ) );
 
 
 
 
-gulp.task( 'styles', [ 'sass', 'rtl' ] );
-gulp.task( 'scripts', [ 'jslint', 'concat' ] );
-gulp.task( 'lint', [ 'jslint' ] );
-gulp.task( 'build', [ 'svg', 'styles', 'scripts' ] );
-gulp.task( 'default', [ 'build', 'watch' ] );
+gulp.task( 'styles', gulp.series( [ 'sass', 'rtl' ] ) );
+gulp.task( 'scripts', gulp.series( [ 'jslint', 'concat' ] ) );
+gulp.task( 'lint', gulp.series( [ 'jslint' ] ) );
+gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
+gulp.task( 'default', gulp.series( [ 'build', 'watch' ] ) );
