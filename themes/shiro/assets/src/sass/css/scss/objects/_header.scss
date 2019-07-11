@@ -194,7 +194,6 @@ $header-bp-mw: 1049px;
 
 				h2 {
 					border-bottom: 3px solid $wmui-color-base0;
-					text-transform: lowercase;
 					@include font-size(38, 32);
 					font-weight: 500;
 				}
@@ -314,7 +313,7 @@ $header-bp-mw: 1049px;
 		}
 
 		a.back-arrow-link::before {
-			content: '← ';
+			content: '← ' #{"/*rtl: '→ '*/"};
 		}
 
 		&.h1 {
@@ -483,7 +482,6 @@ $header-bp-mw: 1049px;
 	border-bottom: 3px solid $wmui-color-base0;
 
 	h1 {
-		text-transform: lowercase;
 		font-weight: 500;
 		margin: 0;
 	}
