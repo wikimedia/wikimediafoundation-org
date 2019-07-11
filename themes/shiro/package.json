@@ -37,7 +37,15 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "gulp-footer": "^2.0.1"
+    "composer": "^4.1.0",
+    "graceful-fs": "^4.2.0",
+    "gulp-footer": "^2.0.1",
+    "jquery": "^3.4.1",
+    "lodash": "^4.17.14",
+    "minimatch": "^3.0.4",
+    "popper.js": "^1.15.0",
+    "sass": "^1.22.3",
+    "stylelint": "^9.10.1"
   },
   "themeConfig": {
     "rename": {
