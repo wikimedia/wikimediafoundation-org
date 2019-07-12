@@ -1,20 +1,20 @@
 {
-  "name": "wmfoundation",
-  "description": "Theme and plugins for WikiMedia Foundation project",
+  "name": "shiro/wikimediafoundation",
+  "description": "Theme and plugins for Wikimedia Foundation Shiro theme",
   "keywords": [],
   "type": "wordpress-plugin",
   "license": "GPL-2.0+",
-  "homepage": "https://github.com/reaktivstudios/wmfoundation",
+  "homepage": "https://github.com/wpcomvip/wikimediafoundation-org",
   "authors": [
     {
-      "name": "reaktivstudios",
-      "homepage": "http://reaktivstudios.com",
+      "name": "Wikimedia Foundation Design",
+      "homepage": "http://design.wikimedia.org",
       "role": "Developer"
     }
   ],
   "support": {
-    "issues": "https://github.com/reaktivstudios/wmfoundation/issues",
-    "source": "https://github.com/reaktivstudios/wmfoundation"
+    "issues": "https://github.com/wpcomvip/wikimediafoundation-org/issues",
+    "source": "https://github.com/wpcomvip/wikimediafoundation-org"
   },
   "config": {
     "sort-order": true
@@ -27,10 +27,10 @@
     "roave/security-advisories": "dev-master"
   },
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
     "squizlabs/php_codesniffer": "^3.3",
     "wp-coding-standards/wpcs": "^1.0",
-    "automattic/vipwpcs": "^0.3.0",
+    "automattic/vipwpcs": "^1.0",
     "phpcompatibility/phpcompatibility-wp": "^1.0"
   },
   "scripts": {
