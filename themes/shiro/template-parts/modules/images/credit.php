@@ -25,23 +25,23 @@ $license     = ! empty( $credit_info['license'] ) ? $credit_info['license'] : ''
 $url         = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
 if ( is_int(stripos($license,'Public domain') ) ) {
 $license_url = 'https://en.wikipedia.org/wiki/Public_domain';
-} elseif ( is_int(stripos($license,'GFDL') ) & is_int(stripos($license,'1.2') )  ) {
+} elseif ( is_int(stripos($license,'GFDL') ) && is_int(stripos($license,'1.2') )  ) {
     $license_url = 'https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License,_version_1.2';
 } elseif ( is_int(stripos($license,'CC0') ) ) {
     $license_url = 'https://creativecommons.org/publicdomain/zero/1.0/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'SA') ) & is_int(stripos($license,'4.0') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && is_int(stripos($license,'SA') ) && is_int(stripos($license,'4.0') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by-sa/4.0/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'SA') ) & is_int(stripos($license,'3.0') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && is_int(stripos($license,'SA') ) & is_int(stripos($license,'3.0') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by-sa/3.0/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'SA') ) & is_int(stripos($license,'2.0') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && is_int(stripos($license,'SA') ) & is_int(stripos($license,'2.0') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by-sa/2.0/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'4.0') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && ! is_int(stripos($license,'SA') ) && is_int(stripos($license,'4.0') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by/4.0/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'3.0') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && ! is_int(stripos($license,'SA') ) && is_int(stripos($license,'3.0') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by/3.0/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'2.5') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && ! is_int(stripos($license,'SA') ) && is_int(stripos($license,'2.5') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by/2.5/';
-} elseif ( is_int(stripos($license,'CC') ) & is_int(stripos($license,'BY') ) & is_int(stripos($license,'2.0') )  ) {
+} elseif ( is_int(stripos($license,'CC') ) && is_int(stripos($license,'BY') ) && ! is_int(stripos($license,'SA') ) && is_int(stripos($license,'2.0') )  ) {
     $license_url = 'https://creativecommons.org/licenses/by/2.0/';
 } else {
 $license_url = ! empty( $credit_info['license_url'] ) ? $credit_info['license_url'] : '';
