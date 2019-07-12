@@ -328,7 +328,8 @@ function wmf_get_related_posts( $post_id ) {
 	if ( empty( $post_list ) ) {
 		$posts_query = new WP_Query(
 			array(
-				'posts_per_page' => 4,
+				'posts_per_page' => 2,
+                'orderby'        => 'date',
 				'no_found_rows'  => true,
 				'post_type'      => 'post',
 				'ignore_sticky'  => true,
