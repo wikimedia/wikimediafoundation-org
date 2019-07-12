@@ -379,7 +379,8 @@ function wmf_get_recent_author_posts( $author_id ) {
 		if ( ! empty( $post ) ) {
 			$posts_query = new WP_Query(
 				array(
-					'posts_per_page' => 3,
+                    'orderby'        => 'date',
+					'posts_per_page' => 2,
 					'no_found_rows'  => true,
 					'post_type'      => 'post',
 					'ignore_sticky'  => true,
