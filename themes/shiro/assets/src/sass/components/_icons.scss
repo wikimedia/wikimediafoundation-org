@@ -128,8 +128,16 @@ a.teal {
 		vertical-align: bottom;
 	}
 
+	.credit-desc a {
+		color: $color-blue;
+	}
+
+	.credit-desc:hover a {
+        color: $color-dark-blue;
+	}
+
 	.credit-desc:hover .icon-image {
-		fill: $color-blue;
+        fill: $color-dark-blue;
 	}
 }
 
