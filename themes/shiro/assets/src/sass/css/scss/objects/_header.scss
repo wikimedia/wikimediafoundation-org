@@ -313,7 +313,7 @@ $header-bp-mw: 1049px;
 		}
 
 		a.back-arrow-link::before {
-			content: '← ' #{"/*rtl: '→ '*/"};
+			content: '← ' #{"/*rtl:'→ '*/;"};
 		}
 
 		&.h1 {
