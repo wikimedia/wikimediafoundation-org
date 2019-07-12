@@ -35,7 +35,7 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 
 		<?php if ( ! empty( $facebook ) ) : ?>
 		<li>
-			<a href="<?php echo esc_url( $facebook ); ?>">
+			<a href="<?php echo esc_url( $facebook ); ?>" target="_blank">
 				<?php wmf_show_icon( 'social-facebook' ); ?>
 				<?php echo esc_html( $facebook_label ); ?>
 			</a>
@@ -43,7 +43,7 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 		<?php endif; ?>
 		<?php if ( ! empty( $twitter ) ) : ?>
 		<li class="twitter-container">
-			<a href="<?php echo esc_url( $twitter ); ?>">
+			<a href="<?php echo esc_url( $twitter ); ?>" target="_blank">
 				<?php wmf_show_icon( 'social-twitter' ); ?>
 				<?php echo esc_html( $twitter_id ); ?>
 			</a>
@@ -51,7 +51,7 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 		<?php endif; ?>
 		<?php if ( ! empty( $instagram ) ) : ?>
 		<li>
-			<a href="<?php echo esc_url( $instagram ); ?>">
+			<a href="<?php echo esc_url( $instagram ); ?>" target="_blank">
 				<?php wmf_show_icon( 'social-instagram' ); ?>
 				<?php echo esc_html( $instagram_label ); ?>
 			</a>

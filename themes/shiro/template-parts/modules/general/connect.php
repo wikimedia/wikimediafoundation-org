@@ -41,8 +41,11 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 <div class="connect-container white-bg mod-margin-bottom">
 	<div class="mw-980">
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
-			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['pre_heading'] ); ?> — <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span></h3>
-		<?php endif; ?>
+			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['pre_heading'] ); ?>
+				<?php if ( ! empty( $template_args['rand_translation_title'] ) ) : ?>
+				— <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span>
+		        <?php endif; ?></h3>
+        <?php endif; ?>
 		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 			<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
 		<?php endif; ?>
