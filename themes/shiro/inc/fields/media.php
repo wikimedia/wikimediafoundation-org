@@ -35,7 +35,7 @@ function wmf_add_media_custom_fields( $attachment_fields, $post ) {
 	$attachment_fields['credit_license_url'] = array(
 		'value' => ! empty( $credit_info['license_url'] ) ? esc_url( $credit_info['license_url'] ) : '',
 		'label' => __( 'License URL', 'shiro' ),
-		'helps' => __( 'License URL only necessary if not using a standard site media license (CC BY (2.0, 2.5, 3.0, 4.0), CC SA, CC BY-SA (2.0, 3.0, 4.0), CC0 1.0, and GFDL-1.2)', 'shiro' ),
+		'helps' => __( 'License URL only necessary if not using a standard site media license (CC BY (2.0, 2.5, 3.0, 4.0), CC SA, CC BY-SA (2.0, 3.0, 4.0), CC0 1.0, GFDL-1.2, and Public domain)', 'shiro' ),
 	);
 
 	return $attachment_fields;
