@@ -90,6 +90,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 						</div>
 					<?php endif ?>
 					<button type="button" class="donate-btn">
+                        <img src="/wp-content/themes/shiro/assets/src/svg/lock-pink.svg" alt="" class="secure">
 						<a href="<?php echo esc_url($wmf_donate_uri); ?>">
 							<?php echo esc_html($wmf_donate_button);?>
 						</a>

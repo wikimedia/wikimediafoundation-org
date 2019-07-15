@@ -223,6 +223,12 @@
     border-color: $color-pink;
     outline: none;
   }
+
+  img.secure {
+    height: 14px;
+    margin-right: 2px;
+    margin-bottom: -1px;
+  }
 }
 
 .language-dropdown {
