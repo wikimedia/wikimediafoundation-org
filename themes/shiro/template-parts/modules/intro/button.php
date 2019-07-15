@@ -14,5 +14,11 @@ if ( empty( $template_args ) || empty( $template_args['title'] ) || empty( $temp
 ?>
 
 <a href="<?php echo esc_url( $template_args['link'] ); ?>" class="btn btn-pink search-btn">
-	<?php echo esc_html( $template_args['title'] ); ?>
+	<?php
+    if (is_page( 'support' ) ):
+        echo '<img src="/wp-content/themes/shiro/assets/src/svg/lock-white.svg" alt="" class="secure">';
+    endif;
+    
+    echo esc_html( $template_args['title'] );
+    ?>
 </a>

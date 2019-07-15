@@ -41,7 +41,7 @@ $class    = empty( $template_args['class'] ) ? $bg_class . ' cta-primary' : $tem
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
-				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></a>
+				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><span class="cta-btn-text"><?php echo esc_html( $template_args['link_text'] ); ?></span></a>
 				<?php endif; ?>
 
 			</div>

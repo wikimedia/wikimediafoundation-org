@@ -9,7 +9,7 @@ $image_id = get_theme_mod( 'wmf_support_image' );
 $image    = is_numeric( $image_id ) ? wp_get_attachment_image_url( $image_id, 'image_16x9_large' ) : '';
 
 $template_args = array(
-	'class'     => 'cta-primary img-left-content-right bg-img--pink btn-pink',
+	'class'     => 'cta-primary img-left-content-right bg-img--pink btn-pink cta-support',
 	'image'     => $image,
 	'heading'   => get_theme_mod( 'wmf_support_heading' ),
 	'content'   => get_theme_mod( 'wmf_support_content' ),

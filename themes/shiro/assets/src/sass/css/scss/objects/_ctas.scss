@@ -125,6 +125,17 @@ $highlight-width: 10px;
   }
 }
 
+.cta-support {
+
+   .cta-btn-text {
+    background-position: left;
+    background-image: url("/wp-content/themes/shiro/assets/src/svg/lock-white.svg");
+    background-repeat: no-repeat;
+    background-size: 14px;
+    padding-left: 20px;
+  }
+}
+
 .cta-news {
 
   .bg-img-container {
