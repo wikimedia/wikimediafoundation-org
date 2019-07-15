@@ -41,3 +41,4 @@ db.php
 /languages/ar.po
 /languages/continents-cities-ar.mo
 /languages/continents-cities-ar.po
+.DS_Store
