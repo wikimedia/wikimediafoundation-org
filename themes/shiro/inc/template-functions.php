@@ -412,7 +412,7 @@ function wmf_get_author_link( $author_id ) {
 
 	$author_id = absint( $author_id );
 
-	$cache_key = md5( sprintf( 'wmf_author_posts_for_%s', $author_id ) );
+	$cache_key = md5( sprintf( 'wmf_author_link_for_%s', $author_id ) );
 
 	$post_list = wp_cache_get( $cache_key );
 

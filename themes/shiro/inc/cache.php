@@ -112,6 +112,7 @@ function wmf_clear_post_cache( $post_id ) {
 
 	wp_cache_delete( 'wmf_posts_for_post_' . $post_id );
 	wp_cache_delete( md5( sprintf( 'wmf_author_posts_for_%s', $author_id ) ) );
+	wp_cache_delete( md5( sprintf( 'wmf_author_link_for_%s', $author_id ) ) );
 	wp_cache_delete( 'wmf_posts_opts' );
 }
 add_action( 'save_post_post', 'wmf_clear_post_cache' );
