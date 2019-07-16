@@ -92,16 +92,16 @@ gulp.task( 'pot', gulp.series(function() {
 			   .pipe( gulp.dest( 'languages/' + text_domain + '.pot' ) );
 } ) );
 
-gulp.task( 'watch', gulp.series(function() {
-	gulp.watch( gulp.series(paths.sassFiles, ['styles'] ) );
-	gulp.watch( gulp.series(paths.jsFiles, ['scripts'] ) );
-} ) );
-
-
-
-
 gulp.task( 'styles', gulp.series( [ 'sass', 'rtl' ] ) );
 gulp.task( 'scripts', gulp.series( [ 'jslint', 'concat' ] ) );
 gulp.task( 'lint', gulp.series( [ 'jslint' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
-gulp.task( 'default', gulp.series( [ 'build', 'watch' ] ) );
+gulp.task( 'default', gulp.series('build', (done) => {
+
+  gulp.watch( paths.sassFiles, gulp.series('styles') );
+
+  gulp.watch( paths.jsFiles, gulp.series('scripts') );
+
+  done();
+
+}));
