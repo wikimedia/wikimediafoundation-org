@@ -25,7 +25,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 <div class="w-100p mod-margin-bottom">
 	<div class="mw-980 std-mod">
 		<h3 class="h3 color-gray uppercase">
-			<?php echo esc_html( $pre_heading ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span>
+			<?php echo esc_html( $pre_heading ); ?> — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
 		</h3>
 
 		<?php if ( ! empty( $headline ) ) : ?>
