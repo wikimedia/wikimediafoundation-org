@@ -398,6 +398,32 @@ function wmf_get_recent_author_posts( $author_id ) {
 }
 
 /**
+ * Get author link for use in profiles
+ *
+ * @param int $author_id Author ID to check against.
+ * @return array List of post objects.
+ */
+function wmf_get_author_link( $author_id ) {
+	$post_list = '';
+
+	if ( empty( $author_id ) ) {
+		return $post_list;
+	}
+
+	$author_id = absint( $author_id );
+
+	$cache_key = md5( sprintf( 'wmf_author_posts_for_%s', $author_id ) );
+
+	$post_list = wp_cache_get( $cache_key );
+
+	if ( empty( $post_list ) ) {
+		$post = get_post( $author_id );
+	}
+
+	return $post->post_name;
+}
+
+/**
  * Remove the word "category" from body class since it has
  * intherited styles.
  *
