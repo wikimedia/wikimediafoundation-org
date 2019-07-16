@@ -41,8 +41,12 @@
 
 		img {
 			height: 16px;
-			margin-right: 5px;
+			margin-right: 6px;
+            margin-top: 2px;
 		}
+        &:hover {
+            text-decoration: underline;
+        }
 	}
 }
 

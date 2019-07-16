@@ -72,11 +72,17 @@ while ( have_posts() ) :
 					<span class="link-list mar-right">
 						<?php
 						$img = "";
-						if ( is_int(strpos($link['title'],'Meta') ) ) {
+						if ( is_int(strpos($link['link'],'meta.wikimedia.org') ) ) {
 							$img = "/wp-content/themes/shiro/assets/src/svg/globe.svg";
 						}
-						if ( is_int(strpos($link['title'],'mail')) ) {
+						if ( is_int(strpos($link['link'],'mailto')) ) {
 							$img = "/wp-content/themes/shiro/assets/src/svg/email.svg";
+						}
+						if ( is_int(strpos($link['link'],'wikipedia.org')) ) {
+							$img = "/wp-content/themes/shiro/assets/src/svg/individual/wikipedia.svg";
+						}
+						if ( is_int(strpos($link['link'],'/news/')) ) {
+							$img = "/wp-content/themes/shiro/assets/src/svg/individual/wikimedia-blue.svg";
 						}
 						?>
 						<p><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
