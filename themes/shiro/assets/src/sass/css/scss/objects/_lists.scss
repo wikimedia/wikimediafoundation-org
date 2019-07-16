@@ -36,13 +36,14 @@
 	}
 
 	a {
+	    @include font-size(13, 13);
 		color: $color-blue;
 		display: inline-flex;
 
 		img {
 			height: 16px;
 			margin-right: 6px;
-            margin-top: 2px;
+            margin-top: 1px;
 		}
         &:hover {
             text-decoration: underline;
