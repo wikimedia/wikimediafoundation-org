@@ -137,9 +137,6 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	$rand_key           = array_rand( $translations );
 	$target_translation = $translations[ $rand_key ];
-    if ($target_translation['site_id'] == $translations ['site_id']) {
-    	$target_translation = $translations[ $rand_key ];
-    }
 	$content_id         = $target_translation['content_id'];
 
 	switch_to_blog( $target_translation['site_id'] );
