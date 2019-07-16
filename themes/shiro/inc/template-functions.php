@@ -404,10 +404,10 @@ function wmf_get_recent_author_posts( $author_id ) {
  * @return array List of post objects.
  */
 function wmf_get_author_link( $author_id ) {
-	$post_list = '';
+	$author_link = '';
 
 	if ( empty( $author_id ) ) {
-		return $post_list;
+		return $author_link;
 	}
 
 	$author_id = absint( $author_id );
@@ -419,8 +419,10 @@ function wmf_get_author_link( $author_id ) {
 	if ( empty( $post_list ) ) {
 		$post = get_post( $author_id );
 	}
+    
+    $author_link = $post->post_name;
 
-	return $post->post_name;
+	return $author_link;
 }
 
 /**
