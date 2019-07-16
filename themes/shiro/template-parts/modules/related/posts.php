@@ -14,6 +14,8 @@ if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 $title            = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
 $translated_title = ! empty( $template_data['rand_translation_title'] ) ? $template_data['rand_translation_title'] : '';
 $description      = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
+$connected_user   = get_post_meta( get_the_ID(), 'connected_user', true );
+$authorlink       = wmf_get_author_link( $connected_user );
 
 ?>
 
@@ -31,7 +33,10 @@ $description      = ! empty( $template_data['description'] ) ? $template_data['d
 		<?php if ( ! empty( $description ) ) : ?>
 		<h2 class="h2">
 			<?php echo esc_html( $description ); ?>
-		</h2>
+            <?php if ( ! empty( $authorlink ) ) : ?>
+                <span class="authorlink"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">View all</a></span>
+            <?php endif; ?>
+        </h2>
 		<?php endif; ?>
 
 

@@ -26,9 +26,15 @@ jQuery(document).ready(function($) {
   });
 
   function toggleNav() {
-    $('#menu-header-menu').prepend(
-      $('.search-toggle').show().css('float','right')
-    );
+    if (wmfrtl.enable == '1') {
+        $('#menu-header-menu').prepend(
+            $('.search-toggle').show().css('float','left')
+        );
+    } else {
+        $('#menu-header-menu').prepend(
+            $('.search-toggle').show().css('float','right')
+        );
+    }
 
     $('.nav-links').toggleClass('open');
     $('.header-inner').toggleClass('nav-open');
@@ -36,7 +42,6 @@ jQuery(document).ready(function($) {
     $('.mobile-nav-toggle .icon-close').toggle();
     $('.mobile-nav-toggle .icon-menu').toggle();
     $('.mobile-cover').toggle();
-
 
     $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20');
     $('.language-dropdown').toggleClass('fade-20');

@@ -25,7 +25,7 @@ $project_class = '_map';
 <div class="w-100p mod-margin-bottom home-project-list-container">
 	<div class="mw-980 std-mod mod-margin-bottom">
 		<?php if ( ! empty( $title ) ) : ?>
-			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $title ); ?> — <span><?php echo esc_html( $rand_translation_title ); ?></span></h3>
+			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $title ); ?> — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span></h3>
 		<?php endif; ?>
 		<div class="flex flex-medium flex-space-between home-project-list">
 			<div class="w-32p home-project-list-item  home-project-list-item_blue">

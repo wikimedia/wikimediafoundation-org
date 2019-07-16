@@ -11,7 +11,6 @@ $defaults = array(
 	// Headings.
 	'pre_heading'                 => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'shiro' ) ),
 	'heading'                     => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'shiro' ) ),
-	'rand_translation_title'      => wmf_get_random_translation( 'wmf_connect_pre_heading' ),
 
 	// Subscribe box.
 	'subscribe_action'            => get_theme_mod( 'wmf_subscribe_action', 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56' ),
@@ -28,6 +27,8 @@ $defaults = array(
 	'contact_link_text'           => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'shiro' ) ),
 );
 
+$rand_translation_title = wmf_get_random_translation( 'wmf_connect_pre_heading' );
+
 // We don't want empty fields from the page to affect the output.
 foreach ( $defaults as $key => $default ) {
 	$template_args[ $key ] = empty( $template_args[ $key ] ) ? $default : $template_args[ $key ];
@@ -42,9 +43,9 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 	<div class="mw-980">
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
 			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['pre_heading'] ); ?>
-				<?php if ( ! empty( $template_args['rand_translation_title'] ) ) : ?>
-				— <span><?php echo esc_html( $template_args['rand_translation_title'] ); ?></span>
-		        <?php endif; ?></h3>
+				<?php if ( ! empty( $rand_translation_title['content'] ) ) : ?>
+				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
+                <?php endif; ?></h3>
         <?php endif; ?>
 		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 			<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>

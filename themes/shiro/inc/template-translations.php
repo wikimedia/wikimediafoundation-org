@@ -93,6 +93,7 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 			'selected'   => $translation->get_target_site_id() === get_current_blog_id(),
 			'site_id'    => $translation->get_target_site_id(),
 			'name'       => $translation->get_language()->get_name(),
+			'shortname'  => $translation->get_language()->get_name( 'language_short' ),
 			'uri'        => $translation->get_remote_url(),
 			'content_id' => $translation->get_target_content_id(),
 		);
@@ -144,18 +145,20 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	switch ( $args['source'] ) {
 		case 'meta':
-			$translation = get_post_meta( $content_id, $key, $args['single'] );
+			$translation['content'] = get_post_meta( $content_id, $key, $args['single'] );
 			break;
 		case 'option':
-			$translation = get_option( $key );
+			$translation['content'] = get_option( $key );
 			break;
 		case 'theme_mod':
-			$translation = get_theme_mod( $key );
+			$translation['content'] = get_theme_mod( $key );
 			break;
 		case 'cpt_label':
-			$translation = get_post_type_object( $key )->label;
+			$translation['content'] = get_post_type_object( $key )->label;
 			break;
 	}
+    
+    $translation['lang'] = $target_translation['shortname'];
 
 	restore_current_blog();
 
