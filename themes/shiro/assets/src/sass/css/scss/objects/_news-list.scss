@@ -342,3 +342,19 @@
     }
   }
 }
+
+// Author link
+.authorlink {
+    margin-top: .2em;
+    float: right;
+    color: $color-blue;
+    @include font-size(16, 14);
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    ::after {
+        content: ' →' #{"/*rtl:' ←'*/;"};
+    }
+}
