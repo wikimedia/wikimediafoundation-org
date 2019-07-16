@@ -125,7 +125,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 	);
 
 	$args         = wp_parse_args( $args, $defaults );
-	$strict       = true;
+	$strict       = false;
 	$translations = wmf_get_translations( $strict );
 
 	if ( false === $translations ) {
