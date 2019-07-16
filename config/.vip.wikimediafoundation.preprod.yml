@@ -1,14 +1,13 @@
 data_sync:
   domain_map:
-    wikimediafoundation.org: wikimediafoundation-org-preprod.go-vip.co
-    wikimediafoundation.org/master-translation: wikimediafoundation-org-preprod.go-vip.co/master-translation
-    wikimediafoundation.org/ar: wikimediafoundation-org-preprod.go-vip.co/ar
-    wikimediafoundation.org/de: wikimediafoundation-org-preprod.go-vip.co/de
-    wikimediafoundation-org.go-vip.co: wikimediafoundation-org-preprod.go-vip.co
-    m.wikimediafoundation.com: wikimediafoundation-org-preprod.go-vip.co
-    m.wikimediafoundation.org: wikimediafoundation-org-preprod.go-vip.co
-    www.wikimediafoundation.com: wikimediafoundation-org-preprod.go-vip.co
-    www.wikimediafoundation.info: wikimediafoundation-org-preprod.go-vip.co
-    www.wikimediafoundation.net: wikimediafoundation-org-preprod.go-vip.co
-    www.wikimediafoundation.org: wikimediafoundation-org-preprod.go-vip.co
-    www.wikipediazero.org: wikimediafoundation-org-preprod.go-vip.co
+    wikimediafoundation.org: wikimediafoundation-org-preprod.go-vip.net
+    wikimediafoundation.org/ar: wikimediafoundation-org-preprod.go-vip.net/ar
+    wikimediafoundation.org/de: wikimediafoundation-org-preprod.go-vip.net/de
+    wikimediafoundation-org.go-vip.co: wikimediafoundation-org-preprod.go-vip.net
+    m.wikimediafoundation.com: wikimediafoundation-org-preprod.go-vip.net
+    m.wikimediafoundation.org: wikimediafoundation-org-preprod.go-vip.net
+    www.wikimediafoundation.com: wikimediafoundation-org-preprod.go-vip.net
+    www.wikimediafoundation.info: wikimediafoundation-org-preprod.go-vip.net
+    www.wikimediafoundation.net: wikimediafoundation-org-preprod.go-vip.net
+    www.wikimediafoundation.org: wikimediafoundation-org-preprod.go-vip.net
+    www.wikipediazero.org: wikimediafoundation-org-preprod.go-vip.net
