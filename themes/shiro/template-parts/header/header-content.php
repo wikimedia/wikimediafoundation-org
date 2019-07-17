@@ -168,11 +168,6 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 		<div class="translation-bar-inner mw-980">
 			<ul class="list-inline">
 			<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
-				<?php
-				if ( false !== strpos( $wmf_translation['uri'], '/master-translation/' ) ) {
-					continue; // This site shouldn't show. It's for admin functionality only.
-				}
-				?>
 				<?php if ( 0 !== $wmf_index ) : ?>
 				<li class="divider">&middot;</li>
 				<?php endif; ?>
@@ -180,7 +175,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 					<?php if ( $wmf_translation['selected'] ) : ?>
 					<span><?php echo esc_html( $wmf_translation['name'] ); ?></span>
 					<?php else : ?>
-					<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+					<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>"><a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a></span>
 					<?php endif; ?>
 				</li>
 			<?php endforeach; ?>
