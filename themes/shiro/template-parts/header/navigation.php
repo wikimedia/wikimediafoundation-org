@@ -30,7 +30,6 @@ $wmf_translations = wmf_get_translations();
 	?>
 	<div class="search-cta-container">
 		<?php get_search_form( true ); ?>
-		<!-- <a class="nav-cta btn <?php echo esc_attr( wmf_get_header_cta_button_class() ); ?>" href="<?php echo esc_url( $wmf_donate_uri ); ?>"><?php echo esc_html( $wmf_donate_button ); ?></a> -->
 	</div>
 
 </nav>

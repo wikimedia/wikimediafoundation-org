@@ -81,7 +81,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 											<?php if ( $wmf_translation['selected'] ) : ?>
 											<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
 											<?php else : ?>
-											<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+                                            <span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>"><a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a></span>
 											<?php endif; ?>
 										</li>
 									<?php endforeach ?>
