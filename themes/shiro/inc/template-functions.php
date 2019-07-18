@@ -567,3 +567,13 @@ function wmf_rss_templates()
         );
     }
 }
+
+/**
+ * Setup offset for offset1 RSS feed.
+ */
+function wpsites_exclude_latest_post( $query ) {
+if ( $query->is_main_query() && $query->is_feed( 'offset1' )) {
+    $query->set( 'offset', '1' );
+    }
+}
+add_action( 'pre_get_posts', 'wpsites_exclude_latest_post', 1 );
