@@ -102,7 +102,7 @@ while ( have_posts() ) :
                         $authorlinkcopy = sprintf( __( 'Posts by %s', 'shiro' ), get_the_title() );
                     ?>
                     <span class="link-list mar-right">
-                    <p><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
+                    <p class="profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
 							<img src="<?php echo esc_url($authorimg); ?>" alt="">
 							<?php echo esc_html( $authorlinkcopy ); ?>
 						</a></p>
