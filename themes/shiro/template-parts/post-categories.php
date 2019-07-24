@@ -18,7 +18,7 @@ if ( empty( $post_categories ) || is_wp_error( $post_categories ) ) {
 ?>
 <div class="read-more flex flex-medium">
 	<h5 class="h5 color-black">Read More</h5>
-	<ul class="link-list inline-block">
+	<ul class="link-list bold inline-block">
 		<?php foreach ( $post_categories as $cat_id => $category ) : ?>
 			<?php
 			$term_link = get_term_link( $cat_id );
