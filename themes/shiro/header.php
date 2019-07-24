@@ -66,7 +66,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 								$lang_code = explode('/',$selected[0]['uri'])[3];
 							}
 						?>
-						<div class="language-dropdown">
+						<div class="language-dropdown" role="navigation">
 							<button aria-label="<?php echo esc_attr( $wmf_select_language_label ); ?>">
 								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
 								<img src="/wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
