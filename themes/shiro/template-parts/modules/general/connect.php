@@ -28,7 +28,7 @@ $defaults = array(
 );
 
 $rand_translation_title = wmf_get_random_translation( 'wmf_connect_pre_heading' );
-if ( wmf_get_random_translation( 'wmf_connect_pre_heading' ) == $template_args['pre_heading'] ) {
+if ( wmf_get_random_translation( 'wmf_connect_pre_heading' ) === $template_args['pre_heading'] ) {
     $rand_translation_title = '';
 }
 
