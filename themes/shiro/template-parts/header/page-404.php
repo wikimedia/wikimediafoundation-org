@@ -23,4 +23,4 @@ $sub_title = $page_header_data["h1_title"];
 </div>
 </header>
 
-<main id="content" role="main">
+<main id="content">

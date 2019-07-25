@@ -40,4 +40,4 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 </div>
 </header>
 
-<main id="content" role="main">
+<main id="content">
