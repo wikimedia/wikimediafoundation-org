@@ -189,5 +189,6 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 			</div>
 			<?php endif; ?>
 		</div>
+	</div>
 	<?php endif; ?>
 <?php endif; ?>
