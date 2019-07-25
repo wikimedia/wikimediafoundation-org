@@ -38,7 +38,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html_e( $wmf_skip2_content_label ); ?></a>
 	<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php echo esc_html_e( $wmf_skip2_navigation_label ); ?></a>
 
-	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" role="banner">
+	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
 		<div class="top-nav">
 			<div class="site-main-nav flex flex-medium flex-align-center mw-980">
 				<div class="logo-container logo-container_lg">
