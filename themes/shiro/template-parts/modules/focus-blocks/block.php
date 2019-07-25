@@ -33,9 +33,9 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 					<?php endif; ?>
 
 					<?php if ( ! empty( $template_args['content'] ) ) : ?>
-					<span class="mar-bottom">
-						<p ><?php echo esc_html( $template_args['content'] ); ?></p>
-					</span>
+					<div class="mar-bottom">
+						<p><?php echo esc_html( $template_args['content'] ); ?></p>
+					</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
