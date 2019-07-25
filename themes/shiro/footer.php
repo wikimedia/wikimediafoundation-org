@@ -208,6 +208,6 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-</div>
+
 </body>
 </html>
