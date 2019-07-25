@@ -69,6 +69,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 						<?php get_template_part( 'template-parts/header/vision'); ?>
 					</div>
 				</div>
+			</div>
 		<?php endif; ?>
 	<?php } ?>
 
