@@ -91,5 +91,4 @@ $has_image = get_the_post_thumbnail_url();
 <?php } ?>
 
 <?php if ( $has_title ) : ?>
-</div>
 <?php endif; ?>
