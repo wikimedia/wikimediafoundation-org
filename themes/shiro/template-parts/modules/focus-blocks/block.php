@@ -26,7 +26,7 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 				</div>
 				<?php endif; ?>
 
-				<span class="card-content ">
+				<div class="card-content ">
 
 					<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 					<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
@@ -42,7 +42,7 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 						<span class="arrow-link stick-to-bottom" href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></span>
 					<?php endif; ?>
 
-				</span>
+				</div>
 			</div>
 	
 </a>
