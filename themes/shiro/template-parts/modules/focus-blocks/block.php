@@ -19,7 +19,7 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 ?>
 <a href="<?php echo esc_url( $template_args['link_uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow">
 
-			<span class="card">
+			<div class="card">
 				<?php if ( ! empty( $image ) ) : ?>
 				<div class="bg-img-container">
 					<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>);"></div>
@@ -43,6 +43,6 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 					<?php endif; ?>
 
 				</span>
-			</span>
+			</div>
 	
 </a>
