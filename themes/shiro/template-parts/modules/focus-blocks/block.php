@@ -21,9 +21,9 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 
 			<span class="card">
 				<?php if ( ! empty( $image ) ) : ?>
-				<span class="bg-img-container">
+				<div class="bg-img-container">
 					<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>);"></div>
-				</span>
+				</div>
 				<?php endif; ?>
 
 				<span class="card-content ">
