@@ -12,10 +12,10 @@ if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 }
 
 $title            = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
-$translated_title = ! empty( $template_data['rand_translation_title'] ) ? $template_data['rand_translation_title'] : '';
 $description      = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 $connected_user   = get_post_meta( get_the_ID(), 'connected_user', true );
 $authorlink       = wmf_get_author_link( $connected_user );
+$rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' );
 
 ?>
 
@@ -24,9 +24,9 @@ $authorlink       = wmf_get_author_link( $connected_user );
 		<?php if ( ! empty( $title ) ) : ?>
 		<h3 class="h3 color-gray uppercase">
 			<?php echo esc_html( $title ); ?>
-			<?php if ( ! empty( $translated_title ) ) : ?>
-				— <span><?php echo esc_html( $translated_title ); ?></span>
-			<?php endif; ?>
+            <?php if ( ! empty( $rand_translation_title['content'] ) ) : ?>
+				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
+            <?php endif; ?>
 		</h3>
 		<?php endif; ?>
 

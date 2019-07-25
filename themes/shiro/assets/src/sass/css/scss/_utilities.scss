@@ -128,7 +128,7 @@ footer.bg-black {
 }
 
 .arrow-link::after {
-	content: ' →';
+    content: ' →' #{"/*rtl:'← '*/;"};
 }
 
 .btn-label-a11y {
