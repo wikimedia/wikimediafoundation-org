@@ -1,6 +1,5 @@
 .link-list {
 	@include font-size(13, 13);
-	font-weight: bold;
 
 	&.inline-block {
 
@@ -36,19 +35,28 @@
 	}
 
 	a {
-	    @include font-size(13, 13);
 		color: $color-blue;
 		display: inline-flex;
 
 		img {
 			height: 16px;
-			margin-right: 6px;
-            margin-top: 1px;
+			margin-right: 5px;
 		}
-        &:hover {
-            text-decoration: underline;
-        }
 	}
+}
+
+.profile-contacts {
+    font-size: 13px;
+    color: $color-blue;
+
+    img {
+        height: 16px;
+        margin-right: 6px;
+        margin-top: 1px;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
 }
 
 .list-inline li {
