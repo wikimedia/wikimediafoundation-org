@@ -29,6 +29,10 @@ $defaults = array(
 
 $rand_translation_title = wmf_get_random_translation( 'wmf_connect_pre_heading' );
 
+if ($rand_translation_title['content'] == $template_args['pre_heading']) {
+    $rand_translation_title = '';
+}
+    
 // We don't want empty fields from the page to affect the output.
 foreach ( $defaults as $key => $default ) {
 	$template_args[ $key ] = empty( $template_args[ $key ] ) ? $default : $template_args[ $key ];
