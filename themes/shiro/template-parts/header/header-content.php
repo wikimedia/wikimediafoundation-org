@@ -193,3 +193,6 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	</div>
 	<?php endif; ?>
 <?php endif; ?>
+
+</div>
+</header>
