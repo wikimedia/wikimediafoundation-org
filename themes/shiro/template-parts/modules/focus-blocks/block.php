@@ -39,7 +39,7 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 					<?php endif; ?>
 
 					<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
-						<div class="arrow-link stick-to-bottom" href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></div>
+						<div class="arrow-link stick-to-bottom" data-href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></div>
 					<?php endif; ?>
 
 				</div>
