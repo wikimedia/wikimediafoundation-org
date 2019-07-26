@@ -15,9 +15,8 @@ $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 	<?php wmf_get_template_part( 'template-parts/header/header-content', $page_header_data ); ?>
 
 	<?php get_template_part( 'template-parts/header/social' ); ?>
-</div>
 
 </div>
 </header>
 
-<main id="content" role="main">
+<main id="content">

@@ -19,30 +19,30 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 ?>
 <a href="<?php echo esc_url( $template_args['link_uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow">
 
-			<span class="card">
+			<div class="card">
 				<?php if ( ! empty( $image ) ) : ?>
-				<span class="bg-img-container">
+				<div class="bg-img-container">
 					<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>);"></div>
-				</span>
+				</div>
 				<?php endif; ?>
 
-				<span class="card-content ">
+				<div class="card-content ">
 
 					<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 					<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $template_args['content'] ) ) : ?>
-					<span class="mar-bottom">
-						<p ><?php echo esc_html( $template_args['content'] ); ?></p>
-					</span>
+					<div class="mar-bottom">
+						<p><?php echo esc_html( $template_args['content'] ); ?></p>
+					</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
-						<span class="arrow-link stick-to-bottom" href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></span>
+						<div class="arrow-link stick-to-bottom" data-href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><?php echo esc_html( $template_args['link_text'] ); ?></div>
 					<?php endif; ?>
 
-				</span>
-			</span>
+				</div>
+			</div>
 	
 </a>

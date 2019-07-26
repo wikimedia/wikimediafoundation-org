@@ -11,7 +11,7 @@ $h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_d
 $h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
 $title                = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1_title'] : '';
 $meta                 = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
-$allowed_tags         = [ 'span' => [ 'class' => [] ], 'time' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ],];
+$allowed_tags         = [ 'span' => [ 'class' => [] ], 'time' => [ 'datetime' => [], 'itemprop' => [] ], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ],];
 ?>
 
 <div class="header-main">
@@ -44,5 +44,4 @@ $allowed_tags         = [ 'span' => [ 'class' => [] ], 'time' => [], 'a' => [ 'h
 
 </div>
 </header>
-
-<main id="content" role="main">
+<main id="content">

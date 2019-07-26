@@ -12,13 +12,14 @@ while ( have_posts() ) {
 	the_post();
 	$intro       = get_post_meta( get_the_ID(), 'page_intro', true );
 	$parent_page = get_option( 'page_for_posts' );
+    $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ] ];
 
 	wmf_get_template_part(
 		'template-parts/header/page-single', array(
 			'h4_link'   => get_the_permalink( $parent_page ),
 			'h4_title'  => get_the_title( $parent_page ),
 			'h1_title'  => get_the_title(),
-			'page_meta' => sprintf( '<span>%s</span><span class="separator">&bull;</span><time>%s</time>', wmf_byline(), get_the_date() ),
+			'page_meta' => sprintf( '<span>%s</span><span class="separator">&bull;</span><time datetime="%s">%s</time>', wmf_byline(), get_the_date(c), get_the_date() ),
 		)
 	);
 
@@ -32,7 +33,7 @@ while ( have_posts() ) {
 
 	<?php if ( ! empty( $intro ) ) : ?>
 	<div class="article-title mw-784">
-		<h3 class="h3"><?php echo wp_kses_post( $intro ); ?></h3>
+		<h3 class="h3"><?php echo wp_kses( $intro, $allowed_tags ); ?></h3>
 	</div>
 	<?php endif; ?>
 

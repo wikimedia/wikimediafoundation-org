@@ -205,10 +205,9 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
 			<img src="./wp-content/themes/shiro/assets/src/svg/close.svg" alt="">
 		</a>
 	</div>
-</div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-
+</div>
 </body>
 </html>

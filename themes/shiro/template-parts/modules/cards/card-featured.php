@@ -16,6 +16,7 @@ $image_id   = ! empty( $card_data['image_id'] ) ? $card_data['image_id'] : '';
 $title      = ! empty( $card_data['title'] ) ? $card_data['title'] : '';
 $authors    = ! empty( $card_data['authors'] ) ? $card_data['authors'] : '';
 $date       = ! empty( $card_data['date'] ) ? $card_data['date'] : '';
+$isodate    = ! empty( $card_data['isodate'] ) ? $card_data['isodate'] : '';
 $excerpt    = ! empty( $card_data['excerpt'] ) ? $card_data['excerpt'] : '';
 $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '';
 
@@ -58,7 +59,7 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 
 			<div class="post-meta ">
 				<?php if ( ! empty( $date ) ) : ?>
-				<time>
+				<time datetime="<?php echo esc_attr( $isodate ); ?>">
 					<?php echo esc_html( $date ); ?>
 				</time>
 				<?php endif; ?>
