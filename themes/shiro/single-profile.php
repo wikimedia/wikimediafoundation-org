@@ -85,7 +85,7 @@ while ( have_posts() ) :
 							$img = "/wp-content/themes/shiro/assets/src/svg/individual/wikimedia-blue.svg";
 						}
 						?>
-						<p class="profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+						<p class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
 							<img src="<?php echo esc_url($img); ?>" alt="">
 							<?php echo esc_html( $link['title'] ); ?>
 						</a></p>
@@ -102,7 +102,7 @@ while ( have_posts() ) :
                         $authorlinkcopy = sprintf( __( 'Posts by %s', 'shiro' ), get_the_title() );
                     ?>
                     <span class="link-list mar-right">
-                    <p class="profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
+                    <p class="bold profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
 							<img src="<?php echo esc_url($authorimg); ?>" alt="">
 							<?php echo esc_html( $authorlinkcopy ); ?>
 						</a></p>
