@@ -13,5 +13,5 @@ $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Wha
 <button class="search-toggle" aria-label="<?php echo esc_html( $wmf_search_toggle ); ?>">
 	<span class="btn-label-a11y"><?php echo esc_html( $wmf_search_toggle ); ?></span>
 	<?php wmf_show_icon( 'search', 'material' ); ?>
-	<span class="search-label uppercase bold"><?php echo esc_html( $wmf_search_button ); ?></span>
+	<span class="search-label uppercase bold" aria-label="<?php echo esc_html( $wmf_search_toggle ); ?>"><?php echo esc_html( $wmf_search_button ); ?></span>
 </button>
