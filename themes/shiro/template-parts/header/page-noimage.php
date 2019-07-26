@@ -15,4 +15,7 @@ $page_header_data = wmf_get_template_data();
 <!-- <?php get_template_part( 'template-parts/header/social' ); ?> -->
 </div>
 
+</div>
+</header>
+
 <main id="content">

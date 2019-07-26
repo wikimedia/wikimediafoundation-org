@@ -16,4 +16,7 @@ $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 
 	<?php get_template_part( 'template-parts/header/social' ); ?>
 
+</div>
+</header>
+
 <main id="content">
