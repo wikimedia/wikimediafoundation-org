@@ -16,6 +16,7 @@ $image_id   = ! empty( $card_data['image_id'] ) ? $card_data['image_id'] : '';
 $title      = ! empty( $card_data['title'] ) ? $card_data['title'] : '';
 $authors    = ! empty( $card_data['authors'] ) ? $card_data['authors'] : '';
 $date       = ! empty( $card_data['date'] ) ? $card_data['date'] : '';
+$isodate    = ! empty( $card_data['isodate'] ) ? $card_data['isodate'] : '';
 $excerpt    = ! empty( $card_data['excerpt'] ) ? $card_data['excerpt'] : '';
 $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '';
 $sidebar    = ! empty( $card_data['sidebar'] ) && true === $card_data['sidebar'] ? true : false;
@@ -57,7 +58,7 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 
 			<div class="post-meta ">
 				<?php if ( ! empty( $date ) ) : ?>
-				<time>
+				<time datetime="<?php echo esc_html( $isodate ); ?>">
 					<?php echo esc_html( $date ); ?>
 				</time>
 				<?php endif; ?>
