@@ -43,6 +43,6 @@ $allowed_tags         = [ 'span' => [ 'class' => [] ], 'time' => [ 'datetime' =>
 </div>
 
 </div>
-</header>
 </div>
+</header>
 <main id="content">
