@@ -12,4 +12,4 @@
 </div>
 </header>
 
-<main id="content" role="main">
+<main id="content">

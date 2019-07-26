@@ -18,4 +18,4 @@ $page_header_data = wmf_get_template_data();
 </div>
 </header>
 
-<main id="content" role="main">
+<main id="content">
