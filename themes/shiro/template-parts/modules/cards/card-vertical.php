@@ -58,7 +58,7 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 
 			<div class="post-meta ">
 				<?php if ( ! empty( $date ) ) : ?>
-				<time datetime="<?php echo esc_html( $isodate ); ?>">
+				<time datetime="<?php echo esc_attr( $isodate ); ?>">
 					<?php echo esc_html( $date ); ?>
 				</time>
 				<?php endif; ?>
