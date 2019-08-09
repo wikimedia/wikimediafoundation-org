@@ -38,6 +38,7 @@ while ( have_posts() ) {
 
 	<?php
 	$modules = array(
+		'social',
 		'framing-copy',
 		'focus-blocks',
 		'facts',
