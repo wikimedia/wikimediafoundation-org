@@ -9,7 +9,7 @@
  * Add landing page options.
  */
 function wmf_landing_fields() {
-	$is_landing_page = wmf_using_template( 'page-landing' );
+	$is_landing_page = ( wmf_using_template( 'page-landing' ) || wmf_using_template( 'page-report-landing' ) );
 	$is_home         = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
 
 	if ( $is_landing_page ) {
