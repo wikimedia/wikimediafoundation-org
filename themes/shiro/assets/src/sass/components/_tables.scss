@@ -8,13 +8,13 @@ table.table-data {
         border-bottom: 1px #EDEDED solid;
     }
     
-    td.indent {
+    .indent {
         padding-left: 20px;
     }
-    tr.last {
+    .last {
         border-bottom: 1px #ABABAB solid;
     }
-    tr.bottom {
+    .bottom {
         border-bottom: 0px;
     }
     a {
@@ -24,6 +24,12 @@ table.table-data {
             color: $color-dark-blue;
         }
     }
+    .highlight {
+        font-weight: bold;
+    }
+    td:last-of-type {
+        text-align: right;
+    }
 }
 
 .stats-tables {
@@ -32,15 +38,15 @@ table.table-data {
 
 .table-stat {
     width:100%;
-    td.stat-intro {
+    .stat-intro {
         border-bottom: 1px $color-black solid;
         font-weight: bold;
         @include font-size(16, 14);
     }
-    td.stat-date {
+    .stat-date {
         @include font-size(13, 12);
     }
-    td.stat-text {
+    .stat-text {
         @include font-size(28, 20);
         padding-left: 10px;
         font-weight: bold;
