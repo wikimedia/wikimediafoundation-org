@@ -177,6 +177,39 @@ function wmf_get_profiles_options() {
 }
 
 /**
+ * Gets available stories and formats them for Fieldmanager
+ *
+ * @return array
+ */
+function wmf_get_stories_options() {
+	$stories = wp_cache_get( 'wmf_stories_opts' );
+
+	if ( empty( $stories ) ) {
+		$stories = array();
+
+		$args  = array(
+			'post_type'      => 'story',
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
+			'posts_per_page' => 400, // phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page
+		); // WPCS: Slow query okay.
+		$pages = new WP_Query( $args );
+
+		if ( $pages->have_posts() ) {
+			while ( $pages->have_posts() ) {
+				$pages->the_post();
+				$stories[ get_the_ID() ] = get_the_title();
+			}
+		}
+		wp_reset_postdata();
+
+		wp_cache_add( 'wmf_stories_opts', $stories );
+	}
+
+	return $stories;
+}
+
+/**
  * Gets available posts in an array suitable for fieldmanager options.
  *
  * @return array
@@ -237,7 +270,7 @@ require get_template_directory() . '/inc/fields/header.php';
 require get_template_directory() . '/inc/fields/intro.php';
 require get_template_directory() . '/inc/fields/button.php';
 require get_template_directory() . '/inc/fields/common.php';
-require get_template_directory() . '/inc/fields/home.php';
+require get_template_directory() . '/inc/fields/focus.php';
 require get_template_directory() . '/inc/fields/default.php';
 require get_template_directory() . '/inc/fields/list.php';
 require get_template_directory() . '/inc/fields/landing.php';
