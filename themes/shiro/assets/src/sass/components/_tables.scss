@@ -30,6 +30,12 @@ table.table-data {
     td:last-of-type {
         text-align: right;
     }
+    .legend-color {
+        width:16px;
+    }
+    .legend-color-text {
+        padding-left:5px;
+    }
 }
 
 .stats-tables {
