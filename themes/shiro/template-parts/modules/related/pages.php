@@ -15,6 +15,7 @@ $headline         = ! empty( $template_data['title'] ) ? $template_data['title']
 $preheading       = ! empty( $template_data['preheading'] ) ? $template_data['preheading'] : '';
 $translated_title = ! empty( $template_data['rand_translation_title'] ) ? $template_data['rand_translation_title'] : '';
 $links            = count( $template_data['links'] ) > 2 ? array_rand( array_flip( $template_data['links'] ), 3 ) : $template_data['links'];
+$rand_translation_title = wmf_get_random_translation( 'wmf_related_pages_pre_heading' );
 
 ?>
 
@@ -23,9 +24,9 @@ $links            = count( $template_data['links'] ) > 2 ? array_rand( array_fli
 		<?php if ( ! empty( $preheading ) ) : ?>
 			<h3 class="h3 color-gray">
 				<?php echo esc_html( $preheading ); ?>
-				<?php if ( ! empty( $translated_title ) ) : ?>
-				— <span><?php echo esc_html( $translated_title ); ?></span>
-				<?php endif; ?>
+                <?php if ( ! empty( $rand_translation_title['content'] ) ) : ?>
+                    — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
+                <?php endif; ?>
 			</h3>
 		<?php endif; ?>
 
