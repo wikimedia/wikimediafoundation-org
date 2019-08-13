@@ -45,7 +45,7 @@ while ( have_posts() ) :
 	<?php
 
 	$modules = array(
-		'profiles',
+		'stories',
 		'cta',
 		'related',
 		'support',

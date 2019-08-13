@@ -94,6 +94,21 @@ class Profile extends Base {
 			)
 		);
 
+        $control_id = 'wmf_stories_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => __( 'Stories', 'shiro' ),
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Label for stories', 'shiro' ),
+				'description' => __( 'This is the label used to describe the stories post type.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$control_id = 'wmf_profile_archive_button_link';
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(

@@ -266,6 +266,7 @@ require get_template_directory() . '/inc/taxonomies.php';
  * Add Custom Post Types.
  */
 require get_template_directory() . '/inc/post-types/profile.php';
+require get_template_directory() . '/inc/post-types/story.php';
 
 /**
  * Add Template Data Helper.
