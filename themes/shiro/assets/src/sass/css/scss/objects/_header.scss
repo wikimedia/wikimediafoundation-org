@@ -532,6 +532,20 @@ $header-bp-mw: 1049px;
 	}
 }
 
+.blackout_wrapper:hover>.blackout {
+    background: transparent;
+}
+
+.blackout {
+    padding: 2px;
+    color: #000000;
+    background: #000000;
+}
+
+.blackout:hover {
+    background: transparent;
+}
+
 // TODO: Fix for use beyond transparency report
 .page-id-61580 {
     .header-content {
