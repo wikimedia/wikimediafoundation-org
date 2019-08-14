@@ -531,3 +531,19 @@ $header-bp-mw: 1049px;
 		border-color: $color-pink;
 	}
 }
+
+// TODO: Fix for use beyond transparency report
+.page-id-61580 {
+    .header-content {
+        margin-top:25px;
+        
+        h1 {
+            width:91%;
+        }
+        
+        h2.h4.eyebrow {
+            margin-bottom: 3rem;
+            border-bottom: 0px;
+        }
+    }
+}
