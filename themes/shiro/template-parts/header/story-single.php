@@ -7,7 +7,9 @@
 
 $story_header_data = wmf_get_template_data();
 
-$back_to_link = ! empty( $story_header_data['back_to_link'] ) ? $story_header_data['back_to_link'] : '';
+// TODO: Fix for non-transparency report
+//$back_to_link = ! empty( $story_header_data['back_to_link'] ) ? $story_header_data['back_to_link'] : '';
+$back_to_link = '/about/transparency-report/';
 $story_name   = ! empty( $story_header_data['back_to_label'] ) ? $story_header_data['back_to_label'] : '';
 
 ?>
