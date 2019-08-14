@@ -1,15 +1,15 @@
 <?php
 /**
- * Fieldmanager Fields for focus blocks module
+ * Fieldmanager Fields for Landing page template
  *
  * @package shiro
  */
 
 /**
- * Add focus copy options.
+ * Add home page options.
  */
-function wmf_focus_fields() {
-	if ( (int) get_option( 'page_on_front' ) !== (int) wmf_get_fields_post_id() && ! wmf_using_template( 'page-report-landing' ) ) {
+function wmf_home_fields() {
+	if ( (int) get_option( 'page_on_front' ) !== (int) wmf_get_fields_post_id() ) {
 		return;
 	}
 
@@ -69,4 +69,4 @@ function wmf_focus_fields() {
 	);
 	$projects->add_meta_box( __( 'Projects', 'shiro' ), array( 'page' ) );
 }
-add_action( 'fm_post_page', 'wmf_focus_fields' );
+add_action( 'fm_post_page', 'wmf_home_fields' );
