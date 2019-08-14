@@ -36,7 +36,7 @@ function wmf_get_header_container_class() {
 	if ( ( is_single() || is_page() ) && has_post_thumbnail() ) {
 		$post_type = get_post_type();
 
-		if ( in_array( $post_type, array( 'profile', 'post' ), true ) ) {
+		if ( in_array( $post_type, array( 'profile', 'story', 'post' ), true ) ) {
 			$class .= ' minimal--short';
 		} else {
 			$template = basename( get_page_template() );
