@@ -286,4 +286,5 @@ require get_template_directory() . '/inc/fields/profiles.php';
 require get_template_directory() . '/inc/fields/projects.php';
 require get_template_directory() . '/inc/fields/related-pages.php';
 require get_template_directory() . '/inc/fields/stories.php';
+require get_template_directory() . '/inc/fields/story.php';
 require get_template_directory() . '/inc/fields/support.php';
