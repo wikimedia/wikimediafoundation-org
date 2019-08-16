@@ -17,13 +17,13 @@ while ( have_posts() ) :
 	?>
 
 	<?php
-	$role            = get_the_terms( get_the_ID(), 'type' );
-	$parent_name     = $role[0]->name;
-	$parent_link     = get_term_link( $role[0] );
+	$roleterm        = get_the_terms( get_the_ID(), 'type' );
+	$parent_name     = $roleterm[0]->name;
+	$parent_link     = get_term_link( $roleterm[0] );
 
-	if ( ! empty( $role ) && ! is_wp_error( $role ) ) {
-		$team_name = $role[0]->name;
-		$ancestors = get_ancestors( $role[0]->term_id, 'role' );
+	if ( ! empty( $roleterm ) && ! is_wp_error( $roleterm ) ) {
+		$team_name = $roleterm[0]->name;
+		$ancestors = get_ancestors( $roleterm[0]->term_id, 'role' );
 		$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
 
 		if ( $parent_id ) {

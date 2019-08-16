@@ -191,7 +191,7 @@ function wmf_get_stories_options() {
 			'post_type'      => 'story',
 			'post_status'    => 'publish',
 			'no_found_rows'  => true,
-			'posts_per_page' => 400, // phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page
+			'posts_per_page' => 100, // phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page
 		); // WPCS: Slow query okay.
 		$pages = new WP_Query( $args );
 
