@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Landing Page
+ * Template Name: Report page
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -8,7 +8,7 @@
  */
 
 get_header();
-while ( have_posts() ) {
+while ( have_posts() ) :
 	the_post();
 
 	// Page Header.
@@ -27,32 +27,34 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 	?>
+<div class="mw-980 mod-margin-bottom flex flex-medium">
+	<div class="module-mu w-32p">
+		<?php get_sidebar( 'list' ); ?>
+	</div>
 
-    <?php if ( ! has_post_thumbnail() ) : ?>
-        <div class="mw-980">
-            <div class="page-intro wysiwyg">
-                <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-            </div>
-        </div>
-    <?php endif; ?>
+	<div class="w-68p">
+		<div class="page-intro mod-margin-bottom wysiwyg">
+			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+		</div>
 
+		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+        
+		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+	</div>
+</div>
 	<?php
+
 	$modules = array(
-		'social',
-		'framing-copy',
+		'stories',
 		'cta',
-		'facts',
-		'connect',
-		'profiles',
-		'listings',
-		'featured-posts',
-		'projects',
-		'offsite-links',
+		'related',
 		'support',
+		'connect',
 	);
 
 	foreach ( $modules as $module ) {
 		get_template_part( 'template-parts/page/page', $module );
 	}
-}
+endwhile;
+
 get_footer();

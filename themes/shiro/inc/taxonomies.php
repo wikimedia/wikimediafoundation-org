@@ -56,6 +56,43 @@ function wmf_add_taxonomies() {
 	);
 	register_taxonomy( 'role', array( 'profile' ), $profile_type_args );
 
+	// Stories.
+	$story_type_labels = array(
+		'name'                       => __( 'Types', 'shiro' ),
+		'singular_name'              => _x( 'Type', 'taxonomy general name', 'shiro' ),
+		'search_items'               => __( 'Search Types', 'shiro' ),
+		'popular_items'              => __( 'Popular Types', 'shiro' ),
+		'all_items'                  => __( 'All Types', 'shiro' ),
+		'parent_item'                => __( 'Parent Type', 'shiro' ),
+		'parent_item_colon'          => __( 'Parent Type:', 'shiro' ),
+		'edit_item'                  => __( 'Edit Type', 'shiro' ),
+		'update_item'                => __( 'Update Type', 'shiro' ),
+		'view_item'                  => __( 'View Type', 'shiro' ),
+		'add_new_item'               => __( 'New Type', 'shiro' ),
+		'new_item_name'              => __( 'New Type', 'shiro' ),
+		'separate_items_with_commas' => __( 'Separate Types with commas', 'shiro' ),
+		'add_or_remove_items'        => __( 'Add or remove Types', 'shiro' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Types', 'shiro' ),
+		'not_found'                  => __( 'No Types found.', 'shiro' ),
+		'no_terms'                   => __( 'No Types', 'shiro' ),
+		'menu_name'                  => __( 'Types', 'shiro' ),
+		'items_list_navigation'      => __( 'Types list navigation', 'shiro' ),
+		'items_list'                 => __( 'Types list', 'shiro' ),
+		'most_used'                  => _x( 'Most Used', 'story-type', 'shiro' ),
+		'back_to_items'              => __( '&larr; Back to Types', 'shiro' ),
+	);
+
+	$story_type_args = wp_parse_args(
+		$default_args, array(
+			'labels'  => $story_type_labels,
+			'rewrite' => array(
+				'with_front' => false,
+				'slug'       => __( 'stories', 'shiro' ),
+			),
+		)
+	);
+	register_taxonomy( 'type', array( 'story' ), $story_type_args );
+
 	$translation_status_type_args = array(
 		'hierarchical'      => true,
 		'public'            => false,

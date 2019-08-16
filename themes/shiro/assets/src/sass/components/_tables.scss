@@ -1,0 +1,71 @@
+// adds additional table controls
+
+table.table-data {
+    @include font-size(14, 13);
+    width: 100%;
+    
+    tr {
+        border-bottom: 1px #EDEDED solid;
+    }
+    
+    .indent {
+        padding-left: 20px;
+    }
+    .last {
+        border-bottom: 1px #ABABAB solid;
+    }
+    .bottom {
+        border-bottom: 0px;
+    }
+    a {
+        color: $color-blue;
+        
+        &:hover {
+            color: $color-dark-blue;
+        }
+    }
+    .highlight {
+        font-weight: bold;
+    }
+    td:last-of-type {
+        text-align: right;
+    }
+    .legend-color {
+        width:16px;
+    }
+    .legend-color-text {
+        padding-left:5px;
+    }
+}
+
+.stats-tables {
+    width:100%;
+}
+
+.table-stat {
+    width:100%;
+    .stat-intro {
+        border-bottom: 1px $color-black solid;
+        font-weight: bold;
+        @include font-size(16, 14);
+    }
+    .stat-date {
+        @include font-size(13, 12);
+    }
+    .stat-text {
+        @include font-size(28, 20);
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: right;
+    }
+}
+
+.table-stat-right {
+    float: right;
+    width: 40%;
+}
+
+.table-stat-left {
+    float: left;
+    width: 40%;
+}

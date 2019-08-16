@@ -20,7 +20,7 @@ $has_caption     = ! empty( $caption ) || ! empty( $credit );
 
 ?>
 
-<?php if ( is_singular( 'post' ) || is_singular( 'profile' ) ) : ?>
+<?php if ( is_singular( 'post' ) || is_singular( 'profile' )  || is_singular( 'story' ) ) : ?>
 <div class="article-img article-img-main">
 <?php endif; ?>
 

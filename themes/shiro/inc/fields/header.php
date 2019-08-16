@@ -37,6 +37,7 @@ function wmf_header_fields() {
 		$subtitle = new Fieldmanager_Textfield(
 			array(
 				'name' => 'sub_title',
+                'sanitize' => "wp_kses_post",
 			)
 		);
 		$subtitle->add_meta_box( __( 'Subtitle', 'shiro' ), 'page' );

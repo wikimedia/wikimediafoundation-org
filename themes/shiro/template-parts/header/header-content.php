@@ -109,7 +109,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 								<h2 class="h2 eyebrow">
 									<?php echo esc_html( $h2_title ); ?>
 								</h2>
-								<h1><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
+								<h1><?php echo wp_kses_post( $title ); ?></h1>
 								<?php wmf_get_template_part( 'template-parts/modules/intro/button', $button ); ?>
 							</div>
 							<div class="page-intro-text module-mu w-50p" >

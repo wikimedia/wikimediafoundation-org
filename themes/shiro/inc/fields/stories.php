@@ -8,15 +8,15 @@
 /**
  * Add landing page options.
  */
-function wmf_profiles_module() {
+function wmf_stories_module() {
 	$is_front_page = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
 
-	if ( 'fm_post_page' === current_filter() && ( ! wmf_using_template( 'page-landing' ) && ! $is_front_page ) && ( ! wmf_using_template( 'page-report-page' ) ) ) {
+	if ( 'fm_post_page' === current_filter() && ( ! wmf_using_template( 'page-report-page' ) && ! $is_front_page ) ) {
 		return;
 	}
 
 	$custom_fields = array(
-		'name'     => 'profiles',
+		'name'     => 'stories',
 		'children' => array(
 			'pre_heading'  => new Fieldmanager_Textfield( __( 'Section Pre-heading', 'shiro' ) ),
 			'headline'     => new Fieldmanager_Textfield( __( 'Headline', 'shiro' ) ),
@@ -27,17 +27,17 @@ function wmf_profiles_module() {
 	);
 
 	if ( 'fm_post_page' === current_filter() || $is_front_page ) {
-		$custom_fields['children']['profiles_list'] = new Fieldmanager_Checkboxes(
+		$custom_fields['children']['stories_list'] = new Fieldmanager_Checkboxes(
 			array(
-				'label'       => __( 'List of Profiles to pull from', 'shiro' ),
-				'description' => __( 'Select as many as are applicable. 3 profiles will be selected from this list each time the page loads.', 'shiro' ),
-				'options'     => wmf_get_profiles_options(),
+				'label'       => __( 'List of Stories to pull from', 'shiro' ),
+				'description' => __( 'Select as many as are applicable. 3 stories will be selected from this list each time the page loads.', 'shiro' ),
+				'options'     => wmf_get_stories_options(),
 			)
 		);
 	}
 
 	$social = new Fieldmanager_Group( $custom_fields );
-	$social->add_meta_box( __( 'Profiles', 'shiro' ), array( 'page', 'profile' ) );
+	$social->add_meta_box( __( 'Stories', 'shiro' ), array( 'page', 'story' ) );
 }
-add_action( 'fm_post_page', 'wmf_profiles_module' );
-add_action( 'fm_post_profile', 'wmf_profiles_module' );
+add_action( 'fm_post_page', 'wmf_stories_module' );
+add_action( 'fm_post_story', 'wmf_stories_module' );

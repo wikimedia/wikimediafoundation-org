@@ -531,3 +531,33 @@ $header-bp-mw: 1049px;
 		border-color: $color-pink;
 	}
 }
+
+.blackout_wrapper:hover>.blackout {
+    background: transparent;
+}
+
+.blackout {
+    padding: 2px;
+    color: #000000;
+    background: #000000;
+}
+
+.blackout:hover {
+    background: transparent;
+}
+
+// TODO: Fix for use beyond transparency report
+.page-id-61580 {
+    .header-content {
+        margin-top:25px;
+        
+        h1 {
+            width:91%;
+        }
+        
+        h2.h4.eyebrow {
+            margin-bottom: 3rem;
+            border-bottom: 0px;
+        }
+    }
+}

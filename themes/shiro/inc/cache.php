@@ -33,6 +33,32 @@ function wmf_clear_page_cache( $post_id ) {
 add_action( 'save_post_page', 'wmf_clear_page_cache' );
 
 /**
+ * Clears the wmf_stories_opts cache when a story is
+ * created or updated.
+ *
+ * @param int $post_id The post ID.
+ */
+function wmf_clear_story_cache( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	wp_cache_delete( 'wmf_stories_opts' );
+
+	$terms = get_the_terms( $post_id, 'role' );
+
+	if ( empty( $terms ) || is_wp_error( $terms ) ) {
+		return;
+	}
+
+	wmf_clear_term_list_cache( $terms[0] );
+
+	$term_ids = wp_list_pluck( $terms, 'term_id' );
+	wp_cache_delete( md5( sprintf( 'wmf_stories_for_term_%s', $term_ids[0] ) ) );
+}
+add_action( 'save_post_story', 'wmf_clear_story_cache' );
+
+/**
  * Clears the wmf_profiles_opts cache when a profile is
  * created or updated.
  *
