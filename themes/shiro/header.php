@@ -28,17 +28,6 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
-
-<script type="text/javascript">
-  var DIGITAL_CLIMATE_STRIKE_OPTIONS = {
-
-    iframeHost: '/wp-content/themes/shiro/assets/digitalclimatestrike',
-    disableGoogleAnalytics: true, // @type {boolean}
-    showCloseButtonOnFullPageWidget: true, // @type {boolean}
-    fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
-  };
-</script>
-<script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js" async></script>
     
 </head>
 
