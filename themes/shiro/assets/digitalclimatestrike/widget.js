@@ -19,7 +19,7 @@
   var language = getLanguage();
 
   function getIframeSrc() {
-    var src = iframeHost;
+    var src = iframeHost + '/wp-content/themes/shiro/assets/digitalclimatestrike';
     src += language === 'en' ? '/index.html?' : '/index-' + language + '.html?';
 
     var urlParams = [
@@ -146,7 +146,7 @@
 
   function receiveMessage(event) {
     if (!event.data.DIGITAL_CLIMATE_STRIKE) return;
-    if (iframeHost.lastIndexOf(event.origin, 0) !== 0) return;
+    if (event.origin.lastIndexOf(iframeHost, 0) !== 0) return;
 
     switch (event.data.action) {
       case 'maximize':
