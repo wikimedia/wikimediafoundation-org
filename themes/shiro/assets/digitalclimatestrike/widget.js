@@ -19,7 +19,7 @@
   var language = getLanguage();
 
   function getIframeSrc() {
-    var src = iframeHost + '/wp-content/themes/shiro/assets/digitalclimatestrike';
+    var src = iframeHost;
     src += language === 'en' ? '/index.html?' : '/index-' + language + '.html?';
 
     var urlParams = [
