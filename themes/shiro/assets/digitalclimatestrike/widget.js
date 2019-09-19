@@ -146,6 +146,7 @@
 
   function receiveMessage(event) {
     if (!event.data.DIGITAL_CLIMATE_STRIKE) return;
+    if (event.origin.lastIndexOf(iframeHost, 0) !== 0) return;
 
     switch (event.data.action) {
       case 'maximize':
