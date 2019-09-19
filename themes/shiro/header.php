@@ -50,7 +50,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      * Defaults to null, which will obey the nagivator.language setting of the 
      * viewer's browser.
      */
-     language: null, // @type {string}
+     language: 'en', // @type {string}
      
     /**
      * Allow you to override the iFrame hostname. Defaults to https://assets.digitalclimatestrike.net  
@@ -93,7 +93,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
      * Defaults to new Date(2019, 8, 20) (September 20th, 2019)
      */
-    fullPageDisplayStartDate: new Date(2019, 8, 19), //@ type {Date object}
+    fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
   };
 </script>
 <script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js" async></script>
