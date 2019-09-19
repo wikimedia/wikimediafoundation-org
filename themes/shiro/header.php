@@ -32,7 +32,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <script type="text/javascript">
   var DIGITAL_CLIMATE_STRIKE_OPTIONS = {
 
-    iframeHost: window.location.origin + '/wp-content/themes/shiro/assets/digitalclimatestrike',
+    iframeHost: '/wp-content/themes/shiro/assets/digitalclimatestrike',
     disableGoogleAnalytics: true, // @type {boolean}
     showCloseButtonOnFullPageWidget: true, // @type {boolean}
     fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
