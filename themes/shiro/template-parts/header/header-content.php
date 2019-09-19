@@ -87,7 +87,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
     * For the full page widget, shows a close button "x" and hides the message about the site being 
     * available tomorrow. Defaults to false.
     */
-    showCloseButtonOnFullPageWidget: false, // @type {boolean}
+    showCloseButtonOnFullPageWidget: true, // @type {boolean}
     
     /**
      * The date when the sticky footer widget should start showing on your web site.
@@ -101,7 +101,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
      * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
      * Defaults to new Date(2019, 8, 20) (September 20th, 2019)
      */
-    fullPageDisplayStartDate: new Date(2019, 8, 18), //@ type {Date object}
+    fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
   };
 </script>
 <script src="/wp-content/themes/shiro/assets/dist/digital-climate-strike/widget.js" async></script>
