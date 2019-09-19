@@ -211,7 +211,15 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
 
 
 
+<script type="text/javascript">
+  var DIGITAL_CLIMATE_STRIKE_OPTIONS = {
 
+    iframeHost: '/wp-content/themes/shiro/assets/digitalclimatestrike',
+    showCloseButtonOnFullPageWidget: true, // @type {boolean}
+    fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
+  };
+</script>
+<script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js" async></script>
 </div>
 </body>
 </html>
