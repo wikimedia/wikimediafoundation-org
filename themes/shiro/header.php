@@ -55,7 +55,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
     /**
      * Allow you to override the iFrame hostname. Defaults to https://assets.digitalclimatestrike.net  
      */
-    iframeHost: '/wp-content/themes/shiro/assets/digitalclimatestrike/', // @type {string}
+    iframeHost: window.location.origin + '/wp-content/themes/shiro/assets/digitalclimatestrike/', // @type {string}
 
     /**
      * Prevents the widget iframe from loading Google Analytics. Defaults to
