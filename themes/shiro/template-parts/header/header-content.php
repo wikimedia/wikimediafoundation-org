@@ -63,7 +63,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
     /**
      * Allow you to override the iFrame hostname. Defaults to https://assets.digitalclimatestrike.net  
      */
-    iframeHost: '/wp-content/themes/shiro/assets/dist/digital-climate-strike', // @type {string}
+    iframeHost: 'https://wikimediafoundation-org-preprod.go-vip.net/wp-content/themes/shiro/assets/dist/digital-climate-strike/', // @type {string}
 
     /**
      * Prevents the widget iframe from loading Google Analytics. Defaults to
