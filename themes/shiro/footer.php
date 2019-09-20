@@ -221,10 +221,7 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
       
   };
 </script>
-
-<?php if ( ! is_page( 'privacy-policy' ) && ! is_page( 'contact' ) ) { ?>
 <script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js?a=a" async></script>
-<?php endif ?>
 
 </div>
 </body>
