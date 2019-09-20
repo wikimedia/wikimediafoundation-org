@@ -221,7 +221,7 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
       
   };
 </script>
-<script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js?a=a" async></script>
+<script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js" async></script>
 
 </div>
 </body>
