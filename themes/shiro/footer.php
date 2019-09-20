@@ -218,12 +218,13 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
     disableGoogleAnalytics: true, // @type {boolean}
     showCloseButtonOnFullPageWidget: true, // @type {boolean}
     fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
-    language: '<?php echo substr( get_bloginfo ( 'language' ), 0, 2 );?>', // @type {string}
       
   };
 </script>
 
+<?php if ( ! is_page( 'privacy-policy' ) && ! is_page( 'contact' ) ) { ?>
 <script src="/wp-content/themes/shiro/assets/digitalclimatestrike/widget.js?a=a" async></script>
+<?php endif ?>
 
 </div>
 </body>
