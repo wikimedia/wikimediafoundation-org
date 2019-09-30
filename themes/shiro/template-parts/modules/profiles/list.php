@@ -60,14 +60,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 	<div class="mw-980">
 		<?php if ( ! empty( $description ) ) : ?>
 		<div class="h3 color-gray mar-bottom_lg join-movement w-68p">
-			<?php echo wp_kses(
-				$description, array(
-					'a'  => array(
-						'href' => array(),
-						'target' => array(),
-					),
-				)
-			); ?>
+			<?php echo wp_kses_post( $description ); ?>
 			<?php if ( ! empty( $button_label ) && ! empty( $button_link ) ) : ?>
 			<p>
 				<a class="btn btn-blue" href="<?php echo esc_url( $button_link ); ?>">
