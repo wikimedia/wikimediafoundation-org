@@ -22,6 +22,14 @@
     @include font-size(18, 16);
     text-transform: none;
   }
+    a {
+    transition: 0.3s all;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-blue;
+         }
+    }   
 }
 
 .people {
