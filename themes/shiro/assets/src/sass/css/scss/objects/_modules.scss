@@ -79,7 +79,7 @@
 
 	.email-signup {
 		position: relative;
-		color: $color-gray;
+		color: $color-dark-gray;
 
 		input {
 			margin-bottom: 1rem;
@@ -98,7 +98,7 @@
 			}
 
 			@mixin placeholder() {
-				color: $color-gray;
+				color: $color-dark-gray;
 				font-weight: bold;
 				@include font-size(20, 16);
 			}
