@@ -27,12 +27,12 @@ footer {
   }
 
   .h3 {
+    color: $wmui-color-base80;
     margin-right: 1rem;
     margin-bottom: 1rem;
     padding-top: 0.5rem;
     text-transform: uppercase;
     border-top: 2px solid $wmui-color-base30;
-    color: $wmui-color-base70;
   }
 
   .about-wmf {
@@ -130,7 +130,7 @@ footer {
       display: block;
 
       a {
-        background: white;
+        background: #fff;
         border-radius: 5px;
         text-transform: uppercase;
         color: $color-blue;
@@ -149,8 +149,8 @@ footer {
   }
 
   .footer-legal {
+    color: $wmui-color-base80;
     text-align: left;
-    color: $wmui-color-base70;
 
     .list-inline {
       padding-bottom: 1rem;
