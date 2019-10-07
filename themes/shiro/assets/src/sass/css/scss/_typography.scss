@@ -20,7 +20,6 @@ h2,
 
 h3,
 .h3 {
-	font-size: rem(15);
 	@include font-size(15, 13);
 
 	&.small {
