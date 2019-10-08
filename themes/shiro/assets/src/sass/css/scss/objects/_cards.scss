@@ -24,7 +24,7 @@
   }
 
   .post-meta {
-    color: $color-gray;
+    color: $color-dark-gray;
     @include marginBottom(16, 24, $medium-bp);
     @include font-size( 13, 13 );
     font-weight: bold;
