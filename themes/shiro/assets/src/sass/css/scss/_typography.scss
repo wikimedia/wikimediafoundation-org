@@ -38,9 +38,9 @@ h4,
 
 h5,
 .h5 {
+	color: $color-dark-gray;
 	@include font-size(20, 16);
 	text-transform: uppercase;
-	color: $color-gray;
 
 	&.color-black {
 		color: #000;
@@ -48,8 +48,8 @@ h5,
 }
 
 h6 {
+	color: $color-dark-gray;
 	@include font-size(20, 16);
-	color: $color-gray;
 }
 
 p {
@@ -183,8 +183,8 @@ blockquote p:first-child {
 }
 
 .category {
+	color: $color-dark-gray;
 	text-transform: uppercase;
-	color: $color-gray;
 }
 
 article {
