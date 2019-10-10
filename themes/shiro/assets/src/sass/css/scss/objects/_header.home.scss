@@ -241,7 +241,7 @@ $header-bp-mw: 1023px;
 
         .secure {
           display: block;
-          color: #adadad;
+          color: #767676;
           text-transform: uppercase;
           font-size: 12px;
           display: flex;
@@ -384,7 +384,7 @@ $header-bp-mw: 1023px;
         }
 
         a {
-          color: $color-gray;
+          color: $color-dark-gray;
 
           &:hover {
             color: $color-blue;

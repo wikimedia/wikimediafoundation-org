@@ -305,16 +305,20 @@
       }
 
       .date {
+        color: $wmui-color-base30;
         display: block;
         text-transform: none;
         font-weight: bold;
-        color: $wmui-color-base30;
         @include font-size(14, 12);
         margin-top: 1.5rem;
         margin-bottom: 0.75rem;
       }
     }
   }
+}
+
+.bg-ltgray .related-news .card .date {
+  color: $wmui-color-base20;
 }
 
 

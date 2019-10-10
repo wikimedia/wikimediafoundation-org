@@ -320,9 +320,9 @@
 
 .nav-newer,
 .nav-older {
+  color: $color-dark-gray;
   @include font-size(20, 16);
   font-weight: bold;
-  color: $color-gray;
   transition: 0.3s all;
 
   a {
@@ -344,7 +344,7 @@
   }
 
   svg {
-    fill: $color-gray;
+    fill: $color-dark-gray;
     transition: 0.3s all;
     display: block;
 
@@ -362,8 +362,8 @@
   }
 
   .active {
+    color: $color-dark-gray;
     opacity: .5;
-    color: $color-gray;
 
     &:hover {
       opacity: 1;

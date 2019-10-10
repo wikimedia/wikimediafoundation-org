@@ -70,7 +70,10 @@ a.color-blue {
 	color: $color-ltgray;
 }
 .color-gray {
-	color: $wmui-color-base30;
+	color: $color-dark-gray; // `$wmui-color-base30` is slightly too light to `#f8f9fa` bg.
+}
+.bg-ltgray .color-gray {
+	color: $wmui-color-base20; // On `.bg-ltgray` we need to increase contrast even a bit more.
 }
 .color-black {
 	color: $color-black;
