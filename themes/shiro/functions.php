@@ -126,10 +126,9 @@ function wmf_scripts() {
 		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), '1.0' );
 	}
 
-	wp_enqueue_script( 'shiro-flickity', get_stylesheet_directory_uri() . '/assets/dist/flickity-min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-flickity', 'shiro-stickyfill', 'shiro-svg4everybody' ), '0.0.1', true );
+	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody' ), '0.0.1', true );
 
 	wp_localize_script(
 		'shiro-script', 'shiro', array(
@@ -312,4 +311,4 @@ function theme_slug_filter_wp_searchtitle( $title_parts ) {
 add_filter( 'document_title_parts', 'theme_slug_filter_wp_searchtitle' );
 
 // Rewrite URL for roles to not require /news/ prefix
-add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' ); 
+add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' );
