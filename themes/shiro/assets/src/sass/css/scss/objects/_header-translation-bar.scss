@@ -31,6 +31,19 @@ $translation-label-width: rem(180);
 		@media (max-width: 767px) {
 			margin-right: 0;
 			padding-right: 0;
+			white-space: nowrap;
+			overflow-x: auto;
+
+			&:after {
+				content: '';
+				background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #fff 80%);
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: rem(18);
+				height: rem(41);
+				pointer-events: none;
+			}
 		}
 	}
 

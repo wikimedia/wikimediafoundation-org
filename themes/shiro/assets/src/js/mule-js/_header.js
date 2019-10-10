@@ -7,24 +7,6 @@
 
 jQuery(document).ready(function($) {
 
-  // Transation bar into slider
-  $( '.translation-bar ul' ).flickity({
-      rightToLeft: wmfrtl.enable,
-      cellAlign: 'left',
-      contain: true,
-      pageDots: false,
-      prevNextButtons: false,
-      freeScroll: true
-  } );
-
-  $('.arrow-wrap').on('click', function() {
-    $('.translation-bar ul').flickity('next');
-  });
-
-  $('.back-arrow-wrap').on('click', function() {
-    $('.translation-bar ul').flickity('prev');
-  });
-
   function toggleNav() {
     if (wmfrtl.enable == '1') {
         $('#menu-header-menu').prepend(
