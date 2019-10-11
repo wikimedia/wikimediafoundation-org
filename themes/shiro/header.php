@@ -28,20 +28,16 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
-    
 </head>
 
 <body <?php body_class(); ?>>
-<div class="mobile-cover">
-
-</div>
+<div class="mobile-cover"></div>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html_e( $wmf_skip2_content_label ); ?></a>
-	<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php echo esc_html_e( $wmf_skip2_navigation_label ); ?></a>
-
 	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
 		<div class="top-nav">
 			<div class="site-main-nav flex flex-medium flex-align-center mw-980">
+				<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
+				<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php echo esc_html( $wmf_skip2_navigation_label ); ?></a>
 				<div class="logo-container logo-container_lg">
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>
