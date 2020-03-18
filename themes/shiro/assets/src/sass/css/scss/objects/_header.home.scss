@@ -531,13 +531,7 @@ $header-bp-mw: 1023px;
     padding:1em;
     font-size:90%;
     font-weight:bold;
-
-    a {
-        transition: 0.3s all;
-        text-decoration: underline;
-
-        &:hover {
-            color: $color-blue;
-        }
-    }
+}
+.urgent-btn {
+    margin-top:.5em;
 }
