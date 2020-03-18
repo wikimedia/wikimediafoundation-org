@@ -435,6 +435,29 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
+
+		$section_id = 'wmf_emergency_messages';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Emergency message', 'shiro' ),
+				'priority' => 70,
+				'panel'    => 'header_image',
+			)
+		);
+
+		$control_id = 'wmf_emergency_message';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => '',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Emergency message for display on homepage', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'textarea',
+			)
+		);
 	}
 
 }

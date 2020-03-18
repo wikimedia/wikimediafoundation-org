@@ -22,6 +22,7 @@ $wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now
 $wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
 $wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
 $wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
+$wmf_emergency_message    = get_theme_mod( 'wmf_emergency_message', '' );
 
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
@@ -70,6 +71,11 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 					</div>
 				</div>
 			</div>
+		<?php endif; ?>
+        <?php if ( ! empty( $wmf_emergency_message ) ) : ?>
+            <div class="urgent-header rounded center" style="">
+                <?php echo wp_kses( $wmf_emergency_message, $allowed_tags ); ?>
+            </div>
 		<?php endif; ?>
 	<?php } ?>
 
