@@ -11,7 +11,8 @@ if (
 	is_404() ||
 	is_search() ||
 	is_singular( 'profile' ) ||
-	( is_page() && 'page-landing.php' === basename( get_page_template() ) )
+	( is_page() && 'page-landing.php' === basename( get_page_template() ) ) ||
+	( is_page() && 'page-report.php' === basename( get_page_template() ) )
 ) {
 	return;
 }
