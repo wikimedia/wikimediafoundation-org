@@ -17,6 +17,7 @@ function wmf_datapage_fields() {
 		array(
 			'name'     => 'stats_featured',
 			'children' => array(
+				'main_image'     => new Fieldmanager_Media( __( 'Main image', 'shiro' ) ),
 				'copy'        => new Fieldmanager_Group(
 					array(
 						'add_more_label' => __( 'Add Stat', 'shiro' ),
@@ -25,7 +26,7 @@ function wmf_datapage_fields() {
 						'children'       => array(
 							'image'     => new Fieldmanager_Media( __( 'Icon', 'shiro' ) ),
 							'heading'   => new Fieldmanager_Textfield( __( 'Stat heading', 'shiro' ) ),
-							'copy'      => new Fieldmanager_RichTextArea( __( 'Description', 'shiro' ) ),
+							'desc'      => new Fieldmanager_RichTextArea( __( 'Description', 'shiro' ) ),
 						),
 					)
 				),

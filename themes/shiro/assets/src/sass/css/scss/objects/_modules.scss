@@ -629,6 +629,30 @@ a.hover-img-zoom {
 	}
 }
 
+.data-ungrid {
+	.data-bite {
+		margin-bottom: 2rem;
+		min-height: 6rem;
+	}
+
+	.icon-container {
+		width: 1em; 
+		height: 1em; 
+		background-size: contain; 
+		background-repeat: no-repeat;
+		display: inline-block;
+		margin-bottom: -0.04em;
+		margin-right: 0.04em;
+	}
+
+	.main-image-container {
+		text-align: center;
+		img {
+			max-width: 75%;
+		}
+	}
+}
+
 .module-404 {
 	margin-top: 220px;
 	text-align: center;
