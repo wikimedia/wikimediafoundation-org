@@ -39,7 +39,7 @@ while ( have_posts() ) :
             <?php if ( ! has_post_thumbnail() ) : ?>
 			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
             <?php endif; ?>
-			<?php echo $bodytext1 ?>
+			<?php echo wp_kses( $bodytext1, $allowed_tags ); ?>
 		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
