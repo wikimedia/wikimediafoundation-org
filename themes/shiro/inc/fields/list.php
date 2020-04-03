@@ -9,7 +9,7 @@
  * Add list page options.
  */
 function wmf_list_fields() {
-	if ( ! wmf_using_template( 'page-list' ) && ! wmf_using_template( 'page-report-page' ) ) {
+	if ( ! wmf_using_template( 'page-list' ) && ! wmf_using_template( 'page-report' ) ) {
 		return;
 	}
 
