@@ -13,6 +13,8 @@ while ( have_posts() ) :
 
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
+	$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
+    $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ] ];
 	$template_args = array(
 		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
 		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
@@ -34,7 +36,10 @@ while ( have_posts() ) :
 
 	<div class="w-68p">
 		<div class="page-intro mod-margin-bottom wysiwyg">
+            <?php if ( ! has_post_thumbnail() ) : ?>
 			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
+            <?php endif; ?>
+			<?php echo $bodytext1 ?>
 		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
