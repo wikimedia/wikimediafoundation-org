@@ -12,7 +12,7 @@ while ( have_posts() ) {
 	the_post();
 	$intro       = get_post_meta( get_the_ID(), 'page_intro', true );
 	$parent_page = get_option( 'page_for_posts' );
-    $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ] ];
+    $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [] ];
 
 	wmf_get_template_part(
 		'template-parts/header/page-single', array(

@@ -14,7 +14,7 @@ while ( have_posts() ) :
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
 	$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
-    $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ] ];
+    $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [] ];
 	$template_args = array(
 		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
 		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
