@@ -11,7 +11,7 @@
 function wmf_profiles_module() {
 	$is_front_page = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
 
-	if ( 'fm_post_page' === current_filter() && ( ! wmf_using_template( 'page-landing' ) && ! $is_front_page ) && ( ! wmf_using_template( 'page-report-page' ) ) ) {
+	if ( 'fm_post_page' === current_filter() && ( ! wmf_using_template( 'page-landing' ) && ! $is_front_page ) && ( ! wmf_using_template( 'page-report' ) ) ) {
 		return;
 	}
 
