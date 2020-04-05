@@ -18,6 +18,7 @@ function wmf_datapage_fields() {
 			'name'     => 'stats_featured',
 			'children' => array(
 				'main_image'     => new Fieldmanager_Media( __( 'Main image', 'shiro' ) ),
+				'explanation'      => new Fieldmanager_RichTextArea( __( 'Explanation', 'shiro' ) ),
 				'copy'        => new Fieldmanager_Group(
 					array(
 						'add_more_label' => __( 'Add Stat', 'shiro' ),

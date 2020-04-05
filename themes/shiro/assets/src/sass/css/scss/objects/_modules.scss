@@ -630,11 +630,6 @@ a.hover-img-zoom {
 }
 
 .data-ungrid {
-	.data-bite {
-		margin-bottom: 2rem;
-		min-height: 6rem;
-	}
-
 	.icon-container {
 		width: 1em; 
 		height: 1em; 
@@ -645,10 +640,30 @@ a.hover-img-zoom {
 		margin-right: 0.04em;
 	}
 
+	.explanation, .secondary-stats {
+		margin-top: 4rem;
+
+		@media (max-width: $medium-bp) {
+			margin-top: 8rem;
+		}
+	}
+
 	.main-image-container {
 		text-align: center;
-		img {
-			max-width: 75%;
+	}
+
+	.ungrid-line-replicate {
+		width: 1px;
+		margin-left: 7px;
+		margin-right: 12px;
+		background: $color-blue;
+		
+		&.pink {
+			background: $color-pink;
+		}
+
+		@media (max-width: $medium-bp) {
+			display: none;
 		}
 	}
 }

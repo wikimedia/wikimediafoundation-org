@@ -25,16 +25,14 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-image', $template_args );
 	} else {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
-	}
-	?>
-
-    <?php if ( ! has_post_thumbnail() ) : ?>
-        <div class="mw-980">
+		?>
+       <div class="mw-980">
             <div class="page-intro wysiwyg">
                 <?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
             </div>
         </div>
-    <?php endif; ?>
+	<?php }
+	?>
 
 	<?php get_template_part( 'template-parts/page/page', 'stats-featured' ); ?>
 		
