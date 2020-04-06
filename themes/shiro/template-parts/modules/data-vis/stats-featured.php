@@ -27,7 +27,7 @@ $no_of_modules = count($template_args['copy']);
 		</div>
 	</div>
 	<div class="ungrid-line-replicate <?php echo esc_attr($header_accent_color); ?>"></div>
-	<div class="explanation mar-bottom_lg w-50p">
+	<div class="explanation mar-bottom_lg wysiwyg w-50p">
 		<div class="main-image-container w-90p">
 			<img src="<?php echo esc_url( $main_image ); ?>">
 		</div>

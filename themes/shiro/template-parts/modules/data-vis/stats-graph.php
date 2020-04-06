@@ -27,7 +27,7 @@ $header_accent_color = isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'
 				
 			</div>
 		</div>
-		<div class="w-32p">
+		<div class="w-32p wysiwyg">
 			<p><?php echo wp_kses_post( wpautop( $template_args['explanation'] ) ); ?></p>
 		</div>
 	</div>
