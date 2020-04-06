@@ -630,6 +630,8 @@ a.hover-img-zoom {
 }
 
 .data-ungrid {
+	margin-bottom: 2rem;
+
 	.icon-container {
 		width: 1em; 
 		height: 1em; 
@@ -641,21 +643,27 @@ a.hover-img-zoom {
 	}
 
 	.explanation, .secondary-stats {
-		margin-top: 4rem;
+		margin-top: 6rem;
 
 		@media (max-width: $medium-bp) {
-			margin-top: 8rem;
+			margin-top: 4rem;
 		}
 	}
 
 	.main-image-container {
 		text-align: center;
+
+		img {
+			max-width: 80%;
+		}
 	}
 
-	.ungrid-line-replicate {
+	.ungrid-line-replicate, .ungrid-line-connector {
 		width: 1px;
 		margin-left: 7px;
 		margin-right: 12px;
+		position: relative;
+		z-index: 1000;
 		background: $color-blue;
 		
 		&.pink {
@@ -664,6 +672,52 @@ a.hover-img-zoom {
 
 		@media (max-width: $medium-bp) {
 			display: none;
+		}
+	}
+
+	.ungrid-line-connector {
+		// difference from data-ungrid margin-bottom and stats-graph padding
+		height: 5rem;
+		margin-top: -5rem;
+		margin-bottom: 1rem;
+	}
+}
+
+.stats-graph-container {
+	padding: 3rem 0;
+
+	.graph-visualization {
+		text {
+			font-size: 0.8rem;	
+		}
+		
+		.line {
+			stroke: $color-blue;	
+			&.pink {
+				stroke: $color-pink;
+			}
+		}
+
+		.circle {
+			fill: $color-blue;	
+			&.pink {
+				fill: $color-pink;
+			}
+		}
+
+		.overlay {
+	        fill: none;
+	        pointer-events: all;
+	    }
+
+		.tooltip {
+			background: $color-ltgray;
+			fill: white;
+		}
+
+		.yAxis .tick line{
+			opacity: 0.8;
+			stroke-width: 0.2;
 		}
 	}
 }

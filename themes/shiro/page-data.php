@@ -34,8 +34,12 @@ while ( have_posts() ) {
 	<?php }
 	?>
 
-	<?php get_template_part( 'template-parts/page/page', 'stats-featured' ); ?>
-		
+	<?php 
+	// should be in every data page
+	get_template_part( 'template-parts/page/page', 'stats-featured' ); 
+	get_template_part( 'template-parts/page/page', 'stats-graph' ); 
+	?>
+	
 	<?php
 	$modules = array(
 		'social',
