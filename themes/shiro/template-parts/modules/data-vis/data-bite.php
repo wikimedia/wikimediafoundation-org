@@ -17,6 +17,9 @@ $icon = is_numeric( $icon ) ? wp_get_attachment_image_url( $icon ) : $icon;
 ?>
 
 <h2 class="h2">
-	<span class="icon-container" style="background-image: url(<?php echo esc_url( $icon ); ?>)"></span><?php echo esc_html( $template_args['heading'] ); ?>
+	<?php if (!$icon === '') { ?>
+		<span class="icon-container" style="background-image: url(<?php echo esc_url( $icon ); ?>)"></span>
+	<?php } ?>
+	<?php echo esc_html( $template_args['heading'] ); ?>
 </h2>
 <?php echo wp_kses_post( wpautop( $template_args['desc'] ) ); ?>
