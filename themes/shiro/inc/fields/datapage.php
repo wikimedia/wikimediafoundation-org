@@ -36,5 +36,28 @@ function wmf_datapage_fields() {
 	);
 	$stats_featured->add_meta_box( __( 'Featured Stats', 'shiro' ), 'page' );
 
+	$stats_graph = new Fieldmanager_Group(
+		array(
+			'name'     => 'stats_graph',
+			'children' => array(
+				'explanation' => new Fieldmanager_RichTextArea( __( 'Explanation', 'shiro' ) ),
+				'data' 		=> new Fieldmanager_Textfield( __( 'Data (JSON)', 'shiro' ) ),
+				'copy' 		=> new Fieldmanager_Group(
+					array(
+						'add_more_label' => __( 'Add Stat', 'shiro' ),
+						'sortable'       => true,
+						'limit'          => 1,
+						'children'       => array(
+							'image'     => new Fieldmanager_Media( __( 'Icon', 'shiro' ) ),
+							'heading'   => new Fieldmanager_Textfield( __( 'Stat heading', 'shiro' ) ),
+							'desc'      => new Fieldmanager_RichTextArea( __( 'Description', 'shiro' ) ),
+						),
+					)
+				),
+			),
+		)
+	);
+	$stats_graph->add_meta_box( __( 'Stats graph', 'shiro' ), 'page' );
+
 }
 add_action( 'fm_post_page', 'wmf_datapage_fields' );
