@@ -145,6 +145,11 @@ function wmf_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	if ( is_page_template( 'page-data.php' ) ) {
+		wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
+		wp_enqueue_script( 'datavis', get_stylesheet_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
 
