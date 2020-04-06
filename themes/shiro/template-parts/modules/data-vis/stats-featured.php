@@ -17,6 +17,8 @@ $header_accent_color = isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'
 $main_image = ! empty( $template_args['main_image'] ) ? $template_args['main_image'] : '';
 $main_image = is_numeric( $main_image ) ? wp_get_attachment_image_url( $main_image, 'large' ) : $main_image;
 $no_of_modules = count($template_args['copy']);
+
+$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [] ];
 ?>
 
 <div class="data-ungrid mw-980 flex flex-medium flex-wrap flex-space-between">
@@ -31,7 +33,7 @@ $no_of_modules = count($template_args['copy']);
 		<div class="main-image-container w-90p">
 			<img src="<?php echo esc_url( $main_image ); ?>">
 		</div>
-		<p class="w-75p"><?php echo wp_kses_post( wpautop( $template_args['explanation'] ) ); ?></p>
+		<p class="w-75p"><?php echo wp_kses( $template_args['explanation'], $allowed_tags ); ?></p>
 	</div>
 	<div class="secondary-stats w-32p">
 		<?php for ($i = 1; $i < $no_of_modules; $i++) { ?>

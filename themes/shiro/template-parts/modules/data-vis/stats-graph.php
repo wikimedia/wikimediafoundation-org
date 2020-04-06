@@ -14,6 +14,8 @@ if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 $bg_opts = get_post_meta( get_the_ID(), 'page_header_background', true );
 $header_accent_color = isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? 'pink' : '';
 
+$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [] ];
+
 ?>
 
 <div class="stats-graph-container w-100p bg-white mod-margin-bottom bg-ltgray">
@@ -28,7 +30,7 @@ $header_accent_color = isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'
 			</div>
 		</div>
 		<div class="w-32p wysiwyg">
-			<p><?php echo wp_kses_post( wpautop( $template_args['explanation'] ) ); ?></p>
+			<p><?php echo wp_kses( $template_args['explanation'], $allowed_tags ); ?></p>
 		</div>
 	</div>
 </div>

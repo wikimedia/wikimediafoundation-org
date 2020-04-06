@@ -654,6 +654,12 @@ a.hover-img-zoom {
 		}
 	}
 
+	.updated-date {
+		margin-top: 0.5rem;
+		display: inline-block;
+		color: $color-dark-gray;
+	}
+
 	.main-image-container {
 		text-align: center;
 
@@ -690,7 +696,7 @@ a.hover-img-zoom {
 .stats-graph-container {
 	padding: 3rem 0;
 
-	.graph-visualization {
+	.graph-visualization svg{
 		text {
 			font-size: 0.8rem;	
 		}
