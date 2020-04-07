@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
 					.domain(d3.extent(data, function(d) { return d.date; }))
 					.range([0, width]),
 				xAxis = d3.axisBottom(x)
-					.ticks(data.length)
+					.ticks(d3.timeMonth, 1)
 					.tickFormat(d3.timeFormat("%B")),
 				y = d3.scaleLinear()
 					.domain([0, d3.max(data, function(d) { return d.value; })])
@@ -63,14 +63,14 @@ jQuery(document).ready(function($) {
 			svg.selectAll("dot")
 				.data(data)
 				.enter().append("circle")
-				.attr("r", 3) // eslint-disable-line no-magic-numbers
+				.attr("r", 1) // eslint-disable-line no-magic-numbers
 				.attr("cx", function(d) { return x(d.date); })
 				.attr("cy", function(d) { return y(d.value); })
 				.attr("class", "circle " + accentColorClass);
 
 			var focuscircle = svg.append("g") // eslint-disable-line one-var
 					.append("circle")
-					.attr("r", 5) // eslint-disable-line no-magic-numbers
+					.attr("r", 4) // eslint-disable-line no-magic-numbers
 					.attr("class", "circle " + accentColorClass)
 					.style("display", "none"),
 				focus = svg.append("g")
