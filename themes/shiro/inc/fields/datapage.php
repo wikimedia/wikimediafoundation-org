@@ -31,6 +31,7 @@ function wmf_datapage_fields() {
 						),
 					)
 				),
+				'updated-date'   => new Fieldmanager_Textfield( __( 'Updated date note', 'shiro' ) ),
 			),
 		)
 	);
@@ -54,10 +55,35 @@ function wmf_datapage_fields() {
 						),
 					)
 				),
+				'updated-date'   => new Fieldmanager_Textfield( __( 'Updated date note', 'shiro' ) ),
 			),
 		)
 	);
 	$stats_graph->add_meta_box( __( 'Stats graph', 'shiro' ), 'page' );
+
+	$stats_plain = new Fieldmanager_Group(
+		array(
+			'name'     => 'stats_plain',
+			'children' => array(
+				'subheadline'   => new Fieldmanager_Textfield( __( 'Section subheadline', 'shiro' ) ),
+				'headline'   => new Fieldmanager_Textfield( __( 'Section headline', 'shiro' ) ),
+				'subtitle' => new Fieldmanager_RichTextArea( __( 'Subtitle', 'shiro' ) ),
+				'copy' 		=> new Fieldmanager_Group(
+					array(
+						'add_more_label' => __( 'Add Stat', 'shiro' ),
+						'sortable'       => true,
+						'limit'          => 3,
+						'children'       => array(
+							'heading'   => new Fieldmanager_Textfield( __( 'Stat heading', 'shiro' ) ),
+							'desc'      => new Fieldmanager_RichTextArea( __( 'Description', 'shiro' ) ),
+						),
+					)
+				),
+				'updated-date'   => new Fieldmanager_Textfield( __( 'Updated date note', 'shiro' ) ),
+			),
+		)
+	);
+	$stats_plain->add_meta_box( __( 'Stats plain', 'shiro' ), 'page' );
 
 }
 add_action( 'fm_post_page', 'wmf_datapage_fields' );

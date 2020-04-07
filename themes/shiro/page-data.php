@@ -42,6 +42,7 @@ while ( have_posts() ) {
 	
 	<?php
 	$modules = array(
+		'stats-plain',
 		'social',
 		'cta',
 		'facts',
