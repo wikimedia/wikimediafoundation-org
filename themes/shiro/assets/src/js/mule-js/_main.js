@@ -98,7 +98,8 @@ jQuery(document).ready(function($) {
     if ($(window).width() < 762) { // On mobile
       var contentBottom = $('.content').position().top + $('.content').outerHeight();
       var ungridTop = $('.ungrid-top-box').position().top;
-      $('#content').css('margin-top', contentBottom - ungridTop + 50);
+      var eyebrow = ( $('.header-content .h4.eyebrow').length > 0 ) ? 25 : 0;
+      $('#content').css('margin-top', contentBottom - ungridTop + 50 + eyebrow);
     }
   }
 

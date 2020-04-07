@@ -9,7 +9,7 @@
  * Add button options.
  */
 function wmf_button_fields() {
-	if ( ! wmf_using_template( 'page-landing' ) && ! wmf_using_template( 'page-list' ) && ! wmf_using_template( 'page-report' ) ) {
+	if ( ! wmf_using_template( 'page-landing' ) && ! wmf_using_template( 'page-list' ) && ! wmf_using_template( 'page-report' ) && ! wmf_using_template( 'page-data' ) ) {
 		return;
 	}
 
