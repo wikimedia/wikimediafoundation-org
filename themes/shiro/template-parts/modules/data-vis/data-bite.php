@@ -7,7 +7,7 @@
 
 $template_args = wmf_get_template_data();
 
-if ( empty( $template_args ) ) {
+if ( empty( $template_args['heading'] ) ) {
 	return;
 }
 
