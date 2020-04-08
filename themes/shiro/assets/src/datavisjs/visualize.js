@@ -12,7 +12,9 @@ jQuery(document).ready(function($) {
 			orgiHeight = 300,
 			height = orgiHeight - margin.top - margin.bottom,
 			accentColorClass = $id.data("stroke-color"),
-			bisectDate = d3.bisector(function(d) { return d.date; }).left;
+			bisectDate = d3.bisector(function(d) { return d.date; }).left,
+			tickTimeFormat = $id.data("time-format") === "month" ? d3.timeFormat("%B") : d3.timeFormat("%b %d, %Y"),
+			parseTimeFormat = d3.timeParse("%Y-%m-%d");
 
 		function addVisual(data) {
 
@@ -68,21 +70,23 @@ jQuery(document).ready(function($) {
 				.attr("cy", function(d) { return y(d.value); })
 				.attr("class", "circle " + accentColorClass);
 
-			var focuscircle = svg.append("g") // eslint-disable-line one-var
+			var circleDiameter = 4, // eslint-disable-line one-var
+				focuscircle = svg.append("g")
 					.append("circle")
-					.attr("r", 4) // eslint-disable-line no-magic-numbers
+					.attr("r", circleDiameter)
 					.attr("class", "circle " + accentColorClass)
 					.style("display", "none"),
 				focus = svg.append("g")
 					.attr("class", "focus")
 					.style("display", "none"),
-				tooltipWidth = 100;
+				tooltipWidth = 100,
+				tooltipMargin = 10;
 
 			focus.append("rect")
 				.attr("class", "tooltip")
 				.attr("width", tooltipWidth)
 				.attr("height", 50) // eslint-disable-line no-magic-numbers
-				.attr("x", 10) // eslint-disable-line no-magic-numbers
+				.attr("x", tooltipMargin)
 				.attr("y", -22) // eslint-disable-line no-magic-numbers
 				.attr("rx", 4) // eslint-disable-line no-magic-numbers
 				.attr("ry", 4); // eslint-disable-line no-magic-numbers
@@ -117,15 +121,16 @@ jQuery(document).ready(function($) {
 					d0 = data[i - 1],
 					d1 = data[i],
 					d = x0 - d0.date > d1.date - x0 ? d1 : d0,
-					lastValue = data[data.length - 1].value,
-					shift = tooltipWidth + 20; // eslint-disable-line no-magic-numbers
-				if (data[i + 1] === undefined && d.value === lastValue) {
+					lastDate = data[data.length - 1].date,
+					shift = tooltipWidth + circleDiameter + circleDiameter + tooltipMargin,
+					calcX = x(d.date) + shift;
+				if (calcX > x(lastDate)) {
 					focus.attr("transform", "translate(" + (x(d.date) - shift) + "," + y(d.value) + ")");
 				} else {
 					focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
 				}
 				focuscircle.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
-				focus.select(".tooltip-date").text(d3.timeFormat("%B")(d.date));
+				focus.select(".tooltip-date").text(tickTimeFormat(d.date));
 				focus.select(".tooltip-value").text(d3.format(",")(d.value));
 			}
 
@@ -134,7 +139,7 @@ jQuery(document).ready(function($) {
 		var data = $id.data("chart-raw"); // eslint-disable-line one-var
 
 		for (var i = data.length - 1; i >= 0; i--) { // eslint-disable-line one-var
-			data[i].date = d3.timeParse("%Y-%m")(data[i].date);
+			data[i].date = parseTimeFormat(data[i].date);
 		}
 
 		addVisual(data);
