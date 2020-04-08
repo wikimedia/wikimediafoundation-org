@@ -70,21 +70,23 @@ jQuery(document).ready(function($) {
 				.attr("cy", function(d) { return y(d.value); })
 				.attr("class", "circle " + accentColorClass);
 
-			var focuscircle = svg.append("g") // eslint-disable-line one-var
+			var circleDiameter = 4, // eslint-disable-line one-var
+				focuscircle = svg.append("g")
 					.append("circle")
-					.attr("r", 4) // eslint-disable-line no-magic-numbers
+					.attr("r", circleDiameter)
 					.attr("class", "circle " + accentColorClass)
 					.style("display", "none"),
 				focus = svg.append("g")
 					.attr("class", "focus")
 					.style("display", "none"),
-				tooltipWidth = 100;
+				tooltipWidth = 100,
+				tooltipMargin = 10;
 
 			focus.append("rect")
 				.attr("class", "tooltip")
 				.attr("width", tooltipWidth)
 				.attr("height", 50) // eslint-disable-line no-magic-numbers
-				.attr("x", 10) // eslint-disable-line no-magic-numbers
+				.attr("x", tooltipMargin)
 				.attr("y", -22) // eslint-disable-line no-magic-numbers
 				.attr("rx", 4) // eslint-disable-line no-magic-numbers
 				.attr("ry", 4); // eslint-disable-line no-magic-numbers
@@ -119,9 +121,10 @@ jQuery(document).ready(function($) {
 					d0 = data[i - 1],
 					d1 = data[i],
 					d = x0 - d0.date > d1.date - x0 ? d1 : d0,
-					lastValue = data[data.length - 1].value,
-					shift = tooltipWidth + 20; // eslint-disable-line no-magic-numbers
-				if (data[i + 1] === undefined && d.value === lastValue) {
+					lastDate = data[data.length - 1].date,
+					shift = tooltipWidth + circleDiameter + circleDiameter + tooltipMargin,
+					calcX = x(d.date) + shift;
+				if (calcX > x(lastDate)) {
 					focus.attr("transform", "translate(" + (x(d.date) - shift) + "," + y(d.value) + ")");
 				} else {
 					focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
