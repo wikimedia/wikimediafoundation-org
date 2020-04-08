@@ -18,7 +18,7 @@ $main_image = ! empty( $template_args['main_image'] ) ? $template_args['main_ima
 $main_image = is_numeric( $main_image ) ? wp_get_attachment_image_url( $main_image, 'large' ) : $main_image;
 $no_of_modules = count($template_args['copy']);
 
-$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [] ];
+$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [], 'sup' => [] ];
 ?>
 
 <div class="stats-featured-container data-ungrid">
