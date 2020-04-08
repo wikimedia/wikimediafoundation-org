@@ -18,7 +18,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 
 ?>
 
-<div class="stats-plain-container w-100p bg-white mod-margin-bottom">
+<div class="stats-plain-container w-100p bg-white mod-margin-bottom_sm">
 	<div class="mw-980">
 		
 		<div class="heading mar-bottom_lg wysiwyg">

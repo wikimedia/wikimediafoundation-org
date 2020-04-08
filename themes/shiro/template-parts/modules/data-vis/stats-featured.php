@@ -39,7 +39,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 			<div class="main-image-container w-90p">
 				<img src="<?php echo esc_url( $main_image ); ?>">
 			</div>
-			<div class="w-75p">
+			<div class="w-100p">
 				<?php echo wp_kses( $template_args['explanation'], $allowed_tags ); ?>
 			</div>
 		</div>

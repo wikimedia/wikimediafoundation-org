@@ -12,7 +12,9 @@ jQuery(document).ready(function($) {
 			orgiHeight = 300,
 			height = orgiHeight - margin.top - margin.bottom,
 			accentColorClass = $id.data("stroke-color"),
-			bisectDate = d3.bisector(function(d) { return d.date; }).left;
+			bisectDate = d3.bisector(function(d) { return d.date; }).left,
+			tickTimeFormat = $id.data("time-format") === "month" ? d3.timeFormat("%B") : d3.timeFormat("%b %d, %Y"),
+			parseTimeFormat = d3.timeParse("%Y-%m-%d");
 
 		function addVisual(data) {
 
@@ -125,7 +127,7 @@ jQuery(document).ready(function($) {
 					focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
 				}
 				focuscircle.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
-				focus.select(".tooltip-date").text(d3.timeFormat("%B")(d.date));
+				focus.select(".tooltip-date").text(tickTimeFormat(d.date));
 				focus.select(".tooltip-value").text(d3.format(",")(d.value));
 			}
 
@@ -134,7 +136,7 @@ jQuery(document).ready(function($) {
 		var data = $id.data("chart-raw"); // eslint-disable-line one-var
 
 		for (var i = data.length - 1; i >= 0; i--) { // eslint-disable-line one-var
-			data[i].date = d3.timeParse("%Y-%m")(data[i].date);
+			data[i].date = parseTimeFormat(data[i].date);
 		}
 
 		addVisual(data);
