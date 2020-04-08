@@ -35,14 +35,27 @@ while ( have_posts() ) {
 	?>
 
 	<?php 
-	// should be in every data page
 	get_template_part( 'template-parts/page/page', 'stats-featured' ); 
 	get_template_part( 'template-parts/page/page', 'stats-graph' ); 
+	get_template_part( 'template-parts/page/page', 'stats-plain' ); 
 	?>
-	
+
+	<div class="mw-980 mod-margin-bottom flex flex-medium">
+
+		<div class="module-mu w-32p">
+			<?php get_sidebar( 'list' ); ?>
+		</div>
+
+		<div class="w-68p">
+			<div class="list-container">
+				<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+			</div>
+		</div>
+
+	</div>
+
 	<?php
 	$modules = array(
-		'stats-plain',
 		'social',
 		'cta',
 		'facts',
