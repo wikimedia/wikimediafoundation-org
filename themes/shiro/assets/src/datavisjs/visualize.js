@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
 			svg.selectAll("dot")
 				.data(data)
 				.enter().append("circle")
-				.attr("r", function(d) { return d.event ? circleDiameter-1 : 0; })
+				.attr("r", function(d) { return d.event ? circleDiameter : 0; })
 				.attr("cx", function(d) { return x(d.date); })
 				.attr("cy", function(d) { return y(d.value); })
 				.attr("class", "circle " + accentColorClass);

@@ -694,6 +694,10 @@ a.hover-img-zoom {
 .stats-graph-container {
 	padding: 3rem 0;
 
+	#linechart-label {
+		transition: 0.3s all;
+	}
+
 	#label-name {
 		font-weight: bold;
 	}
