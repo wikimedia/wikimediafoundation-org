@@ -31,7 +31,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 			<?php for ($i = 0; $i < $no_of_modules; $i++) { 
 			$this_module = $template_args['copy'][$i];
 			?>
-			<div class="<?php echo esc_attr($width); ?> wysiwyg">
+			<div class="<?php echo esc_attr($width); ?> mar-top wysiwyg">
 				<h3 class="h3"><?php echo esc_html( $this_module['heading'] ); ?></h3>
 				<div class="mar-top">
 					<?php echo wp_kses( $this_module['desc'], $allowed_tags ); ?>
