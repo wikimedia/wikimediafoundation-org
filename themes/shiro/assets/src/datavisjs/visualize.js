@@ -40,7 +40,8 @@ jQuery(document).ready(function($) {
 				yAxis = d3.axisLeft(y)
 					.ticks(4) // eslint-disable-line no-magic-numbers
 					.tickFormat(d3.format(".2s"))
-					.tickSize(-1 * width);
+					.tickSize(-1 * width),
+				circleDiameter = 4;
 
 			svg.append("g")
 				.attr("transform", "translate(0," + height + ")")
@@ -65,15 +66,14 @@ jQuery(document).ready(function($) {
 			svg.selectAll("dot")
 				.data(data)
 				.enter().append("circle")
-				.attr("r", 1) // eslint-disable-line no-magic-numbers
+				.attr("r", function(d) { return d.event ? circleDiameter-1 : 0; })
 				.attr("cx", function(d) { return x(d.date); })
 				.attr("cy", function(d) { return y(d.value); })
 				.attr("class", "circle " + accentColorClass);
 
-			var circleDiameter = 4, // eslint-disable-line one-var
-				focuscircle = svg.append("g")
+			var focuscircle = svg.append("g") // eslint-disable-line one-var
 					.append("circle")
-					.attr("r", circleDiameter)
+					.attr("r", circleDiameter + 1)
 					.attr("class", "circle " + accentColorClass)
 					.style("display", "none"),
 				focus = svg.append("g")
@@ -132,6 +132,13 @@ jQuery(document).ready(function($) {
 				focuscircle.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
 				focus.select(".tooltip-date").text(tickTimeFormat(d.date));
 				focus.select(".tooltip-value").text(d3.format(",")(d.value));
+				if (d.event) {
+					$("#label-date").text(tickTimeFormat(d.date));
+					$("#label-name").text(d.event);
+					$("#linechart-label").css("opacity", 1);
+				} else {
+					$("#linechart-label").css("opacity", 0);
+				}
 			}
 
 		}

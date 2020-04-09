@@ -28,6 +28,9 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 		</div>
 
 		<div class="w-68p graph-visualization">
+			<div id="linechart-label" class="w-100p" style="opacity: 0">
+				<span id="label-date"></span>: <span id="label-name"></span>
+			</div>
 			<div id="linechart1" class="d3-chart" data-chart-raw="<?php echo esc_attr($template_args['data']); ?>" data-time-format="<?php echo esc_attr($template_args['time-format']); ?>" data-stroke-color="<?php echo esc_attr($header_accent_color); ?>">
 			</div>
 		</div>
