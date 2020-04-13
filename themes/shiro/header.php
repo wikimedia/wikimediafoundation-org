@@ -39,7 +39,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      forceFullPageWidget: true, // @type {boolean}
      showCloseButtonOnFullPageWidget: true, // @type {boolean}
      footerDisplayStartDate: new Date(), //@ type {Date object}
-     fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
+     fullPageDisplayStartDate: new Date(2020, 3, 13), //@ type {Date object}
   };
 </script>
 <script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>
