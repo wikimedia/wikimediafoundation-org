@@ -30,71 +30,16 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <?php wp_head(); ?>
 <script type="text/javascript">
   var EARTH_DAY_LIVE_OPTIONS = {
-    /**
-     * Specify view cookie expiration. After initial view, widget will not be
-     * displayed to a user again until after this cookie expires. Defaults to 
-     * one day.
-     */
-    cookieExpirationDays: 1, // @type {number}
-    
-    /**
-     * Set the language of the widget. We currently support:
-     * 'en': English
-     * 'es': Spanish
-     * Defaults to null, which will obey the navigator.language setting of the 
-     * viewer's browser.
-     */
+     cookieExpirationDays: 1, // @type {number}
      language: null, // @type {string}
-     
-     /**
-     * Allows you to set a &referrer= URL parameter in the link to earthdaylive2020.org. Use by Action Network
-     * forms on the earthdaylive2020.org website. 
-     **/
      partnerReferrer: 'wikimediafoundation', //@type {string}
-    
-     /**
-     * Allow you to override the iFrame hostname. Defaults to https://widget.earthdaylive2020.org
-     */
-     iframeHost: 'https://wikimediafoundation-org-develop.go-vip.co/wp-content/themes/shiro/assets/dist/earthdaylive/', // @type {string}
-
-      
-    /**
-     * Prevents the widget iframe from loading Google Analytics. Defaults to
-     * false. (Google Analytics will also be disabled if doNotTrack is set on
-     * the user's browser.)
-     */
-    disableGoogleAnalytics: true, // @type {boolean}
-
-    /**
-     * Always show the widget, even when someone has closed the widget and set the cookie on their device. 
-     * Useful for testing. Defaults to false.
-     */
-    alwaysShowWidget: false, // @type {boolean}
-
-    /**
-     * Automatically makes the widget full page. Defaults to false.
-     */
-    forceFullPageWidget: false, // @type {boolean}
-    
-    /**
-    * For the full page widget, shows a close button "x" and hides the message about the site being 
-    * available tomorrow. Defaults to false.
-    */
-    showCloseButtonOnFullPageWidget: true, // @type {boolean}
-    
-    /**
-     * The date when the sticky footer widget should start showing on your web site.
-     * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
-     * Defaults to new Date(2020, 0, 1) (January 1st, 2020).
-     */
-    footerDisplayStartDate: new Date(), //@ type {Date object}
-    
-    /**
-     * The date when the full page widget should showing on your web site for 24 hours. 
-     * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
-     * Defaults to new Date(2020, 3, 22) (April 22nd, 2020)
-     */
-    fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
+     iframeHost: site_url( '/wp-content/themes/shiro/assets/dist/earthdaylive/' ), // @type {string}
+     disableGoogleAnalytics: true, // @type {boolean}
+     alwaysShowWidget: false, // @type {boolean}
+     forceFullPageWidget: false, // @type {boolean}
+     showCloseButtonOnFullPageWidget: true, // @type {boolean}
+     footerDisplayStartDate: new Date(), //@ type {Date object}
+     fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
   };
 </script>
 <!--<script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>-->
