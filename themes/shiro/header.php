@@ -42,7 +42,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
   };
 </script>
-<script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>
+<!--<script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>-->
 </head>
 
 <body <?php body_class(); ?>>
