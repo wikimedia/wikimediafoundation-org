@@ -35,14 +35,14 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      partnerReferrer: 'wikimediafoundation', //@type {string}
      iframeHost: site_url( '/wp-content/themes/shiro/assets/dist/earthdaylive/' ), // @type {string}
      disableGoogleAnalytics: true, // @type {boolean}
-     alwaysShowWidget: false, // @type {boolean}
-     forceFullPageWidget: false, // @type {boolean}
+     alwaysShowWidget: true, // @type {boolean}
+     forceFullPageWidget: true, // @type {boolean}
      showCloseButtonOnFullPageWidget: true, // @type {boolean}
      footerDisplayStartDate: new Date(), //@ type {Date object}
      fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
   };
 </script>
-<!--<script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>-->
+<script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>
 </head>
 
 <body <?php body_class(); ?>>
