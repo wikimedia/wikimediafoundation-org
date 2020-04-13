@@ -52,10 +52,11 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      **/
      partnerReferrer: 'wikimediafoundation', //@type {string}
     
-    /**
+     /**
      * Allow you to override the iFrame hostname. Defaults to https://widget.earthdaylive2020.org
-    * iframeHost: 'https://wikimediafoundation.org/wp-content/themes/shiro/assets/dist/earthdaylive/', // @type {string}
      */
+     iframeHost: 'https://wikimediafoundation-org-develop.go-vip.co/wp-content/themes/shiro/assets/dist/earthdaylive/', // @type {string}
+
       
     /**
      * Prevents the widget iframe from loading Google Analytics. Defaults to
