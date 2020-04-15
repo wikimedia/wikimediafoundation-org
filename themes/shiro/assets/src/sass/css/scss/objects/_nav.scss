@@ -21,6 +21,13 @@
       top: -70px;
     }
   }
+
+  // Move the top nav out from under WP's fixed header (on large screens).
+  @media screen and (min-width: 48em) {
+    .admin-bar & {
+      top: 32px;
+    }
+  }
 }
 
   // Top part of header
