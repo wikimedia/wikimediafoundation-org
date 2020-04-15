@@ -66,6 +66,10 @@ class Notice {
 		}
 		$remote_posts = wmf_get_translations( false, $this->post_id, 'post' );
 
+		if ( empty( $remote_posts ) ) {
+			return;
+		}
+
 		foreach ( $remote_posts as $remote_post ) {
 			if ( wmf_is_main_site( $remote_post['site_id'] ) ) {
 				continue;
