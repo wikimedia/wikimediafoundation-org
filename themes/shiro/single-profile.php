@@ -62,7 +62,7 @@ while ( have_posts() ) :
 					)
 				);
 				?>
-				<?php if ( ! empty( $share_links ) || ! empty( connected_user ) ) : ?>
+				<?php if ( ! empty( $share_links ) || ! empty( $connected_user ) ) : ?>
 				<div class="rise-up side-list">
 				<?php if ( ! empty( $share_links ) ) : ?>
 					<?php
