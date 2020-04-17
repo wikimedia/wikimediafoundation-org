@@ -8,6 +8,7 @@
   // user-configurable options
   var options = window.EARTH_DAY_LIVE_OPTIONS || {}
   var iframeHost = options.iframeHost !== undefined ? options.iframeHost : 'https://widget.earthdaylive2020.org'
+  var iframeDirectory = options.iframeDirectory || null
   var websiteName = options.websiteName || null
   var partnerReferrer = options.partnerReferrer || null
   var footerDisplayStartDate = options.footerDisplayStartDate || new Date(2019, 12, 1)       // January 1st, 2020 - arbitrary date in the past
@@ -20,7 +21,7 @@
   var language = getLanguage()
 
   function getIframeSrc() {
-    var src = iframeHost + '/wp-content/themes/shiro/assets/dist/earthdaylive'
+    var src = iframeHost + iframeDirectory
     src += language === 'en' ? '/index.html?' : '/index-' + language + '.html?'
 
     var urlParams = [
