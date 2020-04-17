@@ -62,7 +62,7 @@ while ( have_posts() ) :
 					)
 				);
 				?>
-				<?php if ( ! empty( $share_links ) || ! empty( connected_user ) ) : ?>
+				<?php if ( ! empty( $share_links ) || ! empty( $connected_user ) ) : ?>
 				<div class="rise-up side-list">
 				<?php if ( ! empty( $share_links ) ) : ?>
 					<?php
@@ -73,16 +73,16 @@ while ( have_posts() ) :
 						<?php
 						$img = "";
 						if ( is_int(strpos($link['link'],'meta.wikimedia.org') ) ) {
-							$img = "/wp-content/themes/shiro/assets/src/svg/globe.svg";
+							$img = get_stylesheet_directory_uri() . "/assets/src/svg/globe.svg";
 						}
 						if ( is_int(strpos($link['link'],'mailto')) ) {
-							$img = "/wp-content/themes/shiro/assets/src/svg/email.svg";
+							$img = get_stylesheet_directory_uri() . "/assets/src/svg/email.svg";
 						}
 						if ( is_int(strpos($link['link'],'wikipedia.org')) ) {
-							$img = "/wp-content/themes/shiro/assets/src/svg/individual/wikipedia.svg";
+							$img = get_stylesheet_directory_uri() . "/assets/src/svg/individual/wikipedia.svg";
 						}
 						if ( is_int(strpos($link['link'],'/news/')) ) {
-							$img = "/wp-content/themes/shiro/assets/src/svg/individual/wikimedia-blue.svg";
+							$img = get_stylesheet_directory_uri() . "/assets/src/svg/individual/wikimedia-blue.svg";
 						}
 						?>
 						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
@@ -94,9 +94,9 @@ while ( have_posts() ) :
 				<?php endif; ?>
 				<?php if ( ! empty( $connected_user ) ) : ?>
                     <?php
-						$authorimg = "/wp-content/themes/shiro/assets/src/svg/edit-ltr.svg";
+						$authorimg = get_stylesheet_directory_uri() . "/assets/src/svg/edit-ltr.svg";
 						if ( is_rtl() ) {
-							$authorimg = "/wp-content/themes/shiro/assets/src/svg/edit-rtl.svg";
+							$authorimg = get_stylesheet_directory_uri() . "/assets/src/svg/edit-rtl.svg";
 						}
                         $authorlink = wmf_get_author_link( $connected_user );
                         $authorlinkcopy = sprintf( __( 'Posts by %s', 'shiro' ), get_the_title() );

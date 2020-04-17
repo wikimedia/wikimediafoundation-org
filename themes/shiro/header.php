@@ -60,7 +60,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 					<button class="mobile-nav-toggle bold" aria-label="<?php echo esc_attr( $wmf_toggle_menu_label ); ?>">
 						<span class="btn-label-a11y"><?php echo esc_html( $wmf_toggle_menu_label ); ?></span>
 						<?php wmf_show_icon( 'menu', 'material' ); ?>
-						<img src="/wp-content/themes/shiro/assets/src/svg/close.svg" alt="" class="icon-close">
+						<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="" class="icon-close">
 					</button>
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>
@@ -81,9 +81,9 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 						<div class="language-dropdown" role="navigation">
 							<button aria-label="<?php echo esc_attr( $wmf_select_language_label ); ?>">
 								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
-								<img src="/wp-content/themes/shiro/assets/src/svg/language.svg" alt="" class="language-icon">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/language.svg" alt="" class="language-icon">
 								<span><?php echo esc_html($lang_code); ?></span>
-								<img src="/wp-content/themes/shiro/assets/src/svg/down.svg" alt="" class="down-indicator">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/down.svg" alt="" class="down-indicator">
 							</button>
 
 							<div class="language-list">
@@ -102,7 +102,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 						</div>
 					<?php endif ?>
 					<span class="donate-btn">
-                        <img src="/wp-content/themes/shiro/assets/src/svg/lock-pink.svg" alt="" class="secure">
+                        <img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
 						<a href="<?php echo esc_url($wmf_donate_uri); ?>">
 							<?php echo esc_html($wmf_donate_button);?>
 						</a>
