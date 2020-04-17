@@ -20,7 +20,7 @@
   var language = getLanguage()
 
   function getIframeSrc() {
-    var src = iframeHost
+    var src = iframeHost + '/wp-content/themes/shiro/assets/dist/earthdaylive'
     src += language === 'en' ? '/index.html?' : '/index-' + language + '.html?'
 
     var urlParams = [
