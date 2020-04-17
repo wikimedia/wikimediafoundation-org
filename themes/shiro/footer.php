@@ -197,12 +197,12 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
 			<input type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" aria-label="<?php echo esc_attr( $wmf_search_aria_label ); ?>">
 			<button class="btn btn-blue" type="submit"><?php wmf_show_icon( 'search', 'material icon-white' ); ?></button>
 			<a href="javascript:void(0);" class="search-close-esc">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/src/svg/close.svg" alt="">
+				<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
 				<?php echo esc_attr( $wmf_search_esc_label ); ?>
 			</a>
 		</form>
 		<a href="#" class="search-close-mobile">
-			<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/src/svg/close.svg" alt="">
+			<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
 		</a>
 	</div>
 </div><!-- #page -->

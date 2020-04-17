@@ -157,7 +157,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
                         </div>
 						<a class="btn btn-blue" href="<?php echo esc_url( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
 						<span class="secure">
-							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/src/svg/lock.svg" alt="">
+							<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
 							<?php echo esc_html( $wmf_homedonate_secure ); ?>
 						</span>
 					</div>
