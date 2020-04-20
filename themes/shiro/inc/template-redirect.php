@@ -117,11 +117,12 @@ add_action( 'admin_init', 'wmf_undo_redirect_template_changes_in_admin' );
 function wmf_get_most_recent_child_page_uri( $page_id ) {
 	$child_pages = get_posts(
 		array(
-			'post_type'      => 'page',
-			'post_status'    => 'publish',
-			'post_parent'    => $page_id,
-			'posts_per_page' => 1,
-			'orderby'        => 'date',
+			'post_type'        => 'page',
+			'post_status'      => 'publish',
+			'post_parent'      => $page_id,
+			'posts_per_page'   => 1,
+			'orderby'          => 'date',
+			'suppress_filters' => false,
 		)
 	);
 
