@@ -115,23 +115,19 @@ add_action( 'admin_init', 'wmf_undo_redirect_template_changes_in_admin' );
  * @return string The URI of the newest child.
  */
 function wmf_get_most_recent_child_page_uri( $page_id ) {
-	$child_pages = get_children(
+	$child_pages = get_posts(
 		array(
-			'post_type'   => 'page',
-			'post_status' => 'publish',
-			'post_parent' => $page_id,
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'post_parent'    => $page_id,
+			'posts_per_page' => 1,
+			'orderby'        => 'date',
 		)
 	);
 
-	// Iterate through the returned child pages.
-	$newest_date = 0;
-	$newest_uri  = '';
-	foreach ( $child_pages as $page ) {
-		$page_date = strtotime( $page->post_date );
-		if ( $page_date > $newest_date ) {
-			$newest_date = $page_date;
-			$newest_uri  = $page->guid;
-		}
+	if ( ! empty( $child_pages ) ) {
+		return $child_pages[0]->guid;
 	}
-	return $newest_uri;
+
+	return '';
 }
