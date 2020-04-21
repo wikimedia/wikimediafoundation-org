@@ -18,8 +18,9 @@ function wmf_header_fields() {
 					array(
 						'label'   => __( 'Color', 'shiro' ),
 						'options' => array(
-							''     => __( 'Blue', 'shiro' ),
+							''     => __( 'Default', 'shiro' ),
 							'pink' => __( 'Pink', 'shiro' ),
+							'blue' => __( 'Blue', 'shiro' ),
 						),
 					)
 				),

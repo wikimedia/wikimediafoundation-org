@@ -66,6 +66,7 @@ function wmf_get_header_container_class() {
 		$bg_opts = get_post_meta( get_the_ID(), 'page_header_background', true );
 
 		$class .= isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? ' header-pink' : '';
+		$class .= isset( $bg_opts['color'] ) && 'blue' === $bg_opts['color'] ? ' header-blue' : '';
 	}
 
 	return $class;

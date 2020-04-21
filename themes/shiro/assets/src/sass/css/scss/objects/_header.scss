@@ -468,6 +468,18 @@ $header-bp-mw: 1049px;
 			color: #f61971;
 		}
 	}
+
+	&.header-blue .ungrid {
+		background: #eeeaff;
+
+		.bg-img {
+			background-color: #eeeaff;
+		}
+
+		.h2.eyebrow {
+			color: #3a25ff;
+		}
+	}
 }
 
 .header-single {
