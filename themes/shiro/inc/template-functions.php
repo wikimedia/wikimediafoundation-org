@@ -599,7 +599,7 @@ function wmf_is_transparency_report_page() {
  */
 function wmf_locate_report_landing_page_id( $page_id ) {
 	$parent_id = $page_id;
-	while ( $parent_id !== 0 && 'page-report-landing.php' !== get_page_template_slug( $parent_id ) ) {
+	while ( 0 !== $parent_id && 'page-report-landing.php' !== get_page_template_slug( $parent_id ) ) {
 		$parent_id = wp_get_post_parent_id( $parent_id );
 	}
 	return $parent_id;
@@ -655,6 +655,6 @@ function wmf_get_report_sidebar_data() {
 				);
 			},
 			$child_pages
-		),
+		)
 	);
 }
