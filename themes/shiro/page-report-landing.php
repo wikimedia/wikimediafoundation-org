@@ -29,7 +29,7 @@ while ( have_posts() ) {
 
 	get_template_part( 'template-parts/header/index' );
 	?>
-	
+
 	<div class="mw-980 mod-margin-bottom flex flex-medium">
 		<div class="module-mu w-32p">
 			<?php get_sidebar( 'report' ); ?>
