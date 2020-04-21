@@ -1,5 +1,6 @@
 @font-face {
   font-family: titling-gothic-fb;
+  src: url(fonts/katwijk-mono-bold-web.woff2) format("woff2"), url(fonts/katwijk-mono-bold-web.woff) format("woff"), url(fonts/katwijk-mono-bold-web.ttf) format("truetype")
   font-display: auto;
   font-style: normal;
   font-weight: 400
@@ -7,6 +8,7 @@
 
 @font-face {
   font-family: titling-gothic-fb;
+  src: url(fonts/katwijk-mono-bold-web.woff2) format("woff2"), url(fonts/katwijk-mono-bold-web.woff) format("woff"), url(fonts/katwijk-mono-bold-web.ttf) format("truetype")
   font-display: auto;
   font-style: normal;
   font-weight: 700
@@ -14,6 +16,7 @@
 
 @font-face {
   font-family: neue-haas-grotesk-display;
+  src: url(fonts/katwijk-mono-bold-web.woff2) format("woff2"), url(fonts/katwijk-mono-bold-web.woff) format("woff"), url(fonts/katwijk-mono-bold-web.ttf) format("truetype")
   font-display: auto;
   font-style: normal;
   font-weight: 500
@@ -21,6 +24,7 @@
 
 @font-face {
   font-family: neue-haas-grotesk-display;
+  src: url(fonts/katwijk-mono-bold-web.woff2) format("woff2"), url(fonts/katwijk-mono-bold-web.woff) format("woff"), url(fonts/katwijk-mono-bold-web.ttf) format("truetype")
   font-display: auto;
   font-style: normal;
   font-weight: 600
