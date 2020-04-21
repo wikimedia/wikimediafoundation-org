@@ -1,0 +1,35 @@
+// Group all style modifications for the 2019-2 transparency report together.
+
+.page-template-page-report-landing {
+    // _header.scss
+    .header-default .ungrid {
+        max-height: unset;
+        margin-bottom: 2.5rem;
+
+        .bg-img {
+            background-size: contain;
+        }
+        .content {
+            width: unset;
+            margin-top: unset;
+        }
+    }
+
+    main {
+        .page-intro {
+            margin-top: 0;
+        }
+
+        p {
+            @include font-size(18, 18);
+            @include line-height(32, 28);
+            margin-bottom: 1em;
+
+            strong {
+                font-weight: 500;
+                @include font-size(24, 21);
+                @include line-height(40, 35);
+            }
+        }
+    }
+}

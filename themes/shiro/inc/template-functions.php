@@ -580,3 +580,14 @@ if ( $query->is_main_query() && $query->is_feed( 'offset1' )) {
     }
 }
 add_action( 'pre_get_posts', 'wpsites_exclude_latest_post', 1 );
+
+/**
+ * Check whether the current post is part of a new-style transparency report
+ * layout, based on the page's assigned page template.
+ */
+function wmf_is_transparency_report_page() {
+	$included_templates = array(
+		'page-report-landing.php',
+	);
+	return in_array( get_page_template_slug(), $included_templates, true );
+}
