@@ -591,3 +591,69 @@ function wmf_is_transparency_report_page() {
 	);
 	return in_array( get_page_template_slug(), $included_templates, true );
 }
+
+/**
+ * Find the ID of the nearest page using the "Report Landing Page" template.
+ *
+ * @return int ID of a Report Landing Page, or 0 for no match.
+ */
+function wmf_locate_report_landing_page_id( $page_id ) {
+	$parent_id = $page_id;
+	while ( $parent_id !== 0 && 'page-report-landing.php' !== get_page_template_slug( $parent_id ) ) {
+		$parent_id = wp_get_post_parent_id( $parent_id );
+	}
+	return $parent_id;
+}
+
+/**
+ * Get the information necessary to render a Transparency Report sidebar.
+ *
+ * Returns an array of child pages within a report parent, prepended with the
+ * introductory Report Landing Page.
+ * 
+ * @return array Array of [ id, title, url, active ] nav list items in the report.
+ */
+function wmf_get_report_sidebar_data() {
+	$current_page = get_the_ID();
+
+	// If this post is not a report landing template, find an ancestor with that template.
+	$report_landing_page = wmf_locate_report_landing_page_id( $current_page );
+
+	if ( 0 === $report_landing_page ) {
+		return null;
+	}
+
+	$child_pages = get_posts(
+		array(
+			'post_type'        => 'page',
+			'post_status'      => 'publish',
+			'post_parent'      => $report_landing_page,
+			'orderby'          => 'menu_order',
+			'suppress_filters' => false,
+		)
+	);
+
+	return array_merge(
+		// Prepend the report landing page.
+		array(
+			array(
+				'id'     => $report_landing_page,
+				'title'  => __( 'Introduction', 'shiro' ),
+				'url'    => get_permalink( $report_landing_page ),
+				'active' => $report_landing_page === $current_page,
+			),
+		),
+		// Continue with all direct child pages.
+		array_map(
+			function( $page ) use ( $current_page ) {
+				return array(
+					'id'     => $page->ID,
+					'title'  => $page->post_title,
+					'url'    => get_permalink( $page ),
+					'active' => $current_page === $page->ID,
+				);
+			},
+			$child_pages
+		),
+	);
+}

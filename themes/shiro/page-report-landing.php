@@ -32,7 +32,7 @@ while ( have_posts() ) {
 	
 	<div class="mw-980 mod-margin-bottom flex flex-medium">
 		<div class="module-mu w-32p">
-			<p>Sidebar TK</p>
+			<?php get_sidebar( 'report' ); ?>
 		</div>
 
 		<div class="w-68p">
