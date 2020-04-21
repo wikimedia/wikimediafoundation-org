@@ -28,9 +28,11 @@ foreach ( $template_args as $i => $list_section ) {
 
 	<ul class="link-list">
 	<?php
-	foreach ( $list_section['links'] as $link ) :
-		wmf_get_template_part( 'template-parts/modules/list/item', $link );
-	endforeach;
+	if ( isset( $list_section['links'] ) ) :
+		foreach ( $list_section['links'] as $link ) :
+			wmf_get_template_part( 'template-parts/modules/list/item', $link );
+		endforeach;
+	endif;
 	?>
 	</ul>
 </div>

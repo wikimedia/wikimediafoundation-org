@@ -273,6 +273,11 @@ require get_template_directory() . '/inc/post-types/profile.php';
 require get_template_directory() . '/inc/post-types/story.php';
 
 /**
+ * Logic for Custom Page Templates.
+ */
+require get_template_directory() . '/inc/template-redirect.php';
+
+/**
  * Add Template Data Helper.
  */
 require get_template_directory() . '/inc/classes/class-wmf-template-data.php';

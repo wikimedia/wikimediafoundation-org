@@ -135,6 +135,10 @@ function wmf_get_random_translation( $key, $args = array() ) {
 	// Remove the first item because it is the current item.
 	array_shift( $translations );
 
+	if ( empty( $translations ) ) {
+		return false;
+	}
+
 	$rand_key           = array_rand( $translations );
 	$target_translation = $translations[ $rand_key ];
 	$content_id         = $target_translation['content_id'];
