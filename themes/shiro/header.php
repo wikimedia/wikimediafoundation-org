@@ -33,7 +33,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      cookieExpirationDays: 1, // @type {number}
      language: null, // @type {string}
      partnerReferrer: 'wikimediafoundation', //@type {string}
-     iframeHost: site_url(), // @type {string}
+     iframeHost: 'https://wikimediafoundation-org-develop.go-vip.co/', // @type {string}
      iframeDirectory: '/wp-content/themes/shiro/assets/dist/earthdaylive', // @type {string}
      disableGoogleAnalytics: true, // @type {boolean}
      alwaysShowWidget: false, // @type {boolean}
