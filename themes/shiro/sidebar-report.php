@@ -28,10 +28,8 @@ if ( empty( $sidebar_items ) ) {
                 <?php echo esc_html( $report_section['title'] ); ?>
             </a>
             <?php
-            error_log( $current_page_id . ' vs ' . $report_section['id'] );
             // Nest page anchor sidebar within nav sidebar.
             if ( $current_page_id === $report_section['id'] ) {
-                error_log( 'Match!' );
                 get_sidebar( 'list' );
             }
             ?>

@@ -2,7 +2,6 @@
 
 .page-template-page-report-landing,
 .page-template-page-report-section {
-    // _header.scss
     .header-default .ungrid {
         max-height: unset;
         margin-bottom: 2.5rem;
@@ -50,11 +49,6 @@
                 }
             }
         }
-    }
-
-    // Override logic in normal menu that hides it on mobile; we use a toggle.
-    .report-nav .display-none_small {
-        display: block;
     }
 
     main {
