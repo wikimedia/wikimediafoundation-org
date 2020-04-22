@@ -295,6 +295,7 @@ require get_template_directory() . '/inc/safe-redirect.php';
 /**
  * Shortcodes.
  */
+require get_template_directory() . '/inc/shortcodes/columns.php';
 require get_template_directory() . '/inc/shortcodes/facts.php';
 
 /**

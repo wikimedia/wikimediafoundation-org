@@ -23,7 +23,27 @@
 
         .fact-label {
             display: block;
+            font-weight: bold;
             @include font-size(20, 10);
+        }
+    }
+}
+
+.columns-wrapper {
+    @media (min-width: $medium-bp) {
+        display: flex;
+        flex-direction: row;
+        align-content: flex-start;
+
+        .column {
+            flex: 1;
+            position: relative;
+        }
+        .column table {
+            max-width: 90%;
+        }
+        .column img {
+            max-width: 100%;
         }
     }
 }

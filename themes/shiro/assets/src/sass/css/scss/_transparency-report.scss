@@ -72,6 +72,20 @@
             margin: 1rem 0;
         }
 
+        img {
+            max-width: 100%;
+        }
+        .column img {
+            @media (max-width: $medium-bp) {
+                max-width: 50%;
+                display: block;
+                margin: auto;
+            }
+            @media (max-width: $small-bp) {
+                max-width: 75%;
+            }
+        }
+
         p {
             @include font-size(18, 18);
             @include line-height(32, 28);
@@ -82,6 +96,47 @@
                 @include font-size(24, 21);
                 @include line-height(40, 35);
             }
+        }
+
+        h2 {
+            @include font-size(24, 21);
+            padding-bottom: 4px;
+            border-bottom: 2px solid black;
+            margin-bottom: 1em;
+        }
+        h3 {
+            @include font-size(21, 18);
+            margin: rem(30) 0 rem(21);
+        }
+        h4 {
+            @include font-size(18, 16);
+            margin: rem(18) 0 rem(6);
+        }
+    }
+
+    .table-data {
+        tbody tr {
+            border-bottom: 0.6px solid #000;
+        }
+        th,
+        td {
+            padding: rem(8);
+            @include font-size(16, 14);
+            font-weight: 500;
+
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                padding-right: 0;
+            }
+
+            a {
+                color: black; // a11y issue?
+            }
+        }
+        th {
+            text-transform: uppercase;
         }
     }
 }

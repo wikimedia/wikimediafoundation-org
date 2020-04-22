@@ -22,7 +22,7 @@ foreach ( $template_args as $i => $list_section ) {
 
 	<?php if ( ! empty( $list_section['description'] ) ) : ?>
 	<div class="mar-bottom">
-		<?php echo wp_kses_post( wpautop( $list_section['description'] ) ); ?>
+		<?php echo wp_kses_post( do_shortcode( wpautop( $list_section['description'] ) ) ); ?>
 	</div>
 	<?php endif; ?>
 
