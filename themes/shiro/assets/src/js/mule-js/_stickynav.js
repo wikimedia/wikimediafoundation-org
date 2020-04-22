@@ -1,4 +1,3 @@
-/* eslint-disable */
 (function($, root, undefined) {
   $(function() {
     var $toc, $links, headings;
