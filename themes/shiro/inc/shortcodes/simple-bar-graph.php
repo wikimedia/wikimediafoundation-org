@@ -6,18 +6,18 @@
  */
 
 /**
- * Define a [wmf_fact] wrapper shortcode that creates a dumb HTML wrapper.
+ * Define a [simple_bar_graph] shortcode that renders an inline bar graph using SVG.
  *
- * @param array  $atts    Shortcode attributes array.
+ * @param array $atts Shortcode attributes array.
  * @return string Rendered shortcode output.
  */
 function wmf_simple_bar_graph_shortcode_callback( $atts ) {
 	$defaults = [
-        'max'    => 0,
-        'value'  => 0,
-        'color'  => '#92278f',
-        'width'  => 200,
-        'height' => 14,
+		'max'    => 0,
+		'value'  => 0,
+		'color'  => '#92278f',
+		'width'  => 200,
+		'height' => 14,
 	];
 	$atts     = shortcode_atts( $defaults, $atts, 'simple_bar_graph' );
 
@@ -28,7 +28,7 @@ function wmf_simple_bar_graph_shortcode_callback( $atts ) {
 	$viewbox = sprintf(
 		'0 0 %d %d',
 		$atts['width'],
-		$atts['height'],
+		$atts['height']
 	);
 
 	$bar_width = 2 + floor( (int) $atts['value'] / (int) $atts['max'] * ( (int) $atts['width'] - 2 ) );
