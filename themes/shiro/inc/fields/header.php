@@ -18,8 +18,9 @@ function wmf_header_fields() {
 					array(
 						'label'   => __( 'Color', 'shiro' ),
 						'options' => array(
-							''     => __( 'Blue', 'shiro' ),
+							''     => __( 'Default', 'shiro' ),
 							'pink' => __( 'Pink', 'shiro' ),
+							'blue' => __( 'Blue', 'shiro' ),
 						),
 					)
 				),
@@ -36,8 +37,8 @@ function wmf_header_fields() {
 	if ( $is_landing_page || $is_front_page ) {
 		$subtitle = new Fieldmanager_Textfield(
 			array(
-				'name' => 'sub_title',
-                'sanitize' => "wp_kses_post",
+				'name'     => 'sub_title',
+				'sanitize' => 'wp_kses_post',
 			)
 		);
 		$subtitle->add_meta_box( __( 'Subtitle', 'shiro' ), 'page' );

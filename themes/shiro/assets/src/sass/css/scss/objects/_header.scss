@@ -439,6 +439,7 @@ $header-bp-mw: 1049px;
 			height: 100%;
 			margin-top: 0.8rem;
 			background-size: cover;
+			background-repeat: no-repeat;
 			background-color: #ffb0dd;
 			background-blend-mode: multiply;
 		}
@@ -466,6 +467,18 @@ $header-bp-mw: 1049px;
 
 		.h2.eyebrow {
 			color: #f61971;
+		}
+	}
+
+	&.header-blue .ungrid {
+		background: #eeeaff;
+
+		.bg-img {
+			background-color: #eeeaff;
+		}
+
+		.h2.eyebrow {
+			color: #3a25ff;
 		}
 	}
 }
@@ -548,6 +561,7 @@ $header-bp-mw: 1049px;
 
 // TODO: Fix for use beyond transparency report and campaign pages and data page template with a parent 
 .page-template-page-data.page-child,
+.page-template-page-report-landing,
 .page-id-61699,
 .page-id-62419 {
     .header-content {

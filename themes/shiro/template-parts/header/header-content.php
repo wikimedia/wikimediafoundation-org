@@ -124,9 +124,11 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 								</div>
 							</div>
 						</div>
+						<?php if ( ! wmf_is_transparency_report_page() ) { ?>
 						<div class="content">
 							<?php the_content(); ?>
 						</div>
+						<?php } ?>
 					<?php } ?>
 				</div>
 			</div>
