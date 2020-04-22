@@ -641,7 +641,7 @@ function wmf_get_report_sidebar_data() {
 		array(
 			array(
 				'id'     => $report_landing_page,
-				'title'  => __( 'Introduction', 'shiro' ),
+				'title'  => get_the_title( $report_landing_page ),
 				'url'    => get_permalink( $report_landing_page ),
 				'active' => $report_landing_page === $current_page,
 			),

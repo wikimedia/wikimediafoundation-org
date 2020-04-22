@@ -297,6 +297,7 @@ require get_template_directory() . '/inc/safe-redirect.php';
  */
 require get_template_directory() . '/inc/shortcodes/columns.php';
 require get_template_directory() . '/inc/shortcodes/facts.php';
+require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
 
 /**
  * Modify the document title for the search and 404 pages

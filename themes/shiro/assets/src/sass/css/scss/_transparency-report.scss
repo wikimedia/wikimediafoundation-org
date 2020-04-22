@@ -26,13 +26,19 @@
     // Nested menu handling.
     .toc {
         padding: 0;
+        @media (max-width: $medium-bp) {
+            margin-bottom: 2rem;
+        }
     }
     .toc-link-item {
-        max-width: 252px;
+        @media (min-width: $medium-bp) {
+            max-width: 252px;
+        }
+
         a {
-            @include font-size(14, 14);
-            @include line-height(20, 20);
-            @include padding(8, 16, 8, 16);
+            font-size: rem(14);
+            line-height: 1.4;
+            padding: rem(8) rem(16);
             margin: 0;
             font-weight: normal;
             border-radius: 2px;
@@ -58,6 +64,13 @@
                 }
                 a {
                     padding: rem(8) rem(16);
+                }
+            }
+
+            .-active {
+                font-weight: bold;
+                &::before {
+                    display: none;
                 }
             }
         }
@@ -88,7 +101,7 @@
 
         p {
             @include font-size(18, 18);
-            @include line-height(32, 28);
+            line-height: 1.5;
             margin-bottom: 1em;
 
             strong {
@@ -99,25 +112,54 @@
         }
 
         h2 {
-            @include font-size(24, 21);
+            font-size: rem(24);
             padding-bottom: 4px;
             border-bottom: 2px solid black;
             margin-bottom: 1em;
         }
         h2.report-section-title {
-            @include font-size(36, 24);
+            font-size: rem(24);
         }
         h3 {
-            @include font-size(21, 18);
+            font-size: rem(18);
+            line-height: 1.5;
             margin: rem(30) 0 rem(21);
         }
         h4 {
-            @include font-size(18, 16);
+            font-size: rem(16);
             margin: rem(18) 0 rem(6);
+        }
+        @media (min-width: $medium-bp) {
+            h2.report-secton-title {
+                font-size: rem(36);
+            }
+            h3 {
+                font-size: rem(21);
+            }
+            h4 {
+                font-size: rem(18);
+            }
+        }
+
+        .note {
+            font-size: 1rem;
+        }
+
+        .mar-bottom {
+            // This is a misappropriation of this class, but it lets us properly
+            // scroll table overflow on small devices.
+            overflow-x: auto;
         }
     }
 
+    table {
+        margin-bottom: 2rem;
+    }
+
     .table-data {
+        thead tr {
+            border-bottom: 0;
+        }
         tbody tr {
             border-bottom: 0.6px solid #000;
         }
@@ -141,5 +183,13 @@
         th {
             text-transform: uppercase;
         }
+    }
+
+    td.legend-color {
+        width: 1em;
+        height: 1em;
+        margin-bottom: -1em;
+        display: inline-block;
+        padding: 0;
     }
 }

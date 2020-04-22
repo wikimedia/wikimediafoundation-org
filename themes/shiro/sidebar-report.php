@@ -15,8 +15,8 @@ if ( empty( $sidebar_items ) ) {
 }
 ?>
 
-<nav>
-	<ul class="toc fixedsticky report-nav">
+<nav class="toc fixedsticky">
+	<ul class="report-nav">
 		<?php
 		foreach ( $sidebar_items as $report_section ) {
 			if ( empty( $report_section['title'] ) ) {
