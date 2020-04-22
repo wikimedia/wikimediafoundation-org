@@ -33,11 +33,11 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
      cookieExpirationDays: 1, // @type {number}
      language: null, // @type {string}
      partnerReferrer: 'wikimediafoundation', //@type {string}
-     iframeHost: 'https://wikimediafoundation-org-develop.go-vip.co', // @type {string}
+     iframeHost: 'https://wikimediafoundation.org', // @type {string}
      iframeDirectory: '/wp-content/themes/shiro/assets/dist/earthdaylive', // @type {string}
      disableGoogleAnalytics: true, // @type {boolean}
-     alwaysShowWidget: true, // @type {boolean}
-     forceFullPageWidget: true, // @type {boolean}
+     alwaysShowWidget: false, // @type {boolean}
+     forceFullPageWidget: false, // @type {boolean}
      showCloseButtonOnFullPageWidget: true, // @type {boolean}
      footerDisplayStartDate: new Date(), //@ type {Date object}
      fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
