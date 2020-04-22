@@ -1,0 +1,29 @@
+.facts-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-bottom: rem(18);
+    border-bottom: solid 1.2px #0054a6;
+
+    .fact-item {
+        flex: 1;
+        border-left: solid 1.2px #0054a6;
+        padding: 0 rem(37);
+
+        &:first-child {
+            border-left: 0;
+            padding-left: 0;
+        }
+
+        strong {
+            @include font-size(60, 21);
+            @include line-height(54, 21);
+            display: block;
+        }
+
+        .fact-label {
+            display: block;
+            @include font-size(20, 10);
+        }
+    }
+}

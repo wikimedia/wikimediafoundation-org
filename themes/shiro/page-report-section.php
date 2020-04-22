@@ -60,7 +60,11 @@ while ( have_posts() ) :
 		<?php get_sidebar( 'report' ); ?>
 	</div>
 
-	<div class="w-68p">
+	<div class="w-68p report-content">
+		<h2 class="report-section-title">
+			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
+		</h2>
+
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php if ( ! has_post_thumbnail() ) : ?>
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>

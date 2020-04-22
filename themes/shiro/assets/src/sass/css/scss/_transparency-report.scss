@@ -15,11 +15,23 @@
         }
     }
 
-    .toc-link-item {
-        @include font-size(14, 14);
-        @include line-height(20, 20);
+    .report-section-title {
+        border-bottom: 3px solid $wmui-color-base0;
+        text-transform: none;
+        @include font-size(36, 24);
+        font-weight: 500;
+        margin-bottom: rem(50);
+    }
 
+    // Nested menu handling.
+    .toc {
+        padding: 0;
+    }
+    .toc-link-item {
+        max-width: 252px;
         a {
+            @include font-size(14, 14);
+            @include line-height(20, 20);
             @include padding(8, 16, 8, 16);
             margin: 0;
             font-weight: normal;
@@ -33,7 +45,7 @@
         }
 
         .toc {
-            padding: 0 0 0 16px;
+            padding: 0 0 0 rem(16);
 
             .toc-link-item {
                 display: flex;
@@ -42,18 +54,22 @@
 
                 &::before {
                     content: '\2022';
-                    padding: 8px 0;
+                    padding: rem(8) 0;
                 }
                 a {
-                    padding: 8px 16px 8px 16px;
+                    padding: rem(8) rem(16);
                 }
             }
         }
     }
 
-    main {
+    .report-content {
         .page-intro {
             margin-top: 0;
+        }
+
+        .article-img {
+            margin: 1rem 0;
         }
 
         p {
