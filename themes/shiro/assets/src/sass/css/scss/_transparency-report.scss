@@ -104,6 +104,9 @@
             border-bottom: 2px solid black;
             margin-bottom: 1em;
         }
+        h2.report-section-title {
+            @include font-size(36, 24);
+        }
         h3 {
             @include font-size(21, 18);
             margin: rem(30) 0 rem(21);
