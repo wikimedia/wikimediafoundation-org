@@ -31,7 +31,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <script type="text/javascript">
   var EARTH_DAY_LIVE_OPTIONS = {
      cookieExpirationDays: 1, // @type {number}
-     language: null, // @type {string}
+     language: 'en', // @type {string}
      partnerReferrer: 'wikimediafoundation', //@type {string}
      iframeHost: 'https://wikimediafoundation.org', // @type {string}
      iframeDirectory: '/wp-content/themes/shiro/assets/dist/earthdaylive', // @type {string}
