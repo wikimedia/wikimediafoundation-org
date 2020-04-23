@@ -28,22 +28,6 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
-<script type="text/javascript">
-  var EARTH_DAY_LIVE_OPTIONS = {
-     cookieExpirationDays: 1, // @type {number}
-     language: 'en', // @type {string}
-     partnerReferrer: 'wikimediafoundation', //@type {string}
-     iframeHost: 'https://wikimediafoundation.org', // @type {string}
-     iframeDirectory: '/wp-content/themes/shiro/assets/dist/earthdaylive', // @type {string}
-     disableGoogleAnalytics: true, // @type {boolean}
-     alwaysShowWidget: false, // @type {boolean}
-     forceFullPageWidget: false, // @type {boolean}
-     showCloseButtonOnFullPageWidget: true, // @type {boolean}
-     footerDisplayStartDate: new Date(), //@ type {Date object}
-     fullPageDisplayStartDate: new Date(2020, 3, 22), //@ type {Date object}
-  };
-</script>
-<script src="/wp-content/themes/shiro/assets/dist/earthdaylive/widget.js" async></script>
 </head>
 
 <body <?php body_class(); ?>>
