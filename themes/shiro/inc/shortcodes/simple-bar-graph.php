@@ -31,12 +31,26 @@ function wmf_simple_bar_graph_shortcode_callback( $atts ) {
 		$atts['height']
 	);
 
-	$bar_width = 2 + floor( (int) $atts['value'] / (int) $atts['max'] * ( (int) $atts['width'] - 2 ) );
+	$values = array_map( 'trim', explode( ',', (string) $atts['value'] ) );
+	$colors = array_map( 'trim', explode( ',', (string) $atts['color'] ) );
+	foreach ( $values as $idx => $value ) {
+		$values[$idx] = [
+			'color' => ( $idx + 1 <= count( $colors ) ) ? $colors[$idx] : $colors[0],
+			'width' => floor( (int) $value / (int) $atts['max'] * ( (int) $atts['width'] ) ),
+			'x'     => ( 0 === $idx ) ? 0 : $values[$idx - 1]['x'] + $values[$idx - 1]['width'],
+		];
+	}
 
 	ob_start();
 	?>
 	<svg viewBox="<?php echo esc_attr( $viewbox ); ?>" width="<?php echo esc_attr( $atts['width'] ); ?>" height="<?php echo esc_attr( $atts['height'] ); ?>">
-	<rect x="0" y="0" width="<?php echo esc_attr( $bar_width ); ?>" height="<?php echo esc_attr( $atts['height'] ); ?>" fill="<?php echo esc_attr( $atts['color'] ); ?>">
+		<?php
+		foreach ( $values as $value ) {
+			?>
+			<rect x="<?php echo esc_attr( $value['x'] ); ?>" y="0" width="<?php echo esc_attr( $value['width'] ); ?>" height="<?php echo esc_attr( $atts['height'] ); ?>" fill="<?php echo esc_attr( $value['color'] ); ?>"></rect>
+			<?php
+		}
+		?>
 	</svg>
 	<?php
 	return (string) ob_get_clean();

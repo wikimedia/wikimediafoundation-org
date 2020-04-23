@@ -329,3 +329,36 @@ add_filter( 'document_title_parts', 'theme_slug_filter_wp_searchtitle' );
 
 // Rewrite URL for roles to not require /news/ prefix
 add_rewrite_rule( '^role/(.+?)$', 'index.php?role=$matches[1]', 'top' );
+
+/**
+ * Whitelist a very limited subset of SVG for use in post content to support
+ * the simple_bar_graph shortcode used in transparency report tables.
+ *
+ * @param array[]|string $context      Context by which to judge allowed tags.
+ * @param string         $context_type Context name.
+ * @return mixed Filtered context.
+ */
+function wmf_filter_post_kses_tags( $context, $context_type ) {
+	if ( 'post' !== $context_type || ! is_array( $context ) ) {
+		return $context;
+	}
+
+	return array_merge(
+		$context,
+		[
+			'svg'  => [
+				'viewBox' => true,
+				'width'   => true,
+				'height'  => true,
+			],
+			'rect' => [
+				'fill'   => true,
+				'width'  => true,
+				'height' => true,
+				'x'      => true,
+				'y'      => true,
+			],
+		]
+	);
+}
+add_filter( 'wp_kses_allowed_html', 'wmf_filter_post_kses_tags', 10, 2 );

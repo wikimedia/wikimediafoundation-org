@@ -7,25 +7,6 @@
 
 $template_args = wmf_get_template_data();
 
-// Whitelist a safe subset of SVG for use in Transparency Report visualizations.
-$allowed_tags = array_merge(
-	wp_kses_allowed_html( 'post' ),
-	[
-		'svg'  => [
-			'viewBox' => true,
-			'width'   => true,
-			'height'  => true,
-		],
-		'rect' => [
-			'fill'   => true,
-			'width'  => true,
-			'height' => true,
-			'x'      => true,
-			'y'      => true,
-		],
-	]
-);
-
 if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 	return;
 }
@@ -41,7 +22,7 @@ foreach ( $template_args as $i => $list_section ) {
 
 	<?php if ( ! empty( $list_section['description'] ) ) : ?>
 	<div class="mar-bottom">
-		<?php echo wp_kses( do_shortcode( wpautop( $list_section['description'] ) ), $allowed_tags ); ?>
+		<?php echo wp_kses_post( do_shortcode( wpautop( $list_section['description'] ) ) ); ?>
 	</div>
 	<?php endif; ?>
 
