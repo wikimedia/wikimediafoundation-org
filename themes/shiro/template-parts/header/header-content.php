@@ -81,7 +81,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 	<?php if ( ! is_front_page() && ! is_home() ) { ?>
 		<!-- h2 or title as heading -->
-		<?php if ( ! empty( $single_title ) ) { ?>
+		<?php if ( ! empty( $single_title ) && ! wmf_is_transparency_report_page() ) { ?>
 			<h2 class="h2 eyebrow">
 				<?php echo wp_kses( $single_title, array( 'span' => array( 'class' ) ) ); ?>
 			</h2>
@@ -91,7 +91,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 		<?php } ?>
 
 		<!-- h2 and title, without image -->
-		<?php if ( empty( $image) && !empty($h2_title) && !empty($title)) { ?>
+		<?php if ( empty( $image ) && ! empty( $h2_title ) && ! empty( $title ) && ! wmf_is_transparency_report_page() ) { ?>
 			<h2 class="h2 eyebrow">
 				<?php echo esc_html( $h2_title ); ?>
 			</h2>

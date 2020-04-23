@@ -32,7 +32,7 @@ function wmf_header_fields() {
 	$header_opts->add_meta_box( __( 'Header Options', 'shiro' ), 'page' );
 
 	$is_front_page   = (int) get_option( 'page_on_front' ) === (int) wmf_get_fields_post_id();
-	$is_landing_page = wmf_using_template( 'page-landing' ) || wmf_using_template( 'page-report' ) || wmf_using_template( 'page-data' );
+	$is_landing_page = wmf_using_template( [ 'page-landing', 'page-report', 'page-data', 'page-report-landing' ] );
 
 	if ( $is_landing_page || $is_front_page ) {
 		$subtitle = new Fieldmanager_Textfield(

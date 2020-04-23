@@ -588,6 +588,7 @@ add_action( 'pre_get_posts', 'wpsites_exclude_latest_post', 1 );
 function wmf_is_transparency_report_page() {
 	$included_templates = array(
 		'page-report-landing.php',
+		'page-report-section.php',
 	);
 	return in_array( get_page_template_slug(), $included_templates, true );
 }
@@ -595,6 +596,7 @@ function wmf_is_transparency_report_page() {
 /**
  * Find the ID of the nearest page using the "Report Landing Page" template.
  *
+ * @param int $page_id ID of the page from which to start the search.
  * @return int ID of a Report Landing Page, or 0 for no match.
  */
 function wmf_locate_report_landing_page_id( $page_id ) {
@@ -639,7 +641,7 @@ function wmf_get_report_sidebar_data() {
 		array(
 			array(
 				'id'     => $report_landing_page,
-				'title'  => __( 'Introduction', 'shiro' ),
+				'title'  => get_the_title( $report_landing_page ),
 				'url'    => get_permalink( $report_landing_page ),
 				'active' => $report_landing_page === $current_page,
 			),

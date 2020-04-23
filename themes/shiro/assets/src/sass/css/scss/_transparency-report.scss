@@ -15,12 +15,30 @@
         }
     }
 
+    .report-section-title {
+        border-bottom: 3px solid $wmui-color-base0;
+        text-transform: none;
+        @include font-size(36, 24);
+        font-weight: 500;
+        margin-bottom: rem(50);
+    }
+
+    // Nested menu handling.
+    .toc {
+        padding: 0;
+        @media (max-width: $medium-bp) {
+            margin-bottom: 2rem;
+        }
+    }
     .toc-link-item {
-        @include font-size(14, 14);
-        @include line-height(20, 20);
+        @media (min-width: $medium-bp) {
+            max-width: 252px;
+        }
 
         a {
-            @include padding(8, 16, 8, 16);
+            font-size: rem(14);
+            line-height: 1.4;
+            padding: rem(8) rem(16);
             margin: 0;
             font-weight: normal;
             border-radius: 2px;
@@ -33,7 +51,7 @@
         }
 
         .toc {
-            padding: 0 0 0 16px;
+            padding: 0 0 0 rem(16);
 
             .toc-link-item {
                 display: flex;
@@ -42,23 +60,48 @@
 
                 &::before {
                     content: '\2022';
-                    padding: 8px 0;
+                    padding: rem(8) 0;
                 }
                 a {
-                    padding: 8px 16px 8px 16px;
+                    padding: rem(8) rem(16);
+                }
+            }
+
+            .-active {
+                font-weight: bold;
+                &::before {
+                    display: none;
                 }
             }
         }
     }
 
-    main {
+    .report-content {
         .page-intro {
             margin-top: 0;
         }
 
+        .article-img {
+            margin: 1rem 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+        .column img {
+            @media (max-width: $medium-bp) {
+                max-width: 50%;
+                display: block;
+                margin: auto;
+            }
+            @media (max-width: $small-bp) {
+                max-width: 75%;
+            }
+        }
+
         p {
             @include font-size(18, 18);
-            @include line-height(32, 28);
+            line-height: 1.5;
             margin-bottom: 1em;
 
             strong {
@@ -67,5 +110,86 @@
                 @include line-height(40, 35);
             }
         }
+
+        h2 {
+            font-size: rem(24);
+            padding-bottom: 4px;
+            border-bottom: 2px solid black;
+            margin-bottom: 1em;
+        }
+        h2.report-section-title {
+            font-size: rem(24);
+        }
+        h3 {
+            font-size: rem(18);
+            line-height: 1.5;
+            margin: rem(30) 0 rem(21);
+        }
+        h4 {
+            font-size: rem(16);
+            margin: rem(18) 0 rem(6);
+        }
+        @media (min-width: $medium-bp) {
+            h2.report-secton-title {
+                font-size: rem(36);
+            }
+            h3 {
+                font-size: rem(21);
+            }
+            h4 {
+                font-size: rem(18);
+            }
+        }
+
+        .note {
+            font-size: 1rem;
+        }
+
+        .mar-bottom {
+            // This is a misappropriation of this class, but it lets us properly
+            // scroll table overflow on small devices.
+            overflow-x: auto;
+        }
+    }
+
+    table {
+        margin-bottom: 2rem;
+    }
+
+    .table-data {
+        thead tr {
+            border-bottom: 0;
+        }
+        tbody tr {
+            border-bottom: 0.6px solid #000;
+        }
+        th,
+        td {
+            padding: rem(8);
+            @include font-size(16, 14);
+            font-weight: 500;
+
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                padding-right: 0;
+            }
+
+            a {
+                color: black; // a11y issue?
+            }
+        }
+        th {
+            text-transform: uppercase;
+        }
+    }
+
+    td.legend-color {
+        width: 1em;
+        height: 1em;
+        margin-bottom: -1em;
+        display: inline-block;
+        padding: 0;
     }
 }

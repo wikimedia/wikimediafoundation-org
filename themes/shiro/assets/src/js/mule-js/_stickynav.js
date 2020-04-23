@@ -3,6 +3,9 @@
     var $toc, $links, headings;
 
     $toc     = $('.toc');
+    if ( $toc.length > 1 ) {
+      $toc = $toc.last();
+    }
     $links   = $toc.find('.toc-link');
     headings = [];
 

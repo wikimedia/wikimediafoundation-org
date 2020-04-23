@@ -35,7 +35,7 @@ while ( have_posts() ) {
 			<?php get_sidebar( 'report' ); ?>
 		</div>
 
-		<div class="w-68p">
+		<div class="w-68p report-content">
 			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 		</div>
 	</div>
