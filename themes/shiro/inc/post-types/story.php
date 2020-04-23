@@ -14,7 +14,7 @@ function wmf_story_init() {
 	register_post_type(
 		'story', array(
 			'labels'            => array(
-				'name'                  => __( '$wmf_stories_name', 'shiro' ),
+				'name'                  => __( 'Stories', 'shiro' ),
 				'singular_name'         => __( 'Story', 'shiro' ),
 				'all_items'             => __( 'All Stories', 'shiro' ),
 				'archives'              => __( 'Story Archives', 'shiro' ),
