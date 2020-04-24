@@ -7,19 +7,16 @@
 
 $template_data = wmf_get_template_data();
 
-$cardlink   = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
-$cardtitle  = ! empty( $template_data['title'] ) ? $template_data
-['title'] : '';
-$excerpt   = ! empty( $template_data['excerpt'] ) ? $template_data
-['excerpt'] : '';
-$img_id = ! empty( $template_data['img_id'] ) ? $template_data
-['img_id'] : '';
+$cardlink  = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
+$cardtitle = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
+$excerpt   = ! empty( $template_data['excerpt'] ) ? $template_data['excerpt'] : '';
+$img_id    = ! empty( $template_data['img_id'] ) ? $template_data['img_id'] : '';
 
 ?>
 
 <a class="card card-vertical card-person rounded shadow hover-img-zoom w-32p" href="<?php echo esc_url( $cardlink ); ?>">
 	<?php if ( ! empty( $img_id ) ) : ?>
-	<div class="img-container" style="background-image:url(<?php echo esc_url(wp_get_attachment_image_url( $img_id, 'image_4x5_large' )); ?>)">
+	<div class="img-container" style="background-image:url(<?php echo esc_url( wp_get_attachment_image_url( $img_id, 'image_4x5_large' ) ); ?>)">
 	</div>
 	<?php endif; ?>
 

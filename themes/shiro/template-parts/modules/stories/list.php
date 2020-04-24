@@ -42,12 +42,8 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 		<?php endif; ?>
 	</div>
 
-	<?php
-	// Two different variants of this layout depending on which template is in use.
-	if ( ! wmf_is_transparency_report_page() ) :
-	?>
+	<?php if ( ! wmf_is_transparency_report_page() ) : ?>
 	<div class="mw-980 std-mod people-container mod-margin-bottom_xs">
-
 		<div class="people slider-on-mobile flex flex-medium">
 		<?php
 		foreach ( $story_list as $story_id ) {
@@ -57,11 +53,12 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 				$team_name = $team[0]->name;
 			}
 			wmf_get_template_part(
-				'template-parts/modules/stories/card', array(
-					'title'  => get_the_title( $story_id ),
-					'img_id' => get_post_thumbnail_id( $story_id ),
-					'link'   => get_the_permalink( $story_id ),
-					'excerpt'   => get_the_excerpt( $story_id ),
+				'template-parts/modules/stories/card',
+				array(
+					'title'   => get_the_title( $story_id ),
+					'img_id'  => get_post_thumbnail_id( $story_id ),
+					'link'    => get_the_permalink( $story_id ),
+					'excerpt' => get_the_excerpt( $story_id ),
 				)
 			);
 		}
@@ -79,11 +76,12 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 					$team_name = $team[0]->name;
 				}
 				wmf_get_template_part(
-					'template-parts/modules/stories/excerpt', array(
-						'title'  => get_the_title( $story_id ),
-						'img_id' => get_post_thumbnail_id( $story_id ),
-						'link'   => get_the_permalink( $story_id ),
-						'excerpt'   => get_the_excerpt( $story_id ),
+					'template-parts/modules/stories/excerpt',
+					array(
+						'title'   => get_the_title( $story_id ),
+						'img_id'  => get_post_thumbnail_id( $story_id ),
+						'link'    => get_the_permalink( $story_id ),
+						'excerpt' => get_the_excerpt( $story_id ),
 					)
 				);
 			}
