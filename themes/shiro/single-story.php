@@ -17,9 +17,9 @@ while ( have_posts() ) :
 	?>
 
 	<?php
-	$roleterm        = get_the_terms( get_the_ID(), 'type' );
-	$parent_name     = $roleterm[0]->name;
-	$parent_link     = get_term_link( $roleterm[0] );
+	$roleterm    = get_the_terms( get_the_ID(), 'type' );
+	$parent_name = ! empty( $roleterm ) ? $roleterm[0]->name : '';
+	$parent_link = ! empty( $roleterm ) ? get_term_link( $roleterm[0] ) : '';
 
 	if ( ! empty( $roleterm ) && ! is_wp_error( $roleterm ) ) {
 		$team_name = $roleterm[0]->name;
@@ -70,7 +70,6 @@ while ( have_posts() ) :
 	<?php
 
 	get_template_part( 'template-parts/page/page', 'offsite-links' );
-
 endwhile;
 
 get_footer();

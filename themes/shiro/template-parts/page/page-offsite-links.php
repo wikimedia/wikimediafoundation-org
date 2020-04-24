@@ -7,7 +7,12 @@
  * @package shiro
  */
 
-$template_args          = get_post_meta( get_the_ID(), 'off_site_links', true );
+$template_args = get_post_meta( get_the_ID(), 'off_site_links', true );
+
+if ( empty( $template_args ) ) {
+	return;
+}
+
 $template_args['split'] = false;
 $template               = is_singular( 'page' ) ? basename( get_page_template() ) : '';
 
