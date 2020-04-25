@@ -239,6 +239,10 @@
             font-size: rem(18);
             font-weight: 500;
         }
+
+        @media (max-width: $medium-bp) {
+            margin-bottom: 2em;
+        }
     }
 
     .reports-archive {

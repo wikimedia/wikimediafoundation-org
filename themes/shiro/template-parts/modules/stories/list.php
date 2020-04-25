@@ -71,7 +71,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 		</div>
 	</div>
 	<?php else : ?>
-	<div class="mw-980 std-mod people-container mod-margin-bottom_xs">
+	<div class="mw-980 std-mod mod-margin-bottom_xs">
 		<div class="flex flex-medium flex-space-between mar-bottom_lg">
 			<?php
 			foreach ( $story_list as $story_id ) {
