@@ -1,7 +1,8 @@
 // Group all style modifications for the 2019-2 transparency report together.
 
 .page-template-page-report-landing,
-.page-template-page-report-section {
+.page-template-page-report-section,
+.page-template-page-stories {
     .header-default .ungrid {
         max-height: unset;
         margin-bottom: 2.5rem;
@@ -43,6 +44,11 @@
             font-weight: normal;
             border-radius: 2px;
             color: black;
+        }
+
+        > a:hover,
+        > a:focus {
+            background: #eaecf0;
         }
 
         &.active > a {
@@ -119,6 +125,16 @@
         }
         h2.report-section-title {
             font-size: rem(24);
+        }
+        h2.story-link {
+            border-bottom: 0;
+
+            a {
+                color: #3a25ff;
+                &:hover, &:focus {
+                    text-decoration: underline;
+                }
+            }
         }
         h3 {
             font-size: rem(18);

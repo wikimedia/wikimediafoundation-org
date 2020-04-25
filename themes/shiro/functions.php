@@ -276,6 +276,7 @@ require get_template_directory() . '/inc/post-types/story.php';
  * Logic for Custom Page Templates.
  */
 require get_template_directory() . '/inc/template-redirect.php';
+require get_template_directory() . '/inc/template-stories.php';
 
 /**
  * Add Template Data Helper.

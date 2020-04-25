@@ -5,6 +5,11 @@
  * @package shiro
  */
 
+if ( wmf_is_stories_template_page( get_the_ID() ) ) {
+	// No stories module on stories template.
+	return;
+}
+
 $template_data = wmf_get_template_data();
 
 $stories = ! empty( $template_data['stories_list'] ) ? $template_data['stories_list'] : '';
