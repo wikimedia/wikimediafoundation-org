@@ -638,12 +638,17 @@ function wmf_get_report_sidebar_data() {
 		)
 	);
 
+	$report_sidebar_label = get_post_meta( $report_landing_page, 'landing_page_sidebar_menu_label', true );
+	if ( empty( $report_sidebar_label ) ) {
+		$report_sidebar_label = get_the_title( $report_landing_page );
+	}
+
 	return array_merge(
 		// Prepend the report landing page.
 		array(
 			array(
 				'id'     => $report_landing_page,
-				'title'  => get_the_title( $report_landing_page ),
+				'title'  => $report_sidebar_label,
 				'url'    => get_permalink( $report_landing_page ),
 				'active' => $report_landing_page === $current_page,
 			),

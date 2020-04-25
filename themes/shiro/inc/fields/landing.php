@@ -104,5 +104,14 @@ function wmf_landing_fields() {
 		)
 	);
 	$featured_post->add_meta_box( __( 'Featured Post Subtitle', 'shiro' ), 'page' );
+
+	if ( wmf_using_template( 'page-report-landing' ) ) {
+		$sidebar_menu_label = new Fieldmanager_Textfield(
+			array(
+				'name' => 'landing_page_sidebar_menu_label',
+			)
+		);
+		$sidebar_menu_label->add_meta_box( __( 'Sidebar Menu Label', 'shiro' ), 'page' );
+	}
 }
 add_action( 'fm_post_page', 'wmf_landing_fields' );
