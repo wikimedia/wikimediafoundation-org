@@ -633,6 +633,7 @@ function wmf_get_report_sidebar_data() {
 			'post_parent'      => $report_landing_page,
 			'orderby'          => 'menu_order',
 			'order'            => 'ASC',
+			'posts_per_page'   => 15,
 			'suppress_filters' => false,
 		)
 	);
