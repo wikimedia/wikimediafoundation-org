@@ -30,6 +30,10 @@
         @media (max-width: $medium-bp) {
             margin-bottom: 2rem;
         }
+        @media (min-width: $medium-bp) {
+            max-height: calc( 100vh - 107px );
+            overflow-y: auto;
+        }
     }
     .toc-link-item {
         @media (min-width: $medium-bp) {
@@ -78,6 +82,12 @@
                 &::before {
                     display: none;
                 }
+            }
+
+            @media (min-width: $medium-bp) {
+                // Undo sticky on nested menus.
+                position: static;
+                max-height: unset;
             }
         }
     }
