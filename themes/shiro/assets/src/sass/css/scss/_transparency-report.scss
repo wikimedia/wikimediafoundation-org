@@ -5,7 +5,7 @@
 .page-template-page-stories {
     .header-default .ungrid {
         max-height: unset;
-        margin-bottom: 2.5rem;
+        @media (min-width: $medium-bp) { margin-bottom: 2.5rem; }
 
         .bg-img {
             background-size: contain;
@@ -37,7 +37,7 @@
     // Nested menu handling.
     .toc {
         padding: 0;
-        @media (max-width: $medium-bp) {
+        @media (max-width: ( $medium-bp - 1 )) {
             margin-bottom: 2rem;
         }
         @media (min-width: $medium-bp) {
@@ -119,7 +119,7 @@
             max-width: 100%;
         }
         .column img {
-            @media (max-width: $medium-bp) {
+            @media (max-width: ( $medium-bp - 1 )) {
                 max-width: 50%;
                 display: block;
                 margin: auto;
@@ -265,7 +265,7 @@
             font-weight: 500;
         }
 
-        @media (max-width: $medium-bp) {
+        @media (max-width: ( $medium-bp - 1 )) {
             margin-bottom: 2em;
         }
     }
@@ -301,6 +301,29 @@
 
         @media (min-width: $medium-bp) {
             font-size: rem(20);
+        }
+    }
+}
+
+// Landing page-specific styles.
+.page-template-page-report-landing {
+    // Finesse sizing of censor bars-header text on mobile.
+    .header-default h1 {
+        @media (max-width: ( $medium-bp - 1 )) {
+            width: auto;
+            padding-right: 0;
+        }
+    }
+    .w-50p {
+        @media (max-width: ( $medium-bp - 1 )) {
+            margin-bottom: 0;
+        }
+    }
+    // .page-intro-text contains only the header image on the report landing page,
+    // and should be suppressed on mobile to avoid impacting header spacing.
+    .page-intro-text {
+        @media (max-width: ( $medium-bp - 1 )) {
+            display: none;
         }
     }
 }
