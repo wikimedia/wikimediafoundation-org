@@ -305,10 +305,10 @@
     }
 }
 
-// Landing page-specific styles.
-.page-template-page-report-landing {
+// Landing page-specific header styles.
+.page-template-page-report-landing .header-default {
     // Finesse sizing of censor bars-header text on mobile.
-    .header-default h1 {
+    h1 {
         @media (max-width: ( $medium-bp - 1 )) {
             width: auto;
             padding-right: 0;
