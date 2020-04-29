@@ -41,12 +41,14 @@ while ( have_posts() ) :
 			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
 		</h2>
 
+		<?php if ( ! empty( trim( $bodytext1 ) ) ) : ?>
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php if ( ! has_post_thumbnail() ) : ?>
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 			<?php endif; ?>
 			<?php echo wp_kses_post( $bodytext1 ); ?>
 		</div>
+		<?php endif; ?>
 
 		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
 
