@@ -34,10 +34,10 @@ function wmf_simple_bar_graph_shortcode_callback( $atts ) {
 	$values = array_map( 'trim', explode( ',', (string) $atts['value'] ) );
 	$colors = array_map( 'trim', explode( ',', (string) $atts['color'] ) );
 	foreach ( $values as $idx => $value ) {
-		$values[$idx] = [
-			'color' => ( $idx + 1 <= count( $colors ) ) ? $colors[$idx] : $colors[0],
+		$values[ $idx ] = [
+			'color' => ( $idx + 1 <= count( $colors ) ) ? $colors[ $idx ] : $colors[0],
 			'width' => floor( (int) $value / (int) $atts['max'] * ( (int) $atts['width'] ) ),
-			'x'     => ( 0 === $idx ) ? 0 : $values[$idx - 1]['x'] + $values[$idx - 1]['width'],
+			'x'     => ( 0 === $idx ) ? 0 : $values[ $idx - 1 ]['x'] + $values[ $idx - 1 ]['width'],
 		];
 	}
 
