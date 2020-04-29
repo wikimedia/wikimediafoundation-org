@@ -26,7 +26,7 @@ if ( empty( $sidebar_items ) ) {
 			?>
 			<li class="<?php echo esc_attr( $li_classes ); ?>">
 				<a class="toc-link" href="<?php echo esc_url( $report_section['url'] ); ?>">
-					<?php echo esc_html( $report_section['title'] ); ?>
+					<?php echo wp_kses_post( $report_section['title'] ); ?>
 				</a>
 				<?php
 				// Nest page anchor sidebar within nav sidebar.

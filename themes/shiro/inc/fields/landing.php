@@ -108,7 +108,8 @@ function wmf_landing_fields() {
 	if ( wmf_using_template( 'page-report-landing' ) ) {
 		$sidebar_menu_label = new Fieldmanager_Textfield(
 			array(
-				'name' => 'landing_page_sidebar_menu_label',
+				'name'     => 'landing_page_sidebar_menu_label',
+				'sanitize' => 'wp_kses_post'
 			)
 		);
 		$sidebar_menu_label->add_meta_box( __( 'Sidebar Menu Label', 'shiro' ), 'page' );
