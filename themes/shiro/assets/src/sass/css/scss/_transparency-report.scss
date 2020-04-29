@@ -60,9 +60,14 @@
             color: black;
         }
 
-        > a:hover,
-        > a:focus {
+        &:hover,
+        &:focus {
             background: #eaecf0;
+        }
+
+        &.active:hover,
+        &.active:focus {
+            background: unset;
         }
 
         &.active > a {
@@ -71,7 +76,7 @@
         }
 
         .toc {
-            padding: 0 0 0 rem(16);
+            padding: rem(2) 0 0 0;
 
             .toc-link-item {
                 display: flex;
@@ -80,7 +85,7 @@
 
                 &::before {
                     content: '\2022';
-                    padding: rem(8) 0;
+                    padding: rem(8) 0 rem(8) rem(16);
                 }
                 a {
                     padding: rem(8) rem(16);
