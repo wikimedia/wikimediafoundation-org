@@ -114,28 +114,43 @@
     .report-nav > .toc-link-item {
         @media (max-width: ( $medium-bp - 1)) { display: none; }
         &.active {
-            @media (max-width: ( $medium-bp - 1)) { display: list-item; }
+            @media (max-width: ( $medium-bp - 1)) {
+                display: list-item;
+                a {
+                    padding-right: 3em;
+                }
+            }
         }
     }
     .report-nav.menu--expanded > .toc-link-item {
-        @media (max-width: ( $medium-bp - 1)) { display: list-item; }
+        @media (max-width: ( $medium-bp - 1)) {
+            display: list-item;
+            &:first-of-type a {
+                padding-right: 3em;
+            }
+        }
     }
     .menu-toggle {
         list-style-type: none;
         position: absolute;
         right: 0;
         top: 0;
+        width: 100%;
 
         @media (min-width: $medium-bp) {
             display: none;
         }
     }
+    .menu--expanded .menu-toggle {
+        width: 3em;
+    }
 
     [data-menu-toggle] {
         display: block;
         height: 2.2em;
-        width: 3em;
-        padding: 0;
+        width: 100%;
+        text-align: right;
+        padding: 0 1.2em 0 0;
         border: 1px solid transparent;
         border-radius: 2px;
         background: transparent;
