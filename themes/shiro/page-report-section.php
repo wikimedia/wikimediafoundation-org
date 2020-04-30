@@ -17,6 +17,7 @@ while ( have_posts() ) :
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
 	$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
+	$has_content   = ! empty( trim( $bodytext1 . get_the_content() ) );
 	$template_args = array(
 		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
 		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
@@ -41,7 +42,7 @@ while ( have_posts() ) :
 			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
 		</h2>
 
-		<?php if ( ! empty( trim( $bodytext1 ) ) ) : ?>
+		<?php if ( $has_content ) : ?>
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php if ( ! has_post_thumbnail() ) : ?>
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>

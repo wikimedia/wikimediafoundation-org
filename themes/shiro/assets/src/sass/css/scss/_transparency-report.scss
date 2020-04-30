@@ -181,12 +181,6 @@
             @include font-size(18, 18);
             line-height: 1.5;
             margin-bottom: 1em;
-
-            strong {
-                font-weight: 500;
-                @include font-size(24, 21);
-                @include line-height(40, 35);
-            }
         }
 
         h2 {
@@ -355,24 +349,31 @@
 }
 
 // Landing page-specific header styles.
-.page-template-page-report-landing .header-default {
-    // Finesse sizing of censor bars-header text on mobile.
-    h1 {
-        @media (max-width: ( $medium-bp - 1 )) {
-            width: auto;
-            padding-right: 0;
+.page-template-page-report-landing {
+    .header-default {
+        // Finesse sizing of censor bars-header text on mobile.
+        h1 {
+            @media (max-width: ( $medium-bp - 1 )) {
+                width: auto;
+                padding-right: 0;
+            }
+        }
+        .w-50p {
+            @media (max-width: ( $medium-bp - 1 )) {
+                margin-bottom: 0;
+            }
+        }
+        // .page-intro-text contains only the header image on the report landing page,
+        // and should be suppressed on mobile to avoid impacting header spacing.
+        .page-intro-text {
+            @media (max-width: ( $medium-bp - 1 )) {
+                display: none;
+            }
         }
     }
-    .w-50p {
-        @media (max-width: ( $medium-bp - 1 )) {
-            margin-bottom: 0;
-        }
-    }
-    // .page-intro-text contains only the header image on the report landing page,
-    // and should be suppressed on mobile to avoid impacting header spacing.
-    .page-intro-text {
-        @media (max-width: ( $medium-bp - 1 )) {
-            display: none;
-        }
+    main p strong {
+        font-weight: bold;
+        @include font-size(24, 21);
+        @include line-height(40, 35);
     }
 }
