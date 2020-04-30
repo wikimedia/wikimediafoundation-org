@@ -55,7 +55,6 @@ add_action( 'admin_notices', 'wmf_stories_template_admin_notice' );
  *                                     or an array of values.
  * @param int               $object_id ID of the object metadata is for.
  * @param string            $meta_key  Metadata key.
- * @param bool              $single    Whether to return only the first value of the specified $meta_key.
  *
  * @return null|array Filtered meta value, or null for no change.
  */
@@ -69,10 +68,18 @@ function wmf_inject_stories_as_list( $value, $object_id, $meta_key ) {
 	return [
 		array_map(
 			function( $story ) {
-				$img = get_the_post_thumbnail( $story, 'image_4x3_large' );
+				$image_id    = get_post_thumbnail_id( $story );
+				$credit_info = get_post_meta( $image_id, 'credit_info', true );
+				$image_url   = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
+				$image       = get_the_post_thumbnail( $story, 'image_4x3_large' );
+
+				if ( ! empty( $image_url ) ) {
+					$image = sprintf( '<a href="%s">%s</a>', esc_url( $image_url ), $image );
+				}
+
 				return [
 					'title'       => $story->post_title,
-					'description' => $img . $story->post_content,
+					'description' => $image . $story->post_content,
 					'link'        => get_the_permalink( $story ),
 				];
 			},
