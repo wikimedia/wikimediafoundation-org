@@ -196,6 +196,7 @@
             margin-bottom: 1em;
 
             &.report-section-title {
+                font-size: rem(28);
                 @media (min-width: $medium-bp) { font-size: rem(36); }
                 margin-bottom: 1.5em;
             }
