@@ -17,6 +17,11 @@ if ( empty( $sidebar_items ) ) {
 
 <nav class="toc fixedsticky">
 	<ul class="report-nav">
+		<li class="menu-toggle">
+			<button type="button" data-menu-toggle>
+				<span class="screen-reader-text"><?php esc_html_e( 'Toggle Menu', 'shiro' ); ?></span>
+			</button>
+		</li>
 		<?php
 		foreach ( $sidebar_items as $report_section ) {
 			if ( empty( $report_section['title'] ) ) {

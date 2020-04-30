@@ -106,6 +106,49 @@
         }
     }
 
+
+    // Mobile menu collapsing.
+    .report-nav {
+        position: relative;
+    }
+    .report-nav > .toc-link-item {
+        @media (max-width: ( $medium-bp - 1)) { display: none; }
+        &.active {
+            @media (max-width: ( $medium-bp - 1)) { display: list-item; }
+        }
+        // &.menu-toggle {
+        //     display: 'absolute';
+        // }
+    }
+    .report-nav.menu--expanded > .toc-link-item {
+        @media (max-width: ( $medium-bp - 1)) { display: list-item; }
+    }
+    .menu-toggle {
+        list-style-type: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @media (min-width: $medium-bp) {
+            display: none;
+        }
+    }
+
+    [data-menu-toggle] {
+        display: block;
+        height: 2.2em;
+        width: 3em;
+        padding: 0;
+        border: 0;
+        background: transparent;
+
+        &::before {
+            content: '\25BE';
+            display: inline-block;
+        }
+    }
+    .menu--expanded [data-menu-toggle]::before { content: '\25B4'; }
+
     .report-content {
         .page-intro {
             margin-top: 0;
