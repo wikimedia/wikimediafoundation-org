@@ -116,9 +116,6 @@
         &.active {
             @media (max-width: ( $medium-bp - 1)) { display: list-item; }
         }
-        // &.menu-toggle {
-        //     display: 'absolute';
-        // }
     }
     .report-nav.menu--expanded > .toc-link-item {
         @media (max-width: ( $medium-bp - 1)) { display: list-item; }
@@ -139,8 +136,15 @@
         height: 2.2em;
         width: 3em;
         padding: 0;
-        border: 0;
+        border: 1px solid transparent;
+        border-radius: 2px;
         background: transparent;
+        transition: border-color 200ms;
+
+        &:hover,
+        &:focus {
+            border-color: black;
+        }
 
         &::before {
             content: '\25BE';
@@ -149,6 +153,7 @@
     }
     .menu--expanded [data-menu-toggle]::before { content: '\25B4'; }
 
+    // Page content.
     .report-content {
         .page-intro {
             margin-top: 0;
