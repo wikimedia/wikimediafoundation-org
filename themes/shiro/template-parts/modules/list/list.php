@@ -14,11 +14,26 @@ if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 foreach ( $template_args as $i => $list_section ) {
 	?>
 <div class="mod-margin-bottom wysiwyg">
-	<?php if ( ! empty( $list_section['title'] ) ) : ?>
-	<h2 id="section-<?php echo esc_attr( $i + 1 ); ?>">
-		<?php echo esc_html( $list_section['title'] ); ?>
-	</h2>
-	<?php endif; ?>
+	<?php
+	if ( ! empty( $list_section['title'] ) ) :
+		// Stories injected as list items have headings with link targets.
+		if ( ! empty( $list_section['link'] ) ) :
+			?>
+			<h2 id="section-<?php echo esc_attr( $i + 1 ); ?>" class="story-link">
+				<a href="<?php echo esc_url( $list_section['link'] ); ?>">
+					<?php echo esc_html( $list_section['title'] ); ?>
+				</a>
+			</h2>
+			<?php
+		else :
+			?>
+			<h2 id="section-<?php echo esc_attr( $i + 1 ); ?>">
+				<?php echo esc_html( $list_section['title'] ); ?>
+			</h2>
+			<?php
+		endif;
+	endif;
+	?>
 
 	<?php if ( ! empty( $list_section['description'] ) ) : ?>
 	<div class="mar-bottom">

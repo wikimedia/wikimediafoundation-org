@@ -17,30 +17,6 @@ while ( have_posts() ) :
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
 	$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
-	$allowed_tags  = [
-		'span'   => [
-			'class' => [],
-			'style' => [],
-		],
-		'img'    => [
-			'src'    => [],
-			'height' => [],
-			'width'  => [],
-			'alt'    => [],
-			'style'  => [],
-			'class'  => [],
-		],
-		'em'     => [],
-		'strong' => [],
-		'a'      => [
-			'href'  => [],
-			'class' => [],
-			'title' => [],
-			'rel'   => [],
-		],
-		'p'      => [],
-		'br'     => [],
-	];
 	$template_args = array(
 		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
 		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
@@ -65,12 +41,14 @@ while ( have_posts() ) :
 			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
 		</h2>
 
+		<?php if ( ! empty( trim( $bodytext1 ) ) ) : ?>
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php if ( ! has_post_thumbnail() ) : ?>
 				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 			<?php endif; ?>
-			<?php echo wp_kses( $bodytext1, $allowed_tags ); ?>
+			<?php echo wp_kses_post( $bodytext1 ); ?>
 		</div>
+		<?php endif; ?>
 
 		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
 

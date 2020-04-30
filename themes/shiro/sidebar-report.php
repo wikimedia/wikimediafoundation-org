@@ -17,6 +17,11 @@ if ( empty( $sidebar_items ) ) {
 
 <nav class="toc fixedsticky">
 	<ul class="report-nav">
+		<li class="menu-toggle">
+			<button type="button" data-menu-toggle>
+				<span class="screen-reader-text"><?php esc_html_e( 'Toggle Menu', 'shiro' ); ?></span>
+			</button>
+		</li>
 		<?php
 		foreach ( $sidebar_items as $report_section ) {
 			if ( empty( $report_section['title'] ) ) {
@@ -26,7 +31,7 @@ if ( empty( $sidebar_items ) ) {
 			?>
 			<li class="<?php echo esc_attr( $li_classes ); ?>">
 				<a class="toc-link" href="<?php echo esc_url( $report_section['url'] ); ?>">
-					<?php echo esc_html( $report_section['title'] ); ?>
+					<?php echo wp_kses_post( $report_section['title'] ); ?>
 				</a>
 				<?php
 				// Nest page anchor sidebar within nav sidebar.

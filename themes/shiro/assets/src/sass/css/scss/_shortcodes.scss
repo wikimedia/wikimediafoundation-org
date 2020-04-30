@@ -53,6 +53,12 @@
 }
 
 .columns-wrapper {
+    &.columns-mobile-reverse {
+        @media (max-width: $medium-bp) {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
     @media (min-width: $medium-bp) {
         display: flex;
         flex-direction: row;

@@ -1,10 +1,11 @@
 // Group all style modifications for the 2019-2 transparency report together.
 
 .page-template-page-report-landing,
-.page-template-page-report-section {
+.page-template-page-report-section,
+.page-template-page-stories {
     .header-default .ungrid {
         max-height: unset;
-        margin-bottom: 2.5rem;
+        @media (min-width: $medium-bp) { margin-bottom: 2.5rem; }
 
         .bg-img {
             background-size: contain;
@@ -13,6 +14,16 @@
             width: unset;
             margin-top: unset;
         }
+    }
+
+    @keyframes redacted-text {
+        0% { background-color: transparent; }
+        100% { background-color: #000; color: #000; }
+    }
+
+    .blackout {
+        padding: 0 2px;
+        animation: redacted-text 10s alternate infinite;
     }
 
     .report-section-title {
@@ -26,15 +37,17 @@
     // Nested menu handling.
     .toc {
         padding: 0;
-        @media (max-width: $medium-bp) {
+        @media (max-width: ( $medium-bp - 1 )) {
             margin-bottom: 2rem;
+        }
+        @media (min-width: $medium-bp) {
+            max-width: 268px;
+            max-height: calc( 100vh - 107px );
+            overflow-y: auto;
+            padding-right: rem(16);
         }
     }
     .toc-link-item {
-        @media (min-width: $medium-bp) {
-            max-width: 252px;
-        }
-
         a {
             font-size: rem(14);
             line-height: 1.4;
@@ -45,13 +58,23 @@
             color: black;
         }
 
+        &:hover,
+        &:focus {
+            background: #eaecf0;
+        }
+
+        &.active:hover,
+        &.active:focus {
+            background: unset;
+        }
+
         &.active > a {
             font-weight: bold;
             background: #eeeaff;
         }
 
         .toc {
-            padding: 0 0 0 rem(16);
+            padding: rem(2) 0 0 0;
 
             .toc-link-item {
                 display: flex;
@@ -60,7 +83,7 @@
 
                 &::before {
                     content: '\2022';
-                    padding: rem(8) 0;
+                    padding: rem(8) 0 rem(8) rem(16);
                 }
                 a {
                     padding: rem(8) rem(16);
@@ -73,9 +96,64 @@
                     display: none;
                 }
             }
+
+            @media (min-width: $medium-bp) {
+                // Undo sticky on nested menus.
+                position: static;
+                max-height: unset;
+                max-width: unset;
+            }
         }
     }
 
+
+    // Mobile menu collapsing.
+    .report-nav {
+        position: relative;
+    }
+    .report-nav > .toc-link-item {
+        @media (max-width: ( $medium-bp - 1)) { display: none; }
+        &.active {
+            @media (max-width: ( $medium-bp - 1)) { display: list-item; }
+        }
+    }
+    .report-nav.menu--expanded > .toc-link-item {
+        @media (max-width: ( $medium-bp - 1)) { display: list-item; }
+    }
+    .menu-toggle {
+        list-style-type: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @media (min-width: $medium-bp) {
+            display: none;
+        }
+    }
+
+    [data-menu-toggle] {
+        display: block;
+        height: 2.2em;
+        width: 3em;
+        padding: 0;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        background: transparent;
+        transition: border-color 200ms;
+
+        &:hover,
+        &:focus {
+            border-color: black;
+        }
+
+        &::before {
+            content: '\25BE';
+            display: inline-block;
+        }
+    }
+    .menu--expanded [data-menu-toggle]::before { content: '\25B4'; }
+
+    // Page content.
     .report-content {
         .page-intro {
             margin-top: 0;
@@ -89,7 +167,7 @@
             max-width: 100%;
         }
         .column img {
-            @media (max-width: $medium-bp) {
+            @media (max-width: ( $medium-bp - 1 )) {
                 max-width: 50%;
                 display: block;
                 margin: auto;
@@ -116,29 +194,36 @@
             padding-bottom: 4px;
             border-bottom: 2px solid black;
             margin-bottom: 1em;
+
+            &.report-section-title {
+                font-size: rem(28);
+                @media (min-width: $medium-bp) { font-size: rem(36); }
+                margin-bottom: 1.5em;
+            }
         }
-        h2.report-section-title {
-            font-size: rem(24);
+
+        h2.story-link {
+            border-bottom: 0;
+
+            a {
+                color: #3a25ff;
+                &:hover, &:focus {
+                    text-decoration: underline;
+                }
+            }
         }
+
         h3 {
-            font-size: rem(18);
             line-height: 1.5;
             margin: rem(30) 0 rem(21);
+            font-size: rem(18);
+            @media (min-width: $medium-bp) { font-size: rem(21); }
         }
+
         h4 {
-            font-size: rem(16);
             margin: rem(18) 0 rem(6);
-        }
-        @media (min-width: $medium-bp) {
-            h2.report-secton-title {
-                font-size: rem(36);
-            }
-            h3 {
-                font-size: rem(21);
-            }
-            h4 {
-                font-size: rem(18);
-            }
+            font-size: rem(16);
+            @media (min-width: $medium-bp) { font-size: rem(18); }
         }
 
         .note {
@@ -166,8 +251,9 @@
         th,
         td {
             padding: rem(8);
-            @include font-size(16, 14);
             font-weight: 500;
+            font-size: rem(14);
+            @media (min-width: $medium-bp) { font-size: rem(16); }
 
             &:first-child {
                 padding-left: 0;
@@ -191,5 +277,102 @@
         margin-bottom: -1em;
         display: inline-block;
         padding: 0;
+    }
+
+    .stories {
+        h3.uppercase {
+            font-size: rem(18);
+            margin-bottom: 0.5em;
+            @media (min-width: $medium-bp) { font-size: rem(24); }
+        }
+
+        .img-container {
+            height: 0;
+            width: 100%;
+            padding-bottom: 66%;
+            display: block;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    .card-content {
+        .story-name {
+            margin: 0.5em 0;
+            font-size: rem(21);
+            @media (min-width: $medium-bp) { font-size: rem(24); }
+        }
+
+        .story-excerpt {
+            margin-bottom: 0.5em;
+            font-size: rem(16);
+            @media (min-width: $medium-bp) { font-size: rem(18); }
+        }
+
+        a {
+            font-size: rem(18);
+            font-weight: 500;
+        }
+
+        @media (max-width: ( $medium-bp - 1 )) {
+            margin-bottom: 2em;
+        }
+    }
+
+    .reports-archive {
+        font-size: rem(18);
+
+        tr {
+            border-bottom: 1px solid black;
+        }
+
+        td {
+            padding: 1em;
+
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                padding-right: 0;
+            }
+
+            a {
+                font-size: inherit;
+                font-weight: 500;
+                color: #3a25ff;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        @media (min-width: $medium-bp) {
+            font-size: rem(20);
+        }
+    }
+}
+
+// Landing page-specific header styles.
+.page-template-page-report-landing .header-default {
+    // Finesse sizing of censor bars-header text on mobile.
+    h1 {
+        @media (max-width: ( $medium-bp - 1 )) {
+            width: auto;
+            padding-right: 0;
+        }
+    }
+    .w-50p {
+        @media (max-width: ( $medium-bp - 1 )) {
+            margin-bottom: 0;
+        }
+    }
+    // .page-intro-text contains only the header image on the report landing page,
+    // and should be suppressed on mobile to avoid impacting header spacing.
+    .page-intro-text {
+        @media (max-width: ( $medium-bp - 1 )) {
+            display: none;
+        }
     }
 }
