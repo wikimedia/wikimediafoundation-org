@@ -28,7 +28,7 @@
     "gulp-eslint": "^5.0.0",
     "gulp-imagemin": "^6.2.0",
     "gulp-newer": "^1.4.0",
-    "gulp-phpcs": "^2.2.0",
+    "gulp-phpcs": "^3.1.0",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
