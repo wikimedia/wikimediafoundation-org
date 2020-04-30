@@ -181,12 +181,6 @@
             @include font-size(18, 18);
             line-height: 1.5;
             margin-bottom: 1em;
-
-            strong {
-                font-weight: 500;
-                @include font-size(24, 21);
-                @include line-height(40, 35);
-            }
         }
 
         h2 {
@@ -374,5 +368,11 @@
         @media (max-width: ( $medium-bp - 1 )) {
             display: none;
         }
+    }
+
+    .report-content p strong {
+        font-weight: 500;
+        @include font-size(24, 21);
+        @include line-height(40, 35);
     }
 }
