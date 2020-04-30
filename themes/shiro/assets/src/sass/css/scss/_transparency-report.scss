@@ -153,6 +153,30 @@
     }
     .menu--expanded [data-menu-toggle]::before { content: '\25B4'; }
 
+    // Anchor link behaviour
+    :target::before {
+        content: ' ';
+        display: block;
+        height: 0;
+        @media screen and (min-width: $medium-bp) {
+            height: 80px;
+            margin-top: -80px;
+        }
+    }
+
+    &.admin-bar {
+        :target::before {
+            @media screen and (min-width: $medium-bp) {
+                height: 125px;
+                margin-top: -125px;
+            }
+            @media screen and (min-width: 48em) {
+                height: 115px;
+                margin-top: -115px;
+            }
+        }
+    }
+
     // Page content.
     .report-content {
         .page-intro {
