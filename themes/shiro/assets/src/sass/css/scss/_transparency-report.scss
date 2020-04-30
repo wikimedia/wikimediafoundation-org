@@ -3,6 +3,11 @@
 .page-template-page-report-landing,
 .page-template-page-report-section,
 .page-template-page-stories {
+    .header-default .header-content {
+        @media (max-width: $medium-bp) {
+            margin-top: 30px;
+        }
+    }
     .header-default .ungrid {
         max-height: unset;
         @media (min-width: $medium-bp) { margin-bottom: 2.5rem; }
