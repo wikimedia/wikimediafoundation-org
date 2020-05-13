@@ -197,7 +197,7 @@ jQuery(document).ready(function($) {
 
 	}
 
-	$(".d3-chart").each(function() {
+	$(".d3-linechart").each(function() {
 		lineChart(this.id);
 	});
 
