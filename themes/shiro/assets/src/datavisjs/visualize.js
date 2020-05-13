@@ -1,5 +1,5 @@
 /* global d3 */
-/*eslint no-magic-numbers: ["error", { "ignore": [0, 1, -1] }]*/
+/* eslint-disable no-magic-numbers */
 
 jQuery(document).ready(function($) {
 
@@ -7,149 +7,193 @@ jQuery(document).ready(function($) {
 
 	function lineChart(id) {
 		var $id = $("#" + id),
-			margin = { top: 30, right: 60, bottom: 60, left: 60 },
-			width = $id.width() - margin.left - margin.right,
-			orgiHeight = 300,
-			height = orgiHeight - margin.top - margin.bottom,
+			mobileThresh = 762,
+			isMobile = $(window).width() < mobileThresh,
+			margin = { top: 30, right: isMobile ? 20 : 60, bottom: 60, left: 40 },
+			origWidth = $id.width(),
+			width = origWidth - margin.left - margin.right,
+			origHeight = 300,
+			height = origHeight - margin.top - margin.bottom,
+			strokeWidth = 1.5,
+			circleDiameter = 4,
 			accentColorClass = $id.data("stroke-color"),
-			bisectDate = d3.bisector(function(d) { return d.date; }).left,
-			tickTimeFormat = $id.data("time-format") === "month" ? d3.timeFormat("%B") : d3.timeFormat("%b %d, %Y"),
-			parseTimeFormat = d3.timeParse("%Y-%m-%d");
+			timeFormatPrefs = $id.data("time-format") === "month" ? { month: "long" } : { month: "short", day: "numeric", year: "numeric" },
+			parseTimeFormat = d3.timeParse("%Y-%m-%d"),
+			dataRaw = $id.data("chart-raw"),
+			data = dataRaw ? dataRaw.map(parseDates) : null;
 
-		function addVisual(data) {
+		function parseDates(wp) {
+			wp.date = parseTimeFormat(wp.date);
+			return wp;
+		}
 
+		function callout(g, value, xPos, evnt) {
+			if (!value) return g.style("display", "none");
+			g
+				.attr("class", "tooltip")
+				.style("display", null)
+				.style("pointer-events", "none");
+
+			var borderRadius = 2,
+				lineHeight = 1.2,
+				rect = g.selectAll("rect")
+					.data([null])
+					.join("rect")
+					.attr("rx", borderRadius)
+					.attr("ry", borderRadius),
+				text = g.selectAll("text")
+					.data([null])
+					.join("text")
+					.call(function(t) {
+						return t
+							.selectAll("tspan")
+							.data(value.split(/\n/))
+							.join("tspan")
+							.attr("x", 0)
+							.attr("y", function(d, i) { return i * lineHeight + "em" })
+							.style("font-weight", function(_, i) { return i ? null : "bold" })
+							.text(function(d) { return d; })
+					}),
+				bbox = text.node().getBBox(),
+				w = bbox.width,
+				h = bbox.height,
+				ttipMar = 10,
+				totalMar = ttipMar * 2,
+				shift = 2;
+
+			g.selectAll("circle")
+				.data([null])
+				.join("circle")
+				.attr("r", circleDiameter)
+				.attr("stroke-width", strokeWidth)
+				.attr("fill", evnt ? "none" : "white")
+
+			rect.attr("width", w + totalMar).attr("height", h + totalMar)
+
+			if (xPos + w > width) {
+				text.attr("transform", "translate(" + (-w - totalMar) + "," + -((h - totalMar) / 2 - shift) + ")");
+				rect.attr("x", -(w + ttipMar + totalMar)).attr("y", -(h + totalMar) / 2);
+			} else {
+				text.attr("transform", "translate(" + totalMar + "," + -((h - totalMar) / 2 - shift) + ")");
+				rect.attr("x", ttipMar).attr("y", -(h + totalMar) / 2);
+			}
+
+			return g;
+		}
+
+		function addVis() {
 			if (!data) {
 				return;
 			}
-
-			var svg = d3.select("#" + id)
-					.append("svg")
-					.attr("width", width + margin.left + margin.right)
-					.attr("height", height + margin.top + margin.bottom)
-					.append("g")
-					.attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
+			var svg,
+				ticks = { x: 0, y: 4 },
 				x = d3.scaleTime()
+					.nice()
 					.domain(d3.extent(data, function(d) { return d.date; }))
 					.range([0, width]),
-				xAxis = d3.axisBottom(x)
-					.ticks(d3.timeMonth, 1)
-					.tickFormat(d3.timeFormat("%B")),
+				xAxis = function(g) {
+					g
+						.attr("transform", "translate(0," + height + ")")
+						.call(d3.axisBottom(x)
+							.ticks(d3.timeMonth, 1)
+							.tickFormat(isMobile ? d3.timeFormat("%b") : d3.timeFormat("%B")))
+						.call(function(h) { h.select(".domain").remove(); })
+				},
 				y = d3.scaleLinear()
 					.domain([0, d3.max(data, function(d) { return d.value; })])
 					.range([height, 0]),
-				yAxis = d3.axisLeft(y)
-					.ticks(4) // eslint-disable-line no-magic-numbers
-					.tickFormat(d3.format(".2s"))
-					.tickSize(-1 * width),
-				circleDiameter = 4;
+				yAxis = function(g) {
+					g
+						.attr("class", "yAxis")
+						.call(d3.axisLeft(y)
+							.ticks(ticks.y)
+							.tickFormat(d3.format(".2s"))
+							.tickSize(-1 * width))
+						.call(function(h) { h.select(".domain").remove(); })
+				},
+				bisectDate = function(mx) {
+					var bisect = d3.bisector(function(d) { return d.date }).left,
+						date = x.invert(mx),
+						index = bisect(data, date, 1),
+						a = data[index - 1],
+						b = data[index];
+					return date - a.date > b.date - date ? b : a;
+				},
+				tooltip,
+				container = d3.select("#" + id),
+				aspect = origWidth / origHeight;
 
-			svg.append("g")
-				.attr("transform", "translate(0," + height + ")")
-				.call(xAxis);
+			svg = container.append("svg")
+				.attr("width", origWidth)
+				.attr("height", origHeight)
+				.attr("perserveAspectRatio", "xMidYMid meet")
+				.attr("viewBox", "0 0 " + origWidth + " " + origHeight)
+				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			svg.append("g")
-				.attr("class", "yAxis")
-				.call(yAxis)
-				.call(function(g) { g.select(".domain").remove(); });
+			// lazy resize, keeps proportions
+			d3.select(window)
+				.on("resize", function() {
+					var targetWidth = container.node().getBoundingClientRect().width;
+					container.selectAll("svg").attr("width", targetWidth);
+					container.selectAll("svg").attr("height", targetWidth / aspect);
+				});
+
+			svg.append("g").call(xAxis);
+			svg.append("g").call(yAxis);
 
 			svg.append("path")
 				.datum(data)
 				.attr("fill", "none")
-				.attr("stroke-width", 1.5) // eslint-disable-line no-magic-numbers
+				.attr("stroke-width", strokeWidth)
 				.attr("stroke", "black")
 				.attr("class", "line " + accentColorClass)
 				.attr("d", d3.line()
 					.x(function(d) { return x(d.date) })
 					.y(function(d) { return y(d.value) })
-				)
+				);
 
-			svg.selectAll("dot")
-				.data(data)
-				.enter().append("circle")
-				.attr("r", function(d) { return d.event ? circleDiameter : 0; })
+			svg.append("g")
+				.selectAll("circle")
+				.data(data.filter(function(d) { return d.event; }))
+				.enter("circle")
+				.append("circle")
+				.attr("class", "circle " + accentColorClass)
+				.attr("r", circleDiameter)
 				.attr("cx", function(d) { return x(d.date); })
-				.attr("cy", function(d) { return y(d.value); })
-				.attr("class", "circle " + accentColorClass);
+				.attr("cy", function(d) { return y(d.value); });
 
-			var focuscircle = svg.append("g") // eslint-disable-line one-var
-					.append("circle")
-					.attr("r", circleDiameter + 1)
-					.attr("class", "circle " + accentColorClass)
-					.style("display", "none"),
-				focus = svg.append("g")
-					.attr("class", "focus")
-					.style("display", "none"),
-				tooltipWidth = 100,
-				tooltipMargin = 10;
+			tooltip = svg.append("g");
 
-			focus.append("rect")
-				.attr("class", "tooltip")
-				.attr("width", tooltipWidth)
-				.attr("height", 50) // eslint-disable-line no-magic-numbers
-				.attr("x", tooltipMargin)
-				.attr("y", -22) // eslint-disable-line no-magic-numbers
-				.attr("rx", 4) // eslint-disable-line no-magic-numbers
-				.attr("ry", 4); // eslint-disable-line no-magic-numbers
-
-			focus.append("text")
-				.attr("class", "tooltip-date")
-				.attr("x", 18) // eslint-disable-line no-magic-numbers
-				.attr("y", -2); // eslint-disable-line no-magic-numbers
-
-			focus.append("text")
-				.attr("class", "tooltip-value")
-				.attr("x", 18) // eslint-disable-line no-magic-numbers
-				.attr("y", 18); // eslint-disable-line no-magic-numbers
-
-			svg.append("rect")
+			svg.append('rect')
 				.attr("class", "overlay")
-				.attr("width", width)
-				.attr("height", height)
-				.on("mouseover", function() {
-					focus.style("display", null);
-					focuscircle.style("display", null);
+				.attr("pointer-events", "all")
+				.attr('x', 0)
+				.attr('y', 0)
+				.attr('width', width)
+				.attr('height', height)
+				.on("touchmove mousemove", function() {
+					var hoverD = bisectDate(d3.mouse(this)[0]),
+						context = hoverD.date.toLocaleString(undefined, timeFormatPrefs) + "\n" + d3.format(",")(hoverD.value);
+					tooltip
+						.attr("transform", "translate(" + x(hoverD.date) + "," + y(hoverD.value) + ")")
+						.call(callout, context, x(hoverD.date), hoverD.event);
+					if (hoverD.event) {
+						$("#label-date").text(hoverD.date.toLocaleString(undefined, timeFormatPrefs));
+						$("#label-name").text(hoverD.event);
+						$("#linechart-label").css("opacity", 1);
+						$("#linechart-label").css("max-height", 10 + "rem");
+					} else {
+						$("#linechart-label").css("opacity", 0);
+						$("#linechart-label").css("max-height", 2 + "rem");
+					}
 				})
-				.on("mouseout", function() {
-					focus.style("display", "none");
-					focuscircle.style("display", "none");
-				})
-				.on("mousemove", mousemove);
-
-			function mousemove() {
-				var x0 = x.invert(d3.mouse(this)[0]),
-					i = bisectDate(data, x0, 1),
-					d0 = data[i - 1],
-					d1 = data[i],
-					d = x0 - d0.date > d1.date - x0 ? d1 : d0,
-					lastDate = data[data.length - 1].date,
-					shift = tooltipWidth + circleDiameter + circleDiameter + tooltipMargin,
-					calcX = x(d.date) + shift;
-				if (calcX > x(lastDate)) {
-					focus.attr("transform", "translate(" + (x(d.date) - shift) + "," + y(d.value) + ")");
-				} else {
-					focus.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
-				}
-				focuscircle.attr("transform", "translate(" + x(d.date) + "," + y(d.value) + ")");
-				focus.select(".tooltip-date").text(tickTimeFormat(d.date));
-				focus.select(".tooltip-value").text(d3.format(",")(d.value));
-				if (d.event) {
-					$("#label-date").text(tickTimeFormat(d.date));
-					$("#label-name").text(d.event);
-					$("#linechart-label").css("opacity", 1);
-				} else {
-					$("#linechart-label").css("opacity", 0);
-				}
-			}
-
+				.on("touchend mouseleave", function() {
+					tooltip.call(callout, null);
+				});
 		}
 
-		var data = $id.data("chart-raw"); // eslint-disable-line one-var
-
-		for (var i = data.length - 1; i >= 0; i--) { // eslint-disable-line one-var
-			data[i].date = parseTimeFormat(data[i].date);
-		}
-
-		addVisual(data);
+		addVis();
 
 	}
 

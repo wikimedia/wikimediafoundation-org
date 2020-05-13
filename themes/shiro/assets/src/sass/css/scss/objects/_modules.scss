@@ -696,6 +696,7 @@ a.hover-img-zoom {
 
 	#linechart-label {
 		transition: 0.3s all;
+		padding-right: 2rem;
 	}
 
 	#label-name {
@@ -715,7 +716,7 @@ a.hover-img-zoom {
 		}
 
 		.circle {
-			fill: $color-blue;	
+			fill: $color-blue;
 			&.pink {
 				fill: $color-pink;
 			}
@@ -723,12 +724,17 @@ a.hover-img-zoom {
 
 		.overlay {
 	        fill: none;
-	        pointer-events: all;
+	        cursor: pointer;
 	    }
 
 		.tooltip {
-			background: $color-ltgray;
-			fill: white;
+			rect {
+				fill: $color-white;
+			}
+
+			circle {
+				stroke: $color-black;
+			}
 		}
 
 		.yAxis .tick line{
