@@ -43,7 +43,7 @@ function wmf_datapage_fields() {
 			'children' => array(
 				'explanation' => new Fieldmanager_RichTextArea( __( 'Explanation', 'shiro' ) ),
 				'data' 		=> new Fieldmanager_Textfield( __( 'Data (JSON)', 'shiro' ) ),
-				'time-format' 		=> new Fieldmanager_Textfield( __( 'Time format for tooltip', 'shiro' ) ),
+				'time-format' 		=> new Fieldmanager_Textfield( __( 'Time format for tooltip – day (default) or month', 'shiro' ) ),
 				'copy' 		=> new Fieldmanager_Group(
 					array(
 						'add_more_label' => __( 'Add Stat', 'shiro' ),
