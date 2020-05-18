@@ -86,5 +86,34 @@ function wmf_datapage_fields() {
 	);
 	$stats_plain->add_meta_box( __( 'Stats plain', 'shiro' ), 'page' );
 
+	$stats_profiles = new Fieldmanager_Group(
+		array(
+			'name'     => 'stats_profiles',
+			'children' => array(
+				'subheadline'   => new Fieldmanager_Textfield( __( 'Section subheadline', 'shiro' ) ),
+				'headline'   => new Fieldmanager_Textfield( __( 'Section headline', 'shiro' ) ),
+				'subtitle' => new Fieldmanager_RichTextArea( __( 'Subtitle (optional)', 'shiro' ) ),
+				'explanation' => new Fieldmanager_RichTextArea( __( 'Explanation', 'shiro' ) ),
+				'icons' 		=> new Fieldmanager_Group(
+					array(
+						'add_more_label' => __( 'Add Icon', 'shiro' ),
+						'sortable'       => false,
+						'limit'          => 3,
+						'children'       => array(
+							'image'     => new Fieldmanager_Media( __( 'Icon', 'shiro' ) ),
+						),
+					)
+				),
+				'data' 		=> new Fieldmanager_Textfield( __( 'Data (JSON)', 'shiro' ) ),
+				'labels' 		=> new Fieldmanager_Textfield( __( 'Labels from above (e.g. ["Languages", "Editors", "Articles", "Pageviews", "Native"])', 'shiro' ) ),
+				'maxf1' 		=> new Fieldmanager_Textfield( __( 'Max radius (Feature 1/circles)', 'shiro' ) ),
+				'maxf2' 		=> new Fieldmanager_Textfield( __( 'Max height (Feature 2/rectangles)', 'shiro' ) ),
+				'masterunit' 		=> new Fieldmanager_Textfield( __( 'Value for 1 unit (Feature 3/ellipses)', 'shiro' ) ),
+				'updated-date'   => new Fieldmanager_Textfield( __( 'Updated date note', 'shiro' ) ),
+			),
+		)
+	);
+	$stats_profiles->add_meta_box( __( 'Stats profiles', 'shiro' ), 'page' );
+
 }
 add_action( 'fm_post_page', 'wmf_datapage_fields' );
