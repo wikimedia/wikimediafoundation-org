@@ -11,16 +11,18 @@ jQuery(document).ready(function($) {
 			strokeW = 2,
 			numFormat = d3.format(","),
 			width = $id.width(),
-			shift = { x: 190, y: 125 },
+			profInRowMin = 2,
+			idealX = 190,
+			shift = { x: width < profInRowMin*idealX ? width/2 - margin : idealX, y: 125 },
 			maxFeature1 = $id.data("max-feature-1") ? $id.data("max-feature-1") : 90,
 			maxFeature2 = $id.data("max-feature-2") ? $id.data("max-feature-2") : 90,
-			profInRow = Math.max(Math.floor(width / shift.x), 2),
+			profInRow = Math.max(Math.floor(width / shift.x), profInRowMin),
 			screenWidth = $("body").width(),
-			minWidth = shift.x * profInRow,
+			minWidth = idealX * profInRow,
 			smallBp = 500, // per _variables.scss
 			masterunit = $id.data("chart-masterunit") ? $id.data("chart-masterunit") : 500000,
 			horUnits = 5,
-			moreHorUnits = 30,
+			moreHorUnits = width < minWidth ? 24 : 30,
 			data = $id.data("chart-raw"),
 			dataStart = $id.data("slice-start"),
 			dataEnd = $id.data("slice-end"),
@@ -67,14 +69,19 @@ jQuery(document).ready(function($) {
 			}
 
 			function articlesConstruct(g, e) {
-				var articleXShift = width < minWidth ? width*0.5 : width*0.4;
 				return g
 					.attr("transform", "translate(" + margin + "," + margin + ")")
 					.attr("class", "profile-feature2")
 					.selectAll("rect")
 					.data(ddata)
 					.join("rect")
-					.attr("x", function(d, i) {return except ? articleXShift + (width/2-articleScale(d[labels[2]])*0.75)/2 : fAttr(e, "circle", i, "cx") + fAttr(e, "circle", i, "r") + margin/2})
+					.attr("x", function(d, i) {
+						var normalPosX = fAttr(e, "circle", i, "cx") + fAttr(e, "circle", i, "r") + margin/2,
+							exceptPosX = width*0.4 + (width/2-articleScale(d[labels[2]])*0.75)/2,
+							posX = except ? exceptPosX : normalPosX,
+							smallPosX = fAttr(e, "circle", i, "cx") + fAttr(e, "circle", i, "r") + margin * 3;
+						return width < minWidth && except ? smallPosX : posX;
+					})
 					.attr("y", function(d, i) {return yPos(d, i)})
 					.attr("width", function(d) {return articleScale(d[labels[2]])*0.75})
 					.attr("height", function(d) {return articleScale(d[labels[2]])})
@@ -202,7 +209,7 @@ jQuery(document).ready(function($) {
 							name: [numFormat(d0[labels[3]]) + " " + labels[3]]
 						}, {
 							x: vx1,
-							y: vy1 - margin,
+							y: vy1 - viewsUnitScale.range()[1] * 2,
 							y2: height - marginBottom * 2,
 							h: legendLabelDistance/2,
 							class: "profile-feature3",
@@ -235,20 +242,22 @@ jQuery(document).ready(function($) {
 					.attr("class", function(d) {return d.class})
 					.attr("x", function(d) {return d.x})
 					.attr("y", function(d) {return d.y + d.h})
-					.attr("dy", margin*1.5)
+					.attr("dy", margin * 1.5)
 					.attr("stroke-width", 0)
 					.attr("font-weight", function(d) {return d.highlight ? "bold" : "normal"})
-					.attr("text-anchor", function(d) {return width < minWidth && !d.highlight ? "end" : "middle"})
+					.attr("text-anchor", "middle")
 
 				datalabelText
 					.append("tspan")
 					.attr("x", function(d) {return d.x})
+					.attr("dx", viewsUnitScale.range()[1])
 					.text(function(d) {return d.name[0]});
 
 				datalabelText
 					.append("tspan")
 					.attr("x", function(d) {return d.x})
 					.attr("dy", 16)
+					.attr("dx", viewsUnitScale.range()[1])
 					.text(function(d) {return d.name[1]});
 
 				return g;
@@ -285,6 +294,7 @@ jQuery(document).ready(function($) {
 					artW = fAttr(a, "rect", index, "width"),
 					posInRow = fAttr(v, ".views-" + index, Math.min(Math.floor(horUnits/2), ddata[index].unitArray.length - 1), "cx") + margin,
 					size = margin,
+					shiftSmScreens = width < minWidth ? 20 : 0,
 					hoverLabels = [{
 						value: ddata[index][labels[1]],
 						path: "M" + (editXPos + margin) + " " + (yPos(null, index) + margin) + "v -36h",
@@ -297,8 +307,8 @@ jQuery(document).ready(function($) {
 					},
 					{
 						value: ddata[index][labels[3]],
-						path: "M" + posInRow + " " + (yPos(null, index) + margin*0.7) + "v -6h",
-						labelPos: [posInRow - margin, yPos(null, index) - 6]
+						path: "M" + posInRow + " " + (yPos(null, index) + viewsUnitScale.range()[1]*2) + "v -6h",
+						labelPos: [posInRow - margin - shiftSmScreens, yPos(null, index) - 6]
 					}
 					];
 
@@ -393,8 +403,7 @@ jQuery(document).ready(function($) {
 				.attr("width", width)
 				.attr("height", height)
 				.attr("perserveAspectRatio", "xMidYMid meet")
-				.attr("viewBox", screenWidth < minWidth ? "0 0 " + minWidth + " " + minWidth / aspect : "0 0 " + width + " " + height);
-
+				.attr("viewBox", "0 0 " + width + " " + height);
 
 			// lazy resize, keeps proportions
 			$( window ).resize(function(){
