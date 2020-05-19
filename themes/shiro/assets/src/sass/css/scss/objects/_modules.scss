@@ -727,6 +727,13 @@ a.hover-img-zoom {
 				cursor: pointer;
 			}
 		}
+
+		p {
+			display: inline-block;
+			@media (max-width: $medium-bp) {
+				margin-top: block;
+			}
+		}
 	}
 
 	.graph-visualization svg{

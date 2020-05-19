@@ -11,10 +11,13 @@ jQuery(document).ready(function($) {
 			strokeW = 2,
 			numFormat = d3.format(","),
 			width = $id.width(),
-			shift = { x: width < 400 ? (width - margin * 4) / 2 : 190, y: 125 },
+			shift = { x: 190, y: 125 },
 			maxFeature1 = $id.data("max-feature-1") ? $id.data("max-feature-1") : 90,
 			maxFeature2 = $id.data("max-feature-2") ? $id.data("max-feature-2") : 90,
 			profInRow = Math.max(Math.floor(width / shift.x), 2),
+			screenWidth = $("body").width(),
+			minWidth = shift.x * profInRow,
+			smallBp = 500, // per _variables.scss
 			masterunit = $id.data("chart-masterunit") ? $id.data("chart-masterunit") : 500000,
 			horUnits = 5,
 			moreHorUnits = 30,
@@ -24,12 +27,13 @@ jQuery(document).ready(function($) {
 			// This is setup so properties/labels don't matter
 			// But labels map to this order: circle, rectangle, ellipses
 			labels = $id.data("chart-labels"),
+			legendLabelDistance = 45,
 			icons = $id.data("chart-icons"),
 			except = $id.data("chart-except"),
 			exceptI = 0,
 			exceptLang = except ? data[labels[exceptI]] : "",
-			exceptHeightMulti = 4.2,
-			height = except ? shift.y * exceptHeightMulti : yPos(null, dataEnd-dataStart-1) + shift.y;
+			exceptHeightMulti = 3.5,
+			height = except ? shift.y * exceptHeightMulti : yPos(null, dataEnd - dataStart -1) + shift.y;
 
 		function yPos(d, i) {
 			var gutter = margin * 6,
@@ -57,19 +61,20 @@ jQuery(document).ready(function($) {
 					.selectAll("circle")
 					.data(ddata)
 					.join("circle")
-					.attr("cx", function(d, i) {return except ? xPos(d, i) + width/4 : xPos(d, i) + editorScale(d[labels[1]])})
+					.attr("cx", function(d, i) {return except ? xPos(d, i) + Math.max(width/4, editorScale(d[labels[1]]) + margin) : xPos(d, i) + editorScale(d[labels[1]])})
 					.attr("cy", function(d, i) {return yPos(d, i) + editorScale(d[labels[1]])})
 					.attr("r", function(d) {return editorScale(d[labels[1]])})
 			}
 
 			function articlesConstruct(g, e) {
+				var articleXShift = width < minWidth ? width*0.5 : width*0.4;
 				return g
 					.attr("transform", "translate(" + margin + "," + margin + ")")
 					.attr("class", "profile-feature2")
 					.selectAll("rect")
 					.data(ddata)
 					.join("rect")
-					.attr("x", function(d, i) {return except ? width/2 + (width/2-articleScale(d[labels[2]])*0.75)/2 : fAttr(e, "circle", i, "cx") + fAttr(e, "circle", i, "r") + margin/2})
+					.attr("x", function(d, i) {return except ? articleXShift + (width/2-articleScale(d[labels[2]])*0.75)/2 : fAttr(e, "circle", i, "cx") + fAttr(e, "circle", i, "r") + margin/2})
 					.attr("y", function(d, i) {return yPos(d, i)})
 					.attr("width", function(d) {return articleScale(d[labels[2]])*0.75})
 					.attr("height", function(d) {return articleScale(d[labels[2]])})
@@ -84,8 +89,8 @@ jQuery(document).ready(function($) {
 					var ry = viewsUnitScale(masterunit) / 3 * 2,
 						normalPosX = fAttr(a, "rect", ix, "x") + fAttr(a, "rect", ix, "width") + margin,
 						normalPosY = fAttr(a, "rect", ix, "y") + ry,
-						exceptPosX = (width - viewsXScale(moreHorUnits)) / 2,
-						exceptPosY = fAttr(e, "circle", ix, "cx") + fAttr(e, "circle", ix, "r") + margin * 5,
+						exceptPosX = width < minWidth ? margin * 3 : (width - viewsXScale(moreHorUnits)) / 2, // center
+						exceptPosY = fAttr(e, "circle", ix, "cx") + fAttr(e, "circle", ix, "r") + legendLabelDistance + margin * 2,
 						transX = except ? exceptPosX : normalPosX,
 						transY = except ? exceptPosY : normalPosY;
 
@@ -108,6 +113,8 @@ jQuery(document).ready(function($) {
 			}
 
 			function labelConstruct(g, e, offset) {
+				var labelX = except ? margin*exceptHeightMulti + margin : margin * 2,
+					labelY = except ? height - margin : shift.y*0.75 + margin;
 				return g
 					.call(function(g1) {
 						return g1
@@ -118,8 +125,8 @@ jQuery(document).ready(function($) {
 							.join("text")
 							.attr("text-anchor", "start")
 							.attr("dy", -5) // create some padding at the bottom
-							.attr("x", function(d, i) {return except ? xPos(d, i) + margin*exceptHeightMulti + margin : xPos(d, i) + margin * 2})
-							.attr("y", function(d, i) {return except ? height - margin : yPos(d, i) + shift.y*0.75 + margin})
+							.attr("x", function(d, i) {return screenWidth < smallBp ? xPos(d, i) + margin : xPos(d, i) + labelX})
+							.attr("y", function(d, i) {return yPos(d, i) + labelY})
 							.text(function(d) {return labels.length > 4 ? d[labels[4]] : d[labels[0]] })
 					})
 					.call(function(g2) {
@@ -132,8 +139,8 @@ jQuery(document).ready(function($) {
 							.join("text")
 							.attr("text-anchor", "start")
 							.attr("dy", -30) // above mainlabel
-							.attr("x", function(d, i) {return except ? xPos(d, i) + margin*exceptHeightMulti + margin : xPos(d, i) + margin * 2})
-							.attr("y", function(d, i) {return except ? height - margin : yPos(d, i) + shift.y*0.75 + margin})
+							.attr("x", function(d, i) {return screenWidth < smallBp ? xPos(d, i) + margin * 2 : xPos(d, i) + labelX})
+							.attr("y", function(d, i) {return yPos(d, i) + labelY})
 							.text(function(d, i) {return i + 1 + offset});
 					})
 			}
@@ -149,7 +156,7 @@ jQuery(document).ready(function($) {
 					.data(ddata)
 					.join("line")
 					.attr("x1", function(d, i) {return xPos(d, i) + strokeW})
-					.attr("x2", function(d, i) {return xPos(d, i) + endX})
+					.attr("x2", function(d, i) {return screenWidth < smallBp ? xPos(d, i) + strokeW : xPos(d, i) + endX})
 					.attr("y1", function(d, i) {return yPos(d, i)})
 					.attr("y2", function(d, i) {return yPos(d, i) + borderHeight});
 			}
@@ -163,7 +170,7 @@ jQuery(document).ready(function($) {
 						w: fAttr(a, "rect", 0, "width"),
 						h: fAttr(a, "rect", 0, "height"),
 					},
-					vx1 = fAttr(v, "ellipse", 0, "cx"),
+					vx1 = fAttr(v, "ellipse", moreHorUnits-1, "cx"),
 					vxCenter = fAttr(v, "ellipse", Math.floor(moreHorUnits/2) - 1, "cx"),
 					vy1 = fAttr(v, "ellipse", moreHorUnits * (d0.Rows - 1), "cy"),
 					lastRowOverHalf = moreHorUnits * d0.Rows % d0.unitArray.length > Math.ceil(moreHorUnits/2) + 1,
@@ -173,7 +180,7 @@ jQuery(document).ready(function($) {
 							x: fAttr(e, "circle", 0, "cx"),
 							y: fAttr(e, "circle", 0, "cy") + fAttr(e, "circle", 0, "r") - margin,
 							y2: height - marginBottom,
-							h: 45,
+							h: legendLabelDistance,
 							class: "profile-feature1",
 							highlight: true,
 							name: [numFormat(d0[labels[1]]) + " " + labels[1]]
@@ -181,7 +188,7 @@ jQuery(document).ready(function($) {
 							x: aObj.x + aObj.w * 0.5,
 							y: aObj.y + aObj.h - margin,
 							y2: height - marginBottom,
-							h: 45,
+							h: legendLabelDistance,
 							class: "profile-feature2",
 							highlight: true,
 							name: [numFormat(d0[labels[2]]) + " " + labels[2]]
@@ -189,15 +196,15 @@ jQuery(document).ready(function($) {
 							x: vxCenter,
 							y: lastRowOverHalf ? vy1 : vy1 + margin,
 							y2: height - marginBottom * 1.5,
-							h: 45,
+							h: legendLabelDistance,
 							class: "profile-feature3",
 							highlight: true,
 							name: [numFormat(d0[labels[3]]) + " " + labels[3]]
 						}, {
 							x: vx1,
-							y: vy1,
+							y: vy1 - margin,
 							y2: height - marginBottom * 2,
-							h: 20,
+							h: legendLabelDistance/2,
 							class: "profile-feature3",
 							highlight: false,
 							name: [numFormat(masterunit), labels[3]]
@@ -231,7 +238,7 @@ jQuery(document).ready(function($) {
 					.attr("dy", margin*1.5)
 					.attr("stroke-width", 0)
 					.attr("font-weight", function(d) {return d.highlight ? "bold" : "normal"})
-					.attr("text-anchor", "middle")
+					.attr("text-anchor", function(d) {return width < minWidth && !d.highlight ? "end" : "middle"})
 
 				datalabelText
 					.append("tspan")
@@ -376,14 +383,18 @@ jQuery(document).ready(function($) {
 					.range([0, maxRows * unitR * 2]), // min and max space for rows
 				viewsXScale = d3.scaleLinear()
 					.domain([0, horUnits])
-					.range([0, horUnits * unitR * 2.5]); // min and max space for columns
+					.range([0, horUnits * unitR * 2.5]), // min and max space for columns
+				minHeight = editorScale.range()[1] * 2 + viewsYScale.range()[1] + (legendLabelDistance + margin) * 4;
 
+			height = except && height < minHeight ? minHeight : height; // update
+			exceptHeightMulti = height/shift.y; // update
 
 			svg = container.append("svg")
 				.attr("width", width)
 				.attr("height", height)
 				.attr("perserveAspectRatio", "xMidYMid meet")
-				.attr("viewBox", "0 0 " + width + " " + height);
+				.attr("viewBox", screenWidth < minWidth ? "0 0 " + minWidth + " " + minWidth / aspect : "0 0 " + width + " " + height);
+
 
 			// lazy resize, keeps proportions
 			$( window ).resize(function(){

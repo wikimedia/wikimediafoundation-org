@@ -66,7 +66,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 					<label for="feature3"><?php echo esc_html( $labelsList[3] ); ?></label>
 				</li>
 			</ul>
-			<span>← You can filter the view here.</span>
+			<p display="inline-block">← You can filter the view here.</p>
 		</div>
 
 		<div class="w-100p graph-visualization">
