@@ -297,17 +297,23 @@ jQuery(document).ready(function($) {
 					shiftSmScreens = width < minWidth ? 20 : 0,
 					hoverLabels = [{
 						value: ddata[index][labels[1]],
-						path: "M" + (editXPos + margin) + " " + (yPos(null, index) + margin) + "v -36h",
+						x: Math.round(editXPos + margin),
+						y1: yPos(null, index) + margin,
+						h: 36,
 						labelPos: [editXPos, yPos(null, index) - 36]
 					},
 					{
 						value: ddata[index][labels[2]],
-						path: "M" + (artXPos + margin + artW/2) + " " + (yPos(null, index) + margin) + "v -18h",
+						x: Math.round(artXPos + margin + artW/2),
+						y1: yPos(null, index) + margin,
+						h: 18,
 						labelPos: [artXPos + artW / 2, yPos(null, index) - 18]
 					},
 					{
 						value: ddata[index][labels[3]],
-						path: "M" + posInRow + " " + (yPos(null, index) + viewsUnitScale.range()[1]*2) + "v -6h",
+						x: Math.round(posInRow),
+						y1: yPos(null, index) + viewsUnitScale.range()[1]*2,
+						h: 6,
 						labelPos: [posInRow - margin - shiftSmScreens, yPos(null, index) - 6]
 					}
 					];
@@ -318,11 +324,14 @@ jQuery(document).ready(function($) {
 					.style("display", null)
 					.style("pointer-events", "none")
 
-				g.selectAll("path")
+				g.selectAll("line")
 					.data(hoverLabels)
-					.join("path")
+					.join("line")
 					.attr("class", "hover-label-lines")
-					.attr("d", function(d) {return d.path})
+					.attr("x1", function(d) {return d.x})
+					.attr("x2", function(d) {return d.x})
+					.attr("y1", function(d) {return d.y1})
+					.attr("y2", function(d) {return d.y1 - d.h})
 					.style("display", function(d, i) {return checks[i].is(":checked") ? "block" : "none" });
 
 				g.selectAll("text")
