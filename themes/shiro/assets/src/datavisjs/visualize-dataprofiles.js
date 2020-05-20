@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 					var ry = viewsUnitScale(masterunit) / 3 * 2,
 						normalPosX = fAttr(a, "rect", ix, "x") + fAttr(a, "rect", ix, "width") + margin,
 						normalPosY = fAttr(a, "rect", ix, "y") + ry,
-						exceptPosX = width < minWidth ? margin * 3 : (width - viewsXScale(moreHorUnits)) / 2, // center
+						exceptPosX = (width - viewsXScale(moreHorUnits)) / 2, // center
 						exceptPosY = fAttr(e, "circle", ix, "cx") + fAttr(e, "circle", ix, "r") + legendLabelDistance + margin * 2,
 						transX = except ? exceptPosX : normalPosX,
 						transY = except ? exceptPosY : normalPosY;
