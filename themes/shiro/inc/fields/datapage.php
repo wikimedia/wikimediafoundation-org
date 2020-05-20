@@ -106,6 +106,7 @@ function wmf_datapage_fields() {
 				),
 				'data' 		=> new Fieldmanager_Textfield( __( 'Data (JSON)', 'shiro' ) ),
 				'labels' 		=> new Fieldmanager_Textfield( __( 'Labels from above (e.g. ["Languages", "Editors", "Articles", "Pageviews", "Native"])', 'shiro' ) ),
+				'filter-instruction' 		=> new Fieldmanager_Textfield( __( 'Instruction for users to filter view', 'shiro' ) ),
 				'maxf1' 		=> new Fieldmanager_Textfield( __( 'Max radius (Feature 1/circles)', 'shiro' ) ),
 				'maxf2' 		=> new Fieldmanager_Textfield( __( 'Max height (Feature 2/rectangles)', 'shiro' ) ),
 				'masterunit' 		=> new Fieldmanager_Textfield( __( 'Value for 1 unit (Feature 3/ellipses)', 'shiro' ) ),

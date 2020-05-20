@@ -13,6 +13,7 @@ if ( empty( $template_args['headline'] ) ) {
 
 $labels = $template_args['labels'];
 $labelsList = json_decode($labels);
+$filterInstruction = $template_args['filter-instruction'];
 $data = $template_args['data'];
 $dataLength = count(json_decode($data));
 $maxf1 = $template_args['maxf1'];
@@ -66,7 +67,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 					<label for="feature3"><?php echo esc_html( $labelsList[3] ); ?></label>
 				</li>
 			</ul>
-			<p display="inline-block">← You can filter the view here.</p>
+			<p display="inline-block"><?php echo esc_html( $filterInstruction ); ?></p>
 		</div>
 
 		<div class="w-100p graph-visualization">
