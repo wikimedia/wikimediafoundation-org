@@ -170,6 +170,7 @@ jQuery(document).ready(function($) {
 
 			function legendConstruct(g, e, a, v) {
 				var datalabelText,
+					datalabelIcons,
 					d0 = ddata[0],
 					aObj = {
 						x: fAttr(a, "rect", 0, "x"),
@@ -188,7 +189,7 @@ jQuery(document).ready(function($) {
 							y: fAttr(e, "circle", 0, "cy") + fAttr(e, "circle", 0, "r") - margin,
 							y2: height - marginBottom,
 							h: legendLabelDistance,
-							class: "profile-feature1",
+							class: 1,
 							highlight: true,
 							name: [numFormat(d0[labels[1]]) + " " + labels[1]]
 						}, {
@@ -196,7 +197,7 @@ jQuery(document).ready(function($) {
 							y: aObj.y + aObj.h - margin,
 							y2: height - marginBottom,
 							h: legendLabelDistance,
-							class: "profile-feature2",
+							class: 2,
 							highlight: true,
 							name: [numFormat(d0[labels[2]]) + " " + labels[2]]
 						}, {
@@ -204,7 +205,7 @@ jQuery(document).ready(function($) {
 							y: lastRowOverHalf ? vy1 : vy1 + margin,
 							y2: height - marginBottom * 1.5,
 							h: legendLabelDistance,
-							class: "profile-feature3",
+							class: 3,
 							highlight: true,
 							name: [numFormat(d0[labels[3]]) + " " + labels[3]]
 						}, {
@@ -212,7 +213,7 @@ jQuery(document).ready(function($) {
 							y: vy1 - viewsUnitScale.range()[1] * 2,
 							y2: height - marginBottom * 2,
 							h: legendLabelDistance/2,
-							class: "profile-feature3",
+							class: 3,
 							highlight: false,
 							name: [numFormat(masterunit), labels[3]]
 						}
@@ -225,7 +226,7 @@ jQuery(document).ready(function($) {
 					.selectAll("line")
 					.data(customLegend)
 					.join("line")
-					.attr("class", function(d) {return d.class})
+					.attr("class", function(d) {return "profile-feature" + d.class})
 					.attr("x1", function(d) {return d.x})
 					.attr("x2", function(d) {return d.x})
 					.attr("y1", function(d) {return d.y})
@@ -260,6 +261,25 @@ jQuery(document).ready(function($) {
 					.attr("dx", viewsUnitScale.range()[1])
 					.text(function(d) {return d.name[1]});
 
+				datalabelIcons = g
+					.append("g")
+					.attr("transform", "translate(" + margin + "," + margin + ")")
+					.attr("class", "data-label-icon")
+
+				datalabelText.selectAll("tspan").each(function(dd, i) {
+					if (i === 0) {
+						var textWidth = this.getBBox().width;
+						datalabelIcons.call(function(ltext) {
+							return ltext
+								.append("image")
+								.attr("xlink:href", icons[dd.class - 1])
+								.attr("width", margin * 1.1)
+								.attr("height", margin * 1.1)
+								.attr("x", dd.x - textWidth/2 - margin)
+								.attr("y", dd.y + dd.h + margin * 0.5);
+						})
+					}
+				});
 				return g;
 			}
 
@@ -306,8 +326,8 @@ jQuery(document).ready(function($) {
 						value: ddata[index][labels[2]],
 						x: Math.round(artXPos + margin + artW/2),
 						y1: yPos(null, index) + margin,
-						h: 18,
-						labelPos: [artXPos + artW / 2, yPos(null, index) - 18]
+						h: 21,
+						labelPos: [artXPos + artW / 2, yPos(null, index) - 21]
 					},
 					{
 						value: ddata[index][labels[3]],
@@ -340,7 +360,7 @@ jQuery(document).ready(function($) {
 					.attr("x", function(d) {return d.labelPos[0]})
 					.attr("y", function(d) {return d.labelPos[1]})
 					.attr("dy", margin*0.5)
-					.attr("dx", margin*2)
+					.attr("dx", margin*1.8)
 					.text(function(d) {return numFormat(d.value)})
 					.style("display", function(d, i) {return checks[i].is(":checked") ? "block" : "none" });
 
