@@ -146,7 +146,7 @@ jQuery(document).ready(function($) {
 							.join("text")
 							.attr("text-anchor", "start")
 							.attr("dy", -30) // above mainlabel
-							.attr("x", function(d, i) {return screenWidth < smallBp ? xPos(d, i) + margin * 2 : xPos(d, i) + labelX})
+							.attr("x", function(d, i) {return screenWidth < smallBp ? xPos(d, i) + margin : xPos(d, i) + labelX})
 							.attr("y", function(d, i) {return yPos(d, i) + labelY})
 							.text(function(d, i) {return i + 1 + offset});
 					})
@@ -336,7 +336,7 @@ jQuery(document).ready(function($) {
 					.style("display", function(d, i) {return checks[i].is(":checked") ? "block" : "none" });
 
 				if (labels.length > 4) g.append("text")
-					.attr("x", xPos(0, index) + margin)
+					.attr("x", screenWidth < smallBp ? xPos(0, index) : xPos(0, index) + margin)
 					.attr("y", yPos(null, index) + shift.y)
 					.attr("dy", -margin)
 					.attr("dx", margin)
