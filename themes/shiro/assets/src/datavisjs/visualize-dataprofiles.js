@@ -267,7 +267,7 @@ jQuery(document).ready(function($) {
 					.attr("class", "data-label-icon")
 
 				datalabelText.selectAll("tspan").each(function(dd, i) {
-					if (i === 0) {
+					if (i === 0 && dd.highlight) {
 						var textWidth = this.getBBox().width;
 						datalabelIcons.call(function(ltext) {
 							return ltext
