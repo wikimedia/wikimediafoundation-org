@@ -37,7 +37,8 @@ while ( have_posts() ) {
 	<?php 
 	get_template_part( 'template-parts/page/page', 'stats-featured' ); 
 	get_template_part( 'template-parts/page/page', 'stats-graph' ); 
-	get_template_part( 'template-parts/page/page', 'stats-plain' ); 
+	get_template_part( 'template-parts/page/page', 'stats-plain' );
+	get_template_part( 'template-parts/page/page', 'stats-profiles' );
 	?>
 
 	<div class="mw-980 mod-margin-bottom_sm flex flex-medium">

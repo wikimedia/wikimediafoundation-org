@@ -132,12 +132,11 @@ jQuery(document).ready(function($) {
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 			// lazy resize, keeps proportions
-			d3.select(window)
-				.on("resize", function() {
-					var targetWidth = container.node().getBoundingClientRect().width;
-					container.selectAll("svg").attr("width", targetWidth);
-					container.selectAll("svg").attr("height", targetWidth / aspect);
-				});
+			$( window ).resize(function() {
+				var targetWidth = container.node().getBoundingClientRect().width;
+				container.selectAll("svg").attr("width", targetWidth);
+				container.selectAll("svg").attr("height", targetWidth / aspect);
+			});
 
 			svg.append("g").call(xAxis);
 			svg.append("g").call(yAxis);

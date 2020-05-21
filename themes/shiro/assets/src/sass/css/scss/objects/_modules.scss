@@ -703,9 +703,53 @@ a.hover-img-zoom {
 		font-weight: bold;
 	}
 
+	.chart-options {
+		padding: 2em 0 1em;
+
+		ul {
+			list-style: none;
+			display: inline-block;
+
+			li {
+				font-size: 1rem;
+				margin-left: 0;
+				margin-bottom: 0;
+				margin-right: 1em;
+				padding: 0;
+			}
+
+			li, input {
+				display: inline-block;
+				width: auto;
+			}
+
+			input, label {
+				cursor: pointer;
+			}
+		}
+
+		p {
+			display: inline-block;
+			@media (max-width: $medium-bp) {
+				margin-top: block;
+			}
+		}
+	}
+
 	.graph-visualization svg{
 		text {
 			font-size: 0.8rem;	
+		}
+
+		.main-labels text {
+			font-size: 1rem;
+			font-weight: bold;
+		}
+
+		.main-label-ranks text {
+			font-size: 3rem;
+			font-weight: bold;
+			fill: $wmui-color-base50;
 		}
 		
 		.line {
@@ -724,7 +768,10 @@ a.hover-img-zoom {
 
 		.overlay {
 	        fill: none;
-	        cursor: pointer;
+	    }
+
+	    .overlay, .hover {
+	    	cursor: pointer;
 	    }
 
 		.tooltip {
@@ -741,6 +788,31 @@ a.hover-img-zoom {
 			opacity: 0.8;
 			stroke-width: 0.2;
 		}
+
+		.profile-feature1 circle {
+			fill: $color-pink;
+			opacity: 0.3;
+		}
+
+		.profile-feature2 rect {
+			fill: $color-dark-dark-blue;
+			opacity: 0.3;
+		}
+
+		.profile-feature3 ellipse {
+			fill: $color-dark-dark-blue;
+			opacity: 1;
+		}
+
+		.data-label-lines, .hover-label-lines {
+			fill: none;
+			stroke: $wmui-color-base30;
+		}
+
+		.borderleft {
+			fill: none;
+			stroke: $wmui-color-base70;
+		}
 	}
 }
 
@@ -754,7 +826,7 @@ a.hover-img-zoom {
 	.updated-date {
 		margin-top: 0.5rem;
 		display: inline-block;
-		color: $color-dark-gray;
+		color: $wmui-color-base20;
 	}
 }
 
