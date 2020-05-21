@@ -231,7 +231,7 @@ jQuery(document).ready(function($) {
 					.attr("x2", function(d) {return d.x})
 					.attr("y1", function(d) {return d.y})
 					.attr("y2", function(d) {return d.y + d.h})
-					.attr("stroke-dasharray", function(d) {return d.highlight ? "" : margin/3 + "," + margin/4})
+					.attr("stroke-dasharray", function(d) {return d.highlight ? "" : margin/3 + "," + margin/4});
 
 				datalabelText = g
 					.append("g")
@@ -240,13 +240,13 @@ jQuery(document).ready(function($) {
 					.selectAll("text")
 					.data(customLegend)
 					.join("text")
-					.attr("class", function(d) {return d.class})
+					.attr("class", function(d) {return "profile-feature" + d.class})
 					.attr("x", function(d) {return d.x})
 					.attr("y", function(d) {return d.y + d.h})
 					.attr("dy", margin * 1.5)
 					.attr("stroke-width", 0)
 					.attr("font-weight", function(d) {return d.highlight ? "bold" : "normal"})
-					.attr("text-anchor", "middle")
+					.attr("text-anchor", "middle");
 
 				datalabelText
 					.append("tspan")
@@ -264,7 +264,7 @@ jQuery(document).ready(function($) {
 				datalabelIcons = g
 					.append("g")
 					.attr("transform", "translate(" + margin + "," + margin + ")")
-					.attr("class", "data-label-icon")
+					.attr("class", "data-label-icon");
 
 				datalabelText.selectAll("tspan").each(function(dd, i) {
 					if (i === 0 && dd.highlight) {
@@ -272,6 +272,7 @@ jQuery(document).ready(function($) {
 						datalabelIcons.call(function(ltext) {
 							return ltext
 								.append("image")
+								.attr("class", "profile-feature" + dd.class)
 								.attr("xlink:href", icons[dd.class - 1])
 								.attr("width", margin * 1.1)
 								.attr("height", margin * 1.1)
