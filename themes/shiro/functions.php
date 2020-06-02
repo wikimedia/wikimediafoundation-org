@@ -301,6 +301,12 @@ require get_template_directory() . '/inc/shortcodes/facts.php';
 require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
 
 /**
+ * Stories page template customizations.
+ */
+require_once get_template_directory() . '/inc/stories.php';
+Stories_Customisations\init();
+
+/**
  * Modify the document title for the search and 404 pages
  */
 

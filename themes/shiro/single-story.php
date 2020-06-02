@@ -31,6 +31,15 @@ while ( have_posts() ) :
 			$parent_name = $parent_term->name;
 			$parent_link = get_term_link( $parent_id );
 		}
+	} else {
+		// The Stories page which contains the list of stories sets the following post meta to the page ID on the
+		// 'update_post_meta' hook.
+		$parent_page_id = get_post_meta( get_the_ID(), '_story_parent_page', true );
+		$parent_page = get_post( $parent_page_id );
+		if ( $post instanceof \WP_Post ) {
+			$parent_link = get_permalink( $parent_page->ID );
+			$parent_name = sprintf( __( '%s stories' ), get_the_title( $parent_page->post_parent ) );
+		}
 	}
 
 	wmf_get_template_part(
