@@ -75,8 +75,8 @@ class Credits {
 		if ( false === $this->image_ids ) {
 			$this->image_ids = array();
 
-			add_filter( 'image_downsize', array( $this, 'set_id' ), 10, 2 );
 			add_filter( 'the_content', array( $this, 'set_images_from_content' ), 10, 2 );
+			add_filter( 'wp_get_attachment_image_src', array( $this, 'set_id_from_att_src' ), 10, 4 );
 		}
 	}
 
@@ -176,8 +176,6 @@ class Credits {
 	 * @return array
 	 */
 	public function get_ids() {
-		remove_filter( 'image_downsize', array( $this, 'set_id' ), 10, 2 );
-
 		return $this->image_ids;
 	}
 }
