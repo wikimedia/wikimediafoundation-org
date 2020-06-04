@@ -35,6 +35,10 @@
   }
 }
 
+.top-nav-buttons {
+  display: flex;
+}
+
   // Top part of header
   .site-main-nav {
     position: relative;
@@ -227,13 +231,13 @@
   height: 34px;
   margin-left: 5px;
 
-  &--mobile {
+  &--desktop {
     @media ( max-width: 1024px ) {
       display: none;
     }
   }
 
-  &--desktop {
+  &--mobile {
     @media (min-width: 1025px ) {
       display:none;
     }
