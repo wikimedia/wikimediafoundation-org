@@ -227,8 +227,16 @@
   height: 34px;
   margin-left: 5px;
 
-  @media (max-width: $medium-landscape) {
-    display: none;
+  &--mobile {
+    @media ( max-width: 1024px ) {
+      display: none;
+    }
+  }
+
+  &--desktop {
+    @media (min-width: 1025px ) {
+      display:none;
+    }
   }
 
   &:focus,
