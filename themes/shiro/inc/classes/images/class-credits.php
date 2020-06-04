@@ -121,6 +121,13 @@ class Credits {
 		return $bool;
 	}
 
+	public function set_id_from_att_src( $image, $attachment_id, $size, $icon ) {
+		if ( true !== $this->pause && ! in_array( $attachment_id, $this->image_ids, true ) ) {
+			$this->image_ids[] = $attachment_id;
+		}
+		return $image;
+	}
+
 	/**
 	 * Does a preg_match_all to get image sources if there is no caption.
 	 *
@@ -148,6 +155,12 @@ class Credits {
 
 		foreach ( $urls as $url ) {
 			$image_id = wpcom_vip_attachment_url_to_postid( $url );
+
+			// It might be a thumbnail size ( suffix '-dddxddd' )
+			if ( empty( $image_id ) ) {
+				$attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $url );
+				$image_id = wpcom_vip_attachment_url_to_postid( $attachment_url );
+			}
 
 			if ( empty( $image_id ) ) {
 				continue;
