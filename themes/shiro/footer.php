@@ -33,7 +33,7 @@ $wmf_blackout_modal_cookie            = get_theme_mod( 'wmf_blackout_modal_cooki
 $wmf_blackout_modal_cookie_expiration = get_theme_mod( 'wmf_blackout_modal_cookie_expiration', 30 );
 ?>
 
-<?php if( $wmf_blackout_modal_enabled && ! isset( $_COOKIE[ $wmf_blackout_modal_cookie ] ) ): ?>
+<?php if( $wmf_blackout_modal_enabled ): ?>
 	<!-- Blackout Modal -->
 	<div class="blackout-modal" aria-hidden="true" role="dialog" data-cookie="<?php echo esc_attr( $wmf_blackout_modal_cookie ); ?>" data-cookie-expiration="<?php echo esc_attr( $wmf_blackout_modal_cookie_expiration ); ?>">
 		<div class="blackout-modal-dialog" role="document">
