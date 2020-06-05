@@ -34,6 +34,11 @@ $translation-label-width: rem(180);
 			white-space: nowrap;
 			overflow-x: auto;
 
+      ul {
+        // This is being set to hidden by the
+        overflow-x: auto !important;
+      }
+
 			&:after {
 				content: '';
 				background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #fff 80%);
