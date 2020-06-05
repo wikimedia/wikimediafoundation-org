@@ -61,22 +61,11 @@
 		text-decoration: underline;
 	}
 
+	.blackout-modal-header {
+		padding: 10px 20px;
+	}
+
 	.blackout-modal-body {
 		padding: 20px;
-	}
-
-	.blackout-modal-body input {
-		width: 200px;
-		padding: 8px;
-		border: 1px solid #ddd;
-		color: #888;
-		outline: 0;
-		font-size: 14px;
-		font-weight: 700;
-	}
-
-	.blackout-modal-header,
-	.blackout-modal-footer {
-		padding: 10px 20px;
 	}
 }
