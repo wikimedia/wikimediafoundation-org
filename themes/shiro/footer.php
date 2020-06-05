@@ -33,13 +33,13 @@ $wmf_blackout_modal_cookie            = get_theme_mod( 'wmf_blackout_modal_cooki
 $wmf_blackout_modal_cookie_expiration = get_theme_mod( 'wmf_blackout_modal_cookie_expiration', 30 );
 ?>
 
-<?php if( $wmf_blackout_modal_enabled && ! $_COOKIE[ $wmf_blackout_modal_cookie ] ): ?>
+<?php if( $wmf_blackout_modal_enabled && ! isset( $_COOKIE[ $wmf_blackout_modal_cookie ] ) ): ?>
 	<!-- Blackout Modal -->
 	<div class="blackout-modal" aria-hidden="true" role="dialog" data-cookie="<?php echo esc_attr( $wmf_blackout_modal_cookie ); ?>" data-cookie-expiration="<?php echo esc_attr( $wmf_blackout_modal_cookie_expiration ); ?>">
 		<div class="blackout-modal-dialog" role="document">
 			<div class="blackout-modal-header">
 				<button type="button" class="btn-close close-blackout-modal" aria-hidden="true">
-					<span class="screen-reader-text"><?php _e( 'Close', 'encompass-blog' ); ?></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Close', 'shiro' ); ?></span>
 					&times;
 				</button>
 			</div>
