@@ -449,6 +449,66 @@ class General extends Base {
 			)
 		);
 
-    }
+		// Blackout Modal support.
+		$section_id = 'wmf_general_blackout_modal';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Blackout Modal', 'shiro' ),
+				'priority' => 80,
+				'panel'    => $panel_id,
+			)
+		);
+
+        $control_id = 'wmf_blackout_modal_enabled';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => false,
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Blackout Modal Enabled', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'checkbox',
+			)
+		);
+
+		$control_id = 'wmf_blackout_modal_content';
+		$this->customize->add_setting(
+			$control_id, array(
+				'capability'           => 'edit_theme_options',
+				'default'              => '<h1>Black Lives Matter.<br>
+											Black History Matters.<br>
+											Black Communities Matter.</h1>
+											<h2><a href="https://medium.com/freely-sharing-the-sum-of-all-knowledge">Read the Wikimedia Foundation\'s statement.</a></h2>
+											<h2><a href="https://meta.wikimedia.org/wiki/Black_Lives_Matter">Take action on Wikimedia.</a></h2>',
+				'sanitize_callback'    => 'wp_kses_post',
+				'sanitize_js_callback' => 'wp_kses_post',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Blackout Modal Content', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'textarea',
+			)
+		);
+
+		$control_id = 'wmf_blackout_modal_cookie';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => 'blackoutModalDismissed',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Blackout Modal Cookie', 'shiro' ),
+				'description' => __( 'Useful when changing the content of the modal, adjusting this would allow you to display the modal to users that have dismissed it previously.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+	}
 
 }
