@@ -19,15 +19,38 @@ if ( ! is_archive() && ! is_home() ) {
 </main>
 
 <?php
-$wmf_footer_text                    = get_theme_mod( 'wmf_footer_text', __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'shiro' ) );
-$wmf_twitter_url                    = get_theme_mod( 'wmf_twitter_url' );
-$wmf_facebook_url                   = get_theme_mod( 'wmf_facebook_url' );
-$wmf_instagram_url                  = get_theme_mod( 'wmf_instagram_url' );
-$wmf_projects_menu_label            = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'shiro' ) );
-$wmf_movement_affiliates_menu_label = get_theme_mod( 'wmf_movement_affiliates_menu_label', __( 'Movement Affiliates', 'shiro' ) );
-$wmf_footer_copyright               = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'shiro' ) );
-$wmf_other_links_menu_label = get_theme_mod( 'wmf_other_links_menu_label', __( 'Other', 'shiro' ) );
+$wmf_footer_text                      = get_theme_mod( 'wmf_footer_text', __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'shiro' ) );
+$wmf_twitter_url                      = get_theme_mod( 'wmf_twitter_url' );
+$wmf_facebook_url                     = get_theme_mod( 'wmf_facebook_url' );
+$wmf_instagram_url                    = get_theme_mod( 'wmf_instagram_url' );
+$wmf_projects_menu_label              = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'shiro' ) );
+$wmf_movement_affiliates_menu_label   = get_theme_mod( 'wmf_movement_affiliates_menu_label', __( 'Movement Affiliates', 'shiro' ) );
+$wmf_footer_copyright                 = get_theme_mod( 'wmf_footer_copyright', __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'shiro' ) );
+$wmf_other_links_menu_label           = get_theme_mod( 'wmf_other_links_menu_label', __( 'Other', 'shiro' ) );
+$wmf_blackout_modal_enabled           = get_theme_mod( 'wmf_blackout_modal_enabled' );
+$wmf_blackout_modal_content           = get_theme_mod( 'wmf_blackout_modal_content', '<h1>Black Lives Matter.<br>Black History Matters.<br>Black Communities Matter.</h1><h2><a href="https://medium.com/freely-sharing-the-sum-of-all-knowledge">Read the Wikimedia Foundation\'s statement.</a></h2><h2><a href="https://meta.wikimedia.org/wiki/Black_Lives_Matter">Take action on Wikimedia.</a></h2>' );
+$wmf_blackout_modal_cookie            = get_theme_mod( 'wmf_blackout_modal_cookie', 'blackoutModalDismissed' );
+$wmf_blackout_modal_cookie_expiration = get_theme_mod( 'wmf_blackout_modal_cookie_expiration', 30 );
 ?>
+
+<?php if( $wmf_blackout_modal_enabled ): ?>
+	<!-- Blackout Modal -->
+	<div class="blackout-modal" aria-hidden="true" role="dialog" data-cookie="<?php echo esc_attr( $wmf_blackout_modal_cookie ); ?>" data-cookie-expiration="<?php echo esc_attr( $wmf_blackout_modal_cookie_expiration ); ?>">
+		<div class="blackout-modal-dialog" role="document">
+			<div class="blackout-modal-header">
+				<button type="button" class="btn-close close-blackout-modal" aria-hidden="true">
+					<span class="screen-reader-text"><?php esc_html_e( 'Close', 'shiro' ); ?></span>
+					&times;
+				</button>
+			</div>
+			<div class="blackout-modal-body">
+				<?php echo wp_kses_post( $wmf_blackout_modal_content ); ?>
+			</div>
+		</div>
+	</div>
+	<!-- /Blackout Modal -->
+<?php endif; ?>
+
 <footer class="bg-black">
 	<div class="footer-inner mw-980">
 
