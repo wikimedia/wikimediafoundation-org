@@ -167,16 +167,23 @@
 	}
 }
 
-/* lists inside rich text Fieldmanager fields */
-.mar-bottom ul,
-.page-intro ul {
+/* lists inside rich text fields */
+.wysiwyg > ul,
+.mar-bottom > ul,
+.page-intro > ul,
+.wysiwyg > ol,
+.mar-bottom > ol,
+.page-intro > ol {
   list-style-position: outside;
   margin: rem(18) 0 rem(18) 0;
-  padding-left: rem(18);
 
-  li {
+  ul, ol {
+    margin-bottom: 0;
+  }
+
+  li, ol {
     line-height: 1.5;
-    margin-left: 0;
+    margin-left: rem(18);
     padding: rem(0.33) 0; /*6px @18px*/
   }
 }
