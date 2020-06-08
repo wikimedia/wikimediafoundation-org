@@ -66,7 +66,7 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-        
+
 		$section_id = 'wmf_header_donate';
 		$this->customize->add_section(
 			$section_id, array(
@@ -104,7 +104,7 @@ class Header extends Base {
 				'type'    => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_homedonate_button';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -133,7 +133,7 @@ class Header extends Base {
 				'type'    => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_homedonate_intro';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -148,7 +148,7 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_homedonate_secure';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -163,7 +163,7 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-        
+
 		$section_id = 'wmf_header_search';
 		$this->customize->add_section(
 			$section_id, array(
@@ -271,7 +271,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang2';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
@@ -313,7 +313,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang3';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
@@ -355,7 +355,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang4';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
@@ -397,7 +397,7 @@ class Header extends Base {
 		$control_id = 'wmf_vision_lang5';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '', 'shiro' ),
+				'default' => '',
 			)
 		);
 		$this->customize->add_control(
