@@ -252,6 +252,8 @@
     background: $color-periwinkle;
     border: 1px solid $color-periwinkle;
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0 0.4rem;
     height: 34px;
     margin-left: 5px;
@@ -271,7 +273,6 @@
     }
 
     .language-icon {
-      margin-top: -2px;
       margin-right: 5px;
 
       @media (max-width: $medium-bp) {
@@ -280,7 +281,6 @@
     }
 
     .down-indicator {
-      margin-top: 3px;
       margin-left: 4px;
 
       @media (max-width: $medium-bp) {
