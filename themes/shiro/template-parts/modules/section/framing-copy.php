@@ -49,7 +49,7 @@ $has_image = get_the_post_thumbnail_url();
 		<?php if ($no_of_modules === 5) { ?>
 			<div class="ungrid-bottom-2">
 				<?php for ($i = 3; $i < 5; $i++) { ?>
-					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo $i; ?>">
+					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
 						<code class="<?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></code>
 						<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
 					</div>
@@ -60,7 +60,7 @@ $has_image = get_the_post_thumbnail_url();
 		<?php if ($no_of_modules === 6) { ?>
 			<div class="ungrid-bottom-3">
 				<?php for ($i = 3; $i < 6; $i++) { ?>
-					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo $i; ?>">
+					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
 						<code class="<?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></code>
 						<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
 					</div>
