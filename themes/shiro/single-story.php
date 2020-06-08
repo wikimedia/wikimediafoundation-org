@@ -35,10 +35,12 @@ while ( have_posts() ) :
 		// The Stories page which contains the list of stories sets the following post meta to the page ID on the
 		// 'update_post_meta' hook.
 		$parent_page_id = get_post_meta( get_the_ID(), '_story_parent_page', true );
-		$parent_page = get_post( $parent_page_id );
-		if ( $post instanceof \WP_Post ) {
-			$parent_link = get_permalink( $parent_page->ID );
-			$parent_name = sprintf( __( '%s stories' ), get_the_title( $parent_page->post_parent ) );
+		if ( (int) $parent_page_id > 0 ) {
+			$parent_page = get_post( $parent_page_id );
+			if ( $post instanceof \WP_Post ) {
+				$parent_link = get_permalink( $parent_page->ID );
+				$parent_name = sprintf( __( '%s stories' ), get_the_title( $parent_page->post_parent ) );
+			}
 		}
 	}
 
