@@ -49,12 +49,12 @@
     "composer": "^4.1.0",
     "graceful-fs": "^4.2.3",
     "gulp-footer": "^2.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "lodash": "^4.17.14",
     "minimatch": "^3.0.4",
     "popper.js": "^1.16.1",
     "sass": "^1.26.3",
-    "stylelint": "^9.10.1"
+    "stylelint": "^13.6.0"
   },
   "themeConfig": {
     "rename": {
