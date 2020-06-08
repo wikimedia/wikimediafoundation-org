@@ -166,3 +166,17 @@
 		margin-bottom: 0;
 	}
 }
+
+/* lists inside rich text Fieldmanager fields */
+.mar-bottom ul,
+.page-intro ul {
+  list-style-position: outside;
+  margin: rem(18) 0 rem(18) 0;
+  padding-left: rem(18);
+
+  li {
+    line-height: 1.5;
+    margin-left: 0;
+    padding: rem(0.33) 0; /*6px @18px*/
+  }
+}
