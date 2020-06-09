@@ -1,13 +1,11 @@
 <?php
 /**
- * The template for displaying all single posts.
+ * The template for displaying all single stories.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
  * @package shiro
  */
-
-use WMF\Images\Credits;
 
 get_header();
 
@@ -17,31 +15,15 @@ while ( have_posts() ) :
 	?>
 
 	<?php
-	$roleterm    = get_the_terms( get_the_ID(), 'type' );
-	$parent_name = ! empty( $roleterm ) ? $roleterm[0]->name : '';
-	$parent_link = ! empty( $roleterm ) ? get_term_link( $roleterm[0] ) : '';
-
-	if ( ! empty( $roleterm ) && ! is_wp_error( $roleterm ) ) {
-		$team_name = $roleterm[0]->name;
-		$ancestors = get_ancestors( $roleterm[0]->term_id, 'role' );
-		$parent_id = is_array( $ancestors ) ? end( $ancestors ) : false;
-
-		if ( $parent_id ) {
-			$parent_term = get_term( $parent_id );
-			$parent_name = $parent_term->name;
-			$parent_link = get_term_link( $parent_id );
-		}
-	} else {
-		// The Stories page which contains the list of stories sets the following post meta to the page ID on the
-		// 'update_post_meta' hook.
-		$parent_page_id = get_post_meta( get_the_ID(), '_story_parent_page', true );
-		if ( (int) $parent_page_id > 0 ) {
-			$parent_page = get_post( $parent_page_id );
-			if ( $post instanceof \WP_Post ) {
-				$parent_link = get_permalink( $parent_page->ID );
-				/* translators: %s represents the page title. */
-				$parent_name = sprintf( __( '%s stories', 'shiro' ), get_the_title( $parent_page->post_parent ) );
-			}
+	// The Stories page which contains the list of stories sets the following post meta to the page ID on the
+	// 'update_post_meta' hook.
+	$parent_page_id = get_post_meta( get_the_ID(), '_story_parent_page', true );
+	if ( (int) $parent_page_id > 0 ) {
+		$parent_page = get_post( $parent_page_id );
+		if ( $post instanceof \WP_Post ) {
+			$parent_link = get_permalink( $parent_page->ID );
+			/* translators: %s represents the page title. */
+			$parent_name = sprintf( __( '%s stories', 'shiro' ), get_the_title( $parent_page->post_parent ) );
 		}
 	}
 
