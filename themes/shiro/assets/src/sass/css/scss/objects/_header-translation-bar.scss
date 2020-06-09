@@ -35,8 +35,9 @@ $translation-label-width: rem(180);
 			overflow-x: auto;
 
       ul {
-        // This is being set to hidden by the
+        // Override core styles.
         overflow-x: auto !important;
+        padding-bottom: 1em;
       }
 
 			&:after {
