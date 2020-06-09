@@ -88,8 +88,8 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 					<?php endif ?>
 					<div class="donate-btn">
 						<div class="donate-btn--desktop">
-							<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
 							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
 								<?php echo esc_html( $wmf_donate_button );?>
 							</a>
 						</div>
