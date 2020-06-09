@@ -39,7 +39,8 @@ while ( have_posts() ) :
 			$parent_page = get_post( $parent_page_id );
 			if ( $post instanceof \WP_Post ) {
 				$parent_link = get_permalink( $parent_page->ID );
-				$parent_name = sprintf( __( '%s stories' ), get_the_title( $parent_page->post_parent ) );
+				/* translators: %s represents the page title. */
+				$parent_name = sprintf( __( '%s stories', 'shiro' ), get_the_title( $parent_page->post_parent ) );
 			}
 		}
 	}
