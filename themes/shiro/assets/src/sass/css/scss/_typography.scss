@@ -53,9 +53,8 @@ h6 {
 }
 
 p {
-  font-size: 1.125rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+  @include font-size(15, 13);
+  line-height: 1.466;
 }
 
 .article-main p {
@@ -213,6 +212,14 @@ article {
 	p {
 		margin-bottom: 2rem;
 	}
+}
+
+.page-intro-text,
+.page-intro-text p,
+.page-intro-text a,
+.page-intro-text li {
+  @include font-size(18, 16);
+  @include line-height(29, 25);
 }
 
 .page-intro-inline-link {
