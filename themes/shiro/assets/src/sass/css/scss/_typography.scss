@@ -53,8 +53,8 @@ h6 {
 }
 
 p {
-  @include font-size(15, 13);
-  line-height: 1.466;
+	@include font-size(15, 13);
+	line-height: 1.466;
 }
 
 .article-main p {
@@ -176,8 +176,8 @@ blockquote p {
 
 .blockquote-container blockquote,
 blockquote p:first-child {
-    position: relative;
-    font-weight: 300;
+		position: relative;
+		font-weight: 300;
 	display: inline;
 	padding-left: rem(20);
 }
@@ -218,8 +218,8 @@ article {
 .page-intro-text p,
 .page-intro-text a,
 .page-intro-text li {
-  @include font-size(18, 16);
-  @include line-height(29, 25);
+	@include font-size(18, 16);
+	@include line-height(29, 25);
 }
 
 .page-intro-inline-link {
