@@ -16,8 +16,8 @@ while ( have_posts() ) :
 
 	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
-	$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
-	$has_content   = ! empty( trim( $bodytext1 . get_the_content() ) );
+	//$bodytext1     = get_post_meta( get_the_ID(), 'page_intro', true );
+	//$has_content   = ! empty( trim( $bodytext1 . get_the_content() ) );
 	$template_args = array(
 		'h4_link'  => ! empty( $parent_page ) ? get_the_permalink( $parent_page ) : '',
 		'h4_title' => ! empty( $parent_page ) ? get_the_title( $parent_page ) : '',
@@ -32,30 +32,39 @@ while ( have_posts() ) :
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium">
-	<div class="module-mu w-32p">
-		<?php get_sidebar( 'report' ); ?>
-	</div>
-
-	<div class="w-68p report-content">
-		<h2 class="report-section-title">
-			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
-		</h2>
-
-		<?php if ( $has_content ) : ?>
-		<div class="page-intro mod-margin-bottom wysiwyg">
-			<?php if ( ! has_post_thumbnail() ) : ?>
-				<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
-			<?php endif; ?>
-			<?php echo wp_kses_post( $bodytext1 ); ?>
+	<div class="mw-980 mod-margin-bottom flex flex-medium">
+		<div class="module-mu w-32p">
+			<?php get_sidebar( 'report' ); ?>
 		</div>
-		<?php endif; ?>
 
-		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+		<div class="w-68p report-content">
+			<h2 class="report-section-title">
+				<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
+			</h2>
 
-		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
+			<?php if ( get_the_content() ) : ?>
+				<div class="page-intro mod-margin-bottom wysiwyg">
+					<?php if ( ! has_post_thumbnail() ) : ?>
+						<div class="page-intro mod-margin-bottom wysiwyg">
+							<div class="page-intro-text">
+								<?php the_content(); ?>
+							</div>
+
+							<?php
+							$button = get_post_meta( get_the_ID(), 'intro_button', true );
+							wmf_get_template_part( 'template-parts/modules/intro/button', $button );
+							?>
+						</div>
+					<?php endif; ?>
+					<?php //echo wp_kses_post( $bodytext1 ); ?>
+				</div>
+			<?php endif; ?>
+
+			<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+
+			<?php //get_template_part( 'template-parts/page/page', 'list' ); ?>
+		</div>
 	</div>
-</div>
 	<?php
 
 	$modules = array(
