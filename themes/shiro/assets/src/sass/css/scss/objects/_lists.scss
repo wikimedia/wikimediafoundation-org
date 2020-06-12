@@ -168,22 +168,25 @@
 }
 
 /* lists inside rich text fields */
-.wysiwyg > ul,
-.mar-bottom > ul,
-.page-intro > ul,
-.wysiwyg > ol,
-.mar-bottom > ol,
-.page-intro > ol {
-  list-style-position: outside;
-  margin: rem(18) 0 rem(18) 0;
+#content {
+  ul,
+  ol {
+    list-style-position: outside;
+    margin: rem(18) 0 rem(18) 0;
 
-  ul, ol {
-    margin-bottom: 0;
+    ul, ol {
+      margin-bottom: 0;
+    }
+
+    li, ol {
+      line-height: 1.5;
+      margin-left: rem(18);
+      padding: rem(0.33) 0; /*6px @18px*/
+    }
   }
 
-  li, ol {
-    line-height: 1.5;
-    margin-left: rem(18);
-    padding: rem(0.33) 0; /*6px @18px*/
+  ul ul, ul ul ul, li > ul, li > ol {
+    margin-left: 1rem;
+    margin-bottom: 0;
   }
 }

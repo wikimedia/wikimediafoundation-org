@@ -79,18 +79,16 @@ p {
 
 ul,
 ol {
-	li {
-    font-size: 1.125rem;
-    margin-left: 1rem; /*18px @18px*/
-    line-height: 1.5;
-    padding: 0.33em 0; /*6px @18px*/
-  }
-  margin-bottom: 1rem;
-}
+  li {
+    @include font-size(20, 16);
+    // list-style-type: disc;
+    margin-left: 2rem;
 
-ul ul, ul ul ul, li > ul, li > ol {
-  margin-left: 1rem;
-  margin-bottom: 0;
+    margin-bottom: 2rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 // .blockquote-container wrapped around blockquote via JS
@@ -218,7 +216,8 @@ article {
 
 .page-intro-text,
 .page-intro-text p,
-.page-intro-text a{
+.page-intro-text a,
+.page-intro-text li {
 	@include font-size(18, 16);
 	@include line-height(29, 25);
 }
