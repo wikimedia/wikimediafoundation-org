@@ -214,14 +214,6 @@ article {
 	}
 }
 
-.page-intro-text,
-.page-intro-text p,
-.page-intro-text a,
-.page-intro-text li {
-	@include font-size(18, 16);
-	@include line-height(29, 25);
-}
-
 .page-intro-inline-link {
 	@include linkHighlight($color-turquoise, #000, 4, 4, 24, 30, $medium-bp);
 }
