@@ -74,8 +74,11 @@ jQuery(document).ready(function($) {
 
   function toggleLanguages(state) {
     $list = $('.language-list');
-    $button = $('.language-dropdown');
+    $button = $('.language-dropdown button');
 
+    $button.attr('aria-expanded', function(i,attr) {
+      return attr === 'true' ? 'false' : 'true';
+    } );
     $list.toggle(state);
     $('.mobile-cover').toggle(state);
 
