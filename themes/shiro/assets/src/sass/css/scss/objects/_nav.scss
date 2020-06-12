@@ -239,7 +239,7 @@
     a {
       padding: rem(7) 0.4rem 0 0.4rem;
     }
-    @media ( max-width: 1024px ) {
+    @media ( max-width: $medium-bp ) {
       display: none;
     }
   }
@@ -257,7 +257,7 @@
       }
     }
 
-    @media (min-width: 1025px ) {
+    @media (min-width: $medium-bp + 1 ) {
       display:none;
     }
   }
@@ -442,7 +442,7 @@
 @media (max-width: $medium-landscape) {
   .logo-container_sm {
     display: flex;
-    width: 100%;
+    width: 70%;
     .icon-logo-horizontal {
       width: 63%;
     }
