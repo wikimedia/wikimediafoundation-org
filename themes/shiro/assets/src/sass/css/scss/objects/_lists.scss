@@ -173,7 +173,10 @@
   ol {
     list-style-position: outside;
     margin: rem(18) 0 rem(18) 0;
-    font-size: 1.125rem;
+
+    li {
+      font-size: 1.125rem;
+    }
 
     ul, ol {
       margin-bottom: 0;
