@@ -193,4 +193,13 @@
     margin-left: 1rem;
     margin-bottom: 0;
   }
+
+  ul.report-nav ul {
+    margin-left: 0;
+
+    li {
+      margin-left: 0;
+      line-height: normal;
+    }
+  }
 }
