@@ -48,5 +48,8 @@
 	font-weight: bolder;
 	margin-bottom: 5px;
 	margin-top: 45px;
-}
 
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
