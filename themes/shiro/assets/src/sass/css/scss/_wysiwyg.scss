@@ -35,8 +35,7 @@
 .single-story .wysiwyg h2,
 .single-story .wysiwyg h3,
 .single-story .wysiwyg h4,
-.single-story .wysiwyg li,
-.single-story .wysiwyg p {
+.single-story .wysiwyg li {
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 	@include font-size(18, 16);
 	line-height: 31px;
