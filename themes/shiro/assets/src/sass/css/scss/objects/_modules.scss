@@ -489,7 +489,7 @@ a.hover-img-zoom {
 		}
 	}
 
-	code {
+	.code {
 		color: $color-blue;
 		font-family: PTMono, Monaco, monospace;
 		font-size: 0.8rem;
@@ -631,7 +631,7 @@ a.hover-img-zoom {
 
 .stats-featured-container,
 .stats-graph-container {
-	.ungrid-line-replicate, 
+	.ungrid-line-replicate,
 	.ungrid-line-connector {
 		width: 1px;
 		margin-left: 7px;
@@ -639,7 +639,7 @@ a.hover-img-zoom {
 		position: relative;
 		z-index: 1000;
 		background: $color-blue;
-		
+
 		&.pink {
 			background: $color-pink;
 		}
@@ -657,9 +657,9 @@ a.hover-img-zoom {
 	}
 
 	.icon-container {
-		width: 1em; 
-		height: 1em; 
-		background-size: contain; 
+		width: 1em;
+		height: 1em;
+		background-size: contain;
 		background-repeat: no-repeat;
 		display: inline-block;
 		margin-bottom: -0.04em;
@@ -738,7 +738,7 @@ a.hover-img-zoom {
 
 	.graph-visualization svg{
 		text {
-			font-size: 0.8rem;	
+			font-size: 0.8rem;
 		}
 
 		.main-labels text {
@@ -751,9 +751,9 @@ a.hover-img-zoom {
 			font-weight: bold;
 			fill: $wmui-color-base50;
 		}
-		
+
 		.line {
-			stroke: $color-blue;	
+			stroke: $color-blue;
 			&.pink {
 				stroke: $color-pink;
 			}
@@ -822,7 +822,7 @@ a.hover-img-zoom {
 	h2, .h2 {
 		margin-bottom: 0.4rem;
 	}
-		
+
 	.updated-date {
 		margin-top: 0.5rem;
 		display: inline-block;
