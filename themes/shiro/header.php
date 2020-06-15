@@ -49,7 +49,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 					</button>
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>
-				<div class="flex flex-medium">
+				<div class="top-nav-buttons">
 					<?php if ( $wmf_translations !== false ) : ?>
 						<?php
 							# Find which is the current language and display that
@@ -78,7 +78,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 											<?php if ( $wmf_translation['selected'] ) : ?>
 											<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
 											<?php else : ?>
-                                            <span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>"><a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a></span>
+											<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>"><a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a></span>
 											<?php endif; ?>
 										</li>
 									<?php endforeach ?>
@@ -86,12 +86,19 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 							</div>
 						</div>
 					<?php endif ?>
-					<span class="donate-btn">
-                        <img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
-						<a href="<?php echo esc_url($wmf_donate_uri); ?>">
-							<?php echo esc_html($wmf_donate_button);?>
-						</a>
-					</span>
+					<div class="donate-btn">
+						<div class="donate-btn--desktop">
+							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
+								<?php echo esc_html( $wmf_donate_button );?>
+							</a>
+						</div>
+						<div class="donate-btn--mobile">
+							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/heart-pink.svg" alt="<?php echo esc_attr( $wmf_donate_button ); ?>">
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
