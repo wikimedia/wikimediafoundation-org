@@ -301,6 +301,12 @@ require get_template_directory() . '/inc/shortcodes/facts.php';
 require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
 
 /**
+ * Stories page template customizations.
+ */
+require_once get_template_directory() . '/inc/stories.php';
+Stories_Customisations\init();
+
+/**
  * Modify the document title for the search and 404 pages
  */
 
@@ -363,3 +369,24 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 	);
 }
 add_filter( 'wp_kses_allowed_html', 'wmf_filter_post_kses_tags', 10, 2 );
+
+/**
+ * Insert a span element to all header nav menu items.
+ *
+ * @param stdClass $args An object of wp_nav_menu() arguments.
+ * @param WP_Post  $item Menu item data object.
+ * @param int      $depth Depth of menu item. Used for padding.
+ *
+ * @return stdClass
+ */
+function wmf_filter_nav_menu_items( $args, $item, $depth ) {
+	if ( 'header' !== $args->theme_location ) {
+		return $args;
+	}
+
+	$args->link_before = '<span>';
+	$args->link_after  = '</span>';
+
+	return $args;
+}
+add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );

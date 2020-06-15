@@ -14,7 +14,7 @@ function wmf_profile_init() {
 	register_post_type(
 		'profile', array(
 			'labels'            => array(
-				'name'                  => __( '$wmf_profiles_name', 'shiro' ),
+				'name'                  => __( 'Profiles', 'shiro' ),
 				'singular_name'         => __( 'Profile', 'shiro' ),
 				'all_items'             => __( 'All Profiles', 'shiro' ),
 				'archives'              => __( 'Profile Archives', 'shiro' ),
