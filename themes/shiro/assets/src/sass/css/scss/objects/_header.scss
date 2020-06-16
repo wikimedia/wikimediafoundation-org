@@ -28,7 +28,6 @@ $header-bp-mw: 1049px;
 
 	ul li {
 		margin-left: 0;
-
 		margin-right: 1rem;
 		&:last-child {
 			margin-right: 0;
@@ -37,7 +36,10 @@ $header-bp-mw: 1049px;
 		&.current_page_item {
 			a {
 				color: $color-blue;
-				border-bottom: 2px solid $color-blue;
+
+        span {
+          border-bottom: 2px solid $color-blue;
+        }
 			}
 		}
 
