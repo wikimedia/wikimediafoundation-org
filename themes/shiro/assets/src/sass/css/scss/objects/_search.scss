@@ -214,7 +214,8 @@
   z-index: 99;
   color: $color-black;
   align-items: center;
-  @include padding(4, 3, 4, 3);
+  // $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+  @include padding(5, 3, 5, 3);
   margin-left: 1rem;
   transition: 0.4s all;
   &:hover {
