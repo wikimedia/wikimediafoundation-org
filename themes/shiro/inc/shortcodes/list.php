@@ -3,13 +3,34 @@
  * Placeholder shortcode for the FM lists field.
  */
 
-function wmf_lists_shortcode_callback( $atts = [] ) {
-	$list_html = get_lists_shortcode_content( get_the_ID() );
-	return wp_kses_post( $list_html );
-}
-add_shortcode( 'wmf_list', 'wmf_lists_shortcode_callback' );
+namespace WMF\Shortcodes\Lists;
 
-function get_lists_shortcode_content( $post_id ) {
+/**
+ * Bootstrap
+ */
+function init() {
+	add_shortcode( 'wmf_list', __NAMESPACE__ . '\\shortcode_callback' );
+}
+
+/**
+ * Define a [wmf_list] wrapper shortcode.
+ *
+ * @param array $atts Shortcode attributes.
+ *
+ * @return string
+ */
+function shortcode_callback( $atts = [] ) {
+	$html = shortcode_content( get_the_ID() );
+	return wp_kses_post( $html );
+}
+
+
+/**
+ * @param int $post_id The post ID.
+ *
+ * @return string
+ */
+function shortcode_content( int $post_id ) : string {
 	$list_data = (array) get_post_meta( $post_id, 'list', true );
 	ob_start();
 	foreach ( $list_data as $i => $list_section ) {
