@@ -10,8 +10,6 @@
 get_header();
 while ( have_posts() ) {
 	the_post();
-
-	// Page Header.
 	$parent_page   = wp_get_post_parent_id( get_the_ID() );
 	$subtitle      = get_post_meta( get_the_ID(), 'sub_title', true );
 	$template_args = array(
@@ -26,23 +24,12 @@ while ( have_posts() ) {
 	} else {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
-
-	?>
-	<?php
-
-	$modules = array(
-		'framing-copy',
-		'facts',
-		'focus-blocks',
-		'projects',
-		'featured-posts',
-		'profiles',
-		'support',
-		'connect',
-	);
-
-	foreach ( $modules as $module ) {
-		get_template_part( 'template-parts/page/page', $module );
-	}
+?>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class="entry-content">
+			<?php the_content(); ?>
+		</div><!-- .entry-content -->
+	</article><!-- #post-<?php the_ID(); ?> -->
+<?php
 }
 get_footer();
