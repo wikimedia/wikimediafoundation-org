@@ -15,6 +15,12 @@
  * as indicating support for post thumbnails.
  */
 function wmf_setup() {
+	// https://wpvip.com/documentation/vip-go/loading-gutenberg/
+	if ( function_exists( 'wpcom_vip_load_gutenberg' ) ) {
+		$front_id = get_option( 'page_on_front' );
+		wpcom_vip_load_gutenberg( [ 'post_ids' => [ $front_id ] ] );
+	}
+
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
@@ -299,7 +305,11 @@ require get_template_directory() . '/inc/safe-redirect.php';
 require get_template_directory() . '/inc/shortcodes/columns.php';
 require get_template_directory() . '/inc/shortcodes/facts.php';
 require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
-require get_template_directory() . '/inc/shortcodes/list.php';
+
+require get_template_directory() . '/inc/shortcodes/namespace.php';
+
+// Load Shortcodes.
+WMF\Shortcodes\init();
 
 /**
  * Stories page template customizations.
