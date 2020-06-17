@@ -7,8 +7,10 @@
  * @package shiro
  */
 
+$intro = get_the_content();
+\WMF\Images\Credits::get_instance( get_the_ID() )->set_images_from_content( $intro );
 $template_args = array(
-	'intro'  => get_the_content(),
+	'intro'  => $intro,
 	'button' => get_post_meta( get_the_ID(), 'intro_button', true ),
 );
 wmf_get_template_part( 'template-parts/modules/intro/page', $template_args );
