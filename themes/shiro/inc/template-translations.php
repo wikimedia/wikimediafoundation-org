@@ -6,6 +6,10 @@
  */
 
 // Actions and filters.
+use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
+use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use function Inpsyde\MultilingualPress\resolve;
+
 add_action( 'mlp_translation_meta_box_bottom', array( 'WMF\Translations\Metaboxes', 'mlp_translation_meta_box_bottom' ), 10, 3 );
 add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
 add_filter( 'admin_init', array( 'WMF\Roles\Base', 'callback' ), 10, 2 );
@@ -51,31 +55,41 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
  * @return mixed  array|bool
  */
 function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
+	//return null;
+	error_log( 'strict='. $strict );
+	error_log( 'content_id='. $content_id );
+	error_log( 'type='. $type );
 	$mlp_language_api = apply_filters( 'mlp_language_api', null ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+	error_log( 'language api=' . var_export( $mlp_language_api, true ) );
+//	if ( ! is_a( $mlp_language_api, 'Mlp_Language_Api_Interface' ) ) {
+//		return false;
+//	}
 
-	if ( ! is_a( $mlp_language_api, 'Mlp_Language_Api_Interface' ) ) {
-		return false;
-	}
-
-	$args = array(
-		'strict'       => $strict,
-		'include_base' => true,
-	);
-
-	if ( ! empty( $content_id ) ) {
-		$args['content_id'] = $content_id;
-	}
-
-	if ( ! empty( $type ) ) {
-		$args['type'] = $type;
-	}
+//	$args = array(
+//		'strict'       => $strict,
+//		'include_base' => true,
+//	);
+//
+//	if ( ! empty( $content_id ) ) {
+//		$args['content_id'] = $content_id;
+//	}
+//
+//	if ( ! empty( $type ) ) {
+//		$args['type'] = $type;
+//	}
 
 	/**
 	 * From MultilingualPress.
 	 *
 	 * @var Mlp_Language_Api_Interface $mlp_language_api
 	 */
-	$translations = $mlp_language_api->get_translations( $args );
+//	$translations = $mlp_language_api->get_translations( $args );
+
+
+	$args = TranslationSearchArgs::forContext( new WordpressContext() )->forSiteId( get_current_blog_id() )->includeBase();
+	error_log( 'args=' . var_export( $args, true ) );
+	$translations = resolve( \Inpsyde\MultilingualPress\Framework\Api\Translations::class )->searchTranslations( $args );
+	//error_log( 'translations=' . var_export( $translations, true ) );
 
 	if ( empty( $translations ) ) {
 		return false;
@@ -86,19 +100,22 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 	/**
 	 * From MultilingualPress.
 	 *
-	 * @type Mlp_Translation_Interface $translation
+	 * @type (Inpsyde\MultilingualPress\Framework\Api\Translation) $translation
 	 */
 	foreach ( $translations as $translation ) {
+		error_log( 'translation=' . var_export( $translation, true ) );
+		error_log( 'site_id=' . var_export( $translation->remoteSiteId(), true ) );
+
 		$translation_args = array(
-			'selected'   => $translation->get_target_site_id() === get_current_blog_id(),
-			'site_id'    => $translation->get_target_site_id(),
-			'name'       => $translation->get_language()->get_name(),
-			'shortname'  => $translation->get_language()->get_name( 'language_short' ),
-			'uri'        => $translation->get_remote_url(),
-			'content_id' => $translation->get_target_content_id(),
+			'site_id'    => $translation->remoteSiteId(),
+			'selected'   => $translation->remoteSiteId() === get_current_blog_id(),
+			'name'       => $translation->language()->name(),
+			'shortname'  => $translation->language()->locale(), // name( 'language_short' ),
+			'uri'        => $translation->remoteUrl(),
+			'content_id' => $translation->remoteContentId(),
 		);
 
-		if ( $translation->get_target_site_id() === get_current_blog_id() ) {
+		if ( $translation->remoteSiteId() === get_current_blog_id() ) {
 			// Ensure active is returned as first element always.
 			array_unshift( $ret_translations, $translation_args );
 			continue;
@@ -106,6 +123,7 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 
 		$ret_translations[] = $translation_args;
 	}
+	error_log( 'ret_translations=' . var_export( $ret_translations, true ) );
 
 	return $ret_translations;
 }
@@ -161,7 +179,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 			$translation['content'] = get_post_type_object( $key )->label;
 			break;
 	}
-    
+
     $translation['lang'] = $target_translation['shortname'];
 
 	restore_current_blog();
