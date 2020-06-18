@@ -9,6 +9,10 @@
   bottom: 0;
   left: 0;
   z-index: 3000;
+
+  &.is-open {
+    display: block;
+  }
 }
 
 .search-container {
@@ -68,6 +72,8 @@
   }
 
   .search-close-esc {
+    border: 0;
+    padding: 0;
     opacity: 0.5;
     margin-left: 10px;
     font-variant: small-caps;
@@ -89,6 +95,8 @@
   }
 
   .search-close-mobile {
+    border: 0;
+    padding: 0;
     display: none;
     width: 100%;
     text-align: center;
@@ -98,6 +106,19 @@
     @media (max-width: $medium-bp) {
       display: block;
     }
+  }
+
+  .search-close-esc,
+  .search-close-mobile {
+    will-change: transform;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: -webkit-transform .25s ease-out;
+    transition: transform .25s ease-out;
+    transition: transform .25s ease-out,-webkit-transform .25s ease-out;
   }
 }
 
@@ -193,7 +214,8 @@
   z-index: 99;
   color: $color-black;
   align-items: center;
-  @include padding(4, 3, 4, 3);
+  // $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+  @include padding(5, 3, 5, 3);
   margin-left: 1rem;
   transition: 0.4s all;
   &:hover {
@@ -273,4 +295,53 @@
 
 .search-toggle {
   color: $color-blue;
+}
+
+@keyframes mmfadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes mmfadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes mmslideIn {
+  from { transform: translateY(15%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes mmslideOut {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10%); }
+}
+
+.micromodal-slide {
+  display: none;
+}
+
+.micromodal-slide.is-open {
+  display: block;
+}
+
+.micromodal-slide[aria-hidden="false"] .search-inner {
+  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .search-container {
+  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .search-inner {
+  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .search-container {
+  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide .search-container,
+.micromodal-slide .search-inner {
+  will-change: transform;
 }

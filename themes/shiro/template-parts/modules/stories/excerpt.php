@@ -23,7 +23,7 @@ $img_url   = wp_get_attachment_image_url( $img_id, 'image_4x3_large' );
 
 	<div class="card-content">
 		<?php if ( ! empty( $cardtitle ) ) : ?>
-			<h4 class="story-name"><?php echo esc_html( $cardtitle ); ?></h5>
+			<h4 class="story-name"><?php echo esc_html( $cardtitle ); ?></h4>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $excerpt ) ) : ?>

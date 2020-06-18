@@ -214,21 +214,30 @@ $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Wha
 $wmf_search_aria_label  = get_theme_mod( 'wmf_search_aria_label', __( 'Search Wikimedia Foundation site', 'shiro' ) );
 $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shiro' ) );
 ?>
-<div class="search-overlay">
-	<div class="search-container">
-		<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<input type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" aria-label="<?php echo esc_attr( $wmf_search_aria_label ); ?>">
-			<button class="btn btn-blue" type="submit"><?php wmf_show_icon( 'search', 'material icon-white' ); ?></button>
-			<a href="javascript:void(0);" class="search-close-esc">
-				<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
-				<?php echo esc_attr( $wmf_search_esc_label ); ?>
-			</a>
-		</form>
-		<a href="#" class="search-close-mobile">
-			<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
-		</a>
+<div id="search-modal" aria-hidden="true" class="search-overlay micromodal-slide">
+	<div tabindex="-1" data-micromodal-close class="search-inner">
+		<div role="dialog" aria-modal="true" aria-labelledby="search-modal-title"  class="search-container">
+			<header>
+				<h2 id="search-modal-title">
+					<?php esc_html_e( 'Search', 'shiro' ); ?>
+				</h2>
+			</header>
+			<div id="search-modal-content">
+				<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<input type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" aria-label="<?php echo esc_attr( $wmf_search_aria_label ); ?>">
+					<button class="btn btn-blue" type="submit" aria-label="<?php esc_attr_e( 'Perform search', 'shiro' ); ?>"><?php wmf_show_icon( 'search', 'material icon-white' ); ?></button>
+					<button type="button" class="search-close-esc" aria-label="Close this dialog window">
+						<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
+						<?php echo esc_attr( $wmf_search_esc_label ); ?>
+					</button>
+				</form>
+				<button type="button" class="search-close-mobile" aria-label="Close this dialog window">
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
+				</button>
+			</div>
+		</div>
 	</div>
-</div><!-- #page -->
+</div>
 
 <?php wp_footer(); ?>
 
