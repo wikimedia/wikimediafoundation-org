@@ -25,11 +25,11 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 ?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="entry-content">
 			<?php the_content(); ?>
 		</div><!-- .entry-content -->
-	</article><!-- #post-<?php the_ID(); ?> -->
+	</div><!-- #post-<?php the_ID(); ?> -->
 <?php
 }
 get_footer();
