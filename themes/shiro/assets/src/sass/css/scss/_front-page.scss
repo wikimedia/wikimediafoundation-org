@@ -8,8 +8,13 @@
 			margin-bottom: 2rem;
 
 			.wp-block-column:last-of-type {
-				border-left: 1px solid #e5e5e5;
-				padding-left: 2rem;
+				margin-top: 1rem;
+
+				@media all and (min-width: $header-bp) {
+					margin-top: 0;
+					border-left: 1px solid #e5e5e5;
+					padding-left: 2rem;
+				}
 			}
 		}
 	}
