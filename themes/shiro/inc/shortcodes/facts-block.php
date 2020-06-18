@@ -33,19 +33,17 @@ function shortcode_callback( $atts = [] ) {
  */
 function shortcode_content( int $post_id ) : string {
 	$template_args = get_post_meta( get_the_ID(), 'page_facts', true );
-	if ( ! empty( $template_args ) ) {
-		$facts = empty( $template_args['facts'] ) ? array() : $template_args['facts'];
-
-		if ( ! empty( $facts ) && is_array( $facts ) ) {
-			if ( 1 === count( $facts ) ) {
-				ob_start();
-				$template_args = $template_args + $facts[0];
-				wmf_get_template_part( 'template-parts/modules/fact/single', $template_args );
-				return (string) ob_get_clean();
-			}
-			ob_start();
-			wmf_get_template_part( 'template-parts/modules/fact/multiple', $template_args );
-			return (string) ob_get_clean();
-		}
+	if ( empty( $template_args ) || empty( $template_args['facts'] ) ) {
+		return '';
 	}
+
+	if ( 1 === count( $template_args['facts'] ) ) {
+		$template_args += $template_args['facts'][0];
+		ob_start();
+		wmf_get_template_part( 'template-parts/modules/fact/single', $template_args );
+		return (string) ob_get_clean();
+	}
+	ob_start();
+	wmf_get_template_part( 'template-parts/modules/fact/multiple', $template_args );
+	return (string) ob_get_clean();
 }

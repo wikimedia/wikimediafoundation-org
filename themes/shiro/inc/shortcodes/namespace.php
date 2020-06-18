@@ -17,6 +17,7 @@ require_once __DIR__ . '/profiles.php';
 require_once __DIR__ . '/projects.php';
 require_once __DIR__ . '/support.php';
 require_once __DIR__ . '/translation-bar.php';
+require_once __DIR__ . '/donate-cta.php';
 
 /**
  * Bootstrap.
@@ -32,4 +33,5 @@ function init() {
 	Projects\init();
 	Support\init();
 	Translation_Bar\init();
+	Donate_CTA\init();
 }

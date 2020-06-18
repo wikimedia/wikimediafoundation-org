@@ -25,8 +25,9 @@ function shortcode_callback( $atts = [] ) {
 	return wp_kses_post( $html );
 }
 
-
 /**
+ * Render the shortcode HTML.
+ *
  * @param int $post_id The post ID.
  *
  * @return string
