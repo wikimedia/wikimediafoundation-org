@@ -7,7 +7,7 @@
 		"Backbone": false,
 		"jQuery": false,
 		"wp": false,
-		"shiro": false,
+		"shiro": false
 	},
 	"rules": {
 		"accessor-pairs": [2],

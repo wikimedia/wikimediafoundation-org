@@ -28,7 +28,6 @@ $header-bp-mw: 1049px;
 
 	ul li {
 		margin-left: 0;
-
 		margin-right: 1rem;
 		&:last-child {
 			margin-right: 0;
@@ -37,7 +36,10 @@ $header-bp-mw: 1049px;
 		&.current_page_item {
 			a {
 				color: $color-blue;
-				border-bottom: 2px solid $color-blue;
+
+        span {
+          border-bottom: 2px solid $color-blue;
+        }
 			}
 		}
 
@@ -421,7 +423,7 @@ $header-bp-mw: 1049px;
 
 		.btn-pink {
 			margin-top: 1rem;
-            
+
             img.secure {
                 height: 15px;
                 margin-right: 5px;
@@ -526,7 +528,7 @@ $header-bp-mw: 1049px;
 	.header-inner.nav-open {
 		background: $color-pink;
 	}
-	.logo-nav-container nav
+	.logo-nav-container nav,
 	.current-menu-item {
 		color: $color-blue;
 	}
@@ -559,18 +561,18 @@ $header-bp-mw: 1049px;
     background: transparent;
 }
 
-// TODO: Fix for use beyond transparency report and campaign pages and data page template with a parent 
+// TODO: Fix for use beyond transparency report and campaign pages and data page template with a parent
 .page-template-page-data.page-child,
 .page-template-page-report-landing,
 .page-id-61699,
 .page-id-62419 {
     .header-content {
         margin-top:25px;
-        
+
         h1 {
             width:91%;
         }
-        
+
         h2.h4.eyebrow {
             margin-bottom: 3rem;
             border-bottom: 0px;

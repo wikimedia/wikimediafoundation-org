@@ -4,8 +4,8 @@
  *
  */
 
-
 jQuery(document).ready(function($) {
+  MicroModal.init();
 
   function toggleNav() {
     if (wmfrtl.enable == '1') {
@@ -38,49 +38,26 @@ jQuery(document).ready(function($) {
     $('.mobile-cover').hide();
 
     $('.logo-container_sm .icon-logo-horizontal').removeClass('fade-20');
-    $('.search-toggle').removeClass('fade-20');
     $('.language-dropdown').removeClass('fade-20');
-  }
-
-  function toggleSearch() {
-    $('.search-toggle').blur();
-    $('.search-form input').focus();
-    closeNav();
-  }
-
-  function openSearch() {
-    $('.search-overlay').fadeIn(500, function(){
-      $('.search-form input').focus();
-      $('.nav-container, .search-overlay').addClass('search-open');
-      $('.search-bar-container').addClass('is-open');
-      toggleSearch();
-    })
   }
 
   $(document).keyup(function(e) {
      if (e.key === "Escape") {
-        closeSearch();
         toggleLanguages(false);
     }
   });
 
-  function closeSearch() {
-    $( '.search-bar-container' ).removeClass('is-open');
-    $('.search-overlay').fadeOut(400, function(){
-      $('.nav-container, .search-overlay').removeClass('search-open');
-      toggleSearch();
-    });
-  }
-
   function toggleLanguages(state) {
     $list = $('.language-list');
-    $button = $('.language-dropdown');
+    $button = $('.language-dropdown button');
 
+    $button.attr('aria-expanded', function(i,attr) {
+      return attr === 'true' ? 'false' : 'true';
+    } );
     $list.toggle(state);
     $('.mobile-cover').toggle(state);
 
     $('.logo-container_sm .icon-logo-horizontal').toggleClass('fade-20', state);
-    $('.search-toggle').toggleClass('fade-20', state);
     $('.mobile-nav-toggle').toggleClass('fade-20', state);
     $('#menu-header-menu').toggleClass('fade-20', state);
     $('.logo-container_lg').toggleClass('fade-20', state);
@@ -121,23 +98,8 @@ jQuery(document).ready(function($) {
   $('.mobile-nav-toggle').on('click', function() {
     if ($(this).hasClass('fade-20')) return;
     toggleNav();
-    // If search is open, close it.
-    if ($('.search-open').length) {
-      $('.logo-nav-container').removeClass('search-open');
-    }
   });
 
-  $('.search-toggle').on('click', function() {
-    if ($(this).hasClass('fade-20')) return;
-    // If mobile nav is open, close it.
-    if ($('.nav-open').length) {
-      $('.nav-links').removeClass('open');
-      $('.header-inner').removeClass('nav-open');
-      openSearch();
-    } else {
-      openSearch();
-    }
-  });
 
   // On resize, remove any open nav classes if desktop size, otheriwise, blue overlay behind nav will still be there.
   $(window).on('resize', function() {
@@ -150,15 +112,17 @@ jQuery(document).ready(function($) {
     }
   });
 
-  // Hide search bar container if mouse is clicked outside of search div or search toggle and search div is open
+ // Hide search bar container if mouse is clicked outside of search div or search toggle and search div is open
   $('.search-overlay').on('click', function(e) {
-    if ($(e.target).hasClass('search-open')) {
-      closeSearch();
+    if ($(e.target).hasClass('is-open')) {
+      MicroModal.close('search-modal');
     }
   });
 
-  $('.search-close-esc').on('click', closeSearch);
-  $('.search-close-mobile').on('click', closeSearch);
+ $('button.search-close-esc, button.search-close-mobile').on('click', function() {
+   MicroModal.close('search-modal');
+ });
+
 
   // Cycle the visions
   var visions = $('.vision');

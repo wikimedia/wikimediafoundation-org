@@ -31,7 +31,7 @@ $has_image = get_the_post_thumbnail_url();
 		<div class="ungrid-top-3">
 			<?php for ($i = 0; $i < 3; $i++) { ?>
 				<div class="ungrid-top-box ungrid-top-box-<?php echo esc_attr($i); ?>">
-					<code class="<?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></code>
+					<div class="code <?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></div>
 					<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
 				</div>
 			<?php } ?>
@@ -40,7 +40,7 @@ $has_image = get_the_post_thumbnail_url();
 		<?php if ($no_of_modules === 4) { ?>
 			<div class="ungrid-bottom-1">
 				<div class="ungrid-bottom-box ungrid-bottom-box-4">
-					<code class="<?php echo esc_attr($ungrid_color); ?>">04</code>
+					<div class="code <?php echo esc_attr($ungrid_color); ?>">04</div>
 					<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][3] ); ?>
 				</div>
 			</div>
@@ -49,8 +49,8 @@ $has_image = get_the_post_thumbnail_url();
 		<?php if ($no_of_modules === 5) { ?>
 			<div class="ungrid-bottom-2">
 				<?php for ($i = 3; $i < 5; $i++) { ?>
-					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo $i; ?>">
-						<code class="<?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></code>
+					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
+						<div class="code <?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></div>
 						<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
 					</div>
 				<?php } ?>
@@ -60,8 +60,8 @@ $has_image = get_the_post_thumbnail_url();
 		<?php if ($no_of_modules === 6) { ?>
 			<div class="ungrid-bottom-3">
 				<?php for ($i = 3; $i < 6; $i++) { ?>
-					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo $i; ?>">
-						<code class="<?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></code>
+					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
+						<div class="code <?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></div>
 						<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
 					</div>
 				<?php } ?>

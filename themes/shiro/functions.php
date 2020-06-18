@@ -125,10 +125,11 @@ function wmf_scripts() {
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
 		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), '1.0' );
 	}
-
+	wp_register_script( 'mm-polyfill', get_stylesheet_directory_uri() . '/assets/dist/mm-polyfill.min.js', array(), '0.0.1', true );
+	wp_register_script( 'micromodal', get_stylesheet_directory_uri() . '/assets/dist/micromodal.min.js', array(), '0.0.1', true );
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody' ), '0.0.1', true );
+	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody', 'mm-polyfill', 'micromodal' ), '0.0.2', true );
 
 	wp_localize_script(
 		'shiro-script', 'shiro', array(
@@ -301,6 +302,12 @@ require get_template_directory() . '/inc/shortcodes/facts.php';
 require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
 
 /**
+ * Stories page template customizations.
+ */
+require_once get_template_directory() . '/inc/stories.php';
+Stories_Customisations\init();
+
+/**
  * Modify the document title for the search and 404 pages
  */
 
@@ -363,3 +370,24 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 	);
 }
 add_filter( 'wp_kses_allowed_html', 'wmf_filter_post_kses_tags', 10, 2 );
+
+/**
+ * Insert a span element to all header nav menu items.
+ *
+ * @param stdClass $args An object of wp_nav_menu() arguments.
+ * @param WP_Post  $item Menu item data object.
+ * @param int      $depth Depth of menu item. Used for padding.
+ *
+ * @return stdClass
+ */
+function wmf_filter_nav_menu_items( $args, $item, $depth ) {
+	if ( 'header' !== $args->theme_location ) {
+		return $args;
+	}
+
+	$args->link_before = '<span>';
+	$args->link_after  = '</span>';
+
+	return $args;
+}
+add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
