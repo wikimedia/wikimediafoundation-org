@@ -38,7 +38,7 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 				<a href="<?php echo esc_url( $link ); ?>">
 					<?php echo esc_html( $title ); ?>
 				</a>
-			</h3>
+			</h2>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $categories ) ) : ?>
