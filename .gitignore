@@ -42,3 +42,5 @@ db.php
 /languages/continents-cities-ar.mo
 /languages/continents-cities-ar.po
 .DS_Store
+
+themes/shiro/backstop_data
