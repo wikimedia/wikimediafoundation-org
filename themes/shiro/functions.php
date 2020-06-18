@@ -18,7 +18,7 @@ function wmf_setup() {
 	// https://wpvip.com/documentation/vip-go/loading-gutenberg/
 	if ( function_exists( 'wpcom_vip_load_gutenberg' ) ) {
 		$front_id = get_option( 'page_on_front' );
-		wpcom_vip_load_gutenberg( [ 'post_ids' => [ $front_id ] ] );
+		wpcom_vip_load_gutenberg( [ 'post_ids' => [ (int)$front_id ] ] );
 	}
 
 	/*
@@ -366,6 +366,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 		$context,
 		[
 			'svg'  => [
+				'class'   => true,
 				'viewBox' => true,
 				'width'   => true,
 				'height'  => true,
@@ -376,6 +377,9 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'height' => true,
 				'x'      => true,
 				'y'      => true,
+			],
+			'use' => [
+				'xlink:href' => true,
 			],
 		]
 	);
