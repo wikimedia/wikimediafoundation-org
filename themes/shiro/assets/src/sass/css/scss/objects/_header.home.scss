@@ -59,10 +59,6 @@ $header-bp-mw: 1023px;
   position: relative;
   background: $color-white;
 
-  @media (min-width: $header-bp) and (max-height: 930px) {
-    min-height: 100vh;
-  }
-
   a {
     transition: 0.3s all;
   }
@@ -401,18 +397,6 @@ $header-bp-mw: 1023px;
     display: flex;
     flex-direction: column;
     position: relative;
-
-    @media (min-width: $header-bp) and (max-height: 930px) {
-      min-height: calc(100vh - 80px);
-    }
-
-    @media (min-height: 931px) {
-      min-height: rem(850);
-    }
-
-    @media (max-width: $header-bp-mw) {
-      min-height: initial;
-    }
   }
 
   .header-main {

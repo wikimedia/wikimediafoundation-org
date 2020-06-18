@@ -1,5 +1,16 @@
 .home {
-	article {
+	.hentry {
 		width: 100%;
+	}
+
+	.entry-content {
+		.page-intro-text {
+			margin-bottom: 2rem;
+
+			.wp-block-column:last-of-type {
+				border-left: 1px solid #e5e5e5;
+				padding-left: 2rem;
+			}
+		}
 	}
 }
