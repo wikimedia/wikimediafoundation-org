@@ -1,7 +1,8 @@
 
 // Footer
 footer {
-  @include padding(64, 0, 16, 0);
+  // $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+  @include padding(16, 0, 64, 0);
 
   .footer-row {
     padding-bottom: 2rem;
@@ -13,6 +14,7 @@ footer {
 
   .footer-logo-container {
     width: 12rem;
+    margin-bottom: 1rem;
   }
 
   .logo-container {
@@ -122,9 +124,13 @@ footer {
   }
 
   #menu-footer-under-text {
-    margin-top: 20px;
     float: right;
     display: flex;
+
+    @media (max-width: 767px) {
+      float: none;
+      margin-bottom: 1rem;
+    }
 
     li {
       display: block;
