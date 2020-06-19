@@ -43,7 +43,27 @@
       "expect": 0,
       "misMatchThreshold" : 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "Report Develop",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://wikimediafoundation-org.test/about/annualreport/2019-annual-report/",
+      "referenceUrl": "https://wikimediafoundation-org-develop.go-vip.co/about/annualreport/2019-annual-report/",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 0,
+      "hideSelectors": [],
+      "removeSelectors": [".module-profiles", ".blackout-modal"],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true
     }
+
   ],
   "paths": {
     "bitmaps_reference": "backstop_data/bitmaps_reference",

@@ -39,30 +39,37 @@
 
 	.entry-content {
 		.page-intro {
-			margin: 2rem auto 0 auto;
+			margin: 0 auto;
+
+			@media all and (min-width: 1280px ){
+				margin-top: 2rem;
+			}
 		}
 
 		.page-intro-text {
-			margin-top: 2rem;
 			margin-bottom: 2rem;
+
 			p {
-				margin-bottom: 0;
-				font-size: 1.125rem;
-				line-height: 1.8125rem;
+				margin-bottom: 2rem;
+
+				@media all and (min-width: 1280px ){
+					margin-bottom: 0;
+					font-size: 1.125rem;
+					line-height: 1.8125rem;
+				}
 			}
 
 			.donate-cta {
-				margin-top: 1rem;
-				margin-left: 2rem;
-
-				p {
-					margin-bottom: 0;
-				}
+				p { margin-bottom: 0; }
 
 				@media all and (min-width: $header-bp) {
 					margin-top: 0;
 					border-left: 1px solid #e5e5e5;
 					padding-left: 2rem;
+				}
+
+				@media all and (min-width: 1280px ){
+					margin-left: 2rem;
 				}
 			}
 		}
