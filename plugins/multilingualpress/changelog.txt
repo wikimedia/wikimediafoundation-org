@@ -1,0 +1,96 @@
+2020-03-30 - version 3.3.3
+* Add: New filters to automatically enable Copy Source Content, Copy Featured Image and Copy Taxonomies
+* Add: New filter to change remote post data before creation
+* Fix: Menu item fields are disabled in customizer
+* Fix: Redirect Fallback option prevent user to navigate through the site
+* Fix: Add current language item classes to Language Switcher
+* Fix: Improve MultilingualPress term metabox usability
+
+2020-01-22 - version 3.3.2
+* Fix: Metabox taxonomies not selected when term_id and term_taxonomy_id are different
+* Fix: Gutenberg strip metabox title in Options modal
+* Fix: TypeError: Cannot read property 'isSavingMetaBoxes' of null on product pages when using Yoast seo
+* Fix: Modules registered as active are not really active
+* Fix: Translation box has default jquery style
+* Tweak: Enhance the search feature in the translation metabox
+
+2019-11-21 - version 3.3.1
+* Fix: Taxonomy term description field does not allow custom html markup.
+* Fix: Notice `wpmu_new_blog` action is deprecated since version 5.1.0 but keep it for backward compatibility.
+* Fix: License activation when email includes special characters like plus sign.
+* Fix: Cache can't be disabled because options are not stored during the update settings request.
+
+2019-09-25 - version 3.3.0
+* Add: Cache management options.
+* Add: Copy attachment management options.
+* Add: Connect all content from source site.
+* Add: Quicklinks module.
+* Add: Language Switcher Widget module.
+* Add: Fall back site when a site with the user language is not available in the Multisite Network.
+* Add: Third parameter `$request` to `multilingualpress.sync_post_meta_keys` filter.
+* Add: New filter `multilingualpress.filter_term_public_url` to translate slug taxonomies.
+* Fixed: Visual tab is not available in the classic editor when MultilingualPress is activated.
+* Fixed: "Product" post type not available in Post Type Slug settings page even if WooCommerce module is not active.
+* Fixed: Search in translation metabox fails when the post or page contains ' or " characters.
+* Fixed: Post Type Slug translation option fails due to a forward slash in the slug.
+* Fixed: Ensure that the given taxonomy during filter is an instance of WP_Taxonomy.
+* Fixed: Error in connecting WooCommerce categories.
+
+2019-05-23 - version 3.2.0
+* Add: Replace PHP file functions with WP_Filesystem.
+* Add: Introduce helpers for batch processing.
+* Add: Copy attachments asynchronously.
+* Add: Flush permalinks on plugin upgrade.
+* Add: Plugin must have GPLv2+ licence.
+* Add: Add blog slug solution from DateTranslator.php to other cases.
+* Fixed: Product variation data is not copied to remote site.
+* Fixed: Regular Price and Sale Price of WooCommerce not always strings, causing Fatal Error.
+* Fixed: Fatal Error in WordPress Context when retrieving queried object ID.
+* Fixed: TypeError: Argument 1 passed to pluginInformation() must be of the type boolean.
+* Fixed: Built Plugin Causes Fatal Error.
+* Fixed: WooCommerce Shop Page translation does not work correctly.
+* Fixed: WooCommerce tables are not copied when duplicate a site.
+* Fixed: Javascript error from Trasher and Custom Post Types.
+* Fixed: Wrong URL path for tag pages - post_tag instead of tag.
+
+2019-01-16 - version 3.1.2
+* Fixed: Posts page translations does not work.
+* Fixed: Post status in source site changed from remote site.
+* Fixed: View plugin details on Upgrade throws an error.
+* Fixed: Gutenberg Trasher compatibility.
+* Fixed: Dynamic Permalinks don't works with Built in post types.
+* Fixed: Language items are empty if post does not have a relationship.
+* Fixed: After switching language manually, all links still redirects to the user browser language.
+* Fixed: Duplicated queries in language api.
+* Fixed: Edit post link within translation metabox title not update when entity get or lose a relationship.
+
+2018-12-05 - version 3.1.1
+* Fixed: JavaScript error Cannot read property isSavingMetaBoxes of undefined.
+
+2018-11-20 - version 3.1.0
+* Add: New Table List columns for post types and terms that show in which languages a content has been translated.
+* Add: WooCommerce Product Data support to allow shop managers to translate products.
+* Add: WooCommerce Product Gallery Copier to allow shop managers to duplicate gallery images into translated products.
+* Add: Make Product Short Description translatable.
+* Add: Quick Edit link for translated content within the translation metaboxes.
+* Fixed: Edit link under Advanced translation tab isn't the correct one when translations update.
+* Fixed: Content Relations return a wrong content id when related product is deleted permanently.
+* Fixed: Post modified date updated in all connected posts.
+* Fixed: Uncaught WC_Data_Exception: Invalid or duplicated SKU.
+* Fixed: Display the WooCommerce Module "disabled" when WooCommerce is not installed instead of hide it.
+* Fixed: WooCommerce Term relationship permission return true even if the user has not the right capability but the taxonomy attribute is active.
+* Fixed: Language Navigation Item point to a wrong url on archive pages.
+* Fixed: Copy post thumbnail result in multiple copies of the file image even if the same file with the same file name exists.
+
+2018-10-10 - version 3.0.1
+* Fixed: Meta Box display wrong when more than 2 sites in the network.
+* Fixed: hreflang not displayed in homepage.
+* Fixed: In Taxonomies tab the use of html select causes connection loss for categories and tags.
+* Fixed: Attribute taxonomy must always be translatable despite it's public or not.
+* Fixed: Content relation for terms isn't removed when a term get deleted.
+* Fixed: Automatic creation of Term fails.
+* Fixed: x-default site setting should show the current site.
+* Fixed: hreflang is created for not connected content.
+
+2018-08-30 - version 3.0.0
+* Initial Release
