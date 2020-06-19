@@ -56,9 +56,8 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 							$selected = array_filter($wmf_translations, function ($lang) {
 								return $lang['selected'];
 							});
-
-							if ($selected[0]['name'] === "English") {
-								$lang_code = "en";
+							if ( strpos($selected[0]['name'],'English' ) === 0 ) {
+							     $lang_code = "en";
 							} else {
 								$lang_code = explode('/',$selected[0]['uri'])[3];
 							}
