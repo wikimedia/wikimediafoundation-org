@@ -41,6 +41,7 @@
 		.page-intro {
 			margin: 2rem auto 0 auto;
 		}
+
 		.page-intro-text {
 			margin-top: 2rem;
 			margin-bottom: 2rem;
@@ -48,7 +49,11 @@
 			.donate-cta {
 				margin-top: 1rem;
 				margin-left: 2rem;
-				p { margin-bottom: 0; }
+				p {
+					margin-bottom: 0;
+					font-size: 1.125rem;
+					line-height: 1.8125rem;
+				}
 
 				@media all and (min-width: $header-bp) {
 					margin-top: 0;
