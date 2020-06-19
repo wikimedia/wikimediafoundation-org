@@ -413,14 +413,3 @@ function wmf_filter_nav_menu_items( $args, $item, $depth ) {
 	return $args;
 }
 add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
-
-/**
- * Detect whether post has Gutenberg blocks.
- *
- * @return bool
- */
-function wmf_using_gutenberg() {
-	global $post;
-
-	return has_blocks();
-}

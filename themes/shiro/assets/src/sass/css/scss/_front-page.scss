@@ -1,5 +1,4 @@
-// Styles apply only to front page if it uses blocks.
-.home.using-gutenberg {
+.home {
 	// Override styles from .header.home.scss for Gutenberg.
 	// Can be removed when move to GB is complete.
 	.main-nav {
@@ -39,13 +38,17 @@
 	}
 
 	.entry-content {
+		.page-intro {
+			margin: 2rem auto 0 auto;
+		}
 		.page-intro-text {
 			margin-top: 2rem;
 			margin-bottom: 2rem;
 
-			.wp-block-column:last-of-type {
+			.donate-cta {
 				margin-top: 1rem;
-
+				margin-left: 2rem;
+				
 				@media all and (min-width: $header-bp) {
 					margin-top: 0;
 					border-left: 1px solid #e5e5e5;

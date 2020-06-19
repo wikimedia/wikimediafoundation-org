@@ -18,6 +18,8 @@ require_once __DIR__ . '/projects.php';
 require_once __DIR__ . '/support.php';
 require_once __DIR__ . '/translation-bar.php';
 require_once __DIR__ . '/donate-cta.php';
+require_once __DIR__ . '/page-intro.php';
+require_once __DIR__ . '/grid.php';
 
 /**
  * Bootstrap.
@@ -34,4 +36,6 @@ function init() {
 	Support\init();
 	Translation_Bar\init();
 	Donate_CTA\init();
+	Page_Intro\init();
+	Grid\init();
 }

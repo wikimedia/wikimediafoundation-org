@@ -25,29 +25,11 @@ while ( have_posts() ) {
 		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	}
 	?>
-	<?php if ( wmf_using_gutenberg() ) : ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<div class="entry-content">
-				<?php the_content(); ?>
-			</div><!-- .entry-content -->
-		</div>
-	<?php endif; ?>
+	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class="entry-content">
+			<?php the_content(); ?>
+		</div><!-- .entry-content -->
+	</div>
 	<?php
-	if ( ! wmf_using_gutenberg() ) {
-		$modules = array(
-			'framing-copy',
-			'facts',
-			'focus-blocks',
-			'projects',
-			'featured-posts',
-			'profiles',
-			'support',
-			'connect',
-		);
-
-		foreach ( $modules as $module ) {
-			get_template_part( 'template-parts/page/page', $module );
-		}
-	}
 }
 get_footer();

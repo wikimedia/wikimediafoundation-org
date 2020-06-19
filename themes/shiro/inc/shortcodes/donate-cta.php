@@ -38,7 +38,6 @@ function shortcode_content( int $post_id ) : string {
 	$wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
 	$wmf_homedonate_intro  = get_theme_mod( 'wmf_homedonate_intro', __( 'Protect and sustain Wikipedia', 'shiro' ) );
 	$wmf_homedonate_secure = get_theme_mod( 'wmf_homedonate_secure', __( 'SECURE DONATIONS', 'shiro' ) );
-	$wmf_emergency_message = get_theme_mod( 'wmf_emergency_message', '' );
 
 	ob_start(); ?>
 	<div class="donate-cta">

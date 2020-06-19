@@ -20,8 +20,6 @@ $wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip t
 $wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro' ) );
 $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro' ) );
 $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro' ) );
-
-$gutenberg_flag_class = wmf_using_gutenberg() ? 'using-gutenberg' : '';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -32,7 +30,7 @@ $gutenberg_flag_class = wmf_using_gutenberg() ? 'using-gutenberg' : '';
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class( $gutenberg_flag_class ); ?>>
+<body <?php body_class(); ?>>
 <div class="mobile-cover"></div>
 <div id="page" class="site">
 	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
