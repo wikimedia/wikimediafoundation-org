@@ -41,7 +41,7 @@
 		.page-intro {
 			margin: 0 auto;
 
-			@media all and (min-width: 1280px ){
+			@media all and (min-width: 1024px ){
 				margin-top: 2rem;
 			}
 		}
@@ -51,8 +51,10 @@
 
 			p {
 				margin-bottom: 2rem;
+				font-size: 1rem;
+				line-height: 1.5625rem;
 
-				@media all and (min-width: 1280px ){
+				@media all and (min-width: 1024px ){
 					margin-bottom: 0;
 					font-size: 1.125rem;
 					line-height: 1.8125rem;
@@ -68,7 +70,7 @@
 					padding-left: 2rem;
 				}
 
-				@media all and (min-width: 1280px ){
+				@media all and (min-width: 1024px ){
 					margin-left: 2rem;
 				}
 			}
