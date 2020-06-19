@@ -18,7 +18,7 @@ function wmf_setup() {
 	// https://wpvip.com/documentation/vip-go/loading-gutenberg/
 	if ( function_exists( 'wpcom_vip_load_gutenberg' ) ) {
 		$front_id = get_option( 'page_on_front' );
-		wpcom_vip_load_gutenberg( [ 'post_ids' => [ (int)$front_id ] ] );
+		wpcom_vip_load_gutenberg( [ 'post_ids' => [ (int) $front_id ] ] );
 	}
 
 	/*
@@ -365,22 +365,29 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 	return array_merge(
 		$context,
 		[
-			'svg'  => [
+			'svg'   => [
 				'class'   => true,
 				'viewBox' => true,
 				'width'   => true,
 				'height'  => true,
 			],
-			'rect' => [
+			'rect'  => [
 				'fill'   => true,
 				'width'  => true,
 				'height' => true,
 				'x'      => true,
 				'y'      => true,
 			],
-			'use' => [
+			'use'   => [
 				'xlink:href' => true,
 			],
+			'input' => [
+				'id'          => true,
+				'type'        => true,
+				'placeholder' => true,
+				'name'        => true,
+				'required'    => true,
+			]
 		]
 	);
 }
@@ -406,3 +413,14 @@ function wmf_filter_nav_menu_items( $args, $item, $depth ) {
 	return $args;
 }
 add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
+
+/**
+ * Detect whether post has Gutenberg blocks.
+ *
+ * @return bool
+ */
+function wmf_using_gutenberg() {
+	global $post;
+
+	return has_blocks();
+}

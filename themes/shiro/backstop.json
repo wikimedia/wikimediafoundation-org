@@ -34,7 +34,7 @@
       "readySelector": "",
       "delay": 0,
       "hideSelectors": [],
-      "removeSelectors": [".module-profiles"],
+      "removeSelectors": [".module-profiles", ".translation-bar", ".blackout-modal"],
       "hoverSelector": "",
       "clickSelector": "",
       "postInteractionWait": 0,

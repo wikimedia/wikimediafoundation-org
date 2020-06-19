@@ -37,7 +37,7 @@ while ( have_posts() ) :
 			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 		</div>
 
-		<?php //get_template_part( 'template-parts/page/page', 'list' ); ?>
+		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>
 </div>
 	<?php

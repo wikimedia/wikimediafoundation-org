@@ -42,15 +42,15 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 	<!-- Top back link -->
 	<?php if ( ! empty( $h4_title ) ) : ?>
-	<h2 class="h4 eyebrow">
-		<?php if ( ! empty( $h4_link ) ) : ?>
-		<a class="back-arrow-link" href="<?php echo esc_url( $h4_link ); ?>">
+		<h2 class="h4 eyebrow">
+			<?php if ( ! empty( $h4_link ) ) : ?>
+			<a class="back-arrow-link" href="<?php echo esc_url( $h4_link ); ?>">
+				<?php endif; ?>
+				<?php echo esc_html( $h4_title ); ?>
+				<?php if ( ! empty( $h4_link ) ) : ?>
+			</a>
 		<?php endif; ?>
-			<?php echo esc_html( $h4_title ); ?>
-		<?php if ( ! empty( $h4_link ) ) : ?>
-		</a>
-		<?php endif; ?>
-	</h2>
+		</h2>
 	<?php endif; ?>
 
 	<!-- Blog home  -->
@@ -72,10 +72,10 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 				</div>
 			</div>
 		<?php endif; ?>
-        <?php if ( ! empty( $wmf_emergency_message ) ) : ?>
-            <div class="urgent-header rounded center" style="">
-                <?php echo wp_kses( $wmf_emergency_message, $allowed_tags ); ?>
-            </div>
+		<?php if ( ! empty( $wmf_emergency_message ) ) : ?>
+			<div class="urgent-header rounded center" style="">
+				<?php echo wp_kses( $wmf_emergency_message, $allowed_tags ); ?>
+			</div>
 		<?php endif; ?>
 	<?php } ?>
 
@@ -125,9 +125,9 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 							</div>
 						</div>
 						<?php if ( ! wmf_is_transparency_report_page() ) { ?>
-						<div class="content">
-							<?php the_content(); ?>
-						</div>
+							<div class="content">
+								<?php the_content(); ?>
+							</div>
 						<?php } ?>
 					<?php } ?>
 				</div>
@@ -140,8 +140,64 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<?php endif; ?>
 
 	<?php if ( ! empty( $meta ) ) : ?>
-	<div class="post-meta h4">
-		<?php echo wp_kses( $meta, $allowed_tags ); ?>
-	</div>
+		<div class="post-meta h4">
+			<?php echo wp_kses( $meta, $allowed_tags ); ?>
+		</div>
+	<?php endif; ?>
+
+	<?php if ( ! wmf_using_gutenberg() && is_front_page() ) : ?>
+		<div class="page-intro wysiwyg">
+			<div>
+				<div class="page-intro-text flex flex-medium">
+					<div class="w-68p">
+						<?php the_content(); ?>
+						<br>
+					</div>
+					<div class="w-32p">
+						<div>
+							<?php echo esc_html( $wmf_homedonate_intro ); ?>
+						</div>
+						<a class="btn btn-blue" href="<?php echo esc_url( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
+						<span class="secure">
+							<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
+							<?php echo esc_html( $wmf_homedonate_secure ); ?>
+						</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
 	<?php endif; ?>
 </div>
+
+<?php if ( ! wmf_using_gutenberg() && is_front_page() ) : ?>
+	<?php if ( false !== $wmf_translations ) : ?>
+		<div class="translation-bar">
+			<div class="translation-bar-inner mw-980">
+				<ul class="list-inline">
+					<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
+						<?php if ( 0 !== $wmf_index ) : ?>
+							<li class="divider">&middot;</li>
+						<?php endif; ?>
+						<li>
+							<?php if ( $wmf_translation['selected'] ) : ?>
+								<span><?php echo esc_html( $wmf_translation['name'] ); ?></span>
+							<?php else : ?>
+								<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>"><a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a></span>
+							<?php endif; ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+
+				<?php if ( count( $wmf_translations ) > 10 ) : ?>
+					<div class="arrow-wrap">
+				<span>
+					<span class="elipsis">...</span>
+					<?php wmf_show_icon( 'trending', 'icon-turquoise material' ); ?>
+				</span>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>

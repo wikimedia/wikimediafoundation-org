@@ -32,7 +32,7 @@ function shortcode_callback( $atts = [] ) {
  * @return string
  */
 function shortcode_content( int $post_id ) : string {
-	$template_args = get_post_meta( get_the_ID(), 'profiles', true );
+	$template_args = (array) get_post_meta( get_the_ID(), 'profiles', true );
 
 	$rand_translation = wmf_get_random_translation(
 		'profiles',

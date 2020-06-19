@@ -19,45 +19,49 @@ $header-bp-mw: 1023px;
 }
 
 @keyframes mover {
-   0% {
-     -webkit-transform: translateX(0);
-   }
-   50% {
-     -webkit-transform: translateX(calc((4237px * -1) + 100vw));
-   }
-	 100% {
-     -webkit-transform: translateX(0);
-   }
+  0% {
+    -webkit-transform: translateX(0);
+  }
+  50% {
+    -webkit-transform: translateX(calc((4237px * -1) + 100vw));
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
 }
 
 .header-animation {
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
-	padding: 0;
-	height: 454px;
-	overflow: hidden;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 0;
+  height: 454px;
+  overflow: hidden;
 }
 
 .header-bg-img {
-	position: absolute;
-	height: 454px;
-	width: 4237px;
+  position: absolute;
+  height: 454px;
+  width: 4237px;
   z-index: -1;
-	background-image: url('./assets/src/svg/header.svg');
-	background-size: cover;
-	background-position: 0px 0px;
-	background-repeat: repeat-x;
-	animation: mover 300s linear infinite;
+  background-image: url('./assets/src/svg/header.svg');
+  background-size: cover;
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  animation: mover 300s linear infinite;
 }
 
 
 .header-home {
   position: relative;
   background: $color-white;
+
+  @media (min-width: $header-bp) and (max-height: 930px) {
+    min-height: 100vh;
+  }
 
   a {
     transition: 0.3s all;
@@ -164,9 +168,13 @@ $header-bp-mw: 1023px;
         position: relative;
         z-index: 9;
         margin-top: 30px;
-        margin-bottom: 2rem;
+
         @media (max-width: $medium-landscape) {
           margin-top: 0;
+        }
+
+        @media (min-width: $header-bp) {
+          margin-bottom: 2rem;
         }
       }
 
@@ -393,6 +401,18 @@ $header-bp-mw: 1023px;
     display: flex;
     flex-direction: column;
     position: relative;
+
+    @media (min-width: $header-bp) and (max-height: 930px) {
+      min-height: calc(100vh - 80px);
+    }
+
+    @media (min-height: 931px) {
+      min-height: rem(850);
+    }
+
+    @media (max-width: $header-bp-mw) {
+      min-height: initial;
+    }
   }
 
   .header-main {
@@ -506,12 +526,12 @@ $header-bp-mw: 1023px;
 }
 
 .urgent-header {
-    margin:2em 5% 0 5%;
-    background:#FEE1E1;
-    padding:1em;
-    font-size:90%;
-    font-weight:bold;
+  margin:2em 5% 0 5%;
+  background:#FEE1E1;
+  padding:1em;
+  font-size:90%;
+  font-weight:bold;
 }
 .urgent-btn {
-    margin-top:.5em;
+  margin-top:.5em;
 }

@@ -1,10 +1,46 @@
-.home {
+// Styles apply only to front page if it uses blocks.
+.home.using-gutenberg {
+	// Override styles from .header.home.scss for Gutenberg.
+	// Can be removed when move to GB is complete.
+	.main-nav {
+		flex-grow: initial;
+	}
+
+	.header-home {
+		@media (min-width: $header-bp) and (max-height: 930px) {
+			min-height: initial;
+		}
+		.header-content {
+			margin-bottom: 2rem;
+
+			@media (min-width: $header-bp) {
+				margin-bottom: 0;
+			}
+		}
+
+		.header-inner {
+			@media (min-width: $header-bp) and (max-height: 930px) {
+				min-height: initial;
+			}
+
+			@media (min-height: 931px) {
+				min-height: initial;
+			}
+
+			@media (max-width: $header-bp-mw) {
+				min-height: initial;
+			}
+		}
+		// End override styles.
+	}
+
 	.hentry {
 		width: 100%;
 	}
 
 	.entry-content {
 		.page-intro-text {
+			margin-top: 2rem;
 			margin-bottom: 2rem;
 
 			.wp-block-column:last-of-type {
