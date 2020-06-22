@@ -70,7 +70,12 @@ $image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
 				<?php endif; ?>
 			</div>
 
-			<a href="<?php echo esc_url( $link ); ?>" class="arrow-link">Read more</a>
+			<a href="<?php echo esc_url( $link ); ?>"
+			   class="arrow-link"
+			   aria-label="<?php /* translators: 1. the post title. */
+			   printf( esc_html__( 'Read more about %s', 'shiro' ), $title ); ?>">
+				<?php esc_html_e( 'Read more', 'shiro' ); ?>
+			</a>
 
 		</div>
 
