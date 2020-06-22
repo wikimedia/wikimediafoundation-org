@@ -44,6 +44,7 @@
         padding: 0;
         @media (max-width: ( $medium-bp - 1 )) {
             margin-bottom: 2rem;
+            margin-top: 2rem;
             background-color: #F8F9FA;
         }
         @media (min-width: $medium-bp) {
@@ -143,6 +144,7 @@
     .menu-toggle {
         list-style-type: none;
         position: absolute;
+        margin: 0;
         right: 0;
         top: 0;
         width: 100%;
