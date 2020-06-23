@@ -172,14 +172,8 @@
         &:focus {
             border-color: black;
         }
-
-        //&::before {
-        //    content: '\25BE';
-        //    display: inline-block;
-        //    transform: scaleX(1.5);
-        //}
     }
-    //.menu--expanded [data-menu-toggle]::before { content: '\25B4'; }
+    
     .toc-toggle {
         width: 10px;
     }
