@@ -56,6 +56,9 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
  */
 function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 
+	if ( ! class_exists( '\Inpsyde\MultilingualPress\Framework\Api\Translations' ) ) {
+		return false;
+	}
 	$args = TranslationSearchArgs::forContext( new WordpressContext() )->forSiteId( get_current_blog_id() )->includeBase();
 	$translations = resolve( \Inpsyde\MultilingualPress\Framework\Api\Translations::class )->searchTranslations( $args );
 
