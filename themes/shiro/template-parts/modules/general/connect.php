@@ -17,7 +17,7 @@ $defaults = array(
 	'subscribe_additional_fields' => get_theme_mod( 'wmf_subscribe_additional_fields', '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">' ),
 	'subscribe_heading'           => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'shiro' ) ),
 	'subscribe_content'           => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'shiro' ) ),
-	'subscribe_placeholder'       => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'shiro' ) ),
+	'subscribe_placeholder'       => get_theme_mod( 'wmf_subscribe_placeholder', __( 'email@domain.com', 'shiro' ) ),
 	'subscribe_button'            => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'shiro' ) ),
 
 	// Contact box.
@@ -65,9 +65,9 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 				<?php endif; ?>
 				<div class="email-signup">
 					<form action="<?php echo esc_url( $template_args['subscribe_action'] ); ?>" method="post" target="_blank">
-						<label for="wmf-subscribe-input-email" class="sr-only"><?php echo esc_html( $template_args['subscribe_placeholder'] ); ?></label>
 						<div class="flex flex-medium flex-wrap fifty-fifty">
 							<div class="w-68p">
+								<label for="wmf-subscribe-input-email"><?php esc_html_e( 'Email address (*)', 'shiro' ); ?></label>
 								<input id="wmf-subscribe-input-email" type="email" placeholder="<?php echo esc_attr( $template_args['subscribe_placeholder'] ); ?>" name="EMAIL" required>
 							</div>
 							<div class="w-32p">

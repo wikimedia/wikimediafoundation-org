@@ -81,6 +81,11 @@
 		position: relative;
 		color: $color-dark-gray;
 
+		label {
+			display: block;
+			margin-top: -18px;
+		}
+
 		input {
 			margin-bottom: 1rem;
 			padding: 0.8rem 1rem 0.8rem 3rem;
