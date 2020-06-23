@@ -584,3 +584,22 @@ $header-bp-mw: 1049px;
         display: none;
     }
 }
+
+.blog {
+  .header-main .header-content {
+    @media (max-width: $medium-bp) {
+      margin-top: 0;
+    }
+    @media (max-width: $header-bp) {
+      margin-top: 25px;
+    }
+  }
+  .header-default .eyebrow.h1 {
+    @media (min-width: $header-bp) {
+      margin-bottom: 5rem;
+    }
+    @media (max-width: $medium-bp - 1 ) {
+      margin-bottom: 1rem;
+    }
+  }
+}
