@@ -135,8 +135,9 @@ jQuery(document).ready(function($) {
     } else {
       currentVision += 1;
     }
-    $(visions[prevVision]).fadeOut(750, function () {
-      $(visions[currentVision]).fadeIn(750);
+
+    $(visions[prevVision]).animate({opacity: 0}, 1000, function() {
+      $(visions[currentVision]).animate({opacity: 1}, 1000);
     });
 
     window.setTimeout( cycleVision, 5000);

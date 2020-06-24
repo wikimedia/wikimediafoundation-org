@@ -188,19 +188,21 @@ $header-bp-mw: 1023px;
         margin-left: 1rem;
 
         &.vision {
+          position: absolute;
+          opacity: 0;
           z-index: 100;
-          display: none;
           padding: 1rem;
           font-size: 1.4rem ;
           width: 454px;
           margin: 0;
+          background: #FEFD34;
 
           @media (max-width: $medium-bp) {
             width: 100%;
           }
 
           &.is_visible {
-            display: block;
+            opacity: 1;
           }
         }
       }
@@ -209,7 +211,9 @@ $header-bp-mw: 1023px;
         transition: height 300ms ease;
         display: inline-block;
         margin-top: 4rem;
-        background: #FEFD34;
+
+        width: 454px;
+        position: relative;
       }
 
       .page-intro-text {
