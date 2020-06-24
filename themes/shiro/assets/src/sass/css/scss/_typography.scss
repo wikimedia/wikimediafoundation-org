@@ -18,6 +18,14 @@ h2,
 	}
 }
 
+.header-default.featured-photo--content-left .header-content h2.page-subheading {
+	margin-bottom: 0;
+	font-size: 2.5rem;
+	padding-right: 20%;
+	border-bottom: 0;
+	font-weight: 700;
+}
+
 h3,
 .h3 {
 	@include font-size(15, 13);

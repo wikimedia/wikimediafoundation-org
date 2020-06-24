@@ -81,8 +81,8 @@ jQuery(document).ready(function($) {
   // Move blocks in the ungrid
   if ( $('.ungrid').length > 0 ) {
     var maxHeight = 235;
-    var h1Height = $('.ungrid h1').height();
-    var diffHeight = maxHeight - h1Height;
+    var h2Height = $('.ungrid h2').height();
+    var diffHeight = maxHeight - h2Height;
     $('.ungrid-line').css( 'margin-top', ( -32 - diffHeight ) );
 
     var contentHeight = $('.ungrid .content').height() - 80;

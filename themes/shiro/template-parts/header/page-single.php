@@ -17,7 +17,7 @@ $allowed_tags         = [ 'span' => [ 'class' => [] ], 'time' => [ 'datetime' =>
 <div class="header-main">
   <div class="header-content mar-bottom_lg header-single">
     <?php if ( ! empty( $h4_title ) ) : ?>
-      <h2 class="h4 eyebrow">
+      <p class="h4 eyebrow">
         <?php if ( ! empty( $h4_link ) ) : ?>
           <a class="back-arrow-link" href="<?php echo esc_url( $h4_link ); ?>">
           <?php endif; ?>
@@ -25,7 +25,7 @@ $allowed_tags         = [ 'span' => [ 'class' => [] ], 'time' => [ 'datetime' =>
           <?php if ( ! empty( $h4_link ) ) : ?>
           </a>
         <?php endif; ?>
-      </h2>
+      </p>
     <?php endif; ?>
 
     <div class="mw-784">

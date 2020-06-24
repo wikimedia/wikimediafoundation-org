@@ -14,11 +14,11 @@ $story_name   = ! empty( $story_header_data['back_to_label'] ) ? $story_header_d
 
 <div class="header-main header-role">
 	<div class="header-content">
-		<h2 class="h4 eyebrow">
+		<p class="h4 eyebrow">
 			<a class="back-arrow-link" href="<?php echo esc_url( $back_to_link ); ?>">
 				<?php echo esc_html( $story_name ); ?>
 			</a>
-		</h2>
+		</p>
 
 		<h1><?php the_title(); ?></h1>
 

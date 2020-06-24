@@ -42,7 +42,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 	<!-- Top back link -->
 	<?php if ( ! empty( $h4_title ) ) : ?>
-	<h2 class="h4 eyebrow">
+	<p class="h4 eyebrow">
 		<?php if ( ! empty( $h4_link ) ) : ?>
 		<a class="back-arrow-link" href="<?php echo esc_url( $h4_link ); ?>">
 		<?php endif; ?>
@@ -50,12 +50,12 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 		<?php if ( ! empty( $h4_link ) ) : ?>
 		</a>
 		<?php endif; ?>
-	</h2>
+	</p>
 	<?php endif; ?>
 
 	<!-- Blog home  -->
-	<?php if ( is_home() && ! empty( $h2_title ) ) { ?>
-		<h2 class="h1 eyebrow"><?php echo esc_html( $h2_title ); ?></h2>
+	<?php if ( is_home() && ! empty( $title ) ) { ?>
+		<h1 class="h1 eyebrow"><?php echo esc_html( $title ); ?></h1>
 	<?php } ?>
 
 	<!-- Site front page -->
@@ -82,9 +82,9 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<?php if ( ! is_front_page() && ! is_home() ) { ?>
 		<!-- h2 or title as heading -->
 		<?php if ( ! empty( $single_title ) && ! wmf_is_transparency_report_page() ) { ?>
-			<h2 class="h2 eyebrow">
+			<h1 class="h2 eyebrow">
 				<?php echo wp_kses( $single_title, array( 'span' => array( 'class' ) ) ); ?>
-			</h2>
+			</h1>
 			<?php if ( !empty( $image ) ) { ?>
 				<img src="<?php echo esc_url($image)?>" alt="">
 			<?php } ?>
@@ -92,12 +92,12 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 		<!-- h2 and title, without image -->
 		<?php if ( empty( $image ) && ! empty( $h2_title ) && ! empty( $title ) && ! wmf_is_transparency_report_page() ) { ?>
-			<h2 class="h2 eyebrow">
+			<h1 class="h2 eyebrow">
 				<?php echo esc_html( $h2_title ); ?>
-			</h2>
+			</h1>
 			<div class="flex flex-medium page-landing fifty-fifty">
 				<div class="module-mu w-50p">
-					<h1><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
+					<h2 class="page-subheading"><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h2>
 				</div>
 				<div class="page-intro-text module-mu w-50p">
 					<!-- No content here -->
@@ -112,10 +112,10 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 					<?php if ( !empty( $image) && !empty($h2_title) && !empty($title)) { ?>
 						<div class="flex flex-medium page-landing fifty-fifty">
 							<div class="module-mu w-50p">
-								<h2 class="h2 eyebrow">
+								<h1 class="h2 eyebrow">
 									<?php echo esc_html( $h2_title ); ?>
-								</h2>
-								<h1><?php echo wp_kses_post( $title ); ?></h1>
+								</h1>
+								<h2  class="page-subheading"><?php echo wp_kses_post( $title ); ?></h2>
 								<?php wmf_get_template_part( 'template-parts/modules/intro/button', $button ); ?>
 							</div>
 							<div class="page-intro-text module-mu w-50p" >

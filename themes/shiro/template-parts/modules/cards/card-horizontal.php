@@ -33,11 +33,11 @@ $image_size = true === $sidebar ? 'image_4x5_large' : 'image_4x3_large';
 	<div class="card-content <?php echo esc_attr( $image_id ? 'w-50p' : '' ); ?>">
 		<div class="module-mu">
 			<?php if ( ! empty( $title ) ) : ?>
-			<h3 class="h3">
+			<h2 class="h3">
 				<a href="<?php echo esc_url( $link ); ?>">
 					<?php echo esc_html( $title ); ?>
 				</a>
-			</h3>
+			</h2>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $categories ) ) : ?>
