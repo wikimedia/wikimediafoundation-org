@@ -182,28 +182,25 @@ $header-bp-mw: 1023px;
         @include blueTextShadow();
       }
 
-      h1 {
-        @include font-size(43,38);
-        margin-top: 6rem;
-        margin-left: 1rem;
+      .vision {
+        font-size: 1.4rem;
+        font-weight: 700;
+        position: absolute;
+        opacity: 0;
+        z-index: 100;
+        padding: 1rem;
+        line-height: 1.2;
+        width: 454px;
+        margin: 0;
+        margin-top: 2.2rem;
+        background: #FEFD34;
 
-        &.vision {
-          position: absolute;
-          opacity: 0;
-          z-index: 100;
-          padding: 1rem;
-          font-size: 1.4rem ;
-          width: 454px;
-          margin: 0;
-          background: #FEFD34;
+        @media (max-width: $medium-bp) {
+          width: 100%;
+        }
 
-          @media (max-width: $medium-bp) {
-            width: 100%;
-          }
-
-          &.is_visible {
-            opacity: 1;
-          }
+        &.is_visible {
+          opacity: 1;
         }
       }
 
@@ -214,6 +211,10 @@ $header-bp-mw: 1023px;
 
         width: 454px;
         position: relative;
+
+        @media screen and ( max-width: 767px ) {
+          width: 98%;
+        }
       }
 
       .page-intro-text {
