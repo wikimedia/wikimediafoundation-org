@@ -12,11 +12,19 @@ namespace WMF\Customizer;
  * Adds new fields to create sections for the header details
  */
 class Header extends Base {
-
 	/**
 	 * Add Customizer fields for header section.
 	 */
 	public function setup_fields() {
+		$languages = [
+			'ar_AR' => __( 'Arabic', 'shiro' ),
+			'en_US' => __( 'English (US)', 'shiro' ),
+			'zh'    => __( 'Chinese', 'shiro' ),
+			'es_ES' => __( 'Spanish', 'shiro' ),
+			'fr_FR' => __( 'French', 'shiro' ),
+			'hi'    => __( 'Hindi', 'shiro' ),
+		];
+
 		$header_section = $this->customize->get_section( 'header_image' );
 
 		$header_image_title = $header_section->title;
@@ -66,7 +74,7 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-        
+
 		$section_id = 'wmf_header_donate';
 		$this->customize->add_section(
 			$section_id, array(
@@ -104,7 +112,7 @@ class Header extends Base {
 				'type'    => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_homedonate_button';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -133,7 +141,7 @@ class Header extends Base {
 				'type'    => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_homedonate_intro';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -148,7 +156,7 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_homedonate_secure';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -163,7 +171,7 @@ class Header extends Base {
 				'type'        => 'text',
 			)
 		);
-        
+
 		$section_id = 'wmf_header_search';
 		$this->customize->add_section(
 			$section_id, array(
@@ -264,7 +272,8 @@ class Header extends Base {
 			$control_id, array(
 				'label'       => __( 'Vision language 1 - language code', 'shiro' ),
 				'section'     => $section_id,
-				'type'        => 'text',
+				'type'        => 'select',
+				'choices'     => $languages,
 			)
 		);
 
@@ -306,7 +315,8 @@ class Header extends Base {
 			$control_id, array(
 				'label'       => __( 'Vision language 2 - language code', 'shiro' ),
 				'section'     => $section_id,
-				'type'        => 'text',
+				'type'        => 'select',
+				'choices' => $languages,
 			)
 		);
 
@@ -348,7 +358,8 @@ class Header extends Base {
 			$control_id, array(
 				'label'       => __( 'Vision language 3 - language code', 'shiro' ),
 				'section'     => $section_id,
-				'type'        => 'text',
+				'type'        => 'select',
+				'choices' => $languages,
 			)
 		);
 
@@ -390,7 +401,8 @@ class Header extends Base {
 			$control_id, array(
 				'label'       => __( 'Vision language 4 - language code', 'shiro' ),
 				'section'     => $section_id,
-				'type'        => 'text',
+				'type'        => 'select',
+				'choices' => $languages,
 			)
 		);
 
@@ -432,7 +444,8 @@ class Header extends Base {
 			$control_id, array(
 				'label'       => __( 'Vision language 5 - language code', 'shiro' ),
 				'section'     => $section_id,
-				'type'        => 'text',
+				'type'        => 'select',
+				'choices' => $languages,
 			)
 		);
 
