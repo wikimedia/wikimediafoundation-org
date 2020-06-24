@@ -20,13 +20,17 @@ $isodate    = ! empty( $card_data['isodate'] ) ? $card_data['isodate'] : '';
 $excerpt    = ! empty( $card_data['excerpt'] ) ? $card_data['excerpt'] : '';
 $categories = ! empty( $card_data['categories'] ) ? $card_data['categories'] : '';
 
-$image = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
+$image        = wp_get_attachment_image_src( $image_id, 'image_16x19_large' );
+$image_srcset = wp_get_attachment_image_srcset( $image_id, 'image_16x19_large' );
+$image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 
 ?>
 <div class="card">
 	<?php if ( ! empty( $image_id ) ) : ?>
 		<div class="bg-img-container">
-			<div class="bg-img rounded" style="background-image: url(<?php echo esc_url( $image[0] ); ?>);"></div>
+			<div class="bg-img rounded"><img alt="<?php echo esc_attr( $image_alt ); ?>"
+			                                 src="<?php echo esc_url( $image[0] ); ?>" <?php echo $image_srcset ? 'srcset="' . esc_attr( $image_srcset ) . '"' : ''; ?>>
+			</div>
 		</div>
 	<?php endif; ?>
 
