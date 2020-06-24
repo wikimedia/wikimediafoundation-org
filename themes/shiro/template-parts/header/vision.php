@@ -50,10 +50,10 @@ foreach ( $visions as $key => $vision ) {
 		$visions_class[ $key ],
 	];
 
-	$tag = get_locale() === $visions_langcode[ $key ] ? 'h1' : 'p';
+	$element_tag = get_locale() === $visions_langcode[ $key ] ? 'h1' : 'p';
 	?>
-	<<?php echo esc_html( $tag ); ?> aria-hidden="<?php echo esc_attr( (bool) $vision_output['aria_hidden'] ? 'true' : 'false' ); ?>" lang="<?php echo esc_attr( substr( $vision_output['langcode'], 0, 2 ) ); ?>" class="<?php echo implode( ' ', array_map( 'esc_attr', array_filter( $vision_output['classes'] ) ) ); ?>">
+	<<?php echo esc_html( $element_tag ); ?> aria-hidden="<?php echo esc_attr( (bool) $vision_output['aria_hidden'] ? 'true' : 'false' ); ?>" lang="<?php echo esc_attr( substr( $vision_output['langcode'], 0, 2 ) ); ?>" class="<?php echo implode( ' ', array_map( 'esc_attr', array_filter( $vision_output['classes'] ) ) ); ?>">
 		<?php echo esc_html( $vision_output['text'] ); ?>
-	</<?php echo esc_html( $tag ); ?>>
+	</<?php echo esc_html( $element_tag ); ?>>
 	<?php
 }
