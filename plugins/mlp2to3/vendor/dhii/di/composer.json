@@ -1,0 +1,66 @@
+{
+    "name": "dhii/di",
+    "description": "A DI container implementation",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "container",
+        "di",
+        "dependency injection"
+    ],
+    "authors": [
+        {
+            "name": "Dhii Team",
+            "email": "development@dhii.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^5.4 | ^7.0",
+        "dhii/data-container-interface": "^0.1 | ^0.2",
+        "dhii/data-container-abstract": "^0.1-alpha1",
+        "dhii/data-container-base": "^0.1-alpha2",
+        "dhii/data-object-abstract": "^0.1-alpha1",
+        "dhii/di-abstract": "^0.2-alpha1",
+        "dhii/container-helper-base": "^0.1-alpha5",
+        "dhii/exception": "^0.1-alpha5",
+        "dhii/callback-abstract": "^0.1-alpha5",
+        "dhii/invocable-base": "^0.1",
+        "dhii/args-list-validation": "^0.1",
+        "dhii/normalization-helper-base": "^0.1",
+        "dhii/i18n-helper-base": "^0.1",
+        "dhii/validation-base": "^0.2-alpha2"
+    },
+    "require-dev": {
+        "dhii/php-cs-fixer-config": "^0.1",
+        "phpunit/phpunit": "^4.8",
+        "ptrofimov/xpmock": "^1.1",
+        "codeclimate/php-test-reporter": "<=0.3.2",
+        "dhii/invocable-interface": "^0.1",
+        "dhii/stringable-interface": "^0.1",
+        "psr/container": "^1.0",
+        "dhii/exception-interface": "^0.2-alpha3",
+        "dhii/simple-cache-interface": "^0.1",
+        "dhii/memoize-memory": "^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dhii\\Di\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dhii\\Di\\UnitTest\\": "test/unit",
+            "Dhii\\Di\\FuncTest\\": "test/functional"
+        }
+    },
+    "provide": {
+        "container-interop/container-interop-implementation": "^1.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.2.x-dev"
+        }
+    }
+}

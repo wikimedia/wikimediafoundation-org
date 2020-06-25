@@ -1,0 +1,2373 @@
+[
+    {
+        "name": "dhii/args-list-validation",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/args-list-validation.git",
+            "reference": "e9a07ee079bf38efd385e6dd3330642b64424792"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/args-list-validation/zipball/e9a07ee079bf38efd385e6dd3330642b64424792",
+            "reference": "e9a07ee079bf38efd385e6dd3330642b64424792",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-03-12T04:34:54+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Validation\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Validation of an arguments list"
+    },
+    {
+        "name": "dhii/cache-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/cache-abstract.git",
+            "reference": "fdc149b52c92365e68432d01c1b342208e030c91"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/cache-abstract/zipball/fdc149b52c92365e68432d01c1b342208e030c91",
+            "reference": "fdc149b52c92365e68432d01c1b342208e030c91",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/invocable-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "suggest": {
+            "dhii/callback-abstract": "For structured invocation of callables",
+            "dhii/exception": "For standard exceptions and exception factory methods",
+            "dhii/normalization-helper-base": "To normalize primitives, like arrays, integers, and strings",
+            "dhii/stringable-interface": "To use objects as strings"
+        },
+        "time": "2018-03-22T21:23:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Cache\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Abstract functionality for caching."
+    },
+    {
+        "name": "dhii/callback-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/callback-abstract.git",
+            "reference": "43ed4e99fc6ccdaf46a25d06da482a2fba8d9b19"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/callback-abstract/zipball/43ed4e99fc6ccdaf46a25d06da482a2fba8d9b19",
+            "reference": "43ed4e99fc6ccdaf46a25d06da482a2fba8d9b19",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/invocable-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "dhii/validation-interface": "0.2-alpha1|0.2-alpha2",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "suggest": {
+            "dhii/args-list-validation": "For args list validation logic",
+            "dhii/normalization-helper-base": "To normalize lists and other types",
+            "dhii/validation-base": "For validation exceptions and their factories"
+        },
+        "time": "2018-04-04T14:57:27+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Invocation\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Abstract functionality for working with callbacks."
+    },
+    {
+        "name": "dhii/collections-interface",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/collections-interface.git",
+            "reference": "b5e58ba2fd43a11356387eebae0379209b769f2e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/collections-interface/zipball/b5e58ba2fd43a11356387eebae0379209b769f2e",
+            "reference": "b5e58ba2fd43a11356387eebae0379209b769f2e",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/data-container-interface": "^0.2-alpha3",
+            "php": "^5.3 | ^7.0",
+            "psr/container": "^1.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-26T13:04:16+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Collection\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "A highly ISP-compliant collection of interfaces that represent maps and lists."
+    },
+    {
+        "name": "dhii/container-helper-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/container-helper-base.git",
+            "reference": "ccb2f56971d70cf203baa596cd14fdf91be6bfae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/ccb2f56971d70cf203baa596cd14fdf91be6bfae",
+            "reference": "ccb2f56971d70cf203baa596cd14fdf91be6bfae",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-11-06T18:03:24+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\Container\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Helper functionality for working with container."
+    },
+    {
+        "name": "dhii/data-container-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-container-abstract.git",
+            "reference": "8b8220dc199d7b52dcea9b9496194716a4ffa737"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-container-abstract/zipball/8b8220dc199d7b52dcea9b9496194716a4ffa737",
+            "reference": "8b8220dc199d7b52dcea9b9496194716a4ffa737",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/data-container-interface": "^0.1 | ^0.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "suggest": {
+            "dhii/data-container-interface": "To be able to set and get containers",
+            "dhii/stringable-interface": "To be able to pass Stringable objects instead of strings"
+        },
+        "time": "2018-04-01T15:13:22+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\Container\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Abstract functionality for working with data containers."
+    },
+    {
+        "name": "dhii/data-container-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-container-base.git",
+            "reference": "ed3289171827cdc910d74c5ef76aab5f5985dace"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-container-base/zipball/ed3289171827cdc910d74c5ef76aab5f5985dace",
+            "reference": "ed3289171827cdc910d74c5ef76aab5f5985dace",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/data-container-abstract": "^0.1",
+            "dhii/data-container-interface": "^0.1 | ^0.2",
+            "dhii/exception": "^0.1",
+            "dhii/i18n-helper-base": "^0.1",
+            "dhii/normalization-helper-base": "^0.1",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-03-16T18:58:30+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\Container\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base functionality for container implementations"
+    },
+    {
+        "name": "dhii/data-container-interface",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-container-interface.git",
+            "reference": "f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-container-interface/zipball/f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728",
+            "reference": "f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception-interface": "^0.1 | ^0.2",
+            "dhii/factory-interface": "^0.1-alpha1",
+            "php": "^5.3 | ^7.0",
+            "psr/container": "^1.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "suggest": {
+            "dhii/stringable-interface": "To be able to pass Stringables as keys"
+        },
+        "time": "2019-05-10T14:26:17+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\Container\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces for working with data containers"
+    },
+    {
+        "name": "dhii/data-hierarchy-interface",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/hierarchy-interface.git",
+            "reference": "b026362a9b7dc7e8e9473c96239b881c86536040"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/hierarchy-interface/zipball/b026362a9b7dc7e8e9473c96239b881c86536040",
+            "reference": "b026362a9b7dc7e8e9473c96239b881c86536040",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-07-25T10:01:23+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\Hierarchy\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces for working with hierarchies"
+    },
+    {
+        "name": "dhii/data-key-value-aware-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-key-value-aware-abstract.git",
+            "reference": "a32b4938c92f06739e22fa23396b130c363f7d3a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-key-value-aware-abstract/zipball/a32b4938c92f06739e22fa23396b130c363f7d3a",
+            "reference": "a32b4938c92f06739e22fa23396b130c363f7d3a",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-02-11T15:58:23+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Traits for objects that are aware of a key, a value, or both."
+    },
+    {
+        "name": "dhii/data-key-value-aware-interface",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-key-value-aware-interface.git",
+            "reference": "220232bc9040fab78a6c039f5a4a5f9542317bdc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-key-value-aware-interface/zipball/220232bc9040fab78a6c039f5a4a5f9542317bdc",
+            "reference": "220232bc9040fab78a6c039f5a4a5f9542317bdc",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "4.*",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-01-21T17:35:30+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces that aim to increase interoperability of value objects"
+    },
+    {
+        "name": "dhii/data-object-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-object-abstract.git",
+            "reference": "6ab979adc2d0c01777af6076dfb66f55bf4fbfe3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-object-abstract/zipball/6ab979adc2d0c01777af6076dfb66f55bf4fbfe3",
+            "reference": "6ab979adc2d0c01777af6076dfb66f55bf4fbfe3",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "suggest": {
+            "dhii/exception-helper-base": "For standard exception factories",
+            "dhii/stringable-interface": "To be able to pass stringable objects as keys and messages"
+        },
+        "time": "2018-03-15T12:29:35+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\Object\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Abstract common functionality for data objects"
+    },
+    {
+        "name": "dhii/data-path-aware-interface",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/data-path-aware-interface.git",
+            "reference": "c004106cfc3e363b880a14bb27ef530501097d12"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/data-path-aware-interface/zipball/c004106cfc3e363b880a14bb27ef530501097d12",
+            "reference": "c004106cfc3e363b880a14bb27ef530501097d12",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/stringable-interface": "^0.1",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "dev-master",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "4.*",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-07-25T12:20:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Data\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "An interface for objects that can have a path retrieved."
+    },
+    {
+        "name": "dhii/di",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/di.git",
+            "reference": "293bd78c665c88464137dea467ea3b05de962fcc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/di/zipball/293bd78c665c88464137dea467ea3b05de962fcc",
+            "reference": "293bd78c665c88464137dea467ea3b05de962fcc",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/args-list-validation": "^0.1",
+            "dhii/callback-abstract": "^0.1-alpha5",
+            "dhii/container-helper-base": "^0.1-alpha5",
+            "dhii/data-container-abstract": "^0.1-alpha1",
+            "dhii/data-container-base": "^0.1-alpha2",
+            "dhii/data-container-interface": "^0.1 | ^0.2",
+            "dhii/data-object-abstract": "^0.1-alpha1",
+            "dhii/di-abstract": "^0.2-alpha1",
+            "dhii/exception": "^0.1-alpha5",
+            "dhii/i18n-helper-base": "^0.1",
+            "dhii/invocable-base": "^0.1",
+            "dhii/normalization-helper-base": "^0.1",
+            "dhii/validation-base": "^0.2-alpha2",
+            "php": "^5.4 | ^7.0"
+        },
+        "provide": {
+            "container-interop/container-interop-implementation": "^1.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/exception-interface": "^0.2-alpha3",
+            "dhii/invocable-interface": "^0.1",
+            "dhii/memoize-memory": "^0.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/simple-cache-interface": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-11T12:44:04+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Di\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "A DI container implementation",
+        "keywords": [
+            "container",
+            "dependency injection",
+            "di"
+        ],
+        "abandoned": "dhii/containers"
+    },
+    {
+        "name": "dhii/di-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/di-abstract.git",
+            "reference": "badfa20def27e5c6883f1c1078c98603b7bee319"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/di-abstract/zipball/badfa20def27e5c6883f1c1078c98603b7bee319",
+            "reference": "badfa20def27e5c6883f1c1078c98603b7bee319",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/data-container-interface": "^0.2",
+            "dhii/exception-interface": "^0.2-alpha3",
+            "dhii/invocable-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/simple-cache-interface": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-01T15:17:25+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Di\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base abstract classes for DI container implementations"
+    },
+    {
+        "name": "dhii/exception",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/exception.git",
+            "reference": "d42828984c85a509af3f7fde709561a1e520b9e4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/exception/zipball/d42828984c85a509af3f7fde709561a1e520b9e4",
+            "reference": "d42828984c85a509af3f7fde709561a1e520b9e4",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception-interface": "^0.2",
+            "dhii/i18n-helper-base": "^0.1",
+            "dhii/normalization-helper-base": "^0.1",
+            "php": "^5.4 | ^7.0"
+        },
+        "replace": {
+            "dhii/exception-helper-base": "0.1-alpha1|0.1-alpha2"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-05-28T08:47:18+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Exception\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Standards-compliant exception classes"
+    },
+    {
+        "name": "dhii/exception-interface",
+        "version": "v0.2",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/exception-interface.git",
+            "reference": "b69feebf7cb2879cd43977a03342e2393b73f7fb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/exception-interface/zipball/b69feebf7cb2879cd43977a03342e2393b73f7fb",
+            "reference": "b69feebf7cb2879cd43977a03342e2393b73f7fb",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/stringable-interface": "^0.1",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-08-29T10:42:04+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Exception\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces for most common exceptions"
+    },
+    {
+        "name": "dhii/factory-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/factory-base.git",
+            "reference": "eb6694178068ec58e0f2de9243f0eb98844511de"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/factory-base/zipball/eb6694178068ec58e0f2de9243f0eb98844511de",
+            "reference": "eb6694178068ec58e0f2de9243f0eb98844511de",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/args-list-validation": "^0.1-alpha1",
+            "dhii/callback-abstract": "^0.1-alpha2",
+            "dhii/container-helper-base": "^0.1-alpha5",
+            "dhii/data-container-base": "^0.1-alpha2",
+            "dhii/exception": "^0.1-alpha4",
+            "dhii/factory-interface": "^0.1-alpha1",
+            "dhii/i18n-helper-base": "^0.1-alpha1",
+            "dhii/invocable-base": "^0.1-alpha1",
+            "dhii/invocable-interface": "^0.1-alpha1",
+            "dhii/iterator-helper-base": "^0.1-alpha2",
+            "dhii/normalization-helper-base": "^0.1-alpha1",
+            "dhii/validation-base": "^0.2-alpha1",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-09T16:03:15+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Factory\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base functionality for factories."
+    },
+    {
+        "name": "dhii/factory-interface",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/factory-interface.git",
+            "reference": "b8d217aec8838e64ccaa770cb03dc164bf6f0515"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/factory-interface/zipball/b8d217aec8838e64ccaa770cb03dc164bf6f0515",
+            "reference": "b8d217aec8838e64ccaa770cb03dc164bf6f0515",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception-interface": "^0.1|^0.2",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-08-29T11:15:09+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Factory\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces for working with factories."
+    },
+    {
+        "name": "dhii/i18n-abstract",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/i18n-abstract.git",
+            "reference": "90d36bc19f76ff9c618b9ae7631deaa05e7352bc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/i18n-abstract/zipball/90d36bc19f76ff9c618b9ae7631deaa05e7352bc",
+            "reference": "90d36bc19f76ff9c618b9ae7631deaa05e7352bc",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/data-key-value-aware-interface": "^0.1",
+            "dhii/i18n-interface": "^0.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-03-15T17:20:07+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\I18n\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Common abstract functionality for internationalization."
+    },
+    {
+        "name": "dhii/i18n-base",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/i18n-base.git",
+            "reference": "57ccb0472efd24fc9267096991e3db3281f728d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/i18n-base/zipball/57ccb0472efd24fc9267096991e3db3281f728d4",
+            "reference": "57ccb0472efd24fc9267096991e3db3281f728d4",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/i18n-abstract": "^0.1",
+            "dhii/i18n-interface": "^0.2",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/data-key-value-aware-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-03-15T18:39:56+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\I18n\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base implementations for internationalization."
+    },
+    {
+        "name": "dhii/i18n-helper-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/i18n-helper-base.git",
+            "reference": "fc4c881f3e528ea918588831ebeffb92738f8dd5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/i18n-helper-base/zipball/fc4c881f3e528ea918588831ebeffb92738f8dd5",
+            "reference": "fc4c881f3e528ea918588831ebeffb92738f8dd5",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/i18n-interface": "^0.1|^0.2",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-03-07T22:38:07+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\I18n\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "A base for internationalization consumers"
+    },
+    {
+        "name": "dhii/i18n-interface",
+        "version": "v0.2",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/i18n-interface.git",
+            "reference": "7eaf0731ba80eea37a5deea6d894a0326e10be67"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/i18n-interface/zipball/7eaf0731ba80eea37a5deea6d894a0326e10be67",
+            "reference": "7eaf0731ba80eea37a5deea6d894a0326e10be67",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/data-key-value-aware-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-03-15T16:01:39+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\I18n\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces for internationalization."
+    },
+    {
+        "name": "dhii/invocable-base",
+        "version": "v0.1-alpha2",
+        "version_normalized": "0.1.0.0-alpha2",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/invocable-base.git",
+            "reference": "f8edf350653f1041388addb918a1478e46c3a83f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/invocable-base/zipball/f8edf350653f1041388addb918a1478e46c3a83f",
+            "reference": "f8edf350653f1041388addb918a1478e46c3a83f",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/callback-abstract": "^0.1-alpha2",
+            "dhii/exception": "^0.1-alpha4",
+            "dhii/i18n-helper-base": "^0.1",
+            "dhii/invocable-interface": "^0.1",
+            "dhii/normalization-helper-base": "^0.1",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-01T12:07:38+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Invocation\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base functionality for invocation."
+    },
+    {
+        "name": "dhii/invocable-interface",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/invocable-interface.git",
+            "reference": "85f9fae9ae6bb53213c2a2354edf78bb364b705f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/invocable-interface/zipball/85f9fae9ae6bb53213c2a2354edf78bb364b705f",
+            "reference": "85f9fae9ae6bb53213c2a2354edf78bb364b705f",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception-interface": "^0.1 | ^0.2",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-02-12T16:56:45+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Invocation\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interface for objects that can be invoked."
+    },
+    {
+        "name": "dhii/iterator-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/iterator-abstract.git",
+            "reference": "576484183865575ffc2a0d586132741329626fb8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/iterator-abstract/zipball/576484183865575ffc2a0d586132741329626fb8",
+            "reference": "576484183865575ffc2a0d586132741329626fb8",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/stringable-interface": "^0.1",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/iterator-interface": "dev-release/0.1",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-25T12:20:32+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Iterator\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Functionality for iterators that comply with dhii/iterator-interface, or are otherwise based on iteration objects",
+        "keywords": [
+            "abstract",
+            "iteration",
+            "iterator",
+            "trait"
+        ]
+    },
+    {
+        "name": "dhii/iterator-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/iterator-base.git",
+            "reference": "093438953cb2c83309b412f9fe09211fb1d0abed"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/iterator-base/zipball/093438953cb2c83309b412f9fe09211fb1d0abed",
+            "reference": "093438953cb2c83309b412f9fe09211fb1d0abed",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/data-key-value-aware-abstract": "^0.1-alpha2",
+            "dhii/exception": "^0.1-alpha4",
+            "dhii/i18n-helper-base": "^0.1",
+            "dhii/iterator-abstract": "^0.1",
+            "dhii/iterator-helper-base": "^0.1-alpha2",
+            "dhii/iterator-interface": "^0.1",
+            "dhii/normalization-helper-base": "^0.1",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-03-22T11:45:19+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Iterator\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base concrete functionality for iterators"
+    },
+    {
+        "name": "dhii/iterator-helper-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/iterator-helper-base.git",
+            "reference": "cf62fb9f8b658a82815f15a2d906d8d1ff5c52ce"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/iterator-helper-base/zipball/cf62fb9f8b658a82815f15a2d906d8d1ff5c52ce",
+            "reference": "cf62fb9f8b658a82815f15a2d906d8d1ff5c52ce",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception": "^0.1-alpha4",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/invocable-interface": "0.1-alpha1",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "dev-master"
+        },
+        "suggest": {
+            "dhii/callback-abstract": "For structural invocation of callables"
+        },
+        "time": "2018-03-22T11:25:07+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Iterator\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Common functionality for working with iterables"
+    },
+    {
+        "name": "dhii/iterator-interface",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/iterator-interface.git",
+            "reference": "5e881465b9be8dcd7e8b97342150998f1dfa527c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/iterator-interface/zipball/5e881465b9be8dcd7e8b97342150998f1dfa527c",
+            "reference": "5e881465b9be8dcd7e8b97342150998f1dfa527c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/data-hierarchy-interface": "^0.1",
+            "dhii/data-key-value-aware-interface": "^0.1",
+            "dhii/data-path-aware-interface": "^0.1",
+            "dhii/exception-interface": "^0.1 | ^0.2",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-24T19:38:13+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Iterator\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interfaces for standard iterators"
+    },
+    {
+        "name": "dhii/map",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/map.git",
+            "reference": "9ec82af42b7cb33d3b0b70d753e8a2bc7451cedf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/map/zipball/9ec82af42b7cb33d3b0b70d753e8a2bc7451cedf",
+            "reference": "9ec82af42b7cb33d3b0b70d753e8a2bc7451cedf",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/collections-interface": "^0.2-alpha5",
+            "dhii/container-helper-base": "^0.1-alpha5",
+            "dhii/data-container-base": "^0.1-alpha2",
+            "dhii/data-container-interface": "^0.1 | ^0.2",
+            "dhii/data-object-abstract": "^0.1",
+            "dhii/factory-base": "^0.1-alpha1",
+            "dhii/i18n-helper-base": "^0.1-alpha1",
+            "dhii/iterator-abstract": "^0.1-alpha2",
+            "dhii/iterator-base": "^0.1-alpha2",
+            "dhii/iterator-interface": "^0.1",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-07-30T10:48:11+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Collection\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "An iterable container implementation.",
+        "keywords": [
+            "PSR-11",
+            "container",
+            "iterable",
+            "map"
+        ]
+    },
+    {
+        "name": "dhii/memoize-memory",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/memoize-memory.git",
+            "reference": "4e93d600dfb464ab5b6d51bffe772adbfd9b94fa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/memoize-memory/zipball/4e93d600dfb464ab5b6d51bffe772adbfd9b94fa",
+            "reference": "4e93d600dfb464ab5b6d51bffe772adbfd9b94fa",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/args-list-validation": "^0.1-alpha1",
+            "dhii/cache-abstract": "^0.1",
+            "dhii/callback-abstract": "^0.1-alpha4",
+            "dhii/container-helper-base": "^0.1-alpha5",
+            "dhii/data-container-base": "^0.1-alpha2",
+            "dhii/data-object-abstract": "^0.1",
+            "dhii/invocable-base": "^0.1",
+            "dhii/map": "^0.1",
+            "dhii/simple-cache-interface": "^0.1",
+            "dhii/validation-base": "^0.2-alpha2",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/invocable-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "psr/container": "^1.0",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-03T13:41:36+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Cache\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "An in-memory memoizer implementation."
+    },
+    {
+        "name": "dhii/normalization-helper-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/normalization-helper-base.git",
+            "reference": "1b64f0ea6b3e32f9478f854f6049500795b51da7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/normalization-helper-base/zipball/1b64f0ea6b3e32f9478f854f6049500795b51da7",
+            "reference": "1b64f0ea6b3e32f9478f854f6049500795b51da7",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "^0.1",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-06-04T08:55:31+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Util\\Normalization\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Functionality for normalizing values."
+    },
+    {
+        "name": "dhii/simple-cache-interface",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/simple-cache-interface.git",
+            "reference": "62659e4d9526e1b9854017e5d2f1e24db12f6b92"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/simple-cache-interface/zipball/62659e4d9526e1b9854017e5d2f1e24db12f6b92",
+            "reference": "62659e4d9526e1b9854017e5d2f1e24db12f6b92",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/data-container-interface": "^0.2-alpha2",
+            "dhii/stringable-interface": "^0.1",
+            "php": "^5.3 | ^7.0",
+            "psr/container": "^1.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-05-21T16:19:27+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Cache\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "A simple cache standard inspired by PSR-16."
+    },
+    {
+        "name": "dhii/stringable-interface",
+        "version": "v0.1",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/stringable-interface.git",
+            "reference": "b6653905eef2ebf377749feb80a6d18abbe913ef"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/stringable-interface/zipball/b6653905eef2ebf377749feb80a6d18abbe913ef",
+            "reference": "b6653905eef2ebf377749feb80a6d18abbe913ef",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2017-01-23T15:08:20+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Util\\String\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Interoperability interface for objects that can be cast to string"
+    },
+    {
+        "name": "dhii/validation-abstract",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/validation-abstract.git",
+            "reference": "dff998ba3476927a0fc6d10bb022425de8f1c844"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/validation-abstract/zipball/dff998ba3476927a0fc6d10bb022425de8f1c844",
+            "reference": "dff998ba3476927a0fc6d10bb022425de8f1c844",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/validation-interface": "^0.2",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "suggest": {
+            "dhii/i18n-helper-base": "For string internationalization",
+            "dhii/iterator-helper-base": "For implementations of iterable-related helper functionality",
+            "dhii/normalization-helper-base": "For simple types normalization",
+            "dhii/stringable-interface": "To be able to pass stringable objects instead of strings",
+            "dhii/validation-interface": "Needed to be able to create exceptions that are expected to be thrown"
+        },
+        "time": "2018-03-07T21:05:39+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Validation\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Common abstract functionality for validation."
+    },
+    {
+        "name": "dhii/validation-base",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/validation-base.git",
+            "reference": "9e75c5f886a2403c6989c36c2d4ffcfae158172e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/validation-base/zipball/9e75c5f886a2403c6989c36c2d4ffcfae158172e",
+            "reference": "9e75c5f886a2403c6989c36c2d4ffcfae158172e",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception": "^0.1-alpha4",
+            "dhii/i18n-helper-base": "^0.1",
+            "dhii/iterator-helper-base": "^0.1",
+            "dhii/normalization-helper-base": "^0.1",
+            "dhii/validation-abstract": "^0.2",
+            "dhii/validation-interface": "^0.2-alpha2",
+            "php": "^5.4 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-04-02T13:31:36+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Validation\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Base concrete functionality for validation."
+    },
+    {
+        "name": "dhii/validation-interface",
+        "version": "v0.2",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/validation-interface.git",
+            "reference": "a26026ae5cdf0a650b3511a22dbcb9329073b82c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/validation-interface/zipball/a26026ae5cdf0a650b3511a22dbcb9329073b82c",
+            "reference": "a26026ae5cdf0a650b3511a22dbcb9329073b82c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/exception-interface": "^0.1|^0.2",
+            "dhii/factory-interface": "^0.1",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-08-29T11:39:22+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Validation\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "A base interface for validators"
+    },
+    {
+        "name": "dhii/wp-containers",
+        "version": "v0.1.0-alpha1",
+        "version_normalized": "0.1.0.0-alpha1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/wp-containers.git",
+            "reference": "e91a6f741622770ed724a2b594145fa917811f0c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/wp-containers/zipball/e91a6f741622770ed724a2b594145fa917811f0c",
+            "reference": "e91a6f741622770ed724a2b594145fa917811f0c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/data-container-interface": "^0.2.1-alpha1",
+            "php": "^7.0 | ^8.0",
+            "psr/container": "^1.0"
+        },
+        "require-dev": {
+            "brain/monkey": "^2",
+            "gmazzap/andrew": "^1.1",
+            "phpunit/phpunit": "^6",
+            "slevomat/coding-standard": "~4.0"
+        },
+        "time": "2019-05-10T15:04:22+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Wp\\Containers\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "PSR-11 container implementations that wrap some WP features, for convenience and interoperability.",
+        "keywords": [
+            "container",
+            "dependency injection",
+            "di",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "dhii/wp-i18n",
+        "version": "dev-develop",
+        "version_normalized": "dev-develop",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dhii/wp-i18n.git",
+            "reference": "3418c35bda59364521039fd43b370d45982cb561"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dhii/wp-i18n/zipball/3418c35bda59364521039fd43b370d45982cb561",
+            "reference": "3418c35bda59364521039fd43b370d45982cb561",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dhii/i18n-abstract": "^0.1",
+            "dhii/i18n-base": "^0.1",
+            "dhii/i18n-interface": "^0.2",
+            "php": "^5.3 | ^7.0"
+        },
+        "require-dev": {
+            "10up/wp_mock": "dev-dev",
+            "codeclimate/php-test-reporter": "<=0.3.2",
+            "dhii/data-key-value-aware-interface": "^0.1",
+            "dhii/php-cs-fixer-config": "dev-php-5.3",
+            "dhii/stringable-interface": "^0.1",
+            "phpunit/phpunit": "^4.8",
+            "ptrofimov/xpmock": "^1.1"
+        },
+        "time": "2018-11-23T16:47:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dhii\\Wp\\I18n\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dhii Team",
+                "email": "development@dhii.co"
+            }
+        ],
+        "description": "Internationalization for WP"
+    },
+    {
+        "name": "psr/container",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/container.git",
+            "reference": "014d250daebff39eba15ba990eeb2a140798e77c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/container/zipball/014d250daebff39eba15ba990eeb2a140798e77c",
+            "reference": "014d250daebff39eba15ba990eeb2a140798e77c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2018-12-29T15:36:03+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Container\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common Container Interface (PHP FIG PSR-11)",
+        "homepage": "https://github.com/php-fig/container",
+        "keywords": [
+            "PSR-11",
+            "container",
+            "container-interface",
+            "container-interop",
+            "psr"
+        ]
+    }
+]

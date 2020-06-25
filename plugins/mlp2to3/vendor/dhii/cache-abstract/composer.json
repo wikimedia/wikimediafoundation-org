@@ -1,0 +1,52 @@
+{
+    "name": "dhii/cache-abstract",
+    "description": "Abstract functionality for caching.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dhii Team",
+            "email": "development@dhii.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^5.4 | ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "ptrofimov/xpmock": "^1.1",
+        "dhii/php-cs-fixer-config": "^0.1",
+        "codeclimate/php-test-reporter": "<=0.3.2",
+        "dhii/invocable-interface": "^0.1",
+        "dhii/stringable-interface": "^0.1",
+        "psr/container": "^1.0"
+    },
+    "suggest": {
+        "dhii/normalization-helper-base": "To normalize primitives, like arrays, integers, and strings",
+        "dhii/stringable-interface": "To use objects as strings",
+        "dhii/callback-abstract": "For structured invocation of callables",
+        "dhii/exception": "For standard exceptions and exception factory methods"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dhii\\Cache\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dhii\\Cache\\UnitTest\\": "test/unit",
+            "Dhii\\Cache\\FuncTest\\": "test/functional"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "csfix": "php-cs-fixer fix -vvv"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.1.x-dev"
+        }
+    }
+}

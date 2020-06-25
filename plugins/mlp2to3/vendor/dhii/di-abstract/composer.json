@@ -1,0 +1,44 @@
+{
+    "name": "dhii/di-abstract",
+    "description": "Base abstract classes for DI container implementations",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dhii Team",
+            "email": "development@dhii.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^5.4 | ^7.0"
+    },
+    "require-dev": {
+        "dhii/php-cs-fixer-config": "dev-php-5.3",
+        "phpunit/phpunit": "^4.8",
+        "ptrofimov/xpmock": "^1.1",
+        "codeclimate/php-test-reporter": "<=0.3.2",
+        "dhii/stringable-interface": "^0.1",
+        "psr/container": "^1.0",
+        "dhii/data-container-interface": "^0.2",
+        "dhii/exception-interface": "^0.2-alpha3",
+        "dhii/simple-cache-interface": "^0.1",
+        "dhii/invocable-interface": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dhii\\Di\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dhii\\Di\\UnitTest\\": "test/unit",
+            "Dhii\\Di\\FuncTest\\": "test/functional"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.2.x-dev"
+        }
+    }
+}

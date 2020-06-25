@@ -1,0 +1,49 @@
+{
+    "name": "dhii/data-object-abstract",
+    "description": "Abstract common functionality for data objects",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dhii Team",
+            "email": "development@dhii.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^5.4 | ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "ptrofimov/xpmock": "^1.1",
+        "dhii/php-cs-fixer-config": "^0.1",
+        "codeclimate/php-test-reporter": "<=0.3.2",
+        "dhii/stringable-interface": "^0.1",
+        "psr/container": "^1.0"
+    },
+    "suggest": {
+        "dhii/stringable-interface": "To be able to pass stringable objects as keys and messages",
+        "dhii/exception-helper-base": "For standard exception factories"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dhii\\Data\\Object\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dhii\\Data\\Object\\UnitTest\\": "test/unit",
+            "Dhii\\Data\\Object\\FuncTest\\": "test/functional"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "csfix": "php-cs-fixer fix -vvv"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.1.x-dev"
+        }
+    }
+}

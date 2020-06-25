@@ -9,6 +9,7 @@ node_modules
 vendor
 !plugins/safe-svg/lib/vendor
 !plugins/wp-seo/vendor
+!plugins/mlp2to3/vendor
 
 # Uploads directory
 uploads
