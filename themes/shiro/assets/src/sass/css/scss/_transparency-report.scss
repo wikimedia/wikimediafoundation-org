@@ -21,6 +21,11 @@
         }
     }
 
+    h2.page-subheading {
+        font-size: rem(40);
+        line-height: rem(52);
+    }
+
     @keyframes redacted-text {
         0% { background-color: transparent; }
         100% { background-color: #000; color: #000; }
