@@ -32,6 +32,8 @@ Credits::get_instance()->pause();
 		<?php the_excerpt(); ?>
 	</div>
 	<?php // TODO: Make this a template arg ?>
-	<a class="arrow-link" href="<?php the_permalink(); ?>">Read more</a>
+	<a class="arrow-link" href="<?php the_permalink(); ?>">
+		<?php esc_html_e( 'Read more', 'shiro' ); ?>
+	</a>
 </div>
 <?php Credits::get_instance()->resume(); ?>
