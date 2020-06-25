@@ -26,7 +26,7 @@ function shortcode_callback( $atts = [], $content = null ) {
 		return '';
 	}
 	$content = do_shortcode( $content );
-	$html = '<div class="page-intro wysiwyg mw-980"><div class="page-intro-text flex flex-medium flex">' . wp_kses_post( $content ) . '</div></div>';
+	$html    = '<div class="page-intro wysiwyg mw-980"><div class="page-intro-text flex flex-medium flex">' . wp_kses_post( $content ) . '</div></div>';
 
 	return wp_kses_post( $html );
 }

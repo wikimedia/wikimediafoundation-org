@@ -33,8 +33,10 @@ function shortcode_callback( $atts = [] ) {
  * @return string
  */
 function shortcode_content( int $post_id ) : string {
-	$template_args = get_post_meta( get_the_ID(), 'connect', true );
-	$template_args = empty( $template_args ) || is_string( $template_args ) ? array() : $template_args;
+	$template_args = get_post_meta( $post_id, 'connect', true );
+	if ( empty( $template_args ) ) {
+		return '';
+	}
 
 	$rand_translation = wmf_get_random_translation(
 		'connect',

@@ -21,6 +21,7 @@ function init() {
  */
 function shortcode_callback( $atts = [] ) {
 	$html = shortcode_content( get_the_ID() );
+
 	return wp_kses_post( $html );
 }
 
@@ -32,6 +33,10 @@ function shortcode_callback( $atts = [] ) {
  */
 function shortcode_content( int $post_id ) : string {
 	$list_data = (array) get_post_meta( $post_id, 'list', true );
+	if ( empty( $list_data ) ) {
+		return '';
+	}
+
 	ob_start();
 	foreach ( $list_data as $i => $list_section ) {
 		?>
@@ -76,5 +81,6 @@ function shortcode_content( int $post_id ) : string {
 
 		<?php
 	}
+
 	return (string) ob_get_clean();
 }

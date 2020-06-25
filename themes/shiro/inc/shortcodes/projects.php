@@ -32,7 +32,10 @@ function shortcode_callback( $atts = [] ) {
  * @return string
  */
 function shortcode_content( int $post_id ) : string {
-	$template_args = get_post_meta( get_the_ID(), 'projects_module', true );
+	$template_args = get_post_meta( $post_id, 'projects_module', true );
+	if ( empty( $template_args ) ) {
+		return '';
+	}
 
 	$rand_translation = wmf_get_random_translation(
 		'projects_module',

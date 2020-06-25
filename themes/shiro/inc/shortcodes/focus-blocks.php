@@ -33,7 +33,7 @@ function shortcode_callback( $atts = [] ) {
  */
 function shortcode_content( int $post_id ) : string {
 	$template_args = array(
-		'blocks' => get_post_meta( get_the_ID(), 'focus_blocks', true ),
+		'blocks' => get_post_meta( $post_id, 'focus_blocks', true ),
 	);
 
 	ob_start();

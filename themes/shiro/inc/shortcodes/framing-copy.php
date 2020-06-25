@@ -32,7 +32,11 @@ function shortcode_callback( $atts = [] ) {
  * @return string
  */
 function shortcode_content( int $post_id ) : string {
-	$framing_copy  = get_post_meta( get_the_ID(), 'framing_copy', true );
+	$framing_copy  = (array) get_post_meta( $post_id, 'framing_copy', true );
+	if ( empty( $framing_copy ) ) {
+		return '';
+	}
+
 	$template_args = array(
 		'pre_heading' => $framing_copy['pre_heading'] ?? '',
 		'heading'     => $framing_copy['heading'] ?? '',

@@ -81,6 +81,25 @@
       "expect": 0,
       "misMatchThreshold" : 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "Stories",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://wikimediafoundation-org.test/about/transparency-2/2019-2/stories/",
+      "referenceUrl": "https://wikimediafoundation.org/about/transparency/2019-2/stories/",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 0,
+      "hideSelectors": [],
+      "removeSelectors": [".blackout-modal"],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true
     }
 
   ],
