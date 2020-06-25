@@ -17,8 +17,9 @@
 function wmf_setup() {
 	// https://wpvip.com/documentation/vip-go/loading-gutenberg/
 	if ( function_exists( 'wpcom_vip_load_gutenberg' ) ) {
-		$front_id = get_option( 'page_on_front' );
-		wpcom_vip_load_gutenberg( [ 'post_ids' => [ (int) $front_id ] ] );
+//		$front_id = get_option( 'page_on_front' );
+//		wpcom_vip_load_gutenberg( [ 'post_ids' => [ (int) $front_id ] );
+		wpcom_vip_load_gutenberg( true );
 	}
 
 	/*
