@@ -32,11 +32,11 @@ function shortcode_callback( $atts = [] ) {
  * @return string
  */
 function shortcode_content( int $post_id ) : string {
-	$context = is_front_page() ? 'home' : get_the_ID();
+	$context = is_front_page() ? 'home' : $post_id;
 
 	$template_args = array(
 		'context'  => $context,
-		'subtitle' => get_post_meta( get_the_ID(), 'featured_post_sub_title', true ),
+		'subtitle' => get_post_meta( $post_id, 'featured_post_sub_title', true ),
 	);
 
 	ob_start();
