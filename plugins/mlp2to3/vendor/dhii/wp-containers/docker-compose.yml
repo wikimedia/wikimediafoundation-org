@@ -1,8 +1,0 @@
-version: '3.3'
-services:
-  php:
-    build:
-      dockerfile: "Dockerfile_php"
-      context: ./
-    volumes:
-      - /opt/projects/dhii/wp-containers:/opt/project
