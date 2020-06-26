@@ -55,16 +55,7 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
  * @return mixed  array|bool
  */
 function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
-
-	if ( ! class_exists( '\Inpsyde\MultilingualPress\Framework\Api\Translations' ) ) {
-		return false;
-	}
-	$args = TranslationSearchArgs::forContext( new WordpressContext() )->forSiteId( get_current_blog_id() )->includeBase();
-	$translations = resolve( \Inpsyde\MultilingualPress\Framework\Api\Translations::class )->searchTranslations( $args );
-
-	if ( empty( $translations ) ) {
-		return false;
-	}
+	$translations = wmf_multilingualpress_get_translations();
 
 	$ret_translations = array();
 
@@ -78,7 +69,7 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 			'selected'   => $translation->remoteSiteId() === get_current_blog_id(),
 			'site_id'    => $translation->remoteSiteId(),
 			'name'       => $translation->language()->name(),
-			'shortname'  => $translation->language()->isoCode(), // name( 'language_short' ),
+			'shortname'  => $translation->language()->isoCode(),
 			'uri'        => $translation->remoteUrl(),
 			'content_id' => $translation->remoteContentId(),
 		);
@@ -98,6 +89,19 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 	}
 
 	return $ret_translations;
+}
+
+/**
+ * Get possible translations.
+ *
+ * @return mixed
+ */
+function wmf_multilingualpress_get_translations() {
+	$args = TranslationSearchArgs::forContext( new WordpressContext() )->forSiteId( get_current_blog_id() )->includeBase();
+
+	return resolve(
+		\Inpsyde\MultilingualPress\Framework\Api\Translations::class
+	)->searchTranslations( $args );
 }
 
 /**
