@@ -52,8 +52,8 @@ foreach ( $visions as $key => $vision ) {
 
 	$element_tag = get_locale() === $visions_langcode[ $key ] ? 'h1' : 'p';
 	?>
-	<<?php echo sanitize_key( $element_tag ); ?> aria-hidden="<?php echo esc_attr( (bool) $vision_output['aria_hidden'] ? 'true' : 'false' ); ?>" lang="<?php echo esc_attr( substr( $vision_output['langcode'], 0, 2 ) ); ?>" class="<?php echo implode( ' ', array_map( 'esc_attr', array_filter( $vision_output['classes'] ) ) ); ?>">
+	<<?php echo sanitize_key( $element_tag ); // WPCS: XSS ok. ?> aria-hidden="<?php echo esc_attr( (bool) $vision_output['aria_hidden'] ? 'true' : 'false' ); ?>" lang="<?php echo esc_attr( substr( $vision_output['langcode'], 0, 2 ) ); ?>" class="<?php echo implode( ' ', array_map( 'esc_attr', array_filter( $vision_output['classes'] ) ) ); ?>">
 		<?php echo esc_html( $vision_output['text'] ); ?>
-	</<?php echo sanitize_key( $element_tag ); ?>>
+	</<?php echo sanitize_key( $element_tag ); // WPCS: XSS ok. ?>>
 	<?php
 }
