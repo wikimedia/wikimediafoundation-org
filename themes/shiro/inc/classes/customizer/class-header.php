@@ -17,13 +17,12 @@ class Header extends Base {
 	 */
 	public function setup_fields() {
 		$languages = [
-			'ar_AR' => __( 'Arabic', 'shiro' ),
-			'en_US' => __( 'English (US)', 'shiro' ),
-			'zh'    => __( 'Chinese', 'shiro' ),
-			'es_ES' => __( 'Spanish', 'shiro' ),
-			'fr_FR' => __( 'French', 'shiro' ),
-			'hi'    => __( 'Hindi', 'shiro' ),
+			'en_US' => 'English US',
 		];
+
+		$languages = array_merge( $languages, array_map( function ( $lang ) {
+			return $lang['language'] = $lang['english_name'];
+		}, get_site_transient( 'available_translations' ) ) );
 
 		$header_section = $this->customize->get_section( 'header_image' );
 
