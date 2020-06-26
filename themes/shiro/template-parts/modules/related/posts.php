@@ -51,7 +51,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 						'image_id'   => get_post_thumbnail_id(),
 						'authors'    => wmf_byline(),
 						'date'       => get_the_date(),
-						'isodate'    => get_the_date(c),
+						'isodate'    => get_the_date( 'c' ),
 						'excerpt'    => get_the_excerpt(),
 						'categories' => get_the_category(),
 

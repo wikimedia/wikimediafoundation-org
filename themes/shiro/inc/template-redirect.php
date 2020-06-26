@@ -127,7 +127,7 @@ function wmf_get_most_recent_child_page_uri( $page_id ) {
 	);
 
 	if ( ! empty( $child_pages ) ) {
-		return $child_pages[0]->guid;
+		return get_permalink( $child_pages[0] );
 	}
 
 	return '';
