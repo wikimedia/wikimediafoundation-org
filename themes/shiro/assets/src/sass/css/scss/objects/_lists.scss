@@ -13,9 +13,9 @@
 		list-style-type: none;
 		margin-left: 0;
 		clear: both;
-    @media (min-width: 768px) {
-  		margin-bottom: 60px;
-    }
+		@media (min-width: 768px) {
+			margin-bottom: 60px;
+		}
 	}
 
 	&.hover-highlight a {
@@ -46,18 +46,19 @@
 }
 
 .profile-contacts {
-    font-size: 13px;
-    color: $color-blue;
-    margin-bottom: 20px;
+	font-size: 13px;
+	color: $color-blue;
+	margin-bottom: 20px;
 
-    img {
-        height: 16px;
-        margin-right: 6px;
-        margin-top: 1px;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
+	img {
+		height: 16px;
+		margin-right: 6px;
+		margin-top: 1px;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
 }
 
 .list-inline li {
@@ -68,78 +69,79 @@
 
 // This is for the ridealong nav on the static lists
 .toc {
-    top: 75px;
-    bottom: 0;
+	top: 75px;
+	bottom: 0;
 	padding-right: 20px;
 
 	.admin-bar & {
 		top: 107px;
 	}
 
-    // Terrible hack to make sure fixed width stays relative to parent
-    @media (min-width: $medium-bp) {
-        position: sticky;
-        &.fixedsticky-on {
-            width: 320px;
-        }
+	// Terrible hack to make sure fixed width stays relative to parent
+	@media (min-width: $medium-bp) {
+		position: sticky;
+		&.fixedsticky-on {
+			width: 320px;
+		}
 
-        // Less terrible hack to make sure TOC can't intersect with footer
-        padding-top: 40px;
-        padding-bottom: 120px;
-    }
+		// Less terrible hack to make sure TOC can't intersect with footer
+		padding-top: 40px;
+		padding-bottom: 120px;
+	}
 
 }
+
 .toc-link-item {
 	list-style-type: none;
 	margin-left: 0;
 	margin-bottom: 0;
 	font-weight: 600;
 }
+
 .toc-link {
 	@include font-size(16, 14);
-	display:block;
+	display: block;
 	margin-bottom: 15px;
 	color: $color-blue;
 	padding-left: 18px;
 	width: 100%;
 
-  &.-active {
-    color: #000;
+	&.-active {
+		color: #000;
 
 		&::before {
 			content: "\2022";
 			position: absolute;
 			left: 0;
 		}
-  }
+	}
 }
-
-
 
 
 // Static list tabs on mobile
 
 .static-list-item {
-  @media (max-width: 767px) {
-    margin-right: -20px;
-    margin-left: -20px;
-    padding-right: 20px;
-    padding-left: 20px;
-    margin-bottom: 0;
-  }
+	@media (max-width: 767px) {
+		margin-right: -20px;
+		margin-left: -20px;
+		padding-right: 20px;
+		padding-left: 20px;
+		margin-bottom: 0;
+	}
 }
+
 .static-list-heading {
 	margin-top: 2rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  pointer-events: none;
+	margin-bottom: 1.5rem;
+	position: relative;
+	pointer-events: none;
 	padding-bottom: 0.5rem;
 	border-bottom: 2px solid $color-black;
-  @media (max-width: 767px) {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    pointer-events: all;
-  }
+	@media (max-width: 767px) {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		pointer-events: all;
+	}
 }
 
 .static-list-contents h3 {

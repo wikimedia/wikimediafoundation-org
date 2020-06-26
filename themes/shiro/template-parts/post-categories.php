@@ -17,7 +17,9 @@ if ( empty( $post_categories ) || is_wp_error( $post_categories ) ) {
 
 ?>
 <div class="read-more flex flex-medium">
-	<h5 class="h5 color-black">Read More</h5>
+	<h5 class="h5 color-black" aria-label="<?php esc_html_e( 'Read more on these related topics', 'shiro' ); ?>">
+		<?php esc_html_e( 'Read more', 'shiro' ); ?>
+	</h5>
 	<ul class="link-list bold inline-block">
 		<?php foreach ( $post_categories as $cat_id => $category ) : ?>
 			<?php

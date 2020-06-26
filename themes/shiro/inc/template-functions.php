@@ -212,7 +212,7 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 		return $cached_posts;
 	}
 
-	$child_terms = wmf_get_role_hierarchy( $term_id, 'role' );
+	$child_terms = wmf_get_role_hierarchy( $term_id );
 
 	if ( empty( $child_terms ) ) {
 		$post_list[ $term_id ] = wmf_get_role_posts( $term_id );
@@ -422,7 +422,7 @@ function wmf_get_author_link( $author_id ) {
 	if ( empty( $post_list ) ) {
 		$post = get_post( $author_id );
 	}
-    
+
     $author_link = $post->post_name;
 
 	return $author_link;
@@ -473,7 +473,7 @@ add_filter( 'excerpt_more', 'wmf_filter_more' );
 function wmf_remove_coauthors_archive_filter() {
 	global $coauthors_plus;
 
-	remove_filter( 'get_the_archive_title', array( $coauthors_plus, 'filter_author_archive_title' ), 10, 2 );
+	remove_filter( 'get_the_archive_title', array( $coauthors_plus, 'filter_author_archive_title' ), 10 );
 }
 add_action( 'init', 'wmf_remove_coauthors_archive_filter' );
 
@@ -562,10 +562,10 @@ function wmf_rss_templates()
 {
     foreach( array( 'offset1', 'images' ) as $name )
     {
-        add_feed( $name, 
+        add_feed( $name,
             function() use ( $name )
             {
-                get_template_part( 'feed', $name );  
+                get_template_part( 'feed', $name );
             }
         );
     }
@@ -613,7 +613,7 @@ function wmf_locate_report_landing_page_id( $page_id ) {
  *
  * Returns an array of child pages within a report parent, prepended with the
  * introductory Report Landing Page.
- * 
+ *
  * @return array Array of [ id, title, url, active ] nav list items in the report.
  */
 function wmf_get_report_sidebar_data() {
