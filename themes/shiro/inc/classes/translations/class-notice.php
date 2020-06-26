@@ -158,7 +158,7 @@ class Notice {
 	public function show_table_progress() {
 		if ( $this->has_post_in_progress ) {
 			printf(
-				'<abbr title="%1%s"><span class="dashicons dashicons-lock" style="color: #ff0000;"><span class="screen-reader-text">%1$s</span></span></abbr>',
+				'<abbr title="%1$s"><span class="dashicons dashicons-lock" style="color: #ff0000;"><span class="screen-reader-text">%1$s</span></span></abbr>',
 				esc_html__( 'There is a translation in progress for this content.', 'shiro' )
 			);
 		} else {
