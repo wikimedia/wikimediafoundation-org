@@ -74,7 +74,12 @@ $image_alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 				<?php endif; ?>
 			</div>
 
-			<a href="<?php echo esc_url( $link ); ?>" class="arrow-link">Read more</a>
+			<a href="<?php echo esc_url( $link ); ?>"
+			   class="arrow-link"
+			   aria-label="<?php /* translators: 1. the post title. */
+			   esc_html_e( sprintf( 'Read more about %s', $title ), 'shiro' ); ?>">
+				<?php esc_html_e( 'Read more', 'shiro' ); ?>
+			</a>
 
 		</div>
 
