@@ -192,7 +192,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 			<?php if ( count( $wmf_translations ) > 10 ) : ?>
 			<div class="arrow-wrap">
 				<span>
-					<span class="elipsis">...</span>
+					<span class="elipsis">&hellip;</span>
 					<?php wmf_show_icon( 'trending', 'icon-turquoise material' ); ?>
 				</span>
 			</div>

@@ -81,16 +81,16 @@ p {
 
 ul,
 ol {
-	li {
-		@include font-size(20, 16);
-		// list-style-type: disc;
-		margin-left: 2rem;
+  li {
+    @include font-size(20, 16);
+    // list-style-type: disc;
+    margin-left: 2rem;
 
-		margin-bottom: 2rem;
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
+    margin-bottom: 2rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 // .blockquote-container wrapped around blockquote via JS
@@ -214,14 +214,6 @@ article {
 	p {
 		margin-bottom: 2rem;
 	}
-}
-
-.page-intro-text,
-.page-intro-text p,
-.page-intro-text a,
-.page-intro-text li {
-	@include font-size(18, 16);
-	@include line-height(29, 25);
 }
 
 .page-intro-inline-link {
