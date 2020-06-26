@@ -1,0 +1,390 @@
+# Translation of Themes - Twenty Nineteen in Arabic
+# This file is distributed under the same license as the Themes - Twenty Nineteen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-09-24 14:11:28+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 && n % 100 <= 10) ? 3 : ((n % 100 >= 11 && n % 100 <= 99) ? 4 : 5))));\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
+"Language: ar\n"
+"Project-Id-Version: Themes - Twenty Nineteen\n"
+
+#. Description of the theme
+msgid "Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Twenty Nineteen is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes."
+msgstr "قالبنا الافتراضي لعام 2019 صُمم ليعرض قوة مُحرر المكوّنات. فهو يتميز بأنماط مخصصة لجميع المكوّنات الافتراضية، وقد تم تصميمه بحيثما ستراه في المحرر ستشاهده على موقعك الإلكتروني بالواجهة. تم تصميم Twenty Nineteen بحيث تكون قابلة للتكيف مع نطاق واسع من مواقع الويب، سواءً كنت تدير مدونة صور أو تطلق نشاطًا تجاريًا جديدًا أو تدعم مؤسسة غير ربحية. تتميز بالمساحة البيضاء الواسعة والعناوين الحديثة على غرار sans-serif مقترنة بنصوص النص الكلاسيكي، لقد تمّ تصميم القالب ليبدو جميلاً على جميع أحجام الشاشات."
+
+#. Theme Name of the theme
+msgid "Twenty Nineteen"
+msgstr "Twenty Nineteen"
+
+#. translators: %s: Parent post link.
+#: single.php:31
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
+msgstr "<span class=\"meta-nav\">نُشر في</span><span class=\"post-title\">%s</span>"
+
+#: image.php:87
+msgctxt "Parent post link"
+msgid "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
+msgstr "<span class=\"meta-nav\">نشر في</span><br><span class=\"post-title\">%title</span>"
+
+#: template-parts/content/content.php:18
+#: template-parts/content/content-excerpt.php:18
+msgctxt "post"
+msgid "Featured"
+msgstr "البارزة"
+
+#. translators: %s: WordPress version.
+#: inc/back-compat.php:40 inc/back-compat.php:55 inc/back-compat.php:76
+msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
+msgstr "يتطلب قالب Twenty Nineteen على الأقل إصدار ووردبريس 4.7. أنت تقوم بتشغيل الإصدار %s. يرجى الترقية والمحاولة مرة أخرى."
+
+#: inc/template-functions.php:143
+msgid "Back"
+msgstr "رجوع"
+
+#: inc/template-functions.php:136
+msgid "More"
+msgstr "المزيد"
+
+#: inc/customizer.php:98
+msgid "Apply a filter to featured images using the primary color"
+msgstr "تطبيق فلتر على الصور المميزة باستخدام اللون الأساسي"
+
+#: inc/customizer.php:78
+msgid "Apply a custom color for buttons, links, featured images, etc."
+msgstr "تطبيق لون مخصص للأزرار والروابط والصور المميزة وما إلى ذلك."
+
+#: inc/customizer.php:56
+msgctxt "primary color"
+msgid "Custom"
+msgstr "لون مخصص"
+
+#: inc/customizer.php:55
+msgctxt "primary color"
+msgid "Default"
+msgstr "اللون الأساسي"
+
+#: functions.php:168
+msgid "White"
+msgstr "أبيض"
+
+#: functions.php:163
+msgid "Light Gray"
+msgstr "رمادي فاتح"
+
+#: functions.php:158
+msgid "Dark Gray"
+msgstr "رمادي داكن"
+
+#: functions.php:136
+msgid "XL"
+msgstr "XL"
+
+#: functions.php:135
+msgid "Huge"
+msgstr "كبير جدًا"
+
+#: functions.php:130
+msgid "L"
+msgstr "L"
+
+#: functions.php:129
+msgid "Large"
+msgstr "كبير"
+
+#: functions.php:124
+msgid "M"
+msgstr "M"
+
+#: functions.php:123
+msgid "Normal"
+msgstr "عادي"
+
+#: functions.php:117
+msgid "Small"
+msgstr "صغير"
+
+#: functions.php:118
+msgid "S"
+msgstr "S"
+
+#: functions.php:60 footer.php:37
+msgid "Footer Menu"
+msgstr "القائمة السفلية"
+
+#: image.php:70
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "الحجم الكامل"
+
+#: image.php:56
+msgid "Page"
+msgstr "الصفحة"
+
+#: functions.php:192
+msgid "Add widgets here to appear in your footer."
+msgstr "إضافة ودجات هنا لتظهر في تذييل موقعك."
+
+#: functions.php:190 template-parts/footer/footer-widgets.php:12
+msgid "Footer"
+msgstr "التذييل"
+
+#: inc/customizer.php:53
+msgid "Primary Color"
+msgstr "اللون الرئيسي"
+
+#: template-parts/post/discussion-meta.php:18
+msgid "No comments"
+msgstr "لا توجد تعليقات"
+
+#. translators: %d: Number of comments.
+#: template-parts/post/discussion-meta.php:16
+msgid "%d Comment"
+msgid_plural "%d Comments"
+msgstr[0] "لا توجد تعليقات"
+msgstr[1] "تعليق واحد"
+msgstr[2] "تعليقين"
+msgstr[3] "%d تعليقات"
+msgstr[4] "%d تعليق"
+msgstr[5] "%d تعليق"
+
+#: template-parts/post/author-bio.php:26
+msgid "View more posts"
+msgstr "عرض مقالات أكثر"
+
+#. translators: %s: Post author.
+#: template-parts/post/author-bio.php:17
+msgid "Published by %s"
+msgstr "نُشر بواسطة %s"
+
+#: template-parts/header/site-branding.php:33
+msgid "Top Menu"
+msgstr "القائمة العلوية"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "متابعة قراءة<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: image.php:52 template-parts/content/content-page.php:27
+#: template-parts/content/content.php:49
+#: template-parts/content/content-single.php:40
+msgid "Pages:"
+msgstr "الصفحات:"
+
+#: template-parts/content/content-none.php:46
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "يبدو أننا لم نعثر على ما تطلب. لعل استعمال البحث قد يساعد."
+
+#: template-parts/content/content-none.php:39
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "عذرا، لا يوجد شيء يتطابق مع كلمات البحث التي استعملتها، المرجو المحاولة من جديد باستعمال كلمات مفتاحية أخرى."
+
+#. translators: 1: Link to WP admin new post page.
+#: template-parts/content/content-none.php:26
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "هل أنت على استعداد لنشر مقالتك الأولى؟ <a href=\"%1$s\">ابدأ من هنا</a>."
+
+#: template-parts/content/content-none.php:16
+msgid "Nothing Found"
+msgstr "لم يتم العثور على نتائج"
+
+#: single.php:42
+msgid "Previous post:"
+msgstr "المقالة السابقة:"
+
+#: single.php:41
+msgid "Previous Post"
+msgstr "المقالة السابقة"
+
+#: single.php:39
+msgid "Next post:"
+msgstr "المقالة التالية"
+
+#: single.php:38
+msgid "Next Post"
+msgstr "المقالة التالية"
+
+#: inc/template-tags.php:234
+msgid "Older posts"
+msgstr "مقالات أقدم"
+
+#: inc/template-tags.php:230
+msgid "Newer posts"
+msgstr "مقالات أحدث"
+
+#: inc/template-tags.php:104
+msgid "Tags:"
+msgstr "وسوم:"
+
+#: inc/template-tags.php:92
+msgid "Posted in"
+msgstr "نُشر في"
+
+#. translators: Used between list items, there is a space after the comma.
+#: inc/template-tags.php:86 inc/template-tags.php:98
+msgid ", "
+msgstr "،"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: inc/template-tags.php:63
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "اترك تعليقًا<span class=\"screen-reader-text\"> على %s</span>"
+
+#: inc/template-tags.php:46
+msgid "Posted by"
+msgstr "تمّ النشر بواسطة"
+
+#: inc/template-functions.php:82
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/template-functions.php:80
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/template-functions.php:92
+msgid "Archives:"
+msgstr "الأرشيف:"
+
+#. translators: %s: Taxonomy singular name.
+#: inc/template-functions.php:90
+msgid "%s Archives:"
+msgstr "أرشيف %s:"
+
+#: inc/template-functions.php:86
+msgid "Post Type Archives: "
+msgstr "أرشيفات نوع المقالة:"
+
+#: inc/template-functions.php:84
+msgid "Daily Archives: "
+msgstr "الأرشيف اليومي:"
+
+#: inc/template-functions.php:82
+msgid "Monthly Archives: "
+msgstr "الأرشيف الشهري:"
+
+#: inc/template-functions.php:80
+msgid "Yearly Archives: "
+msgstr "الأرشيف السنوي:"
+
+#: inc/template-functions.php:78
+msgid "Author Archives: "
+msgstr "أرشيف الكاتب:"
+
+#: inc/template-functions.php:76
+msgid "Tag Archives: "
+msgstr "أرشيف الوسم:"
+
+#: inc/template-functions.php:74
+msgid "Category Archives: "
+msgstr "أرشيف التصنيف:"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: template-parts/content/content-page.php:41
+#: template-parts/header/entry-header.php:32 inc/template-tags.php:120
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr "تحرير <span class=\"screen-reader-text\">%s</span>"
+
+#: header.php:25
+msgid "Skip to content"
+msgstr "التجاوز إلى المحتوى"
+
+#: functions.php:61 template-parts/header/site-branding.php:46
+msgid "Social Links Menu"
+msgstr "قائمة الروابط الإجتماعية"
+
+#: functions.php:59
+msgid "Primary"
+msgstr "رئيسي"
+
+#. translators: %s: WordPress.
+#: footer.php:28
+msgid "Proudly powered by %s."
+msgstr "مدعوم بواسطة %s بكل فخر."
+
+#: comments.php:116
+msgid "Comments are closed."
+msgstr "التعليقات مغلقة."
+
+#: comments.php:96
+msgid "Next"
+msgstr "التالي"
+
+#: comments.php:95
+msgid "Previous"
+msgstr "السابق"
+
+#: comments.php:92 comments.php:95 comments.php:96
+msgid "Comments"
+msgstr "التعليقات"
+
+#. translators: 1: Number of comments, 2: Post title.
+#: comments.php:44
+msgctxt "comments title"
+msgid "%1$s reply on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
+msgstr[0] "لا توجد تعليقات على &ldquo;%2$s&rdquo;"
+msgstr[1] "تعليق واحد على &ldquo;%2$s&rdquo;"
+msgstr[2] "تعليقين على &ldquo;%2$s&rdquo;"
+msgstr[3] "%1$s تعليقات على &ldquo;%2$s&rdquo;"
+msgstr[4] "%1$s تعليق على &ldquo;%2$s&rdquo;"
+msgstr[5] "%1$s تعليق على &ldquo;%2$s&rdquo;"
+
+#. translators: %s: Post title.
+#: comments.php:40
+msgctxt "comments title"
+msgid "One reply on &ldquo;%s&rdquo;"
+msgstr "تعليق واحد على &ldquo;%s&rdquo;"
+
+#: comments.php:35 comments.php:105 comments.php:107
+msgid "Leave a comment"
+msgstr "اترك تعليقًا"
+
+#: comments.php:33
+msgid "Join the Conversation"
+msgstr "انضم إلى المحادثة"
+
+#: classes/class-twentynineteen-walker-comment.php:94
+msgid "Your comment is awaiting moderation."
+msgstr "تعليقك بإنتظار الموافقة للنشر."
+
+#: classes/class-twentynineteen-walker-comment.php:87
+msgid "Edit"
+msgstr "تحرير"
+
+#. translators: 1: Comment date, 2: Comment time.
+#: classes/class-twentynineteen-walker-comment.php:79
+msgid "%1$s at %2$s"
+msgstr "%1$s في %2$s"
+
+#. translators: %s: Comment author link.
+#: classes/class-twentynineteen-walker-comment.php:59
+msgid "%s <span class=\"screen-reader-text says\">says:</span>"
+msgstr "%s <span class=\"screen-reader-text says\">قال:</span>"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "يبدو أنه لم يتم إيجاد شيء في هذا المكان. ربما تريد البحث؟"
+
+#: 404.php:20
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "عذراً! لايمكن العثور على تلك الصفحة."
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentynineteen/"
+msgstr "https://ar.wordpress.org/themes/twentynineteen/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "فريق ووردبريس"
+
+#. Author URI of the theme
+#: footer.php:25
+msgid "https://wordpress.org/"
+msgstr "https://ar.wordpress.org/"
