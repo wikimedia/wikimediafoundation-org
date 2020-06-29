@@ -56,7 +56,9 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
  */
 function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 	$translations = wmf_multilingualpress_get_translations();
-
+	if ( false === $translations ) {
+		return false;
+	}
 	$ret_translations = array();
 
 	/**
@@ -97,6 +99,9 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
  * @return mixed
  */
 function wmf_multilingualpress_get_translations() {
+	if ( ! class_exists( TranslationSearchArgs::class ) ) {
+		return false;
+	}
 	$args = TranslationSearchArgs::forContext( new WordpressContext() )->forSiteId( get_current_blog_id() )->includeBase();
 
 	return resolve(
