@@ -220,7 +220,6 @@ $header-bp-mw: 1049px;
 			.photo-aspect-ratio  {
 				@include aspect-ratio(2, 1);
 				position: relative;
-				bottom: 0;
 				left: 0;
 				right: 0;
 				order: 2;
@@ -363,7 +362,7 @@ $header-bp-mw: 1049px;
 
 		@media (max-width: $large-bp) {
 			flex-direction: row;
-			align-items: left;
+			align-items: flex-start;
 
 			ul li {
 				display: inline-block;
