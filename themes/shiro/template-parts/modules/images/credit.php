@@ -23,6 +23,7 @@ $credit_info = get_post_meta( $image_id, 'credit_info', true );
 $author      = ! empty( $credit_info['author'] ) ? $credit_info['author'] : '';
 $license     = ! empty( $credit_info['license'] ) ? $credit_info['license'] : '';
 $url         = ! empty( $credit_info['url'] ) ? $credit_info['url'] : '';
+$image_alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 if ( is_int(stripos($license,'Public domain') ) ) {
 $license_url = 'https://en.wikipedia.org/wiki/Public_domain';
 } elseif ( is_int(stripos($license,'GFDL') ) && is_int(stripos($license,'1.2') )  ) {
@@ -50,7 +51,7 @@ $license_url = ! empty( $credit_info['license_url'] ) ? $credit_info['license_ur
 
 <div class="photo-credit-container w-32p p flex flex-all">
 	<div class="photo-credit-img_container w-32p">
-		<img src="<?php echo esc_url(wp_get_attachment_image_src( $image_id, 'image_square_medium' )[0]); ?>">
+		<img src="<?php echo esc_url(wp_get_attachment_image_src( $image_id, 'image_square_medium' )[0]); ?>" alt="<?php echo esc_attr( $image_alt ); ?>">
 	</div>
 
 	<div class="w-68p">
