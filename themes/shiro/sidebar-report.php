@@ -19,6 +19,7 @@ if ( empty( $sidebar_items ) ) {
 	<ul class="report-nav">
 		<li class="menu-toggle">
 			<button type="button" data-menu-toggle>
+				<?php wmf_show_icon( 'downTriangle', 'toc-toggle' ); ?>
 				<span class="screen-reader-text"><?php esc_html_e( 'Toggle Menu', 'shiro' ); ?></span>
 			</button>
 		</li>
