@@ -1,0 +1,374 @@
+# Translation of Themes - Twenty Sixteen in Arabic
+# This file is distributed under the same license as the Themes - Twenty Sixteen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-04-26 19:39:49+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 && n % 100 <= 10) ? 3 : ((n % 100 >= 11 && n % 100 <= 99) ? 4 : 5))));\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
+"Language: ar\n"
+"Project-Id-Version: Themes - Twenty Sixteen\n"
+
+#. Theme Name of the theme
+msgid "Twenty Sixteen"
+msgstr "Twenty Sixteen"
+
+#. Description of the theme
+msgid "Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere."
+msgstr "Twenty Sixteen هو خطوة تحديثية للتخطيط الأكثر شعبية على الووردبريس — الترويسة الأفقية مع شريط جانبي إختياري مثالي للمدونات والمواقع. هناك خيارات لتخصيص الألوان مع تجميعات إفتراضية جميلة من الألوان المُمتعة،  تخطيط شبكي متمدد ومتناغم يستخدم أسلوب الموبايل-أولاً وإهتمام فائق بأدق التفاصيل. Twenty Sixteen سيجعل موقعك يبدو متألقًا وجميلاً في كل مكان."
+
+#: functions.php:204
+msgid "Bright Red"
+msgstr "أحمر فاتح"
+
+#: functions.php:199
+msgid "Dark Red"
+msgstr "أحمر داكن"
+
+#: functions.php:194
+msgid "Medium Brown"
+msgstr "بني متوسط"
+
+#: functions.php:189
+msgid "Dark Brown"
+msgstr "بني داكن"
+
+#: functions.php:184
+msgid "Light Blue"
+msgstr "أزرق فاتح"
+
+#: functions.php:179
+msgid "Bright Blue"
+msgstr "أزرق مشع"
+
+#: functions.php:174
+msgid "Blue Gray"
+msgstr "أزرق رمادي"
+
+#: functions.php:169
+msgid "White"
+msgstr "أبيض"
+
+#: functions.php:164
+msgid "Light Gray"
+msgstr "رمادي فاتح"
+
+#: functions.php:159
+msgid "Medium Gray"
+msgstr "رمادي متوسط"
+
+#: functions.php:154
+msgid "Dark Gray"
+msgstr "رمادي داكن"
+
+#. translators: %s: Post title.
+#: template-parts/content.php:29 inc/template-tags.php:195
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "متابعة قراءة<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#. translators: %s: Post title.
+#: image.php:88 template-parts/content-page.php:39
+#: template-parts/content.php:53 template-parts/content-search.php:28
+#: template-parts/content-search.php:43 template-parts/content-single.php:47
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "تحرير<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: inc/customizer.php:345
+msgid "Red"
+msgstr "أحمر"
+
+#. translators: %s: Post title.
+#: comments.php:31
+msgctxt "comments title"
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr "رأي واحد على &ldquo;%s&rdquo;"
+
+#: searchform.php:16
+msgctxt "submit button"
+msgid "Search"
+msgstr "بحث"
+
+#: searchform.php:14
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "بحث &hellip;"
+
+#: searchform.php:13
+msgctxt "label"
+msgid "Search for:"
+msgstr "البحث عن:"
+
+#: footer.php:30
+msgid "Footer Social Links Menu"
+msgstr "قائمة الروابط الإجتماعية في التذييل"
+
+#: footer.php:17
+msgid "Footer Primary Menu"
+msgstr "القائمة الأساسية في التذييل"
+
+#: functions.php:269
+msgid "Add widgets here to appear in your sidebar."
+msgstr "أضف الودجات هنا لتظهر في الشريط الجانبي."
+
+#: template-parts/content.php:14
+msgid "Featured"
+msgstr "المميز"
+
+#: template-parts/content-none.php:33
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "يبدو أننا لم نعثر على ما تطلب. لعل استعمال البحث قد يساعد."
+
+#: template-parts/content-none.php:28
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "عذرا، لا يوجد شيء يتطابق مع كلمات البحث التي استعملتها، المرجو المحاولة من جديد باستعمال كلمات مفتاحية أخرى."
+
+#. translators: %s: Post editor URL.
+#: template-parts/content-none.php:22
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "هل أنت على استعداد لنشر مقالتك الأولى؟ <a href=\"%1$s\">ابدأ من هنا</a>."
+
+#: template-parts/content-none.php:13
+msgid "Nothing Found"
+msgstr "لم يتم العثور على نتائج"
+
+#. translators: %s: The post author display name.
+#: template-parts/biography.php:35
+msgid "View all posts by %s"
+msgstr "مشاهدة كل المقالات بواسطة %s"
+
+#: template-parts/biography.php:28
+msgid "Author:"
+msgstr "الكاتب:"
+
+#: single.php:42
+msgid "Previous post:"
+msgstr "المقالة السابقة:"
+
+#: single.php:41
+msgid "Previous"
+msgstr "السابق"
+
+#: single.php:39
+msgid "Next post:"
+msgstr "المقالة التالية:"
+
+#: single.php:38
+msgid "Next"
+msgstr "التالي"
+
+#. translators: %s: The search query.
+#: search.php:21
+msgid "Search Results for: %s"
+msgstr "نتائج البحث عن: %s"
+
+#: inc/template-tags.php:113
+msgctxt "Used before tag names."
+msgid "Tags"
+msgstr "الوسوم"
+
+#: inc/template-tags.php:104
+msgctxt "Used before category names."
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: inc/template-tags.php:100 inc/template-tags.php:109
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:84
+msgctxt "Used before publish date."
+msgid "Posted on"
+msgstr "نُشرت في"
+
+#: inc/template-tags.php:40
+msgctxt "Used before post format."
+msgid "Format"
+msgstr "بنية المقالة"
+
+#. translators: %s: Post title.
+#: inc/template-tags.php:53
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "اترك تعليقًا <span class=\"screen-reader-text\"> على %s</span>"
+
+#: inc/template-tags.php:26
+msgctxt "Used before post author name."
+msgid "Author"
+msgstr "الكاتب"
+
+#: functions.php:209 inc/customizer.php:355
+msgid "Yellow"
+msgstr "أصفر"
+
+#: inc/customizer.php:335
+msgid "Gray"
+msgstr "رمادي"
+
+#: inc/customizer.php:325
+msgid "Dark"
+msgstr "داكن"
+
+#: inc/customizer.php:221
+msgid "Main Text Color"
+msgstr "لون النص الرئيسي"
+
+#: inc/customizer.php:315
+msgid "Default"
+msgstr "إفتراضي"
+
+#: inc/customizer.php:242
+msgid "Secondary Text Color"
+msgstr "لون النص الثانوي"
+
+#: inc/customizer.php:200
+msgid "Link Color"
+msgstr "لون الرابط"
+
+#: inc/customizer.php:176
+msgid "Page Background Color"
+msgstr "لون خلفية الصفحة"
+
+#: single.php:31 image.php:107
+msgctxt "Parent post link"
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
+msgstr "<span class=\"meta-nav\">نُشرت على</span><span class=\"post-title\">%title</span>"
+
+#. translators: %s: The current WordPress version.
+#: inc/back-compat.php:42 inc/back-compat.php:56 inc/back-compat.php:75
+msgid "Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again."
+msgstr "Twenty Sixteen يتطلب نسخة الووردبريس 4.4 على الأقل. أنت تستخدم النسخة %s. يرجى الترقية والمحاولة مرة أخرى."
+
+#: inc/customizer.php:153
+msgid "Base Color Scheme"
+msgstr "نظام الألوان الأساسي"
+
+#: image.php:77
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "الحجم الكامل"
+
+#: image.php:58 template-parts/content-page.php:24
+#: template-parts/content.php:36 template-parts/content-single.php:26
+msgid "Pages:"
+msgstr "الصفحات:"
+
+#: image.php:26
+msgid "Next Image"
+msgstr "الصورة التالية"
+
+#: image.php:25
+msgid "Previous Image"
+msgstr "الصورة السابقة"
+
+#: header.php:50
+msgid "Menu"
+msgstr "القائمة"
+
+#: header.php:28
+msgid "Skip to content"
+msgstr "التجاوز إلى المحتوى"
+
+#: functions.php:419
+msgid "expand child menu"
+msgstr "توسيع القائمة الفرعية"
+
+#: functions.php:420
+msgid "collapse child menu"
+msgstr "طي القائمة الفرعية"
+
+#: functions.php:338
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:279
+msgid "Content Bottom 1"
+msgstr "أسفل المحتوى 1"
+
+#: functions.php:281 functions.php:293
+msgid "Appears at the bottom of the content on posts and pages."
+msgstr "تظهر أسفل محتوى الصفحات والمقالات."
+
+#: functions.php:291
+msgid "Content Bottom 2"
+msgstr "أسفل المحتوى 2"
+
+#: functions.php:322
+msgctxt "Merriweather font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:330
+msgctxt "Montserrat font: on or off"
+msgid "on"
+msgstr "off"
+
+#: functions.php:267
+msgid "Sidebar"
+msgstr "الشريط الجانبي"
+
+#: functions.php:93 header.php:67
+msgid "Social Links Menu"
+msgstr "قائمة الروابط الإجتماعية"
+
+#: functions.php:92 header.php:54
+msgid "Primary Menu"
+msgstr "القائمة الأساسية"
+
+#. translators: %s: WordPress
+#: footer.php:63
+msgid "Proudly powered by %s"
+msgstr "مدعوم بواسطة %s"
+
+#: comments.php:71
+msgid "Comments are closed."
+msgstr "التعليقات مغلقة."
+
+#. translators: 1: Number of comments, 2: Post title.
+#: comments.php:35
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "لا رأي على &ldquo;%2$s&rdquo;"
+msgstr[1] "رأي واحد على &ldquo;%2$s&rdquo;"
+msgstr[2] "رأيان على &ldquo;%2$s&rdquo;"
+msgstr[3] "%1$s آراء على &ldquo;%2$s&rdquo;"
+msgstr[4] "%1$s رأي على &ldquo;%2$s&rdquo;"
+msgstr[5] "%1$s رأي على &ldquo;%2$s&rdquo;"
+
+#: image.php:62 template-parts/content-page.php:28
+#: template-parts/content.php:40 template-parts/content-single.php:30
+#: search.php:46 archive.php:54 index.php:51
+msgid "Page"
+msgstr "الصفحة"
+
+#: search.php:45 archive.php:53 index.php:50
+msgid "Next page"
+msgstr "الصفحة التالية"
+
+#: search.php:44 archive.php:52 index.php:49
+msgid "Previous page"
+msgstr "الصفحة السابقة"
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "يبدو أنه لم يتم إيجاد شيء في هذا المكان. ربما تريد البحث؟"
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "عذراً! لايمكن العثور على تلك الصفحة."
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentysixteen/"
+msgstr "https://wordpress.org/themes/twentysixteen/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "فريق ووردبريس"
+
+#. Author URI of the theme
+#: footer.php:60
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
