@@ -13,7 +13,7 @@
         @media (min-width: $medium-bp) { margin-bottom: 2.5rem; }
 
         .bg-img {
-            background-size: contain;
+            background-size: cover;
         }
         .content {
             width: unset;
@@ -173,7 +173,7 @@
             border-color: black;
         }
     }
-    
+
     .toc-toggle {
         width: 10px;
     }
@@ -235,7 +235,7 @@
             line-height: 1.5;
             margin-bottom: 1.125rem;
         }
-        
+
         ul,
         ol {
             list-style-position: outside;
@@ -464,4 +464,12 @@
         @include font-size(24, 21);
         @include line-height(40, 35);
     }
+}
+
+.toc.header-pink {
+  .toc-link-item {
+    &.active > a {
+      background: #fbe9f1;
+    }
+  }
 }
