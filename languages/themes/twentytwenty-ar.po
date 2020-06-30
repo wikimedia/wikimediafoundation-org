@@ -1,0 +1,545 @@
+# Translation of Themes - Twenty Twenty in Arabic
+# This file is distributed under the same license as the Themes - Twenty Twenty package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-04-07 11:44:16+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 && n % 100 <= 10) ? 3 : ((n % 100 >= 11 && n % 100 <= 99) ? 4 : 5))));\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
+"Language: ar\n"
+"Project-Id-Version: Themes - Twenty Twenty\n"
+
+#. Description of the theme
+msgid "Our default theme for 2020 is designed to take full advantage of the flexibility of the block editor. Organizations and businesses have the ability to create dynamic landing pages with endless layouts using the group and column blocks. The centered content column and fine-tuned typography also makes it perfect for traditional blogs. Complete editor styles give you a good idea of what your content will look like, even before you publish. You can give your site a personal touch by changing the background colors and the accent color in the Customizer. The colors of all elements on your site are automatically calculated based on the colors you pick, ensuring a high, accessible color contrast for your visitors."
+msgstr "تم تصميم القالب الافتراضي لعام 2020 للاستفادة الكاملة من مرونة محرر المكوّنات. تتمتع المؤسسات والشركات بالقدرة على إنشاء صفحات هبوط ديناميكية ذات تخطيطات لا نهاية لها باستخدام مكوّنات المجموعة والعمود. كما أن عمود المحتوى المركزي وصياغة الحروف الدقيقة تجعله مثاليًا للمدونات التقليدية. تمنحك أنماط المحرر الكاملة فكرة جيدة عن الشكل الذي سيبدو عليه المحتوى الخاص بك، حتى قبل النشر. يمكنك منح موقعك لمسة شخصية عن طريق تغيير ألوان الخلفية ولونك المخصص في أداة التخصيص. يتم احتساب ألوان جميع العناصر على موقعك تلقائيًا استنادًا إلى الألوان التي تختارها، مما يضمن تباينًا عاليًا في الألوان التي يشاهدها زوّارك."
+
+#. Theme Name of the theme
+msgid "Twenty Twenty"
+msgstr "Twenty Twenty"
+
+#: classes/class-twentytwenty-customize.php:246
+msgid "Show author bio"
+msgstr "عرض نبذة عن الكاتب"
+
+#: inc/starter-content.php:38
+msgctxt "Theme starter content"
+msgid "The New UMoMA Opens its Doors"
+msgstr "الـ UMoMA الجديد يفتح أبوابه"
+
+#: template-parts/entry-author-bio.php:29
+msgid "View Archive <span aria-hidden=\"true\">&rarr;</span>"
+msgstr "عرض الأرشيف <span aria-hidden=\"true\">&rarr;</span>"
+
+#: inc/starter-content.php:84 inc/starter-content.php:116
+msgid "October 1 -- December 1"
+msgstr "1 أكتوبر -- 1 ديسمبر"
+
+#: inc/starter-content.php:72 inc/starter-content.php:87
+#: inc/starter-content.php:104 inc/starter-content.php:119
+msgid "Read More"
+msgstr "قراءة المزيد"
+
+#: inc/starter-content.php:69 inc/starter-content.php:101
+msgid "August 1 -- December 1"
+msgstr "1 أغسطس -- 1 ديسمبر"
+
+#: classes/class-twentytwenty-customize.php:374
+msgid "Overlay Text Color"
+msgstr "لون نصّ الغطاء"
+
+#: classes/class-twentytwenty-customize.php:352
+msgid "Overlay Background Color"
+msgstr "لون خلفية الغطاء"
+
+#: classes/class-twentytwenty-customize.php:126
+msgid "Custom"
+msgstr "تخصيص"
+
+#: classes/class-twentytwenty-customize.php:125
+msgid "Default"
+msgstr "افتراضي"
+
+#: classes/class-twentytwenty-customize.php:123
+msgid "Primary Color"
+msgstr "اللون الأساسي"
+
+#: inc/starter-content.php:81
+msgid "Theatre of Operations"
+msgstr "مسرح العمليات"
+
+#: inc/starter-content.php:98
+msgid "The Life I Deserve"
+msgstr "الحياة التي أستحقّها"
+
+#: inc/starter-content.php:113
+msgid "From Signac to Matisse"
+msgstr "من سينياك إلى ماتيس"
+
+#: inc/template-tags.php:393
+msgctxt "A string that is output before one or more categories"
+msgid "In"
+msgstr "في"
+
+#: inc/starter-content.php:150
+msgid "Join the Club"
+msgstr "الانضمام للنادي"
+
+#: classes/class-twentytwenty-customize.php:353
+msgid "The color used for the overlay. Defaults to the accent color."
+msgstr "اللون المستخدم للغطاء. الإعدادات الافتراضية لشدّة اللون."
+
+#: classes/class-twentytwenty-customize.php:395
+msgid "Overlay Opacity"
+msgstr "شفافية الغطاء"
+
+#: inc/starter-content.php:66
+msgid "Works and Days"
+msgstr "العمل والأيام"
+
+#: classes/class-twentytwenty-customize.php:183
+msgid "Apply a custom color for links, buttons, featured images."
+msgstr "تطبيق لون مخصص للروابط، والأزرار، والصور المميزة."
+
+#: classes/class-twentytwenty-customize.php:283
+msgid "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
+msgstr "إعدادات قالب صفحة \"قالب الغلاف\". إضافة صورة مميزة لاستخدامها كخلفية."
+
+#: classes/class-twentytwenty-customize.php:375
+msgid "The color used for the text in the overlay."
+msgstr "اللون المستخدم للنص في الغطاء."
+
+#: inc/starter-content.php:47
+msgid "The New UMoMA Opens its Doors"
+msgstr "الـ UMoMA الجديد يفتح أبوابه"
+
+#: inc/starter-content.php:55
+msgid "The premier destination for modern art in Northern Sweden. Open from 10 AM to 6 PM every day during the summer months."
+msgstr "الوجهة الأولى للفن الحديث في شمال السويد. يفتح من الساعة 10 صباحًا إلى 6 مساءً يوميًا خلال أشهر الصيف."
+
+#: inc/starter-content.php:129
+msgid "&#8220;Cyborgs, as the philosopher Donna Haraway established, are not reverent. They do not remember the cosmos.&#8221;"
+msgstr "\"سايبورغ، كما أسس الفيلسوف دونا هاراواي، لم يوقظ. إنهم لا يتذكرون الكون.\""
+
+#: inc/starter-content.php:133
+msgid "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
+msgstr "مع سبعة طوابق من الهندسة المعمارية المذهلة، يعرض UMoMA معارض للفن المعاصر الدولي، وأحيانًا إلى جانب الأحداث التاريخية التاريخية للفن. القضايا الوجودية والسياسية والفلسفية هي جوهر برنامجنا. كزائر، فأنت مدعو للمشاركة في محادثات الفنان المصحوبة بمرشدين والمحاضرات وعروض الأفلام وغيرها من الأحداث مع الدخول المجاني"
+
+#: inc/starter-content.php:144
+msgid "Become a Member and Get Exclusive Offers!"
+msgstr "كن عضوًا واحصل على عروض حصرية!"
+
+#: inc/starter-content.php:147
+msgid "Members get access to exclusive exhibits and sales. Our memberships cost $99.99 and are billed annually."
+msgstr "يمكن للأعضاء الوصول إلى المعارض والمبيعات الحصرية. تكلف عضوياتنا 99.99 دولارًا ويتم احتسابها سنويًا."
+
+#: inc/starter-content.php:136
+msgid "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
+msgstr "يتم إنتاج هذه المعارض بواسطة UMoMA بالتعاون مع الفنانين والمتاحف في جميع أنحاء العالم وغالبًا ما تجذب الانتباه الدولي. حصل UMoMA على تقدير خاص من المتحف الأوروبي للعام، وكان من بين أفضل المرشحين لجائزة المتحف السويدي للعام وكذلك لجائزة متحف مجلس أوروبا."
+
+#: 404.php:24
+msgid "404 not found"
+msgstr "404 غير موجود"
+
+#. translators: Copyright date format, see https://www.php.net/date
+#: footer.php:25
+msgctxt "copyright date format"
+msgid "Y"
+msgstr "Y"
+
+#. translators: %s: HTML character for up arrow.
+#: footer.php:43
+msgid "To the top %s"
+msgstr "للأعلى %s"
+
+#. translators: %s: HTML character for up arrow.
+#: footer.php:49
+msgid "Up %s"
+msgstr "أعلى %s"
+
+#: searchform.php:24 template-parts/modal-search.php:20
+msgid "Search for:"
+msgstr "البحث عن:"
+
+#: index.php:99
+msgid "search again"
+msgstr "البحث مرة أخرى"
+
+#. translators: %s: Number of search results.
+#: index.php:39
+msgid "We found %s result for your search."
+msgid_plural "We found %s results for your search."
+msgstr[0] "(%s) لم نتمكن من إيجاد نتائج لبحثك."
+msgstr[1] "لقد وجدنا نتيجة واحدة (%s) لبحثك."
+msgstr[2] "لقد وجدنا نتيجتان (%s) لبحثك."
+msgstr[3] "لقد وجدنا %s نتائج لبحثك."
+msgstr[4] "لقد وجدنا %s نتيجة لبحثك."
+msgstr[5] "لقد وجدنا %s نتيجة لبحثك."
+
+#. translators: 1: Comment date, 2: Comment time.
+#: classes/class-twentytwenty-walker-comment.php:69
+msgid "%1$s at %2$s"
+msgstr "%1$s في %2$s"
+
+#: classes/class-twentytwenty-walker-comment.php:77
+msgid "Edit"
+msgstr "تحرير"
+
+#: classes/class-twentytwenty-walker-comment.php:92
+msgid "Your comment is awaiting moderation."
+msgstr "تعليقك بإنتظار الموافقة للنشر."
+
+#: comments.php:34
+msgid "Leave a comment"
+msgstr "اترك تعليقًا"
+
+#. translators: %s: Post title.
+#: comments.php:37
+msgctxt "comments title"
+msgid "One reply on &ldquo;%s&rdquo;"
+msgstr "تعليق واحد على &ldquo;%s&rdquo;"
+
+#. translators: 1: Number of comments, 2: Post title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s reply on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
+msgstr[0] "لا توجد تعليقات على &ldquo;%2$s&rdquo;"
+msgstr[1] "تعليق واحد على &ldquo;%2$s&rdquo;"
+msgstr[2] "تعليقين على &ldquo;%2$s&rdquo;"
+msgstr[3] "%1$s تعليقات على &ldquo;%2$s&rdquo;"
+msgstr[4] "%1$s تعليق على &ldquo;%2$s&rdquo;"
+msgstr[5] "%1$s تعليق على &ldquo;%2$s&rdquo;"
+
+#: comments.php:88
+msgid "Comments"
+msgstr "التعليقات"
+
+#: comments.php:127
+msgid "Comments are closed."
+msgstr "التعليقات مغلقة."
+
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:492
+msgid "Primary"
+msgstr "رئيسي"
+
+#: inc/starter-content.php:196
+msgid "Social Links Menu"
+msgstr "قائمة الروابط الإجتماعية"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: inc/template-tags.php:206
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr "تحرير <span class=\"screen-reader-text\">%s</span>"
+
+#: template-parts/content-cover.php:138 template-parts/content.php:48
+msgid "Pages:"
+msgstr "الصفحات:"
+
+#: template-parts/footer-menus-widgets.php:37
+msgid "Footer"
+msgstr "التذييل"
+
+#: template-parts/content-cover.php:138 template-parts/content.php:48
+msgid "Page"
+msgstr "الصفحة"
+
+#: functions.php:497
+msgid "Secondary"
+msgstr "الفرعي"
+
+#: 404.php:17
+msgid "Page Not Found"
+msgstr "الصفحة غير موجودة."
+
+#: classes/class-twentytwenty-customize.php:81
+msgid "Retina logo"
+msgstr "شعار Retina"
+
+#: classes/class-twentytwenty-customize.php:269
+msgid "Full text"
+msgstr "النص بالكامل"
+
+#: classes/class-twentytwenty-customize.php:202
+msgid "Theme Options"
+msgstr "خيارات القالب"
+
+#: classes/class-twentytwenty-customize.php:101
+msgid "Header &amp; Footer Background Color"
+msgstr "لون خلفية الترويسة والتذييل"
+
+#: classes/class-twentytwenty-customize.php:225
+msgid "Show search in header"
+msgstr "إظهار البحث في الترويسة"
+
+#: functions.php:262
+msgid "Social Menu"
+msgstr "قائمة اجتماعية"
+
+#: functions.php:341
+msgid "Skip to the content"
+msgstr "التخطي إلى المحتوى"
+
+#: functions.php:366
+msgid "Footer #1"
+msgstr "التذييل #1"
+
+#: functions.php:378
+msgid "Footer #2"
+msgstr "التذييل #2"
+
+#: functions.php:487
+msgid "Accent Color"
+msgstr "شدة اللون"
+
+#: functions.php:502
+msgid "Subtle Background"
+msgstr "خلفية رقيقة"
+
+#: functions.php:515
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#: functions.php:530
+msgctxt "Name of the small font size in the block editor"
+msgid "Small"
+msgstr "صغير"
+
+#: functions.php:531
+msgctxt "Short name of the small font size in the block editor."
+msgid "S"
+msgstr "S"
+
+#: functions.php:536
+msgctxt "Name of the regular font size in the block editor"
+msgid "Regular"
+msgstr "عادي"
+
+#: functions.php:537
+msgctxt "Short name of the regular font size in the block editor."
+msgid "M"
+msgstr "M"
+
+#: functions.php:542
+msgctxt "Name of the large font size in the block editor"
+msgid "Large"
+msgstr "كبير"
+
+#: functions.php:543
+msgctxt "Short name of the large font size in the block editor."
+msgid "L"
+msgstr "L"
+
+#: functions.php:548
+msgctxt "Name of the larger font size in the block editor"
+msgid "Larger"
+msgstr "أكبر"
+
+#: functions.php:549
+msgctxt "Short name of the larger font size in the block editor."
+msgid "XL"
+msgstr "XL"
+
+#: template-parts/content.php:36
+msgid "Continue reading"
+msgstr "متابعة القراءة"
+
+#: header.php:53 header.php:157
+msgid "Search"
+msgstr "البحث"
+
+#: header.php:76 header.php:137
+msgid "Menu"
+msgstr "القائمة"
+
+#: header.php:88
+msgid "Horizontal"
+msgstr "أفقي"
+
+#: classes/class-twentytwenty-walker-page.php:107 inc/template-tags.php:555
+msgid "Show sub menu"
+msgstr "عرض القائمة الفرعية"
+
+#: comments.php:74
+msgid "Newer Comments"
+msgstr "التعليقات الأحدث"
+
+#: comments.php:75
+msgid "Older Comments"
+msgstr "التعليقات الأقدم"
+
+#: footer.php:33
+msgid "Powered by WordPress"
+msgstr "يعمل بواسطة برنامج ووردبريس"
+
+#: functions.php:258
+msgid "Desktop Horizontal Menu"
+msgstr "قائمة سطح المكتب الأفقية"
+
+#: functions.php:259
+msgid "Desktop Expanded Menu"
+msgstr "قائمة سطح المكتب الموسَّعة"
+
+#: inc/template-tags.php:371
+msgid "Post date"
+msgstr "تاريخ المقالة"
+
+#: inc/template-tags.php:389 template-parts/entry-header.php:36
+#: template-parts/content-cover.php:70
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: inc/template-tags.php:407
+msgid "Tags"
+msgstr "الوسوم"
+
+#: inc/template-tags.php:445
+msgid "Sticky post"
+msgstr "مقالة مثبتة"
+
+#: index.php:32
+msgid "Search:"
+msgstr "البحث:"
+
+#: searchform.php:25
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "بحث &hellip;"
+
+#: searchform.php:27
+msgctxt "submit button"
+msgid "Search"
+msgstr "بحث"
+
+#: template-parts/content-cover.php:88
+msgid "Scroll Down"
+msgstr "التمرير للأسفل"
+
+#. translators: %s: Author name.
+#: inc/template-tags.php:354 template-parts/entry-author-bio.php:20
+msgid "By %s"
+msgstr "بواسطة %s"
+
+#: template-parts/footer-menus-widgets.php:57
+msgid "Social links"
+msgstr "الروابط الاجتماعية"
+
+#: template-parts/modal-menu.php:21
+msgid "Close Menu"
+msgstr "إغلاق القائمة"
+
+#: template-parts/modal-menu.php:48
+msgid "Expanded"
+msgstr "موسعة"
+
+#: template-parts/modal-menu.php:73
+msgid "Mobile"
+msgstr "الهاتف المحمول"
+
+#: functions.php:260
+msgid "Mobile Menu"
+msgstr "قائمة الهاتف المحمول"
+
+#: template-parts/navigation.php:25
+msgid "Post"
+msgstr "المقالة"
+
+#: template-parts/pagination.php:21
+msgid "Newer <span class=\"nav-short\">Posts</span>"
+msgstr "<span class=\"nav-short\">مقالات</span> أحدث"
+
+#: template-parts/pagination.php:25
+msgid "Older <span class=\"nav-short\">Posts</span>"
+msgstr "<span class=\"nav-short\">مقالات</span> أقدم"
+
+#. Template Name of the theme
+msgid "Full Width Template"
+msgstr "قالب بالعرض الكامل"
+
+#. Template Name of the theme
+#: classes/class-twentytwenty-customize.php:281
+msgid "Cover Template"
+msgstr "قالب الغلاف"
+
+#: classes/class-twentytwenty-customize.php:270
+msgid "Summary"
+msgstr "ملخّص (موجز)"
+
+#: classes/class-twentytwenty-customize.php:305
+msgid "Fixed Background Image"
+msgstr "صورة خلفية ثابتة"
+
+#: classes/class-twentytwenty-walker-comment.php:127
+msgid "By Post Author"
+msgstr "بواسطة كاتب المقالة"
+
+#: inc/template-tags.php:347
+msgid "Post author"
+msgstr "كاتب المقالة"
+
+#: template-parts/modal-search.php:26
+msgid "Close search"
+msgstr "إغلاق البحث"
+
+#. translators: %d: ID of a post.
+#: classes/class-twentytwenty-walker-page.php:70
+msgid "#%d (no title)"
+msgstr "#%d (بدون عنوان)"
+
+#: classes/class-twentytwenty-walker-comment.php:56
+msgid "says:"
+msgstr "يقول:"
+
+#: 404.php:19
+msgid "The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place."
+msgstr "لا يمكن العثور على الصفحة التي كنت تبحث عنها. ربما تمت إزالتها أو إعادة تسميتها أو أنها غير موجودة بالأساس."
+
+#: classes/class-twentytwenty-customize.php:82
+msgid "Scales the logo to half its uploaded size, making it sharp on high-res screens."
+msgstr "تحجيم الشعار إلى نصف حجمه الذي تم رفعه، مما يجعله حادًا على شاشات عالية الدقة."
+
+#: classes/class-twentytwenty-customize.php:267
+msgid "On archive pages, posts show:"
+msgstr "في صفحات الأرشيف، تظهر المقالات:"
+
+#: classes/class-twentytwenty-customize.php:306
+msgid "Creates a parallax effect when the visitor scrolls."
+msgstr "إنشاء تأثير parallax عندما يقوم الزائر بالتمرير."
+
+#: classes/class-twentytwenty-customize.php:396
+msgid "Make sure that the contrast is high enough so that the text is readable."
+msgstr "تأكد من أن التباين مرتفع بدرجة كافية بحيث يكون النص قابلاً للقراءة."
+
+#: functions.php:368
+msgid "Widgets in this area will be displayed in the first column in the footer."
+msgstr "سيتم عرض الودجات في هذه المنطقة في العمود الأول في تذييل الصفحة."
+
+#: functions.php:380
+msgid "Widgets in this area will be displayed in the second column in the footer."
+msgstr "سيتم عرض الودجات في هذه المنطقة في العمود الثاني في تذييل الصفحة."
+
+#: index.php:48
+msgid "We could not find any results for your search. You can give it another try through the search form below."
+msgstr "لم نتمكن من العثور على أي نتائج لبحثك. يمكنك التجربة مرة أخرى باستخدام كلمات مختلفة من خلال نموذج البحث أدناه."
+
+#: template-parts/modal-menu.php:117
+msgid "Expanded Social links"
+msgstr "الروابط الاجتماعية الموسعة"
+
+#: functions.php:261
+msgid "Footer Menu"
+msgstr "قائمة تذييل الصفحة"
+
+#. Author URI of the theme
+#: footer.php:32
+msgid "https://wordpress.org/"
+msgstr "https://ar.wordpress.org/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "فريق ووردبريس"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentytwenty/"
+msgstr "https://wordpress.org/themes/twentytwenty/"
