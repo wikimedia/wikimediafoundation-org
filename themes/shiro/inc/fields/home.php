@@ -9,7 +9,11 @@
  * Add home page options.
  */
 function wmf_home_fields() {
-	if ( (int) get_option( 'page_on_front' ) !== (int) wmf_get_fields_post_id() ) {
+	if (
+		(int) get_option( 'page_on_front' ) !== (int) wmf_get_fields_post_id()
+	     && ! wmf_using_template( 'page-report-landing-long' )
+	     && ! wmf_using_template( 'page-report-landing-short' )
+	) {
 		return;
 	}
 

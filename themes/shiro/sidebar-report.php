@@ -13,9 +13,17 @@ $sidebar_items   = wmf_get_report_sidebar_data();
 if ( empty( $sidebar_items ) ) {
 	return;
 }
+
+$bg_opts  = wmf_get_background_image();
+$bg_color = $bg_opts['color'] ? 'pink' : 'blue';
+$class    = '';
+if ( $bg_color ) {
+	$class = 'header-' . $bg_color;
+}
+
 ?>
 
-<nav class="toc fixedsticky">
+<nav class="toc fixedsticky <?php echo esc_attr( $class ); ?>">
 	<ul class="report-nav">
 		<li class="menu-toggle">
 			<button type="button" data-menu-toggle>
