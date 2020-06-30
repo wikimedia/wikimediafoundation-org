@@ -49,9 +49,8 @@ $license_url = ! empty( $credit_info['license_url'] ) ? $credit_info['license_ur
 ?>
 
 <div class="photo-credit-container w-32p p flex flex-all">
-	<div
-		class="photo-credit-img_container w-32p"
-		style="background-image:url(<?php echo esc_url(wp_get_attachment_image_src( $image_id, 'image_square_medium' )[0]); ?>)">
+	<div class="photo-credit-img_container w-32p">
+		<img src="<?php echo esc_url(wp_get_attachment_image_src( $image_id, 'image_square_medium' )[0]); ?>">
 	</div>
 
 	<div class="w-68p">
