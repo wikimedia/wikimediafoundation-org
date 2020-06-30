@@ -31,13 +31,12 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 </head>
 
 <body <?php body_class(); ?>>
+	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
 <div class="mobile-cover"></div>
 <div id="page" class="site">
 	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
 		<div class="top-nav">
 			<div class="site-main-nav flex flex-medium flex-align-center mw-980">
-				<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
-				<a class="skip-link screen-reader-text" href="#menu-header-menu"><?php echo esc_html( $wmf_skip2_navigation_label ); ?></a>
 				<div class="logo-container logo-container_lg">
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>

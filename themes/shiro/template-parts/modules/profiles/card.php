@@ -32,23 +32,18 @@ $img_id = ! empty( $template_data['img_id'] ) ? $template_data
 		</h5>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $role ) || ! empty( $team ) ) : ?>
+		<?php if ( ! empty( $role ) ) : ?>
 			<span class="person-title p color-gray">
 				<?php
-					$count = empty( $role ) || empty( $team ) ? 1 : 2;
-					printf(
-						// Translators: the placeholders are for the $role and $team.
-						// @codingStandardsIgnoreStart.
-						_n(
-							'%1$s',
-							'%1$s, %2$s',
-							$count,
-							'shiro'
-						),
-						// @codingStandardsIgnoreEnd.
-						empty( $role ) ? esc_html( $team ) : esc_html( $role ),
-						esc_html( $team )
+				if ( $role && $team ) {
+					esc_html_e(
+					/* translators: 1. role 2. team */
+					sprintf( '%1$s, %2$s', $role, $team ),
+					'shiro'
 					);
+				} else {
+					echo esc_html( $role );
+				}
 				?>
 			</span>
 		<?php endif; ?>

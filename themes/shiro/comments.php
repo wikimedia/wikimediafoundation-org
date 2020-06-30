@@ -32,8 +32,8 @@ if ( post_password_required() ) {
 			if ( 1 === $wmf_comment_count ) {
 					printf(
 						/* translators: 1: title. */
-						esc_html_e( 'One thought on &ldquo;%1$s&rdquo;', 'shiro' ),
-						'<span>' . esc_html_e(get_the_title()) . '</span>'
+						esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'shiro' ),
+						'<span>' . esc_html( get_the_title() ) . '</span>'
 					);
 			} else {
 					printf( // WPCS: XSS OK.

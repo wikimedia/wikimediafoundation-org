@@ -44,6 +44,8 @@
         padding: 0;
         @media (max-width: ( $medium-bp - 1 )) {
             margin-bottom: 2rem;
+            margin-top: 2rem;
+            background-color: #F8F9FA;
         }
         @media (min-width: $medium-bp) {
             max-width: 268px;
@@ -61,6 +63,10 @@
             font-weight: normal;
             border-radius: 2px;
             color: black;
+
+            @media all and ( max-width: 767px ){
+                padding: rem(15) rem(16);
+            }
         }
 
         &:hover,
@@ -138,6 +144,7 @@
     .menu-toggle {
         list-style-type: none;
         position: absolute;
+        margin: 0;
         right: 0;
         top: 0;
         width: 100%;
@@ -155,7 +162,7 @@
         height: 2.2em;
         width: 100%;
         text-align: right;
-        padding: 0 1.2em 0 0;
+        padding: 0 0.9rem 0 0;
         border: 1px solid transparent;
         border-radius: 2px;
         background: transparent;
@@ -165,14 +172,15 @@
         &:focus {
             border-color: black;
         }
-
-        &::before {
-            content: '\25BE';
-            display: inline-block;
-            transform: scaleX(1.5);
-        }
     }
-    .menu--expanded [data-menu-toggle]::before { content: '\25B4'; }
+    
+    .toc-toggle {
+        width: 10px;
+    }
+
+    .menu--expanded .toc-toggle {
+        transform: rotate(-180deg);
+    }
 
     // Anchor link behaviour
     :target::before {
