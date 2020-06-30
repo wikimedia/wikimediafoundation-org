@@ -33,7 +33,7 @@ $current_orderby    = ! empty( $current_orderby ) ? $current_orderby : 'date';
 				</label>
 			</div>
 			<?php endforeach; ?>
-		<h4 class="uppercase small  mar-bottom">Sort By</h4>
+		<h4 class="uppercase small  mar-bottom"><?php esc_html_e( 'Sort By', 'shiro' ); ?></h4>
 			<select class="mar-bottom" id="sortSelect" name="orderby[<?php echo esc_attr( $current_orderby ); ?>]">
 				<option data-type="title" value="desc"
 				<?php

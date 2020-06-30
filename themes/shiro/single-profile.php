@@ -99,7 +99,7 @@ while ( have_posts() ) :
 							$authorimg = get_stylesheet_directory_uri() . "/assets/src/svg/edit-rtl.svg";
 						}
                         $authorlink = wmf_get_author_link( $connected_user );
-                        $authorlinkcopy = sprintf( __( 'Posts by %s', 'shiro' ), get_the_title() );
+                        $authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
                     ?>
                     <div class="link-list mar-right">
                     <div class="bold profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">

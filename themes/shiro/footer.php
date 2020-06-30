@@ -226,7 +226,7 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
 				<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<input type="search" placeholder="<?php echo esc_attr( $wmf_search_placeholder ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" aria-label="<?php echo esc_attr( $wmf_search_aria_label ); ?>">
 					<button class="btn btn-blue" type="submit" aria-label="<?php esc_attr_e( 'Perform search', 'shiro' ); ?>"><?php wmf_show_icon( 'search', 'material icon-white' ); ?></button>
-					<button type="button" class="search-close-esc" aria-label="Close this dialog window">
+					<button type="button" class="search-close-esc" aria-label="<?php esc_attr_e( 'Close this dialog window', 'shiro' ); ?>">
 						<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="">
 						<?php echo esc_attr( $wmf_search_esc_label ); ?>
 					</button>
