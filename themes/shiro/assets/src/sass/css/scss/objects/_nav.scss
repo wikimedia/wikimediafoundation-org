@@ -98,6 +98,8 @@
     }
 
     svg {
+      // https://stackoverflow.com/a/16833496
+      backface-visibility: hidden;
       width: 100%;
       max-width: rem(279);
       margin-right: rem(10);
