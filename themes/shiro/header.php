@@ -52,7 +52,7 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 				<div class="top-nav-buttons">
 					<?php if ( ! empty( $wmf_translations ) ) : ?>
 						<?php
-							# Find which is the current language and display that
+							// Find which is the current language and display that.
 							$selected = array_filter($wmf_translations, function ($lang) {
 								return $lang['selected'];
 							});
@@ -73,11 +73,6 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 							<div class="language-list">
 								<ul role="listbox" id="lang-list" tabindex="-1">
 									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
-										<?php
-										if ( ! $wmf_translation['uri'] ) {
-											continue;
-										}
-										?>
 										<li>
 											<?php if ( $wmf_translation['selected'] ) : ?>
 												<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>

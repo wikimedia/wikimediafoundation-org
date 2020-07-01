@@ -55,10 +55,14 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
  * @return mixed  array|bool
  */
 function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
-	$translations = wmf_multilingualpress_get_translations();
-	if ( false === $translations ) {
+	$translations = array_filter( wmf_multilingualpress_get_translations(), function ( $translation ) {
+		return $translation->remoteUrl() !== '';
+	} );
+
+	if ( empty( $translations ) ) {
 		return false;
 	}
+
 	$ret_translations = array();
 
 	/**
