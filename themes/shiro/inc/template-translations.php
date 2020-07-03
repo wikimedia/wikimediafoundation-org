@@ -10,13 +10,11 @@ use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
 use function Inpsyde\MultilingualPress\resolve;
 
-add_action( 'mlp_translation_meta_box_bottom', array( 'WMF\Translations\Metaboxes', 'mlp_translation_meta_box_bottom' ), 10, 3 );
 add_filter( 'fm_element_markup_end', array( 'WMF\Translations\Metaboxes', 'fm_element_markup_end' ), 10, 2 );
 add_filter( 'admin_init', array( 'WMF\Roles\Base', 'callback' ), 10, 2 );
 add_filter( 'register_post_type_args', array( 'WMF\Roles\Base', 'post_type_args_filter' ), 10, 2 );
 add_action( 'restrict_manage_posts', array( 'WMF\Translations\Edit_Posts', 'restrict_manage_posts' ), 10, 2 );
-add_action( 'mlp_show_translation_completed_checkbox', array( 'WMF\Translations\Flow', 'publish_actions_callback' ) );
-add_action( 'mlp_pre_save_post_meta', array( 'WMF\Translations\Flow', 'pre_post_meta_callback' ), 10, 2 );
+add_action( 'post_submitbox_misc_actions', array( 'WMF\Translations\Flow', 'publish_actions_callback' ) );
 add_action( 'save_post', array( 'WMF\Translations\Flow', 'save_post_callback' ), 99 );
 add_filter( 'manage_edit-post_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
 add_filter( 'manage_edit-page_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
@@ -24,6 +22,8 @@ add_filter( 'manage_edit-profile_columns', array( 'WMF\Translations\Notice', 'cp
 add_action( 'manage_post_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
 add_action( 'manage_page_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
 add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
+
+add_filter( 'multilingualpress.sync_post_meta_keys', array( 'WMF\Translations\Flow', 'sync_meta' ), 10, 3 );
 
 /**
  * Conditionally outputs the translation in progress notice on the post editor.
@@ -55,15 +55,12 @@ add_action( 'admin_notices', 'wmf_progress_notice' );
  * @return mixed  array|bool
  */
 function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
-	$translations = array_filter( wmf_multilingualpress_get_translations(), function ( $translation ) {
-		return $translation->remoteUrl() !== '';
-	} );
+	$translations     = wmf_multilingualpress_get_translations();
+	$ret_translations = array();
 
 	if ( empty( $translations ) ) {
-		return false;
+		return $ret_translations;
 	}
-
-	$ret_translations = array();
 
 	/**
 	 * From MultilingualPress.

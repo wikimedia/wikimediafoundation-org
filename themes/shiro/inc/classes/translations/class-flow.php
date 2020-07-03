@@ -160,12 +160,23 @@ class Flow {
 	 */
 	public function in_progress_action() {
 		?>
-<p><strong><?php esc_html_e( 'Translation Status:', 'shiro' ); ?></strong> <?php echo esc_html( $this->translation_status() ); ?></p>
-<label for="translation_in_progress">
-	<input type="checkbox" name="_translation_in_progress" value="1" id="translation_in_progress"
-		<?php checked( 1, get_post_meta( get_the_ID(), '_translation_in_progress', true ) ); ?>>
-		<?php esc_html_e( 'Translation in progress', 'shiro' ); ?>
-</label>
+		<p><strong><?php esc_html_e( 'Translation Status: ', 'shiro' ); ?></strong>
+			<?php echo esc_html( $this->translation_status() ); ?>
+		</p>
+		<p>
+			<label for="translation_in_progress">
+				<input type="checkbox" name="_translation_in_progress" value="1" id="translation_in_progress"
+					<?php checked( 1, get_post_meta( get_the_ID(), '_translation_in_progress', true ) ); ?>>
+				<?php esc_html_e( 'Translation in progress', 'shiro' ); ?>
+			</label>
+		</p>
+		<p>
+			<label for="translation_complete">
+				<input type="checkbox" name="_translation_complete" value="1" id="translation_complete"
+					<?php checked( 1, get_post_meta( get_the_ID(), '_translation_complete', true ) ); ?>>
+				<?php esc_html_e( 'Translation completed', 'shiro' ); ?>
+			</label>
+		</p>
 		<?php
 	}
 
@@ -175,14 +186,63 @@ class Flow {
 	 * @return string
 	 */
 	public function translation_status() {
-		$terms       = wp_get_post_terms( get_the_ID(), $this->taxonomy );
-		$status_term = isset( $terms[0] ) ? $terms[0] : '';
+		$terms = wp_get_post_terms( get_the_ID(), $this->taxonomy );
+		if ( empty( $terms ) ) {
+			return '';
+		}
+		$status_term = $terms[0] ?? '';
 
 		return empty( $status_term->name ) ? $this->status_terms['new'] : $status_term->name;
 	}
 
 	/**
+	 * Define which post meta to sync to remote site.
+	 *
+	 * @param $keys
+	 * @param $context
+	 * @param $post
+	 *
+	 * @return string[]
+	 */
+	public static function sync_meta( $keys, $context, $post ) {
+		return array_merge(
+			$keys,
+			[
+				// Fieldmanager fields.
+				'page_cta',
+				'intro_button',
+				'share_links',
+				'connect',
+				'stats_featured',
+				'stats_graph',
+				'stats_plain',
+				'stats_profiles',
+				'sidebar_facts',
+				'page_header_background',
+				'sub_title',
+				'projects_module',
+				'social_share',
+				'framing_copy',
+				'page_facts',
+				'landing_page_sidebar_menu_label',
+				'off_site_links',
+				'listings',
+				'featured_profile',
+				'role_button',
+				'profiles',
+				'proects_module',
+				'related_pages',
+				'stories',
+				// Page template setting.
+				'_wp_page_template',
+			]
+		);
+	}
+
+	/**
 	 * Update the post meta when cloning a post for translation.
+	 * This callback method is no longer used after MLP3 upgrade.
+	 * See 'sync_meta' method.
 	 *
 	 * @param array $meta_array   The meta values to copy to the new post.
 	 * @param array $save_context The context of the existing post.
@@ -222,6 +282,7 @@ class Flow {
 	 * @return array
 	 */
 	public function meta_build( $meta ) {
+		add_filter( 'wp_insert_post', array( $this, 'set_new_translate_term' ) );
 		$ret_meta = array();
 
 		foreach ( $meta as $key => $array ) {
@@ -273,7 +334,7 @@ class Flow {
 		// We need to update this for each site here.
 		$this->maybe_register_translation_status_terms();
 		$this->set_translate_term( $post_id );
-        
+
         return $this;
 	}
 
@@ -315,7 +376,7 @@ class Flow {
 			delete_post_meta( $post_id, '_translation_in_progress' );
 		}
 
-		if ( ! empty( $_POST['_post_is_translated'] ) ) { // Input var okay.
+		if ( ! empty( $_POST['_translation_complete'] ) ) { // Input var okay.
 			delete_post_meta( $post_id, '_translation_in_progress' );
 			update_post_meta( $post_id, '_translation_complete', 1 );
 			$this->set_translate_term( $post_id, 'complete' );

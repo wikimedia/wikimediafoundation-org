@@ -12,7 +12,10 @@
 use WMF\Images\Credits;
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
-$wmf_translations         = wmf_get_translations();
+$wmf_translations         = array_filter( wmf_get_translations(), function ( $translation ) {
+	return $translation['uri'] !== '';
+} );
+
 $wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate', 'shiro' ) );
 $wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikimedia.org/?utm_medium=wmfSite&utm_campaign=comms' );
 $wmf_toggle_menu_label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro' ) );
