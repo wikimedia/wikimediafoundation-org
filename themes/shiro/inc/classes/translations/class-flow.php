@@ -380,6 +380,9 @@ class Flow {
 			delete_post_meta( $post_id, '_translation_in_progress' );
 			update_post_meta( $post_id, '_translation_complete', 1 );
 			$this->set_translate_term( $post_id, 'complete' );
+		} else {
+			delete_post_meta( $post_id, '_translation_complete' );
+			update_post_meta( $post_id, '_translation_in_progress', 1 );
 		}
 
 		if ( ! empty( $_POST['_translate_post_global'] ) ) { // Input var okay.
