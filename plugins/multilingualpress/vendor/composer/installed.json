@@ -1,0 +1,789 @@
+[
+    {
+        "name": "composer/installers",
+        "version": "v1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
+            "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "composer-plugin-api": "^1.0"
+        },
+        "replace": {
+            "roundcube/plugin-installer": "*",
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "^4.8.36"
+        },
+        "time": "2020-02-07T10:39:20+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Composer\\Installers\\Plugin",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Composer\\Installers\\": "src/Composer/Installers"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "https://composer.github.io/installers/",
+        "keywords": [
+            "Craft",
+            "Dolibarr",
+            "Eliasis",
+            "Hurad",
+            "ImageCMS",
+            "Kanboard",
+            "Lan Management System",
+            "MODX Evo",
+            "MantisBT",
+            "Mautic",
+            "Maya",
+            "OXID",
+            "Plentymarkets",
+            "Porto",
+            "RadPHP",
+            "SMF",
+            "Thelia",
+            "Whmcs",
+            "WolfCMS",
+            "agl",
+            "aimeos",
+            "annotatecms",
+            "attogram",
+            "bitrix",
+            "cakephp",
+            "chef",
+            "cockpit",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "dokuwiki",
+            "drupal",
+            "eZ Platform",
+            "elgg",
+            "expressionengine",
+            "fuelphp",
+            "grav",
+            "installer",
+            "itop",
+            "joomla",
+            "known",
+            "kohana",
+            "laravel",
+            "lavalite",
+            "lithium",
+            "magento",
+            "majima",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "modx",
+            "moodle",
+            "osclass",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "puppet",
+            "pxcms",
+            "reindex",
+            "roundcube",
+            "shopware",
+            "silverstripe",
+            "sydes",
+            "sylius",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "yawik",
+            "zend",
+            "zikula"
+        ]
+    },
+    {
+        "name": "dflydev/fig-cookies",
+        "version": "v1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dflydev/dflydev-fig-cookies.git",
+            "reference": "883233c159d00d39e940bd12cfe42c0d23420c1c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dflydev/dflydev-fig-cookies/zipball/883233c159d00d39e940bd12cfe42c0d23420c1c",
+            "reference": "883233c159d00d39e940bd12cfe42c0d23420c1c",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.4",
+            "psr/http-message": "~1.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "~0.1@dev",
+            "phpunit/phpunit": "~4.5",
+            "squizlabs/php_codesniffer": "~2.3"
+        },
+        "time": "2016-03-28T09:10:18+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dflydev\\FigCookies\\": "src/Dflydev/FigCookies"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Beau Simensen",
+                "email": "beau@dflydev.com"
+            }
+        ],
+        "description": "Cookies for PSR-7 HTTP Message Interface.",
+        "keywords": [
+            "cookies",
+            "psr-7",
+            "psr7"
+        ]
+    },
+    {
+        "name": "guzzlehttp/psr7",
+        "version": "1.6.1",
+        "version_normalized": "1.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/psr7.git",
+            "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+            "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "psr/http-message": "~1.0",
+            "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
+        },
+        "provide": {
+            "psr/http-message-implementation": "1.0"
+        },
+        "require-dev": {
+            "ext-zlib": "*",
+            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+        },
+        "suggest": {
+            "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+        },
+        "time": "2019-07-01T23:21:34+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Psr7\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            },
+            {
+                "name": "Tobias Schultze",
+                "homepage": "https://github.com/Tobion"
+            }
+        ],
+        "description": "PSR-7 message implementation that also provides common utility methods",
+        "keywords": [
+            "http",
+            "message",
+            "psr-7",
+            "request",
+            "response",
+            "stream",
+            "uri",
+            "url"
+        ]
+    },
+    {
+        "name": "http-interop/http-factory-guzzle",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/http-interop/http-factory-guzzle.git",
+            "reference": "34861658efb9899a6618cef03de46e2a52c80fc0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/http-interop/http-factory-guzzle/zipball/34861658efb9899a6618cef03de46e2a52c80fc0",
+            "reference": "34861658efb9899a6618cef03de46e2a52c80fc0",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "guzzlehttp/psr7": "^1.4.2",
+            "psr/http-factory": "^1.0"
+        },
+        "provide": {
+            "psr/http-factory-implementation": "^1.0"
+        },
+        "require-dev": {
+            "http-interop/http-factory-tests": "^0.5",
+            "phpunit/phpunit": "^6.5"
+        },
+        "time": "2018-07-31T19:32:56+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Http\\Factory\\Guzzle\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "An HTTP Factory using Guzzle PSR7",
+        "keywords": [
+            "factory",
+            "http",
+            "psr-17",
+            "psr-7"
+        ]
+    },
+    {
+        "name": "inpsyde/product-pages-licensing",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:inpsyde/product-pages-licensing.git",
+            "reference": "947df4533a2a14753724e706df92fd1d31dec30d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/inpsyde/product-pages-licensing/zipball/947df4533a2a14753724e706df92fd1d31dec30d",
+            "reference": "947df4533a2a14753724e706df92fd1d31dec30d",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=7.0",
+            "psr/http-client": "^1.0",
+            "psr/http-factory": "1.0.1"
+        },
+        "require-dev": {
+            "brain/monkey": "^2.4",
+            "giacocorsiglia/wordpress-stubs": "^5.1",
+            "phpunit/phpunit": "^6.5"
+        },
+        "time": "2020-03-10T09:34:23+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Inpsyde\\ProductPagesLicensing\\": "src/"
+            }
+        },
+        "autoload-dev": {
+            "psr-4": {
+                "Inpsyde\\ProductPagesLicensing\\Tests\\": "tests"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "description": "Product pages licensing",
+        "support": {
+            "source": "https://github.com/inpsyde/product-pages-licensing/tree/0.1.0",
+            "issues": "https://github.com/inpsyde/product-pages-licensing/issues"
+        }
+    },
+    {
+        "name": "oomphinc/composer-installers-extender",
+        "version": "v1.1.2",
+        "version_normalized": "1.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/oomphinc/composer-installers-extender.git",
+            "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+            "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "composer-plugin-api": "^1.0",
+            "composer/installers": "^1.0"
+        },
+        "time": "2017-03-31T16:57:39+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "OomphInc\\ComposerInstallersExtender\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Stephen Beemsterboer",
+                "email": "stephen@oomphinc.com",
+                "homepage": "https://github.com/balbuf"
+            }
+        ],
+        "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+        "homepage": "http://www.oomphinc.com/"
+    },
+    {
+        "name": "psr/http-client",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/http-client.git",
+            "reference": "496a823ef742b632934724bf769560c2a5c7c44e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/http-client/zipball/496a823ef742b632934724bf769560c2a5c7c44e",
+            "reference": "496a823ef742b632934724bf769560c2a5c7c44e",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^7.0",
+            "psr/http-message": "^1.0"
+        },
+        "time": "2018-10-30T23:29:13+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Http\\Client\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for HTTP clients",
+        "homepage": "https://github.com/php-fig/http-client",
+        "keywords": [
+            "http",
+            "http-client",
+            "psr",
+            "psr-18"
+        ]
+    },
+    {
+        "name": "psr/http-factory",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/http-factory.git",
+            "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/http-factory/zipball/12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+            "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=7.0.0",
+            "psr/http-message": "^1.0"
+        },
+        "time": "2019-04-30T12:38:16+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Http\\Message\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interfaces for PSR-7 HTTP message factories",
+        "keywords": [
+            "factory",
+            "http",
+            "message",
+            "psr",
+            "psr-17",
+            "psr-7",
+            "request",
+            "response"
+        ]
+    },
+    {
+        "name": "psr/http-message",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/http-message.git",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-08-06T14:39:51+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Http\\Message\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for HTTP messages",
+        "homepage": "https://github.com/php-fig/http-message",
+        "keywords": [
+            "http",
+            "http-message",
+            "psr",
+            "psr-7",
+            "request",
+            "response"
+        ]
+    },
+    {
+        "name": "ralouphie/getallheaders",
+        "version": "3.0.3",
+        "version_normalized": "3.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ralouphie/getallheaders.git",
+            "reference": "120b605dfeb996808c31b6477290a714d356e822"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+            "reference": "120b605dfeb996808c31b6477290a714d356e822",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "php-coveralls/php-coveralls": "^2.1",
+            "phpunit/phpunit": "^5 || ^6.5"
+        },
+        "time": "2019-03-08T08:55:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/getallheaders.php"
+            ]
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ralph Khattar",
+                "email": "ralph.khattar@gmail.com"
+            }
+        ],
+        "description": "A polyfill for getallheaders."
+    },
+    {
+        "name": "zelenin/http-client",
+        "version": "3.0.0",
+        "version_normalized": "3.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zelenin/http-client.git",
+            "reference": "ff61f80fab1d44f9c13d911f1eba24b099810b91"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zelenin/http-client/zipball/ff61f80fab1d44f9c13d911f1eba24b099810b91",
+            "reference": "ff61f80fab1d44f9c13d911f1eba24b099810b91",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "dflydev/fig-cookies": "~1.0.2",
+            "php": ">=7.0",
+            "psr/http-client": "~0.1",
+            "zendframework/zend-diactoros": "~1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~6.0",
+            "satooshi/php-coveralls": "~1.0.0"
+        },
+        "time": "2018-03-21T17:33:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zelenin\\HttpClient\\": "src"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aleksandr Zelenin",
+                "email": "aleksandr@zelenin.me",
+                "role": "Developer"
+            }
+        ],
+        "description": "PSR-18 compatible HTTP client with middleware support",
+        "homepage": "https://github.com/zelenin/http-client",
+        "keywords": [
+            "client",
+            "http",
+            "middleware",
+            "psr-18",
+            "psr-7"
+        ]
+    },
+    {
+        "name": "zendframework/zend-diactoros",
+        "version": "1.8.7",
+        "version_normalized": "1.8.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-diactoros.git",
+            "reference": "a85e67b86e9b8520d07e6415fcbcb8391b44a75b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/a85e67b86e9b8520d07e6415fcbcb8391b44a75b",
+            "reference": "a85e67b86e9b8520d07e6415fcbcb8391b44a75b",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^5.6 || ^7.0",
+            "psr/http-message": "^1.0"
+        },
+        "provide": {
+            "psr/http-message-implementation": "1.0"
+        },
+        "require-dev": {
+            "ext-dom": "*",
+            "ext-libxml": "*",
+            "php-http/psr7-integration-tests": "dev-master",
+            "phpunit/phpunit": "^5.7.16 || ^6.0.8 || ^7.2.7",
+            "zendframework/zend-coding-standard": "~1.0"
+        },
+        "time": "2019-08-06T17:53:53+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-release-1.8": "1.8.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/functions/create_uploaded_file.php",
+                "src/functions/marshal_headers_from_sapi.php",
+                "src/functions/marshal_method_from_sapi.php",
+                "src/functions/marshal_protocol_version_from_sapi.php",
+                "src/functions/marshal_uri_from_sapi.php",
+                "src/functions/normalize_server.php",
+                "src/functions/normalize_uploaded_files.php",
+                "src/functions/parse_cookie_header.php"
+            ],
+            "psr-4": {
+                "Zend\\Diactoros\\": "src/"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "PSR HTTP Message implementations",
+        "homepage": "https://github.com/zendframework/zend-diactoros",
+        "keywords": [
+            "http",
+            "psr",
+            "psr-7"
+        ],
+        "abandoned": "laminas/laminas-diactoros"
+    }
+]

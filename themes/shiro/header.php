@@ -12,7 +12,10 @@
 use WMF\Images\Credits;
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
-$wmf_translations         = wmf_get_translations();
+$wmf_translations         = array_filter( wmf_get_translations(), function ( $translation ) {
+	return $translation['uri'] !== '';
+} );
+
 $wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate', 'shiro' ) );
 $wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikimedia.org/?utm_medium=wmfSite&utm_campaign=comms' );
 $wmf_toggle_menu_label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro' ) );
@@ -49,15 +52,14 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 					<?php get_template_part( 'template-parts/header/logo' ); ?>
 				</div>
 				<div class="top-nav-buttons">
-					<?php if ( $wmf_translations !== false ) : ?>
+					<?php if ( ! empty( $wmf_translations ) ) : ?>
 						<?php
-							# Find which is the current language and display that
+							// Find which is the current language and display that.
 							$selected = array_filter($wmf_translations, function ($lang) {
 								return $lang['selected'];
 							});
-
-							if ($selected[0]['name'] === "English") {
-								$lang_code = "en";
+							if ( strpos($selected[0]['name'],'English' ) === 0 ) {
+							     $lang_code = "en";
 							} else {
 								$lang_code = explode('/',$selected[0]['uri'])[3];
 							}
@@ -75,16 +77,20 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
 										<li>
 											<?php if ( $wmf_translation['selected'] ) : ?>
-											<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
+												<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
 											<?php else : ?>
-											<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>"><a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a></span>
+												<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>">
+													<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>">
+														<?php echo esc_html( $wmf_translation['name'] ); ?>
+													</a>
+												</span>
 											<?php endif; ?>
 										</li>
 									<?php endforeach ?>
 								</ul>
 							</div>
 						</div>
-					<?php endif ?>
+					<?php endif; ?>
 					<div class="donate-btn">
 						<div class="donate-btn--desktop">
 							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>">
