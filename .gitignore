@@ -9,6 +9,8 @@ node_modules
 vendor
 !plugins/safe-svg/lib/vendor
 !plugins/wp-seo/vendor
+!plugins/mlp2to3/vendor
+!plugins/multilingualpress/vendor
 
 # Uploads directory
 uploads
@@ -42,3 +44,5 @@ db.php
 /languages/continents-cities-ar.mo
 /languages/continents-cities-ar.po
 .DS_Store
+
+backstop_data
