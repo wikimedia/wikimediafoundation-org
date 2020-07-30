@@ -1,17 +1,17 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.8.0",
-        "version_normalized": "1.8.0.0",
+        "version": "v1.9.0",
+        "version_normalized": "1.9.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3"
+            "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
-            "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
+            "url": "https://api.github.com/repos/composer/installers/zipball/b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+            "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
             "shasum": "",
             "mirrors": [
                 {
@@ -21,17 +21,20 @@
             ]
         },
         "require": {
-            "composer-plugin-api": "^1.0"
+            "composer-plugin-api": "^1.0 || ^2.0"
         },
         "replace": {
             "roundcube/plugin-installer": "*",
             "shama/baton": "*"
         },
         "require-dev": {
-            "composer/composer": "1.0.*@dev",
-            "phpunit/phpunit": "^4.8.36"
+            "composer/composer": "1.6.* || 2.0.*@dev",
+            "composer/semver": "1.0.* || 2.0.*@dev",
+            "phpunit/phpunit": "^4.8.36",
+            "sebastian/comparator": "^1.2.4",
+            "symfony/process": "^2.3"
         },
-        "time": "2020-02-07T10:39:20+00:00",
+        "time": "2020-04-07T06:57:05+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -132,18 +135,18 @@
         ]
     },
     {
-        "name": "dflydev/fig-cookies",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
+        "name": "guzzlehttp/guzzle",
+        "version": "6.5.2",
+        "version_normalized": "6.5.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/dflydev/dflydev-fig-cookies.git",
-            "reference": "883233c159d00d39e940bd12cfe42c0d23420c1c"
+            "url": "https://github.com/guzzle/guzzle.git",
+            "reference": "43ece0e75098b7ecd8d13918293029e555a50f82"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dflydev/dflydev-fig-cookies/zipball/883233c159d00d39e940bd12cfe42c0d23420c1c",
-            "reference": "883233c159d00d39e940bd12cfe42c0d23420c1c",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/43ece0e75098b7ecd8d13918293029e555a50f82",
+            "reference": "43ece0e75098b7ecd8d13918293029e555a50f82",
             "shasum": "",
             "mirrors": [
                 {
@@ -153,26 +156,35 @@
             ]
         },
         "require": {
-            "php": ">=5.4",
-            "psr/http-message": "~1.0"
+            "ext-json": "*",
+            "guzzlehttp/promises": "^1.0",
+            "guzzlehttp/psr7": "^1.6.1",
+            "php": ">=5.5"
         },
         "require-dev": {
-            "codeclimate/php-test-reporter": "~0.1@dev",
-            "phpunit/phpunit": "~4.5",
-            "squizlabs/php_codesniffer": "~2.3"
+            "ext-curl": "*",
+            "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
+            "psr/log": "^1.1"
         },
-        "time": "2016-03-28T09:10:18+00:00",
+        "suggest": {
+            "ext-intl": "Required for Internationalized Domain Name (IDN) support",
+            "psr/log": "Required for using the Log middleware"
+        },
+        "time": "2019-12-23T11:57:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.0.x-dev"
+                "dev-master": "6.5-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Dflydev\\FigCookies\\": "src/Dflydev/FigCookies"
-            }
+                "GuzzleHttp\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
         },
         "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
         "license": [
@@ -180,15 +192,80 @@
         ],
         "authors": [
             {
-                "name": "Beau Simensen",
-                "email": "beau@dflydev.com"
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
             }
         ],
-        "description": "Cookies for PSR-7 HTTP Message Interface.",
+        "description": "Guzzle is a PHP HTTP client library",
+        "homepage": "http://guzzlephp.org/",
         "keywords": [
-            "cookies",
-            "psr-7",
-            "psr7"
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
+        ]
+    },
+    {
+        "name": "guzzlehttp/promises",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/promises.git",
+            "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+            "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.0"
+        },
+        "time": "2016-12-20T10:07:11+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Promise\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle promises library",
+        "keywords": [
+            "promise"
         ]
     },
     {
@@ -378,6 +455,64 @@
             "source": "https://github.com/inpsyde/product-pages-licensing/tree/0.1.0",
             "issues": "https://github.com/inpsyde/product-pages-licensing/issues"
         }
+    },
+    {
+        "name": "mjelamanov/psr18-guzzle",
+        "version": "1.2.1",
+        "version_normalized": "1.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mjelamanov/psr18-guzzle.git",
+            "reference": "992b87a23c453958730f7ef2b2f9da87b499c16f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mjelamanov/psr18-guzzle/zipball/992b87a23c453958730f7ef2b2f9da87b499c16f",
+            "reference": "992b87a23c453958730f7ef2b2f9da87b499c16f",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.0",
+            "php": ">=7.0",
+            "psr/http-client": "^1.0"
+        },
+        "provide": {
+            "psr/http-client": "^1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
+        },
+        "time": "2020-01-03T14:30:06+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Mjelamanov\\GuzzlePsr18\\": "src"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mirlan Jelamanov",
+                "email": "mirlan.jelamanov@gmail.com"
+            }
+        ],
+        "description": "A PSR-18 adapter for guzzle 6 client",
+        "keywords": [
+            "Guzzle",
+            "http",
+            "http-client",
+            "psr-18"
+        ]
     },
     {
         "name": "oomphinc/composer-installers-extender",
@@ -651,139 +786,5 @@
             }
         ],
         "description": "A polyfill for getallheaders."
-    },
-    {
-        "name": "zelenin/http-client",
-        "version": "3.0.0",
-        "version_normalized": "3.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zelenin/http-client.git",
-            "reference": "ff61f80fab1d44f9c13d911f1eba24b099810b91"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zelenin/http-client/zipball/ff61f80fab1d44f9c13d911f1eba24b099810b91",
-            "reference": "ff61f80fab1d44f9c13d911f1eba24b099810b91",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
-        },
-        "require": {
-            "dflydev/fig-cookies": "~1.0.2",
-            "php": ">=7.0",
-            "psr/http-client": "~0.1",
-            "zendframework/zend-diactoros": "~1.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~6.0",
-            "satooshi/php-coveralls": "~1.0.0"
-        },
-        "time": "2018-03-21T17:33:53+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Zelenin\\HttpClient\\": "src"
-            },
-            "files": [
-                "src/functions.php"
-            ]
-        },
-        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Aleksandr Zelenin",
-                "email": "aleksandr@zelenin.me",
-                "role": "Developer"
-            }
-        ],
-        "description": "PSR-18 compatible HTTP client with middleware support",
-        "homepage": "https://github.com/zelenin/http-client",
-        "keywords": [
-            "client",
-            "http",
-            "middleware",
-            "psr-18",
-            "psr-7"
-        ]
-    },
-    {
-        "name": "zendframework/zend-diactoros",
-        "version": "1.8.7",
-        "version_normalized": "1.8.7.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zendframework/zend-diactoros.git",
-            "reference": "a85e67b86e9b8520d07e6415fcbcb8391b44a75b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/a85e67b86e9b8520d07e6415fcbcb8391b44a75b",
-            "reference": "a85e67b86e9b8520d07e6415fcbcb8391b44a75b",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
-        },
-        "require": {
-            "php": "^5.6 || ^7.0",
-            "psr/http-message": "^1.0"
-        },
-        "provide": {
-            "psr/http-message-implementation": "1.0"
-        },
-        "require-dev": {
-            "ext-dom": "*",
-            "ext-libxml": "*",
-            "php-http/psr7-integration-tests": "dev-master",
-            "phpunit/phpunit": "^5.7.16 || ^6.0.8 || ^7.2.7",
-            "zendframework/zend-coding-standard": "~1.0"
-        },
-        "time": "2019-08-06T17:53:53+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-release-1.8": "1.8.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "src/functions/create_uploaded_file.php",
-                "src/functions/marshal_headers_from_sapi.php",
-                "src/functions/marshal_method_from_sapi.php",
-                "src/functions/marshal_protocol_version_from_sapi.php",
-                "src/functions/marshal_uri_from_sapi.php",
-                "src/functions/normalize_server.php",
-                "src/functions/normalize_uploaded_files.php",
-                "src/functions/parse_cookie_header.php"
-            ],
-            "psr-4": {
-                "Zend\\Diactoros\\": "src/"
-            }
-        },
-        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
-        "license": [
-            "BSD-2-Clause"
-        ],
-        "description": "PSR HTTP Message implementations",
-        "homepage": "https://github.com/zendframework/zend-diactoros",
-        "keywords": [
-            "http",
-            "psr",
-            "psr-7"
-        ],
-        "abandoned": "laminas/laminas-diactoros"
     }
 ]

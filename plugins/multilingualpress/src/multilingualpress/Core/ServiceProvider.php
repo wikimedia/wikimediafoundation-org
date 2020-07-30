@@ -68,7 +68,8 @@ use function Inpsyde\MultilingualPress\wpHookProxy;
 use Inpsyde\ProductPagesLicensing\Api\Activator as LicenseActivator;
 use Inpsyde\ProductPagesLicensing\Api\Updater as LicenseUpdater;
 use Inpsyde\ProductPagesLicensing\RequestHandler as LicenseRequestHandler;
-use Zelenin\HttpClient\ClientFactory;
+use GuzzleHttp\Client as GuzzleClient;
+use Mjelamanov\GuzzlePsr18\Client;
 use Http\Factory\Guzzle\RequestFactory;
 use Http\Factory\Guzzle\UriFactory;
 use const Inpsyde\MultilingualPress\MULTILINGUALPRESS_LICENSE_API_URL;
@@ -186,7 +187,7 @@ class ServiceProvider implements BootstrappableServiceProvider
             LicenseRequestHandler::class,
             function (): LicenseRequestHandler {
                 return new LicenseRequestHandler(
-                    (new ClientFactory())->create(),
+                    new Client(new GuzzleClient()),
                     new RequestFactory(),
                     new UriFactory()
                 );

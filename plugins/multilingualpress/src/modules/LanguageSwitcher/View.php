@@ -16,6 +16,8 @@ use function \Inpsyde\MultilingualPress\sanitizeHtmlClass;
 
 class View
 {
+    const FILTER_ITEM_LANGUAGE_NAME = 'multilingualpress.language_switcher_item_language_name';
+
     /**
      * Displays widget view in frontend
      *
@@ -50,17 +52,18 @@ class View
                 <ul>
                     <?php foreach ($model['items'] as $item) :
                         $itemClasses = $this->itemClass($item->siteId());
+                        $languageName = (string)apply_filters(self::FILTER_ITEM_LANGUAGE_NAME, $item->languageName());
                         ?>
                         <li class="<?= sanitizeHtmlClass($itemClasses) // phpcs:ignore
                         // WordPress.XSS.EscapeOutput.OutputNotEscaped ?>">
                             <a href="<?= esc_url($item->url()) ?>"
                                class="mlp-language-switcher-item__link">
                                 <?php if ($item->flag()) {?>
-                                    <img alt="<?= esc_attr($item->isoName()) ?>"
+                                    <img alt="<?= esc_attr($languageName) ?>"
                                          src="<?= esc_attr($item->flag()) ?>"
                                     />
                                 <?php }?>
-                                <?= esc_html($item->isoName()) ?>
+                                <?= esc_html($languageName) ?>
                             </a>
                         </li>
                     <?php endforeach; ?>

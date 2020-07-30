@@ -54,7 +54,9 @@ class LicenseSettingsTabView implements SettingsPageView
         $licenseOption['license_product_id'] = isset($licenseOption['license_product_id'])
             ? $licenseOption['license_product_id']
             : '';
+
         $licenseOption['instance_key'] = isset($licenseOption['instance_key'])
+        && $licenseOption['instance_key'] !== ''
             ? $licenseOption['instance_key']
             : wp_generate_password(12, false);
 
@@ -72,25 +74,37 @@ class LicenseSettingsTabView implements SettingsPageView
         update_network_option(0, 'multilingualpress_license', $licenseOption);
 
         printNonceField($this->nonce);
+
+        // phpcs:disable Inpsyde.CodeQuality.NoElse.ElseFound
+        if ($statusCheck === 'active') {
+            $this->deactivateView($licenseOption);
+        } else {
+            $this->activateView($licenseOption);
+        }
+        // phpcs:enable
+    }
+
+    /**
+     * @param array $licenseOption
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     */
+    protected function activateView(array $licenseOption)
+    {
         ?>
         <table class="form-table widefat mlp-settings-table mlp-license-settings">
             <tr>
-                <td><?= wp_kses_post(__('This version of MultilingualPress has a new licensing system that requires a Master Api Key and a Product ID in order to be activated. These values are available in your <a href="https://multilingualpress.org/my-account/" target="_blank">My Account</a> section. Further information is available <a href="https://multilingualpress.org/docs/multilingualpress-license-update/" target="_blank">here</a>.', 'multilingualpress')) ?></td>
+                <td>
+                    <?= wp_kses_post(
+                        __(
+                            'This version of MultilingualPress has a new licensing system that requires a Master Api Key and a Product ID in order to be activated. These values are available in your <a href="https://multilingualpress.org/my-account/" target="_blank">My Account</a> section. Further information is available <a href="https://multilingualpress.org/docs/multilingualpress-license-update/" target="_blank">here</a>.',
+                            'multilingualpress'
+                        )
+                    ) ?>
+                </td>
             </tr>
         </table>
         <table class="form-table widefat mlp-settings-table mlp-license-settings">
             <tbody class="table-body-block">
-            <tr>
-                <th scope="row">
-                    <?php esc_html_e('Status', 'multilingualpress'); ?>
-                </th>
-                <td class="mlp-licence-api-key-status"
-                    data-status="<?php echo esc_attr(sanitize_key($statusCheck)) ?>"
-                >
-                    <?php echo esc_html(ucfirst($statusCheck)); ?>
-                </td>
-            </tr>
-
             <tr>
                 <th scope="row">
                     <label for="<?php $this->inputNameAttr('key') ?>">
@@ -120,23 +134,6 @@ class LicenseSettingsTabView implements SettingsPageView
                     />
                 </td>
             </tr>
-
-            <tr>
-                <th scope="row">
-                    <label for="<?php $this->inputNameAttr('deactivate') ?>">
-                        <?php esc_html_e('Deactivate license', 'multilingualpress') ?>
-                    </label>
-                </th>
-                <td>
-                    <label>
-                        <input type="checkbox"
-                               id="<?php $this->inputNameAttr('deactivate') ?>"
-                               name="<?php $this->inputNameAttr('deactivate') ?>"
-                               value="1"
-                        />
-                    </label>
-                </td>
-            </tr>
             </tbody>
         </table>
 
@@ -145,6 +142,67 @@ class LicenseSettingsTabView implements SettingsPageView
                value="<?php echo esc_attr($licenseOption['instance_key']); ?>"
         />
         <?php
+        // phpcs:enable
+        submit_button(__('Activate License', 'multilingualpress'));
+    }
+
+    /**
+     * @param array $licenseOption
+     */
+    protected function deactivateView(array $licenseOption)
+    {
+        ?>
+        <table class="form-table widefat mlp-settings-table mlp-license-settings">
+            <tr>
+                <td>
+                    <?= wp_kses_post(
+                        __(
+                            'This version of MultilingualPress has a new licensing system that requires a Master Api Key and a Product ID in order to be activated. These values are available in your <a href="https://multilingualpress.org/my-account/" target="_blank">My Account</a> section. Further information is available <a href="https://multilingualpress.org/docs/multilingualpress-license-update/" target="_blank">here</a>.',
+                            'multilingualpress'
+                        )
+                    ) ?>
+                </td>
+            </tr>
+        </table>
+        <table class="form-table widefat mlp-settings-table mlp-license-settings">
+            <tbody class="table-body-block">
+            <tr>
+                <td><?=
+                    sprintf(
+                        /* translators: %s: api key value */
+                        esc_html_x(
+                            'License with API Key %s is active.',
+                            'License',
+                            'multilingualpress'
+                        ),
+                        // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+                        $this->displayLastDigits($licenseOption['api_key'])
+                    ); ?>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <input type="hidden"
+               name="<?php $this->inputNameAttr('instance') ?>"
+               value="<?php echo esc_attr($licenseOption['instance_key']); ?>"/>
+        <input type="hidden" name="<?php $this->inputNameAttr('deactivate') ?>" value="1"/>
+        <?php
+        submit_button(__('Deactivate License', 'multilingualpress'));
+    }
+
+    /**
+     * @param string $licenseApiKey
+     * @return string
+     */
+    protected function displayLastDigits(string $licenseApiKey): string
+    {
+        return str_pad(
+            substr($licenseApiKey, -4),
+            strlen($licenseApiKey),
+            '*',
+            STR_PAD_LEFT
+        );
     }
 
     /**

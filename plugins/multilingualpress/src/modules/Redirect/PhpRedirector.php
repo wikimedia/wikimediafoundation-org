@@ -15,12 +15,13 @@ namespace Inpsyde\MultilingualPress\Module\Redirect;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 
 use function Inpsyde\MultilingualPress\callExit;
+use function Inpsyde\MultilingualPress\siteLanguageTag;
 
 /**
  * Class PhpRedirector
  * @package Inpsyde\MultilingualPress\Module\Redirect
  */
-final class PhpRedirector implements Redirector
+class PhpRedirector implements Redirector
 {
     /**
      * @var LanguageNegotiator
@@ -38,19 +39,27 @@ final class PhpRedirector implements Redirector
     private $noRedirectStorage;
 
     /**
+     * @var AcceptLanguageParser
+     */
+    private $acceptLanguageParser;
+
+    /**
      * @param LanguageNegotiator $languageNegotiator
      * @param NoRedirectStorage $noRedirectStorage
      * @param Request $request
+     * @param AcceptLanguageParser $acceptLanguageParser
      */
     public function __construct(
         LanguageNegotiator $languageNegotiator,
         NoRedirectStorage $noRedirectStorage,
-        Request $request
+        Request $request,
+        AcceptLanguageParser $acceptLanguageParser
     ) {
 
         $this->languageNegotiator = $languageNegotiator;
         $this->noRedirectStorage = $noRedirectStorage;
         $this->request = $request;
+        $this->acceptLanguageParser = $acceptLanguageParser;
     }
 
     /**
@@ -69,8 +78,13 @@ final class PhpRedirector implements Redirector
             return;
         }
 
+        if ($this->requestLanguageIsSameAsCurrentSiteLanguage()) {
+            return;
+        }
+
         $target = $this->languageNegotiator->redirectTarget();
-        if (!$target->url() || $target->siteId() === get_current_blog_id()) {
+
+        if (!$target->url()) {
             /**
              * Do Action if Target was not Found
              *
@@ -84,5 +98,24 @@ final class PhpRedirector implements Redirector
 
         wp_redirect($target->url());
         callExit();
+    }
+
+    /**
+     * Check if the Request language coming from 'Accept-Language' header
+     * is the same as the current site language
+     *
+     * @return bool
+     */
+    protected function requestLanguageIsSameAsCurrentSiteLanguage():bool
+    {
+        $requestAcceptLanguageHeader = $this->request->header('Accept-Language');
+        $acceptLanguage = $this->acceptLanguageParser->parseHeader($requestAcceptLanguageHeader);
+        $currentSiteLanguage = strtok(siteLanguageTag(get_current_blog_id()), '-');
+
+        if (!empty($acceptLanguage) && key($acceptLanguage) === $currentSiteLanguage) {
+            return true;
+        }
+
+        return false;
     }
 }

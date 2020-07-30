@@ -15,6 +15,7 @@ namespace Inpsyde\MultilingualPress\Module\WooCommerce;
 use Inpsyde\MultilingualPress\Asset\AssetFactory;
 use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Core\Locations;
+use Inpsyde\MultilingualPress\Core\PostTypeRepository;
 use Inpsyde\MultilingualPress\Core\ServiceProvider as CoreServiceProvider;
 use Inpsyde\MultilingualPress\Core\TaxonomyRepository;
 use Inpsyde\MultilingualPress\Framework\Admin\PersistentAdminNotices;
@@ -183,61 +184,17 @@ class ServiceProvider implements ModuleServiceProvider
             return;
         }
 
-        $attributeTermTranslateUrl = $container[AttributeTermTranslateUrl::class];
-        $attributesRelationship = $container[AttributesRelationship::class];
-
         $this->bootstrapAssets($container);
         $this->activateBasePermalinkStructures($container);
         $this->activateProductMetaboxes($container);
         $this->removeAttributeTaxonomiesFieldsFromPostMetabox();
-
-        add_filter(
-            PostTypeTranslator::FILTER_POST_TYPE_PERMALINK,
-            [$container[ArchiveProducts::class], 'shopArchiveUrl'],
-            10,
-            3
-        );
-
-        add_filter(
-            TermTranslator::FILTER_TRANSLATION,
-            [$attributeTermTranslateUrl, 'termLinkByTaxonomyId'],
-            10,
-            4
-        );
-        add_action('setup_theme', function () use ($attributeTermTranslateUrl) {
-            global $wp_rewrite;
-            $attributeTermTranslateUrl->ensureWpRewrite($wp_rewrite);
-        });
-
-        add_filter(
-            TaxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
-            [$container[AvailableTaxonomiesAttributes::class], 'removeAttributes']
-        );
-
-        add_action(
-            'edit_tag_form_pre',
-            [$attributesRelationship, 'createAttributeRelation']
-        );
-
-        $attributesHookNames = ['woocommerce_attribute_added', 'woocommerce_attribute_updated'];
-        array_walk($attributesHookNames, function (string $hookName) use ($attributesRelationship) {
-            add_action($hookName, [$attributesRelationship, 'addSupportForAttribute'], 10, 2);
-        });
+        $this->addProductSearchHandler($container);
+        $this->postTypeActions($container);
+        $this->taxonomyActions($container);
 
         add_filter(SiteDuplicator::FILTER_SITE_TABLES, function ($tables, $sourceSiteId, $wpdb) {
             return $this->duplicateWooCommerceTablesForSite($sourceSiteId, $tables, $wpdb);
         }, 10, 3);
-
-        add_filter(
-            CoreServiceProvider::FILTER_AVAILABLE_POST_TYPE_FOR_SETTINGS,
-            static function (array $allAvailablePostTypes): array {
-                unset($allAvailablePostTypes['product']);
-
-                return $allAvailablePostTypes;
-            }
-        );
-
-        $this->addProductSearchHandler($container);
     }
 
     /**
@@ -469,6 +426,7 @@ class ServiceProvider implements ModuleServiceProvider
             "{$prefix}woocommerce_shipping_zones",
             "{$prefix}woocommerce_tax_rate_locations",
             "{$prefix}woocommerce_tax_rates",
+            "{$prefix}wc_tax_rate_classes",
         ]);
 
         global $woocommerce;
@@ -512,5 +470,71 @@ class ServiceProvider implements ModuleServiceProvider
                 $search->handle($request);
             }
         );
+    }
+
+    /**
+     * @param Container $container
+     */
+    private function postTypeActions(Container $container)
+    {
+        add_filter(
+            PostTypeTranslator::FILTER_POST_TYPE_PERMALINK,
+            [$container[ArchiveProducts::class], 'shopArchiveUrl'],
+            10,
+            3
+        );
+
+        add_filter(
+            CoreServiceProvider::FILTER_AVAILABLE_POST_TYPE_FOR_SETTINGS,
+            static function (array $allAvailablePostTypes): array {
+                unset($allAvailablePostTypes['product']);
+
+                return $allAvailablePostTypes;
+            }
+        );
+
+        add_filter(
+            PostTypeRepository::FILTER_PUBLIC_POST_TYPES,
+            function ($allAvailablePostTypes) {
+                unset($allAvailablePostTypes['shop_order']);
+                return $allAvailablePostTypes;
+            }
+        );
+    }
+
+    /**
+     * @param Container $container
+     */
+    private function taxonomyActions(Container $container)
+    {
+        $attributeTermTranslateUrl = $container[AttributeTermTranslateUrl::class];
+        $attributesRelationship = $container[AttributesRelationship::class];
+
+        add_filter(
+            TermTranslator::FILTER_TRANSLATION,
+            [$attributeTermTranslateUrl, 'termLinkByTaxonomyId'],
+            10,
+            4
+        );
+
+        add_action('setup_theme', function () use ($attributeTermTranslateUrl) {
+            global $wp_rewrite;
+            $attributeTermTranslateUrl->ensureWpRewrite($wp_rewrite);
+        });
+
+        add_filter(
+            TaxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
+            [$container[AvailableTaxonomiesAttributes::class], 'removeAttributes']
+        );
+
+        add_action(
+            'edit_tag_form_pre',
+            [$attributesRelationship, 'createAttributeRelation']
+        );
+
+        $attributesHookNames = ['woocommerce_attribute_added', 'woocommerce_attribute_updated'];
+        array_walk($attributesHookNames, function (string $hookName) use ($attributesRelationship) {
+            add_action($hookName, [$attributesRelationship, 'addSupportForAttribute'], 10, 2);
+        });
     }
 }

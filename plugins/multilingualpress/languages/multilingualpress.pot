@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: multilingualpress.php:11, src/multilingualpress/Core/ServiceProvider.php:533, src/multilingualpress/Core/ServiceProvider.php:842, src/multilingualpress/Core/ServiceProvider.php:1067, src/multilingualpress/Core/ServiceProvider.php:1068, src/multilingualpress/Core/ServiceProvider.php:1076, src/multilingualpress/Core/Admin/NewSiteSettings.php:61
+#: multilingualpress.php:11, src/multilingualpress/Core/ServiceProvider.php:534, src/multilingualpress/Core/ServiceProvider.php:843, src/multilingualpress/Core/ServiceProvider.php:1068, src/multilingualpress/Core/ServiceProvider.php:1069, src/multilingualpress/Core/ServiceProvider.php:1077, src/multilingualpress/Core/Admin/NewSiteSettings.php:61
 msgid "MultilingualPress"
 msgstr ""
 
@@ -131,15 +131,15 @@ msgid "HTTP"
 msgstr ""
 
 #: src/modules/LanguageManager/TableFormView.php:345
-msgid "ISO&#160;639-1"
+msgid "ISO 639-1"
 msgstr ""
 
 #: src/modules/LanguageManager/TableFormView.php:353
-msgid "ISO&#160;639-2"
+msgid "ISO 639-2"
 msgstr ""
 
 #: src/modules/LanguageManager/TableFormView.php:361
-msgid "ISO&#160;639-3"
+msgid "ISO 639-3"
 msgstr ""
 
 #: src/modules/LanguageManager/TableFormView.php:369
@@ -184,7 +184,27 @@ msgstr ""
 msgid "Show current site"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:138
+#: src/modules/LanguageSwitcher/Widget.php:134
+msgid "Choose how to show the language name:"
+msgstr ""
+
+#: src/modules/LanguageSwitcher/Widget.php:139
+msgid "Language ISO Name"
+msgstr ""
+
+#: src/modules/LanguageSwitcher/Widget.php:140
+msgid "Language Locale"
+msgstr ""
+
+#: src/modules/LanguageSwitcher/Widget.php:141
+msgid "Language Name"
+msgstr ""
+
+#: src/modules/LanguageSwitcher/Widget.php:142
+msgid "Language ISO Code"
+msgstr ""
+
+#: src/modules/LanguageSwitcher/Widget.php:166
 msgid "Show flags"
 msgstr ""
 
@@ -193,21 +213,21 @@ msgctxt "QuickLinks"
 msgid "Read In:"
 msgstr ""
 
-#: src/modules/QuickLinks/QuickLink.php:186
+#: src/modules/QuickLinks/QuickLink.php:187
 msgctxt "QuickLinks"
 msgid "Redirect"
 msgstr ""
 
-#: src/modules/QuickLinks/ServiceProvider.php:156
+#: src/modules/QuickLinks/ServiceProvider.php:158
 msgctxt "QuickLinks Module Settings"
 msgid "QuickLinks"
 msgstr ""
 
-#: src/modules/QuickLinks/ServiceProvider.php:187
+#: src/modules/QuickLinks/ServiceProvider.php:189
 msgid "Show link to translations in post content."
 msgstr ""
 
-#: src/modules/QuickLinks/ServiceProvider.php:191
+#: src/modules/QuickLinks/ServiceProvider.php:193
 msgid "QuickLink"
 msgstr ""
 
@@ -215,7 +235,7 @@ msgstr ""
 msgid "Enable automatic redirect"
 msgstr ""
 
-#: src/modules/Redirect/RedirectSiteSetting.php:79, src/modules/Redirect/RedirectUserSetting.php:88, src/modules/Redirect/ServiceProvider.php:150, src/modules/Redirect/ServiceProvider.php:290, src/modules/Redirect/ServiceProvider.php:374
+#: src/modules/Redirect/RedirectSiteSetting.php:79, src/modules/Redirect/RedirectUserSetting.php:88, src/modules/Redirect/ServiceProvider.php:150, src/modules/Redirect/ServiceProvider.php:293, src/modules/Redirect/ServiceProvider.php:377
 msgid "Redirect"
 msgstr ""
 
@@ -223,7 +243,7 @@ msgstr ""
 msgid "Do not redirect me to the best matching language version."
 msgstr ""
 
-#: src/modules/Redirect/ServiceProvider.php:286
+#: src/modules/Redirect/ServiceProvider.php:289
 msgid "Enable the Redirect checkbox on each site: this allows you to enable/disable the automatic redirection feature according to the user browser language settings."
 msgstr ""
 
@@ -239,15 +259,15 @@ msgstr ""
 msgid "Send all the translations to trash when this post is trashed."
 msgstr ""
 
-#: src/modules/WooCommerce/ServiceProvider.php:59
+#: src/modules/WooCommerce/ServiceProvider.php:60
 msgid "Enable WooCommerce Support for MultilingualPress."
 msgstr ""
 
-#: src/modules/WooCommerce/ServiceProvider.php:65
+#: src/modules/WooCommerce/ServiceProvider.php:66
 msgid "The module can be activated only if WooCommerce is active at least in the main site."
 msgstr ""
 
-#: src/modules/WooCommerce/ServiceProvider.php:76
+#: src/modules/WooCommerce/ServiceProvider.php:77
 msgid "WooCommerce"
 msgstr ""
 
@@ -255,39 +275,39 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:357
+#: src/multilingualpress/Core/ServiceProvider.php:358
 msgid "Modules"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:369
+#: src/multilingualpress/Core/ServiceProvider.php:370
 msgid "Translatable Post Types"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:381
+#: src/multilingualpress/Core/ServiceProvider.php:382
 msgid "Translatable Taxonomies"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:394
+#: src/multilingualpress/Core/ServiceProvider.php:395
 msgid "License"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:860, src/multilingualpress/Core/ServiceProvider.php:867
+#: src/multilingualpress/Core/ServiceProvider.php:861, src/multilingualpress/Core/ServiceProvider.php:868
 msgid "Post Type Slugs"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:915
+#: src/multilingualpress/Core/ServiceProvider.php:916
 msgid "Site Language"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:917, src/multilingualpress/Core/ServiceProvider.php:935
+#: src/multilingualpress/Core/ServiceProvider.php:918, src/multilingualpress/Core/ServiceProvider.php:936
 msgid "none"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:928, src/multilingualpress/Core/Admin/RelationshipsSiteSetting.php:95
+#: src/multilingualpress/Core/ServiceProvider.php:929, src/multilingualpress/Core/Admin/RelationshipsSiteSetting.php:95
 msgid "Relationships"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:1077, src/multilingualpress/Core/ServiceProvider.php:1090
+#: src/multilingualpress/Core/ServiceProvider.php:1078, src/multilingualpress/Core/ServiceProvider.php:1091
 msgid "Settings"
 msgstr ""
 
@@ -655,27 +675,33 @@ msgstr ""
 msgid "Choose language"
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:78
+#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:98, src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:159
 msgid "This version of MultilingualPress has a new licensing system that requires a Master Api Key and a Product ID in order to be activated. These values are available in your <a href=\"https://multilingualpress.org/my-account/\" target=\"_blank\">My Account</a> section. Further information is available <a href=\"https://multilingualpress.org/docs/multilingualpress-license-update/\" target=\"_blank\">here</a>."
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:85
-msgid "Status"
-msgstr ""
-
-#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:97
+#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:111
 msgid "Master API Key"
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:112
+#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:126
 msgid "Product ID"
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:127
-msgid "Deactivate license"
+#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:146
+msgid "Activate License"
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/PluginSettingsPageView.php:118
+#. translators: %s: api key value
+#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:173
+msgctxt "License"
+msgid "License with API Key %s is active."
+msgstr ""
+
+#: src/multilingualpress/Core/Admin/LicenseSettingsTabView.php:191
+msgid "Deactivate License"
+msgstr ""
+
+#: src/multilingualpress/Core/Admin/PluginSettingsPageView.php:121
 msgid "Save Changes"
 msgstr ""
 

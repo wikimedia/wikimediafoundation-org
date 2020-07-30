@@ -17,7 +17,7 @@ class Item
     /**
      * @var string
      */
-    private $isoName;
+    private $languageName;
 
     /**
      * @var string
@@ -40,21 +40,21 @@ class Item
     private $siteId;
 
     /**
-     * @param string $isoName
+     * @param string $languageName
      * @param string $isoCode
      * @param string $flag
      * @param string $url
      * @param int $siteId
      */
     public function __construct(
-        string $isoName,
+        string $languageName,
         string $isoCode,
         string $flag,
         string $url,
         int $siteId
     ) {
 
-        $this->isoName = $isoName;
+        $this->languageName = $languageName;
         $this->isoCode = $isoCode;
         $this->flag = $flag;
         $this->url = $url;
@@ -64,9 +64,9 @@ class Item
     /**
      * @return string
      */
-    public function isoName(): string
+    public function languageName(): string
     {
-        return $this->isoName;
+        return $this->languageName;
     }
 
     /**

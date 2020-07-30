@@ -1,18 +1,34 @@
-2020-03-30 - version 3.3.3
-* Add: New filters to automatically enable Copy Source Content, Copy Featured Image and Copy Taxonomies
-* Add: New filter to change remote post data before creation
-* Fix: Menu item fields are disabled in customizer
-* Fix: Redirect Fallback option prevent user to navigate through the site
-* Fix: Add current language item classes to Language Switcher
-* Fix: Improve MultilingualPress term metabox usability
+2020-07-06 - version 3.4.0
+* Add: Improve the licence activation/deactivation form view.
+* Add: Add a way to change the language name/view in language switcher widget.
+* Fix: Quicklinks are not working with translated post type slugs.
+* Fix: Redirect is not working correctly.
+* Fix: JS Redirector is not working.
+* Fix: Bug with redirect fallback option.
+* Fix: Copy paste in metabox search field should automatically start searching.
+* Fix: Can't navigate to the first language site from QuickLink Selectbox.
+* Fix: Composer issue when upgrading from 3.3.2 to 3.3.3.
+* Fix: wc_tax_rate_classes table is missing from duplicate woocommerce tables.
+* Fix: Heading are not displayed correctly in language manager options.
+* Fix: Wrong parameter passed to wp_get_attachment_metadata function.
+* Fix: Wrong checking of WP_Error when wp_update_post() is used.
+* Fix: Can't insert html in excerpt from translation metabox.
+
+2020-03-16 - version 3.3.3
+* Add: New filters to automatically enable Copy Source Content, Copy Featured Image and Copy Taxonomies.
+* Add: New filter to change remote post data before creation.
+* Fix: Menu item fields are disabled in customizer.
+* Fix: Redirect Fallback option prevent user to navigate through the site.
+* Fix: Add current language item classes to Language Switcher.
+* Fix: Improve MultilingualPress term metabox usability.
 
 2020-01-22 - version 3.3.2
-* Fix: Metabox taxonomies not selected when term_id and term_taxonomy_id are different
-* Fix: Gutenberg strip metabox title in Options modal
-* Fix: TypeError: Cannot read property 'isSavingMetaBoxes' of null on product pages when using Yoast seo
-* Fix: Modules registered as active are not really active
-* Fix: Translation box has default jquery style
-* Tweak: Enhance the search feature in the translation metabox
+* Fix: Metabox taxonomies not selected when term_id and term_taxonomy_id are different.
+* Fix: Gutenberg strip metabox title in Options modal.
+* Fix: TypeError: Cannot read property 'isSavingMetaBoxes' of null on product pages when using Yoast seo.
+* Fix: Modules registered as active are not really active.
+* Fix: Translation box has default jquery style.
+* Tweak: Enhance the search feature in the translation metabox.
 
 2019-11-21 - version 3.3.1
 * Fix: Taxonomy term description field does not allow custom html markup.

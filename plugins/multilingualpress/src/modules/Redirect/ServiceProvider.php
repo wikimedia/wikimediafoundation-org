@@ -198,17 +198,20 @@ final class ServiceProvider implements ModuleServiceProvider
                 if ($type === Redirector::TYPE_JAVASCRIPT) {
                     return new JsRedirector(
                         $container[LanguageUrlDictionaryFactory::class],
-                        $container[AssetManager::class]
+                        $container[AssetManager::class],
+                        $container[Repository::class]
                     );
                 }
 
                 return new PhpRedirector(
                     $negotiator,
                     $container[NoRedirectStorage::class],
-                    $container[ServerRequest::class]
+                    $container[ServerRequest::class],
+                    $container[AcceptLanguageParser::class]
                 );
             }
         );
+
         $container->addService(
             NotFoundSiteRedirect::class,
             function (Container $container): NotFoundSiteRedirect {
@@ -396,7 +399,8 @@ final class ServiceProvider implements ModuleServiceProvider
             ->registerScript(
                 $assetFactory->createInternalScript(
                     JsRedirector::SCRIPT_HANDLE,
-                    'frontend.min.js'
+                    'frontend.min.js',
+                    ['jquery']
                 )
             );
 

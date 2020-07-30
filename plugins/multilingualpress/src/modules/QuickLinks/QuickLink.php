@@ -174,6 +174,7 @@ class QuickLink
                     class="mlp-quicklinks-form__select"
                     name="mlp_quicklinks_redirect_selection"
             >
+                <option value=""></option>
                 <?php foreach ($modelCollection as $model) : ?>
                     <option value="<?= esc_attr($model->url()) ?>">
                         <?= esc_html($model->label()) ?>

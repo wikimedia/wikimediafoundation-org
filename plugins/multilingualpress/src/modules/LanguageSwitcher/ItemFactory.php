@@ -15,7 +15,7 @@ namespace Inpsyde\MultilingualPress\Module\LanguageSwitcher;
 class ItemFactory
 {
     /**
-     * @param string $isoName
+     * @param string $languageName
      * @param string $isoCode
      * @param string $flag
      * @param string $url
@@ -23,13 +23,13 @@ class ItemFactory
      * @return Item
      */
     public function create(
-        string $isoName,
+        string $languageName,
         string $isoCode,
         string $flag,
         string $url,
         int $siteId
     ): Item {
-        
-        return new Item($isoName, $isoCode, $flag, $url, $siteId);
+
+        return new Item($languageName, $isoCode, $flag, $url, $siteId);
     }
 }

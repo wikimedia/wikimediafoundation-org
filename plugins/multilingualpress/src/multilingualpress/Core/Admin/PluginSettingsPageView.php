@@ -115,7 +115,11 @@ final class PluginSettingsPageView implements SettingsPageView
             <?php
             printNonceField($this->nonce);
             $this->renderContent();
-            submit_button(__('Save Changes', 'multilingualpress'));
+
+            $tab = (string)$this->request->bodyValue(self::QUERY_ARG_TAB, INPUT_GET);
+            if ($tab !== 'license') {
+                submit_button(__('Save Changes', 'multilingualpress'));
+            }
             ?>
         </form>
         <?php
