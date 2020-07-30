@@ -50,7 +50,7 @@
     "graceful-fs": "^4.2.4",
     "gulp-footer": "^2.0.1",
     "jquery": "^3.5.1",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "minimatch": "^3.0.4",
     "popper.js": "^1.16.1",
     "sass": "^1.26.8",
