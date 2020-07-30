@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\QuickLinks;
 
+use Inpsyde\MultilingualPress\Framework\Api\Translations;
 use Inpsyde\MultilingualPress\Asset\AssetFactory;
 use Inpsyde\MultilingualPress\Core\Admin\PluginSettingsUpdater;
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
@@ -82,7 +83,8 @@ class ServiceProvider implements ModuleServiceProvider
             function (Container $container): CollectionFactory {
                 return new CollectionFactory(
                     $container[ContentRelations::class],
-                    $container[SiteSettingsRepository::class]
+                    $container[SiteSettingsRepository::class],
+                    $container[Translations::class]
                 );
             }
         );

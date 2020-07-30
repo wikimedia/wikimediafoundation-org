@@ -342,7 +342,7 @@ class TableFormView
                 ],
             ],
             LanguagesTable::COLUMN_ISO_639_1_CODE => [
-                'header' => esc_html__('ISO&#160;639-1', 'multilingualpress'),
+                'header' => esc_html__('ISO 639-1', 'multilingualpress'),
                 'type' => 'text',
                 'attributes' => [
                     'class' => self::sanitizeColumnsHtmlClass(LanguagesTable::COLUMN_ISO_639_1_CODE),
@@ -350,7 +350,7 @@ class TableFormView
                 ],
             ],
             LanguagesTable::COLUMN_ISO_639_2_CODE => [
-                'header' => esc_html__('ISO&#160;639-2', 'multilingualpress'),
+                'header' => esc_html__('ISO 639-2', 'multilingualpress'),
                 'type' => 'text',
                 'attributes' => [
                     'class' => self::sanitizeColumnsHtmlClass(LanguagesTable::COLUMN_ISO_639_2_CODE),
@@ -358,7 +358,7 @@ class TableFormView
                 ],
             ],
             LanguagesTable::COLUMN_ISO_639_3_CODE => [
-                'header' => esc_html__('ISO&#160;639-3', 'multilingualpress'),
+                'header' => esc_html__('ISO 639-3', 'multilingualpress'),
                 'type' => 'text',
                 'attributes' => [
                     'class' => self::sanitizeColumnsHtmlClass(LanguagesTable::COLUMN_ISO_639_3_CODE),

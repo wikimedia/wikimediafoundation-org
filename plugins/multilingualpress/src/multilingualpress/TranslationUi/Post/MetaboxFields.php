@@ -203,7 +203,7 @@ class MetaboxFields
             new MetaboxField(
                 self::FIELD_EXCERPT,
                 new Field\Excerpt(),
-                'sanitize_textarea_field'
+                'wp_kses_post'
             ),
         ];
     }

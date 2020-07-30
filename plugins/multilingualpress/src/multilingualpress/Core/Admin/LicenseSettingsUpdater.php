@@ -17,6 +17,7 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\ProductPagesLicensing\Api\Activator;
 use Inpsyde\ProductPagesLicensing\License;
 use Psr\Http\Client\ClientExceptionInterface;
+use function Inpsyde\MultilingualPress\settingsErrors;
 
 class LicenseSettingsUpdater
 {
@@ -55,9 +56,13 @@ class LicenseSettingsUpdater
 
         $response = $this->requestTypeActivation($requestType, $license);
 
+        if (isset($response['error'])) {
+            settingsErrors(['license' => $response['error']], 'license', 'error');
+        }
+
         return update_network_option(0, 'multilingualpress_license', [
-            'license_product_id' => $license->productId(),
-            'api_key' => $license->apiKey(),
+            'license_product_id' => $requestType === 'activation' ? $license->productId() : '',
+            'api_key' => $requestType === 'activation' ? $license->apiKey() : '',
             'instance_key' => $license->instance(),
             'status' => isset($response['status']) ? $response['status'] : 'inactive',
         ]);
@@ -92,6 +97,24 @@ class LicenseSettingsUpdater
         );
 
         $requestFor = $settings['deactivate'] ? 'deactivation' : 'activation';
+
+        if ($requestFor === 'deactivation') {
+            $licenseOption = get_network_option(0, 'multilingualpress_license');
+            $productId = isset($licenseOption['api_key']) ? $licenseOption['license_product_id'] : '';
+            $apiKey = isset($licenseOption['api_key'])
+                ? $licenseOption['api_key']
+                : '';
+
+            return [
+                new License(
+                    $productId,
+                    $apiKey,
+                    $settings['instance_key'],
+                    'inactive'
+                ),
+                $requestFor,
+            ];
+        }
 
         return [
             new License(

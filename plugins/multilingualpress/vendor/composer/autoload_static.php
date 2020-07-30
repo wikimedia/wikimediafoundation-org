@@ -4,28 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
+class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
-        '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
-        'ce70dccb4bcc2efc6e94d2ee526e6972' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_method_from_sapi.php',
-        'f86420df471f14d568bfcb71e271b523' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_protocol_version_from_sapi.php',
-        'b87481e008a3700344428ae089e7f9e5' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_uri_from_sapi.php',
-        '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
-        '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
-        '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
-        '21ad3a3bde0254df424fe382e4a97b61' => __DIR__ . '/..' . '/zelenin/http-client/src/functions.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'Z' => 
-        array (
-            'Zend\\Diactoros\\' => 15,
-            'Zelenin\\HttpClient\\' => 19,
-        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -34,6 +22,10 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'O' => 
         array (
             'OomphInc\\ComposerInstallersExtender\\' => 36,
+        ),
+        'M' => 
+        array (
+            'Mjelamanov\\GuzzlePsr18\\' => 23,
         ),
         'I' => 
         array (
@@ -49,10 +41,8 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
-        ),
-        'D' => 
-        array (
-            'Dflydev\\FigCookies\\' => 19,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'C' => 
         array (
@@ -61,14 +51,6 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
     );
 
     public static $prefixDirsPsr4 = array (
-        'Zend\\Diactoros\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
-        ),
-        'Zelenin\\HttpClient\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zelenin/http-client/src',
-        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -81,6 +63,10 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'OomphInc\\ComposerInstallersExtender\\' => 
         array (
             0 => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src',
+        ),
+        'Mjelamanov\\GuzzlePsr18\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src',
         ),
         'Inpsyde\\ProductPagesLicensing\\' => 
         array (
@@ -106,9 +92,13 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'Dflydev\\FigCookies\\' => 
+        'GuzzleHttp\\Promise\\' => 
         array (
-            0 => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies',
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Composer\\Installers\\' => 
         array (
@@ -213,13 +203,48 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'Composer\\Installers\\YawikInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/YawikInstaller.php',
         'Composer\\Installers\\ZendInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZendInstaller.php',
         'Composer\\Installers\\ZikulaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZikulaInstaller.php',
-        'Dflydev\\FigCookies\\Cookie' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/Cookie.php',
-        'Dflydev\\FigCookies\\Cookies' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/Cookies.php',
-        'Dflydev\\FigCookies\\FigRequestCookies' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/FigRequestCookies.php',
-        'Dflydev\\FigCookies\\FigResponseCookies' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/FigResponseCookies.php',
-        'Dflydev\\FigCookies\\SetCookie' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/SetCookie.php',
-        'Dflydev\\FigCookies\\SetCookies' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/SetCookies.php',
-        'Dflydev\\FigCookies\\StringUtil' => __DIR__ . '/..' . '/dflydev/fig-cookies/src/Dflydev/FigCookies/StringUtil.php',
+        'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
+        'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
+        'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
+        'GuzzleHttp\\Cookie\\CookieJarInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php',
+        'GuzzleHttp\\Cookie\\FileCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php',
+        'GuzzleHttp\\Cookie\\SessionCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php',
+        'GuzzleHttp\\Cookie\\SetCookie' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/SetCookie.php',
+        'GuzzleHttp\\Exception\\BadResponseException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/BadResponseException.php',
+        'GuzzleHttp\\Exception\\ClientException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ClientException.php',
+        'GuzzleHttp\\Exception\\ConnectException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ConnectException.php',
+        'GuzzleHttp\\Exception\\GuzzleException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/GuzzleException.php',
+        'GuzzleHttp\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php',
+        'GuzzleHttp\\Exception\\RequestException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/RequestException.php',
+        'GuzzleHttp\\Exception\\SeekException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/SeekException.php',
+        'GuzzleHttp\\Exception\\ServerException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ServerException.php',
+        'GuzzleHttp\\Exception\\TooManyRedirectsException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php',
+        'GuzzleHttp\\Exception\\TransferException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TransferException.php',
+        'GuzzleHttp\\HandlerStack' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/HandlerStack.php',
+        'GuzzleHttp\\Handler\\CurlFactory' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlFactory.php',
+        'GuzzleHttp\\Handler\\CurlFactoryInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlFactoryInterface.php',
+        'GuzzleHttp\\Handler\\CurlHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlHandler.php',
+        'GuzzleHttp\\Handler\\CurlMultiHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php',
+        'GuzzleHttp\\Handler\\EasyHandle' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/EasyHandle.php',
+        'GuzzleHttp\\Handler\\MockHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/MockHandler.php',
+        'GuzzleHttp\\Handler\\Proxy' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/Proxy.php',
+        'GuzzleHttp\\Handler\\StreamHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/StreamHandler.php',
+        'GuzzleHttp\\MessageFormatter' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/MessageFormatter.php',
+        'GuzzleHttp\\Middleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Middleware.php',
+        'GuzzleHttp\\Pool' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Pool.php',
+        'GuzzleHttp\\PrepareBodyMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php',
+        'GuzzleHttp\\Promise\\AggregateException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/AggregateException.php',
+        'GuzzleHttp\\Promise\\CancellationException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/CancellationException.php',
+        'GuzzleHttp\\Promise\\Coroutine' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Coroutine.php',
+        'GuzzleHttp\\Promise\\EachPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/EachPromise.php',
+        'GuzzleHttp\\Promise\\FulfilledPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/FulfilledPromise.php',
+        'GuzzleHttp\\Promise\\Promise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Promise.php',
+        'GuzzleHttp\\Promise\\PromiseInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromiseInterface.php',
+        'GuzzleHttp\\Promise\\PromisorInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromisorInterface.php',
+        'GuzzleHttp\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectedPromise.php',
+        'GuzzleHttp\\Promise\\RejectionException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectionException.php',
+        'GuzzleHttp\\Promise\\TaskQueue' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueue.php',
+        'GuzzleHttp\\Promise\\TaskQueueInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueueInterface.php',
         'GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
         'GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
         'GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
@@ -243,6 +268,11 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'GuzzleHttp\\Psr7\\Uri' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Uri.php',
         'GuzzleHttp\\Psr7\\UriNormalizer' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriNormalizer.php',
         'GuzzleHttp\\Psr7\\UriResolver' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriResolver.php',
+        'GuzzleHttp\\RedirectMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RedirectMiddleware.php',
+        'GuzzleHttp\\RequestOptions' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RequestOptions.php',
+        'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
+        'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
+        'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
         'Http\\Factory\\Guzzle\\RequestFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/RequestFactory.php',
         'Http\\Factory\\Guzzle\\ResponseFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/ResponseFactory.php',
         'Http\\Factory\\Guzzle\\ServerRequestFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/ServerRequestFactory.php',
@@ -690,6 +720,11 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'Inpsyde\\ProductPagesLicensing\\Api\\Updater' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/Api/Updater.php',
         'Inpsyde\\ProductPagesLicensing\\License' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/License.php',
         'Inpsyde\\ProductPagesLicensing\\RequestHandler' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/RequestHandler.php',
+        'Mjelamanov\\GuzzlePsr18\\Client' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Client.php',
+        'Mjelamanov\\GuzzlePsr18\\Exception\\GuzzleException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/GuzzleException.php',
+        'Mjelamanov\\GuzzlePsr18\\Exception\\NetworkException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/NetworkException.php',
+        'Mjelamanov\\GuzzlePsr18\\Exception\\RequestException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/RequestException.php',
+        'Mjelamanov\\GuzzlePsr18\\Exception\\WithRequest' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/WithRequest.php',
         'OomphInc\\ComposerInstallersExtender\\Installer' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/Installer.php',
         'OomphInc\\ComposerInstallersExtender\\InstallerHelper' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/InstallerHelper.php',
         'OomphInc\\ComposerInstallersExtender\\Plugin' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/Plugin.php',
@@ -710,64 +745,14 @@ class ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
         'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
-        'Zelenin\\HttpClient\\ClientFactory' => __DIR__ . '/..' . '/zelenin/http-client/src/ClientFactory.php',
-        'Zelenin\\HttpClient\\Exception\\NetworkException' => __DIR__ . '/..' . '/zelenin/http-client/src/Exception/NetworkException.php',
-        'Zelenin\\HttpClient\\Exception\\RequestException' => __DIR__ . '/..' . '/zelenin/http-client/src/Exception/RequestException.php',
-        'Zelenin\\HttpClient\\FallbackMiddleware' => __DIR__ . '/..' . '/zelenin/http-client/src/FallbackMiddleware.php',
-        'Zelenin\\HttpClient\\MiddlewareClient' => __DIR__ . '/..' . '/zelenin/http-client/src/MiddlewareClient.php',
-        'Zelenin\\HttpClient\\MiddlewareInterface' => __DIR__ . '/..' . '/zelenin/http-client/src/MiddlewareInterface.php',
-        'Zelenin\\HttpClient\\Middleware\\Cookie\\CookieRequest' => __DIR__ . '/..' . '/zelenin/http-client/src/Middleware/Cookie/CookieRequest.php',
-        'Zelenin\\HttpClient\\Middleware\\Cookie\\CookieResponse' => __DIR__ . '/..' . '/zelenin/http-client/src/Middleware/Cookie/CookieResponse.php',
-        'Zelenin\\HttpClient\\Middleware\\Cookie\\FileStorage' => __DIR__ . '/..' . '/zelenin/http-client/src/Middleware/Cookie/FileStorage.php',
-        'Zelenin\\HttpClient\\Middleware\\Cookie\\Storage' => __DIR__ . '/..' . '/zelenin/http-client/src/Middleware/Cookie/Storage.php',
-        'Zelenin\\HttpClient\\Middleware\\Deflate' => __DIR__ . '/..' . '/zelenin/http-client/src/Middleware/Deflate.php',
-        'Zelenin\\HttpClient\\Middleware\\UserAgent' => __DIR__ . '/..' . '/zelenin/http-client/src/Middleware/UserAgent.php',
-        'Zelenin\\HttpClient\\RequestConfig' => __DIR__ . '/..' . '/zelenin/http-client/src/RequestConfig.php',
-        'Zelenin\\HttpClient\\RequestHandler' => __DIR__ . '/..' . '/zelenin/http-client/src/RequestHandler.php',
-        'Zelenin\\HttpClient\\RequestHandlerInterface' => __DIR__ . '/..' . '/zelenin/http-client/src/RequestHandlerInterface.php',
-        'Zelenin\\HttpClient\\Transport\\CurlTransport' => __DIR__ . '/..' . '/zelenin/http-client/src/Transport/CurlTransport.php',
-        'Zelenin\\HttpClient\\Transport\\StreamTransport' => __DIR__ . '/..' . '/zelenin/http-client/src/Transport/StreamTransport.php',
-        'Zelenin\\HttpClient\\Transport\\Transport' => __DIR__ . '/..' . '/zelenin/http-client/src/Transport/Transport.php',
-        'Zend\\Diactoros\\AbstractSerializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/AbstractSerializer.php',
-        'Zend\\Diactoros\\CallbackStream' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/CallbackStream.php',
-        'Zend\\Diactoros\\Exception\\DeprecatedMethodException' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Exception/DeprecatedMethodException.php',
-        'Zend\\Diactoros\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Exception/ExceptionInterface.php',
-        'Zend\\Diactoros\\HeaderSecurity' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/HeaderSecurity.php',
-        'Zend\\Diactoros\\MessageTrait' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/MessageTrait.php',
-        'Zend\\Diactoros\\PhpInputStream' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/PhpInputStream.php',
-        'Zend\\Diactoros\\RelativeStream' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/RelativeStream.php',
-        'Zend\\Diactoros\\Request' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Request.php',
-        'Zend\\Diactoros\\RequestTrait' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/RequestTrait.php',
-        'Zend\\Diactoros\\Request\\ArraySerializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Request/ArraySerializer.php',
-        'Zend\\Diactoros\\Request\\Serializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Request/Serializer.php',
-        'Zend\\Diactoros\\Response' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response.php',
-        'Zend\\Diactoros\\Response\\ArraySerializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/ArraySerializer.php',
-        'Zend\\Diactoros\\Response\\EmitterInterface' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/EmitterInterface.php',
-        'Zend\\Diactoros\\Response\\EmptyResponse' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/EmptyResponse.php',
-        'Zend\\Diactoros\\Response\\HtmlResponse' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/HtmlResponse.php',
-        'Zend\\Diactoros\\Response\\InjectContentTypeTrait' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/InjectContentTypeTrait.php',
-        'Zend\\Diactoros\\Response\\JsonResponse' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/JsonResponse.php',
-        'Zend\\Diactoros\\Response\\RedirectResponse' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/RedirectResponse.php',
-        'Zend\\Diactoros\\Response\\SapiEmitter' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/SapiEmitter.php',
-        'Zend\\Diactoros\\Response\\SapiEmitterTrait' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/SapiEmitterTrait.php',
-        'Zend\\Diactoros\\Response\\SapiStreamEmitter' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/SapiStreamEmitter.php',
-        'Zend\\Diactoros\\Response\\Serializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/Serializer.php',
-        'Zend\\Diactoros\\Response\\TextResponse' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/TextResponse.php',
-        'Zend\\Diactoros\\Response\\XmlResponse' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Response/XmlResponse.php',
-        'Zend\\Diactoros\\Server' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Server.php',
-        'Zend\\Diactoros\\ServerRequest' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/ServerRequest.php',
-        'Zend\\Diactoros\\ServerRequestFactory' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/ServerRequestFactory.php',
-        'Zend\\Diactoros\\Stream' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Stream.php',
-        'Zend\\Diactoros\\UploadedFile' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/UploadedFile.php',
-        'Zend\\Diactoros\\Uri' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Uri.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9c802f9e87d4e4cb0ae4fdfe2a4f7b33::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit589a846b35eaec2625dbe393a66162a6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit589a846b35eaec2625dbe393a66162a6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit589a846b35eaec2625dbe393a66162a6::$classMap;
 
         }, null, ClassLoader::class);
     }

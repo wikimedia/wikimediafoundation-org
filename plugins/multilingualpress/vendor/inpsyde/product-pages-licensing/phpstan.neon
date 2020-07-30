@@ -1,0 +1,6 @@
+parameters:
+    level: 5
+    paths:
+        - src
+    autoload_files:
+        - vendor/giacocorsiglia/wordpress-stubs/wordpress-stubs.php

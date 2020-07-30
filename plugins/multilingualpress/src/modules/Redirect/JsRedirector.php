@@ -15,8 +15,10 @@ namespace Inpsyde\MultilingualPress\Module\Redirect;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetException;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
+use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
 use function Inpsyde\MultilingualPress\currentSiteLocale;
 use function Inpsyde\MultilingualPress\isWpDebugMode;
+use function Inpsyde\MultilingualPress\siteLanguageTag;
 
 /**
  * Class JsRedirector
@@ -38,16 +40,24 @@ final class JsRedirector implements Redirector
     private $languageUrlDictionaryFactory;
 
     /**
+     * @var Repository
+     */
+    private $redirectSettingsRepository;
+
+    /**
      * @param LanguageUrlDictionaryFactory $languageUrlDictionaryFactory
      * @param AssetManager $assetManager
+     * @param Repository $redirectSettingsRepository
      */
     public function __construct(
         LanguageUrlDictionaryFactory $languageUrlDictionaryFactory,
-        AssetManager $assetManager
+        AssetManager $assetManager,
+        Repository $redirectSettingsRepository
     ) {
 
         $this->languageUrlDictionaryFactory = $languageUrlDictionaryFactory;
         $this->assetManager = $assetManager;
+        $this->redirectSettingsRepository = $redirectSettingsRepository;
     }
 
     /**
@@ -92,6 +102,7 @@ final class JsRedirector implements Redirector
                     'storageLifetime' => absint($lifetime * 1000),
                     'updateTimestampInterval' => absint($updateInterval * 1000),
                     'urls' => $urls,
+                    'RedirectFallbackSiteLanguageTag' => $this->getRedirectFallbackSiteLanguageTag(),
                 ],
                 false
             );
@@ -104,5 +115,19 @@ final class JsRedirector implements Redirector
                 throw $exc;
             }
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function getRedirectFallbackSiteLanguageTag(): string
+    {
+        $siteIdToRedirectTo = $this->redirectSettingsRepository->redirectFallbackSiteId();
+
+        if (!$siteIdToRedirectTo || $siteIdToRedirectTo < 1) {
+            return '';
+        }
+
+        return siteLanguageTag($siteIdToRedirectTo);
     }
 }

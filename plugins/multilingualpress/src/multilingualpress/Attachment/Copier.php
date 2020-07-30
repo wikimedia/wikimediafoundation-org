@@ -184,8 +184,8 @@ class Copier
         $data = $sourceAttachmentData->post()->to_array();
         $data['ID'] = $remoteAttachmentId;
 
-        $id = wp_update_post($data);
-        if ($id instanceof \WP_Error) {
+        $id = wp_update_post($data, true);
+        if (is_wp_error($id)) {
             return 0;
         }
 
@@ -324,7 +324,7 @@ class Copier
         $attachmentPath = (string)get_post_meta($attachmentId, '_wp_attached_file', true);
 
         if (!$attachmentPath) {
-            $meta = (array)(wp_get_attachment_metadata($attachmentPath) ?: []);
+            $meta = (array)(wp_get_attachment_metadata($attachmentId) ?: []);
             $attachmentPath = $meta['file'] ?? '';
         }
 

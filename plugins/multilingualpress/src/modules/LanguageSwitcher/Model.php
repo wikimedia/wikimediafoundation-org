@@ -59,6 +59,7 @@ class Model
         $model['show_links_for_translated_content_only'] = $instance['show_links_for_translated_content_only'] ?? 0;
         $model['show_current_site'] = $instance['show_current_site'] ?? 0;
         $model['show_flags'] = $instance['show_flags'] ?? 0;
+        $model['language_name'] = $instance['language_name'] ?? 'isoName';
         $model['items'] = [];
 
         foreach ($translations as $translation) {
@@ -77,7 +78,7 @@ class Model
             $language = $translation->language();
 
             $model['items'][] = $this->itemFactory->create(
-                $language->isoName(),
+                $language->{$model['language_name']}(),
                 $language->isoCode(),
                 $this->languageFlag($model, $language->isoCode()),
                 $url,

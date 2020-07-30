@@ -16,4 +16,4 @@ const ACTION_ACTIVATION = 'multilingualpress.activation';
 const ACTION_ADD_SERVICE_PROVIDERS = 'multilingualpress.add_service_providers';
 const ACTION_LOG = 'multilingualpress.log';
 
-const MULTILINGUALPRESS_LICENSE_API_URL = 'https://multilingualpress.org';
+const MULTILINGUALPRESS_LICENSE_API_URL = 'https://multilingualpress.org/';

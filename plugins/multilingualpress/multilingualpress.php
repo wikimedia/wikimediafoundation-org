@@ -13,7 +13,7 @@
  * Description: The multisite-based plugin for your multilingual WordPress websites.
  * Author: Inpsyde GmbH
  * Author URI: https://inpsyde.com
- * Version: 3.3.3
+ * Version: 3.4.0
  * Text Domain: multilingualpress
  * Domain Path: /languages/
  * License: GPLv2+

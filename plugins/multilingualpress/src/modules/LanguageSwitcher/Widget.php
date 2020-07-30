@@ -124,6 +124,34 @@ class Widget extends \WP_Widget
             </label>
         </p>
 
+        <p>
+            <?php
+            $languageName = $instance['language_name'] ?? 'isoName';
+            $id = $this->get_field_id('language_name');
+            $name = $this->get_field_name('language_name');
+            ?>
+            <label for="<?= esc_attr($id); ?>">
+                <?php esc_html_e('Choose how to show the language name:', 'multilingualpress'); ?>
+            </label>
+            <select id="<?= esc_attr($id); ?>" name="<?= esc_attr($name); ?>">
+                <?php
+                $languageNames = [
+                    'isoName' => __('Language ISO Name', 'multilingualpress'),
+                    'locale' => __('Language Locale', 'multilingualpress'),
+                    'name' => __('Language Name', 'multilingualpress'),
+                    'isoCode' => __('Language ISO Code', 'multilingualpress'),
+                ];
+
+                foreach ($languageNames as $key => $name) {
+                    ?>
+                    <option value="<?= esc_attr($key)?>" id="<?= esc_attr($key)?>"
+                        <?= selected($languageName, $key, false)?>><?= esc_attr($name); ?>
+                    </option>
+
+                <?php } ?>
+            </select>
+        </p>
+
         <?php
         if (interface_exists(Flag::class)) {
             $showFlags = !empty($instance['show_flags']); ?>
@@ -170,6 +198,10 @@ class Widget extends \WP_Widget
             isset($newInstance['show_current_site'])
             && '1' === $newInstance['show_current_site']
         );
+
+        $instance['language_name'] = isset($newInstance['language_name'])
+            ? wp_strip_all_tags($newInstance['language_name'])
+            : '';
 
         if (interface_exists(Flag::class)) {
             $instance['show_flags'] = (int)(

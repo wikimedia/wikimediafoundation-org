@@ -14,12 +14,18 @@ namespace Inpsyde\MultilingualPress\Module\QuickLinks\Model;
 
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
+use Inpsyde\MultilingualPress\Framework\Api\Translation;
+use Inpsyde\MultilingualPress\Framework\Api\Translations;
+use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Language\Bcp47Tag;
 use Inpsyde\MultilingualPress\Framework\NetworkState;
 use Inpsyde\MultilingualPress\Framework\Url\SimpleUrl;
+use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
 use function Inpsyde\MultilingualPress\siteLocaleName;
 use InvalidArgumentException;
+use UnexpectedValueException;
 
 /**
  * Class CollectionFactory
@@ -38,17 +44,31 @@ class CollectionFactory
     private $siteSettingsRepository;
 
     /**
+     * @var Translations
+     */
+    private $translations;
+
+    /**
+     * @var Repository
+     */
+    private $redirectSettingsRepository;
+
+    /**
      * FactoryCollection constructor.
      * @param ContentRelations $contentRelations
      * @param SiteSettingsRepository $siteSettingsRepository
+     * @param Translations $translations
+     * @param Repository $redirectSettingsRepository
      */
     public function __construct(
         ContentRelations $contentRelations,
-        SiteSettingsRepository $siteSettingsRepository
+        SiteSettingsRepository $siteSettingsRepository,
+        Translations $translations
     ) {
 
         $this->contentRelations = $contentRelations;
         $this->siteSettingsRepository = $siteSettingsRepository;
+        $this->translations = $translations;
     }
 
     /**
@@ -106,6 +126,8 @@ class CollectionFactory
                 continue;
             } catch (InvalidArgumentException $exc) {
                 continue;
+            } catch (UnexpectedValueException $exc) {
+                continue;
             }
 
             $models[$remoteSiteId] = $currentModel;
@@ -136,11 +158,20 @@ class CollectionFactory
      */
     protected function singleModel(int $remoteSiteId, int $remoteContentId): ModelInterface
     {
-        $url = new SimpleUrl(get_permalink($remoteContentId));
+        $translations = $this->translations($remoteContentId);
+        $translation = $translations[$remoteSiteId] ?? null;
+
+        if (!$translation instanceof Translation) {
+            throw new UnexpectedValueException(
+                sprintf('No translations found for entity with ID "%1$s"', $remoteContentId)
+            );
+        }
+
+        $remoteContentUrl = new SimpleUrl($translation->remoteUrl());
         $language = new Bcp47Tag($this->siteSettingsRepository->siteLanguageTag($remoteSiteId));
         $label = siteLocaleName($remoteSiteId);
 
-        return new Model($url, $language, $label);
+        return new Model($remoteContentUrl, $language, $label);
     }
 
     /**
@@ -153,5 +184,21 @@ class CollectionFactory
     protected function networkState(): NetworkState
     {
         return NetworkState::create();
+    }
+
+    /**
+     * Get the translations for remote content
+     *
+     * @param int $remoteContentId
+     * @return Translations[]
+     */
+    protected function translations(int $remoteContentId): array
+    {
+        $args = TranslationSearchArgs::forContext(new WordpressContext())
+            ->forSiteId(get_current_blog_id())
+            ->includeBase()
+            ->forContentId($remoteContentId);
+
+        return $this->translations->searchTranslations($args);
     }
 }

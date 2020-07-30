@@ -240,9 +240,9 @@ class PostRelationSaveHelper
         $result and $result = wp_update_post([
             'ID' => $copiedIds[0],
             'post_parent' => $remotePostId,
-        ]);
+        ], true);
 
-        if ($result instanceof \WP_Error) {
+        if (is_wp_error($result)) {
             return false;
         }
 
