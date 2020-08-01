@@ -23,8 +23,6 @@ add_action( 'manage_post_posts_custom_column', array( 'WMF\Translations\Notice',
 add_action( 'manage_page_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
 add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
 
-add_filter( 'multilingualpress.sync_post_meta_keys', array( 'WMF\Translations\Flow', 'sync_meta' ), 10, 3 );
-
 /**
  * Conditionally outputs the translation in progress notice on the post editor.
  */
