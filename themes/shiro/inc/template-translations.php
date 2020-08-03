@@ -64,6 +64,16 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 	$remote_site_id      = $context->remoteSiteId();
 	$remote_post_id      = $context->remotePostId();
 	switch_to_blog( $remote_site_id );
+
+	// Copy page template setting.
+	$page_template_value = (string) $request->bodyValue(
+		'page_template',
+		INPUT_POST,
+		FILTER_SANITIZE_STRING
+	);
+
+	update_post_meta( $remote_post_id, '_wp_page_template', $page_template_value );
+
 	foreach ( $multilingualpress as $translationMetabox ) {
 		if ( $translationMetabox['remote-content-copy'] === '1' ) {
 			foreach ( $meta_keys as $meta_key ) {
@@ -79,14 +89,7 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 				update_post_meta( $remote_post_id, $meta_key, $meta_value );
 
 			}
-			// Copy page template setting.
-			$page_template_value = (string) $request->bodyValue(
-				'_wp_page_template',
-				INPUT_POST,
-				FILTER_SANITIZE_STRING
-			);
 
-			update_post_meta( $remote_post_id, '_wp_page_template', $page_template_value );
 			restore_current_blog();
 		}
 	}
