@@ -24,6 +24,77 @@ add_action( 'manage_page_posts_custom_column', array( 'WMF\Translations\Notice',
 add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notice', 'cpt_column' ), 10, 2 );
 
 /**
+ * Copy post meta to remote site if the option is set in the translation metabox.
+ */
+function wmf_copy_post_meta( $keysToSync, $context, $request ) {
+	// Fieldmanager fields.
+	$meta_keys = [
+		'page_cta',
+		'intro_button',
+		'share_links',
+		'connect',
+		'stats_featured',
+		'stats_graph',
+		'stats_plain',
+		'stats_profiles',
+		'sidebar_facts',
+		'page_header_background',
+		'sub_title',
+		'projects_module',
+		'social_share',
+		'framing_copy',
+		'page_facts',
+		'landing_page_sidebar_menu_label',
+		'off_site_links',
+		'listings',
+		'featured_profile',
+		'role_button',
+		'profiles',
+		'proects_module',
+		'related_pages',
+		'stories',
+	];
+
+	$multilingualpress = $request->bodyValue(
+		'multilingualpress',
+		INPUT_POST,
+		FILTER_DEFAULT,
+		FILTER_FORCE_ARRAY
+	);
+	$remote_site_id      = $context->remoteSiteId();
+	$remote_post_id      = $context->remotePostId();
+	switch_to_blog( $remote_site_id );
+	foreach ( $multilingualpress as $translationMetabox ) {
+		if ( $translationMetabox['remote-content-copy'] === '1' ) {
+			foreach ( $meta_keys as $meta_key ) {
+				// get post meta value from source site
+				$meta_value = $request->bodyValue(
+					$meta_key,
+					INPUT_POST,
+					FILTER_DEFAULT,
+					FILTER_FORCE_ARRAY
+				);
+
+				// switch to remote sites and save post meta
+				update_post_meta( $remote_post_id, $meta_key, $meta_value );
+
+			}
+			// Copy page template setting.
+			$page_template_value = (string) $request->bodyValue(
+				'_wp_page_template',
+				INPUT_POST,
+				FILTER_SANITIZE_STRING
+			);
+
+			update_post_meta( $remote_post_id, '_wp_page_template', $page_template_value );
+			restore_current_blog();
+		}
+	}
+	return $keysToSync;
+}
+add_filter('multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
+
+/**
  * Conditionally outputs the translation in progress notice on the post editor.
  */
 function wmf_progress_notice() {
