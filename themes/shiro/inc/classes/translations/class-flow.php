@@ -386,17 +386,11 @@ class Flow {
 		}
 
 		if ( ! empty( $_POST['_translate_post_global'] ) ) { // Input var okay.
-			$this->set_post_meta( $post_id );
 
 			$remote_posts = wmf_get_translations( false, $post_id, 'post' );
 
 			foreach ( $remote_posts as $remote_post ) {
 				if ( wmf_is_main_site( $remote_post['site_id'] ) ) {
-					continue;
-				}
-
-				if ( in_array( (int) $remote_post['content_id'], $this->new_translations, true ) ) {
-					$this->clone_meta( $remote_post['content_id'], $remote_post['site_id'] );
 					continue;
 				}
 
