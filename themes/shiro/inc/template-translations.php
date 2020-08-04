@@ -27,33 +27,6 @@ add_action( 'manage_profile_posts_custom_column', array( 'WMF\Translations\Notic
  * Copy post meta to remote site if the option is set in the translation metabox.
  */
 function wmf_copy_post_meta( $keysToSync, $context, $request ) {
-	// Fieldmanager fields.
-	$meta_keys = [
-		'page_cta',
-		'intro_button',
-		'share_links',
-		'connect',
-		'stats_featured',
-		'stats_graph',
-		'stats_plain',
-		'stats_profiles',
-		'sidebar_facts',
-		'page_header_background',
-		'sub_title',
-		'projects_module',
-		'social_share',
-		'framing_copy',
-		'page_facts',
-		'landing_page_sidebar_menu_label',
-		'off_site_links',
-		'listings',
-		'featured_profile',
-		'role_button',
-		'profiles',
-		'proects_module',
-		'related_pages',
-		'stories',
-	];
 
 	$multilingualpress = $request->bodyValue(
 		'multilingualpress',
@@ -61,22 +34,68 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 		FILTER_DEFAULT,
 		FILTER_FORCE_ARRAY
 	);
-	$remote_site_id      = $context->remoteSiteId();
-	$remote_post_id      = $context->remotePostId();
+	$remote_site_id    = $context->remoteSiteId();
+	$remote_post_id    = $context->remotePostId();
+
 	switch_to_blog( $remote_site_id );
 
-	// Copy page template setting.
-	$page_template_value = (string) $request->bodyValue(
+	// String post meta.
+	$string_post_meta = [
 		'page_template',
-		INPUT_POST,
-		FILTER_SANITIZE_STRING
-	);
+		'sub_title',
+		'page_intro',
+		'featured_post_sub_title',
+		'landing_page_sidebar_menu_label',
+	];
 
-	update_post_meta( $remote_post_id, '_wp_page_template', $page_template_value );
+	// Array post meta
+	$array_meta_keys = [
+		'connect',
+		'contact_links',
+		'featured_on',
+		'featured_post',
+		'featured_profile',
+		'focus_blocks',
+		'framing_copy',
+		'intro_button',
+		'list',
+		'listings',
+		'off_site_links',
+		'page_cta',
+		'page_facts',
+		'page_header_background',
+		'profiles',
+		'projects_module',
+		'related_pages',
+		'share_links',
+		'sidebar_facts',
+		'social_share',
+		'stats_featured',
+		'stats_graph',
+		'stats_plain',
+		'stats_profiles',
+		'stories',
+	];
 
 	foreach ( $multilingualpress as $translationMetabox ) {
 		if ( $translationMetabox['remote-content-copy'] === '1' ) {
-			foreach ( $meta_keys as $meta_key ) {
+			foreach ( $string_post_meta as $meta_key ) {
+				$meta_value = (string) $request->bodyValue(
+					$meta_key,
+					INPUT_POST,
+					FILTER_SANITIZE_STRING
+				);
+				update_post_meta( $remote_post_id, $meta_key, $meta_value );
+			}
+
+			$connected_user_value = (int) $request->bodyValue(
+				'connected_user',
+				INPUT_POST,
+				FILTER_SANITIZE_NUMBER_INT
+			);
+			update_post_meta( $remote_post_id, 'connected_user', $connected_user_value );
+
+			foreach ( $array_meta_keys as $meta_key ) {
 				// get post meta value from source site
 				$meta_value = $request->bodyValue(
 					$meta_key,
@@ -87,12 +106,12 @@ function wmf_copy_post_meta( $keysToSync, $context, $request ) {
 
 				// switch to remote sites and save post meta
 				update_post_meta( $remote_post_id, $meta_key, $meta_value );
-
 			}
 
 			restore_current_blog();
 		}
 	}
+
 	return $keysToSync;
 }
 add_filter('multilingualpress.sync_post_meta_keys', 'wmf_copy_post_meta', 10, 3 );
