@@ -300,6 +300,7 @@ require get_template_directory() . '/inc/safe-redirect.php';
 require get_template_directory() . '/inc/shortcodes/columns.php';
 require get_template_directory() . '/inc/shortcodes/facts.php';
 require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
+require get_template_directory() . '/inc/shortcodes/wp20.php';
 
 /**
  * Stories page template customizations.
