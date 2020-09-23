@@ -1,0 +1,312 @@
+// styles for Wikipedia 20 shortcodes
+
+.collage {
+    width: 100vw;
+    overflow: hidden;
+    .fake-scroll {
+        min-height: 100vh;
+    }
+    svg {
+        position: relative;
+        z-index: 1000;
+    }
+    .intro {
+        display: none;
+        width: 60%;
+        height: 100%;
+        position: fixed;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        max-width: 500px;
+        text-align: center;
+        z-index: 3000;
+        .intro-text {
+            height: inherit;
+            display: flex;
+            align-items: center;
+        }
+        p {
+            font-size: 1rem;
+            font-size: inherit;
+            background-color: #ffffff;
+        }
+    }
+    .scroll-indicator {
+        font-size: 2rem;
+        position: fixed;
+        text-shadow: 0px 0px 5px #ffffff;
+        bottom: 5vh;
+        left: 0;
+        right: 0;
+        margin: auto;
+        animation: scroll 8s infinite ease-in-out;
+        animation-delay: 3s;
+    }
+    @keyframes scroll {
+        0% {
+            transform: translateY(0);
+        }
+        10% {
+            transform: translateY(2vh);
+        }
+        20% {
+            transform: translateY(0);
+        }
+    }
+    h1 {
+        display: none;
+        font-size: 2.6rem;
+        width: 60%;
+        position: fixed;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2em;
+        line-height: 1;
+        max-width: 500px;
+        text-align: center;
+        z-index: 3000;
+
+        @media (min-width: $medium-bp) {
+            font-size: 5rem;
+        }
+    }
+    svg {
+        circle {
+            fill: $wmui-color-base0;
+        }
+        line {
+            stroke: $wmui-color-base30;
+            stroke-width: 1;
+        }
+        text {
+            font-size: 0.625rem;
+            color: $wmui-color-base50;
+        }
+    }
+    .recent-edits {
+        display: none;
+        position: fixed;
+        z-index: 4000;
+        width: 100%;
+        text-align: center;
+        span {
+            display: inline-block;
+            padding: 0.125rem 0.25rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            @media (min-width: $medium-bp){
+                font-size: 1rem;
+            }
+        }
+        .label {
+            position: relative;
+        }
+        .label:after {
+            content: "";
+            position: absolute;
+            border-bottom: 2px solid #36c;
+            width: 20px;
+            bottom: -0.125rem;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    .story-blob, .close {
+        cursor: pointer;
+    }
+    .story-overlay {
+        display: none;
+        width: 100%;
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 0px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        min-height: 100vh;
+        z-index: 4000;
+        .image {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(30deg, pink, blue);
+            border-radius: 50%;
+        }
+        @media (min-width: $medium-bp) {
+            width: 50vw;
+            min-width: 200px;
+            min-height: 0;
+            left: 0;
+            right: 0;
+            bottom: 4rem;
+            margin: auto;
+            z-index: 2000;
+            border: 1px solid $wmui-color-base0;
+            .image {
+                position: fixed;
+                top: 20%;
+                right: 20%;
+            }
+        }
+        p {
+            padding: 0 1rem;
+        }
+        .close {
+            text-decoration: underline;
+            color: $wmui-color-base30;
+            position: absolute;
+            top: 0;
+            right: 0;
+            @media (min-width: $medium-bp) {
+                position: relative;
+            }
+        }
+    }
+}
+
+.timeline {
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    font-size: 1rem;
+    .filter-timeline {
+        position: sticky;
+        width: 100%;
+        z-index: 100000;
+        top: 0;
+        text-align: center;
+        white-space: nowrap; 
+        overflow-x: auto; 
+        min-height: 70px; 
+        padding: 1rem; 
+        transition: 0.2s all;
+        ul {
+            list-style: none;
+            display: inline-block;
+        }
+        li {
+            font-size: 1rem;
+            display: inline-block;
+            margin: 0 1rem;
+        }
+        li:not(.active) {
+            cursor: pointer;
+        }
+        li:hover,
+        .active {
+            text-decoration: underline;
+        }
+    }
+    .top-label {
+        width: rem(180);
+    }
+    .milestones {
+        margin-bottom: 1rem;
+    }
+    .year {
+        display: flex;
+        .top-articles {
+            display: flex;
+            flex-direction: column;
+            @media (min-width: $medium-bp){
+                flex-direction: row;
+            }
+        }
+        .top-articles,
+        h3 {
+            margin-top: 1rem;
+        }
+        .top-viewed,
+        .top-edited {
+            width: rem(48);
+            margin-right: rem(5);
+            @media (min-width: $medium-bp) {
+                width: rem(64);
+            }
+        }
+        .top-viewed span,
+        .top-edited span {
+            display: inline-block;
+            width: rem(48);
+            height: rem(48);
+            border-radius: 50%;
+            background: linear-gradient(30deg, $wmui-color-base70, $wmui-color-base50);
+            @media (min-width: $medium-bp) {
+                width: rem(64);
+                height: rem(64);
+            }
+        }
+        .top-edited span {
+            background: linear-gradient(30deg, pink, $wmui-color-base50);
+        }
+        .year-label {
+            color: $wmui-color-base30;
+            border-left: 1px solid $wmui-color-base0;
+            margin-left: rem(8);
+            @media (min-width: $medium-bp){
+                margin-left: rem(32);
+            }
+            width: 100px;
+            &::before {
+                content: "–";
+                margin-right: rem(5)            }
+        }
+        .milestone {
+            .call {
+                position: relative;
+                padding-left: 1em;
+            }
+            .call::before {
+                content: "";
+                position: absolute;
+                width: 0.75em;
+                height: 0.75em;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                border-radius: 50%;
+                background-color: blue;
+            }
+            p {
+                max-width: 500px;
+            }
+        }
+        div {
+            display: inline-block;
+        }
+        &.highlight {
+            .year-label {
+                color: $wmui-color-base0;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.projects {
+    text-align: center;
+    margin-bottom: rem(64);
+    @media (min-width: $medium-bp) {
+        margin-bottom: rem(112);
+    }
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    span {
+        display: inline-block;
+        width: rem(48);
+        height: rem(48);
+        background-color: $wmui-color-base50;
+        margin: 1rem 1rem 0 0;
+        border-radius: 50%;
+        &.special {
+            width: rem(64);
+            height: rem(64);
+        }
+    }
+}
