@@ -44,7 +44,7 @@ function wmf_collage_callback( $atts ) {
 	?>
 
 	<div class="collage mod-margin-bottom">
-		<div id="<?php echo esc_attr($atts['id']) ?>" style="position: fixed;">
+		<div id="<?php echo esc_attr($atts['id']) ?>" class="collage-content">
 			<div class="intro">
 				<div class="intro-text">
 					<p>Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam.</p>
