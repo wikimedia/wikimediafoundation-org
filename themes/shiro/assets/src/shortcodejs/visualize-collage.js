@@ -19,10 +19,11 @@ jQuery(document).ready(function($) {
 		rEditTitle = rEditTicker.find(".title"),
 		storyOverlay = container.find(".story-overlay"),
 		header = $("header").height(),
+		initWidth = window.innerWidth,
 		colorBlack = "#202122",
 		colorAccent = "#36c",
 		scrollAnimLength = 1200,
-		stories = [{"x":0.56,"y":0.62, "name": "Name 1"},{"x":0.68,"y":0.52, "name": "Name 2"},{"x":0.51,"y":0.68, "name": "Name 3"},{"x":0.70,"y":0.38, "name": "Name 4"},{"x":0.29,"y":0.57, "name": "Name 5"},{"x":0.41,"y":0.61, "name": "Name 6"},{"x":0.48,"y":0.27, "name": "Name 7"},{"x":0.71,"y":0.60, "name": "Name 8"},{"x":0.65,"y":0.29, "name": "Name 9"},{"x":0.35,"y":0.32, "name": "Name 10"},{"x":0.30,"y":0.38, "name": "Name 11"},{"x":0.31,"y":0.69, "name": "Name 12"},{"x":0.57,"y":0.24, "name": "Name 13"},{"x":0.43,"y":0.20, "name": "Name 14"},{"x":0.30,"y":0.25, "name": "Name 15"}],
+		stories = [{"x":0.56,"y":0.62, "name": "Name 1"},{"x":0.68,"y":0.52, "name": "Name 2"},{"x":0.51,"y":0.68, "name": "Name 3"},{"x":0.70,"y":0.38, "name": "Name 4"},{"x":0.29,"y":0.57, "name": "Name 5"},{"x":0.41,"y":0.61, "name": "Name 6"},{"x":0.48,"y":0.27, "name": "Name 7"},{"x":0.71,"y":0.60, "name": "Name 8"},{"x":0.65,"y":0.29, "name": "Name 9"},{"x":0.35,"y":0.32, "name": "Name 10"},{"x":0.27,"y":0.38, "name": "Name 11"},{"x":0.31,"y":0.69, "name": "Name 12"},{"x":0.57,"y":0.24, "name": "Name 13"},{"x":0.43,"y":0.20, "name": "Name 14"},{"x":0.30,"y":0.25, "name": "Name 15"}],
 		randomData = [],
 		apilimit = 5,
 		randomDataLen = Math.max(langList.length * apilimit, 80),
@@ -30,8 +31,8 @@ jQuery(document).ready(function($) {
 		blobR = 5,
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR * 3,
-		zoomMax = 1.8,
-		svg, y, blobs, x, zoom, storyBlobs, clickCue,
+		zoomMax = 1.7,
+		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, fadedEdge,
 		rEditAnimationI = 0,
 		rEdits = [];
 
@@ -122,13 +123,13 @@ jQuery(document).ready(function($) {
 
 	function setupChart(cb) {
 		svg = d3.select(containerID)
-			.append("svg")
-			.attr("transform-origin", "0 0 0");
+			.append("svg");
+		g = svg.append("g").attr("transform-origin", "0 0 0");
 		y = d3.scaleLinear()
 			.domain([0, d3.max(randomData, function(d) {return d.y;})]);
 		x = d3.scaleLinear()
 			.domain([0, 1]);
-		blobs = svg.append("g");
+		blobs = g.append("g");
 		blobs
 			.selectAll("circle")
 			.data(randomData)
@@ -137,7 +138,7 @@ jQuery(document).ready(function($) {
 			.attr("class", function(d) {return d.x + " " + d.y;})
 			.style("fill", colorBlack)
 			.attr("r", blobR);
-		clickCue = svg.append("g").attr("class", "click-cue");
+		clickCue = g.append("g").attr("class", "click-cue");
 		clickCue
 			.selectAll("line")
 			.data([stories[8]])
@@ -152,7 +153,7 @@ jQuery(document).ready(function($) {
 			.attr("text-anchor", "start");
 		clickCue
 			.style("opacity", 0);
-		storyBlobs = svg.append("g");
+		storyBlobs = g.append("g").attr("transform-origin", "0 0 0");
 		storyBlobs
 			.selectAll("circle")
 			.data(stories.slice(0,storiesLen))
@@ -163,6 +164,22 @@ jQuery(document).ready(function($) {
 			.style("stroke-width", blobStroke)
 			.style("stroke", "rgba(255, 255, 255, 0)")
 			.attr("r", blobR);
+		var svgDefs = svg.append("defs"),
+			mainGradient = svgDefs.append("linearGradient")
+				.attr("id", "mainGradient")
+				.attr("gradientTransform", "rotate(90)");
+        mainGradient.append("stop")
+            .attr("class", "stop-0")
+            .attr("offset", "0");
+        mainGradient.append("stop")
+            .attr("class", "stop-1")
+            .attr("offset", "1");
+        fadedEdge = svg.append("rect")
+			.classed("filled", true)
+			.attr("x", 0)
+			.attr("y", 0)
+			.attr("width", initWidth)
+			.attr("height", bigBlobR*2);
 		zoom = d3.zoom()
 			.scaleExtent([1, zoomMax])
 			.duration(0)
@@ -221,15 +238,14 @@ jQuery(document).ready(function($) {
 		storyOverlay.find(".close").click(function(){
 			storyOverlay.fadeOut();
 		});
+		fadedEdge
+			.attr("width", currentWidth);
 		// reset zoom
-		svg.call(
+		g.call(
 			zoom.transform,
 			d3.zoomIdentity,
-			d3.zoomTransform(svg.node()).invert([currentWidth / 2, currentHeight / 2])
+			d3.zoomTransform(g.node()).invert([currentWidth / 2, currentHeight / 2])
 		);
-		// zoom based on scrolling position
-		var zoomFactor = 1 + $(window).scrollTop()/scrollAnimLength/2;
-		svg.call(zoom.scaleTo, zoomFactor);
 	}
 
 	function fakescroll() {
@@ -310,7 +326,7 @@ jQuery(document).ready(function($) {
 		storyBlobs
 			.selectAll("circle")
 			.transition()
-			.delay(function(d,i){ return i * 10 })
+			.delay(function(d,i){ return i * 5 })
 			.style("opacity", 1)
 			.attr("r", bigBlobR)
 		clickCue
@@ -329,8 +345,7 @@ jQuery(document).ready(function($) {
 			inViewPos = notFixedContent.offset().top - window.innerHeight,
 			notFixedContentScrolled = ((scrollTop - inViewPos) / window.innerHeight).toFixed(2),
 			progress = scrollTop/(notFixedContent.offset().top - window.innerHeight);
-		svg.call(zoom.scaleTo, zoomFactor);
-		container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
+		g.call(zoom.scaleTo, zoomFactor);
 
 		if (progress < 0.2) {
 			// console.log("animation 1");
@@ -350,7 +365,7 @@ jQuery(document).ready(function($) {
 			// console.log("animation 3");
 			intro.hide();
 			heading.fadeIn();
-			showStories();
+			showStories(); // FIX map opacity to scroll progress
 			stopEditAnim();
 		} else if (progress >= 0.8) {
 			// console.log("animation 4");
@@ -359,12 +374,13 @@ jQuery(document).ready(function($) {
 			hideStories();
 			stopEditAnim();
 			storyOverlay.fadeOut();
+			container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
 		}
 	}
 
 	function zoomed() {
 		var transform = d3.event.transform;
-		svg.attr("transform", "translate(" + transform.x + "," + transform.y + ") scale(" + transform.k + ")");
+		g.attr("transform", "translate(" + transform.x + "," + transform.y + ") scale(" + transform.k + ")");
 	}
 
 	$( window ).scroll( function() {
@@ -376,11 +392,13 @@ jQuery(document).ready(function($) {
 	});
 
 	$( window ).resize( function() {
-		requestAnimationFrame( function() {
-			drawChart();
-			startEditAnim();
-			scrollAnimation();
-		});
+		if (initWidth !== window.innerWidth) {
+			requestAnimationFrame( function() {
+				drawChart();
+				startEditAnim();
+				scrollAnimation();
+			});
+		}
 	})
 
 	fakescroll();

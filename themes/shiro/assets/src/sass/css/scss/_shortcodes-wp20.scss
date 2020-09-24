@@ -3,6 +3,19 @@
 .collage {
     width: 100vw;
     overflow: hidden;
+    .collage-content {
+        position: fixed; 
+    }
+    .stop-1 {
+        stop-color: #ffffff;
+        stop-opacity: 0;
+    }
+    .stop-0 {
+        stop-color: #ffffff;
+    }
+    .filled {
+        fill: url(#mainGradient);
+    }
     .fake-scroll {
         min-height: 100vh;
     }
@@ -13,10 +26,11 @@
     .intro {
         display: none;
         width: 60%;
-        height: 100%;
+        height: 50vh;
         position: fixed;
         margin: auto;
         top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
         max-width: 500px;
@@ -59,10 +73,10 @@
         display: none;
         font-size: 2.6rem;
         width: 60%;
-        position: fixed;
+        position: absolute;
         margin: auto;
         top: 0;
-        bottom: 0;
+        bottom: 5rem;
         left: 0;
         right: 0;
         height: 2em;
@@ -70,7 +84,6 @@
         max-width: 500px;
         text-align: center;
         z-index: 3000;
-
         @media (min-width: $medium-bp) {
             font-size: 5rem;
         }
@@ -91,6 +104,7 @@
     .recent-edits {
         display: none;
         position: fixed;
+        margin-top: 0.5em;
         z-index: 4000;
         width: 100%;
         text-align: center;
