@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 		colorBlack = "#202122",
 		colorAccent = "#36c",
 		scrollAnimLength = 1200,
-		stories = [{"x":0.56,"y":0.62, "name": "Name 1"},{"x":0.68,"y":0.52, "name": "Name 2"},{"x":0.51,"y":0.68, "name": "Name 3"},{"x":0.70,"y":0.38, "name": "Name 4"},{"x":0.29,"y":0.57, "name": "Name 5"},{"x":0.41,"y":0.61, "name": "Name 6"},{"x":0.48,"y":0.27, "name": "Name 7"},{"x":0.71,"y":0.60, "name": "Name 8"},{"x":0.65,"y":0.29, "name": "Name 9"},{"x":0.35,"y":0.32, "name": "Name 10"},{"x":0.27,"y":0.38, "name": "Name 11"},{"x":0.31,"y":0.69, "name": "Name 12"},{"x":0.57,"y":0.24, "name": "Name 13"},{"x":0.43,"y":0.20, "name": "Name 14"},{"x":0.30,"y":0.25, "name": "Name 15"}],
+		stories = [{"x":0.56,"y":0.62, "name": "Name 1"},{"x":0.7,"y":0.52, "name": "Name 2"},{"x":0.51,"y":0.68, "name": "Name 3"},{"x":0.73,"y":0.38, "name": "Name 4"},{"x":0.29,"y":0.57, "name": "Name 5"},{"x":0.41,"y":0.61, "name": "Name 6"},{"x":0.48,"y":0.27, "name": "Name 7"},{"x":0.71,"y":0.60, "name": "Name 8"},{"x":0.65,"y":0.29, "name": "Name 9"},{"x":0.35,"y":0.32, "name": "Name 10"},{"x":0.24,"y":0.41, "name": "Name 11"},{"x":0.31,"y":0.69, "name": "Name 12"},{"x":0.57,"y":0.24, "name": "Name 13"},{"x":0.43,"y":0.20, "name": "Name 14"},{"x":0.30,"y":0.25, "name": "Name 15"}],
 		randomData = [],
 		apilimit = 5,
 		randomDataLen = Math.max(langList.length * apilimit, 80),
@@ -31,6 +31,12 @@ jQuery(document).ready(function($) {
 		blobR = 5,
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR * 3,
+		scene1 = 0.12,
+		scene2 = 0.5,
+		scene3 = 0.9,
+		sceneTran = 0.1,
+		linearUp = d3.scaleLinear().domain([scene2, scene2 + sceneTran]).range([0,1]),
+		linearDown = d3.scaleLinear().domain([scene3 - sceneTran, scene3]).range([1,0]),
 		zoomMax = 1.7,
 		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, fadedEdge,
 		rEditAnimationI = 0,
@@ -209,6 +215,7 @@ jQuery(document).ready(function($) {
 			.selectAll("circle")
 			.attr("class", "story-blob")
 			.style("opacity", 0)
+			.style("visibility", "hidden")
 			.attr("cx", function(d) {return x(d.x);} )
 			.attr("cy", function(d) {return y(d.y);} )
 			.on("mouseover", function(){
@@ -236,7 +243,7 @@ jQuery(document).ready(function($) {
 			.attr("y", function(d) {return y(d.y) - blobR*5;} )
 			.attr("dy", "-5px");
 		storyOverlay.find(".close").click(function(){
-			storyOverlay.fadeOut();
+			hide(storyOverlay);
 		});
 		fadedEdge
 			.attr("width", currentWidth);
@@ -248,7 +255,7 @@ jQuery(document).ready(function($) {
 		);
 	}
 
-	function fakescroll() {
+	function setupFakescroll() {
 		var fakeHeight = scrollAnimLength * 2;
 		fakeScroll.css("height", fakeHeight / window.innerHeight * 100 + "vh");
 		notFixedContent.css({
@@ -262,16 +269,16 @@ jQuery(document).ready(function($) {
 	function storyClick() {
 		storyOverlay.find("h2").text(d3.select(this).data()[0].name);
 		storyOverlay.find(".image").css({"top": getRandom(15,25) + "%"})
-		storyOverlay.fadeIn();
+		show(storyOverlay);
 		clickCue.transition().style("opacity", 0);
 	}
 
 	function startEditAnim() {
 		if (rEdits.length > 0) {
-			console.log(rEditAnimationI, rEdits[rEditAnimationI].title);
+			// console.log(rEditAnimationI, rEdits[rEditAnimationI].title);
 			rEditLabel.text(shortAtts.label + " " + rEdits[rEditAnimationI].wiki);
 			rEditTitle.text(rEdits[rEditAnimationI].title);
-			rEditTicker.fadeIn();
+			show(rEditTicker);
 			blobs
 				.selectAll("circle")
 				.filter(function (_, i) { return i === rEditAnimationI;})
@@ -298,7 +305,7 @@ jQuery(document).ready(function($) {
 	}
 
 	function stopEditAnim() {
-		rEditTicker.hide();
+		hide(rEditTicker);
 		blobs
 			.selectAll("circle")
 			.filter(function (_, i) { return i === rEditAnimationI;})
@@ -308,34 +315,50 @@ jQuery(document).ready(function($) {
 			.attr("r", blobR);
 	}
 
+	function calcOpacity(p, min, max) {
+		if (p < min + 0.1) {
+			return linearUp(p);
+		} else if (p > max - 0.1) {
+			return linearDown(p);
+		} else {
+			return 1;
+		}
+
+	}
+
 	function hideStories() {
 		storyBlobs
 			.selectAll("circle")
-			.transition()
 			.style("opacity", 0)
+			.style("visibility", "hidden")
 			.attr("r", blobR)
 		clickCue
-			.transition()
 			.style("opacity", 0)
+			.style("visibility", "hidden")
 		blobs
-			.transition()
 			.style("opacity", 1)
 	}
 
-	function showStories() {
+	function showStories(progress, min, max) {
+		var opacity = calcOpacity(progress, min, max);
 		storyBlobs
 			.selectAll("circle")
-			.transition()
-			.delay(function(d,i){ return i * 5 })
-			.style("opacity", 1)
+			.style("opacity", opacity)
+			.style("visibility", "visible")
 			.attr("r", bigBlobR)
 		clickCue
-			.transition()
-			.delay(stories.length * 25)
-			.style("opacity", 1)
+			.style("opacity", opacity)
+			.style("visibility", "visible")
 		blobs
-			.transition()
-			.style("opacity", 0.1)
+			.style("opacity", Math.max(0.1, 1 - opacity))
+	}
+
+	function hide(elem) {
+		elem.removeClass("visible").addClass("hidden");
+	}
+
+	function show(elem) {
+		elem.removeClass("hidden").addClass("visible");
 	}
 
 	function scrollAnimation() {
@@ -347,33 +370,33 @@ jQuery(document).ready(function($) {
 			progress = scrollTop/(notFixedContent.offset().top - window.innerHeight);
 		g.call(zoom.scaleTo, zoomFactor);
 
-		if (progress < 0.2) {
+		if (progress < scene1) {
 			// console.log("animation 1");
-			intro.fadeIn();
-			heading.hide();
+			show(intro);
+			hide(heading);
 			hideStories();
 			stopEditAnim();
-			storyOverlay.fadeOut();
-		} else if (progress < 0.4) {
+			hide(storyOverlay);
+		} else if (progress < scene2) {
 			// console.log("animation 2");
-			intro.hide();
-			heading.fadeIn();
+			hide(intro);
+			show(heading);
 			hideStories();
 			startEditAnim();
-			storyOverlay.fadeOut();
-		} else if (progress < 0.8) {
+			hide(storyOverlay);
+		} else if (progress < scene3) {
 			// console.log("animation 3");
-			intro.hide();
-			heading.fadeIn();
-			showStories(); // FIX map opacity to scroll progress
+			hide(intro);
+			show(heading);
+			showStories(progress, scene2, scene3);
 			stopEditAnim();
-		} else if (progress >= 0.8) {
+		} else if (progress >= scene3) {
 			// console.log("animation 4");
-			intro.hide();
-			heading.fadeIn();
+			hide(intro);
+			show(heading);
 			hideStories();
 			stopEditAnim();
-			storyOverlay.fadeOut();
+			hide(storyOverlay);
 			container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
 		}
 	}
@@ -393,6 +416,7 @@ jQuery(document).ready(function($) {
 
 	$( window ).resize( function() {
 		if (initWidth !== window.innerWidth) {
+			initWidth = window.innerWidth;
 			requestAnimationFrame( function() {
 				drawChart();
 				startEditAnim();
@@ -401,7 +425,7 @@ jQuery(document).ready(function($) {
 		}
 	})
 
-	fakescroll();
+	setupFakescroll();
 	setupChart(scrollAnimation);
 	drawChart();
 	getRecentEdits(true);

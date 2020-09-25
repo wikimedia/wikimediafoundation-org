@@ -24,13 +24,12 @@
         z-index: 1000;
     }
     .intro {
-        display: none;
         width: 60%;
         height: 50vh;
-        position: fixed;
+        position: absolute;
         margin: auto;
         top: 0;
-        bottom: 0;
+        bottom: 5rem;
         left: 0;
         right: 0;
         max-width: 500px;
@@ -58,19 +57,7 @@
         animation: scroll 8s infinite ease-in-out;
         animation-delay: 3s;
     }
-    @keyframes scroll {
-        0% {
-            transform: translateY(0);
-        }
-        10% {
-            transform: translateY(2vh);
-        }
-        20% {
-            transform: translateY(0);
-        }
-    }
     h1 {
-        display: none;
         font-size: 2.6rem;
         width: 60%;
         position: absolute;
@@ -102,7 +89,6 @@
         }
     }
     .recent-edits {
-        display: none;
         position: fixed;
         margin-top: 0.5em;
         z-index: 4000;
@@ -134,7 +120,6 @@
         cursor: pointer;
     }
     .story-overlay {
-        display: none;
         width: 100%;
         position: fixed;
         background-color: rgba(255, 255, 255, 0.95);
@@ -322,5 +307,29 @@
             width: rem(64);
             height: rem(64);
         }
+    }
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+    transition-delay: 0.1s;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+    10% {
+        transform: translateY(2vh);
+    }
+    20% {
+        transform: translateY(0);
     }
 }
