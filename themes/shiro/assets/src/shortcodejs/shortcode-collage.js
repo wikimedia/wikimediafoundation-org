@@ -174,13 +174,13 @@ jQuery(document).ready(function($) {
 			mainGradient = svgDefs.append("linearGradient")
 				.attr("id", "mainGradient")
 				.attr("gradientTransform", "rotate(90)");
-        mainGradient.append("stop")
-            .attr("class", "stop-0")
-            .attr("offset", "0");
-        mainGradient.append("stop")
-            .attr("class", "stop-1")
-            .attr("offset", "1");
-        fadedEdge = svg.append("rect")
+		mainGradient.append("stop")
+			.attr("class", "stop-0")
+			.attr("offset", "0");
+		mainGradient.append("stop")
+			.attr("class", "stop-1")
+			.attr("offset", "1");
+		fadedEdge = svg.append("rect")
 			.classed("filled", true)
 			.attr("x", 0)
 			.attr("y", 0)

@@ -37,7 +37,7 @@ function wmf_collage_callback( $atts ) {
 	$atts = shortcode_atts( $defaults, $atts, 'collage' );
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/src/shortcodejs/visualize-collage.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/dist/shortcode-collage.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'collage', "var collageAtts = " . json_encode($atts) . ";");
 
 	ob_start();
@@ -90,7 +90,7 @@ function wmf_timeline_callback( $atts ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
 
-	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/src/shortcodejs/visualize-timeline.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'timeline', "var  timelineAtts = " . json_encode($atts) . ";");
 
 	ob_start();
