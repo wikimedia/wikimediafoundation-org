@@ -45,18 +45,18 @@ function wmf_collage_callback( $atts ) {
 
 	<div class="collage mod-margin-bottom">
 		<div id="<?php echo esc_attr($atts['id']) ?>" class="collage-content">
-			<div class="intro">
+			<div class="intro hidden">
 				<div class="intro-text">
 					<p>Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam.</p>
 				</div>
 				<div class="scroll-indicator">↓</div>
 			</div>
-			<div class="recent-edits">
+			<div class="recent-edits hidden">
 				<p><span class="label"></span></p>
 				<p><span class="title"></span></p>
 			</div>
-			<h1 style="font-family: Linux Libertine, serif;"><?php echo esc_html($atts['title']) ?></h1>
-			<div class="story-overlay mw-980">
+			<h1 class="hidden" style="font-family: Linux Libertine, serif;"><?php echo esc_html($atts['title']) ?></h1>
+			<div class="story-overlay mw-980 hidden">
 				<h2></h2>
 				<div class="image"></div>
 				<p>Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam.</p>
