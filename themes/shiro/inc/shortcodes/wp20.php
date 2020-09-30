@@ -56,11 +56,14 @@ function wmf_collage_callback( $atts ) {
 				<p><span class="title"></span></p>
 			</div>
 			<h1 class="hidden" style="font-family: Linux Libertine, serif;"><?php echo esc_html($atts['title']) ?></h1>
-			<div class="story-overlay mw-980 hidden">
+			<div class="story-overlay hidden" tabindex="-1">
+				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
 				<h2></h2>
 				<div class="image"></div>
-				<p>Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam.</p>
-				<p class="close">Close story</p>
+				<p>Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam. Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam. Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam.</p>
+				<p class="story-nav">
+					<span class="next-story">Next story</span>
+				</p>
 			</div>
 		</div>
 		<div class="fake-scroll"></div>
@@ -73,19 +76,18 @@ add_shortcode( 'collage', 'wmf_collage_callback' );
 
 
 /**
- * Define a [timeline] shortcode that renders a timeline of milestones.
+ * Define a [timeline] wrapper shortcode that renders a timeline of milestones.
  *
  * @param array $atts Shortcode attributes array.
  * @return string Rendered shortcode output.
  */
-function wmf_timeline_callback( $atts ) {
+function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
-		'top-label' => 'Top viewed and edited articles',
-		'more-link' => '',
-		'more-href' => '',
+		'more_link' => '',
+		'more_href' => '',
 		'background-color' => '#f8f9fa',
-		'filterby' => 'Filter by',
+		'img' => '',
 		'id' => 'wp20-timeline',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
@@ -97,25 +99,11 @@ function wmf_timeline_callback( $atts ) {
 	?>
 
 	<div class="timeline mod-margin-bottom" style="background-color: <?php echo esc_attr($atts["background-color"]) ?>">
-	<!-- <div class="filter-timeline" style="background-color: <?php echo esc_attr($atts["background-color"]) ?>;">
-			<div class="mw-980">
-				<span><?php echo esc_html($atts['filterby']); ?>:</span>
-				<ul>					
-					<li class="cat active">Category 1</li>
-					<li class="cat">Category 2</li>
-					<li class="cat">Category 3</li>
-					<li class="cat">Category 4</li>
-				</ul>
-			</div>
-		</div> -->
 		<div class="mw-980">
-			<div>
-				<p class="top-label"><?php echo esc_html($atts["top-label"]) ?></p>
-			</div>
 			<div id="<?php echo esc_attr($atts['id']) ?>" class="milestones">
 			</div>
 			<div>
-				<p><a class="arrow-link" href="<?php echo esc_html($atts["more-href"]) ?>"><?php echo esc_html($atts["more-link"]) ?></a></p>
+				<?php echo wp_kses_post( $content ) ?>
 			</div>
 		</div>
 	</div>

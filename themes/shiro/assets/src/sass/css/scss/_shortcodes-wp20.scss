@@ -43,7 +43,9 @@
         p {
             font-size: 1rem;
             font-size: inherit;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 0px 5px 2px #ffffff;
+            border-radius: 10px;
         }
     }
     .scroll-indicator {
@@ -70,7 +72,7 @@
         line-height: 1;
         max-width: 500px;
         text-align: center;
-        z-index: 3000;
+        z-index: 0;
         @media (min-width: $medium-bp) {
             font-size: 5rem;
         }
@@ -98,6 +100,8 @@
             display: inline-block;
             padding: 0.125rem 0.25rem;
             background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 5px 2px #ffffff;
+            border-radius: 10px;
             @media (min-width: $medium-bp){
                 font-size: 1rem;
             }
@@ -116,7 +120,7 @@
             margin: auto;
         }
     }
-    .story-blob, .close {
+    .story-blob, .close, .next-story {
         cursor: pointer;
     }
     .story-overlay {
@@ -124,45 +128,64 @@
         position: fixed;
         background-color: rgba(255, 255, 255, 0.95);
         border: 0px;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        min-height: 100vh;
+        padding: 5rem 1rem 1rem;
+        height: 100vh;
+        top: 0;
         z-index: 4000;
+        overflow-y: auto;
+        &::after {
+            content: "";
+            display: block;
+            height: 1rem;
+            width: 100%;
+        }
         .image {
             position: relative;
-            width: 200px;
-            height: 200px;
+            float: right;
+            width: 150px;
+            height: 150px;
             background: linear-gradient(30deg, pink, blue);
             border-radius: 50%;
         }
         @media (min-width: $medium-bp) {
-            width: 50vw;
-            min-width: 200px;
+            width: 600px;
             min-height: 0;
             left: 0;
             right: 0;
-            bottom: 4rem;
+            top: 0;
+            bottom: 0;
+            height: auto;
+            max-height: 50vh;
+            padding: 1rem;
             margin: auto;
             z-index: 2000;
             border: 1px solid $wmui-color-base0;
             .image {
-                position: fixed;
-                top: 20%;
-                right: 20%;
+	            width: 200px;
+	            height: 200px;
             }
-        }
-        p {
-            padding: 0 1rem;
         }
         .close {
             text-decoration: underline;
             color: $wmui-color-base30;
             position: absolute;
-            top: 0;
-            right: 0;
+            display: inline-block;
+            top: 5rem;
+            right: 1rem;
             @media (min-width: $medium-bp) {
-                position: relative;
+                top: 1rem;
             }
+        }
+        .story-nav {
+        display: flex;
+        flex-direction: row-reverse;
+	        .next-story {
+	            display: inline-block;
+	            font-weight: 700;
+	            text-decoration: underline;
+	            margin-top: 1rem;
+	            float: right;
+	        }
         }
     }
 }
@@ -172,71 +195,56 @@
     padding-top: 4rem;
     padding-bottom: 4rem;
     font-size: 1rem;
-    .filter-timeline {
-        position: sticky;
-        width: 100%;
-        z-index: 100000;
-        top: 0;
-        text-align: center;
-        white-space: nowrap; 
-        overflow-x: auto; 
-        min-height: 70px; 
-        padding: 1rem; 
-        transition: 0.2s all;
-        ul {
-            list-style: none;
-            display: inline-block;
-        }
-        li {
-            font-size: 1rem;
-            display: inline-block;
-            margin: 0 1rem;
-        }
-        li:not(.active) {
-            cursor: pointer;
-        }
-        li:hover,
-        .active {
-            text-decoration: underline;
-        }
-    }
-    .top-label {
-        width: rem(180);
-    }
     .milestones {
         margin-bottom: 1rem;
     }
     .year {
         display: flex;
+        justify-content: center;
         .top-articles {
+            width: auto;
+            max-width: 500px;
             display: flex;
             flex-direction: column;
-            @media (min-width: $medium-bp){
+            text-align: right;
+            justify-content: start;
+            @media (min-width: $medium-bp) {
+                width: 40%;
                 flex-direction: row;
+                justify-content: end;
+            }
+            p {
+                display: none;
+                @media (min-width: $medium-bp) {
+                    display: block;
+                }
             }
         }
         .top-articles,
         h3 {
-            margin-top: 1rem;
+            margin-top: 1.25rem;
+            @media (min-width: $medium-bp) {
+                margin-top: 2rem;
+            }
         }
         .top-viewed,
         .top-edited {
-            width: rem(48);
-            margin-right: rem(5);
+            width: 48px;
             @media (min-width: $medium-bp) {
-                width: rem(64);
+                width: 64px;
+                margin-left: rem(5);
             }
         }
         .top-viewed span,
         .top-edited span {
             display: inline-block;
-            width: rem(48);
-            height: rem(48);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             background: linear-gradient(30deg, $wmui-color-base70, $wmui-color-base50);
             @media (min-width: $medium-bp) {
-                width: rem(64);
-                height: rem(64);
+                width: 64px;
+                height: 64px;
             }
         }
         .top-edited span {
@@ -244,36 +252,36 @@
         }
         .year-label {
             color: $wmui-color-base30;
-            border-left: 1px solid $wmui-color-base0;
-            margin-left: rem(8);
-            @media (min-width: $medium-bp){
-                margin-left: rem(32);
+            margin-right: 0.5rem;
+            margin-left: 0.5rem; 
+            text-align: center;
+            position: relative;
+            @media (min-width: $medium-bp) {
+                margin-right: 1rem;
+                margin-left: 1rem;
             }
-            width: 100px;
             &::before {
-                content: "–";
-                margin-right: rem(5)            }
+                content: "";
+                height: 100%;
+                width: 1px;
+                position: absolute;
+                background: $wmui-color-base30;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+           }
+           span {
+                background-color: $wmui-color-base90;
+                position: relative;
+                z-index: 10;
+                display: inline-block;
+           }
         }
         .milestone {
-            .call {
-                position: relative;
-                padding-left: 1em;
-            }
-            .call::before {
-                content: "";
-                position: absolute;
-                width: 0.75em;
-                height: 0.75em;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                margin: auto;
-                border-radius: 50%;
-                background-color: blue;
-            }
-            p {
-                max-width: 500px;
-            }
+            width: 40%;
+            max-width: 500px;
+            flex-grow: 1;
         }
         div {
             display: inline-block;
@@ -289,7 +297,7 @@
 
 .projects {
     text-align: center;
-    margin-bottom: rem(64);
+    margin-bottom: 64px;
     @media (min-width: $medium-bp) {
         margin-bottom: rem(112);
     }
@@ -298,14 +306,14 @@
     flex-wrap: wrap;
     span {
         display: inline-block;
-        width: rem(48);
-        height: rem(48);
+        width: 48px;
+        height: 48px;
         background-color: $wmui-color-base50;
         margin: 1rem 1rem 0 0;
         border-radius: 50%;
         &.special {
-            width: rem(64);
-            height: rem(64);
+            width: 64px;
+            height: 64px;
         }
     }
 }
@@ -313,13 +321,15 @@
 .visible {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.5s ease-in;
-    transition-delay: 0.1s;
+    transition: opacity 0.3s ease-in;
 }
 .hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 0.3s, opacity 0.3s linear;
+    transition-property: visibility, opacity;
+    transition-timing-function: ease;
+    transition-delay: 0.15s, 0s;
+    transition-duration: 0s, 0.15s;
 }
 
 @keyframes scroll {

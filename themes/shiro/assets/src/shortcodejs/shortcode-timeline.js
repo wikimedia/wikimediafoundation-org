@@ -1,13 +1,11 @@
-/* eslint-disable */
-/* global d3 */
-/* eslint-disable no-magic-numbers */
+/* eslint-disable no-magic-numbers, one-var */
 
 jQuery(document).ready(function($) {
 
 	'use strict';
 
 	var shortAtts = timelineAtts, // eslint-disable-line no-undef
-		containerID = "#" + timelineAtts["id"],
+		containerID = "#" + shortAtts["id"],
 		container = $(containerID),
 		startYear = 2001,
 		endYear = 2021,
@@ -28,37 +26,27 @@ jQuery(document).ready(function($) {
 		container
 			.append( $( '<div id="year-' + (startYear + i) + '" class="year"></div>' )
 				.append( $('<div class="top-articles"></div>')
+					.append( $( '<p></p>') )
 					.append( $( '<div class="top-edited"></div>') )
 					.append( $( '<div class="top-viewed"></div>') )
 				)
-				.append( $( '<p class="year-label"></p>').text(startYear + i) )
+				.append( $( '<p class="year-label"></p>')
+					.append( $ ('<span></span>').text(startYear + i) ) )
 				.append( $( '<div class="milestone"></div>'))
 			);
 	}
 
-	for (var i = 0; i < dataRaw.length; i++) {
-		var date = new Date(dataRaw[i].date),
+	for (var y = 0; y < dataRaw.length; y++) {
+		var date = new Date(dataRaw[y].date),
 			year = date.getFullYear().toString(),
 			thisYear = $("#year-" + year);
 		thisYear.addClass("highlight");
 		thisYear.find(".milestone")
-			.append( $("<h3></h3>").text(dataRaw[i].label) )
-			.append( $("<p></p>").text(dataRaw[i].description) );
-		// if (dataRaw[i].call) {
-		// 	thisYear.find(".milestone").append( $('<p class="call"></p>').text(dataRaw[i].call) );
-		// }
-		thisYear.find(".top-viewed").append("<span></span>");
-		thisYear.find(".top-edited").append("<span></span>");
+			.append( $('<h3></h3>').text(dataRaw[y].label) )
+			.append( $('<p></p>').text(dataRaw[y].description) );
+		thisYear.find(".top-articles p").text("Incididunt sint reprehenderit excepteur qui ut aute cupidatat minim irure.");
+		thisYear.find(".top-viewed").append('<span></span>');
+		thisYear.find(".top-edited").append('<span></span>');
 	}
-
-	function changeCategory() {
-		$(".filter-timeline").find(".cat").removeClass("active");		
-		$(this).addClass("active");
-		container.animate({"opacity": 0}, 300, function(){
-			container.animate({"opacity": 1}, 300);
-		});
-	}
-
-	$(".filter-timeline").find(".cat").click(changeCategory);
 
 });
