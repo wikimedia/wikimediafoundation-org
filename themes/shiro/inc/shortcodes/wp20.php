@@ -163,7 +163,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$margin = $atts['margin'] == '1' ? ' mod-margin-bottom' : '';
+	$margin = $atts['margin'] === '1' ? ' mod-margin-bottom' : '';
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
 	if ( $attachment != Null ) {
@@ -171,7 +171,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		$image = wp_get_attachment_image($img_id, array(600, 400));
 	}
 
-	if ( $atts['columns'] == '1' ) {
+	if ( $atts['columns'] === '1' ) {
 		$o = '<div class="mw-980' . $margin . '"><h1 style="font-family: Linux Libertine, Charis SIL, serif;">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 		return $o;
 	} else {
@@ -183,7 +183,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 			$col_2 = '<div class="w-48p">' . $image . '</div>';
 		}
 
-		if ( $atts['reverse'] == '0') {
+		if ( $atts['reverse'] === '0') {
 			return '<div class="mw-980 flex flex-medium flex-space-between' . $margin . '">' . $col_1 . $col_2 . '</div>';
 		} else {
 			return '<div class="mw-980 flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse' . $margin . '">' . $col_2 . $col_1 . '</div>';
