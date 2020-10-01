@@ -140,7 +140,7 @@
 	        &::after {
 	            content: "";
 	            display: block;
-	            height: 2rem;
+	            height: 5rem;
 	            width: 100%;
 	        }
         }
@@ -193,12 +193,13 @@
         .story-nav {
 	        display: flex;
 	        flex-direction: row-reverse;
-	        position: absolute;
+	        position: fixed;
 	        bottom: 0;
 	        right: 0;
 	        width: 100%;
 	        padding: 1rem;
 	        @media (min-width: $medium-bp){
+	        	position: absolute;
 	        	bottom: -3rem;
 	        }
 	        .next-story {

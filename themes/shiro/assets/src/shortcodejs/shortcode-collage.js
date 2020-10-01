@@ -22,10 +22,11 @@ jQuery(document).ready(function($) {
 		storyOverlay = container.find(".story-overlay"),
 		header = $("header").height(),
 		initWidth = html.width(),
+		initHeight = window.innerHeight,
 		colorBlack = "#202122",
 		colorAccent = "#36c",
 		scrollAnimLength = 1200,
-		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.29,"y":0.57},{"x":0.41,"y":0.61},{"x":0.48,"y":0.27},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.32},{"x":0.24,"y":0.41},{"x":0.31,"y":0.69},{"x":0.57,"y":0.24},{"x":0.43,"y":0.20},{"x":0.30,"y":0.25}],
+		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.29,"y":0.57},{"x":0.41,"y":0.61},{"x":0.48,"y":0.31},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.32},{"x":0.24,"y":0.41},{"x":0.31,"y":0.69},{"x":0.57,"y":0.24},{"x":0.43,"y":0.23},{"x":0.28,"y":0.27}],
 		storyContents = storyOverlay.find(".story-content"),
 		randomData = [],
 		apilimit = 5,
@@ -440,8 +441,9 @@ jQuery(document).ready(function($) {
 	});
 
 	$( window ).resize( function() {
-		if (initWidth !== html.width()) {
+		if (initWidth !== html.width() || initHeight !== window.innerHeight) {
 			initWidth = html.width();
+			initHeight = window.innerHeight;
 			requestAnimationFrame( function() {
 				drawChart();
 				startEditAnim();
