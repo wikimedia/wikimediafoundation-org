@@ -25,11 +25,12 @@ jQuery(document).ready(function($) {
 		colorBlack = "#202122",
 		colorAccent = "#36c",
 		scrollAnimLength = 1200,
-		stories = [{"x":0.56,"y":0.62, "name": "Name 1"},{"x":0.7,"y":0.52, "name": "Name 2"},{"x":0.51,"y":0.68, "name": "Name 3"},{"x":0.73,"y":0.38, "name": "Name 4"},{"x":0.29,"y":0.57, "name": "Name 5"},{"x":0.41,"y":0.61, "name": "Name 6"},{"x":0.48,"y":0.27, "name": "Name 7"},{"x":0.71,"y":0.60, "name": "Name 8"},{"x":0.65,"y":0.29, "name": "Name 9"},{"x":0.35,"y":0.32, "name": "Name 10"},{"x":0.24,"y":0.41, "name": "Name 11"},{"x":0.31,"y":0.69, "name": "Name 12"},{"x":0.57,"y":0.24, "name": "Name 13"},{"x":0.43,"y":0.20, "name": "Name 14"},{"x":0.30,"y":0.25, "name": "Name 15"}],
+		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.29,"y":0.57},{"x":0.41,"y":0.61},{"x":0.48,"y":0.27},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.32},{"x":0.24,"y":0.41},{"x":0.31,"y":0.69},{"x":0.57,"y":0.24},{"x":0.43,"y":0.20},{"x":0.30,"y":0.25}],
+		storyContents = storyOverlay.find(".story-content"),
 		randomData = [],
 		apilimit = 5,
 		randomDataLen = Math.max(langList.length * apilimit, 80),
-		storiesLen = 15,
+		storiesLen = storyContents.length,
 		blobR = 5,
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR * 3,
@@ -42,7 +43,8 @@ jQuery(document).ready(function($) {
 		zoomMax = 1.7,
 		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, fadedEdge,
 		rEditAnimationI = 0,
-		rEdits = [];
+		rEdits = [],
+		currentStory = 0;
 
 	console.log("collage", shortAtts);
 
@@ -189,6 +191,16 @@ jQuery(document).ready(function($) {
 			.style("stroke-width", blobStroke)
 			.style("stroke", "rgba(255, 255, 255, 0)")
 			.attr("r", blobR);
+
+		$(".next-story").click(function() {
+			if (currentStory < storiesLen - 1) {
+				currentStory++;
+			} else {
+				currentStory = 0;
+			}
+			getStoryContent();
+		});
+
 		zoom = d3.zoom()
 			.scaleExtent([1, zoomMax])
 			.duration(0)
@@ -257,6 +269,8 @@ jQuery(document).ready(function($) {
 			d3.zoomIdentity,
 			d3.zoomTransform(g.node()).invert([currentWidth / 2, currentHeight / 2])
 		);
+
+		body.css("overflow", "hidden auto")
 	}
 
 	function setupFakescroll() {
@@ -270,8 +284,15 @@ jQuery(document).ready(function($) {
 		});
 	}
 
-	function storyClick() {
-		storyOverlay.find("h2").text(d3.select(this).data()[0].name);
+	function getStoryContent() {
+		// show and hide via display none instead of visibility
+		storyContents.hide();
+		$(storyContents[currentStory]).show();
+	}
+
+	function storyClick(d, i) {
+		currentStory = i;
+		getStoryContent();
 		body.css("overflow", "hidden");
 		show(storyOverlay);
 		clickCue.transition().style("opacity", 0).style("visibility", "hidden");

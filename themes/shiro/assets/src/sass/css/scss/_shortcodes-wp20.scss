@@ -128,24 +128,40 @@
         position: fixed;
         background-color: rgba(255, 255, 255, 0.95);
         border: 0px;
-        padding: 5rem 1rem 1rem;
-        height: 100vh;
-        top: 0;
+        padding: 0;
+        height: calc(100vh - 67px);
+        top: 67px; // navigation on mobile
         z-index: 4000;
-        overflow-y: auto;
-        &::after {
-            content: "";
-            display: block;
-            height: 1rem;
-            width: 100%;
+        .story-content-container {
+	        overflow-y: auto;
+	        height: 100%;
+	        padding: 1rem;
+	        // space for scrolling
+	        &::after {
+	            content: "";
+	            display: block;
+	            height: 2rem;
+	            width: 100%;
+	        }
         }
-        .image {
+        h2 {
+        	margin-bottom: 0.5rem;
+        }
+        .story-image {
             position: relative;
             float: right;
             width: 150px;
             height: 150px;
             background: linear-gradient(30deg, pink, blue);
             border-radius: 50%;
+            background-size: cover;
+            background-position: center center;
+        }
+        .story-since {
+        	margin-bottom: 1rem;
+        }
+        .story-quote {
+        	margin-top: 1rem;
         }
         @media (min-width: $medium-bp) {
             width: 600px;
@@ -154,13 +170,12 @@
             right: 0;
             top: 0;
             bottom: 0;
-            height: auto;
-            max-height: 50vh;
-            padding: 1rem;
+            height: 50vh;
+            padding: 0;
             margin: auto;
             z-index: 2000;
             border: 1px solid $wmui-color-base0;
-            .image {
+            .story-image {
 	            width: 200px;
 	            height: 200px;
             }
@@ -170,22 +185,32 @@
             color: $wmui-color-base30;
             position: absolute;
             display: inline-block;
-            top: 5rem;
-            right: 1rem;
-            @media (min-width: $medium-bp) {
-                top: 1rem;
-            }
+            padding: 0.5rem;
+            top: 0;
+            right: 0;
+            z-index: 3000;
         }
         .story-nav {
-        display: flex;
-        flex-direction: row-reverse;
+	        display: flex;
+	        flex-direction: row-reverse;
+	        position: absolute;
+	        bottom: 0;
+	        right: 0;
+	        width: 100%;
+	        padding: 1rem;
+	        @media (min-width: $medium-bp){
+	        	bottom: -3rem;
+	        }
 	        .next-story {
 	            display: inline-block;
 	            font-weight: 700;
 	            text-decoration: underline;
-	            margin-top: 1rem;
-	            float: right;
+	            background-color: #ffffff;
+	            padding: 5px;
 	        }
+        }
+        p:empty {
+        	display: none;
         }
     }
 }
