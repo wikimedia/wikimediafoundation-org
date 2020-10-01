@@ -6,22 +6,6 @@
  */
 
 /**
- * Define a [wmf_wrapper] wrapper shortcode that creates a HTML wrapper with mw-980 class, optional margin class.
- *
- * @param array  $atts    Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
- * @return string Rendered shortcode output.
- */
-function wmf_wrapper_shortcode_callback( $atts = [], $content = '' ) {
-	$margin = empty( $atts ) ? false : in_array( 'margin', array_map( 'strtolower', $atts ), true );
-	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$classes = $margin ? 'mw-980 mod-margin-bottom' : 'mw-980';
-	return '<div class="' . $classes . '">' . wp_kses_post( $content ) . '</div>';
-}
-add_shortcode( 'wmf_wrapper', 'wmf_wrapper_shortcode_callback' );
-
-/**
  * Define a [collage] shortcode that renders a collage of different messages.
  *
  * @param array $atts Shortcode attributes array.
@@ -95,8 +79,7 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 
 	if ( $attachment != Null ) {
 		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id, array(200, 200));
-		$image = wp_get_attachment_image($img_id);
+		$image_url = wp_get_attachment_image_url($img_id, array(400, 400));
 	}
 
 	ob_start();
@@ -105,7 +88,6 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
 		<?php if ( $image_url ) { ?>
 			<div class="story-image" style="background-image: url(<?php echo $image_url ?>);"></div>
-			<div class="hidden"><?php echo $image; ?></div>
 		<?php } ?>
 		<p class="story-location"><?php echo esc_html( $atts['location'] ); ?></p>
 		<p class="story-since"><?php echo esc_html( $atts['since'] ); ?></p>
@@ -162,6 +144,53 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	return (string) ob_get_clean();
 }
 add_shortcode( 'timeline', 'wmf_timeline_callback' );
+
+/**
+ * Define a [wmf_section] wrapper shortcode that creates a HTML wrapper with mw-980 class, optional margin class, optional columns.
+ *
+ * @param array  $atts    Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'columns' => '1',
+		'img' => '',
+		'margin' => '1',
+		'reverse' => '0',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
+	$content = do_shortcode( $content );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$margin = $atts['margin'] == '1' ? ' mod-margin-bottom' : '';
+	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
+
+	if ( $attachment != Null ) {
+		$img_id = $attachment->ID;
+		$image = wp_get_attachment_image($img_id, array(600, 400));
+	}
+
+	if ( $atts['columns'] == '1' ) {
+		$o = '<div class="mw-980' . $margin . '"><h1 style="font-family: Linux Libertine, Charis SIL, serif;">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
+		return $o;
+	} else {
+		if ( empty($image) ) {
+			$col_1 = '<div class="w-48p"><h1 style="font-family: Linux Libertine, Charis SIL, serif;">' . esc_html($atts['title']) . '</h1></div>';
+			$col_2 = '<div class="w-48p"><p>' . wp_kses_post( $content ) . '</p></div>';
+		} else {
+			$col_1 = '<div class="w-48p"><h1 style="font-family: Linux Libertine, Charis SIL, serif;">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
+			$col_2 = '<div class="w-48p">' . $image . '</div>';
+		}
+
+		if ( $atts['reverse'] == '0') {
+			return '<div class="mw-980 flex flex-medium flex-space-between' . $margin . '">' . $col_1 . $col_2 . '</div>';
+		} else {
+			return '<div class="mw-980 flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse' . $margin . '">' . $col_2 . $col_1 . '</div>';
+		}
+	}
+}
+add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
 
 /**
  * Define a [projects] shortcode that renders Wikimedia projects.
