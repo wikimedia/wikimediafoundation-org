@@ -95,7 +95,8 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 
 	if ( $attachment != Null ) {
 		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id);
+		$image_url = wp_get_attachment_image_url($img_id, array(200, 200));
+		$image = wp_get_attachment_image($img_id);
 	}
 
 	ob_start();
@@ -103,7 +104,8 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 	<div class="story-content" style="display: none;">
 		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
 		<?php if ( $image_url ) { ?>
-			<div class="story-image" style="background-image: url(<?php echo esc_attr($image_url) ?>);"></div>
+			<div class="story-image" style="background-image: url(<?php echo $image_url ?>);"></div>
+			<div class="hidden"><?php echo $image; ?></div>
 		<?php } ?>
 		<p class="story-location"><?php echo esc_html( $atts['location'] ); ?></p>
 		<p class="story-since"><?php echo esc_html( $atts['since'] ); ?></p>
