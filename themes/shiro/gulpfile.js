@@ -20,7 +20,8 @@ var paths = {
 	sassFiles: ['assets/src/sass/**/*.scss', '!assets/src/sass/base/**/*.scss', '!assets/src/sass/_vars.scss'],
 	jsFiles: 'assets/src/js/**/*.js',
 	dataVisJsFiles: 'assets/src/datavisjs/*.js',
-	jsLintFiles: ['assets/src/js/**/*.js', 'assets/src/datavisjs/*.js', '!assets/src/js/mule-js/**/*.js'],
+	shortCodeJsFiles: 'assets/src/shortcodejs/*.js',
+	jsLintFiles: ['assets/src/js/**/*.js', 'assets/src/datavisjs/*.js', 'assets/src/shortcodejs/*.js', '!assets/src/js/mule-js/**/*.js'],
 	phpFiles: [ '*.php', 'inc/**/*.php', 'template-parts/**/*.php' ],
 	svgFiles: 'assets/src/svg/individual/*.svg'
 }
@@ -77,6 +78,13 @@ gulp.task( 'concat2', gulp.series(function() {
 			   .pipe( gulp.dest( 'assets/dist' ) )
 } ) );
 
+gulp.task('shortCodeScripts', function() {
+  return gulp.src( paths.shortCodeJsFiles )
+	.pipe( rename({ suffix: '.min' }) )
+    .pipe( uglify() )
+    .pipe( gulp.dest( 'assets/dist' ) )
+});
+
 gulp.task( 'jslint', gulp.series(function() {
 	return gulp.src( paths.jsLintFiles )
 			   .pipe( eslint() )
@@ -103,7 +111,7 @@ gulp.task( 'pot', gulp.series(function() {
 } ) );
 
 gulp.task( 'styles', gulp.series( [ 'sass', 'rtl' ] ) );
-gulp.task( 'scripts', gulp.series( [ 'jslint', 'concat', 'concat2' ] ) );
+gulp.task( 'scripts', gulp.series( [ 'jslint', 'concat', 'concat2', 'shortCodeScripts' ] ) );
 gulp.task( 'lint', gulp.series( [ 'jslint' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
 gulp.task( 'default', gulp.series('build', (done) => {
@@ -113,6 +121,8 @@ gulp.task( 'default', gulp.series('build', (done) => {
   gulp.watch( paths.jsFiles, gulp.series('scripts') );
 
   gulp.watch( paths.dataVisJsFiles, gulp.series('scripts') );
+
+  gulp.watch( paths.shortCodeJsFiles, gulp.series('scripts') );
 
   done();
 
