@@ -45,9 +45,9 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 			<div class="story-overlay hidden">
 				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-				<p class="story-nav">
-					<span class="next-story">Next story</span>
-				</p>
+				<div class="story-nav">
+					<span class="btn btn-blue next-story">Next story</span>
+				</div>
 			</div>
 		</div>
 		<div class="fake-scroll"></div>
@@ -72,12 +72,11 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 		'location' => '',
 		'img' => '',
 		'quote' => '',
-		'quote_label' => 'Quote',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'volunteer' );
-	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
-	if ( $attachment != Null ) {
+	if ( $atts['img'] !== '' ) {
+		$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 		$img_id = $attachment->ID;
 		$image_url = wp_get_attachment_image_url($img_id, array(400, 400));
 	}
@@ -86,16 +85,26 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 	?>
 	<div class="story-content" style="display: none;">
 		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
-		<?php if ( $image_url ) { ?>
+		<?php if ( isset($image_url) ) { ?>
 			<div class="story-image" style="background-image: url(<?php echo $image_url ?>);"></div>
 		<?php } ?>
-		<p class="story-location"><?php echo esc_html( $atts['location'] ); ?></p>
-		<p class="story-since"><?php echo esc_html( $atts['since'] ); ?></p>
+
+		<?php if ( !empty($atts['location'] ) ) { ?>
+			<p class="story-location flex flex-all">
+				<img class="story-icon" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/map pin.svg"><span><?php echo esc_html( $atts['location'] ); ?></span>
+			</p>
+		<?php } ?>
+		
+		<?php if ( !empty($atts['since'] ) ) { ?>
+			<p class="story-since flex flex-all">
+				<img class="story-icon" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/calendar.svg"><span><?php echo esc_html( $atts['since'] ); ?></span>
+			</p>
+		<?php } ?>
+
 		<p class="story-desc p"><?php echo wp_kses_post( $content ) ?></p>
 		<?php if ( !empty($atts['quote'] ) ) { ?>
 			<div class="story-quote">
-				<h3><?php echo esc_html( $atts['quote_label'] ); ?></h3>
-				<blockquote class="p"><?php echo esc_html( $atts['quote'] ); ?></blockquote>
+				<blockquote class="p"><?php echo esc_html( $atts['quote'] ); ?><span>– <?php echo esc_html( $atts['name'] ); ?></span></blockquote>
 			</div>
 		<?php } ?>
 	</div>
@@ -135,7 +144,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 			<div id="<?php echo esc_attr($atts['id']) ?>" class="milestones">
 			</div>
 			<div>
-				<?php echo wp_kses_post( $content ) ?>
+				<p><?php echo wp_kses_post( $content ) ?></p>
 			</div>
 		</div>
 	</div>
@@ -164,9 +173,9 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 	$margin = $atts['margin'] === '1' ? ' mod-margin-bottom' : '';
-	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
-	if ( $attachment != Null ) {
+	if ( $atts['img'] !== '' ) {
+		$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 		$img_id = $attachment->ID;
 		$image = wp_get_attachment_image($img_id, array(600, 400));
 	}
@@ -216,6 +225,7 @@ function wmf_projects_callback( $atts ) {
 		<span></span>
 		<span></span>
 		<span></span>
+
 	</div>
 
 	<?php

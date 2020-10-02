@@ -126,29 +126,54 @@
     .story-overlay {
         width: 100%;
         position: fixed;
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: #ffffff;
         border: 0px;
         padding: 0;
         height: calc(100vh - 67px);
         top: 67px; // navigation on mobile
         z-index: 4000;
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+        &::after,
+        &::before {
+        	content: "";
+			width: 100%;
+			display: block;
+			position: absolute;
+        }
+        &::before {	
+			background: linear-gradient( #ffffff, transparent);
+			height: 2rem;
+			top: 0;
+        }
+        &::after {
+			background: linear-gradient( transparent, #ffffff);
+			height: 4rem;
+			bottom: 0;
+        }
         .story-content-container {
 	        overflow-y: auto;
 	        height: 100%;
-	        padding: 1rem;
+	        padding: 2rem;
 	        // space for scrolling
 	        &::after {
 	            content: "";
 	            display: block;
-	            height: 5rem;
+	            height: 8rem;
 	            width: 100%;
+	            @media (min-width: $medium-bp) {
+	            	height: 4rem;
+	            }
 	        }
         }
         h2 {
         	margin-bottom: 0.5rem;
         }
+        .story-icon {
+        	height: 1em;
+			margin-top: 3px;
+			margin-right: 0.5em;
+        }
         .story-image {
-            position: relative;
             float: right;
             width: 150px;
             height: 150px;
@@ -162,6 +187,13 @@
         }
         .story-quote {
         	margin-top: 1rem;
+        	blockquote {
+        		border-left: 0.25rem solid $wmui-color-base0;
+        		padding-left: 1rem;
+        		span {
+        			display: block;
+        		}
+        	}
         }
         @media (min-width: $medium-bp) {
             width: 600px;
@@ -170,7 +202,7 @@
             right: 0;
             top: 0;
             bottom: 0;
-            height: 50vh;
+            height: 60vh;
             padding: 0;
             margin: auto;
             z-index: 2000;
@@ -186,28 +218,25 @@
             position: absolute;
             display: inline-block;
             padding: 0.5rem;
-            top: 0;
-            right: 0;
+            top: 0.5rem;
+            right: 0.5rem;
+            left: auto;
             z-index: 3000;
         }
         .story-nav {
 	        display: flex;
 	        flex-direction: row-reverse;
 	        position: fixed;
+	        z-index: 3000;
 	        bottom: 0;
 	        right: 0;
 	        width: 100%;
 	        padding: 1rem;
 	        @media (min-width: $medium-bp){
-	        	position: absolute;
-	        	bottom: -3rem;
+	        	position: relative;
 	        }
 	        .next-story {
-	            display: inline-block;
-	            font-weight: 700;
-	            text-decoration: underline;
-	            background-color: #ffffff;
-	            padding: 5px;
+	        	background-color: $wmui-color-base0;
 	        }
         }
         p:empty {
@@ -267,22 +296,23 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: linear-gradient(30deg, $wmui-color-base70, $wmui-color-base50);
+            border: 1px solid $wmui-color-base70;
+            background-color: #ffffff;
             @media (min-width: $medium-bp) {
                 width: 64px;
                 height: 64px;
             }
         }
-        .top-edited span {
-            background: linear-gradient(30deg, pink, $wmui-color-base50);
-        }
         .year-label {
             color: $wmui-color-base30;
             margin-right: 0.5rem;
-            margin-left: 0.5rem; 
+            margin-left: 0.5rem;
+            padding-bottom: 0.5rem; 
             text-align: center;
             position: relative;
+            width: 2.5em;
             @media (min-width: $medium-bp) {
+            	width: 4em;
                 margin-right: 1rem;
                 margin-left: 1rem;
             }
@@ -298,7 +328,7 @@
                 margin: auto;
            }
            span {
-                background-color: $wmui-color-base90;
+           		background-color: #ffffff;
                 position: relative;
                 z-index: 10;
                 display: inline-block;
@@ -322,6 +352,7 @@
 }
 
 .projects {
+    position: relative;
     text-align: center;
     margin-bottom: 64px;
     @media (min-width: $medium-bp) {
@@ -334,7 +365,8 @@
         display: inline-block;
         width: 48px;
         height: 48px;
-        background-color: $wmui-color-base50;
+        border: 1px solid $wmui-color-base50;
+        background-color: #ffffff;
         margin: 1rem 1rem 0 0;
         border-radius: 50%;
         &.special {
