@@ -351,28 +351,100 @@
     }
 }
 
-.projects {
+.movement {
     position: relative;
-    text-align: center;
-    margin-bottom: 64px;
-    @media (min-width: $medium-bp) {
-        margin-bottom: rem(112);
+    margin-bottom: 4rem;
+    @media (min-width: $large-bp) {
+    	margin-bottom: 10rem;
     }
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    span {
-        display: inline-block;
-        width: 48px;
-        height: 48px;
-        border: 1px solid $wmui-color-base50;
-        background-color: #ffffff;
-        margin: 1rem 1rem 0 0;
-        border-radius: 50%;
-        &.special {
-            width: 64px;
-            height: 64px;
-        }
+    .svg-projects {
+    	position: relative;
+    	margin-top: 3rem;
+    	margin-bottom: 2rem;
+    	padding: 0 1rem;
+    	text-align: center;
+    }
+    .svg-user-groups {
+    	position: relative;
+    	@media (min-width: $medium-bp) {
+    		position: absolute;
+	    	bottom: -140px;
+    	}
+    	@media (min-width: 1080px) {
+    		position: absolute;
+	    	bottom: -320px;
+    	}
+    	@media (min-width: $large-bp) {
+    		position: absolute;
+	    	bottom: -240px;
+    	}
+    	right: 1rem;
+    	svg {
+	    	transform-origin: top right;
+    	}
+    }
+    .svg-chapters {
+    	position: relative;
+    	@media (min-width: $medium-bp) {
+    		position: absolute;
+	    	bottom: -110px;
+    	}
+    	left: 1rem;
+    	svg {
+	    	transform-origin: top left;
+    	}
+    }
+    svg text {
+    	fill: $wmui-color-base0;
+    	font-size: 14px;
+    	text-anchor: middle;
+    }
+    .svg-user-groups svg,
+    .svg-chapters svg {
+    	transform: scale(1);
+    	width: 100%;
+    	display: none;
+	    @media (min-width: $medium-bp) {
+	    	display: block;
+	    	transform: scale(0.6);	
+	    	width: auto;
+	    }
+	    @media (min-width: 1080px) {
+	    	display: block;
+	    	transform: scale(0.75);
+	    	width: auto;
+	    }
+	    @media (min-width: $large-bp) {
+	    	display: block;
+	    	transform: scale(0.9);
+	    	width: auto;	
+	    }
+    }
+    .svg-projects svg {
+    	width: 100%;
+    	transform-origin: top center;
+	    @media (min-width: $medium-bp) {
+	    	width: auto;
+	    	transform: scale(0.6);	
+	    }
+	    @media (min-width: 1080px) {
+	    	transform: scale(0.75);
+	    	width: auto;
+	    }
+	    @media (min-width: $large-bp) {
+	    	transform: scale(0.9) translateX(-10%);
+	    	width: auto;	
+	    }
+	    @media (min-width: 1440px) {
+	    	width: 50%;
+	    	transform: scale(1) translateX(-10%);
+	    }
+    }
+    .text-affiliates {
+    	display: block;
+    	@media (min-width: $medium-bp) {
+    		display: none;
+    	}
     }
 }
 
