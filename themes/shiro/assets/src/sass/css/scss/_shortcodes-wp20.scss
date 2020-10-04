@@ -203,6 +203,7 @@
             top: 0;
             bottom: 0;
             height: 60vh;
+            max-height: 500px;
             padding: 0;
             margin: auto;
             z-index: 2000;
@@ -247,8 +248,6 @@
 
 .timeline {
     position: relative;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
     font-size: 1rem;
     .milestones {
         margin-bottom: 1rem;
@@ -261,12 +260,12 @@
             max-width: 500px;
             display: flex;
             flex-direction: column;
-            text-align: right;
             justify-content: start;
             @media (min-width: $medium-bp) {
                 width: 40%;
                 flex-direction: row;
                 justify-content: end;
+                flex-grow: 1;
             }
             p {
                 display: none;
@@ -286,7 +285,7 @@
         .top-edited {
             width: 48px;
             @media (min-width: $medium-bp) {
-                width: 64px;
+            	width: auto;
                 margin-left: rem(5);
             }
         }
@@ -296,11 +295,15 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            border: 1px solid $wmui-color-base70;
-            background-color: #ffffff;
+            background-position: center center;
+            background-size: cover;
             @media (min-width: $medium-bp) {
                 width: 64px;
                 height: 64px;
+            }
+            @media (min-width: $large-bp) {
+                width: 80px;
+                height: 80px;
             }
         }
         .year-label {
@@ -328,7 +331,6 @@
                 margin: auto;
            }
            span {
-           		background-color: #ffffff;
                 position: relative;
                 z-index: 10;
                 display: inline-block;
@@ -348,6 +350,20 @@
                 font-weight: 700;
             }
         }
+    }
+    &.timeline-grey {
+	    padding-top: 4rem;
+	    padding-bottom: 4rem;
+	    background-color: $wmui-color-base90;
+	    .year-label span {
+	    	background-color: $wmui-color-base90;
+	    }
+    }
+    &.timeline-white {
+    	background-color: #ffffff;
+    	.year-label span {
+    		background-color: #ffffff;
+    	}
     }
 }
 
@@ -460,6 +476,12 @@
     transition-timing-function: ease;
     transition-delay: 0.15s, 0s;
     transition-duration: 0s, 0.15s;
+}
+
+.wikipedia-h1 {
+	font-family: Linux Libertine, Charis SIL, serif;
+	line-height: 1.1;
+	margin-bottom: 1rem;
 }
 
 @keyframes scroll {

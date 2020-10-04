@@ -9,6 +9,7 @@
  * Define a [collage] shortcode that renders a collage of different messages.
  *
  * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
 function wmf_collage_callback( $atts = [], $content = '' ) {
@@ -41,7 +42,7 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 				<p><span class="label"></span></p>
 				<p><span class="title"></span></p>
 			</div>
-			<h1 class="hidden" style="font-family: Linux Libertine, serif;"><?php echo esc_html($atts['title']) ?></h1>
+			<h1 class="hidden wikipedia-h1"><?php echo esc_html($atts['title']) ?></h1>
 			<div class="story-overlay hidden">
 				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
@@ -86,7 +87,7 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 	<div class="story-content" style="display: none;">
 		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
 		<?php if ( isset($image_url) ) { ?>
-			<div class="story-image" style="background-image: url(<?php echo $image_url ?>);"></div>
+			<div class="story-image" style="background-image: url(<?php echo esc_attr($image_url) ?>);"></div>
 		<?php } ?>
 
 		<?php if ( !empty($atts['location'] ) ) { ?>
@@ -116,35 +117,38 @@ add_shortcode( 'volunteer', 'wmf_volunteer_shortcode_callback' );
 
 
 /**
- * Define a [timeline] wrapper shortcode that renders a timeline of milestones.
+ * Define a [timeline] wrapper shortcode that renders wrapper for a timeline of milestones, see [year] shortcode.
  *
  * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
 function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
+		'background-color' => 'white',
+		'img' => '',
+		'more' => '',
 		'more_link' => '',
 		'more_href' => '',
-		'background-color' => '#f8f9fa',
-		'img' => '',
-		'id' => 'wp20-timeline',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
+	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-
-	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'timeline', "var  timelineAtts = " . json_encode($atts) . ";");
+	$padding = $atts['background-color'] === 'white' ? " timeline-white" : " timeline-grey";
+	$classes = "timeline mod-margin-bottom" . $padding;
 
 	ob_start();
 	?>
 
-	<div class="timeline mod-margin-bottom" style="background-color: <?php echo esc_attr($atts["background-color"]) ?>">
+	<div class="<?php echo esc_attr($classes) ?>">
 		<div class="mw-980">
-			<div id="<?php echo esc_attr($atts['id']) ?>" class="milestones">
+			<div class="milestones">
+				<?php echo wp_kses_post( $content ) ?>
 			</div>
-			<div>
-				<p><?php echo wp_kses_post( $content ) ?></p>
+			<div class="timeline-more w-68p">
+				<p><?php echo esc_html( $atts['more'] ) ?></p>
+				<a class="arrow-link" href="<?php echo esc_attr( $atts['more_href'] ) ?>"><?php echo esc_html( $atts['more_link']) ?></a>
 			</div>
 		</div>
 	</div>
@@ -153,6 +157,61 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	return (string) ob_get_clean();
 }
 add_shortcode( 'timeline', 'wmf_timeline_callback' );
+
+/**
+ * Define a [year] wrapper shortcode that renders one year for the timeline, see [timeline].
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_year_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'year' => '',
+		'context' => '',
+		'img1' => '',
+		'img2' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'year' );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$highlight = $atts['title'] === '' ? "" : " highlight";
+	$classes = "year" . $highlight;
+	$image1 = '';
+	$image2 = '';
+
+	if ( $atts['img1'] !== '' ) {
+		$attachment1 = get_page_by_title($atts['img1'], OBJECT, 'attachment');
+		$img_id1 = $attachment1->ID;
+		$image1 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id1) . ');"></span>';
+	}
+
+	if ( $atts['img2'] !== '' ) {
+		$attachment2 = get_page_by_title($atts['img2'], OBJECT, 'attachment');
+		$img_id2 = $attachment2->ID;
+		$image2 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id2) . ');"></span>';
+	}
+
+	ob_start();
+	?>
+
+	<div class="<?php echo esc_attr($classes) ?>">
+		<div class="top-articles">
+			<p><?php echo esc_html( $atts['context'] ) ?></p>
+			<div class="top-edited"><?php echo $image1 ?></div>
+			<div class="top-viewed"><?php echo $image2 ?></div>
+		</div>
+		<div class="year-label"><span class="p"><?php echo esc_html( $atts['year'] ) ?></span></div>
+		<div class="milestone">
+			<h3><?php echo esc_html( $atts['title'] ) ?></h3>
+			<p><?php echo wp_kses_post( $content ) ?></p>
+		</div>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'year', 'wmf_year_callback' );
 
 /**
  * Define a [wmf_section] wrapper shortcode that creates a HTML wrapper with mw-980 class, optional margin class, optional columns.
@@ -173,7 +232,6 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 	$margin = $atts['margin'] === '1' ? ' mod-margin-bottom' : '';
-	$wp_h1_style = 'style="font-family: Linux Libertine, Charis SIL, serif;"';
 
 	if ( $atts['img'] !== '' ) {
 		$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
@@ -182,14 +240,14 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	}
 
 	if ( $atts['columns'] === '1' ) {
-		$o = '<div class="mw-980' . $margin . '"><h1 ' . $wp_h1_style . '>' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
+		$o = '<div class="mw-980' . $margin . '"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 		return $o;
 	} else {
 		if ( empty($image) ) {
-			$col_1 = '<div class="w-48p"><h1 ' . $wp_h1_style . '>' . esc_html($atts['title']) . '</h1></div>';
+			$col_1 = '<div class="w-48p"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1></div>';
 			$col_2 = '<div class="w-48p"><p>' . wp_kses_post( $content ) . '</p></div>';
 		} else {
-			$col_1 = '<div class="w-48p"><h1 ' . $wp_h1_style . '>' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
+			$col_1 = '<div class="w-48p"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 			$col_2 = '<div class="w-48p">' . $image . '</div>';
 		}
 
@@ -206,6 +264,7 @@ add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
  * Define a [movement] wrapper shortcode that renders Wikimedia projects and affiliates.
  *
  * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
 function wmf_movement_callback( $atts = [], $content = '' ) {
@@ -221,7 +280,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	<div class="movement mod-margin-bottom">
 		<div class="mw-980">
 			<div class="w-68p">
-				<h1 style="font-family: Linux Libertine, Charis SIL, serif;"><?php echo esc_html( $atts['title'] ); ?></h1>
+				<h1 class="wikipedia-h1"><?php echo esc_html( $atts['title'] ); ?></h1>
 				<p><?php echo wp_kses_post( $content ); ?></p>
 			</div>
 		</div>
