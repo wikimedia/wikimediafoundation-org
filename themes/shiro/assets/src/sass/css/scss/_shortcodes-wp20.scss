@@ -464,6 +464,40 @@
     }
 }
 
+.top-data {
+	> div {
+		margin-bottom: 1rem;
+	}
+	select {
+		display: inline-block;
+		width: auto;
+		appearance: none;
+		border: 0;
+		border-bottom: 2px solid $wmui-color-base0;
+		padding: 0 0.875em 0 0;
+		background-image: url("./assets/src/svg/down.svg");
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
+	.top-data-content {
+		padding: 0.5rem 0 0.5rem 0.5rem;
+		margin-left: -0.5rem;
+		transition: $transition;
+		&:hover {
+			background-color: $wmui-color-base90;
+		}
+	}
+	.article-image {
+		width: 100px;
+		height: 100px;
+		margin-right: 1rem;
+		background-color: $wmui-color-base80;
+	}
+	.heading {
+		margin-bottom: 0;
+	}
+}
+
 .visible {
     visibility: visible;
     opacity: 1;

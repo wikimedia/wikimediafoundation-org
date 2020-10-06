@@ -322,3 +322,121 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	return (string) ob_get_clean();
 }
 add_shortcode( 'movement', 'wmf_movement_callback' );
+
+/**
+ * Define a [wmf_top_data] wrapper shortcode that renders wrapper for a wmf_top_data of milestones, see [year] shortcode.
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_top_data_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'json' => '/assets/src/shortcodejs/wp20_top_edited.json',
+		'lang' => 'en',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
+	$atts['path'] = get_stylesheet_directory_uri() . $atts['json'];
+	$content = do_shortcode( $content );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+
+	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
+	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'top-data', "var topAtts = " . json_encode($atts) . ";");
+
+	ob_start();
+	?>
+
+	<div class="top-data mw-980 mod-margin-bottom">
+		<div>
+			<p class="mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></p>
+			<p>
+				<span class="p">Most edited articles in</span>
+				<select class="p" name="year" id="year-select">
+				    <option value="2020" selected="selected">2020</option>
+				    <option value="2019">2019</option>
+				    <option value="2018">2018</option>
+				    <option value="2017">2017</option>
+				    <option value="2016">2016</option>
+				    <option value="2015">2015</option>
+				    <option value="2014">2014</option>
+				    <option value="2013">2013</option>
+				    <option value="2012">2012</option>
+				    <option value="2011">2011</option>
+				    <option value="2010">2010</option>
+				    <option value="2009">2009</option>
+				    <option value="2008">2008</option>
+				    <option value="2007">2007</option>
+				    <option value="2006">2006</option>
+				    <option value="2005">2005</option>
+				    <option value="2004">2004</option>
+				    <option value="2003">2003</option>
+				    <option value="2002">2002</option>
+				    <option value="2001">2001</option>
+				</select>
+			</p>
+		</div>
+		<div id="top-data-container">
+			<div id="enwiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>EN</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+			<div id="arwiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>AR</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+			<div id="dewiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>DE</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+			<div id="eswiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>ES</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+			<div id="frwiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>FR</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+			<div id="ruwiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>RU</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+			<div id="zhwiki" class="top-data-content flex flex-medium" style="display: none;">
+				<div class="article-image"></div>
+				<div class="w-50p">
+					<p>ZH</p>
+					<h2 class="heading"></h2>
+					<p class="desc"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
