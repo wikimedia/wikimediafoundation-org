@@ -369,97 +369,77 @@
 
 .movement {
     position: relative;
-    margin-bottom: 4rem;
+    .main-vis {
+    	width: 69%;
+    	margin-left: 0;
+    	margin-right: 0;
+		transform: scaleX(1)/*rtl:scaleX(-1)*/;
+    }
+    .side-vis {
+    	position: absolute;
+    	right: 0;
+    	left: auto;
+    	width: 31%;
+    	bottom: 0;
+    	z-index: -1;
+    	transform: scaleX(1)/*rtl:scaleX(-1)*/;
+    }
+    @media (min-width: $medium-bp) {
+    	.main-vis {
+    		width: 65%;
+    		margin-left: 4%;
+    		margin-right: 0;
+    	}
+    	.side-vis {
+	    	right: 4%;
+	    	width: 27%;
+	    	left: auto;
+    	}
+    }
     @media (min-width: $large-bp) {
-    	margin-bottom: 10rem;
-    }
-    .svg-projects {
-    	position: relative;
-    	margin-top: 3rem;
-    	margin-bottom: 2rem;
-    	padding: 0 1rem;
-    	text-align: center;
-    }
-    .svg-user-groups {
-    	position: relative;
-    	@media (min-width: $medium-bp) {
-    		position: absolute;
-	    	bottom: -140px;
+    	.main-vis {
+    		width: 59%;
+    		margin-left: 10%;
+    		margin-right: 0;
     	}
-    	@media (min-width: 1080px) {
-    		position: absolute;
-	    	bottom: -320px;
-    	}
-    	@media (min-width: $large-bp) {
-    		position: absolute;
-	    	bottom: -240px;
-    	}
-    	right: 1rem;
-    	svg {
-	    	transform-origin: top right;
+    	.side-vis {
+	    	right: 10%;
+	    	left: auto;
+	    	width: 21%;
     	}
     }
-    .svg-chapters {
-    	position: relative;
-    	@media (min-width: $medium-bp) {
-    		position: absolute;
-	    	bottom: -110px;
-    	}
-    	left: 1rem;
-    	svg {
-	    	transform-origin: top left;
-    	}
+    a {
+    	padding-left: 1.25em;
+		background-repeat: no-repeat;
+		background-position: left center;
     }
-    svg text {
-    	fill: $wmui-color-base0;
-    	font-size: 14px;
-    	text-anchor: middle;
+    a.projects {
+		background-image: url("./assets/src/svg/circle.svg");
+		background-size: 0.75em;
+		background-position: left 0.05em center;
     }
-    .svg-user-groups svg,
-    .svg-chapters svg {
-    	transform: scale(1);
-    	width: 100%;
-    	display: none;
-	    @media (min-width: $medium-bp) {
-	    	display: block;
-	    	transform: scale(0.6);	
-	    	width: auto;
-	    }
-	    @media (min-width: 1080px) {
-	    	display: block;
-	    	transform: scale(0.75);
-	    	width: auto;
-	    }
-	    @media (min-width: $large-bp) {
-	    	display: block;
-	    	transform: scale(0.9);
-	    	width: auto;	
-	    }
+    a.chapters {
+    	background-image: url("./assets/src/svg/triangle.svg");
+    	background-size: 0.75em;
     }
-    .svg-projects svg {
-    	width: 100%;
-    	transform-origin: top center;
-	    @media (min-width: $medium-bp) {
-	    	width: auto;
-	    	transform: scale(0.6);	
-	    }
-	    @media (min-width: 1080px) {
-	    	transform: scale(0.75);
-	    	width: auto;
-	    }
-	    @media (min-width: $large-bp) {
-	    	transform: scale(0.9) translateX(-10%);
-	    	width: auto;	
-	    }
-	    @media (min-width: 1440px) {
-	    	width: 50%;
-	    	transform: scale(1) translateX(-10%);
-	    }
+    a.usergroups {
+    	background-image: url("./assets/src/svg/circle.svg");
+    	background-size: 0.25em;
+    	background-position: left 0.2em center;
     }
-    .text-affiliates {
-    	display: block;
-    	@media (min-width: $medium-bp) {
-    		display: none;
+    a.thematic {
+    	background-image: url("./assets/src/svg/square.svg");
+    	background-size: 0.625em;
+    }
+    a.campaigns {
+    	background-image: url("./assets/src/svg/diamond.svg");
+    	background-size: 0.625em;
+    }
+    .project-circle {
+    	transition: $transition;
+    	cursor: pointer;
+    	&:hover {
+    		fill: #36c;
     	}
     }
 }
