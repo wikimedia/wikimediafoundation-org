@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
 		rEditLabel = rEditTicker.find(".label"),
 		rEditTitle = rEditTicker.find(".title"),
 		storyOverlay = container.find(".story-overlay"),
-		header = $("header").height(),
+		header = $("header"),
 		initWidth = html.width(),
 		initHeight = window.innerHeight,
 		colorBlack = "#202122",
@@ -48,8 +48,6 @@ jQuery(document).ready(function($) {
 		rEditAnimationI = 0,
 		rEdits = [],
 		currentStory = 0;
-
-	console.log("collage", shortAtts);
 
 	while (randomData.length < randomDataLen) {
 		var randx = getRandom(0,1),
@@ -135,6 +133,8 @@ jQuery(document).ready(function($) {
 	}
 
 	function setupChart(cb) {
+		// collage will not allow additional content (e.g. eyebrow link, best not to set parent page)
+		$('.header-main').hide();
 		svg = d3.select(containerID)
 			.append("svg");
 		g = svg.append("g").attr("transform-origin", "0 0 0");
@@ -218,7 +218,7 @@ jQuery(document).ready(function($) {
 	}
 
 	function drawChart() {
-		var currentHeight = window.innerHeight - header,
+		var currentHeight = window.innerHeight - header.height(),
 			currentWidth = html.width();
 		svg
 			.attr("height", currentHeight)

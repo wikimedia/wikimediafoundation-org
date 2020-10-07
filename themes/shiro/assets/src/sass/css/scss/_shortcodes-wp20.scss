@@ -4,7 +4,8 @@
     width: 100vw;
     overflow: hidden;
     .collage-content {
-        position: fixed; 
+        position: fixed;
+        height: 90%;
     }
     .stop-1 {
         stop-color: #ffffff;
@@ -42,10 +43,9 @@
             align-items: center;
             justify-content: center;
         }
-        p {
-            font-size: 1rem;
+        p, h1, h2, h3 {
             font-size: inherit;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0px 0px 5px 2px #ffffff;
             border-radius: 10px;
         }
@@ -139,7 +139,7 @@
 	        height: 100%;
 	        padding: 2rem;
 	        // space for scrolling
-	        &::after {
+	        &:after {
 	            content: "";
 	            display: block;
 	            height: 8rem;
@@ -197,19 +197,19 @@
 	            width: 200px;
 	            height: 200px;
             }
-	        &::after,
-	        &::before {
+	        &:after,
+	        &:before {
 	        	content: "";
 				width: 100%;
 				display: block;
 				position: absolute;
 	        }
-	        &::before {	
+	        &:before {	
 				background: linear-gradient( #ffffff, transparent);
 				height: 2rem;
 				top: 0;
 	        }
-	        &::after {
+	        &:after {
 				background: linear-gradient( transparent, #ffffff);
 				height: 4rem;
 				bottom: 0;
@@ -320,7 +320,7 @@
                 margin-right: 1rem;
                 margin-left: 1rem;
             }
-            &::before {
+            &:before {
                 content: "";
                 height: 100%;
                 width: 1px;
