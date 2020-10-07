@@ -16,6 +16,9 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'label' => '1 human just edited',
+		'intro-h' => '',
+		'intro-1' => '',
+		'intro-2' => '',
 		'id' => 'wp20-collage',
 		'click' => 'click me',
 	];
@@ -32,9 +35,16 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 
 	<div class="collage mod-margin-bottom">
 		<div id="<?php echo esc_attr($atts['id']) ?>" class="collage-content">
-			<div class="intro hidden">
+			<div id="intro-1" class="intro hidden">
 				<div class="intro-text">
-					<p>Irure magna aliqua aute veniam nulla veniam dolor sed ut aute sint esse irure minim eu officia proident quis aliquip cupidatat tempor ad velit eiusmod sed ad veniam.</p>
+					<h2><?php echo esc_html($atts['intro-h']) ?></h2>
+					<p><?php echo esc_html($atts['intro-1']) ?></p>
+				</div>
+				<div class="scroll-indicator">↓</div>
+			</div>
+			<div id="intro-2" class="intro hidden">
+				<div class="intro-text">
+					<p><?php echo esc_html($atts['intro-2']) ?></p>
 				</div>
 				<div class="scroll-indicator">↓</div>
 			</div>
@@ -46,8 +56,9 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 			<div class="story-overlay hidden">
 				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-				<div class="story-nav">
-					<span class="btn btn-blue next-story">Next story</span>
+				<div class="story-nav flex flex-all flex-space-between">
+					<button class="btn btn-blue prev-story hidden">Previous</button>
+					<button class="btn btn-blue next-story hidden">Next</button>
 				</div>
 			</div>
 		</div>

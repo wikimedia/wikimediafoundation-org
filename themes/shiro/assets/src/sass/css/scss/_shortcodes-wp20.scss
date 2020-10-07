@@ -38,7 +38,9 @@
         .intro-text {
             height: inherit;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
         p {
             font-size: 1rem;
@@ -132,24 +134,6 @@
         height: calc(100vh - 67px);
         top: 67px; // navigation on mobile
         z-index: 4000;
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
-        &::after,
-        &::before {
-        	content: "";
-			width: 100%;
-			display: block;
-			position: absolute;
-        }
-        &::before {	
-			background: linear-gradient( #ffffff, transparent);
-			height: 2rem;
-			top: 0;
-        }
-        &::after {
-			background: linear-gradient( transparent, #ffffff);
-			height: 4rem;
-			bottom: 0;
-        }
         .story-content-container {
 	        overflow-y: auto;
 	        height: 100%;
@@ -207,11 +191,29 @@
             padding: 0;
             margin: auto;
             z-index: 2000;
+            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
             border: 1px solid $wmui-color-base0;
             .story-image {
 	            width: 200px;
 	            height: 200px;
             }
+	        &::after,
+	        &::before {
+	        	content: "";
+				width: 100%;
+				display: block;
+				position: absolute;
+	        }
+	        &::before {	
+				background: linear-gradient( #ffffff, transparent);
+				height: 2rem;
+				top: 0;
+	        }
+	        &::after {
+				background: linear-gradient( transparent, #ffffff);
+				height: 4rem;
+				bottom: 0;
+	        }
         }
         .close {
             text-decoration: underline;
@@ -226,7 +228,6 @@
         }
         .story-nav {
 	        display: flex;
-	        flex-direction: row-reverse;
 	        position: fixed;
 	        z-index: 3000;
 	        bottom: 0;
@@ -236,7 +237,7 @@
 	        @media (min-width: $medium-bp){
 	        	position: relative;
 	        }
-	        .next-story {
+	        .next-story, .prev-story {
 	        	background-color: $wmui-color-base0;
 	        }
         }

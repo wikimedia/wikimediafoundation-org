@@ -15,7 +15,8 @@ jQuery(document).ready(function($) {
 		body = $("body"),
 		html = $("html"),
 		heading = container.find("h1"),
-		intro = container.find(".intro"),
+		intro1 = container.find("#intro-1"),
+		intro2 = container.find("#intro-2"),
 		rEditTicker = container.find(".recent-edits"),
 		rEditLabel = rEditTicker.find(".label"),
 		rEditTitle = rEditTicker.find(".title"),
@@ -36,6 +37,7 @@ jQuery(document).ready(function($) {
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR * 3,
 		scene1 = 0.12,
+		scene1_1 = 0.24,
 		scene2 = 0.5,
 		scene3 = 0.9,
 		sceneTran = 0.1,
@@ -193,13 +195,18 @@ jQuery(document).ready(function($) {
 			.style("stroke", "rgba(255, 255, 255, 0)")
 			.attr("r", blobR);
 
-		$(".next-story").click(function() {
+		container.find(".next-story").click(function() {
 			if (currentStory < storiesLen - 1) {
 				currentStory++;
-			} else {
-				currentStory = 0;
+				getStoryContent();
 			}
-			getStoryContent();
+		});
+
+		container.find(".prev-story").click(function() {
+			if (currentStory > 0) {
+				currentStory--;
+				getStoryContent();
+			}
 		});
 
 		zoom = d3.zoom()
@@ -289,6 +296,17 @@ jQuery(document).ready(function($) {
 		// show and hide via display none instead of visibility
 		storyContents.hide();
 		$(storyContents[currentStory]).show();
+		if (currentStory === 0) {
+			show(container.find(".next-story"));
+			hide(container.find(".prev-story"));
+		} else if (currentStory === storiesLen - 1) {
+			hide(container.find(".next-story"));
+			show(container.find(".prev-story"));
+		} else {
+			show(container.find(".next-story"));
+			show(container.find(".prev-story"));
+		}
+
 	}
 
 	function storyClick(d, i) {
@@ -397,28 +415,35 @@ jQuery(document).ready(function($) {
 		g.call(zoom.scaleTo, zoomFactor);
 
 		if (progress < scene1) {
-			// console.log("animation 1");
-			show(intro);
+			show(intro1);
+			hide(intro2);
+			hide(heading);
+			hideStories();
+			stopEditAnim();
+			hide(storyOverlay);
+		} else if (progress < scene1_1) {
+			hide(intro1);
+			show(intro2);
 			hide(heading);
 			hideStories();
 			stopEditAnim();
 			hide(storyOverlay);
 		} else if (progress < scene2) {
-			// console.log("animation 2");
-			hide(intro);
+			hide(intro1);
+			hide(intro2);
 			show(heading);
 			hideStories();
 			startEditAnim();
 			hide(storyOverlay);
 		} else if (progress < scene3) {
-			// console.log("animation 3");
-			hide(intro);
+			hide(intro1);
+			hide(intro2);
 			show(heading);
 			showStories(progress, scene2, scene3);
 			stopEditAnim();
 		} else if (progress >= scene3) {
-			// console.log("animation 4");
-			hide(intro);
+			hide(intro1);
+			hide(intro2);
 			show(heading);
 			hideStories();
 			stopEditAnim();
