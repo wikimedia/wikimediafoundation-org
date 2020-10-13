@@ -375,12 +375,12 @@ jQuery(document).ready(function($) {
 			.selectAll("circle")
 			.style("opacity", 0)
 			.style("visibility", "hidden")
-			.attr("r", blobR)
+			.attr("r", blobR);
 		clickCue
 			.style("opacity", 0)
-			.style("visibility", "hidden")
+			.style("visibility", "hidden");
 		blobs
-			.style("opacity", 1)
+			.style("opacity", 1);
 	}
 
 	function showStories(progress, min, max) {
@@ -392,6 +392,7 @@ jQuery(document).ready(function($) {
 			.attr("r", bigBlobR);
 		clickCue
 			.style("opacity", opacity)
+			.style("filter", "blur(" + (1-opacity) * 2 + "px)")
 			.style("visibility", "visible");
 		blobs
 			.style("opacity", Math.max(0.1, 1 - opacity));

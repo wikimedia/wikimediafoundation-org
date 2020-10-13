@@ -320,11 +320,11 @@ add_shortcode( 'movement', 'wmf_movement_callback' );
  */
 function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$defaults = [
-		'json' => '/assets/src/shortcodejs/wp20_top_edited.json',
+		'path' => '/assets/src/shortcodejs/wp20edits.csv',
 		'lang' => 'en',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
-	$atts['path'] = get_stylesheet_directory_uri() . $atts['json'];
+	$atts['url'] = get_stylesheet_directory_uri() . $atts['path'];
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 
@@ -366,60 +366,81 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		</div>
 		<div id="top-data-container">
 			<div id="enwiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>EN</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>EN</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="enwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="arwiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>AR</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>AR</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="arwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="dewiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>DE</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>DE</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="dewiki-graph" class="graph"></div></div>
 			</div>
 			<div id="eswiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>ES</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>ES</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="eswiki-graph" class="graph"></div></div>
 			</div>
 			<div id="frwiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>FR</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>FR</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="frwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="ruwiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>RU</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>RU</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="ruwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="zhwiki" class="top-data-content flex flex-medium" style="display: none;">
-				<div class="article-image"></div>
-				<div class="w-50p">
-					<p>ZH</p>
-					<h2 class="heading"></h2>
-					<p class="desc"></p>
+				<div class="w-68p flex flex-all main-desc">
+					<div class="article-image"></div>
+					<div class="w-50p details">
+						<p>ZH</p>
+						<h2 class="heading"></h2>
+						<p class="desc"></p>
+					</div>
 				</div>
+				<div class="w-32p data"><p></p><div id="zhwiki-graph" class="graph"></div></div>
 			</div>
 		</div>
 	</div>
