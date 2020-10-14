@@ -20,9 +20,50 @@
     .fake-scroll {
         min-height: 100vh;
     }
-    svg {
+    & > svg {
         position: relative;
         z-index: 1000;
+    }
+    .ornaments > svg {
+    	position: absolute;
+    }
+    .ornaments > svg:nth-child(1) {
+    	top: 10vh;
+    	left: 10vw;
+    }
+    .ornaments > svg:nth-child(2) {
+    	top: 23vh;
+    	left: 31vw;
+    	display: none;
+    	@media (min-width: $medium-bp) {
+    		display: block;
+    	}
+    }
+    .ornaments > svg:nth-child(3) {
+    	top: 15vh;
+    	left: 80vw;
+    	display: none;
+    	@media (min-width: $medium-bp) {
+    		display: block;
+    	}
+    }
+    .ornaments > svg:nth-child(4) {
+    	bottom: 24vh;
+    	right: 38vw;
+    	transform: rotate(180deg);
+    }
+    .ornaments > svg:nth-child(5) {
+    	bottom: 10vh;
+    	right: 10vw;
+    	transform: rotate(85deg);
+    }
+    .ornaments > svg:nth-child(6) {
+    	bottom: 20vh;
+    	right: 80vw;
+    	transform: rotate(-100deg);
+    }
+    .ornament {
+    	stroke: $wmui-color-base0;
     }
     .intro {
         width: 60%;
@@ -49,6 +90,16 @@
             box-shadow: 0px 0px 5px 2px #ffffff;
             border-radius: 10px;
         }
+    }
+    .intro p {
+    	position: relative;
+	    .ornament {
+	    	position: absolute;
+			top: -1.75rem;
+			right: -2.75rem;
+			height: 4rem;
+			width: 4rem;
+	    }
     }
     .scroll-indicator {
         font-size: 2rem;
@@ -439,9 +490,16 @@
     .project-circle {
     	transition: $transition;
     	cursor: pointer;
-    	&:hover {
-    		fill: #36c;
-    	}
+    }
+    .tooltip {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	background-color: $wmui-color-base90;
+    	padding: 0.5rem;
+    	border-radius: 2px;
+    	display: inline-block;
+    	width: 150px;
     }
 }
 
@@ -459,6 +517,10 @@
 		background-image: url("./assets/src/svg/down.svg");
 		background-position: right center;
 		background-repeat: no-repeat;
+	}
+	input, label {
+		display: inline-block;
+		width: auto;
 	}
 	.top-data-content {
 		padding: 0.5rem;

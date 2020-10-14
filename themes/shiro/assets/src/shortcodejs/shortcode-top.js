@@ -6,16 +6,19 @@ jQuery(document).ready(function($) {
 	'use strict';
 
 	var atts = topAtts, // eslint-disable-line no-undef
-		select = $("#year-select"),
+		container = $("#" + atts['id']),
+		selectYear = $("#year-select"),
+		nodata = container.find(".no-data"),
 		contents = $(".top-data-content"),
-		data = [];
+		color, line, svg,
+		data = {"edits": [], "views": []};
 
 	function drawChart(daily, id) {
 		var width = 300,
 			w = width/daily.length,
 			height = 40,
 			h = 6,
-			y, x, color, line, svg;
+			y, x;
 		y = d3.scaleLinear()
 			.domain([0, d3.max(daily, function(d) {return d;})]).nice()
 			.range([height, h]);
@@ -58,34 +61,41 @@ jQuery(document).ready(function($) {
 			.attr("y", height);
 	}
 
-	function populateData(year) {
-		var filterD = data.filter(function(d) { return parseInt(d.year, 10) === year; }),
-			langs = filterD.map(function(d) { return d.wiki_db; });
-		console.log(filterD);
+	function populateData(filterD, o) {
+		var wiki = o === "views" ? "wiki" : "wiki_db",
+			langs = filterD.map(function(d) { return d[wiki]; }),
+			unit = o === "views" ? "views" : "edits",
+			unit2 = o === "views" ? "pageviews" : "edits",
+			daily = o === "views" ? "daily_views" : "daily_edits";
+		console.log(filterD, o);
 		contents.each(function() {
 			var langContainer = $(this),
 				id = $(this).attr('id'),
-				content = filterD.find(function(d) {return d.wiki_db === id; });
+				content = filterD.find(function(d) {return d[wiki] === id; });
+			nodata.hide();
 			langContainer.hide();
 			if ( langs.indexOf(id) > -1 ) {
 				var desc = content["desc_" + atts.lang.replaceAll("wiki", "")].replaceAll('"', ""),
 					heading = content.pagetitle.replaceAll("_", " "),
 					imgurl = content.image,
-					total = d3.format(",")(content.edits),
-					daily = content.daily_edits.split("_").map(function(d) {return parseInt(d, 10);}),
+					total = d3.format(",")(content[unit2]),
+					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
 					graphid = "#" + id + "-graph";
 				$(graphid).empty();
-				drawChart(daily, graphid);
+				drawChart(dailyData, graphid);
 				langContainer.find(".heading").text(heading);
 				langContainer.find(".desc")
 					.text(desc + " ")
 					.append($("<a></a>")
-						.attr("href", "/")
-						.text(fetchWikiname(content.wiki_db))
+						.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
+						.attr("target", "_blank")
+						.text(fetchWikiname(content[wiki]))
 					);
 				langContainer.find(".article-image").css("background-image", "url(" + imgurl + ")");
-				langContainer.find(".data p").text(total + " edits");
+				langContainer.find(".data p").text(total + " " + unit);
 				langContainer.fadeIn();
+			} else {
+				nodata.show();
 			}
 		});
 	}
@@ -120,12 +130,32 @@ jQuery(document).ready(function($) {
 		return str;
 	}
 
-	function getSelectedYear() {
-		var year = "";
+	function evalOption() {
+		var radio = container.find("input:checked").val();
+		if (data[radio].length > 0) {
+			getSelectedYear(radio);
+		}
+		selectYear.find("option").each(function() {
+			var y = parseInt($(this).val(), 10),
+				l = data[radio].filter(function(d) {return parseInt(d.year, 10) === y;}).length;
+			if (l > 0) {
+				$(this).removeAttr("disabled");
+			} else {
+				$(this).attr("disabled", "true");
+			}
+		});
+	}
+
+	function getSelectedYear(o) {
+		var year = "",
+			filterD = [],
+			option = typeof o === "string" ? o : container.find("input:checked").val();
 	    $("#year-select option:selected").each(function() {
 			year += $( this ).text() + " ";
 	    });
-	    populateData(parseInt(year, 10));
+
+	    filterD = data[option].filter(function(d) { return parseInt(d.year, 10) === parseInt(year, 10); });
+	    populateData(filterD, option);
 	}
 
 	function setup() {
@@ -136,13 +166,21 @@ jQuery(document).ready(function($) {
 
 	setup();
 
-	d3.csv(atts.url, function(d) {
+	d3.csv(atts.url_edits, function(d) {
 		return d;
 	}).then(function(res) {
-		data = res;
-		getSelectedYear();
+		data.edits = res;
+		evalOption();
 	});
 
-	select.change(getSelectedYear);
+	d3.csv(atts.url_views, function(d) {
+		return d;
+	}).then(function(res) {
+		data.views = res;
+		evalOption();
+	});
+
+	selectYear.change(getSelectedYear);
+	container.find("input").change(evalOption);
 });
 

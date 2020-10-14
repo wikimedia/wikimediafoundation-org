@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
 		rEditLabel = rEditTicker.find(".label"),
 		rEditTitle = rEditTicker.find(".title"),
 		storyOverlay = container.find(".story-overlay"),
+		ornaments = container.find(".ornaments"),
 		header = $("header"),
 		initWidth = html.width(),
 		initHeight = window.innerHeight,
@@ -190,6 +191,7 @@ jQuery(document).ready(function($) {
 			.enter()
 			.append("circle")
 			.attr("title", function(_, i) {return "Story " + (i + 1);})
+			.attr("data-color", function() {return "rgb(" + getRandom(0, 255) + "," + getRandom(0, 255) + "," + getRandom(0, 255) + ")";})
 			.style("fill", colorBlack)
 			.style("stroke-width", blobStroke)
 			.style("stroke", "rgba(255, 255, 255, 0)")
@@ -236,21 +238,23 @@ jQuery(document).ready(function($) {
 			.style("opacity", function() {return getRandom(0.1, 0.9);})
 		storyBlobs
 			.selectAll("circle")
-			.attr("class", "story-blob")
+			.attr("class", "story-blob story-unread")
 			.style("opacity", 0)
 			.style("visibility", "hidden")
 			.attr("cx", function(d) {return x(d.x);} )
 			.attr("cy", function(d) {return y(d.y);} )
 			.on("mouseover", function(){
+				var fill = d3.select(this).attr("data-color");
 				d3.select(this)
 					.transition()
-					.style("fill", colorAccent)
+					.style("fill", fill)
 					.attr("r", bigBlobR * 2)
 			})
 			.on("mouseleave", function(){
+				var fill = d3.select(this).attr("class").indexOf("story-read") > -1 ? d3.select(this).attr("data-color") : colorBlack;
 				d3.select(this)
 					.transition()
-					.style("fill", colorBlack)
+					.style("fill", fill)
 					.attr("r", bigBlobR)
 			})
 			.on("click", storyClick);
@@ -306,7 +310,7 @@ jQuery(document).ready(function($) {
 			show(container.find(".next-story"));
 			show(container.find(".prev-story"));
 		}
-
+		storyRead(currentStory);
 	}
 
 	function storyClick(d, i) {
@@ -314,7 +318,18 @@ jQuery(document).ready(function($) {
 		getStoryContent();
 		body.css("overflow", "hidden");
 		show(storyOverlay);
+		storyRead(i);
 		clickCue.transition().style("opacity", 0).style("visibility", "hidden");
+	}
+
+	function storyRead(i) {
+		var thisBlob = storyBlobs
+				.selectAll("circle")
+				.filter(function(d, j) {return j === i;}),
+			fill = thisBlob.attr("data-color");
+		thisBlob
+			.style("fill", fill)
+			.attr("class", "story-blob story-read");
 	}
 
 	function startEditAnim() {
@@ -422,6 +437,7 @@ jQuery(document).ready(function($) {
 			hideStories();
 			stopEditAnim();
 			hide(storyOverlay);
+			show(ornaments);
 		} else if (progress < scene1_1) {
 			hide(intro1);
 			show(intro2);
@@ -429,6 +445,7 @@ jQuery(document).ready(function($) {
 			hideStories();
 			stopEditAnim();
 			hide(storyOverlay);
+			show(ornaments);
 		} else if (progress < scene2) {
 			hide(intro1);
 			hide(intro2);
@@ -436,12 +453,14 @@ jQuery(document).ready(function($) {
 			hideStories();
 			startEditAnim();
 			hide(storyOverlay);
+			hide(ornaments);
 		} else if (progress < scene3) {
 			hide(intro1);
 			hide(intro2);
 			show(heading);
 			showStories(progress, scene2, scene3);
 			stopEditAnim();
+			hide(ornaments);
 		} else if (progress >= scene3) {
 			hide(intro1);
 			hide(intro2);
@@ -450,6 +469,7 @@ jQuery(document).ready(function($) {
 			stopEditAnim();
 			hide(storyOverlay);
 			container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
+			hide(ornaments);
 		}
 	}
 
