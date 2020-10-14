@@ -21,7 +21,8 @@ jQuery(document).ready(function($) {
 		rEditLabel = rEditTicker.find(".label"),
 		rEditTitle = rEditTicker.find(".title"),
 		storyOverlay = container.find(".story-overlay"),
-		header = $("header").height(),
+		ornaments = container.find(".ornaments"),
+		header = $("header"),
 		initWidth = html.width(),
 		initHeight = window.innerHeight,
 		colorBlack = "#202122",
@@ -48,8 +49,6 @@ jQuery(document).ready(function($) {
 		rEditAnimationI = 0,
 		rEdits = [],
 		currentStory = 0;
-
-	console.log("collage", shortAtts);
 
 	while (randomData.length < randomDataLen) {
 		var randx = getRandom(0,1),
@@ -135,6 +134,8 @@ jQuery(document).ready(function($) {
 	}
 
 	function setupChart(cb) {
+		// collage will not allow additional content (e.g. eyebrow link, best not to set parent page)
+		$('.header-main').hide();
 		svg = d3.select(containerID)
 			.append("svg");
 		g = svg.append("g").attr("transform-origin", "0 0 0");
@@ -190,6 +191,7 @@ jQuery(document).ready(function($) {
 			.enter()
 			.append("circle")
 			.attr("title", function(_, i) {return "Story " + (i + 1);})
+			.attr("data-color", function() {return "rgb(" + getRandom(0, 255) + "," + getRandom(0, 255) + "," + getRandom(0, 255) + ")";})
 			.style("fill", colorBlack)
 			.style("stroke-width", blobStroke)
 			.style("stroke", "rgba(255, 255, 255, 0)")
@@ -218,7 +220,7 @@ jQuery(document).ready(function($) {
 	}
 
 	function drawChart() {
-		var currentHeight = window.innerHeight - header,
+		var currentHeight = window.innerHeight - header.height(),
 			currentWidth = html.width();
 		svg
 			.attr("height", currentHeight)
@@ -236,21 +238,23 @@ jQuery(document).ready(function($) {
 			.style("opacity", function() {return getRandom(0.1, 0.9);})
 		storyBlobs
 			.selectAll("circle")
-			.attr("class", "story-blob")
+			.attr("class", "story-blob story-unread")
 			.style("opacity", 0)
 			.style("visibility", "hidden")
 			.attr("cx", function(d) {return x(d.x);} )
 			.attr("cy", function(d) {return y(d.y);} )
 			.on("mouseover", function(){
+				var fill = d3.select(this).attr("data-color");
 				d3.select(this)
 					.transition()
-					.style("fill", colorAccent)
+					.style("fill", fill)
 					.attr("r", bigBlobR * 2)
 			})
 			.on("mouseleave", function(){
+				var fill = d3.select(this).attr("class").indexOf("story-read") > -1 ? d3.select(this).attr("data-color") : colorBlack;
 				d3.select(this)
 					.transition()
-					.style("fill", colorBlack)
+					.style("fill", fill)
 					.attr("r", bigBlobR)
 			})
 			.on("click", storyClick);
@@ -306,7 +310,7 @@ jQuery(document).ready(function($) {
 			show(container.find(".next-story"));
 			show(container.find(".prev-story"));
 		}
-
+		storyRead(currentStory);
 	}
 
 	function storyClick(d, i) {
@@ -314,7 +318,18 @@ jQuery(document).ready(function($) {
 		getStoryContent();
 		body.css("overflow", "hidden");
 		show(storyOverlay);
+		storyRead(i);
 		clickCue.transition().style("opacity", 0).style("visibility", "hidden");
+	}
+
+	function storyRead(i) {
+		var thisBlob = storyBlobs
+				.selectAll("circle")
+				.filter(function(d, j) {return j === i;}),
+			fill = thisBlob.attr("data-color");
+		thisBlob
+			.style("fill", fill)
+			.attr("class", "story-blob story-read");
 	}
 
 	function startEditAnim() {
@@ -375,12 +390,12 @@ jQuery(document).ready(function($) {
 			.selectAll("circle")
 			.style("opacity", 0)
 			.style("visibility", "hidden")
-			.attr("r", blobR)
+			.attr("r", blobR);
 		clickCue
 			.style("opacity", 0)
-			.style("visibility", "hidden")
+			.style("visibility", "hidden");
 		blobs
-			.style("opacity", 1)
+			.style("opacity", 1);
 	}
 
 	function showStories(progress, min, max) {
@@ -392,6 +407,7 @@ jQuery(document).ready(function($) {
 			.attr("r", bigBlobR);
 		clickCue
 			.style("opacity", opacity)
+			.style("filter", "blur(" + (1-opacity) * 2 + "px)")
 			.style("visibility", "visible");
 		blobs
 			.style("opacity", Math.max(0.1, 1 - opacity));
@@ -421,6 +437,7 @@ jQuery(document).ready(function($) {
 			hideStories();
 			stopEditAnim();
 			hide(storyOverlay);
+			show(ornaments);
 		} else if (progress < scene1_1) {
 			hide(intro1);
 			show(intro2);
@@ -428,6 +445,7 @@ jQuery(document).ready(function($) {
 			hideStories();
 			stopEditAnim();
 			hide(storyOverlay);
+			show(ornaments);
 		} else if (progress < scene2) {
 			hide(intro1);
 			hide(intro2);
@@ -435,12 +453,14 @@ jQuery(document).ready(function($) {
 			hideStories();
 			startEditAnim();
 			hide(storyOverlay);
+			hide(ornaments);
 		} else if (progress < scene3) {
 			hide(intro1);
 			hide(intro2);
 			show(heading);
 			showStories(progress, scene2, scene3);
 			stopEditAnim();
+			hide(ornaments);
 		} else if (progress >= scene3) {
 			hide(intro1);
 			hide(intro2);
@@ -449,6 +469,7 @@ jQuery(document).ready(function($) {
 			stopEditAnim();
 			hide(storyOverlay);
 			container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
+			hide(ornaments);
 		}
 	}
 
