@@ -21,31 +21,64 @@ jQuery(document).ready(function($) {
 		rEditLabel = rEditTicker.find(".label"),
 		rEditTitle = rEditTicker.find(".title"),
 		storyOverlay = container.find(".story-overlay"),
-		ornaments = container.find(".ornaments"),
 		header = $("header"),
 		initWidth = html.width(),
 		initHeight = window.innerHeight,
+		mobileWidth = 500,
 		colorBlack = "#202122",
 		colorAccent = "#36c",
-		scrollAnimLength = 1200,
-		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.29,"y":0.57},{"x":0.41,"y":0.61},{"x":0.48,"y":0.31},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.32},{"x":0.24,"y":0.41},{"x":0.31,"y":0.69},{"x":0.57,"y":0.24},{"x":0.43,"y":0.23},{"x":0.28,"y":0.27}],
+		scrollAnimLength = 4000,
+		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.28,"y":0.58},{"x":0.41,"y":0.59},{"x":0.48,"y":0.31},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.33},{"x":0.24,"y":0.41},{"x":0.34,"y":0.69},{"x":0.57,"y":0.24},{"x":0.4,"y":0.23},{"x":0.28,"y":0.27},{"x":0.29,"y":0.48}, {"x":0.66,"y":0.69}, {"x":0.75,"y":0.46},{"x":0.74,"y":0.32},{"x":0.49,"y":0.2}],
+		cueStoryI = 8,
+		showCue = true,
 		storyContents = storyOverlay.find(".story-content"),
 		randomData = [],
 		apilimit = 5,
-		randomDataLen = Math.max(langList.length * apilimit, 80),
+		randomDataLen = Math.max(langList.length * apilimit, 70),
 		storiesLen = storyContents.length,
 		blobR = 5,
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR * 3,
-		scene1 = 0.12,
-		scene1_1 = 0.24,
-		scene2 = 0.5,
+		scene1 = 0.1,
+		scene1_1 = 0.2,
+		scene2 = 0.3,
 		scene3 = 0.9,
-		sceneTran = 0.1,
+		sceneTran = 0.08,
 		linearUp = d3.scaleLinear().domain([scene2, scene2 + sceneTran]).range([0,1]),
 		linearDown = d3.scaleLinear().domain([scene3 - sceneTran, scene3]).range([1,0]),
-		zoomMax = 1.7,
-		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, fadedEdge,
+		zoomMax = 1.5,
+		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, pulse, fadedEdge, ornaments,
+		ornamentArr = [{
+			"path": "M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416",
+			"x"	: 0.1,
+			"y" : 0.15,
+			"r": 90,
+		}, {
+			"path": "M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416",
+			"x"	: 0.62,
+			"y" : 0.66,
+			"r": 90,
+		}, {
+			"path": "M41.286 5.24C31.346-1.987 23.23 1.895 22.64 15.773c-.23 5.407.69 9.012 4.661 12.775 2.71 2.567 4.086-.46 2.762-3.108C28.99 23.29 18.014 18.493 10 21.5-.5 25.44.425 40.745 7.103 44.084",
+			"x"	: 0.79,
+			"y" : 0.87,
+			"r": 0,
+		}, {
+			"path": "M41.286 5.24C31.346-1.987 23.23 1.895 22.64 15.773c-.23 5.407.69 9.012 4.661 12.775 2.71 2.567 4.086-.46 2.762-3.108C28.99 23.29 18.014 18.493 10 21.5-.5 25.44.425 40.745 7.103 44.084",
+			"x"	: 0.5,
+			"y" : 0.05,
+			"r": 85,
+		}, {
+			"path": "M2 2c1.3 3.96 8.346 24.812 15.63 15.01 1.913-2.574 1.124-9.324-3.16-8.69-3.538.524-4.95 7.897-5.181 10.62-.542 6.372.877 13.801 5.356 18.61C23.46 47.013 42.616 42.798 51 35.18",
+			"x"	: 0.85,
+			"y" : 0.1,
+			"r": 0,
+		}, {
+			"path": "M2 2c1.3 3.96 8.346 24.812 15.63 15.01 1.913-2.574 1.124-9.324-3.16-8.69-3.538.524-4.95 7.897-5.181 10.62-.542 6.372.877 13.801 5.356 18.61C23.46 47.013 42.616 42.798 51 35.18",
+			"x"	: 0.15,
+			"y" : 0.85,
+			"r": -100,
+		}],
 		rEditAnimationI = 0,
 		rEdits = [],
 		currentStory = 0;
@@ -62,6 +95,17 @@ jQuery(document).ready(function($) {
 
 	function getRandom(min, max) {
 		return (Math.random() * (max - min) + min).toFixed(2);
+	}
+
+	function distance(a, b) {
+		var center = {x: 0.5, y: 0.5},
+			ax = parseFloat(a.x),
+			bx = parseFloat(b.x),
+			ay = parseFloat(a.y),
+			by = parseFloat(b.y),
+			distancea = (ax - center.x) * (ax - center.x) + (ay - center.y) * (ay - center.y),
+			distanceb = (bx - center.x) * (bx - center.x) + (by - center.y) * (by - center.y);
+		return distancea - distanceb;
 	}
 
 	function recentEditUrl(lang, isoStart, isoEnd) {
@@ -143,7 +187,7 @@ jQuery(document).ready(function($) {
 			.domain([0, d3.max(randomData, function(d) {return d.y;})]);
 		x = d3.scaleLinear()
 			.domain([0, 1]);
-		blobs = g.append("g");
+		blobs = g.append("g").attr("class", "blobs-g");
 		blobs
 			.selectAll("circle")
 			.data(randomData)
@@ -171,12 +215,12 @@ jQuery(document).ready(function($) {
 		clickCue = g.append("g").attr("class", "click-cue");
 		clickCue
 			.selectAll("line")
-			.data([stories[8]])
+			.data([stories[cueStoryI]])
 			.enter()
 			.append("line");
 		clickCue
 			.selectAll("text")
-			.data([stories[8]])
+			.data([stories[cueStoryI]])
 			.enter()
 			.append("text")
 			.text(shortAtts["click"])
@@ -184,7 +228,15 @@ jQuery(document).ready(function($) {
 		clickCue
 			.style("opacity", 0)
 			.style("visibility", "hidden");
-		storyBlobs = g.append("g").attr("transform-origin", "0 0 0");
+		pulse = g.append("g").attr("class", "pulse-g").style("opacity", 0);
+		pulse
+			.append("circle")
+			.attr("class", "pulse")
+			.attr("cx", "0%")
+			.attr("cy", "0%")
+			.attr("r", bigBlobR)
+			.style("stroke", colorBlack);
+		storyBlobs = g.append("g").attr("class", "story-blobs");
 		storyBlobs
 			.selectAll("circle")
 			.data(stories.slice(0,storiesLen))
@@ -197,18 +249,36 @@ jQuery(document).ready(function($) {
 			.style("stroke", "rgba(255, 255, 255, 0)")
 			.attr("r", blobR);
 
+		ornaments = g.append("g").attr("class", "ornaments-g");
+		ornaments
+			.selectAll("path")
+			.data(ornamentArr)
+			.enter()
+			.append("path")
+			.attr("class", "ornament")
+			.attr("d", function(d) {return d.path;})
+			.style("stroke-width", 3)
+			.style("stroke", colorBlack)
+			.style("fill", "none")
+			.style("stroke-linecap", "round")
+			.style("stroke-linejoin", "round")
+
 		container.find(".next-story").click(function() {
 			if (currentStory < storiesLen - 1) {
 				currentStory++;
-				getStoryContent();
+			} else {
+				currentStory = 0;
 			}
+			getStoryContent();
 		});
 
 		container.find(".prev-story").click(function() {
 			if (currentStory > 0) {
 				currentStory--;
-				getStoryContent();
+			} else {
+				currentStory = storiesLen - 1;
 			}
+			getStoryContent();
 		});
 
 		zoom = d3.zoom()
@@ -221,7 +291,8 @@ jQuery(document).ready(function($) {
 
 	function drawChart() {
 		var currentHeight = window.innerHeight - header.height(),
-			currentWidth = html.width();
+			currentWidth = html.width(),
+			scale = window.innerWidth > mobileWidth ? 1 : 0.7;
 		svg
 			.attr("height", currentHeight)
 			.attr("width", currentWidth)
@@ -269,12 +340,27 @@ jQuery(document).ready(function($) {
 			.attr("x", function(d) {return x(d.x) + blobR*3;} )
 			.attr("y", function(d) {return y(d.y) - blobR*5;} )
 			.attr("dy", "-5px");
-		storyOverlay.find(".close").click(function(){
-			body.css("overflow", "hidden auto");
-			hide(storyOverlay);
+		pulse
+			.attr("transform", "translate(" + x(stories[cueStoryI].x) + ", " + y(stories[cueStoryI].y) + ")")
+			.style("opacity", 1)
+		storyOverlay.find(".close").click(closeStoryModal);
+		body.keyup(function(e) {
+			if (e.key === "Escape") {
+				closeStoryModal();
+			}
 		});
 		fadedEdge
 			.attr("width", currentWidth);
+		ornaments
+			.selectAll("path")
+			.attr("transform", function(d, i) {return "translate(" + x(ornamentArr[i].x) + ", " + y(ornamentArr[i].y - 0.001) + ") rotate(" + ornamentArr[i].r + ") scale(" + scale + ")";})
+			.attr("stroke-dasharray", "500 500")
+			.attr("stroke-dashoffset", 500)
+			.transition()
+			.duration(1400)
+			.attr("transform", function(d, i) {return "translate(" + x(ornamentArr[i].x) + ", " + y(ornamentArr[i].y) + ") rotate(" + ornamentArr[i].r + ") scale(" + scale + ")";})
+			.delay(function(d,i){ return randomDataLen * 10 + i * 200 })
+			.attr("stroke-dashoffset", 0)
 		// reset zoom
 		g.call(
 			zoom.transform,
@@ -283,6 +369,13 @@ jQuery(document).ready(function($) {
 		);
 
 		body.css("overflow", "hidden auto")
+	}
+
+	function closeStoryModal() {
+		body.css("overflow", "hidden auto");
+		hide(storyOverlay);
+		container.focus();
+		showStories();
 	}
 
 	function setupFakescroll() {
@@ -300,17 +393,9 @@ jQuery(document).ready(function($) {
 		// show and hide via display none instead of visibility
 		storyContents.hide();
 		$(storyContents[currentStory]).show();
-		if (currentStory === 0) {
-			show(container.find(".next-story"));
-			hide(container.find(".prev-story"));
-		} else if (currentStory === storiesLen - 1) {
-			hide(container.find(".next-story"));
-			show(container.find(".prev-story"));
-		} else {
-			show(container.find(".next-story"));
-			show(container.find(".prev-story"));
-		}
 		storyRead(currentStory);
+		container.find(".story-nav .p").text(currentStory + 1 + "/" + storiesLen);
+		storyOverlay.find(".story-content-container").scrollTop(0);
 	}
 
 	function storyClick(d, i) {
@@ -320,6 +405,7 @@ jQuery(document).ready(function($) {
 		show(storyOverlay);
 		storyRead(i);
 		clickCue.transition().style("opacity", 0).style("visibility", "hidden");
+		pulse.transition().style("opacity", 0).style("visibility", "hidden");
 	}
 
 	function storyRead(i) {
@@ -330,17 +416,20 @@ jQuery(document).ready(function($) {
 		thisBlob
 			.style("fill", fill)
 			.attr("class", "story-blob story-read");
+		if (i === cueStoryI) {
+			showCue = false;
+		}
 	}
 
 	function startEditAnim() {
 		if (rEdits.length > 0) {
-			// console.log(rEditAnimationI, rEdits[rEditAnimationI].title);
 			rEditLabel.text(shortAtts.label + " " + rEdits[rEditAnimationI].wiki);
 			rEditTitle.text(rEdits[rEditAnimationI].title);
 			show(rEditTicker);
 			blobs
 				.selectAll("circle")
-				.filter(function (_, i) { return i === rEditAnimationI;})
+				.sort(distance)
+				.filter(function (_, i) {return i === rEditAnimationI;})
 				.transition()
 				.duration(500)
 				.style("fill", colorAccent)
@@ -382,7 +471,15 @@ jQuery(document).ready(function($) {
 		} else {
 			return 1;
 		}
+	}
 
+	function unreadStory() {
+		var cx, cy;
+		d3.select(".story-unread").each(function() {
+			cx = d3.select(this).attr("cx");
+			cy = d3.select(this).attr("cy");
+		});
+		return [cx, cy];
 	}
 
 	function hideStories() {
@@ -392,6 +489,9 @@ jQuery(document).ready(function($) {
 			.style("visibility", "hidden")
 			.attr("r", blobR);
 		clickCue
+			.style("opacity", 0)
+			.style("visibility", "hidden");
+		pulse
 			.style("opacity", 0)
 			.style("visibility", "hidden");
 		blobs
@@ -405,10 +505,20 @@ jQuery(document).ready(function($) {
 			.style("opacity", opacity)
 			.style("visibility", "visible")
 			.attr("r", bigBlobR);
-		clickCue
-			.style("opacity", opacity)
-			.style("filter", "blur(" + (1-opacity) * 2 + "px)")
-			.style("visibility", "visible");
+		if (showCue) {
+			clickCue
+				.style("opacity", opacity)
+				.style("filter", "blur(" + (1-opacity) * 2 + "px)")
+				.style("visibility", "visible");
+			pulse
+				.style("opacity", opacity)
+				.style("visibility", "visible");
+		} else {
+			pulse
+				.style("opacity", opacity)
+				.style("visibility", "visible")
+				.attr("transform", "translate(" + unreadStory()[0] + ", " + unreadStory()[1] + ")" );
+		}
 		blobs
 			.style("opacity", Math.max(0.1, 1 - opacity));
 	}
@@ -435,41 +545,37 @@ jQuery(document).ready(function($) {
 			hide(intro2);
 			hide(heading);
 			hideStories();
+			ornaments.style("visibility", "visible")
 			stopEditAnim();
-			hide(storyOverlay);
-			show(ornaments);
 		} else if (progress < scene1_1) {
 			hide(intro1);
 			show(intro2);
 			hide(heading);
 			hideStories();
+			ornaments.style("visibility", "visible")
 			stopEditAnim();
-			hide(storyOverlay);
-			show(ornaments);
 		} else if (progress < scene2) {
 			hide(intro1);
 			hide(intro2);
 			show(heading);
 			hideStories();
+			ornaments.style("visibility", "hidden")
 			startEditAnim();
-			hide(storyOverlay);
-			hide(ornaments);
 		} else if (progress < scene3) {
 			hide(intro1);
 			hide(intro2);
 			show(heading);
 			showStories(progress, scene2, scene3);
+			ornaments.style("visibility", "hidden")
 			stopEditAnim();
-			hide(ornaments);
 		} else if (progress >= scene3) {
 			hide(intro1);
 			hide(intro2);
 			show(heading);
 			hideStories();
+			ornaments.style("visibility", "hidden")
 			stopEditAnim();
-			hide(storyOverlay);
 			container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
-			hide(ornaments);
 		}
 	}
 
@@ -496,7 +602,7 @@ jQuery(document).ready(function($) {
 				scrollAnimation();
 			});
 		}
-	})
+	});
 
 	setupFakescroll();
 	setupChart(scrollAnimation);
