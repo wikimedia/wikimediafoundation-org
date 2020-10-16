@@ -24,44 +24,6 @@
         position: relative;
         z-index: 1000;
     }
-    .ornaments > svg {
-    	position: absolute;
-    }
-    .ornaments > svg:nth-child(1) {
-    	top: 10vh;
-    	left: 10vw;
-    }
-    .ornaments > svg:nth-child(2) {
-    	top: 23vh;
-    	left: 31vw;
-    	display: none;
-    	@media (min-width: $medium-bp) {
-    		display: block;
-    	}
-    }
-    .ornaments > svg:nth-child(3) {
-    	top: 15vh;
-    	left: 80vw;
-    	display: none;
-    	@media (min-width: $medium-bp) {
-    		display: block;
-    	}
-    }
-    .ornaments > svg:nth-child(4) {
-    	bottom: 24vh;
-    	right: 38vw;
-    	transform: rotate(180deg);
-    }
-    .ornaments > svg:nth-child(5) {
-    	bottom: 10vh;
-    	right: 10vw;
-    	transform: rotate(85deg);
-    }
-    .ornaments > svg:nth-child(6) {
-    	bottom: 20vh;
-    	right: 80vw;
-    	transform: rotate(-100deg);
-    }
     .ornament {
     	stroke: $wmui-color-base0;
     }
@@ -101,16 +63,26 @@
 			width: 4rem;
 	    }
     }
-    .scroll-indicator {
-        font-size: 2rem;
-        position: fixed;
+    .scroll-indicator, .scroll-animator {
         text-shadow: 0px 0px 5px #ffffff;
-        bottom: 5vh;
         left: 0;
         right: 0;
         margin: auto;
-        animation: scroll 8s infinite ease-in-out;
+    }
+    .scroll-animator {
+        font-size: 2rem;
+        animation: scroll 4s infinite ease-in-out;
         animation-delay: 3s;
+    }
+    .scroll-indicator {
+        position: fixed;
+        bottom: 5vh;
+        p {
+        	display: inline-block;
+	        opacity: 0;	
+	        animation: blink 4s infinite ease-in-out;
+	        animation-delay: 3s;
+        }
     }
     h1 {
         font-size: 2.6rem;
@@ -187,16 +159,16 @@
         z-index: 4000;
         .story-content-container {
 	        overflow-y: auto;
-	        height: 100%;
+	        height: calc(100% - 3rem);
 	        padding: 2rem;
 	        // space for scrolling
 	        &:after {
 	            content: "";
 	            display: block;
-	            height: 8rem;
+	            height: 4rem;
 	            width: 100%;
 	            @media (min-width: $medium-bp) {
-	            	height: 4rem;
+	            	height: 3rem;
 	            }
 	        }
         }
@@ -251,9 +223,10 @@
 	        &:after,
 	        &:before {
 	        	content: "";
-				width: 100%;
 				display: block;
 				position: absolute;
+				left: 1rem;
+				right: 1rem;
 	        }
 	        &:before {	
 				background: linear-gradient( #ffffff, transparent);
@@ -262,8 +235,8 @@
 	        }
 	        &:after {
 				background: linear-gradient( transparent, #ffffff);
-				height: 4rem;
-				bottom: 0;
+				height: 2rem;
+				bottom: 10%;
 	        }
         }
         .close {
@@ -278,18 +251,22 @@
             z-index: 3000;
         }
         .story-nav {
-	        display: flex;
 	        position: fixed;
 	        z-index: 3000;
 	        bottom: 0;
 	        right: 0;
 	        width: 100%;
-	        padding: 1rem;
+	        height: 3rem;
+	        padding: 0 1rem;
+	        background-color: #ffffff;
+	        align-items: center;
 	        @media (min-width: $medium-bp){
 	        	position: relative;
 	        }
 	        .next-story, .prev-story {
-	        	background-color: $wmui-color-base0;
+	        	cursor: pointer;
+	        	font-size: 1.5rem;
+	        	padding: 0.2rem 0.5rem;
 	        }
         }
         p:empty {
@@ -499,7 +476,7 @@
     	padding: 0.5rem;
     	border-radius: 2px;
     	display: inline-block;
-    	width: 180px;
+    	width: 200px;
     	z-index: 1;
     }
 }
@@ -598,14 +575,58 @@
 	margin-bottom: 1rem;
 }
 
+.pulse {
+	fill: #ffffff;
+	fill-opacity: 0;
+	transform-origin: 0% 0%;
+	animation-duration: 2s;
+	animation-name: pulse;
+	animation-iteration-count: infinite;
+}
+
 @keyframes scroll {
     0% {
         transform: translateY(0);
+        color: $wmui-color-base0;
     }
-    10% {
+    40% {
         transform: translateY(2vh);
+        color: $color-blue;
     }
-    20% {
+    55% {
+        transform: translateY(2vh);
+        color: $color-blue;
+    }
+    80% {
         transform: translateY(0);
+        color: $wmui-color-base0;
     }
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	55% {
+		opacity: 1;
+	}
+	80% {
+		opacity: 0;
+	}
+}
+
+@keyframes pulse {
+  0% {
+    stroke-width: 3px;
+    stroke-opacity: 1;
+    transform: scale(0.3);
+  }
+  100% {
+    stroke-width: 0;
+    stroke-opacity: 0;
+    transform: scale(2);
+  }
 }

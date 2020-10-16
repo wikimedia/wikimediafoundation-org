@@ -16,15 +16,19 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'label' => '1 human just edited',
-		'intro-h' => '',
-		'intro-1' => '',
-		'intro-2' => '',
+		'intro_h' => '',
+		'intro_1' => '',
+		'intro_2' => '',
 		'id' => 'wp20-collage',
 		'click' => 'click me',
+		'scroll' => 'scroll',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'collage' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
+	$intro1 = preg_split('/\|/', $atts['intro_1']);
+	$intro2 = preg_split('/\|/', $atts['intro_2']);
+
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/dist/shortcode-collage.min.js', array( 'jquery' ), '0.0.1', true );
@@ -35,29 +39,37 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 
 	<div class="collage mod-margin-bottom">
 		<div id="<?php echo esc_attr($atts['id']) ?>" class="collage-content">
-			<div class="ornaments hidden">
-				<svg class="ornament" width="111" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				<svg class="ornament" width="43" height="46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M41.286 5.24C31.346-1.987 23.23 1.895 22.64 15.773c-.23 5.407.69 9.012 4.661 12.775 2.71 2.567 4.086-.46 2.762-3.108C28.99 23.29 18.014 18.493 10 21.5-.5 25.44.425 40.745 7.103 44.084" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				<svg class="ornament" width="53" height="45" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2c1.3 3.96 8.346 24.812 15.63 15.01 1.913-2.574 1.124-9.324-3.16-8.69-3.538.524-4.95 7.897-5.181 10.62-.542 6.372.877 13.801 5.356 18.61C23.46 47.013 42.616 42.798 51 35.18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				<svg class="ornament" width="111" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				<svg class="ornament" width="43" height="46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M41.286 5.24C31.346-1.987 23.23 1.895 22.64 15.773c-.23 5.407.69 9.012 4.661 12.775 2.71 2.567 4.086-.46 2.762-3.108C28.99 23.29 18.014 18.493 10 21.5-.5 25.44.425 40.745 7.103 44.084" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				<svg class="ornament" width="53" height="45" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2c1.3 3.96 8.346 24.812 15.63 15.01 1.913-2.574 1.124-9.324-3.16-8.69-3.538.524-4.95 7.897-5.181 10.62-.542 6.372.877 13.801 5.356 18.61C23.46 47.013 42.616 42.798 51 35.18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-			</div>
 			<div id="intro-1" class="intro hidden">
 				<div class="intro-text">
-					<h2><?php echo esc_html($atts['intro-h']) ?></h2>
-					<p>
-						<?php echo esc_html($atts['intro-1']) ?>
-						<svg class="ornament" width="49" height="41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.03 24.116L6.353 1.449M18.158 27.06L28.273 4.19M28.112 35.376l19.49-9.56" stroke-width="3"/></svg>
-					</p>
+					<h2>
+						<?php echo esc_html($atts['intro_h']) ?>
+					</h2>
+					<?php for ($i=0; $i < sizeof($intro1); $i++) { ?>
+						<p>
+							<?php echo esc_html( $intro1[$i] );
+							if ($i === 0) { ?>
+							<svg class="ornament" width="49" height="41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.03 24.116L6.353 1.449M18.158 27.06L28.273 4.19M28.112 35.376l19.49-9.56" stroke-width="3"/></svg>
+							<?php } ?>
+						</p>
+					<?php } ?>
 				</div>
-				<div class="scroll-indicator">↓</div>
+				<div class="scroll-indicator">
+					<p><?php echo esc_html( $atts['scroll'] ) ?></p>
+					<div class="scroll-animator">↓</div>
+				</div>
 			</div>
 			<div id="intro-2" class="intro hidden">
 				<div class="intro-text">
-					<p><?php echo esc_html($atts['intro-2']) ?></p>
+					<?php for ($i=0; $i < sizeof($intro2); $i++) { ?>
+						<p>
+							<?php echo esc_html( $intro2[$i] ); ?>
+						</p>
+					<?php } ?>
 				</div>
-				<div class="scroll-indicator">↓</div>
+				<div class="scroll-indicator">
+					<p><?php echo esc_html( $atts['scroll'] ) ?></p>
+					<div class="scroll-animator">↓</div>
+				</div>
 			</div>
 			<div class="recent-edits hidden">
 				<p><span class="label"></span></p>
@@ -68,8 +80,9 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
 				<div class="story-nav flex flex-all flex-space-between">
-					<button class="btn btn-blue prev-story hidden">Previous</button>
-					<button class="btn btn-blue next-story hidden">Next</button>
+					<a class="prev-story">←</a>
+					<span class="p"></span>
+					<a class="next-story">→</a>
 				</div>
 			</div>
 		</div>
@@ -97,16 +110,16 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 		'quote' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'volunteer' );
+	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
-	if ( $atts['img'] !== '' ) {
-		$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
+	if ( !empty($attachment) ) {
 		$img_id = $attachment->ID;
 		$image_url = wp_get_attachment_image_url($img_id, array(600, 600));
 	}
 
 	ob_start();
 	?>
-	<div class="story-content" style="display: none;">
+	<div class="story-content wysiwyg" style="display: none;">
 		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
 		<?php if ( isset($image_url) ) { ?>
 			<div class="story-image" style="background-image: url(<?php echo esc_attr($image_url) ?>);"></div>
