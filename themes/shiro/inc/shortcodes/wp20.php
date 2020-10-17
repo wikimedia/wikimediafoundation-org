@@ -178,7 +178,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="<?php echo esc_attr($classes) ?>">
-		<div class="mw-980">
+		<div class="mw-980 wysiwyg">
 			<div class="milestones">
 				<?php echo wp_kses_post( $content ) ?>
 			</div>
@@ -289,9 +289,9 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		}
 
 		if ( $atts['reverse'] === '0') {
-			return '<div id="' . $id . '" class="mw-980 flex flex-medium flex-space-between' . $margin . '">' . $col_1 . $col_2 . '</div>';
+			return '<div id="' . $id . '" class="mw-980 wysiwyg flex flex-medium flex-space-between' . $margin . '">' . $col_1 . $col_2 . '</div>';
 		} else {
-			return '<div id="' . $id . '" class="mw-980 flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse' . $margin . '">' . $col_2 . $col_1 . '</div>';
+			return '<div id="' . $id . '" class="mw-980 wysiwyg flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse' . $margin . '">' . $col_2 . $col_1 . '</div>';
 		}
 	}
 }
@@ -323,7 +323,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement mod-margin-bottom">
-		<div class="mw-980">
+		<div class="mw-980 wysiwyg">
 			<div class="w-68p">
 				<h1 class="wikipedia-h1"><?php echo esc_html( $atts['title'] ); ?></h1>
 				<p><?php echo wp_kses_post( $content ); ?></p>
@@ -389,8 +389,10 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 
 	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="top-data mw-980 mod-margin-bottom">
 		<div>
-			<p class="mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></p>
-			<p>
+			<div class="w-68p mod-margin-bottom_xs wysiwyg">
+				<p><?php echo wp_kses_post( $content ) ?></p>
+			</div>
+			<div>
 				<input type="radio" id="views-radio" name="most" value="views" checked>
 				<label for="views-radio">Most viewed articles</label>
 				 or 
@@ -419,7 +421,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 				    <option value="2002">2002</option>
 				    <option value="2001">2001</option>
 				</select>
-			</p>
+			</div>
 		</div>
 		<div class="no-data" style="display: none;"><p>There is not data for the options you chose. Please choose another year above.</p></div>
 		<div id="top-data-container">
