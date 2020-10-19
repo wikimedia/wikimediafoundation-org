@@ -22,8 +22,7 @@ jQuery(document).ready(function($) {
 		tooltip.append($("<p></p>").css("font-weight", "bold").text(title));
 		tooltip.append($("<p></p>").text(projectDesc[i]));
 		tooltip
-			.css("top", top + "px")
-			.css("left", left + "px")
+			.css("transform", "translate(" + left + "px, " + top + "px)")
 			.removeClass("hidden").addClass("visible");
 	}
 

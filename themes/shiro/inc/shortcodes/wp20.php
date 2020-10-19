@@ -1,6 +1,7 @@
 <?php
 /**
  * Define the shortcodes for the Wikipedia 20th birthday page.
+ * Author: Hang Do Thi Duc
  *
  * @package shiro
  */
@@ -31,7 +32,7 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/dist/shortcode-collage.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/dist/shortcode-collage.min.js', array( 'jquery', 'd3' ), '0.0.1', true );
 	wp_add_inline_script( 'collage', "var collageAtts = " . json_encode($atts) . ";");
 
 	ob_start();
@@ -114,7 +115,7 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 
 	if ( !empty($attachment) ) {
 		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id, array(600, 600));
+		$image_url = wp_get_attachment_image_url($img_id, array(200, 200));
 	}
 
 	ob_start();
@@ -219,13 +220,13 @@ function wmf_year_callback( $atts = [], $content = '' ) {
 	if ( $atts['img1'] !== '' ) {
 		$attachment1 = get_page_by_title($atts['img1'], OBJECT, 'attachment');
 		$img_id1 = $attachment1->ID;
-		$image1 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id1, array(200, 200)) . ');"></span>';
+		$image1 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id1, array(100, 100)) . ');"></span>';
 	}
 
 	if ( $atts['img2'] !== '' ) {
 		$attachment2 = get_page_by_title($atts['img2'], OBJECT, 'attachment');
 		$img_id2 = $attachment2->ID;
-		$image2 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id2, array(200, 200)) . ');"></span>';
+		$image2 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id2, array(100, 100)) . ');"></span>';
 	}
 
 	ob_start();
