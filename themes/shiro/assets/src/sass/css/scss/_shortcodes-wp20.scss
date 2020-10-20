@@ -581,6 +581,8 @@
 	transform-origin: 0% 0%;
 	animation-duration: 2s;
 	animation-name: pulse;
+	stroke: $wmui-color-base0; 
+	stroke-width: 1px;
 	animation-iteration-count: infinite;
 }
 
@@ -620,13 +622,11 @@
 
 @keyframes pulse {
   0% {
-    stroke-width: 3px;
-    stroke-opacity: 1;
-    transform: scale(0.3);
+    opacity: 1;
+    transform: scale(0.9);
   }
   100% {
-    stroke-width: 0;
-    stroke-opacity: 0;
-    transform: scale(2);
+    opacity: 0;
+    transform: scale(2.4);
   }
 }
