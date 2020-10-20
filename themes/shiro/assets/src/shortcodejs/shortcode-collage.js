@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
 		colorAccent = "#36c",
 		scrollAnimLength = 4000,
 		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.28,"y":0.58},{"x":0.41,"y":0.59},{"x":0.48,"y":0.31},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.33},{"x":0.24,"y":0.41},{"x":0.34,"y":0.69},{"x":0.57,"y":0.24},{"x":0.4,"y":0.23},{"x":0.28,"y":0.27},{"x":0.29,"y":0.48}, {"x":0.66,"y":0.69}, {"x":0.75,"y":0.46},{"x":0.74,"y":0.32},{"x":0.49,"y":0.2}],
+		storyColors = shortAtts['story_rgba'].split("|"),
 		cueStoryI = 8,
 		showCue = true,
 		storyContents = storyOverlay.find(".story-content"),
@@ -46,7 +47,7 @@ jQuery(document).ready(function($) {
 		sceneTran = 0.1,
 		linearUp = d3.scaleLinear().domain([scene2, scene2 + sceneTran]).range([0,1]),
 		linearDown = d3.scaleLinear().domain([scene3 - sceneTran, scene3]).range([1,0]),
-		zoomMax = 1.5,
+		zoomFactorMax = 1.55,
 		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, pulse, fadedEdge, ornaments,
 		ornamentArr = [{
 			"path": "M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416",
@@ -243,11 +244,14 @@ jQuery(document).ready(function($) {
 			.enter()
 			.append("circle")
 			.attr("title", function(_, i) {return "Story " + (i + 1);})
-			.attr("data-color", function() {return "rgb(" + getRandom(0, 255) + "," + getRandom(0, 255) + "," + getRandom(0, 255) + ")";})
+			.attr("data-color", function(_, i) {return storyColors[i] ? "rgba" + storyColors[i] : colorBlack;})
 			.style("fill", colorBlack)
 			.style("stroke-width", blobStroke)
 			.style("stroke", "rgba(255, 255, 255, 0)")
 			.attr("r", blobR);
+		storyContents.each(function(i){
+			$(this).find(".story-image").css("border", "4px solid rgba" + storyColors[i]);
+		});
 
 		ornaments = g.append("g").attr("class", "ornaments-g");
 		ornaments
@@ -282,7 +286,7 @@ jQuery(document).ready(function($) {
 		});
 
 		zoom = d3.zoom()
-			.scaleExtent([1, zoomMax])
+			.scaleExtent([1, 2])
 			.duration(0)
 			.on("zoom", zoomed);
 
@@ -534,13 +538,14 @@ jQuery(document).ready(function($) {
 	function scrollAnimation() {
 		container.show();
 		var scrollTop = $(window).scrollTop(),
-			zoomFactor = 1 + scrollTop/scrollAnimLength/2,
+			zoomFactor = Math.min(1 + scrollTop/scrollAnimLength/2, zoomFactorMax),
 			inViewPos = notFixedContent.offset().top - window.innerHeight,
 			notFixedContentScrolled = ((scrollTop - inViewPos) / window.innerHeight).toFixed(2),
-			progress = scrollTop/(notFixedContent.offset().top - window.innerHeight);
-		g.call(zoom.scaleTo, zoomFactor);
+			totalScroll = notFixedContent.offset().top - window.innerHeight,
+			progress = scrollTop/totalScroll;
 
 		if (progress < scene1) {
+			g.call(zoom.scaleTo, zoomFactor);
 			show(intro1);
 			hide(intro2);
 			hide(heading);
@@ -548,6 +553,7 @@ jQuery(document).ready(function($) {
 			ornaments.style("visibility", "visible")
 			stopEditAnim();
 		} else if (progress < scene1_1) {
+			g.call(zoom.scaleTo, zoomFactor);
 			hide(intro1);
 			show(intro2);
 			hide(heading);
@@ -555,6 +561,7 @@ jQuery(document).ready(function($) {
 			ornaments.style("visibility", "visible")
 			stopEditAnim();
 		} else if (progress < scene2) {
+			g.call(zoom.scaleTo, zoomFactor);
 			hide(intro1);
 			hide(intro2);
 			show(heading);
@@ -562,6 +569,7 @@ jQuery(document).ready(function($) {
 			ornaments.style("visibility", "hidden")
 			startEditAnim();
 		} else if (progress < scene3) {
+			g.call(zoom.scaleTo, zoomFactor);
 			hide(intro1);
 			hide(intro2);
 			show(heading);
@@ -569,6 +577,7 @@ jQuery(document).ready(function($) {
 			ornaments.style("visibility", "hidden")
 			stopEditAnim();
 		} else if (progress >= scene3) {
+			g.call(zoom.scaleTo, zoomFactor - Math.max(0, progress - scene3));
 			hide(intro1);
 			hide(intro2);
 			show(heading);

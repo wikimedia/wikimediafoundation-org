@@ -15,10 +15,11 @@ jQuery(document).ready(function($) {
 			r = 20,
 			top = t.offset().top - $(window).scrollTop() + r*2,
 			left = t.offset().left - tooltipW/2,
-			i = parseInt(t.attr("id").replace("project", ""), 10) - 1;
+			i = parseInt(t.attr("id").replace("project", ""), 10) - 1,
+			fill = t.attr("data-color");
 		t
 			.attr("r", r)
-			.css("fill", "#36c");
+			.css("fill", fill);
 		tooltip.append($("<p></p>").css("font-weight", "bold").text(title));
 		tooltip.append($("<p></p>").text(projectDesc[i]));
 		tooltip
