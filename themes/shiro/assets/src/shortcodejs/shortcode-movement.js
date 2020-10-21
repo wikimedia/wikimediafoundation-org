@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 
 	function projectMouseenter() {
 		var t = $(this),
-			title = t.attr("title"),
+			title = t.attr("data-title"),
 			r = 20,
 			top = t.offset().top - $(window).scrollTop() + r*2,
 			left = t.offset().left - tooltipW/2,
@@ -37,4 +37,5 @@ jQuery(document).ready(function($) {
 
 	$(".project-circle").mouseover(projectMouseenter);
 	$(".project-circle").mouseleave(projectMouseleave);
+	$(document).scroll(projectMouseleave);
 });

@@ -1,5 +1,18 @@
 // styles for Wikipedia 20 shortcodes
 
+// FIX for future, font-sizes used .page-template-page-report-landing, .page-template-page-report-section as guide
+.page-template-page-freeform .freeform-content {
+	p, .p , p a, .p a {
+		font-size: 1.125rem;
+		line-height: 1.5;
+		margin-bottom: 1.125rem;
+	}
+	span.p {
+		margin-bottom: 0;
+	}
+}
+
+
 .collage {
     width: 100vw;
     overflow: hidden;
@@ -46,8 +59,10 @@
             align-items: center;
             justify-content: center;
         }
-        p, h1, h2, h3 {
+        h1, h2, h3 {
             font-size: inherit;
+        }
+        p, h1, h2, h3 {
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0px 0px 5px 2px #ffffff;
             border-radius: 10px;
@@ -61,6 +76,7 @@
 			right: -2.75rem;
 			height: 4rem;
 			width: 4rem;
+			transform: scale(0.6);
 	    }
     }
     .scroll-indicator, .scroll-animator {
@@ -127,9 +143,10 @@
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0px 0px 5px 2px #ffffff;
             border-radius: 10px;
-            @media (min-width: $medium-bp){
-                font-size: 1rem;
-            }
+        }
+        p, .p {
+            font-size: 1rem;
+            margin-bottom: 0;
         }
         .label {
             position: relative;
@@ -177,20 +194,22 @@
         }
         .story-icon {
         	height: 1em;
-			margin-top: 3px;
+			margin-top: 0.25em;
 			margin-right: 0.5em;
         }
         .story-image {
             float: right;
             width: 150px;
             height: 150px;
-            background: linear-gradient(30deg, pink, blue);
             border-radius: 50%;
             background-size: cover;
             background-position: center center;
         }
-        .story-since {
-        	margin-bottom: 1rem;
+        .story-location, .story-since {
+        	flex-wrap: nowrap;
+        }
+        .story-location {
+        	margin-bottom: 0;
         }
         .story-quote {
         	margin-top: 1rem;
@@ -213,7 +232,7 @@
             max-height: 500px;
             padding: 0;
             margin: auto;
-            z-index: 2000;
+            z-index: 3000;
             box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
             border: 1px solid $wmui-color-base0;
             .story-image {
@@ -249,6 +268,10 @@
             right: 0.5rem;
             left: auto;
             z-index: 3000;
+            width: 2.25rem;
+            img {
+            	width: 100%;
+            }
         }
         .story-nav {
 	        position: fixed;
@@ -260,12 +283,13 @@
 	        padding: 0 1rem;
 	        background-color: #ffffff;
 	        align-items: center;
+	        font-size: 1rem;
 	        @media (min-width: $medium-bp){
 	        	position: relative;
 	        }
 	        .next-story, .prev-story {
 	        	cursor: pointer;
-	        	font-size: 1.5rem;
+	        	font-size: 1.75rem;
 	        	padding: 0.2rem 0.5rem;
 	        }
         }
@@ -304,8 +328,9 @@
             }
         }
         .top-articles,
-        h3 {
+        .milestone-heading {
             margin-top: 1.25rem;
+            margin-bottom: 0;
             @media (min-width: $medium-bp) {
                 margin-top: 2rem;
             }
@@ -437,7 +462,13 @@
 	    	width: 21%;
     	}
     }
-    a {
+	a.nonprofit,
+	a.projects,
+	a.chapters,
+	a.usergroups,
+	a.thematic,
+	a.campaigns {
+    	margin-bottom: 0;
     	padding-left: 1.25em;
 		background-repeat: no-repeat;
 		background-position: left center;
@@ -466,17 +497,20 @@
     }
     .project-circle {
     	transition: $transition;
-    	cursor: pointer;
+    	cursor: crosshair;
     }
     .tooltip {
+    	font-size: 1rem;
     	position: fixed;
     	top: 0;
     	left: 0;
     	background-color: rgba(248, 249, 250, 0.95);
-    	padding: 0.5rem;
+    	padding: 0.5rem 1rem;
     	border-radius: 2px;
     	display: inline-block;
-    	width: 200px;
+    	min-width: 200px;
+    	max-width: 400px;
+    	width: 20vw;
     	z-index: 1;
     }
 }
@@ -581,7 +615,7 @@
 	transform-origin: 0% 0%;
 	animation-duration: 2s;
 	animation-name: pulse;
-	stroke: $wmui-color-base0; 
+	stroke: $color-blue; 
 	stroke-width: 1px;
 	animation-iteration-count: infinite;
 }
