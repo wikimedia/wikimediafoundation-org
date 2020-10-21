@@ -26,7 +26,6 @@ jQuery(document).ready(function($) {
 		initHeight = window.innerHeight,
 		mobileWidth = 500,
 		colorBlack = "#202122",
-		colorAccent = "#36c",
 		scrollAnimLength = 4000,
 		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.28,"y":0.58},{"x":0.41,"y":0.59},{"x":0.48,"y":0.31},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.33},{"x":0.24,"y":0.41},{"x":0.34,"y":0.69},{"x":0.57,"y":0.24},{"x":0.4,"y":0.23},{"x":0.28,"y":0.27},{"x":0.29,"y":0.48}, {"x":0.66,"y":0.69}, {"x":0.75,"y":0.46},{"x":0.74,"y":0.32},{"x":0.49,"y":0.2}],
 		storyColors = shortAtts['story_rgba'].split("|"),
@@ -236,7 +235,7 @@ jQuery(document).ready(function($) {
 			.attr("cx", "0%")
 			.attr("cy", "0%")
 			.attr("r", bigBlobR)
-			.style("stroke", colorBlack);
+			.style("opacity", 0);
 		storyBlobs = g.append("g").attr("class", "story-blobs");
 		storyBlobs
 			.selectAll("circle")
@@ -296,7 +295,7 @@ jQuery(document).ready(function($) {
 	function drawChart() {
 		var currentHeight = window.innerHeight - header.height(),
 			currentWidth = html.width(),
-			scale = window.innerWidth > mobileWidth ? 1 : 0.7;
+			scale = window.innerWidth > mobileWidth ? 0.6 : 0.4;
 		svg
 			.attr("height", currentHeight)
 			.attr("width", currentWidth)
@@ -311,6 +310,9 @@ jQuery(document).ready(function($) {
 			.transition()
 			.delay(function(d,i){ return i * 10 })
 			.style("opacity", function() {return getRandom(0.1, 0.9);})
+		pulse
+			.attr("transform", "translate(" + x(stories[cueStoryI].x) + ", " + y(stories[cueStoryI].y) + ")")
+			.style("opacity", 1)
 		storyBlobs
 			.selectAll("circle")
 			.attr("class", "story-blob story-unread")
@@ -323,14 +325,16 @@ jQuery(document).ready(function($) {
 				d3.select(this)
 					.transition()
 					.style("fill", fill)
-					.attr("r", bigBlobR * 2)
+					.attr("r", bigBlobR * 2);
+				pulse.transition().style("opacity", 0).style("visibility", "hidden");
 			})
 			.on("mouseleave", function(){
 				var fill = d3.select(this).attr("class").indexOf("story-read") > -1 ? d3.select(this).attr("data-color") : colorBlack;
 				d3.select(this)
 					.transition()
 					.style("fill", fill)
-					.attr("r", bigBlobR)
+					.attr("r", bigBlobR);
+				pulse.transition().style("opacity", 1).style("visibility", "visible")
 			})
 			.on("click", storyClick);
 		clickCue
@@ -344,9 +348,6 @@ jQuery(document).ready(function($) {
 			.attr("x", function(d) {return x(d.x) + blobR*3;} )
 			.attr("y", function(d) {return y(d.y) - blobR*5;} )
 			.attr("dy", "-5px");
-		pulse
-			.attr("transform", "translate(" + x(stories[cueStoryI].x) + ", " + y(stories[cueStoryI].y) + ")")
-			.style("opacity", 1)
 		storyOverlay.find(".close").click(closeStoryModal);
 		body.keyup(function(e) {
 			if (e.key === "Escape") {
@@ -398,7 +399,7 @@ jQuery(document).ready(function($) {
 		storyContents.hide();
 		$(storyContents[currentStory]).show();
 		storyRead(currentStory);
-		container.find(".story-nav .p").text(currentStory + 1 + "/" + storiesLen);
+		container.find(".story-nav .index").text(currentStory + 1 + "/" + storiesLen);
 		storyOverlay.find(".story-content-container").scrollTop(0);
 	}
 
@@ -436,7 +437,7 @@ jQuery(document).ready(function($) {
 				.filter(function (_, i) {return i === rEditAnimationI;})
 				.transition()
 				.duration(500)
-				.style("fill", colorAccent)
+				.style("fill", "rgba" + storyColors[rEditAnimationI % storyColors.length])
 				.style("opacity", 1)
 				.attr("r", bigBlobR)
 				.transition()

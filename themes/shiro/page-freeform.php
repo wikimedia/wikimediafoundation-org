@@ -22,10 +22,12 @@ while ( have_posts() ) {
 
 	wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 
-	the_content();
-	get_template_part( 'template-parts/page/page', 'connect' );
 	?>
+		<div class="freeform-content">
+			<?php the_content(); ?>
+		</div>
 
 	<?php
+	get_template_part( 'template-parts/page/page', 'connect' );
 }
 get_footer();

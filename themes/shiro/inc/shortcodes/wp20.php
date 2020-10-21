@@ -83,7 +83,7 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
 				<div class="story-nav flex flex-all flex-space-between">
 					<a class="prev-story">←</a>
-					<span class="p"></span>
+					<span class="index"></span>
 					<a class="next-story">→</a>
 				</div>
 			</div>
@@ -122,10 +122,10 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 	<div class="story-content wysiwyg" style="display: none;">
-		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
 		<?php if ( isset($image_url) ) { ?>
 			<div class="story-image" style="background-image: url(<?php echo esc_attr($image_url) ?>);"></div>
 		<?php } ?>
+		<h2><?php echo esc_html( $atts['name'] ); ?></h2>
 
 		<?php if ( !empty($atts['location'] ) ) { ?>
 			<p class="story-location flex flex-all">
@@ -164,10 +164,6 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'background-color' => 'white',
-		'img' => '',
-		'more' => '',
-		'more_link' => '',
-		'more_href' => '',
 		'id' => 'wp20-timeline'
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
@@ -183,10 +179,6 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 		<div class="mw-980 wysiwyg">
 			<div class="milestones">
 				<?php echo wp_kses_post( $content ) ?>
-			</div>
-			<div class="timeline-more w-68p">
-				<p><?php echo esc_html( $atts['more'] ) ?></p>
-				<a class="arrow-link" href="<?php echo esc_attr( $atts['more_href'] ) ?>"><?php echo esc_html( $atts['more_link']) ?></a>
 			</div>
 		</div>
 	</div>
@@ -241,7 +233,7 @@ function wmf_year_callback( $atts = [], $content = '' ) {
 		</div>
 		<div class="year-label"><span class="p"><?php echo esc_html( $atts['year'] ) ?></span></div>
 		<div class="milestone">
-			<h3><?php echo esc_html( $atts['title'] ) ?></h3>
+			<p class="milestone-heading"><strong><?php echo esc_html( $atts['title'] ) ?></strong></p>
 			<p><?php echo wp_kses_post( $content ) ?></p>
 		</div>
 	</div>
