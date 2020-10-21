@@ -190,6 +190,7 @@ add_shortcode( 'timeline', 'wmf_timeline_callback' );
 
 /**
  * Define a [year] wrapper shortcode that renders one year for the timeline, see [timeline].
+ * [culture] and [milestone] should be nested in this
  *
  * @param array $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
@@ -197,16 +198,40 @@ add_shortcode( 'timeline', 'wmf_timeline_callback' );
  */
 function wmf_year_callback( $atts = [], $content = '' ) {
 	$defaults = [
-		'title' => '',
-		'year' => '',
-		'context' => '',
+		'highlight' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'year' );
+	$content = do_shortcode( $content );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$highlight = $atts['highlight'] === '' ? " highlight" : "";
+	$classes = "year" . $highlight;
+
+	ob_start();
+	?>
+
+	<div class="<?php echo esc_attr($classes) ?>">
+		<?php echo wp_kses_post( $content ) ?>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'year', 'wmf_year_callback' );
+
+/**
+ * Define a [culture] wrapper shortcode that renders cultural context for one [year] for the timeline, see [timeline].
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_year_culture_callback( $atts = [], $content = '' ) {
+	$defaults = [
 		'img1' => '',
 		'img2' => '',
 	];
-	$atts = shortcode_atts( $defaults, $atts, 'year' );
+	$atts = shortcode_atts( $defaults, $atts, 'culture' );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$highlight = $atts['title'] === '' ? "" : " highlight";
-	$classes = "year" . $highlight;
 	$image1 = '';
 	$image2 = '';
 
@@ -225,23 +250,45 @@ function wmf_year_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div class="<?php echo esc_attr($classes) ?>">
-		<div class="top-articles">
-			<p><?php echo esc_html( $atts['context'] ) ?></p>
-			<div class="top-edited"><?php echo $image1 ?></div>
-			<div class="top-viewed"><?php echo $image2 ?></div>
-		</div>
-		<div class="year-label"><span class="p"><?php echo esc_html( $atts['year'] ) ?></span></div>
-		<div class="milestone">
-			<p class="milestone-heading"><strong><?php echo esc_html( $atts['title'] ) ?></strong></p>
-			<p><?php echo wp_kses_post( $content ) ?></p>
-		</div>
+	<div class="top-articles">
+		<p><?php echo wp_kses_post( $content ) ?></p>
+		<div class="top-edited"><?php echo $image1 ?></div>
+		<div class="top-viewed"><?php echo $image2 ?></div>
 	</div>
 
 	<?php
 	return (string) ob_get_clean();
 }
-add_shortcode( 'year', 'wmf_year_callback' );
+add_shortcode( 'culture', 'wmf_year_culture_callback' );
+
+/**
+ * Define a [milestone] wrapper shortcode that renders the milestone for one [year] for the timeline, see [timeline].
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_year_milestone_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'year' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'milestone' );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+
+	ob_start();
+	?>
+
+	<div class="year-label"><span class="p"><?php echo esc_html( $atts['year'] ) ?></span></div>
+	<div class="milestone">
+		<p class="milestone-heading"><strong><?php echo esc_html( $atts['title'] ) ?></strong></p>
+		<p><?php echo wp_kses_post( $content ) ?></p>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'milestone', 'wmf_year_milestone_callback' );
 
 /**
  * Define a [wmf_section] wrapper shortcode that creates a HTML wrapper with mw-980 class, optional margin class, optional columns.
