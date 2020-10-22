@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
 
 	var shortAtts = collageAtts, // eslint-disable-line no-undef
 		langList = ["EN", "DE", "ZH", "AR", "FR", "ES", "RU"],
-		langListLong = ["in English Wikipedia", "in German Wikipedia", "in Chinese Wikipedia", "in Arabic Wikipedia", "in French Wikipedia", "in Spanish Wikipedia", "in Russian Wikipedia"],
+		langListLong = ["English Wikipedia", "German Wikipedia", "Chinese Wikipedia", "Arabic Wikipedia", "French Wikipedia", "Spanish Wikipedia", "Russian Wikipedia"],
 		containerID = "#" + shortAtts["id"],
 		container = $(containerID),
 		notFixedContent = container.parent().siblings().first(),

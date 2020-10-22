@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 		selectYear = $("#year-select"),
 		nodata = container.find(".no-data"),
 		contents = $(".top-data-content"),
+		credits = $(".article-photo-credits-container"),
 		color, line, svg,
 		data = {"edits": [], "views": []};
 
@@ -68,6 +69,8 @@ jQuery(document).ready(function($) {
 			unit2 = o === "views" ? "pageviews" : "edits",
 			daily = o === "views" ? "daily_views" : "daily_edits";
 		console.log(filterD, o);
+		credits.find(".article-photo-credits").text("");
+		credits.hide();
 		contents.each(function() {
 			var langContainer = $(this),
 				id = $(this).attr('id'),
@@ -77,7 +80,7 @@ jQuery(document).ready(function($) {
 			if ( langs.indexOf(id) > -1 ) {
 				var desc = content["desc_" + atts.lang.replaceAll("wiki", "")].replaceAll('"', ""),
 					heading = content.pagetitle.replaceAll("_", " "),
-					imgurl = content.image,
+					imgurl = content.image_file,
 					total = d3.format(",")(content[unit2]),
 					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
 					graphid = "#" + id + "-graph";
@@ -92,8 +95,18 @@ jQuery(document).ready(function($) {
 						.text(fetchWikiname(content[wiki]))
 					);
 				langContainer.find(".article-image").css("background-image", "url(" + imgurl + ")");
-				langContainer.find(".data p").text(total + " " + unit);
+				langContainer.find(".article-image-link").attr("href", content.image_page);
+				langContainer.find(".data span").text(total + " " + unit);
+				credits.find(".article-photo-credits")
+					.append($("<div></div>")
+						.append($("<a>")
+							.text(content.file_name.replace("File:", ""))
+							.attr("href", content.image_file))
+						.append($("<span></span>")
+							.text(" – " + content.artist + ", " + content.license))
+					);
 				langContainer.fadeIn();
+				credits.show();
 			} else {
 				nodata.show();
 			}

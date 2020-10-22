@@ -134,7 +134,7 @@
     .recent-edits {
         position: fixed;
         margin-top: 0.5em;
-        z-index: 4000;
+        z-index: 2500;
         width: 100%;
         text-align: center;
         span {
@@ -199,8 +199,8 @@
         }
         .story-image {
             float: right;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background-size: cover;
             background-position: center center;
@@ -284,8 +284,10 @@
 	        background-color: #ffffff;
 	        align-items: center;
 	        font-size: 1rem;
+	        border-top: 1px solid $wmui-color-base80;
 	        @media (min-width: $medium-bp){
 	        	position: relative;
+	        	border-top: 0;
 	        }
 	        .next-story, .prev-story {
 	        	cursor: pointer;
@@ -329,7 +331,7 @@
         }
         .top-articles,
         .milestone-heading {
-            margin-top: 1.25rem;
+            margin-top: 1.75rem;
             margin-bottom: 0;
             @media (min-width: $medium-bp) {
                 margin-top: 2rem;
@@ -473,6 +475,10 @@
 		background-repeat: no-repeat;
 		background-position: left center;
     }
+    a.nonprofit {
+		background-image: url("./assets/src/svg/individual/wikimedia.svg");
+		background-size: 0.875em;
+    }
     a.projects {
 		background-image: url("./assets/src/svg/circle.svg");
 		background-size: 0.75em;
@@ -516,26 +522,40 @@
 }
 
 .top-data {
-	> div {
-		margin-bottom: 1rem;
-	}
-	select {
-		display: inline-block;
-		width: auto;
-		appearance: none;
-		border: 0;
-		border-bottom: 2px solid $wmui-color-base0;
-		padding: 0 0.875em 0 0;
-		background-image: url("./assets/src/svg/down.svg");
-		background-position: right center;
-		background-repeat: no-repeat;
-	}
-	input, label {
-		display: inline-block;
-		width: auto;
+	.data-options {
+		span.p {
+			color: $wmui-color-base30;
+			padding: 0 0.75rem;
+		}
+		select {
+			display: inline-block;
+			color: $wmui-color-base0;
+			width: auto;
+			appearance: none;
+			border: 0;
+			border-bottom: 2px solid $wmui-color-base0;
+			padding: 0 0.875em 0 0;
+			background-image: url("./assets/src/svg/down.svg");
+			background-position: right center;
+			background-repeat: no-repeat;
+		}
+		input, label {
+			display: inline-block;
+			color: $wmui-color-base0;
+			width: auto;
+		}
+		input[type="radio"] {
+			border: 0;
+			width: 1.2rem;
+			height: 1rem;
+		}
+		input:checked + label {
+			border-bottom: 2px solid $wmui-color-base0;
+		}
 	}
 	.top-data-content {
 		padding: 0.5rem;
+		margin-bottom: 1rem;
 		margin-left: -0.5rem;
 		transition: $transition;
 		&:hover {
@@ -556,8 +576,9 @@
 			height: 100px;
 		}
 	}
-	.heading {
+	p.heading {
 		margin-bottom: 0;
+		font-weight: 700;
 	}
 	.desc a {
 		text-decoration: underline;
@@ -576,15 +597,24 @@
 			}
 		}
 	}
+	.lang-code, .data .total {
+		color: $wmui-color-base20;
+	}
 	.data {
 		text-align: left;
 		min-width: 200px;
 		max-width: 380px;
-		p {
-			color: $wmui-color-base20;
-		}
 		@media (min-width: $medium-bp) {
 			text-align: right;
+		}
+	}
+	.article-photo-credits-container {
+		line-height: 1.5;
+		span, a {
+			color: $wmui-color-base30;
+		}
+		a {
+			text-decoration: underline;
 		}
 	}
 }
