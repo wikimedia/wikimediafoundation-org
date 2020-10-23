@@ -14,9 +14,10 @@ jQuery(document).ready(function($) {
 		fakeScroll = container.parent().find(".fake-scroll"),
 		body = $("body"),
 		html = $("html"),
-		heading = container.find("h1"),
 		intro1 = container.find("#intro-1"),
 		intro2 = container.find("#intro-2"),
+		intro3 = container.find("#intro-3"),
+		intro4 = container.find("#intro-4"),
 		rEditTicker = container.find(".recent-edits"),
 		rEditLabel = rEditTicker.find(".label"),
 		rEditTitle = rEditTicker.find(".title"),
@@ -39,19 +40,20 @@ jQuery(document).ready(function($) {
 		blobR = 5,
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR * 3,
+		// start of each scene, control how long each scene takes to scroll
 		scene1 = 0.1,
 		scene1_1 = 0.2,
-		scene2 = 0.4,
-		scene3 = 0.92,
+		scene2 = 0.72,
+		scene3 = 1,
 		sceneTran = 0.1,
-		linearUp = d3.scaleLinear().domain([scene2, scene2 + sceneTran]).range([0,1]),
-		linearDown = d3.scaleLinear().domain([scene3 - sceneTran, scene3]).range([1,0]),
+		linearUp = d3.scaleLinear().domain([scene1_1, scene1_1 + sceneTran]).range([0,1]),
+		linearDown = d3.scaleLinear().domain([scene2 - sceneTran, scene2]).range([1,0]),
 		zoomFactorMax = 1.55,
 		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, pulse, fadedEdge, ornaments,
 		ornamentArr = [{
 			"path": "M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416",
-			"x"	: 0.1,
-			"y" : 0.15,
+			"x"	: 0.25,
+			"y" : 0.3,
 			"r": 90,
 		}, {
 			"path": "M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416",
@@ -60,23 +62,23 @@ jQuery(document).ready(function($) {
 			"r": 90,
 		}, {
 			"path": "M41.286 5.24C31.346-1.987 23.23 1.895 22.64 15.773c-.23 5.407.69 9.012 4.661 12.775 2.71 2.567 4.086-.46 2.762-3.108C28.99 23.29 18.014 18.493 10 21.5-.5 25.44.425 40.745 7.103 44.084",
-			"x"	: 0.79,
-			"y" : 0.87,
+			"x"	: 0.45,
+			"y" : 0.27,
 			"r": 0,
 		}, {
 			"path": "M41.286 5.24C31.346-1.987 23.23 1.895 22.64 15.773c-.23 5.407.69 9.012 4.661 12.775 2.71 2.567 4.086-.46 2.762-3.108C28.99 23.29 18.014 18.493 10 21.5-.5 25.44.425 40.745 7.103 44.084",
-			"x"	: 0.5,
-			"y" : 0.05,
+			"x"	: 0.75,
+			"y" : 0.4,
 			"r": 85,
 		}, {
 			"path": "M2 2c1.3 3.96 8.346 24.812 15.63 15.01 1.913-2.574 1.124-9.324-3.16-8.69-3.538.524-4.95 7.897-5.181 10.62-.542 6.372.877 13.801 5.356 18.61C23.46 47.013 42.616 42.798 51 35.18",
-			"x"	: 0.85,
-			"y" : 0.1,
+			"x"	: 0.3,
+			"y" : 0.6,
 			"r": 0,
 		}, {
 			"path": "M2 2c1.3 3.96 8.346 24.812 15.63 15.01 1.913-2.574 1.124-9.324-3.16-8.69-3.538.524-4.95 7.897-5.181 10.62-.542 6.372.877 13.801 5.356 18.61C23.46 47.013 42.616 42.798 51 35.18",
-			"x"	: 0.15,
-			"y" : 0.85,
+			"x"	: 0.65,
+			"y" : 0.25,
 			"r": -100,
 		}],
 		rEditAnimationI = 0,
@@ -309,7 +311,7 @@ jQuery(document).ready(function($) {
 			.attr("cy", function(d) {return y(d.y);} )
 			.transition()
 			.delay(function(d,i){ return i * 10 })
-			.style("opacity", function() {return getRandom(0.1, 0.9);})
+			.style("opacity", function() {return getRandom(0.1, 0.8);})
 		pulse
 			.attr("transform", "translate(" + x(stories[cueStoryI].x) + ", " + y(stories[cueStoryI].y) + ")")
 			.style("opacity", 1)
@@ -427,17 +429,19 @@ jQuery(document).ready(function($) {
 	}
 
 	function startEditAnim() {
+		var color = "rgba" + storyColors[rEditAnimationI % storyColors.length];
 		if (rEdits.length > 0) {
 			rEditLabel.text(shortAtts.label + " " + rEdits[rEditAnimationI].wiki);
 			rEditTitle.text(rEdits[rEditAnimationI].title);
 			show(rEditTicker);
+			rEditTicker.find(".accent").css("border", "1px solid " + color);
 			blobs
 				.selectAll("circle")
 				.sort(distance)
 				.filter(function (_, i) {return i === rEditAnimationI;})
 				.transition()
 				.duration(500)
-				.style("fill", "rgba" + storyColors[rEditAnimationI % storyColors.length])
+				.style("fill", color)
 				.style("opacity", 1)
 				.attr("r", bigBlobR)
 				.transition()
@@ -539,49 +543,51 @@ jQuery(document).ready(function($) {
 	function scrollAnimation() {
 		container.show();
 		var scrollTop = $(window).scrollTop(),
-			zoomFactor = Math.min(1 + scrollTop/scrollAnimLength/2, zoomFactorMax),
+			accelerate = 4,
+			zoomFactor = Math.min(zoomFactorMax - scrollTop/scrollAnimLength/accelerate, zoomFactorMax),
 			inViewPos = notFixedContent.offset().top - window.innerHeight,
 			notFixedContentScrolled = ((scrollTop - inViewPos) / window.innerHeight).toFixed(2),
 			totalScroll = notFixedContent.offset().top - window.innerHeight,
 			progress = scrollTop/totalScroll;
 
+		g.call(zoom.scaleTo, zoomFactor);
 		if (progress < scene1) {
-			g.call(zoom.scaleTo, zoomFactor);
 			show(intro1);
 			hide(intro2);
-			hide(heading);
+			hide(intro3);
+			hide(intro4);
 			hideStories();
 			ornaments.style("visibility", "visible")
 			stopEditAnim();
 		} else if (progress < scene1_1) {
-			g.call(zoom.scaleTo, zoomFactor);
 			hide(intro1);
 			show(intro2);
-			hide(heading);
+			hide(intro3);
+			hide(intro4);
 			hideStories();
 			ornaments.style("visibility", "visible")
 			stopEditAnim();
 		} else if (progress < scene2) {
-			g.call(zoom.scaleTo, zoomFactor);
 			hide(intro1);
 			hide(intro2);
-			show(heading);
+			show(intro3);
+			hide(intro4);
+			showStories(progress, scene1_1, scene2);
+			ornaments.style("visibility", "hidden")
+			stopEditAnim();
+		} else if (progress < scene3) {
+			hide(intro1);
+			hide(intro2);
+			hide(intro3);
+			show(intro4);
 			hideStories();
 			ornaments.style("visibility", "hidden")
 			startEditAnim();
-		} else if (progress < scene3) {
-			g.call(zoom.scaleTo, zoomFactor);
-			hide(intro1);
-			hide(intro2);
-			show(heading);
-			showStories(progress, scene2, scene3);
-			ornaments.style("visibility", "hidden")
-			stopEditAnim();
 		} else if (progress >= scene3) {
-			g.call(zoom.scaleTo, zoomFactor - Math.max(0, progress - scene3));
 			hide(intro1);
 			hide(intro2);
-			show(heading);
+			hide(intro3);
+			hide(intro4);
 			hideStories();
 			ornaments.style("visibility", "hidden")
 			stopEditAnim();

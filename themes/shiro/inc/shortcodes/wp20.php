@@ -17,9 +17,13 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'label' => '1 human just edited',
-		'intro_h' => '',
+		'intro_img' => '',
+		'intro_1_h' => '',
+		'intro_2_h' => '',
+		'intro_3_h' => '',
 		'intro_1' => '',
 		'intro_2' => '',
+		'intro_4' => '',
 		'story_rgba' => "(0,0,0,1)",
 		'id' => 'wp20-collage',
 		'click' => 'click me',
@@ -30,7 +34,13 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
 	$intro1 = preg_split('/\|/', $atts['intro_1']);
 	$intro2 = preg_split('/\|/', $atts['intro_2']);
+	$intro4 = preg_split('/\|/', $atts['intro_4']);
+	$attachment = get_page_by_title($atts['intro_img'], OBJECT, 'attachment');
 
+	if ( !empty($attachment) ) {
+		$img_id = $attachment->ID;
+		$image_url = wp_get_attachment_image_url($img_id, array(800, 600));
+	}
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/dist/shortcode-collage.min.js', array( 'jquery', 'd3' ), '0.0.1', true );
@@ -43,15 +53,15 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 		<div id="<?php echo esc_attr($atts['id']) ?>" class="collage-content">
 			<div id="intro-1" class="intro hidden">
 				<div class="intro-text">
-					<h2>
-						<?php echo esc_html($atts['intro_h']) ?>
-					</h2>
+					<?php if ( isset($image_url) ) { ?>
+						<img src="<?php echo esc_attr($image_url); ?>">
+					<?php } ?>
+					<h1 class="wikipedia-h1">
+						<?php echo esc_html($atts['intro_1_h']); ?>
+					</h1>
 					<?php for ($i=0; $i < sizeof($intro1); $i++) { ?>
 						<p>
-							<?php echo esc_html( $intro1[$i] );
-							if ($i === 0) { ?>
-							<svg class="ornament" width="49" height="41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.03 24.116L6.353 1.449M18.158 27.06L28.273 4.19M28.112 35.376l19.49-9.56" stroke-width="3"/></svg>
-							<?php } ?>
+							<?php echo esc_html( $intro1[$i] ); ?>
 						</p>
 					<?php } ?>
 				</div>
@@ -62,6 +72,9 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 			</div>
 			<div id="intro-2" class="intro hidden">
 				<div class="intro-text">
+					<h1 class="wikipedia-h1">
+						<?php echo esc_html($atts['intro_2_h']); ?>
+					</h1>
 					<?php for ($i=0; $i < sizeof($intro2); $i++) { ?>
 						<p>
 							<?php echo esc_html( $intro2[$i] ); ?>
@@ -73,11 +86,13 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 					<div class="scroll-animator">↓</div>
 				</div>
 			</div>
-			<div class="recent-edits hidden">
-				<p><span class="label"></span></p>
-				<p><span class="title"></span></p>
+			<div id="intro-3" class="intro hidden">
+				<div class="intro-text">
+					<h1 class="wikipedia-h1">
+						<?php echo esc_html($atts['intro_3_h']); ?>
+					</h1>
+				</div>
 			</div>
-			<h1 class="hidden wikipedia-h1"><?php echo esc_html($atts['title']) ?></h1>
 			<div class="story-overlay hidden">
 				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
@@ -85,6 +100,24 @@ function wmf_collage_callback( $atts = [], $content = '' ) {
 					<a class="prev-story">←</a>
 					<span class="index"></span>
 					<a class="next-story">→</a>
+				</div>
+			</div>
+			<div id="intro-4" class="intro hidden">
+				<div class="intro-text">
+					<?php for ($i=0; $i < sizeof($intro4); $i++) { ?>
+						<p>
+							<?php echo esc_html( $intro4[$i] ); ?>
+						</p>
+					<?php } ?>
+					<div class="recent-edits hidden">
+						<p><strong><span class="label"></span></strong></p>
+						<div class="accent"></div>
+						<p><span class="title"></span></p>
+					</div>
+				</div>
+				<div class="scroll-indicator">
+					<p><?php echo esc_html( $atts['scroll'] ) ?></p>
+					<div class="scroll-animator">↓</div>
 				</div>
 			</div>
 		</div>
@@ -163,13 +196,15 @@ add_shortcode( 'volunteer', 'wmf_volunteer_shortcode_callback' );
 function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
-		'background-color' => 'white',
+		'background_color' => 'white',
+		'label_left' => '',
+		'label_right' => '',
 		'id' => 'wp20-timeline'
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$padding = $atts['background-color'] === 'white' ? " timeline-white" : " timeline-grey";
+	$padding = $atts['background_color'] === 'white' ? " timeline-white" : " timeline-grey";
 	$classes = "timeline mod-margin-bottom" . $padding;
 
 	ob_start();
@@ -178,6 +213,10 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="<?php echo esc_attr($classes) ?>">
 		<div class="mw-980 wysiwyg">
 			<div class="milestones">
+				<div class="flex flex-medium flex-space-between">
+					<p class="label label-left"><?php echo esc_html( $atts['label_left'] ) ?></p>
+					<p class="label label-right"><?php echo esc_html( $atts['label_right'] ) ?></p>
+				</div>
 				<?php echo wp_kses_post( $content ) ?>
 			</div>
 		</div>
@@ -232,17 +271,15 @@ function wmf_year_culture_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'culture' );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$image1 = '';
-	$image2 = '';
+	$attachment1 = get_page_by_title($atts['img1'], OBJECT, 'attachment');
+	$attachment2 = get_page_by_title($atts['img2'], OBJECT, 'attachment');
 
-	if ( $atts['img1'] !== '' ) {
-		$attachment1 = get_page_by_title($atts['img1'], OBJECT, 'attachment');
+	if ( !empty($attachment1) ) {
 		$img_id1 = $attachment1->ID;
 		$image1 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id1, array(200, 200)) . ');"></span>';
 	}
 
-	if ( $atts['img2'] !== '' ) {
-		$attachment2 = get_page_by_title($atts['img2'], OBJECT, 'attachment');
+	if ( !empty($attachment2) ) {
 		$img_id2 = $attachment2->ID;
 		$image2 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id2, array(200, 200)) . ');"></span>';
 	}
@@ -252,8 +289,8 @@ function wmf_year_culture_callback( $atts = [], $content = '' ) {
 
 	<div class="top-articles">
 		<p><?php echo wp_kses_post( $content ) ?></p>
-		<div class="top-edited"><?php echo $image1 ?></div>
-		<div class="top-viewed"><?php echo $image2 ?></div>
+		<div class="top-edited"><?php if ( isset($image1) ) echo $image1; ?></div>
+		<div class="top-viewed"><?php if ( isset($image2) ) echo $image2; ?></div>
 	</div>
 
 	<?php
@@ -310,9 +347,9 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 	$margin = $atts['margin'] === '1' ? ' mod-margin-bottom' : '';
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
+	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
-	if ( $atts['img'] !== '' ) {
-		$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
+	if ( !empty($attachment) ) {
 		$img_id = $attachment->ID;
 		$image = wp_get_attachment_image($img_id, array(600, 400));
 	}
@@ -321,12 +358,12 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		$o = '<div id="' . $id . '" class="mw-980' . $margin . '"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 		return $o;
 	} else {
-		if ( empty($image) ) {
-			$col_1 = '<div class="w-48p"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1></div>';
-			$col_2 = '<div class="w-48p"><p>' . wp_kses_post( $content ) . '</p></div>';
-		} else {
+		if ( isset($image) ) {
 			$col_1 = '<div class="w-48p"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 			$col_2 = '<div class="w-48p">' . $image . '</div>';
+		} else {
+			$col_1 = '<div class="w-48p"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1></div>';
+			$col_2 = '<div class="w-48p"><p>' . wp_kses_post( $content ) . '</p></div>';
 		}
 
 		if ( $atts['reverse'] === '0') {

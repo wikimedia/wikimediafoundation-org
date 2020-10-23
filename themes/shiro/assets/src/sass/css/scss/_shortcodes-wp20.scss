@@ -2,7 +2,7 @@
 
 // FIX for future, font-sizes used .page-template-page-report-landing, .page-template-page-report-section as guide
 .page-template-page-freeform .freeform-content {
-	p, .p , p a, .p a {
+	p, .p , p > a, .p > a {
 		font-size: 1.125rem;
 		line-height: 1.5;
 		margin-bottom: 1.125rem;
@@ -33,9 +33,9 @@
     .fake-scroll {
         min-height: 100vh;
     }
-    & > svg {
+    svg {
         position: relative;
-        z-index: 1000;
+        z-index: 5000;
     }
     .ornament {
     	stroke: $wmui-color-base0;
@@ -59,13 +59,22 @@
             align-items: center;
             justify-content: center;
         }
-        h1, h2, h3 {
-            font-size: inherit;
-        }
-        p, h1, h2, h3 {
+        p, h2, h3 {
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0px 0px 5px 2px #ffffff;
             border-radius: 10px;
+        }
+    }
+    .intro h1 {
+        font-size: 2.5rem;
+        @media (min-width: $medium-bp) {
+            font-size: 4.5rem;
+        }
+    }
+    .intro h2 {
+    	font-size: 2rem;
+        @media (min-width: $medium-bp) {
+            font-size: 3.5rem;
         }
     }
     .intro p {
@@ -100,24 +109,6 @@
 	        animation-delay: 3s;
         }
     }
-    h1 {
-        font-size: 2.6rem;
-        width: 60%;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 5rem;
-        left: 0;
-        right: 0;
-        height: 2em;
-        line-height: 1;
-        max-width: 500px;
-        text-align: center;
-        z-index: 0;
-        @media (min-width: $medium-bp) {
-            font-size: 5rem;
-        }
-    }
     svg {
         circle {
             fill: $wmui-color-base0;
@@ -132,11 +123,6 @@
         }
     }
     .recent-edits {
-        position: fixed;
-        margin-top: 0.5em;
-        z-index: 2500;
-        width: 100%;
-        text-align: center;
         span {
             display: inline-block;
             padding: 0.125rem 0.25rem;
@@ -145,21 +131,18 @@
             border-radius: 10px;
         }
         p, .p {
-            font-size: 1rem;
-            margin-bottom: 0;
+            margin-bottom: 0.125rem;
         }
         .label {
             position: relative;
         }
-        .label:after {
-            content: "";
-            position: absolute;
-            border-bottom: 2px solid #36c;
-            width: 20px;
-            bottom: -0.125rem;
-            left: 0;
-            right: 0;
-            margin: auto;
+        .accent {
+        	width: 2rem;
+			left: 0px;
+			right: 0px;
+			position: relative;
+			margin: auto;
+			z-index: 3000;
         }
     }
     .story-blob, .close, .next-story {
@@ -306,6 +289,10 @@
     font-size: 1rem;
     .milestones {
         margin-bottom: 1rem;
+    }
+    .label {
+    	font-weight: 700;
+    	color: $wmui-color-base30;
     }
     .year {
         display: flex;
@@ -633,7 +620,8 @@
     transition-duration: 0s, 0.15s;
 }
 
-.wikipedia-h1 {
+.wikipedia-h1,
+.wikipedia-h2 {
 	font-family: Linux Libertine, Charis SIL, serif;
 	line-height: 1.1;
 	margin-bottom: 1rem;
