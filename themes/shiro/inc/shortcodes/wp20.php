@@ -214,8 +214,8 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 		<div class="mw-980 wysiwyg">
 			<div class="milestones">
 				<div class="flex flex-medium flex-space-between">
-					<p class="label label-left"><?php echo esc_html( $atts['label_left'] ) ?></p>
-					<p class="label label-right"><?php echo esc_html( $atts['label_right'] ) ?></p>
+					<p class="w-25p label label-left"><?php echo esc_html( $atts['label_left'] ) ?></p>
+					<p class="w-25p label label-right"><?php echo esc_html( $atts['label_right'] ) ?></p>
 				</div>
 				<?php echo wp_kses_post( $content ) ?>
 			</div>
@@ -355,7 +355,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	}
 
 	if ( $atts['columns'] === '1' ) {
-		$o = '<div id="' . $id . '" class="mw-980' . $margin . '"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
+		$o = '<div id="' . $id . '" class="mw-980 wysiwyg' . $margin . '"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 		return $o;
 	} else {
 		if ( isset($image) ) {

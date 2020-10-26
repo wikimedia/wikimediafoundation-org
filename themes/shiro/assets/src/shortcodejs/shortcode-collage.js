@@ -297,13 +297,19 @@ jQuery(document).ready(function($) {
 	function drawChart() {
 		var currentHeight = window.innerHeight - header.height(),
 			currentWidth = html.width(),
-			scale = window.innerWidth > mobileWidth ? 0.6 : 0.4;
+			scale = window.innerWidth > mobileWidth ? 0.5 : 0.4;
 		svg
 			.attr("height", currentHeight)
 			.attr("width", currentWidth)
 			.attr("viewBox", "0 0 " + currentWidth + " " + currentHeight)
 		y.range([bigBlobR, currentHeight - bigBlobR]);
 		x.range([bigBlobR, currentWidth - bigBlobR]);
+		// reset zoom
+		g.call(
+			zoom.transform,
+			d3.zoomIdentity,
+			d3.zoomTransform(g.node()).invert([currentWidth / 2, currentHeight / 2])
+		).call(zoom.scaleTo, zoomFactorMax);
 		blobs
 			.selectAll("circle")
 			.style("opacity", 0)
@@ -311,7 +317,7 @@ jQuery(document).ready(function($) {
 			.attr("cy", function(d) {return y(d.y);} )
 			.transition()
 			.delay(function(d,i){ return i * 10 })
-			.style("opacity", function() {return getRandom(0.1, 0.8);})
+			.style("opacity", function() {return getRandom(0.1, 0.7);})
 		pulse
 			.attr("transform", "translate(" + x(stories[cueStoryI].x) + ", " + y(stories[cueStoryI].y) + ")")
 			.style("opacity", 1)
@@ -368,12 +374,6 @@ jQuery(document).ready(function($) {
 			.attr("transform", function(d, i) {return "translate(" + x(ornamentArr[i].x) + ", " + y(ornamentArr[i].y) + ") rotate(" + ornamentArr[i].r + ") scale(" + scale + ")";})
 			.delay(function(d,i){ return randomDataLen * 10 + i * 200 })
 			.attr("stroke-dashoffset", 0)
-		// reset zoom
-		g.call(
-			zoom.transform,
-			d3.zoomIdentity,
-			d3.zoomTransform(g.node()).invert([currentWidth / 2, currentHeight / 2])
-		);
 
 		body.css("overflow", "hidden auto")
 	}
@@ -547,7 +547,8 @@ jQuery(document).ready(function($) {
 			zoomFactor = Math.min(zoomFactorMax - scrollTop/scrollAnimLength/accelerate, zoomFactorMax),
 			inViewPos = notFixedContent.offset().top - window.innerHeight,
 			notFixedContentScrolled = ((scrollTop - inViewPos) / window.innerHeight).toFixed(2),
-			totalScroll = notFixedContent.offset().top - window.innerHeight,
+			screenPortion = 0.65, // what is the end of the scroll based on top of notFixedContent
+			totalScroll = notFixedContent.offset().top - window.innerHeight*screenPortion,
 			progress = scrollTop/totalScroll;
 
 		g.call(zoom.scaleTo, zoomFactor);
@@ -583,6 +584,7 @@ jQuery(document).ready(function($) {
 			hideStories();
 			ornaments.style("visibility", "hidden")
 			startEditAnim();
+			container.css("opacity", 1 );
 		} else if (progress >= scene3) {
 			hide(intro1);
 			hide(intro2);
