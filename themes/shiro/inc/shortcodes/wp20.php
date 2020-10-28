@@ -242,7 +242,7 @@ function wmf_year_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'year' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$highlight = $atts['highlight'] === '' ? " highlight" : "";
+	$highlight = $atts['highlight'] === '' ? " highlight" : " not-highlight";
 	$classes = "year" . $highlight;
 
 	ob_start();
@@ -345,7 +345,8 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$margin = $atts['margin'] === '1' ? ' mod-margin-bottom' : '';
+	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
+	$classes = "mw-980 wysiwyg section " . $margin;
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
@@ -355,7 +356,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	}
 
 	if ( $atts['columns'] === '1' ) {
-		$o = '<div id="' . $id . '" class="mw-980 wysiwyg' . $margin . '"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
+		$o = '<div id="' . $id . '" class="' . $classes . '"><h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1><p>' . wp_kses_post( $content ) . '</p></div>';
 		return $o;
 	} else {
 		if ( isset($image) ) {
@@ -367,9 +368,9 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		}
 
 		if ( $atts['reverse'] === '0') {
-			return '<div id="' . $id . '" class="mw-980 wysiwyg flex flex-medium flex-space-between' . $margin . '">' . $col_1 . $col_2 . '</div>';
+			return '<div id="' . $id . '" class="' . $classes . 'flex flex-medium flex-space-between">' . $col_1 . $col_2 . '</div>';
 		} else {
-			return '<div id="' . $id . '" class="mw-980 wysiwyg flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse' . $margin . '">' . $col_2 . $col_1 . '</div>';
+			return '<div id="' . $id . '" class="' . $classes . 'flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse">' . $col_2 . $col_1 . '</div>';
 		}
 	}
 }
@@ -596,3 +597,65 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	return (string) ob_get_clean();
 }
 add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
+
+/**
+ * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js.
+ *
+ * @param array  $atts    Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'search' => 'Wikipedia',
+		'index_list' => '4|5|6|9|10|11|12|14|19|21|22|23|25|26|27|29|31|32|33',
+		'highlight_index' => '7|27',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'wp20_easter_eggs' );
+	$content = do_shortcode( $content );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+
+	wp_enqueue_script( 'wp20_easter_eggs', get_stylesheet_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . json_encode($atts) . ";");
+	
+	ob_start();
+	?>
+
+	<div class="easter-egg-container">
+		<?php echo wp_kses_post( $content ); ?>
+	</div>
+
+	<?php 
+	return (string) ob_get_clean();
+
+}
+add_shortcode( 'wp20_easter_eggs', 'wp20_easter_eggs_shortcode_callback' );
+
+/**
+ * Define a [egg] wrapper shortcode that creates a HTML wrapper for one easter egg in [wp20_easter_eggs].
+ *
+ * @param array  $atts    Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function egg_shortcode_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'egg' );
+	$content = do_shortcode( $content );
+	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	
+	ob_start();
+	?>
+
+	<div class="easter-egg-content wysiwyg">
+		<?php echo wp_kses_post( $content ); ?>
+	</div>
+
+	<?php 
+	return (string) ob_get_clean();
+
+}
+add_shortcode( 'egg', 'egg_shortcode_callback' );
