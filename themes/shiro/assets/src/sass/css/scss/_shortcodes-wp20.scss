@@ -282,9 +282,6 @@
 	        	padding: 0.2rem 0.5rem;
 	        }
         }
-        p:empty {
-        	display: none;
-        }
     }
 }
 
@@ -297,11 +294,6 @@
     .label {
     	color: $wmui-color-base20;
     	position: relative;
-    	flex-grow: 1;
-    	max-width: 100%;
-    	@media (min-width: $medium-bp) {
-    		max-width: 300px;
-    	}
     	&.label-right {
     		text-align: right;
     		&:after {
@@ -327,12 +319,12 @@
 			right: 0;
 			width: 1rem;
 			height: 1rem;
-			border-bottom: 0.07rem solid $wmui-color-base0;
-			border-left: 0.07rem solid $wmui-color-base0;
-			transform: translate(0.36rem, 0.5rem) rotate(-45deg);
+			border-bottom: 0.1rem solid $wmui-color-base30;
+			border-left: 0.1rem solid $wmui-color-base30;
+			transform: translate(0.3rem, 0.6rem) rotate(-45deg);
 			box-sizing: border-box;
 			margin: auto;
-			transform-origin: -0.57rem 0.57rem;
+			transform-origin: -0.5rem 0.5rem;
 		}
 	}
     .year {
@@ -433,6 +425,11 @@
                 color: $wmui-color-base0;
                 font-weight: 700;
             }
+        }
+        &.not-highlight {
+        	.milestone, .top-articles {
+        		color: $wmui-color-base30;
+        	}
         }
     }
     &.timeline-grey {
@@ -647,6 +644,81 @@
 	}
 }
 
+// easter eggs
+.easter-egg-container {
+	display: none;
+	width: 350px;
+	overflow: hidden;
+	position: fixed;
+	z-index: 9000;
+	padding: 1rem 1rem 0 1rem;
+	background-color: #ffffff;
+	box-shadow: 0 5px 20px 0 rgba(0,0,0,.15);
+	p {
+		font-size: 0.9375rem;
+	}
+}
+
+.easter-egg {
+	cursor: pointer;
+	position: relative;
+	padding-bottom: 0.5em;
+	background-image: url("./assets/src/svg/wave.svg");
+	background-repeat: repeat-x;
+	background-size: 0.6em 0.75em; 
+	background-position-x: 0;
+	background-position-y: 100%;
+	animation: move 8s linear infinite;
+	animation-play-state: paused;
+	text-decoration: none;
+	background-color: transparent;
+	&.egg-highlight:before,
+	&.egg-highlight:after {
+		animation-play-state: running;
+	}
+	&:before {
+		content: '★';
+		width: 1em;
+		height: 1em;
+		position: absolute;
+		left: 90%;
+		top: -40%;
+		color: #F0BC00;
+		opacity: 0;
+		transform: scale(0.5);
+		transform-origin: 50% 50%;
+		font-size: 1rem;
+		animation: blinkShift 3s linear infinite;
+		animation-play-state: paused;
+	}
+	&:after {
+		content: '✦';
+		width: 1em;
+		height: 1em;
+		position: absolute;
+		left: 90%;
+		top: -40%;
+		color: #E679A6;
+		opacity: 0;
+		transform: scale(0.5);
+		transform-origin: 50% 50%;
+		font-size: 1rem;
+		animation: blinkShift2 3s linear infinite;
+		animation-delay: 0.7s;
+		animation-play-state: paused;
+	}
+	&:hover:before, &:hover:after {
+		animation-play-state: running;
+	}
+	&:hover {
+		animation-play-state: running;
+	}
+}
+
+.egg-accent {
+	display: inline;
+}
+
 .visible {
     visibility: visible;
     opacity: 1;
@@ -679,6 +751,16 @@
 	animation-iteration-count: infinite;
 }
 
+.collage,
+.movement,
+.section,
+.easter-egg-container {
+	// because of shortcodes empty p tags occur
+	p:empty {
+		display: none;
+    }
+}
+
 @keyframes scroll {
     0% {
         transform: translateY(0);
@@ -702,24 +784,118 @@
 	0% {
 		opacity: 0;
 	}
+
 	40% {
 		opacity: 1;
 	}
+
 	55% {
 		opacity: 1;
 	}
+
 	80% {
 		opacity: 0;
 	}
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 1;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(2.4);
-  }
+	0% {
+		opacity: 1;
+		transform: scale(0.9);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(2.4);
+	}
+}
+
+@keyframes move {
+	0% {
+		background-position-x: 0;
+	}
+
+	100% {
+		background-position-x: 100px;
+	}
+}
+
+@keyframes blinkShift {
+	0%, 99% {
+		opacity: 0;
+		left: 80%;
+		top: -40%;
+		transform: scale(0);
+	}
+
+	10%, 25% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	40% {
+		opacity: 0;
+		left: 80%;
+		top: -40%;
+		transform: scale(0);
+	}
+
+	50%, 60% {
+		opacity: 0;
+		left: 8%;
+		top: 30%;
+		transform: scale(0);
+	}
+
+	70%, 85% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	90% {
+		opacity: 0;
+		left: 8%;
+		top: 30%;
+		transform: scale(0);
+	}
+}
+
+@keyframes blinkShift2 {
+	0%, 99% {
+		opacity: 0;
+		left: 40%;
+		top: -30%;
+		transform: scale(0);
+	}
+
+	10%, 25% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	40% {
+		opacity: 0;
+		left: 40%;
+		top: -30%;
+		transform: scale(0);
+	}
+
+	50%, 60% {
+		opacity: 0;
+		left: 90%;
+		top: 40%;
+		transform: scale(0);
+	}
+
+	70%, 85% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	90% {
+		opacity: 0;
+		left: 90%;
+		top: 40%;
+		transform: scale(0);
+	}
 }
