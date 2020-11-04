@@ -27,29 +27,52 @@ jQuery(document).ready(function($) {
 		initHeight = window.innerHeight,
 		mobileWidth = 500,
 		colorBlack = "#202122",
-		scrollAnimLength = 4000,
-		stories = [{"x":0.56,"y":0.62},{"x":0.7,"y":0.52},{"x":0.51,"y":0.68},{"x":0.73,"y":0.38},{"x":0.28,"y":0.58},{"x":0.41,"y":0.59},{"x":0.48,"y":0.31},{"x":0.71,"y":0.60},{"x":0.65,"y":0.29},{"x":0.35,"y":0.33},{"x":0.24,"y":0.41},{"x":0.34,"y":0.69},{"x":0.57,"y":0.24},{"x":0.4,"y":0.23},{"x":0.28,"y":0.27},{"x":0.29,"y":0.48}, {"x":0.66,"y":0.69}, {"x":0.75,"y":0.46},{"x":0.74,"y":0.32},{"x":0.49,"y":0.2}],
-		storyColors = shortAtts['story_rgba'].split("|"),
-		cueStoryI = 8,
+		scrollAnimLength = window.innerHeight*4,
+		stories = [
+			{ "x": 0.66, "y": 0.28 },
+			{ "x": 0.23, "y": 0.4 },
+			{ "x": 0.57, "y": 0.63 },
+			{ "x": 0.71, "y": 0.53 },
+			{ "x": 0.52, "y": 0.72 },
+			{ "x": 0.74, "y": 0.39 },
+			{ "x": 0.27, "y": 0.59 },
+			{ "x": 0.4, "y": 0.6 },
+			{ "x": 0.47, "y": 0.3 },
+			{ "x": 0.72, "y": 0.61 },
+			{ "x": 0.34, "y": 0.32 },
+			{ "x": 0.33, "y": 0.7 },
+			{ "x": 0.58, "y": 0.23 },
+			{ "x": 0.39, "y": 0.22 },
+			{ "x": 0.27, "y": 0.26 },
+			{ "x": 0.28, "y": 0.47 },
+			{ "x": 0.67, "y": 0.7 },
+			{ "x": 0.77, "y": 0.45 },
+			{ "x": 0.75, "y": 0.31 },
+			{ "x": 0.48, "y": 0.19 }
+		],
+		storyColors = d3.shuffle(shortAtts['story_rgba'].split("|")),
+		cueStoryI = 0,
 		showCue = true,
 		storyContents = storyOverlay.find(".story-content"),
-		randomData = [],
+		randomData = stories,
 		apilimit = 5,
 		randomDataLen = Math.max(langList.length * apilimit, 70),
 		storiesLen = storyContents.length,
-		blobR = 5,
+		blobR = 4,
 		bigBlobR = blobR * 2,
-		blobStroke = bigBlobR * 3,
+		blobStroke = bigBlobR,
 		// start of each scene, control how long each scene takes to scroll
-		scene1 = 0.1,
-		scene1_1 = 0.2,
+		scene1 = 0.12,
+		scene1_1 = 0.24,
 		scene2 = 0.72,
 		scene3 = 1,
-		sceneTran = 0.1,
+		sceneTran = 0.08,
 		linearUp = d3.scaleLinear().domain([scene1_1, scene1_1 + sceneTran]).range([0,1]),
 		linearDown = d3.scaleLinear().domain([scene2 - sceneTran, scene2]).range([1,0]),
+		subScenes = [0,1,2],
+		subScene = d3.scaleQuantize().domain([scene1_1 + sceneTran*1.5, scene2 - sceneTran*1.5]).range(subScenes),
 		zoomFactorMax = 1.55,
-		svg, g, y, blobs, x, zoom, storyBlobs, clickCue, pulse, fadedEdge, ornaments,
+		svg, g, y, blobs, x, zoom, storyBlobs, storyBlobsClones, clickCue, pulse, fadedEdge, ornaments,
 		ornamentArr = [{
 			"path": "M2.144 15.73C3.24 10.737 5.915-.236 13.021 5.197c3.698 2.829 6.35 11.588 12.43 8.287 3.736-2.029 9.713-14.497 14.674-10.704 3.657 2.797 7.793 11.583 13.638 9.495C56.88 11.164 65.928.963 68.955 3.99c6.312 6.311 7.397 9.127 15.883 2.417 8.494-6.717 7.235-2.077 13.638 3.97 2.544 2.403 9.622.091 10.876-2.416",
 			"x"	: 0.25,
@@ -179,7 +202,7 @@ jQuery(document).ready(function($) {
 		}
 	}
 
-	function setupChart(cb) {
+	function setupChart() {
 		// collage will not allow additional content (e.g. eyebrow link, best not to set parent page)
 		$('.header-main').hide();
 		svg = d3.select(containerID)
@@ -234,22 +257,41 @@ jQuery(document).ready(function($) {
 		pulse
 			.append("circle")
 			.attr("class", "pulse")
-			.attr("cx", "0%")
-			.attr("cy", "0%")
+			.attr("cx", "0")
+			.attr("cy", "0")
+			.style("stroke", colorBlack)
 			.attr("r", bigBlobR)
 			.style("opacity", 0);
+		storyBlobsClones = g.append("g").attr("class", "story-blobs-clones");
+		storyBlobsClones
+			.selectAll("circle")
+			.data(stories.slice(0,subScenes.length))
+			.enter()
+			.append("circle")
+			.attr("data-color", function(_, i) {return storyColors[i] ? "rgba" + storyColors[i] : colorBlack;})
+			.style("fill", function(_, i) {return storyColors[i] ? "rgba" + storyColors[i] : colorBlack;})
+			.attr("r", blobR * 3.5)
+			.attr("cy", 0)
+			.attr("cx", 0);
 		storyBlobs = g.append("g").attr("class", "story-blobs");
 		storyBlobs
 			.selectAll("circle")
 			.data(stories.slice(0,storiesLen))
 			.enter()
 			.append("circle")
-			.attr("title", function(_, i) {return "Story " + (i + 1);})
+			.attr("data-title", function(_, i) {return "Story " + (i + 1);})
 			.attr("data-color", function(_, i) {return storyColors[i] ? "rgba" + storyColors[i] : colorBlack;})
 			.style("fill", colorBlack)
 			.style("stroke-width", blobStroke)
 			.style("stroke", "rgba(255, 255, 255, 0)")
-			.attr("r", blobR);
+			.attr("r", blobR)
+			.attr("cy", 0)
+			.attr("cx", 0);
+		for (var j = 0; j < 5; j++) {
+			var rand = Math.min(Math.floor(getRandom(0, storiesLen)), storiesLen - 1);
+			storyContents.eq(rand).insertBefore(storyContents[0]);
+		}
+		storyContents = storyOverlay.find(".story-content"); // reset with new order
 		storyContents.each(function(i){
 			$(this).find(".story-image").css("border", "4px solid rgba" + storyColors[i]);
 		});
@@ -290,11 +332,9 @@ jQuery(document).ready(function($) {
 			.scaleExtent([1, 2])
 			.duration(0)
 			.on("zoom", zoomed);
-
-		cb();
 	}
 
-	function drawChart() {
+	function drawChart(cb) {
 		var currentHeight = window.innerHeight - header.height(),
 			currentWidth = html.width(),
 			scale = window.innerWidth > mobileWidth ? 0.5 : 0.4;
@@ -321,40 +361,44 @@ jQuery(document).ready(function($) {
 		pulse
 			.attr("transform", "translate(" + x(stories[cueStoryI].x) + ", " + y(stories[cueStoryI].y) + ")")
 			.style("opacity", 1)
+		storyBlobsClones
+			.selectAll("circle")
+			.style("opacity", 0)
+			.style("visibility", "hidden")
+			.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ")";} );
 		storyBlobs
 			.selectAll("circle")
 			.attr("class", "story-blob story-unread")
 			.style("opacity", 0)
 			.style("visibility", "hidden")
-			.attr("cx", function(d) {return x(d.x);} )
-			.attr("cy", function(d) {return y(d.y);} )
+			.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(1)";} )
 			.on("mouseover", function(){
 				var fill = d3.select(this).attr("data-color");
 				d3.select(this)
 					.transition()
 					.style("fill", fill)
-					.attr("r", bigBlobR * 2);
-				pulse.transition().style("opacity", 0).style("visibility", "hidden");
+					.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(4.5)";} );
+				pulse.style("opacity", 0).style("visibility", "hidden");
 			})
 			.on("mouseleave", function(){
 				var fill = d3.select(this).attr("class").indexOf("story-read") > -1 ? d3.select(this).attr("data-color") : colorBlack;
 				d3.select(this)
 					.transition()
 					.style("fill", fill)
-					.attr("r", bigBlobR);
-				pulse.transition().style("opacity", 1).style("visibility", "visible")
+					.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(2)";} );
+				pulse.style("opacity", 1).style("visibility", "visible")
 			})
 			.on("click", storyClick);
 		clickCue
 			.selectAll("line")
-			.attr("x1", function(d) {return x(d.x) + blobR;} )
-			.attr("x2", function(d) {return x(d.x) + blobR*3;} )
-			.attr("y1", function(d) {return y(d.y) - blobR*2;} )
-			.attr("y2", function(d) {return y(d.y) - blobR*5;} );
+			.attr("x1", blobR)
+			.attr("x2", blobR*3)
+			.attr("y1", - blobR*2)
+			.attr("y2", - blobR*5);
 		clickCue
 			.selectAll("text")
-			.attr("x", function(d) {return x(d.x) + blobR*3;} )
-			.attr("y", function(d) {return y(d.y) - blobR*5;} )
+			.attr("x", blobR*3)
+			.attr("y", - blobR*5)
 			.attr("dy", "-5px");
 		storyOverlay.find(".close").click(closeStoryModal);
 		body.keyup(function(e) {
@@ -375,7 +419,13 @@ jQuery(document).ready(function($) {
 			.delay(function(d,i){ return randomDataLen * 10 + i * 200 })
 			.attr("stroke-dashoffset", 0)
 
-		body.css("overflow", "hidden auto")
+		body.css("overflow", "hidden auto");
+
+		if (cb) {
+			return cb();
+		} else {
+			return false;
+		}
 	}
 
 	function closeStoryModal() {
@@ -482,21 +532,16 @@ jQuery(document).ready(function($) {
 		}
 	}
 
-	function unreadStory() {
-		var cx, cy;
-		d3.select(".story-unread").each(function() {
-			cx = d3.select(this).attr("cx");
-			cy = d3.select(this).attr("cy");
-		});
-		return [cx, cy];
-	}
-
 	function hideStories() {
 		storyBlobs
 			.selectAll("circle")
 			.style("opacity", 0)
 			.style("visibility", "hidden")
-			.attr("r", blobR);
+			.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(1)";} );
+		storyBlobsClones
+			.selectAll("circle")
+			.style("opacity", 0)
+			.style("visibility", "hidden");
 		clickCue
 			.style("opacity", 0)
 			.style("visibility", "hidden");
@@ -508,28 +553,40 @@ jQuery(document).ready(function($) {
 	}
 
 	function showStories(progress, min, max) {
-		var opacity = calcOpacity(progress, min, max);
+		var opacity = calcOpacity(progress, min, max),
+			sceneMiddle = (min + max) * 0.5,
+			offsetProgress = progress < sceneMiddle ? progress - 0.1 : progress + 0.1,
+			opacityCue = opacity > 0.4 ? calcOpacity(offsetProgress, min, max) : 0,
+			subSceneFilter = storyBlobs.selectAll("circle").filter(function(_, i) {return i === subScene(progress);}),
+			transform = subSceneFilter.attr("transform").split(") ")[0] + ")"; // only take translate, ignore scale
+		storyBlobsClones
+			.selectAll("circle")
+			.style("opacity", function(_, i) {return i === subScene(progress) ? opacityCue : 0;})
+			.style("visibility", "visible");
 		storyBlobs
 			.selectAll("circle")
 			.style("opacity", opacity)
 			.style("visibility", "visible")
-			.attr("r", bigBlobR);
+			.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(" + Math.max(opacity * 2, 1) + ")";} );
 		if (showCue) {
 			clickCue
-				.style("opacity", opacity)
+				.style("opacity", opacityCue)
 				.style("filter", "blur(" + (1-opacity) * 2 + "px)")
-				.style("visibility", "visible");
+				.style("visibility", "visible")
+				.attr("transform", transform);
 			pulse
-				.style("opacity", opacity)
-				.style("visibility", "visible");
+				.style("opacity", opacityCue)
+				.style("visibility", "visible")
+				.attr("transform", transform);
 		} else {
 			pulse
-				.style("opacity", opacity)
+				.style("opacity", opacityCue)
 				.style("visibility", "visible")
-				.attr("transform", "translate(" + unreadStory()[0] + ", " + unreadStory()[1] + ")" );
+				.attr("transform", transform)
+				.style("stroke", storyColors[cueStoryI] ? "rgba" + storyColors[cueStoryI] : colorBlack);
 		}
 		blobs
-			.style("opacity", Math.max(0.1, 1 - opacity));
+			.style("opacity", Math.max(0.2, 1 - opacity));
 	}
 
 	function hide(elem) {
@@ -551,6 +608,7 @@ jQuery(document).ready(function($) {
 			totalScroll = notFixedContent.offset().top - window.innerHeight*screenPortion,
 			progress = scrollTop/totalScroll;
 
+		container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
 		g.call(zoom.scaleTo, zoomFactor);
 		if (progress < scene1) {
 			show(intro1);
@@ -593,7 +651,6 @@ jQuery(document).ready(function($) {
 			hideStories();
 			ornaments.style("visibility", "hidden")
 			stopEditAnim();
-			container.css("opacity", Math.max(0, 1 - notFixedContentScrolled) );
 		}
 	}
 
@@ -623,8 +680,8 @@ jQuery(document).ready(function($) {
 	});
 
 	setupFakescroll();
-	setupChart(scrollAnimation);
-	drawChart();
+	setupChart();
+	drawChart(scrollAnimation);
 	getRecentEdits(true);
 });
 

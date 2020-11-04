@@ -214,8 +214,8 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 		<div class="mw-980 wysiwyg">
 			<div class="milestones">
 				<div class="flex flex-medium flex-space-between">
-					<p class="w-25p label label-left"><?php echo esc_html( $atts['label_left'] ) ?></p>
-					<p class="w-25p label label-right"><?php echo esc_html( $atts['label_right'] ) ?></p>
+					<div class="w-25p label label-left"><?php echo esc_html( $atts['label_left'] ) ?></div>
+					<div class="w-25p label label-right"><?php echo esc_html( $atts['label_right'] ) ?></div>
 				</div>
 				<?php echo wp_kses_post( $content ) ?>
 			</div>
@@ -238,12 +238,15 @@ add_shortcode( 'timeline', 'wmf_timeline_callback' );
 function wmf_year_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'highlight' => '',
+		'big' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'year' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$culture = strpos($content, "with-content") === false ? "" : " with-culture";
 	$highlight = $atts['highlight'] === '' ? " highlight" : " not-highlight";
-	$classes = "year" . $highlight;
+	$big = $atts['big'] === '' ? " big" : " not-big";
+	$classes = "year" . $highlight . $culture . $big;
 
 	ob_start();
 	?>
@@ -287,7 +290,7 @@ function wmf_year_culture_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div class="top-articles">
+	<div class="top-articles rounded <?php if (!empty($content)) echo " with-content" ?>">
 		<p><?php echo wp_kses_post( $content ) ?></p>
 		<div class="top-edited"><?php if ( isset($image1) ) echo $image1; ?></div>
 		<div class="top-viewed"><?php if ( isset($image2) ) echo $image2; ?></div>
@@ -461,6 +464,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$atts['url_views'] = get_stylesheet_directory_uri() . $atts['path_views'];
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro' ) );
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
@@ -588,7 +592,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 			</div>
 		</div>
 		<div class="article-photo-credits-container">
-			<h2>Photo credits</h2>
+			<h3 class="h2"><?php echo esc_html( $header ); ?></h3>
 			<div class="article-photo-credits"></div>
 		</div>
 	</div>
