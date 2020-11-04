@@ -2,10 +2,16 @@
 
 // FIX for future, font-sizes used .page-template-page-report-landing, .page-template-page-report-section as guide
 .page-template-page-freeform .freeform-content {
-	p, .p , p > a, .p > a {
+	p, .p {
 		font-size: 1.125rem;
 		line-height: 1.5;
 		margin-bottom: 1.125rem;
+		> a {
+			font-size: inherit;
+		}
+		&:last-of-type {
+			margin-bottom: 0;
+		}
 	}
 	span.p {
 		margin-bottom: 0;
@@ -58,15 +64,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-        p, h1, h2, h3 {
-            background-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.8);
-            border-radius: 2rem;
+	        > p, > h1, > h2, > h3 {
+	            background-color: rgba(255, 255, 255, 0.6);
+	            box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.8);
+	            border-radius: 2rem;
+	        }
         }
     }
     #intro-3 {
     	z-index: 0;
+    }
+    #intro-4 {
+    	font-style: italic;
     }
     @media (max-width: $small-bp) {
 	    #intro-4 .intro-text {
@@ -97,6 +106,7 @@
 	    }
     }
     .scroll-indicator, .scroll-animator {
+    	font-style: normal;
         text-shadow: 0px 0px 5px #ffffff;
         left: 0;
         right: 0;
@@ -131,6 +141,7 @@
         }
     }
     .recent-edits {
+    	font-style: normal;
         span {
             display: inline-block;
             padding: 0.125rem 0.25rem;
@@ -148,6 +159,11 @@
 			position: relative;
 			margin: auto;
 			z-index: 3000;
+			transform: scaleX(1);
+			transition: 2s transform linear;
+        }
+        .accent.animate {
+        	transform: scaleX(2);
         }
     }
     .story-blob, .close, .next-story {
@@ -203,7 +219,9 @@
         	margin-top: 1rem;
         	blockquote {
         		border-left: 0.25rem solid $wmui-color-base0;
+        		border-right: 0;
         		padding-left: 1rem;
+        		padding-right: 0;
         		span {
         			display: block;
         		}
@@ -271,6 +289,7 @@
 	        background-color: #ffffff;
 	        align-items: center;
 	        font-size: 1rem;
+	        flex-direction: row #{"/*rtl:row-reverse*/"};
 	        border-top: 1px solid $wmui-color-base80;
 	        @media (min-width: $medium-bp){
 	        	position: relative;
@@ -292,8 +311,15 @@
         margin-bottom: 1rem;
     }
     .label {
-    	color: $wmui-color-base20;
+    	color: $wmui-color-base0;
     	position: relative;
+    	font-size: 1.25rem;
+    	line-height: 1.5;
+    	margin-bottom: 1rem;
+		font-family: Linux Libertine, Charis SIL, serif;
+		@media (min-width: $medium-bp) {
+			margin-bottom: 3rem;
+		}
     	&.label-right {
     		text-align: right;
     		&:after {
@@ -319,9 +345,11 @@
 			right: 0;
 			width: 1rem;
 			height: 1rem;
-			border-bottom: 0.1rem solid $wmui-color-base30;
-			border-left: 0.1rem solid $wmui-color-base30;
-			transform: translate(0.3rem, 0.6rem) rotate(-45deg);
+			border-bottom: 0.1rem solid $wmui-color-base30 #{"/*rtl:ignore*/"};
+			border-left: 0.1rem solid $wmui-color-base30 #{"/*rtl:ignore*/"};
+			border-right: 0 #{"/*rtl:ignore*/"};
+			border-top: 0 #{"/*rtl:ignore*/"};
+			transform: translate(0.3rem, 0.6rem) rotate(-45deg) #{"/*rtl:ignore*/"};
 			box-sizing: border-box;
 			margin: auto;
 			transform-origin: -0.5rem 0.5rem;
@@ -330,6 +358,7 @@
     .year {
         display: flex;
         justify-content: center;
+        flex-direction: row-reverse;
         .top-articles {
             width: auto;
             max-width: 500px;
@@ -341,8 +370,43 @@
                 flex-direction: row;
                 justify-content: end;
                 flex-grow: 1;
+                padding: 1rem;
+	            &.with-content {
+	            	background: $wmui-color-base90;
+	            	border: 1px solid $wmui-color-base70;
+	            	position: relative;
+	            	&:after {
+						content: "";
+						left: -3rem;
+						top: -0.5rem;
+						bottom: 0;
+						right: auto;
+						margin: auto;
+						position: absolute;
+						border-bottom: 1px dashed $wmui-color-base70;
+						width: 3rem;
+						height: 1rem;
+	            	}
+	            	&:before {
+	            		content: "";
+						left: -3.275rem;
+						top: 0.5rem;
+						bottom: 0;
+						right: auto;
+						margin: auto;
+						position: absolute;
+						width: 0.5rem;
+						height: 0.5rem;
+						background-image: url("./assets/src/svg/circle.svg");
+						background-repeat: no-repeat;
+						background-position: 0% 150%;
+						background-size: contain;
+						z-index: 1;
+	            	}
+	            }
             }
             p {
+            	font-size: 0.9375rem;
                 display: none;
                 @media (min-width: $medium-bp) {
                     display: block;
@@ -370,7 +434,7 @@
             display: inline-block;
             width: 48px;
             height: 48px;
-            border-radius: 50%;
+            border-radius: 2px;
             background-position: center center;
             background-size: cover;
             @media (min-width: $medium-bp) {
@@ -394,6 +458,9 @@
             	width: 4em;
                 margin-right: 1rem;
                 margin-left: 1rem;
+            }
+            &.big {
+            	font-size: 1.5rem;
             }
             &:before {
                 content: "";
@@ -453,8 +520,8 @@
     .main-vis {
     	width: 69%;
     	margin-left: 0;
+		transform: scaleX(1) #{"/*rtl:scaleX(-1)*/"};
     	margin-right: 0;
-		transform: scaleX(1)/*rtl:scaleX(-1)*/;
     }
     .side-vis {
     	position: absolute;
@@ -462,8 +529,8 @@
     	left: auto;
     	width: 31%;
     	bottom: 0;
+    	transform: scaleX(1) #{"/*rtl:scaleX(-1)*/"};
     	z-index: -1;
-    	transform: scaleX(1)/*rtl:scaleX(-1)*/;
     }
     @media (min-width: $medium-bp) {
     	.main-vis {
@@ -601,6 +668,10 @@
 			height: 100px;
 		}
 	}
+	.article-image-fallback {
+		background-image: url("./assets/src/svg/individual/wikipedia-black.svg");
+		background-size: 50%;
+	}
 	p.heading {
 		margin-bottom: 0;
 		font-weight: 700;
@@ -649,12 +720,13 @@
 	display: none;
 	width: 350px;
 	overflow: hidden;
-	position: fixed;
-	z-index: 9000;
+	position: absolute;
+	z-index: 20;
 	padding: 1rem 1rem 0 1rem;
 	background-color: #ffffff;
 	box-shadow: 0 5px 20px 0 rgba(0,0,0,.15);
-	p {
+	margin-bottom: 0.5rem;
+	.easter-egg-content > p, .easter-egg-content > p > a {
 		font-size: 0.9375rem;
 	}
 }
@@ -672,6 +744,10 @@
 	animation-play-state: paused;
 	text-decoration: none;
 	background-color: transparent;
+	pointer-events: none; 
+	@media (min-width: $small-bp) {
+		pointer-events: auto;
+	}
 	&.egg-highlight:before,
 	&.egg-highlight:after {
 		animation-play-state: running;
@@ -681,8 +757,8 @@
 		width: 1em;
 		height: 1em;
 		position: absolute;
-		left: 90%;
-		top: -40%;
+		left: 90% #{"/*rtl:ignore*/"};
+		top: -40% #{"/*rtl:ignore*/"};
 		color: #F0BC00;
 		opacity: 0;
 		transform: scale(0.5);
@@ -696,8 +772,8 @@
 		width: 1em;
 		height: 1em;
 		position: absolute;
-		left: 90%;
-		top: -40%;
+		left: 90% #{"/*rtl:ignore*/"};
+		top: -40% #{"/*rtl:ignore*/"};
 		color: #E679A6;
 		opacity: 0;
 		transform: scale(0.5);
@@ -743,11 +819,12 @@
 .pulse {
 	fill: #ffffff;
 	fill-opacity: 0;
-	transform-origin: 0% 0%;
+	transform-origin: 0% 0% #{"/*rtl:ignore*/"};
 	animation-duration: 2s;
 	animation-name: pulse;
 	stroke: $color-blue; 
 	stroke-width: 1px;
+	transition: $transition;
 	animation-iteration-count: infinite;
 }
 
@@ -802,11 +879,13 @@
 	0% {
 		opacity: 1;
 		transform: scale(0.9);
+		stroke-width: 2px;
 	}
 
 	100% {
 		opacity: 0;
 		transform: scale(2.4);
+		stroke-width: 0px;
 	}
 }
 
@@ -823,8 +902,8 @@
 @keyframes blinkShift {
 	0%, 99% {
 		opacity: 0;
-		left: 80%;
-		top: -40%;
+		left: 80% #{"/*rtl:ignore*/"};
+		top: -40% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 
@@ -835,15 +914,15 @@
 
 	40% {
 		opacity: 0;
-		left: 80%;
-		top: -40%;
+		left: 80% #{"/*rtl:ignore*/"};
+		top: -40% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 
 	50%, 60% {
 		opacity: 0;
-		left: 8%;
-		top: 30%;
+		left: 8% #{"/*rtl:ignore*/"};
+		top: 30% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 
@@ -854,8 +933,8 @@
 
 	90% {
 		opacity: 0;
-		left: 8%;
-		top: 30%;
+		left: 8% #{"/*rtl:ignore*/"};
+		top: 30% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 }
@@ -863,8 +942,8 @@
 @keyframes blinkShift2 {
 	0%, 99% {
 		opacity: 0;
-		left: 40%;
-		top: -30%;
+		left: 40% #{"/*rtl:ignore*/"};
+		top: -30% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 
@@ -875,15 +954,15 @@
 
 	40% {
 		opacity: 0;
-		left: 40%;
-		top: -30%;
+		left: 40% #{"/*rtl:ignore*/"};
+		top: -30% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 
 	50%, 60% {
 		opacity: 0;
-		left: 90%;
-		top: 40%;
+		left: 90% #{"/*rtl:ignore*/"};
+		top: 40% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 
@@ -894,8 +973,8 @@
 
 	90% {
 		opacity: 0;
-		left: 90%;
-		top: 40%;
+		left: 90% #{"/*rtl:ignore*/"};
+		top: 40% #{"/*rtl:ignore*/"};
 		transform: scale(0);
 	}
 }
