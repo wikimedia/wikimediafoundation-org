@@ -74,7 +74,8 @@ jQuery(document).ready(function($) {
 		contents.each(function() {
 			var langContainer = $(this),
 				id = $(this).attr('id'),
-				content = filterD.find(function(d) {return d[wiki] === id; });
+				content = filterD.find(function(d) {return d[wiki] === id; }),
+				creditInfo = "";
 			nodata.hide();
 			langContainer.hide();
 			if ( langs.indexOf(id) > -1 ) {
@@ -94,17 +95,28 @@ jQuery(document).ready(function($) {
 						.attr("target", "_blank")
 						.text(fetchWikiname(content[wiki]))
 					);
-				langContainer.find(".article-image").css("background-image", "url(" + imgurl + ")");
-				langContainer.find(".article-image-link").attr("href", content.image_page);
 				langContainer.find(".data span").text(total + " " + unit);
-				credits.find(".article-photo-credits")
-					.append($("<div></div>")
-						.append($("<a>")
-							.text(content.file_name.replace("File:", ""))
-							.attr("href", content.image_file))
-						.append($("<span></span>")
-							.text(" – " + content.artist + ", " + content.license))
-					);
+				if (imgurl.length > 0) {
+					langContainer.find(".article-image")
+						.removeClass("article-image-fallback")
+						.css("background-image", "url(" + imgurl + ")");
+					langContainer.find(".article-image-link").attr("href", content.image_page);
+					creditInfo += content.artist.length > 0 ? ", " + content.artist : "";
+					creditInfo += content.license.length > 0 ? ", " + content.license : "";
+					credits.find(".article-photo-credits")
+						.append($("<div></div>")
+							.append($("<a>")
+								.text(content.file_name.replace("File:", ""))
+								.attr("href", content.image_page))
+							.append($("<span></span>")
+								.text(creditInfo))
+						);
+				} else {
+					langContainer.find(".article-image-link > div").unwrap();
+					langContainer.find(".article-image")
+						.attr("style", "")
+						.addClass("article-image-fallback");
+				}
 				langContainer.fadeIn();
 				credits.show();
 			} else {
@@ -147,6 +159,8 @@ jQuery(document).ready(function($) {
 		var radio = container.find("input:checked").val();
 		if (data[radio].length > 0) {
 			getSelectedYear(radio);
+		} else {
+			getData(radio);
 		}
 		selectYear.find("option").each(function() {
 			var y = parseInt($(this).val(), 10),
@@ -157,6 +171,24 @@ jQuery(document).ready(function($) {
 				$(this).attr("disabled", "true");
 			}
 		});
+	}
+
+	function getData(type) {
+		if (type === "edits") {
+			d3.csv(atts.url_edits, function(d) {
+				return d;
+			}).then(function(res) {
+				data.edits = res;
+				evalOption();
+			});
+		} else {
+			d3.csv(atts.url_views, function(d) {
+				return d;
+			}).then(function(res) {
+				data.views = res;
+				evalOption();
+			});
+		}
 	}
 
 	function getSelectedYear(o) {
@@ -178,20 +210,7 @@ jQuery(document).ready(function($) {
 	}
 
 	setup();
-
-	d3.csv(atts.url_edits, function(d) {
-		return d;
-	}).then(function(res) {
-		data.edits = res;
-		evalOption();
-	});
-
-	d3.csv(atts.url_views, function(d) {
-		return d;
-	}).then(function(res) {
-		data.views = res;
-		evalOption();
-	});
+	evalOption();
 
 	selectYear.change(getSelectedYear);
 	container.find("input").change(evalOption);
