@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 		apilimit = 5,
 		randomDataLen = Math.max(langList.length * apilimit, 70),
 		storiesLen = storyContents.length,
-		blobR = 4,
+		blobR = 5,
 		bigBlobR = blobR * 2,
 		blobStroke = bigBlobR,
 		// start of each scene, control how long each scene takes to scroll
@@ -523,9 +523,9 @@ jQuery(document).ready(function($) {
 	}
 
 	function calcOpacity(p, min, max) {
-		if (p < min + 0.1) {
+		if (p < min + sceneTran) {
 			return linearUp(p);
-		} else if (p > max - 0.1) {
+		} else if (p > max - sceneTran) {
 			return linearDown(p);
 		} else {
 			return 1;
@@ -555,7 +555,7 @@ jQuery(document).ready(function($) {
 	function showStories(progress, min, max) {
 		var opacity = calcOpacity(progress, min, max),
 			sceneMiddle = (min + max) * 0.5,
-			offsetProgress = progress < sceneMiddle ? progress - 0.1 : progress + 0.1,
+			offsetProgress = progress < sceneMiddle ? progress - sceneTran : progress + sceneTran,
 			opacityCue = opacity > 0.4 ? calcOpacity(offsetProgress, min, max) : 0,
 			subSceneFilter = storyBlobs.selectAll("circle").filter(function(_, i) {return i === subScene(progress);}),
 			transform = subSceneFilter.attr("transform").split(") ")[0] + ")"; // only take translate, ignore scale
@@ -567,7 +567,7 @@ jQuery(document).ready(function($) {
 			.selectAll("circle")
 			.style("opacity", opacity)
 			.style("visibility", "visible")
-			.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(" + Math.max(opacity * 2, 1) + ")";} );
+			.attr("transform", function(d) {return "translate(" + x(d.x) + ", " + y(d.y) + ") scale(" + Math.max(opacity * 1.8, 1) + ")";} );
 		if (showCue) {
 			clickCue
 				.style("opacity", opacityCue)

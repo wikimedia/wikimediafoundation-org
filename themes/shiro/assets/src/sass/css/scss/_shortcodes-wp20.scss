@@ -77,11 +77,6 @@
     #intro-4 {
     	font-style: italic;
     }
-    @media (max-width: $small-bp) {
-	    #intro-4 .intro-text {
-	    	justify-content: start;
-	    }
-    }
     .intro h1 {
         font-size: 2.5rem;
         @media (min-width: $medium-bp) {
@@ -166,7 +161,7 @@
         	transform: scaleX(2);
         }
     }
-    .story-blob, .close, .next-story {
+    .story-blob, .close {
         cursor: pointer;
     }
     .story-overlay {
@@ -297,6 +292,7 @@
 	        }
 	        .next-story, .prev-story {
 	        	cursor: pointer;
+	        	user-select: none;
 	        	font-size: 1.75rem;
 	        	padding: 0.2rem 0.5rem;
 	        }
@@ -826,6 +822,13 @@
 	stroke-width: 1px;
 	transition: $transition;
 	animation-iteration-count: infinite;
+}
+
+.section > div {
+	margin-bottom: 1rem;
+	@media (min-width: $medium-bp) {
+		margin-bottom: none;
+	}
 }
 
 .collage,
