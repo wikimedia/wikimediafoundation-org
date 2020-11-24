@@ -11,12 +11,11 @@ jQuery(document).ready(function($) {
 		nodata = container.find(".no-data"),
 		contents = $(".top-data-content"),
 		credits = $(".article-photo-credits-container"),
-		color, line, svg,
+		line, svg,
 		data = {"edits": [], "views": []};
 
 	function drawChart(daily, id) {
 		var width = 300,
-			w = width/daily.length,
 			height = 40,
 			h = 6,
 			y, x;
@@ -26,13 +25,10 @@ jQuery(document).ready(function($) {
 		x = d3.scaleLinear()
 			.domain([0, daily.length])
 			.range([0, width]);
-		color = d3.scaleLinear()
-			.domain([0, d3.max(daily, function(d) {return d;})]).nice()
-			.range(["#f8f9fa", "#202122"]);
 
 		line = d3.line()
 			.defined(function(d) { return !isNaN(d);})
-			.curve(d3.curveCardinal.tension(0.5))
+			.curve(d3.curveBasis)
 			.x(function(d, i) { return x(i);})
 			.y(function(d) { return y(d);});
 
@@ -40,26 +36,26 @@ jQuery(document).ready(function($) {
 			.append("svg")
 			.attr("viewBox", [0, 0, width, height + h]);
 
+		svg
+			.append("g")
+			.attr("class", "bg-line-graph")
+			.append("line")
+			.style("stroke", "#c8ccd1")
+			.attr("x1", 0)
+			.attr("x2", width)
+			.attr("y1", height)
+			.attr("y2", height);
+
 		svg.append("g")
+			.attr("class", "line-graph")
 			.append("path")
 			.datum(daily)
 			.attr("fill", "none")
 			.attr("stroke", "#72777D")
-			.attr("stroke-width", 1)
+			.attr("stroke-width", 1.5)
 			.attr("stroke-linejoin", "round")
 			.attr("stroke-linecap", "round")
 			.attr("d", line);
-
-		svg
-			.append("g")
-			.selectAll("rect")
-			.data(daily)
-			.join("rect")
-			.attr("width", w)
-			.attr("height", h)
-			.style("fill", function (d) { return color(d);})
-			.attr("x", function(d, i) { return i * w;})
-			.attr("y", height);
 	}
 
 	function populateData(filterD, o) {
@@ -82,21 +78,19 @@ jQuery(document).ready(function($) {
 				var desc = content["desc_" + atts.lang.replaceAll("wiki", "")].replaceAll('"', ""),
 					heading = content.pagetitle.replaceAll("_", " "),
 					imgurl = content.image_file,
+					filename = content.file_name.replace("File:", ""),
 					total = d3.format(",")(content[unit2]),
 					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
 					graphid = "#" + id + "-graph";
 				$(graphid).empty();
 				drawChart(dailyData, graphid);
 				langContainer.find(".heading").text(heading);
-				langContainer.find(".desc")
-					.text(desc + " ")
-					.append($("<a></a>")
-						.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
-						.attr("target", "_blank")
-						.text(fetchWikiname(content[wiki]))
-					);
+				langContainer.find(".desc").text(desc);
+				langContainer.find(".details")
+					.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
+					.attr("target", "_blank");
 				langContainer.find(".data span").text(total + " " + unit);
-				if (imgurl.length > 0) {
+				if (filename.length > 0 && imgurl.length > 0) {
 					langContainer.find(".article-image")
 						.removeClass("article-image-fallback")
 						.css("background-image", "url(" + imgurl + ")");
@@ -106,7 +100,7 @@ jQuery(document).ready(function($) {
 					credits.find(".article-photo-credits")
 						.append($("<div></div>")
 							.append($("<a>")
-								.text(content.file_name.replace("File:", ""))
+								.text(filename)
 								.attr("href", content.image_page))
 							.append($("<span></span>")
 								.text(creditInfo))
@@ -123,36 +117,6 @@ jQuery(document).ready(function($) {
 				nodata.show();
 			}
 		});
-	}
-
-	function fetchWikiname(shortname) {
-		var str = "";
-		switch (shortname) {
-		case "enwiki":
-			str = "English Wikipedia";
-			break;
-		case "arwiki":
-			str = "Arabic Wikipedia";
-			break;
-		case "dewiki":
-			str = "German Wikipedia";
-			break;
-		case "eswiki":
-			str = "Spanish Wikipedia";
-			break;
-		case "frwiki":
-			str = "French Wikipedia";
-			break;
-		case "ruwiki":
-			str = "Russian Wikipedia";
-			break;
-		case "zhwiki":
-			str = "Chinese Wikipedia";
-			break;
-		default:
-			str = "Wikipedia";
-		}
-		return str;
 	}
 
 	function evalOption() {

@@ -478,13 +478,17 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 			<div class="mod-margin-bottom_xs wysiwyg">
 				<p><?php echo wp_kses_post( $content ) ?></p>
 			</div>
-			<div class="data-options">
+			<div class="mod-margin-bottom_xs data-options">
 				<p>
-					<input type="radio" id="views-radio" name="most" value="views" checked>
-					<label for="views-radio">Most viewed articles</label>
+					<span>
+						<input type="radio" id="views-radio" name="most" value="views" checked>
+						<label for="views-radio">Most viewed articles</label>
+					</span>
 					<span class="p">or</span>
-					<input type="radio" id="edits-radio" name="most" value="edits">
-					<label for="edits-radio">most edited articles</label>
+					<span>
+						<input type="radio" id="edits-radio" name="most" value="edits">
+						<label for="edits-radio">most edited articles</label>
+					</span>
 					<span class="p">in</span>
 					<select class="p" name="year" id="year-select">
 					    <option value="2020" selected="selected">2020</option>
@@ -516,77 +520,77 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 			<div id="enwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>EN</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="enwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="arwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>AR</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="arwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="dewiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>DE</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="dewiki-graph" class="graph"></div></div>
 			</div>
 			<div id="eswiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>ES</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="eswiki-graph" class="graph"></div></div>
 			</div>
 			<div id="frwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>FR</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="frwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="ruwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>RU</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="ruwiki-graph" class="graph"></div></div>
 			</div>
 			<div id="zhwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
 					<a class="article-image-link" href="/about" target="_blank"><div class="article-image"></div></a>
-					<div class="w-50p details">
+					<a href="" class="w-50p details"><div>
 						<span class=lang-code>ZH</span>
 						<p class="heading"></p>
 						<p class="desc"></p>
-					</div>
+					</div></a>
 				</div>
 				<div class="w-32p data"><span class="total"></span><div id="zhwiki-graph" class="graph"></div></div>
 			</div>

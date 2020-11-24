@@ -615,6 +615,9 @@
 			color: $wmui-color-base30;
 			padding: 0 0.75rem;
 		}
+		span {
+			white-space: nowrap;
+		}
 		select {
 			display: inline-block;
 			color: $wmui-color-base0;
@@ -643,11 +646,20 @@
 	}
 	.top-data-content {
 		padding: 0.5rem;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		margin-left: -0.5rem;
 		transition: $transition;
 		&:hover {
 			background-color: $wmui-color-base90;
+		}
+		.total {
+			display: block;
+			margin-top: 0.5rem;
+			margin-bottom: 1rem;
+		}
+		@media (min-width: $medium-bp) {
+			margin-top: 0;
+			margin-bottom: 1rem;
 		}
 	}
 	.article-image {
