@@ -81,7 +81,7 @@ $wp20_color_6: #F0BC00;
 $wp20_color_7: #E679A6;
 $wp20_color_8: #E9E7C4;
 $wp20_color_9: #8401D5;
-$wp20_color_10: #2CC757;
+$wp20_color_10: #3FD15F;
 $wp20_color_11: #FF5252;
 $wp20_color_12: #222222;
 $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_5,$wp20_color_6,$wp20_color_7,$wp20_color_8,$wp20_color_9,$wp20_color_10,$wp20_color_11;
@@ -97,6 +97,15 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 	line-height: 1.1;
 	margin-bottom: 1rem;
+}
+
+.section > div {
+	margin-bottom: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	@media (min-width: $medium-bp) {
+		margin-bottom: 0;
+	}
 }
 
 .section > .intro p {
@@ -123,15 +132,27 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	}
 }
 
+.section .intro .wikipedia-h1,
+.section > div {
+	overflow: hidden;
+	@media (min-width: $medium-bp) {
+		overflow: visible;
+	}
+}
+
 .section:hover .intro .wikipedia-h1:after {
 	animation-play-state: running;
 }
 
 .section .intro {
 	position: relative;
+	margin-bottom: 1rem;
+	@media (min-width: $medium-bp) {
+		margin-bottom: 2rem;
+	}
 }
 
-@for $i from 1 to 5 {
+@for $i from 1 to 11 {
 	.section[data-confetti-option="#{$i}"] {
 		> div:after {
 			background-color: #{nth($wp_colors, $i)};
@@ -148,7 +169,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	width: 0.35rem;
 	height: 0.35rem;
 	border-radius: 50%;
-	background-color: $wmui-color-base0;
+	background-color: $wp20_color_1;
 	position: absolute;
 	display: block;
 	top: 1rem;
@@ -310,142 +331,109 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
     .story-blob, .close {
         cursor: pointer;
     }
-    .story-overlay {
-        width: 100%;
-        position: fixed;
-        background-color: #ffffff;
-        border: 0px;
-        padding: 0;
-        height: calc(100vh - 67px);
-        top: 67px; // navigation on mobile
-        z-index: 9000; // above all
-        .story-content-container {
-	        overflow-y: auto;
-	        height: calc(100% - 3rem);
-	        padding: 2rem;
-	        // space for scrolling
-	        &:after {
-	            content: "";
-	            display: block;
-	            height: 4rem;
-	            width: 100%;
-	            @media (min-width: $medium-bp) {
-	            	height: 3rem;
-	            }
-	        }
-        }
-        h2 {
-        	margin-bottom: 0.5rem;
-        }
-        .story-icon {
-        	height: 1em;
-			margin-top: 0.25em;
-			margin-right: 0.5em;
-        }
-        .story-image {
-            float: right;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center center;
-        }
-        .story-location, .story-since {
-        	flex-wrap: nowrap;
-        }
-        .story-location {
-        	margin-bottom: 0;
-        }
-        .story-quote {
-        	margin-top: 1rem;
-        	blockquote {
-        		border-left: 0.25rem solid $wmui-color-base0;
-        		border-right: 0;
-        		padding-left: 1rem;
-        		padding-right: 0;
-        		span {
-        			display: block;
-        		}
-        	}
-        }
+}
+
+.story-carousel-container {
+	padding-top: 2rem;
+	background-size: 180%;
+	background-repeat: no-repeat;
+	background-position: top center;
+	@media (min-width: $medium-bp) {
+		background-size: 100% auto;
+	}
+}
+
+.story-carousel {
+    position: relative;
+    background-color: #ffffff;
+    padding: 0;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid $wmui-color-base0;
+    border-radius: 5px;
+    .story-content-container {
+        padding: 1rem 1rem 0 1rem;
         @media (min-width: $medium-bp) {
-            width: 600px;
-            min-height: 0;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            height: 60vh;
-            max-height: 500px;
-            padding: 0;
-            margin: auto;
-            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
-            border: 1px solid $wmui-color-base0;
-            .story-image {
-	            width: 200px;
-	            height: 200px;
-            }
-	        &:after,
-	        &:before {
-	        	content: "";
-				display: block;
-				position: absolute;
-				left: 1rem;
-				right: 1rem;
-	        }
-	        &:before {	
-				background: linear-gradient( #ffffff, transparent);
-				height: 2rem;
-				top: 0;
-	        }
-	        &:after {
-				background: linear-gradient( transparent, #ffffff);
-				height: 2rem;
-				bottom: 3rem; // height of the story-nav
-	        }
+        	padding: 2rem 2rem 0 2rem;
         }
-        .close {
-            text-decoration: underline;
-            color: $wmui-color-base30;
-            position: absolute;
-            display: inline-block;
-            padding: 0.5rem;
-            top: 0.5rem;
-            right: 0.5rem;
-            left: auto;
-            z-index: 3000;
-            width: 2.25rem;
-            img {
-            	width: 100%;
-            }
-        }
-        .story-nav {
-	        position: fixed;
-	        z-index: 3000;
-	        bottom: 0;
-	        right: 0;
-	        width: 100%;
-	        height: 3rem;
-	        padding: 0 1rem;
-	        background-color: #ffffff;
-	        align-items: center;
-	        font-size: 1rem;
-	        flex-direction: row #{"/*rtl:row-reverse*/"};
-	        border-top: 1px solid $wmui-color-base80;
-	        @media (min-width: $medium-bp){
-	        	position: relative;
-	        	border-top: 0;
-	        }
-	        .next-story, .prev-story {
-	        	cursor: pointer;
-	        	user-select: none;
-	        	font-size: 1.75rem;
-	        	padding: 0.2rem 0.5rem;
-	        }
+    }
+	@media (min-width: $medium-bp) {
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    padding: 0;
+	    margin: auto;
+	}
+    h2 {
+    	margin-bottom: 0.5rem;
+    }
+    .story-icon {
+    	height: 1em;
+		margin-top: 0.25em;
+		margin-right: 0.5em;
+    }
+    .story-image {
+        float: right;
+        width: 20vw;
+        height: 20vw;
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center center;
+        border: 3px solid $wp20_color_1;
+		@media (min-width: $medium-bp) {
+			border-width: 0.25rem;
+		}
+    }
+    @for $i from 1 to 12 {
+    	.story-content-container > div:nth-child(11n + #{$i}) .story-image {
+    		border-color: #{nth($wp_colors, $i)};
+    	}
+    }
+    .story-location, .story-since {
+    	flex-wrap: nowrap;
+    }
+    .story-content .story-location {
+    	margin-bottom: 0;
+    }
+    .story-quote {
+    	margin-top: 1rem;
+    	blockquote {
+    		border-left: 0.25rem solid $wmui-color-base0;
+    		border-right: 0;
+    		padding-left: 1rem;
+    		padding-right: 0;
+    		span {
+    			display: block;
+    		}
+    	}
+    }
+    @for $i from 1 to 12 {
+    	.story-content-container > div:nth-child(11n + #{$i - 1}) .story-quote blockquote {
+    		border-color: #{nth($wp_colors, $i)};
+    	}
+    }
+    .story-nav {
+        bottom: 0;
+        width: 100%;
+        height: 4rem;
+        padding: 1rem 1rem 0;
+        margin-bottom: 5px;
+        background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 40%);
+        align-items: center;
+        font-size: 1rem;
+        flex-direction: row #{"/*rtl:row-reverse*/"};
+    	position: sticky;
+        z-index: 0;
+        .next-story, .prev-story {
+        	cursor: pointer;
+        	user-select: none;
+        	font-size: 1.75rem;
+        	padding: 0.2rem 0.5rem;
         }
     }
 }
-
 
 .symbols-grid {
 	display: flex;
@@ -1028,7 +1016,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	animation: move 8s linear infinite;
 	animation-play-state: paused;
 	text-decoration: none;
-	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0);
 	pointer-events: none; 
 	@media (min-width: $small-bp) {
 		pointer-events: auto;
@@ -1106,19 +1094,10 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	animation-iteration-count: infinite;
 }
 
-.section > div {
-	margin-bottom: 1rem;
-	margin-left: auto;
-	margin-right: auto;
-	@media (min-width: $medium-bp) {
-		margin-bottom: none;
-	}
-}
-
-
 .collage,
 .movement,
 .section,
+.story-carousel,
 .easter-egg-container {
 	// because of shortcodes empty p tags occur
 	p:empty {

@@ -156,12 +156,12 @@ class Credits {
 		foreach ( $urls as $url ) {
 			// Strip any URL parameters.
 			$url      = explode( '?', $url )[0];
-			$image_id = wpcom_vip_attachment_url_to_postid( $url );
+			$image_id = attachment_url_to_postid( $url );
 
 			// It might be a thumbnail size ( suffix '-dddxddd' )
 			if ( empty( $image_id ) ) {
 				$attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $url );
-				$image_id       = wpcom_vip_attachment_url_to_postid( $attachment_url );
+				$image_id       = attachment_url_to_postid( $attachment_url );
 			}
 
 			if ( empty( $image_id ) ) {

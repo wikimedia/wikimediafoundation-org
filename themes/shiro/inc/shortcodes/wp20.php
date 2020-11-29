@@ -166,16 +166,52 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 }
 add_shortcode( 'symbols_grid', 'wmf_symbols_grid_callback' );
 
+/**
+ * Define a [story_carousel] shortcode that includes [story].
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_story_carousel_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'id' => 'volunteer-stories',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'story_carousel' );
+	$content = do_shortcode( $content );
+	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
 
+	wp_enqueue_script( 'story_carousel', get_stylesheet_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'story_carousel', "var storiesAtts = " . json_encode($atts) . ";");
+
+	ob_start();
+	?>
+
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="mw-980 mod-margin-bottom story-carousel-container" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/assets/src/foundation-assets/wikipedia20/accents/confetti.svg')">
+		<div class="story-carousel w-68p">
+			<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
+			<div class="story-nav flex flex-all flex-space-between">
+				<a class="prev-story">←</a>
+				<span class="index"></span>
+				<a class="next-story">→</a>
+			</div>
+		</div>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'story_carousel', 'wmf_story_carousel_callback' );
 
 /**
- * Define a [volunteer] shortcode that creates a volunteer story.
+ * Define a [story] shortcode that creates a (volunteer) story.
  *
  * @param array  $atts    Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
+function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'name' => '',
 		'since' => '',
@@ -183,7 +219,7 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 		'img' => '',
 		'quote' => '',
 	];
-	$atts = shortcode_atts( $defaults, $atts, 'volunteer' );
+	$atts = shortcode_atts( $defaults, $atts, 'story' );
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
 	if ( !empty($attachment) ) {
@@ -222,7 +258,7 @@ function wmf_volunteer_shortcode_callback( $atts = [], $content = '' ) {
 	<?php 
 	return (string) ob_get_clean();
 }
-add_shortcode( 'volunteer', 'wmf_volunteer_shortcode_callback' );
+add_shortcode( 'story', 'wmf_story_shortcode_callback' );
 
 
 /**
@@ -393,7 +429,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 	$title = strlen($atts['title']) > 0 ? '<h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1>' : '';
-	$confetti_opt = 'data-confetti-option="' . random_int(1, 5) . '"';
+	$confetti_opt = 'data-confetti-option="' . random_int(1, 10) . '"';
 
 	if ( !empty($attachment) ) {
 		$img_id = $attachment->ID;
