@@ -81,10 +81,16 @@ $wp20_color_6: #F0BC00;
 $wp20_color_7: #E679A6;
 $wp20_color_8: #E9E7C4;
 $wp20_color_9: #8401D5;
-$wp20_color_10: #3FD15F;
-$wp20_color_11: #FF5252;
+$wp20_color_10: #5EB34F;
+$wp20_color_11: #FD6363;
 $wp20_color_12: #222222;
-$wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_5,$wp20_color_6,$wp20_color_7,$wp20_color_8,$wp20_color_9,$wp20_color_10,$wp20_color_11;
+$wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_5,$wp20_color_6,$wp20_color_7,$wp20_color_8,$wp20_color_9,$wp20_color_10,$wp20_color_11;
+
+@for $i from 1 to 12 {
+	.wp20-color-#{$i} {
+		border-color: #{nth($wp20_colors, $i)};
+	}
+}
 
 .birthday-h1 {
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
@@ -108,6 +114,10 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	}
 }
 
+.section h2 {
+	@include font-size(32, 24);
+}
+
 .section > .intro p {
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 	font-size: 1.5rem;
@@ -124,6 +134,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	background-position-y: 50%;
 	animation: move 8s linear infinite;
 	animation-play-state: paused;
+	animation-direction: alternate;
 	display: block;
 	transform: translate(20%, 20%);
 	@media (min-width: $medium-bp) {
@@ -155,10 +166,10 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 @for $i from 1 to 11 {
 	.section[data-confetti-option="#{$i}"] {
 		> div:after {
-			background-color: #{nth($wp_colors, $i)};
+			background-color: #{nth($wp20_colors, $i)};
 		}
 		> div:before {
-			background-color: #{nth($wp_colors, $i + 1)};
+			background-color: #{nth($wp20_colors, $i + 1)};
 		}
 	}
 }
@@ -302,34 +313,33 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
             color: $wmui-color-base50;
         }
     }
-    .recent-edits {
-    	font-style: normal;
-        span {
-            display: inline-block;
-            padding: 0.125rem 0.25rem;
-        }
-        p, .p {
-            margin-bottom: 0.125rem;
-        }
-        .label {
-            position: relative;
-        }
-        .accent {
-        	width: 2rem;
-			left: 0px;
-			right: 0px;
-			position: relative;
-			margin: auto;
-			z-index: 3000;
-			transform: scaleX(1);
-			transition: 2s transform linear;
-        }
-        .accent.animate {
-        	transform: scaleX(2);
-        }
-    }
     .story-blob, .close {
         cursor: pointer;
+    }
+}
+
+.recent-edits {
+	font-style: normal;
+	transition: $transition;
+	display: none;
+	> div {
+		border: 3px solid $wp20_color_1;
+		border-radius: 5px;
+		padding: 3rem 1rem;
+		text-align: center;
+		background-color: $wmui-color-base90;
+	}
+    .label {
+        position: relative;
+        font-style: italic;
+    }
+    .accent {
+    	width: 2rem;
+		left: 0px;
+		right: 0px;
+		position: relative;
+		margin: auto;
+		transform: translateY(-0.5rem);
     }
 }
 
@@ -388,7 +398,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
     }
     @for $i from 1 to 12 {
     	.story-content-container > div:nth-child(11n + #{$i}) .story-image {
-    		border-color: #{nth($wp_colors, $i)};
+    		border-color: #{nth($wp20_colors, $i)};
     	}
     }
     .story-location, .story-since {
@@ -411,7 +421,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
     }
     @for $i from 1 to 12 {
     	.story-content-container > div:nth-child(11n + #{$i - 1}) .story-quote blockquote {
-    		border-color: #{nth($wp_colors, $i)};
+    		border-color: #{nth($wp20_colors, $i)};
     	}
     }
     .story-nav {
@@ -440,10 +450,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	justify-content: space-between;
 	flex-wrap: wrap;
 	.wikipedia-h2.h2 {
-		font-size: 1.25rem;
-		@media (min-width: $medium-bp) {
-			font-size: 1.5rem;
-		}
+		@include font-size(24, 20);
 	}
 	.grid-item,
 	.grid-item > div {
@@ -1094,11 +1101,7 @@ $wp_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_
 	animation-iteration-count: infinite;
 }
 
-.collage,
-.movement,
-.section,
-.story-carousel,
-.easter-egg-container {
+.page-template-page-freeform .freeform-content {
 	// because of shortcodes empty p tags occur
 	p:empty {
 		display: none;

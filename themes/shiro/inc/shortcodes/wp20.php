@@ -260,6 +260,49 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 }
 add_shortcode( 'story', 'wmf_story_shortcode_callback' );
 
+/**
+ * Define a [recent_edits] shortcode.
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_recent_edits_callback( $atts = [], $content = '' ) {
+	$defaults = [
+		'title' => '',
+		'id' => 'recent-edits',
+		'lang_list' => 'en|ar|es|de|fr|ru|zh',
+		'label' => 'One human just edited',
+	];
+	$atts = shortcode_atts( $defaults, $atts, 'recent_edits' );
+	$atts['lang_list'] = preg_split('/\|/', $atts['lang_list']);
+	$atts['lang_list_long'] = [];
+	$content = do_shortcode( $content );
+	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
+
+	for ($i=0; $i < count($atts['lang_list']); $i++) { 
+		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][$i] . '_wikipedia', strtoupper($atts['lang_list'][$i]) . ' Wikipedia' ) );
+	}
+
+	wp_enqueue_script( 'recent_edits', get_stylesheet_directory_uri() . '/assets/dist/shortcode-recent-edits.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'recent_edits', "var recentEditsAtts = " . json_encode($atts) . ";");
+
+	ob_start();
+	?>
+
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="mw-980 mod-margin-bottom recent-edits">
+		<div>
+			<p><?php echo wp_kses_post( $content ) ?></p>
+			<p><span class="label"></span></p>
+			<div class="accent"></div>
+			<p><span class="title"></span></p>
+		</div>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'recent_edits', 'wmf_recent_edits_callback' );
 
 /**
  * Define a [timeline] wrapper shortcode that renders wrapper for a timeline of milestones, see [year] shortcode.
