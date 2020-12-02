@@ -118,36 +118,63 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	@include font-size(32, 24);
 }
 
-.section > .intro p {
-	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
-	font-size: 1.5rem;
-}
-
-.section .intro .wikipedia-h1:after {
-	content: "";
-	width: 100vw;
-	height: 1em;
-	background-image: url("./assets/src/svg/wave.svg");
-	background-repeat: repeat-x;
-	background-size: 0.7em 0.4em;
-	background-position-x: 102%;
-	background-position-y: 50%;
-	animation: move 8s linear infinite;
-	animation-play-state: paused;
-	animation-direction: alternate;
-	display: block;
-	transform: translate(20%, 20%);
+.section .intro {
+	position: relative;
+	margin-bottom: 1rem;
 	@media (min-width: $medium-bp) {
-		transform: translate(-102%, -180%);
-		background-position-y: 0;
+		margin-bottom: 2rem;
 	}
-}
+	p {
+		font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+		font-size: 1.5rem;
+	}
+	.wikipedia-h1:after {
+		content: "";
+		width: 100vw;
+		height: 1em;
+		background-image: url("./assets/src/svg/wave.svg");
+		background-repeat: repeat-x;
+		background-size: 0.7em 0.4em;
+		background-position-x: 102%;
+		background-position-y: 50%;
+		animation: move 8s linear infinite;
+		animation-play-state: paused;
+		animation-direction: alternate;
+		display: block;
+		transform: translate(20%, 20%);
+		@media (min-width: $medium-bp) {
+			transform: translate(-102%, -180%);
+			background-position-y: 0;
+		}
+	}
+	.intro .wikipedia-h1,
+	> div {
+		overflow: hidden;
+		@media (min-width: $medium-bp) {
+			overflow: visible;
+		}
+	}
+	&:after,
+	&:before {
+		content: "";
+		width: 0.35rem;
+		height: 0.35rem;
+		border-radius: 50%;
+		background-color: $wp20_color_1;
+		position: absolute;
+		display: block;
+		top: 1rem;
+		right: -2rem;
+		left: auto;
+		z-index: -1;
+	}
 
-.section .intro .wikipedia-h1,
-.section > div {
-	overflow: hidden;
-	@media (min-width: $medium-bp) {
-		overflow: visible;
+	&:before {
+		width: 0.45rem;
+		height: 0.45rem;
+		top: -3rem;
+		right: 3rem;
+		left: auto;
 	}
 }
 
@@ -155,46 +182,15 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	animation-play-state: running;
 }
 
-.section .intro {
-	position: relative;
-	margin-bottom: 1rem;
-	@media (min-width: $medium-bp) {
-		margin-bottom: 2rem;
-	}
-}
-
 @for $i from 1 to 11 {
 	.section[data-confetti-option="#{$i}"] {
-		> div:after {
+		.intro:after {
 			background-color: #{nth($wp20_colors, $i)};
 		}
-		> div:before {
+		.intro:before {
 			background-color: #{nth($wp20_colors, $i + 1)};
 		}
 	}
-}
-
-.section > div:after,
-.section > div:before {
-	content: "";
-	width: 0.35rem;
-	height: 0.35rem;
-	border-radius: 50%;
-	background-color: $wp20_color_1;
-	position: absolute;
-	display: block;
-	top: 1rem;
-	right: -2rem;
-	left: auto;
-	z-index: -1;
-}
-
-.section > div:before {
-	width: 0.45rem;
-	height: 0.45rem;
-	top: -3rem;
-	right: 3rem;
-	left: auto;
 }
 
 .collage {

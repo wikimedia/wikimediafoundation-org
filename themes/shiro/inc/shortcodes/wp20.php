@@ -492,9 +492,9 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		}
 
 		if ( $atts['reverse'] === '0') {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . 'flex flex-medium flex-space-between"><div class="' . esc_attr($atts['class']) . '">' . $col_1 . $col_2 . '</div></div>';
+			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between ' . esc_attr($atts['class']) . '">' . $col_1 . $col_2 . '</div></div>';
 		} else {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . 'flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse"><div class="' . esc_attr($atts['class']) . '">' . $col_2 . $col_1 . '</div></div>';
+			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse ' . esc_attr($atts['class']) . '">' . $col_2 . $col_1 . '</div></div>';
 		}
 	}
 }
