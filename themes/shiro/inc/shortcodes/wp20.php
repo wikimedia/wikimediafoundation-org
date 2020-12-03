@@ -574,8 +574,8 @@ add_shortcode( 'movement', 'wmf_movement_callback' );
  */
 function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$defaults = [
-		'path_edits' => '/assets/src/shortcodejs/wp20edits.csv',
-		'path_views' => '/assets/src/shortcodejs/wp20pageviews.csv',
+		'path_edits' => '/assets/src/foundation-assets/wikipedia20/data/wp20edits.csv',
+		'path_views' => '/assets/src/foundation-assets/wikipedia20/data/wp20pageviews.csv',
 		'lang' => 'en',
 		'id' => 'top-data',
 	];
