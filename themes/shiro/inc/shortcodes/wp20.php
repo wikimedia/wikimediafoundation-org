@@ -7,129 +7,6 @@
  */
 
 /**
- * Define a [collage] shortcode that renders a collage of different messages.
- *
- * @param array $atts Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
- * @return string Rendered shortcode output.
- */
-function wmf_collage_callback( $atts = [], $content = '' ) {
-	$defaults = [
-		'title' => '',
-		'label' => '1 human just edited',
-		'intro_img' => '',
-		'intro_1_h' => '',
-		'intro_2_h' => '',
-		'intro_3_h' => '',
-		'intro_1' => '',
-		'intro_2' => '',
-		'intro_4' => '',
-		'story_rgba' => "(0,0,0,1)",
-		'id' => 'wp20-collage',
-		'click' => 'click me',
-		'scroll' => 'scroll',
-	];
-	$atts = shortcode_atts( $defaults, $atts, 'collage' );
-	$content = do_shortcode( $content );
-	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
-	$intro1 = preg_split('/\|/', $atts['intro_1']);
-	$intro2 = preg_split('/\|/', $atts['intro_2']);
-	$intro4 = preg_split('/\|/', $atts['intro_4']);
-	$attachment = get_page_by_title($atts['intro_img'], OBJECT, 'attachment');
-
-	if ( !empty($attachment) ) {
-		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id, array(800, 600));
-	}
-
-	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-	wp_enqueue_script( 'collage', get_stylesheet_directory_uri() . '/assets/dist/shortcode-collage.min.js', array( 'jquery', 'd3' ), '0.0.1', true );
-	wp_add_inline_script( 'collage', "var collageAtts = " . json_encode($atts) . ";");
-
-	ob_start();
-	?>
-
-	<div class="collage mod-margin-bottom">
-		<div id="<?php echo esc_attr($atts['id']) ?>" class="collage-content">
-			<div id="intro-1" class="intro hidden">
-				<div class="intro-text">
-					<?php if ( isset($image_url) ) { ?>
-						<img src="<?php echo esc_attr($image_url); ?>">
-					<?php } ?>
-					<h1 class="wikipedia-h1">
-						<?php echo esc_html($atts['intro_1_h']); ?>
-					</h1>
-					<?php for ($i=0; $i < sizeof($intro1); $i++) { ?>
-						<p>
-							<?php echo esc_html( $intro1[$i] ); ?>
-						</p>
-					<?php } ?>
-				</div>
-				<div class="scroll-indicator">
-					<p><?php echo esc_html( $atts['scroll'] ) ?></p>
-					<div class="scroll-animator">↓</div>
-				</div>
-			</div>
-			<div id="intro-2" class="intro hidden">
-				<div class="intro-text">
-					<h1 class="wikipedia-h1">
-						<?php echo esc_html($atts['intro_2_h']); ?>
-					</h1>
-					<?php for ($i=0; $i < sizeof($intro2); $i++) { ?>
-						<p>
-							<?php echo esc_html( $intro2[$i] ); ?>
-						</p>
-					<?php } ?>
-				</div>
-				<div class="scroll-indicator">
-					<p><?php echo esc_html( $atts['scroll'] ) ?></p>
-					<div class="scroll-animator">↓</div>
-				</div>
-			</div>
-			<div id="intro-3" class="intro hidden">
-				<div class="intro-text">
-					<h1 class="wikipedia-h1">
-						<?php echo esc_html($atts['intro_3_h']); ?>
-					</h1>
-				</div>
-			</div>
-			<div class="story-overlay hidden">
-				<span class="close"><img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg"></span>
-				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-				<div class="story-nav flex flex-all flex-space-between">
-					<a class="prev-story">←</a>
-					<span class="index"></span>
-					<a class="next-story">→</a>
-				</div>
-			</div>
-			<div id="intro-4" class="intro hidden">
-				<div class="intro-text">
-					<?php for ($i=0; $i < sizeof($intro4); $i++) { ?>
-						<p>
-							<?php echo esc_html( $intro4[$i] ); ?>
-						</p>
-					<?php } ?>
-					<div class="recent-edits hidden">
-						<p><strong><span class="label"></span></strong></p>
-						<div class="accent"></div>
-						<p><span class="title"></span></p>
-					</div>
-				</div>
-				<div class="scroll-indicator">
-					<p><?php echo esc_html( $atts['scroll'] ) ?></p>
-					<div class="scroll-animator">↓</div>
-				</div>
-			</div>
-		</div>
-		<div class="fake-scroll"></div>
-	</div>
-
-	<?php
-	return (string) ob_get_clean();
-}
-add_shortcode( 'collage', 'wmf_collage_callback' );
-
-/**
  * Define a [symbol_grid] shortcode that renders a grid of images and text.
  *
  * @param array $atts Shortcode attributes array.
@@ -313,29 +190,33 @@ add_shortcode( 'recent_edits', 'wmf_recent_edits_callback' );
  */
 function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
+		'id' => 'timeline',
 		'title' => '',
-		'background_color' => 'white',
-		'label_left' => '',
-		'label_right' => '',
-		'id' => 'wp20-timeline'
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$padding = $atts['background_color'] === 'white' ? " timeline-white" : " timeline-grey";
-	$classes = "timeline mod-margin-bottom" . $padding;
+	$content = custom_filter_shortcode_text($content);
+	$classes = "timeline mod-margin-bottom " . $atts['class'];
+
+	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'timeline', "var timelineAtts = " . json_encode($atts) . ";");
 
 	ob_start();
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="<?php echo esc_attr($classes) ?>">
-		<div class="mw-980 wysiwyg">
-			<div class="milestones">
-				<div class="flex flex-medium flex-space-between">
-					<div class="w-25p label label-left"><?php echo esc_html( $atts['label_left'] ) ?></div>
-					<div class="w-25p label label-right"><?php echo esc_html( $atts['label_right'] ) ?></div>
+		<div class="mw-980 wysiwyg" style="position: relative;">
+			<h1><?php echo esc_html($atts['title']) ?></h1>
+			<div class="milestones-window">
+				<div class="milestones flex flex-all">
+					<?php echo wp_kses_post( $content ) ?>
 				</div>
-				<?php echo wp_kses_post( $content ) ?>
+			</div>
+			<div class="milestone-nav flex flex-all flex-space-between">
+				<div id="prev-milestone" class="prev hidden">←</div>
+				<div id="next-milestone" class="next">→</div>
 			</div>
 		</div>
 	</div>
@@ -346,107 +227,41 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 add_shortcode( 'timeline', 'wmf_timeline_callback' );
 
 /**
- * Define a [year] wrapper shortcode that renders one year for the timeline, see [timeline].
- * [culture] and [milestone] should be nested in this
+ * Define a [milestone] wrapper shortcode that renders one year for the timeline, see [timeline].
  *
  * @param array $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
  * @return string Rendered shortcode output.
  */
-function wmf_year_callback( $atts = [], $content = '' ) {
+function wmf_milestone_callback( $atts = [], $content = '' ) {
 	$defaults = [
-		'highlight' => '',
-		'big' => '',
+		'img' => '',
 	];
-	$atts = shortcode_atts( $defaults, $atts, 'year' );
+	$atts = shortcode_atts( $defaults, $atts, 'milestone' );
 	$content = do_shortcode( $content );
 	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$culture = strpos($content, "with-content") === false ? "" : " with-culture";
-	$highlight = $atts['highlight'] === '' ? " highlight" : " not-highlight";
-	$big = $atts['big'] === '' ? " big" : " not-big";
-	$classes = "year" . $highlight . $culture . $big;
+	$classes = "milestone";
+	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
+
+	if ( !empty($attachment) ) {
+		$img_id = $attachment->ID;
+		$image_url = wp_get_attachment_image_url($img_id, array(200, 200));
+	}
 
 	ob_start();
 	?>
 
 	<div class="<?php echo esc_attr($classes) ?>">
-		<?php echo wp_kses_post( $content ) ?>
+		<div class="milestone-container">
+			<img src="<?php if ( isset($image_url) ) echo $image_url; ?>">
+			<div class="milestone-desc"><?php echo wp_kses_post( $content ) ?></div>
+		</div>
 	</div>
 
 	<?php
 	return (string) ob_get_clean();
 }
-add_shortcode( 'year', 'wmf_year_callback' );
-
-/**
- * Define a [culture] wrapper shortcode that renders cultural context for one [year] for the timeline, see [timeline].
- *
- * @param array $atts Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
- * @return string Rendered shortcode output.
- */
-function wmf_year_culture_callback( $atts = [], $content = '' ) {
-	$defaults = [
-		'img1' => '',
-		'img2' => '',
-	];
-	$atts = shortcode_atts( $defaults, $atts, 'culture' );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$attachment1 = get_page_by_title($atts['img1'], OBJECT, 'attachment');
-	$attachment2 = get_page_by_title($atts['img2'], OBJECT, 'attachment');
-
-	if ( !empty($attachment1) ) {
-		$img_id1 = $attachment1->ID;
-		$image1 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id1, array(200, 200)) . ');"></span>';
-	}
-
-	if ( !empty($attachment2) ) {
-		$img_id2 = $attachment2->ID;
-		$image2 = '<span style="background-image: url(' . wp_get_attachment_image_url($img_id2, array(200, 200)) . ');"></span>';
-	}
-
-	ob_start();
-	?>
-
-	<div class="top-articles rounded <?php if (!empty($content)) echo " with-content" ?>">
-		<p><?php echo wp_kses_post( $content ) ?></p>
-		<div class="top-edited"><?php if ( isset($image1) ) echo $image1; ?></div>
-		<div class="top-viewed"><?php if ( isset($image2) ) echo $image2; ?></div>
-	</div>
-
-	<?php
-	return (string) ob_get_clean();
-}
-add_shortcode( 'culture', 'wmf_year_culture_callback' );
-
-/**
- * Define a [milestone] wrapper shortcode that renders the milestone for one [year] for the timeline, see [timeline].
- *
- * @param array $atts Shortcode attributes array.
- * @param string $content Content wrapped by shortcode.
- * @return string Rendered shortcode output.
- */
-function wmf_year_milestone_callback( $atts = [], $content = '' ) {
-	$defaults = [
-		'title' => '',
-		'year' => '',
-	];
-	$atts = shortcode_atts( $defaults, $atts, 'milestone' );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-
-	ob_start();
-	?>
-
-	<div class="year-label"><span class="p"><?php echo esc_html( $atts['year'] ) ?></span></div>
-	<div class="milestone">
-		<p class="milestone-heading"><strong><?php echo esc_html( $atts['title'] ) ?></strong></p>
-		<p><?php echo wp_kses_post( $content ) ?></p>
-	</div>
-
-	<?php
-	return (string) ob_get_clean();
-}
-add_shortcode( 'milestone', 'wmf_year_milestone_callback' );
+add_shortcode( 'milestone', 'wmf_milestone_callback' );
 
 /**
  * Define a [wmf_section] wrapper shortcode that creates a HTML wrapper with mw-980 class, optional margin class, optional columns.
@@ -471,7 +286,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$classes = "mw-980 wysiwyg section " . $margin;
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
-	$title = strlen($atts['title']) > 0 ? '<h1 class="wikipedia-h1">' . esc_html($atts['title']) . '</h1>' : '';
+	$title = strlen($atts['title']) > 0 ? '<h1>' . esc_html($atts['title']) . '</h1>' : '';
 	$confetti_opt = 'data-confetti-option="' . random_int(1, 10) . '"';
 
 	if ( !empty($attachment) ) {
@@ -566,7 +381,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 add_shortcode( 'movement', 'wmf_movement_callback' );
 
 /**
- * Define a [wmf_top_data] wrapper shortcode that renders wrapper for a wmf_top_data of milestones, see [year] shortcode.
+ * Define a [wmf_top_data] wrapper shortcode that renders wrapper.
  *
  * @param array $atts Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
@@ -787,3 +602,20 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 
 }
 add_shortcode( 'egg', 'egg_shortcode_callback' );
+
+/*
+ * Utility function to deal with the way 
+ * WordPress auto formats text in a shortcode.
+ */
+function custom_filter_shortcode_text($text = "") {
+	// Replace all the poorly formatted P tags that WP adds by default.
+	$tags = array("<p>", "</p>");
+	$text = str_replace($tags, "\n", $text);
+
+	// Remove any BR tags
+	$tags = array("<br>", "<br/>", "<br />");
+	$text = str_replace($tags, "", $text);
+
+	// Add back in the P and BR tags again, remove empty ones
+	return apply_filters("the_content", $text);
+}
