@@ -90,47 +90,49 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	.wp20-color-#{$i} {
 		border-color: #{nth($wp20_colors, $i)};
 	}
+	.wp20-fill-color-#{$i}:hover,
+	.wp20-fill-color-#{$i}.active {
+		fill: #{nth($wp20_colors, $i)};
+	}
 }
 
-.birthday-h1 {
-	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
-}
-
-.wikipedia-h1,
-.wikipedia-h2,
 .wp20 h1,
 .wp20 h2 {
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+	font-weight: normal;
 	line-height: 1.1;
-	margin-bottom: 1rem;
-}
-
-.section > div {
-	margin-bottom: 1rem;
-	margin-left: auto;
-	margin-right: auto;
-	@media (min-width: $medium-bp) {
-		margin-bottom: 0;
-	}
+	@include marginBottom(32, 40, $medium-bp);
 }
 
 .wp20 h2 {
 	@include font-size(32, 24);
+	@include marginBottom(16, 24, $medium-bp);
 }
 
+.section > div {
+	@include marginBottom(16, 0, $medium-bp);
+}
+
+
 .section .wp20.intro {
+	margin-left: auto;
+	margin-right: auto;
 	position: relative;
-	margin-bottom: 1rem;
-	@media (min-width: $medium-bp) {
-		margin-bottom: 2rem;
-	}
+	@include marginBottom(24, 32, $medium-bp);
 	p {
 		font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
-		font-size: 1.5rem;
+		@include font-size(24, 20)
+	}
+	h1:nth-of-type(1) {
+		margin-bottom: 1em;
+	}
+	h1:nth-of-type(2) {
+		margin-top: 1em;
 	}
 	h1:first-child:after {
 		content: "";
 		position: absolute;
+		top: auto;
 		width: 50vw;
 		height: 1em;
 		background-image: url("./assets/src/svg/wave.svg");
@@ -145,8 +147,9 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		transform: translate(80%, 20%);
 		@media (min-width: $medium-bp) {
 			width: 100vw;
-			transform: translate(-102%, -180%);
+			transform: translate(-102%, 40%);
 			background-position-y: 0;
+			top: 0;
 		}
 	}
 	.intro h1,
@@ -254,6 +257,12 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	    padding: 0;
 	    margin: auto;
 	}
+	.story-content-container > div {
+		display: none;
+	}
+	.story-content-container > div:first-child {
+		display: block;
+	}
     h2 {
     	margin-bottom: 0.5rem;
     }
@@ -287,11 +296,13 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
     .story-content .story-location {
     	margin-bottom: 0;
     }
-    .story-quote {
-    	margin-top: 1rem;
-    	blockquote {
-    		border-left: 0.25rem solid $wmui-color-base0;
-    		border-right: 0;
+    blockquote {
+    	margin: 1rem 0 0 0;
+		border-left: 0.25rem solid $wmui-color-base0;
+		border-right: 0;
+    	p {
+    		display: block;
+    		font-weight: normal;
     		padding-left: 1rem;
     		padding-right: 0;
     		span {
@@ -300,7 +311,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
     	}
     }
     @for $i from 1 to 12 {
-    	.story-content-container > div:nth-child(11n + #{$i - 1}) .story-quote blockquote {
+    	.story-content-container > div:nth-child(11n + #{$i - 1}) blockquote {
     		border-color: #{nth($wp20_colors, $i)};
     	}
     }
@@ -453,6 +464,9 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 }
 
 .timeline {
+	.timeline-container {
+		position: relative;
+	}
 	.milestones-window {
 		overflow: hidden;
 		margin: auto;
@@ -468,10 +482,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	.milestone {
 		display: inline-block;
 		transition: 0.5s all;
-		padding: 0;
-		@media (min-width: $medium-bp) {
-			padding: 2rem;
-		}
+		@include padding(0, 0, 32, 32);
 	}
 	img {
 		margin-bottom: 1rem;
@@ -485,11 +496,9 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		cursor: pointer;
 		font-size: 3rem;
 		user-select: none;
-		padding: 1rem 0;
-		margin-right: 1rem;
+		@include padding(16, 0, 16, 16);
 		transition: 1s all;
 		@media (min-width: $medium-bp) {
-			padding: 1rem;
 			position: absolute;
 		}
 	}
@@ -594,6 +603,12 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
     	max-width: 400px;
     	width: 20vw;
     	z-index: 1;
+    	p {
+    		margin-bottom: 0;
+    	}
+    	strong {
+    		display: block;
+    	}
     }
 }
 

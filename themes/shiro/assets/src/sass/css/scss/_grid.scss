@@ -124,6 +124,13 @@
 	&.flex-align-center {
 		align-items: center;
 	}
+
+	&.flex-column-reverse-small {
+		flex-direction: column-reverse;
+		@media (min-width: $medium-bp) {
+			flex-direction: row;
+		}
+	}
 }
 
 

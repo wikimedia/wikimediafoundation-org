@@ -32,10 +32,10 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 		<?php for ($i=0; $i < 20; $i++) { ?>
 			<div class="grid-item"><div></div><div></div></div>
 		<?php } ?>
-		<div class="<?php echo esc_attr($text1Class) ?>"><div></div><div class="wikipedia-h2 h2"><?php echo esc_html($texts[0]) ?></div></div>
-		<div class="<?php echo esc_attr($text2Class) ?>"><div></div><div class="wikipedia-h2 h2"><?php echo esc_html($texts[1]) ?></div></div>
-		<div class="<?php echo esc_attr($text3Class) ?>"><div></div><div class="wikipedia-h2 h2"><?php echo esc_html($texts[2]) ?></div></div>
-		<div class="<?php echo esc_attr($text4Class) ?>"><div></div><div class="wikipedia-h2 h2"><?php echo esc_html($texts[3]) ?></div></div>
+		<div class="<?php echo esc_attr($text1Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text2Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text3Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text4Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[3]) ?></h2></div></div>
 	</div>
 
 	<?php
@@ -57,7 +57,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'story_carousel' );
 	$content = do_shortcode( $content );
-	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'story_carousel', get_stylesheet_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'story_carousel', "var storiesAtts = " . json_encode($atts) . ";");
@@ -94,7 +94,6 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 		'since' => '',
 		'location' => '',
 		'img' => '',
-		'quote' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'story' );
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
@@ -125,11 +124,6 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 		<?php } ?>
 
 		<p class="story-desc p"><?php echo wp_kses_post( $content ) ?></p>
-		<?php if ( !empty($atts['quote'] ) ) { ?>
-			<div class="story-quote">
-				<blockquote class="p"><?php echo esc_html( $atts['quote'] ); ?><span>– <?php echo esc_html( $atts['name'] ); ?></span></blockquote>
-			</div>
-		<?php } ?>
 	</div>
 
 	<?php 
@@ -155,7 +149,7 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	$atts['lang_list'] = preg_split('/\|/', $atts['lang_list']);
 	$atts['lang_list_long'] = [];
 	$content = do_shortcode( $content );
-	$content = preg_replace( ['/\s*<br\s*\/?>\s*/', '/\s*<p\s*\/?>\s*/'], '', $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	for ($i=0; $i < count($atts['lang_list']); $i++) { 
 		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][$i] . '_wikipedia', strtoupper($atts['lang_list'][$i]) . ' Wikipedia' ) );
@@ -196,7 +190,6 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
 	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
 	$content = custom_filter_shortcode_text($content);
 	$classes = "timeline mod-margin-bottom " . $atts['class'];
 
@@ -207,8 +200,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="<?php echo esc_attr($classes) ?>">
-		<div class="mw-980 wysiwyg" style="position: relative;">
-			<h1><?php echo esc_html($atts['title']) ?></h1>
+		<div class="wysiwyg timeline-container">
 			<div class="milestones-window">
 				<div class="milestones flex flex-all">
 					<?php echo wp_kses_post( $content ) ?>
@@ -216,7 +208,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 			</div>
 			<div class="milestone-nav flex flex-all flex-space-between">
 				<div id="prev-milestone" class="prev hidden">←</div>
-				<div id="next-milestone" class="next">→</div>
+				<div id="next-milestone" class="next hidden">→</div>
 			</div>
 		</div>
 	</div>
@@ -239,7 +231,7 @@ function wmf_milestone_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'milestone' );
 	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$content = custom_filter_shortcode_text( $content );
 	$classes = "milestone";
 	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
 
@@ -281,6 +273,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
 	$content = do_shortcode( $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
 	$classes = "mw-980 wysiwyg section " . $margin;
@@ -295,21 +288,21 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	}
 
 	if ( $atts['columns'] === '1' ) {
-		$o = '<div id="' . $id . '" class="' . esc_attr($classes) . '" ' . $confetti_opt . '><div class="' . esc_attr($atts['class']) . '">' . $title . '<p>' . wp_kses_post( $content ) . '</p></div></div>';
+		$o = '<div id="' . $id . '" class="' . esc_attr($classes) . '" ' . $confetti_opt . '><div class="' . esc_attr($atts['class']) . '">' . $title . wp_kses_post( $content ) . '</div></div>';
 		return $o;
 	} else {
 		if ( isset($image) ) {
-			$col_1 = '<div class="w-48p">' . $title . '<p>' . wp_kses_post( $content ) . '</p></div>';
-			$col_2 = '<div class="w-48p">' . $image . '</div>';
+			$col_1 = '<div class="w-48p mod-margin-bottom_xs">' . $title . wp_kses_post( $content ) . '</div>';
+			$col_2 = '<div class="w-48p mod-margin-bottom_xs">' . $image . '</div>';
 		} else {
-			$col_1 = '<div class="w-48p">' . $title . '</div>';
-			$col_2 = '<div class="w-48p"><p>' . wp_kses_post( $content ) . '</p></div>';
+			$col_1 = '<div class="w-48p mod-margin-bottom_xs">' . $title . '</div>';
+			$col_2 = '<div class="w-48p mod-margin-bottom_xs">' . wp_kses_post( $content ) . '</div>';
 		}
 
 		if ( $atts['reverse'] === '0') {
 			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between ' . esc_attr($atts['class']) . '">' . $col_1 . $col_2 . '</div></div>';
 		} else {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between columns-wrapper columns-mobile-reverse ' . esc_attr($atts['class']) . '">' . $col_2 . $col_1 . '</div></div>';
+			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between flex-column-reverse-small ' . esc_attr($atts['class']) . '">' . $col_2 . $col_1 . '</div></div>';
 		}
 	}
 }
@@ -325,16 +318,12 @@ add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
 function wmf_movement_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
-		'projects' => 'Wikipedia|Wikibooks|Wiktionary|Wikiquote|Wikimedia Commons|Wikisource|Wikiversity|Wikispecies|Wikidata|MediaWiki|Wikivoyage|Wikinews|Meta-Wiki',
-		'colors' => '(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)|(51,102,204,1)',
-		'project_desc' => 'All the world\'s knowledge|E-book textbooks and annotated texts|A dictionary for over 170 languages|Find quotes across your favorite books, movies, authors and more|60 million images, photographs, videos and music files and counting|The free library|Access learning resources, projects and research at any level of study|The free species directory|The database of structured information collaboratively edited|The software platform that makes Wikipedia possible|The ultimate travel guide|The free news source|Project coordination software tool for global collaboration',
 		'id' => 'movement-content',
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'movement' );
 	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
-	$projects = preg_split('/\|/', $atts['projects']);
-	$colors = preg_split('/\|/', $atts['colors']);
+	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'movement', get_stylesheet_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'movement', "var movementAtts = " . json_encode($atts) . ";");
@@ -342,30 +331,29 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement mod-margin-bottom">
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
 		<div class="mw-980 wysiwyg">
 			<div class="w-68p">
-				<h1 class="wikipedia-h1"><?php echo esc_html( $atts['title'] ); ?></h1>
+				<h1><?php echo esc_html( $atts['title'] ); ?></h1>
 				<p><?php echo wp_kses_post( $content ); ?></p>
 			</div>
 		</div>
 		<div class="movement-vis">
-			<div class="tooltip hidden"></div>
 			<div class="main-vis">
 				<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 973 483"><path d="M268.859 102l7.671 13.288h-15.343L268.859 102z" fill="#72777D"/><path d="M12.859 221l7.671 13.288H5.187L12.859 221zM89.859 293l7.671 13.288H82.187L89.859 293z" fill="#A2A9B1"/><path d="M221.859 321l7.671 13.288h-15.343L221.859 321z" fill="#202122"/><path d="M179.859 227l7.671 13.288h-15.343L179.859 227zM823.324 347.86l7.672 13.288h-15.343l7.671-13.288z" fill="#C8CCD1"/><path d="M866.879 412.084l7.672 13.288h-15.344l7.672-13.288zM98.859 176l7.671 13.288H91.187L98.859 176z" fill="#A2A9B1"/><path d="M368.585 339.001l7.672 13.288h-15.343l7.671-13.288zM465.291 302.091l7.672 13.288H457.62l7.671-13.288z" fill="#72777D"/><path d="M393.685 126.396l7.671 13.288h-15.343l7.672-13.288zM309.528 245.987l7.672 13.288h-15.343l7.671-13.288z" fill="#A2A9B1"/><path d="M738.859 105l7.671 13.288h-15.343L738.859 105z" fill="#EAECF0"/><path d="M563.474 413.561l7.671 13.288h-15.343l7.672-13.288z" fill="#C8CCD1"/><path d="M483.008 395.844l7.672 13.288h-15.343l7.671-13.288z" fill="#A2A9B1"/><path d="M903.051 82.103l7.672 13.288H895.38l7.671-13.288z" fill="#72777D"/><path d="M877.952 157.401l7.672 13.288H870.28l7.672-13.288zM576.761 144.113h11.073v11.073h-11.073z" fill="#A2A9B1"/><path d="M958.811 247.335L952.906 237 947 247.335l5.906 10.335 5.905-10.335z" fill="#C8CCD1"/><path d="M650.811 383.335L644.906 373 639 383.335l5.906 10.335 5.905-10.335z" fill="#202122"/><path d="M688.811 185.335L682.906 175 677 185.335l5.906 10.335 5.905-10.335z" fill="#C8CCD1"/><path d="M27.811 130.335L21.906 120 16 130.335l5.906 10.335 5.905-10.335zM172.811 358.335L166.906 348 161 358.335l5.906 10.335 5.905-10.335z" fill="#202122"/><path d="M148.811 96.335L142.906 86 137 96.335l5.906 10.335 5.905-10.335z" fill="#72777D"/><path d="M470.811 154.335L464.906 144 459 154.335l5.906 10.335 5.905-10.335z" fill="#A2A9B1"/><circle cx="29.846" cy="334.846" r="1.846" fill="#72777D"/><circle cx="145.846" cy="283.846" r="1.846" fill="#A2A9B1"/><circle cx="667.192" cy="256.691" r="1.846" fill="#202122"/><circle cx="574.916" cy="375.543" r="1.846" fill="#EAECF0"/><circle cx="335.735" cy="171.796" r="1.846" fill="#202122"/><circle cx="746.181" cy="250.047" r="1.846" fill="#72777D"/><circle cx="848.055" cy="206.492" r="1.846" fill="#72777D"/><circle cx="370.431" cy="372.59" r="1.846" fill="#A2A9B1"/><circle cx="755.04" cy="213.136" r="1.846" fill="#C8CCD1"/><circle cx="326.876" cy="207.969" r="1.846" fill="#72777D"/><circle cx="288.489" cy="290.648" r="1.846" fill="#C8CCD1"/><circle cx="433.179" cy="303.936" r="1.846" fill="#C8CCD1"/><circle cx="396.268" cy="346.014" r="1.846" fill="#202122"/><circle cx="301.039" cy="151.865" r="1.846" fill="#A2A9B1"/><circle cx="777.924" cy="421.312" r="1.846" fill="#202122"/><circle cx="555.722" cy="348.967" r="1.846" fill="#72777D"/><circle cx="942.546" cy="300.245" r="1.846" fill="#EAECF0"/><circle cx="69.846" cy="108.846" r="1.846" fill="#202122"/><circle cx="73.846" cy="256.846" r="1.846" fill="#72777D"/><circle cx="752.825" cy="480.369" r="1.846" fill="#EAECF0"/><circle cx="190.846" cy="260.846" r="1.846" fill="#C8CCD1"/><circle cx="846.578" cy="413.192" r="1.846" fill="#72777D"/><circle cx="944.022" cy="133.409" r="1.846" fill="#C8CCD1"/><circle cx="722.558" cy="324.606" r="1.846" fill="#202122"/><circle cx="315.803" cy="391.784" r="1.846" fill="#72777D"/><circle cx="434.656" cy="427.956" r="1.846" fill="#C8CCD1"/><circle cx="1.846" cy="202.846" r="1.846" fill="#72777D"/><circle cx="761.684" cy="320.915" r="1.846" fill="#202122"/><circle cx="724.035" cy="180.655" r="1.846" fill="#202122"/><circle cx="356.405" cy="265.549" r="1.846" fill="#EAECF0"/><circle cx="892.347" cy="224.209" r="1.846" fill="#EAECF0"/><circle cx="109.846" cy="348.846" r="1.846" fill="#EAECF0"/><circle cx="666.846" cy="134.846" r="1.846" fill="#C8CCD1"/><circle cx="226.846" cy="384.846" r="1.846" fill="#EAECF0"/><circle cx="910.064" cy="387.354" r="1.846" fill="#C8CCD1"/><circle cx="828.861" cy="446.411" r="1.846" fill="#C8CCD1"/><circle cx="866.51" cy="479.631" r="1.846" fill="#EAECF0"/><circle cx="968.383" cy="299.507" r="1.846" fill="#C8CCD1"/><circle cx="539.482" cy="464.128" r="1.846" fill="#EAECF0"/><circle cx="91.846" cy="143.846" r="1.846" fill="#EAECF0"/><circle cx="765.375" cy="287.696" r="1.846" fill="#A2A9B1"/><circle cx="228.846" cy="202.846" r="1.846" fill="#202122"/><circle cx="791.212" cy="370.375" r="1.846" fill="#72777D"/><circle cx="797.856" cy="221.256" r="1.846" fill="#72777D"/><circle cx="890.871" cy="51.468" r="1.846" fill="#202122"/><circle cx="684.846" cy="432.846" r="1.846" fill="#202122"/><circle cx="166.846" cy="171.846" r="1.846" fill="#C8CCD1"/><circle cx="625.853" cy="311.318" r="1.846" fill="#202122"/><circle cx="569.748" cy="226.424" r="1.846" fill="#202122"/><circle cx="786.846" cy="126.846" r="1.846" fill="#C8CCD1"/><circle cx="970.598" cy="2.746" r="1.846" fill="#72777D"/><circle cx="844.363" cy="120.121" r="1.846" fill="#EAECF0"/><circle cx="281.846" cy="338.632" r="1.846" fill="#A2A9B1"/><circle cx="938.855" cy="229.377" r="1.846" fill="#72777D"/><circle cx="614.846" cy="460.846" r="1.846" fill="#202122"/><circle cx="970.598" cy="462.652" r="1.846" fill="#EAECF0"/><circle cx="484.116" cy="206.492" r="1.846" fill="#C8CCD1"/><circle cx="627.329" cy="207.969" r="1.846" fill="#A2A9B1"/><circle cx="522.503" cy="272.931" r="1.846" fill="#72777D"/><circle cx="431.703" cy="247.832" r="1.846" fill="#72777D"/><path d="M809.593 77.138c3.739-.53 6.605-3.727 6.605-7.586 0-2.358-1.064-4.45-2.733-5.864l-3.872 3.86v9.59zm-2.172 0v-9.59l-3.871-3.874a7.632 7.632 0 00-2.733 5.863c0 3.874 2.866 7.071 6.604 7.601zm7.772-14.26a9.347 9.347 0 012.763 6.659c0 2.504-.99 4.89-2.763 6.659a9.402 9.402 0 01-6.678 2.755 9.44 9.44 0 01-6.679-2.755 9.371 9.371 0 01-2.777-6.66c0-2.518.989-4.89 2.763-6.658.147-.147.31-.295.472-.442l-2.157-2.15c-.162.146-.31.294-.473.441a12.216 12.216 0 00-2.674 3.963 12.367 12.367 0 00-.99 4.847c0 1.68.325 3.314.99 4.847a12.693 12.693 0 002.674 3.963 12.255 12.255 0 003.975 2.666c1.537.648 3.177.987 4.861.987 1.684 0 3.324-.324 4.861-.987a12.74 12.74 0 003.975-2.666 12.217 12.217 0 002.674-3.963c.65-1.532.99-3.168.99-4.847 0-1.68-.325-3.315-.99-4.847a12.692 12.692 0 00-2.674-3.963c-.148-.147-.311-.294-.473-.442l-2.143 2.151c.163.133.311.28.473.442zM808.5 57a3.892 3.892 0 013.901 3.89c0 2.15-1.744 3.888-3.901 3.888a3.892 3.892 0 01-3.901-3.889c0-2.15 1.744-3.889 3.901-3.889z" fill="#000"/>
-					<circle id="project1" data-title="<?php echo esc_attr( $projects[0] ) ?>" data-color="rgba<?php echo esc_attr( $colors[0] ) ?>" class="project-circle" cx="506.096" cy="198.9" r="11" fill="#000"/>
-					<circle id="project2" data-title="<?php echo esc_attr( $projects[1] ) ?>" data-color="rgba<?php echo esc_attr( $colors[1] ) ?>" class="project-circle" cx="464.922" cy="356.349" r="11" fill="#000"/>
-					<circle id="project3" data-title="<?php echo esc_attr( $projects[2] ) ?>" data-color="rgba<?php echo esc_attr( $colors[2] ) ?>" class="project-circle" cx="386.228" cy="278.228" r="11" fill="#000"/>
-					<circle id="project4" data-title="<?php echo esc_attr( $projects[3] ) ?>" data-color="rgba<?php echo esc_attr( $colors[3] ) ?>" class="project-circle" cx="555.722" cy="268.502" r="11" fill="#000"/>
-					<circle id="project5" data-title="<?php echo esc_attr( $projects[4] ) ?>" data-color="rgba<?php echo esc_attr( $colors[4] ) ?>" class="project-circle" cx="822.217" cy="241.188" r="11" fill="#000"/>
-					<circle id="project6" data-title="<?php echo esc_attr( $projects[5] ) ?>" data-color="rgba<?php echo esc_attr( $colors[5] ) ?>" class="project-circle" cx="202.228" cy="159.228" r="11" fill="#000"/>
-					<circle id="project7" data-title="<?php echo esc_attr( $projects[6] ) ?>" data-color="rgba<?php echo esc_attr( $colors[6] ) ?>" class="project-circle" cx="859.866" cy="306.151" r="11" fill="#000"/>
-					<circle id="project8" data-title="<?php echo esc_attr( $projects[7] ) ?>" data-color="rgba<?php echo esc_attr( $colors[7] ) ?>" class="project-circle" cx="680.228" cy="307.228" r="11" fill="#000"/>
-					<circle id="project9" data-title="<?php echo esc_attr( $projects[8] ) ?>" data-color="rgba<?php echo esc_attr( $colors[8] ) ?>" class="project-circle" cx="750.578" cy="372.226" r="11" fill="#000"/>
-					<circle id="project10" data-title="<?php echo esc_attr( $projects[9] ) ?>" data-color="rgba<?php echo esc_attr( $colors[9] ) ?>" class="project-circle" cx="410.295" cy="200.587" r="11" fill="#000"/>
-					<circle id="project11" data-title="<?php echo esc_attr( $projects[10] ) ?>" data-color="rgba<?php echo esc_attr( $colors[10] ) ?>" class="project-circle" cx="636.228" cy="237.228" r="11" fill="#000"/>
-					<circle id="project12" data-title="<?php echo esc_attr( $projects[11] ) ?>" data-color="rgba<?php echo esc_attr( $colors[11] ) ?>" class="project-circle" cx="938.786" cy="345.276" r="11" fill="#000"/>
-					<circle id="project13" data-title="<?php echo esc_attr( $projects[12] ) ?>" data-color="rgba<?php echo esc_attr( $colors[12] ) ?>" class="project-circle" cx="260.228" cy="254.228" r="11" fill="#000"/>
+					<circle id="project1" class="project-circle wp20-fill-color-11" cx="506.096" cy="198.9" r="11" fill="#000"/>
+					<circle id="project2" class="project-circle wp20-fill-color-1" cx="464.922" cy="356.349" r="11" fill="#000"/>
+					<circle id="project3" class="project-circle wp20-fill-color-2" cx="386.228" cy="278.228" r="11" fill="#000"/>
+					<circle id="project4" class="project-circle wp20-fill-color-3" cx="555.722" cy="268.502" r="11" fill="#000"/>
+					<circle id="project5" class="project-circle wp20-fill-color-4" cx="822.217" cy="241.188" r="11" fill="#000"/>
+					<circle id="project6" class="project-circle wp20-fill-color-5" cx="202.228" cy="159.228" r="11" fill="#000"/>
+					<circle id="project7" class="project-circle wp20-fill-color-6" cx="859.866" cy="306.151" r="11" fill="#000"/>
+					<circle id="project8" class="project-circle wp20-fill-color-7" cx="680.228" cy="307.228" r="11" fill="#000"/>
+					<circle id="project9" class="project-circle wp20-fill-color-8" cx="750.578" cy="372.226" r="11" fill="#000"/>
+					<circle id="project10" class="project-circle wp20-fill-color-9" cx="410.295" cy="200.587" r="11" fill="#000"/>
+					<circle id="project11" class="project-circle wp20-fill-color-10" cx="636.228" cy="237.228" r="11" fill="#000"/>
+					<circle id="project12" class="project-circle wp20-fill-color-11" cx="938.786" cy="345.276" r="11" fill="#000"/>
+					<circle id="project13" class="project-circle wp20-fill-color-1" cx="260.228" cy="254.228" r="11" fill="#000"/>
 				</svg>
 			</div>
 			<div class="side-vis">
@@ -380,6 +368,29 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 }
 add_shortcode( 'movement', 'wmf_movement_callback' );
 
+
+/**
+ * Define a [movement_tooltip] shortcode that wraps all tooltips.
+ *
+ * @param array $atts Shortcode attributes array.
+ * @param string $content Content wrapped by shortcode.
+ * @return string Rendered shortcode output.
+ */
+function wmf_movement_tooltip_callback( $atts = [], $content = '' ) {
+	$content = custom_filter_shortcode_text( $content );
+	ob_start();
+	?>
+
+	<div class="tooltip hidden">
+		<?php echo wp_kses_post( $content ) ?>
+	</div>
+
+	<?php
+	return (string) ob_get_clean();
+}
+add_shortcode( 'movement_tooltip', 'wmf_movement_tooltip_callback' );
+
+
 /**
  * Define a [wmf_top_data] wrapper shortcode that renders wrapper.
  *
@@ -393,12 +404,13 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		'path_views' => '/assets/src/foundation-assets/wikipedia20/data/wp20pageviews.csv',
 		'lang' => 'en',
 		'id' => 'top-data',
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
 	$atts['url_edits'] = get_stylesheet_directory_uri() . $atts['path_edits'];
 	$atts['url_views'] = get_stylesheet_directory_uri() . $atts['path_views'];
 	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$content = custom_filter_shortcode_text( $content );
 	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro' ) );
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
@@ -408,10 +420,10 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="top-data mw-980 mod-margin-bottom">
+	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="top-data mw-980 mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
 		<div>
 			<div class="mod-margin-bottom_xs wysiwyg">
-				<p><?php echo wp_kses_post( $content ) ?></p>
+				<?php echo wp_kses_post( $content ) ?>
 			</div>
 			<div class="mod-margin-bottom_xs data-options">
 				<p>
@@ -557,7 +569,7 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wp20_easter_eggs' );
 	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'wp20_easter_eggs', get_stylesheet_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . json_encode($atts) . ";");
@@ -588,7 +600,7 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'egg' );
 	$content = do_shortcode( $content );
-	$content = preg_replace( '/\s*<br\s*\/?>\s*/', '', $content );
+	$content = custom_filter_shortcode_text( $content );
 	
 	ob_start();
 	?>
