@@ -301,6 +301,7 @@ require get_template_directory() . '/inc/shortcodes/columns.php';
 require get_template_directory() . '/inc/shortcodes/facts.php';
 require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
 require get_template_directory() . '/inc/shortcodes/wp20.php';
+require get_template_directory() . '/inc/shortcodes/autotweets.php';
 
 /**
  * Stories page template customizations.
