@@ -303,6 +303,7 @@ require get_template_directory() . '/inc/shortcodes/simple-bar-graph.php';
 require get_template_directory() . '/inc/shortcodes/wp20.php';
 require get_template_directory() . '/inc/shortcodes/autotweets.php';
 require get_template_directory() . '/inc/shortcodes/quotes-section.php';
+require get_template_directory() . '/inc/shortcodes/focus-blocks.php';
 
 /**
  * Stories page template customizations.

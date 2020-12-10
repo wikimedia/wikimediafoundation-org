@@ -999,3 +999,10 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		transform: scale(0);
 	}
 }
+
+// overrides standard style of module/object
+.wp20.focus-block {
+	.bg-img-container .bg-img::after {
+		content: none;
+	}
+}
