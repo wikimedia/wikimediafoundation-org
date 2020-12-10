@@ -554,7 +554,8 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
 
 /**
- * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js.
+ * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js 
+ * which searches for <strong class="easter-egg"> in .section and .movement.
  *
  * @param array  $atts    Shortcode attributes array.
  * @param string $content Content wrapped by shortcode.
@@ -563,9 +564,7 @@ add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
 function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
-		'search' => 'Wikipedia',
-		'index_list' => '4|5|6|9|10|11|12|14|19|21|22|23|25|26|27|29|31|32|33',
-		'highlight_index' => '7|27',
+		'target_search' => '.section strong.easter-egg, .movement strong.easter-egg',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wp20_easter_eggs' );
 	$content = do_shortcode( $content );

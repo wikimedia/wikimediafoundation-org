@@ -1,18 +1,15 @@
+/* eslint-disable */
 /* eslint-disable no-magic-numbers, one-var*/
 
 jQuery(document).ready(function($) {
 
 	'use strict';
 
-	var atts = eggsAtts, // eslint-disable-line no-undef
-		targetWord = atts['search'],
-		containers = '.top-articles p, .milestone p, .movement p, .section p',
-		targets = containers.replaceAll(" p", " p > span") + ', .top-articles p > strong > span, .milestone p > strong > span',
-		eggContent = $(".easter-egg-container"),
-		hiIndexArr = atts['highlight_index'].split("|").map(function(d){ return parseInt(d, 10) - 1; }), // -1, input e.g. 1, true i = 0
-		indexArr = atts['index_list'].split("|").map(function(d){ return parseInt(d, 10) - 1; }), // see above
-		pattern = new RegExp('(' + targetWord + ')([\\s’])', 'ig'), // target whole words globally and case insensitive
-		replaceWith = '<span>$1</span>$2'; // wrap in the tag
+	var shortAtts = eggsAtts,
+		targets = $(shortAtts['target_search']),
+		targetCount = targets.length,
+		hiIndexArr = [1, targetCount - 1],
+		eggContent = $(".easter-egg-container");
 
 	function showEggContent(target, index) {
 		var t = $(target),
@@ -45,10 +42,10 @@ jQuery(document).ready(function($) {
 
 	function useTargets(sel1) {
 		var highlight = sel1.filter(function(i) { return hiIndexArr.indexOf(i) > -1; }),
-			notHighlight = sel1.filter(function(i) { return indexArr.indexOf(i) > -1; });
-		highlight.addClass("easter-egg egg-highlight");
+			notHighlight = sel1.filter(function(i) { return hiIndexArr.indexOf(i) === -1; });
+		highlight.addClass("active egg-highlight");
 		highlight.mouseover(function(ep) {
-			notHighlight.addClass("easter-egg");
+			notHighlight.addClass("active");
 			highlight.off("mouseover");
 			var easterEggs = $(".easter-egg");
 			showEggContent(ep.target, easterEggs.index(this));
@@ -64,12 +61,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 
-	$(containers).each(function(){
-		if ($(this).text().indexOf(targetWord) > -1) {
-			$(this).html($(this).html().replace(pattern,replaceWith));
-		}
-	});
-	useTargets($(targets));
+	useTargets(targets);
 
 });
 

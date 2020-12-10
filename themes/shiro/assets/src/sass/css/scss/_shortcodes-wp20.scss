@@ -9,9 +9,6 @@
 		> a {
 			font-size: inherit;
 		}
-		&:last-of-type {
-			margin-bottom: 0;
-		}
 	}
 	span.p {
 		margin-bottom: 0;
@@ -743,21 +740,26 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 }
 
 .easter-egg {
-	cursor: pointer;
-	position: relative;
-	padding-bottom: 0.5em;
-	background-image: url("./assets/src/svg/wave.svg");
-	background-repeat: repeat-x;
-	background-size: 0.6em 0.75em; 
-	background-position-x: 0;
-	background-position-y: 100%;
-	animation: move 8s linear infinite;
-	animation-play-state: paused;
-	text-decoration: none;
-	background-color: rgba(255, 255, 255, 0);
-	pointer-events: none; 
-	@media (min-width: $small-bp) {
-		pointer-events: auto;
+	font-weight: normal;
+	font-style: normal;
+	&.active {
+		cursor: pointer;
+		position: relative;
+		padding-bottom: 0.5em;
+		background-image: url("./assets/src/svg/wave.svg");
+		background-repeat: repeat-x;
+		background-size: 0.6em 0.75em; 
+		background-position-x: 0;
+		background-position-y: 100%;
+		animation: move 8s linear infinite;
+		animation-play-state: paused;
+		animation-direction: alternate;
+		text-decoration: none;
+		background-color: rgba(255, 255, 255, 0);
+		pointer-events: none; 
+		@media (min-width: $small-bp) {
+			pointer-events: auto;
+		}
 	}
 	&.egg-highlight:before,
 	&.egg-highlight:after {
