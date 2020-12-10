@@ -78,10 +78,11 @@
 }
 
 // auto tweet shortcode, based on Fact module objects/facts
-.auto-tweet-container {
+// quotes section with 2 or 3 quotes has same structure
+.auto-tweet-container, .quotes-section-container {
     position: relative;
 
-    .auto-tweet-inner {
+    .auto-tweet-inner, .quotes-section-inner {
         position: relative;
         z-index: 999;
         padding: rem(20);
@@ -105,7 +106,12 @@
         }
     }
 
-    .auto-tweet {
+    .quotes-section-inner  {
+        background-color: #fff;
+        border: 1px solid $wmui-color-base70;
+    }
+
+    .auto-tweet, .quotes-section {
         color: $wmui-color-base0;
         font-weight: normal;
 

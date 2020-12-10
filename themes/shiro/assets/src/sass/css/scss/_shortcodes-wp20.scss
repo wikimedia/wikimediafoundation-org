@@ -85,7 +85,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 
 @for $i from 1 to 12 {
 	.wp20-color-#{$i} {
-		border-color: #{nth($wp20_colors, $i)};
+		border-color: #{nth($wp20_colors, $i)} !important;
 	}
 	.wp20-fill-color-#{$i}:hover,
 	.wp20-fill-color-#{$i}.active {
