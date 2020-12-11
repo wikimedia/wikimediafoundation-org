@@ -63,7 +63,8 @@ jQuery(document).ready(function($) {
 			langs = filterD.map(function(d) { return d[wiki]; }),
 			unit = o === "views" ? "views" : "edits",
 			unit2 = o === "views" ? "pageviews" : "edits",
-			daily = o === "views" ? "daily_views" : "daily_edits";
+			daily = o === "views" ? "daily_views" : "daily_edits",
+			creditsList = [];
 		// console.log(filterD, o);
 		credits.find(".article-photo-credits").text("");
 		credits.hide();
@@ -75,7 +76,7 @@ jQuery(document).ready(function($) {
 			nodata.hide();
 			langContainer.hide();
 			if ( langs.indexOf(id) > -1 ) {
-				var desc = content["desc_" + atts.lang.replaceAll("wiki", "")].replaceAll('"', ""),
+				var desc = content["desc_" + atts['lang'].replaceAll("wiki", "")].replaceAll('"', ""),
 					heading = content.pagetitle.replaceAll("_", " "),
 					filename = content.file_name.replace("File:", ""),
 					imgurl = atts['directory'] + filename.replace(".svg", ".png").replace(".JPG", ".jpg"),
@@ -97,16 +98,19 @@ jQuery(document).ready(function($) {
 						.removeClass("article-image-fallback")
 						.css("background-image", 'url("' + imgurl + '")');
 					langContainer.find(".article-image-link").attr("href", content.image_page);
-					creditInfo += content.artist.length > 0 ? ", " + content.artist : "";
-					creditInfo += content.license.length > 0 ? ", " + content.license : "";
-					credits.find(".article-photo-credits")
-						.append($("<div></div>")
-							.append($("<a>")
-								.text(filename)
-								.attr("href", content.image_page))
-							.append($("<span></span>")
-								.text(creditInfo))
-						);
+					if (creditsList.indexOf(filename) === -1) {
+						creditsList.push(filename);
+						creditInfo += content.artist.length > 0 ? ", " + content.artist : "";
+						creditInfo += content.license.length > 0 ? ", " + content.license : "";
+						credits.find(".article-photo-credits")
+							.append($("<div></div>")
+								.append($("<a>")
+									.text(filename)
+									.attr("href", content.image_page))
+								.append($("<span></span>")
+									.text(creditInfo))
+							);
+					}
 				} else {
 					langContainer.find(".article-image-link > div").unwrap();
 					langContainer.find(".article-image")
@@ -141,14 +145,14 @@ jQuery(document).ready(function($) {
 
 	function getData(type) {
 		if (type === "edits") {
-			d3.csv(atts.url_edits, function(d) {
+			d3.csv(atts['url_edits'], function(d) {
 				return d;
 			}).then(function(res) {
 				data.edits = res;
 				evalOption();
 			});
 		} else {
-			d3.csv(atts.url_views, function(d) {
+			d3.csv(atts['url_views'], function(d) {
 				return d;
 			}).then(function(res) {
 				data.views = res;
