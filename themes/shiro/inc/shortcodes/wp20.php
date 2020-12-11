@@ -245,7 +245,7 @@ function wmf_milestone_callback( $atts = [], $content = '' ) {
 
 	<div class="<?php echo esc_attr($classes) ?>">
 		<div class="milestone-container">
-			<img src="<?php if ( isset($image_url) ) echo $image_url; ?>">
+			<img src="<?php if ( isset($image_url) ) echo esc_url( $image_url ); ?>">
 			<div class="milestone-desc"><?php echo wp_kses_post( $content ) ?></div>
 		</div>
 	</div>
