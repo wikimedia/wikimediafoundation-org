@@ -11,12 +11,11 @@ jQuery(document).ready(function($) {
 		nodata = container.find(".no-data"),
 		contents = $(".top-data-content"),
 		credits = $(".article-photo-credits-container"),
-		color, line, svg,
+		line, svg,
 		data = {"edits": [], "views": []};
 
 	function drawChart(daily, id) {
 		var width = 300,
-			w = width/daily.length,
 			height = 40,
 			h = 6,
 			y, x;
@@ -26,13 +25,10 @@ jQuery(document).ready(function($) {
 		x = d3.scaleLinear()
 			.domain([0, daily.length])
 			.range([0, width]);
-		color = d3.scaleLinear()
-			.domain([0, d3.max(daily, function(d) {return d;})]).nice()
-			.range(["#f8f9fa", "#202122"]);
 
 		line = d3.line()
 			.defined(function(d) { return !isNaN(d);})
-			.curve(d3.curveCardinal.tension(0.5))
+			.curve(d3.curveBasis)
 			.x(function(d, i) { return x(i);})
 			.y(function(d) { return y(d);});
 
@@ -40,26 +36,26 @@ jQuery(document).ready(function($) {
 			.append("svg")
 			.attr("viewBox", [0, 0, width, height + h]);
 
+		svg
+			.append("g")
+			.attr("class", "bg-line-graph")
+			.append("line")
+			.style("stroke", "#c8ccd1")
+			.attr("x1", 0)
+			.attr("x2", width)
+			.attr("y1", height)
+			.attr("y2", height);
+
 		svg.append("g")
+			.attr("class", "line-graph")
 			.append("path")
 			.datum(daily)
 			.attr("fill", "none")
 			.attr("stroke", "#72777D")
-			.attr("stroke-width", 1)
+			.attr("stroke-width", 1.5)
 			.attr("stroke-linejoin", "round")
 			.attr("stroke-linecap", "round")
 			.attr("d", line);
-
-		svg
-			.append("g")
-			.selectAll("rect")
-			.data(daily)
-			.join("rect")
-			.attr("width", w)
-			.attr("height", h)
-			.style("fill", function (d) { return color(d);})
-			.attr("x", function(d, i) { return i * w;})
-			.attr("y", height);
 	}
 
 	function populateData(filterD, o) {
@@ -67,8 +63,9 @@ jQuery(document).ready(function($) {
 			langs = filterD.map(function(d) { return d[wiki]; }),
 			unit = o === "views" ? "views" : "edits",
 			unit2 = o === "views" ? "pageviews" : "edits",
-			daily = o === "views" ? "daily_views" : "daily_edits";
-		console.log(filterD, o);
+			daily = o === "views" ? "daily_views" : "daily_edits",
+			creditsList = [];
+		// console.log(filterD, o);
 		credits.find(".article-photo-credits").text("");
 		credits.hide();
 		contents.each(function() {
@@ -79,38 +76,41 @@ jQuery(document).ready(function($) {
 			nodata.hide();
 			langContainer.hide();
 			if ( langs.indexOf(id) > -1 ) {
-				var desc = content["desc_" + atts.lang.replaceAll("wiki", "")].replaceAll('"', ""),
+				var desc = content["desc_" + atts['lang'].replaceAll("wiki", "")].replaceAll('"', ""),
 					heading = content.pagetitle.replaceAll("_", " "),
-					imgurl = content.image_file,
+					filename = content.file_name.replace("File:", ""),
+					imgurl = atts['directory'] + filename.replace(".svg", ".png").replace(".JPG", ".jpg"),
 					total = d3.format(",")(content[unit2]),
 					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
 					graphid = "#" + id + "-graph";
 				$(graphid).empty();
 				drawChart(dailyData, graphid);
 				langContainer.find(".heading").text(heading);
-				langContainer.find(".desc")
-					.text(desc + " ")
-					.append($("<a></a>")
+				langContainer.find(".desc").text(desc);
+				if (content[wiki].replace("wiki", "").length === 2) {
+					langContainer.find(".details")
 						.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
-						.attr("target", "_blank")
-						.text(fetchWikiname(content[wiki]))
-					);
+						.attr("target", "_blank");
+				}
 				langContainer.find(".data span").text(total + " " + unit);
-				if (imgurl.length > 0) {
+				if (filename.length > 0 && imgurl.length > 0) {
 					langContainer.find(".article-image")
 						.removeClass("article-image-fallback")
-						.css("background-image", "url(" + imgurl + ")");
+						.css("background-image", 'url("' + imgurl + '")');
 					langContainer.find(".article-image-link").attr("href", content.image_page);
-					creditInfo += content.artist.length > 0 ? ", " + content.artist : "";
-					creditInfo += content.license.length > 0 ? ", " + content.license : "";
-					credits.find(".article-photo-credits")
-						.append($("<div></div>")
-							.append($("<a>")
-								.text(content.file_name.replace("File:", ""))
-								.attr("href", content.image_page))
-							.append($("<span></span>")
-								.text(creditInfo))
-						);
+					if (creditsList.indexOf(filename) === -1) {
+						creditsList.push(filename);
+						creditInfo += content.artist.length > 0 ? ", " + content.artist : "";
+						creditInfo += content.license.length > 0 ? ", " + content.license : "";
+						credits.find(".article-photo-credits")
+							.append($("<div></div>")
+								.append($("<a>")
+									.text(filename)
+									.attr("href", content.image_page))
+								.append($("<span></span>")
+									.text(creditInfo))
+							);
+					}
 				} else {
 					langContainer.find(".article-image-link > div").unwrap();
 					langContainer.find(".article-image")
@@ -123,36 +123,6 @@ jQuery(document).ready(function($) {
 				nodata.show();
 			}
 		});
-	}
-
-	function fetchWikiname(shortname) {
-		var str = "";
-		switch (shortname) {
-		case "enwiki":
-			str = "English Wikipedia";
-			break;
-		case "arwiki":
-			str = "Arabic Wikipedia";
-			break;
-		case "dewiki":
-			str = "German Wikipedia";
-			break;
-		case "eswiki":
-			str = "Spanish Wikipedia";
-			break;
-		case "frwiki":
-			str = "French Wikipedia";
-			break;
-		case "ruwiki":
-			str = "Russian Wikipedia";
-			break;
-		case "zhwiki":
-			str = "Chinese Wikipedia";
-			break;
-		default:
-			str = "Wikipedia";
-		}
-		return str;
 	}
 
 	function evalOption() {
@@ -175,14 +145,14 @@ jQuery(document).ready(function($) {
 
 	function getData(type) {
 		if (type === "edits") {
-			d3.csv(atts.url_edits, function(d) {
+			d3.csv(atts['url_edits'], function(d) {
 				return d;
 			}).then(function(res) {
 				data.edits = res;
 				evalOption();
 			});
 		} else {
-			d3.csv(atts.url_views, function(d) {
+			d3.csv(atts['url_views'], function(d) {
 				return d;
 			}).then(function(res) {
 				data.views = res;

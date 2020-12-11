@@ -9,506 +9,500 @@
 		> a {
 			font-size: inherit;
 		}
-		&:last-of-type {
-			margin-bottom: 0;
-		}
 	}
 	span.p {
 		margin-bottom: 0;
 	}
 }
 
+// WP20 variables
+$symbols: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_FIREWORKS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiSource.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiQuote.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_puzzleglobe2.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PACHAMAMA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_CAMERA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_CAKE1.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BRAILLE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WWW.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKINEWS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKIVOYAGE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_W.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PENANDPAPER.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__WIKIDATA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_OWL_OF_ATHENA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_twenty_v1.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiVoyge.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_KUEBIKO.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MediaWiki.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKI_INCUBATOR.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__HumanFigure2.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiSpecies.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Wikiversity.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__WikiBooks.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__twenty_v2.png";
 
-.collage {
-    width: 100vw;
-    overflow: hidden;
-    .collage-content {
-        position: fixed;
-        height: 90%;
-    }
-    .stop-1 {
-        stop-color: #ffffff;
-        stop-opacity: 0;
-    }
-    .stop-0 {
-        stop-color: #ffffff;
-    }
-    .filled {
-        fill: url(#mainGradient);
-    }
-    .fake-scroll {
-        min-height: 100vh;
-    }
-    svg {
+$symbols_alt: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BASKETBALL.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKTIONARY.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MUSIC_PARTY.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SMILE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_heart.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_mail.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKICOMMONS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_environment.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SERPENT.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIFI.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SPRAYCAN.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Mokorotlo.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_THUNDERBIRD.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_ESC.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20symbols_Ghyama.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Adinkra_Brave.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_EQUAL.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MosqueDome.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BigBen.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_HumanFigure3.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_IBIS_OF_THOTH.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PAINTING_EASLE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_KINTSUGI.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_HAMSA.png";
+
+$random_delay: 5,1,10,4,23,19,3,13,8,21,14,6,22,9,20,16,12,2,7,18,15,11,17,24;
+
+$wp20_color_1: #049DFF;
+$wp20_color_2: #DC0816;
+$wp20_color_3: #0154D5;
+$wp20_color_4: #EE8019;
+$wp20_color_5: #028B3F;
+$wp20_color_6: #F0BC00;
+$wp20_color_7: #E679A6;
+$wp20_color_8: #E9E7C4;
+$wp20_color_9: #8401D5;
+$wp20_color_10: #5EB34F;
+$wp20_color_11: #FD6363;
+$wp20_color_12: #222222;
+$wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_5,$wp20_color_6,$wp20_color_7,$wp20_color_8,$wp20_color_9,$wp20_color_10,$wp20_color_11;
+
+@for $i from 1 to 12 {
+	.wp20-color-#{$i} {
+		border-color: #{nth($wp20_colors, $i)} !important;
+	}
+	.wp20-fill-color-#{$i}:hover,
+	.wp20-fill-color-#{$i}.active {
+		fill: #{nth($wp20_colors, $i)};
+	}
+}
+
+.wp20 h1,
+.wp20 h2 {
+	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+	font-weight: normal;
+	line-height: 1.1;
+	@include marginBottom(32, 40, $medium-bp);
+}
+
+.wp20 h2 {
+	@include font-size(32, 24);
+	@include marginBottom(16, 24, $medium-bp);
+}
+
+.section > div {
+	@include marginBottom(16, 0, $medium-bp);
+}
+
+
+.section .wp20.intro {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	@include marginBottom(24, 32, $medium-bp);
+	p {
+		font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+		@include font-size(24, 20)
+	}
+	h1:nth-of-type(1) {
+		margin-bottom: 1em;
+	}
+	h1:nth-of-type(2) {
+		margin-top: 1em;
+	}
+	h1:first-child:after {
+		content: "";
+		position: absolute;
+		top: auto;
+		width: 50vw;
+		height: 1em;
+		background-image: url("./assets/src/svg/wave.svg");
+		background-repeat: repeat-x;
+		background-size: 0.7em 0.4em;
+		background-position-x: 102%;
+		background-position-y: 50%;
+		animation: move 8s linear infinite;
+		animation-play-state: paused;
+		animation-direction: alternate;
+		display: block;
+		transform: translate(80%, 20%);
+		@media (min-width: $medium-bp) {
+			width: 100vw;
+			transform: translate(-102%, 40%);
+			background-position-y: 0;
+			top: 0;
+		}
+	}
+	.intro h1,
+	> div {
+		overflow: hidden;
+		@media (min-width: $medium-bp) {
+			overflow: visible;
+		}
+	}
+	&:after,
+	&:before {
+		content: "";
+		width: 0.35rem;
+		height: 0.35rem;
+		border-radius: 50%;
+		background-color: $wp20_color_1;
+		position: absolute;
+		display: block;
+		top: 1rem;
+		right: -0.5rem;
+		left: auto;
+		z-index: -1;
+		@media (min-width: $medium-bp) {
+			right: -2rem;
+		}
+	}
+
+	&:before {
+		width: 0.45rem;
+		height: 0.45rem;
+		top: -3rem;
+		right: 3rem;
+		left: auto;
+	}
+}
+
+.section:hover .wp20.intro h1:after {
+	animation-play-state: running;
+}
+
+@for $i from 1 to 11 {
+	.section[data-confetti-option="#{$i}"] {
+		.intro:after {
+			background-color: #{nth($wp20_colors, $i)};
+		}
+		.intro:before {
+			background-color: #{nth($wp20_colors, $i + 1)};
+		}
+	}
+}
+
+.recent-edits {
+	font-style: normal;
+	transition: $transition;
+	display: none;
+	> div {
+		border: 3px solid $wp20_color_1;
+		border-radius: 5px;
+		padding: 3rem 1rem;
+		text-align: center;
+		background-color: $wmui-color-base90;
+	}
+    .label {
         position: relative;
-        z-index: 1000;
+        font-style: italic;
     }
-    .ornament {
-    	stroke: $wmui-color-base0;
+    .accent {
+    	width: 2rem;
+		left: 0px;
+		right: 0px;
+		position: relative;
+		margin: auto;
+		transform: translateY(-0.5rem);
     }
-    .intro {
-        width: 60%;
-        height: 50vh;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 5rem;
-        left: 0;
-        right: 0;
-        max-width: 500px;
-        text-align: center;
-        z-index: 2000;
-        .intro-text {
-            height: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-	        > p, > h1, > h2, > h3 {
-	            background-color: rgba(255, 255, 255, 0.6);
-	            box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.8);
-	            border-radius: 2rem;
-	        }
-        }
-    }
-    #intro-3 {
-    	z-index: 0;
-    }
-    #intro-4 {
-    	font-style: italic;
-    }
-    .intro h1 {
-        font-size: 2.5rem;
+}
+
+.story-carousel-container {
+	padding-top: 2rem;
+	background-size: 180%;
+	background-repeat: no-repeat;
+	background-position: top center;
+	@media (min-width: $medium-bp) {
+		background-size: 100% auto;
+	}
+}
+
+.story-carousel {
+    position: relative;
+    background-color: #ffffff;
+    padding: 0;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid $wmui-color-base0;
+    border-radius: 5px;
+    .story-content-container {
+        padding: 1rem 1rem 0 1rem;
         @media (min-width: $medium-bp) {
-            font-size: 4.5rem;
+        	padding: 2rem 2rem 0 2rem;
         }
     }
-    .intro h2 {
-    	font-size: 2rem;
-        @media (min-width: $medium-bp) {
-            font-size: 3.5rem;
-        }
+	@media (min-width: $medium-bp) {
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    padding: 0;
+	    margin: auto;
+	}
+	.story-content-container > div {
+		display: none;
+	}
+	.story-content-container > div:first-child {
+		display: block;
+	}
+    h2 {
+    	margin-bottom: 0.5rem;
     }
-    .intro p {
-    	position: relative;
-	    .ornament {
-	    	position: absolute;
-			top: -1.75rem;
-			right: -2.75rem;
-			height: 4rem;
-			width: 4rem;
-			transform: scale(0.6);
-	    }
+    .story-icon {
+    	height: 1em;
+		margin-top: 0.25em;
+		margin-right: 0.5em;
     }
-    .scroll-indicator, .scroll-animator {
-    	font-style: normal;
-        text-shadow: 0px 0px 5px #ffffff;
-        left: 0;
-        right: 0;
-        margin: auto;
+    .story-image {
+        float: right;
+        width: 20vw;
+        height: 20vw;
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center center;
+        border: 3px solid $wp20_color_1;
+		@media (min-width: $medium-bp) {
+			border-width: 0.25rem;
+		}
     }
-    .scroll-animator {
-        font-size: 2rem;
-        animation: scroll 4s infinite ease-in-out;
-        animation-delay: 3s;
+    @for $i from 1 to 12 {
+    	.story-content-container > div:nth-child(11n + #{$i}) .story-image {
+    		border-color: #{nth($wp20_colors, $i)};
+    	}
     }
-    .scroll-indicator {
-        position: fixed;
-        bottom: 5vh;
-        p {
-        	display: inline-block;
-	        opacity: 0;	
-	        animation: blink 4s infinite ease-in-out;
-	        animation-delay: 3s;
-        }
+    .story-location, .story-since {
+    	flex-wrap: nowrap;
     }
-    svg {
-        circle {
-            fill: $wmui-color-base0;
-        }
-        line {
-            stroke: $wmui-color-base30;
-            stroke-width: 1;
-        }
-        text {
-            font-size: 0.625rem;
-            color: $wmui-color-base50;
-        }
+    .story-content .story-location {
+    	margin-bottom: 0;
     }
-    .recent-edits {
-    	font-style: normal;
-        span {
-            display: inline-block;
-            padding: 0.125rem 0.25rem;
-        }
-        p, .p {
-            margin-bottom: 0.125rem;
-        }
-        .label {
-            position: relative;
-        }
-        .accent {
-        	width: 2rem;
-			left: 0px;
-			right: 0px;
-			position: relative;
-			margin: auto;
-			z-index: 3000;
-			transform: scaleX(1);
-			transition: 2s transform linear;
-        }
-        .accent.animate {
-        	transform: scaleX(2);
-        }
+    blockquote {
+    	margin: 1rem 0 0 0;
+		border-left: 0.25rem solid $wmui-color-base0;
+		border-right: 0;
+    	p {
+    		display: block;
+    		font-weight: normal;
+    		padding-left: 1rem;
+    		padding-right: 0;
+    		span {
+    			display: block;
+    		}
+    	}
     }
-    .story-blob, .close {
-        cursor: pointer;
+    @for $i from 1 to 12 {
+    	.story-content-container > div:nth-child(11n + #{$i - 1}) blockquote {
+    		border-color: #{nth($wp20_colors, $i)};
+    	}
     }
-    .story-overlay {
+    .story-nav {
+        bottom: 0;
         width: 100%;
-        position: fixed;
-        background-color: #ffffff;
-        border: 0px;
-        padding: 0;
-        height: calc(100vh - 67px);
-        top: 67px; // navigation on mobile
-        z-index: 9000; // above all
-        .story-content-container {
-	        overflow-y: auto;
-	        height: calc(100% - 3rem);
-	        padding: 2rem;
-	        // space for scrolling
-	        &:after {
-	            content: "";
-	            display: block;
-	            height: 4rem;
-	            width: 100%;
-	            @media (min-width: $medium-bp) {
-	            	height: 3rem;
-	            }
-	        }
-        }
-        h2 {
-        	margin-bottom: 0.5rem;
-        }
-        .story-icon {
-        	height: 1em;
-			margin-top: 0.25em;
-			margin-right: 0.5em;
-        }
-        .story-image {
-            float: right;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center center;
-        }
-        .story-location, .story-since {
-        	flex-wrap: nowrap;
-        }
-        .story-location {
-        	margin-bottom: 0;
-        }
-        .story-quote {
-        	margin-top: 1rem;
-        	blockquote {
-        		border-left: 0.25rem solid $wmui-color-base0;
-        		border-right: 0;
-        		padding-left: 1rem;
-        		padding-right: 0;
-        		span {
-        			display: block;
-        		}
-        	}
-        }
-        @media (min-width: $medium-bp) {
-            width: 600px;
-            min-height: 0;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            height: 60vh;
-            max-height: 500px;
-            padding: 0;
-            margin: auto;
-            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
-            border: 1px solid $wmui-color-base0;
-            .story-image {
-	            width: 200px;
-	            height: 200px;
-            }
-	        &:after,
-	        &:before {
-	        	content: "";
-				display: block;
-				position: absolute;
-				left: 1rem;
-				right: 1rem;
-	        }
-	        &:before {	
-				background: linear-gradient( #ffffff, transparent);
-				height: 2rem;
-				top: 0;
-	        }
-	        &:after {
-				background: linear-gradient( transparent, #ffffff);
-				height: 2rem;
-				bottom: 3rem; // height of the story-nav
-	        }
-        }
-        .close {
-            text-decoration: underline;
-            color: $wmui-color-base30;
-            position: absolute;
-            display: inline-block;
-            padding: 0.5rem;
-            top: 0.5rem;
-            right: 0.5rem;
-            left: auto;
-            z-index: 3000;
-            width: 2.25rem;
-            img {
-            	width: 100%;
-            }
-        }
-        .story-nav {
-	        position: fixed;
-	        z-index: 3000;
-	        bottom: 0;
-	        right: 0;
-	        width: 100%;
-	        height: 3rem;
-	        padding: 0 1rem;
-	        background-color: #ffffff;
-	        align-items: center;
-	        font-size: 1rem;
-	        flex-direction: row #{"/*rtl:row-reverse*/"};
-	        border-top: 1px solid $wmui-color-base80;
-	        @media (min-width: $medium-bp){
-	        	position: relative;
-	        	border-top: 0;
-	        }
-	        .next-story, .prev-story {
-	        	cursor: pointer;
-	        	user-select: none;
-	        	font-size: 1.75rem;
-	        	padding: 0.2rem 0.5rem;
-	        }
+        height: 4rem;
+        padding: 1rem 1rem 0;
+        margin-bottom: 5px;
+        background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 40%);
+        align-items: center;
+        font-size: 1rem;
+        flex-direction: row #{"/*rtl:row-reverse*/"};
+    	position: sticky;
+        z-index: 0;
+        .next-story, .prev-story {
+        	cursor: pointer;
+        	user-select: none;
+        	font-size: 1.75rem;
+        	padding: 0.2rem 0.5rem;
         }
     }
 }
 
-.timeline {
-    position: relative;
-    font-size: 1rem;
-    .milestones {
-        margin-bottom: 1rem;
-    }
-    .label {
-    	color: $wmui-color-base0;
-    	position: relative;
-    	font-size: 1.25rem;
-    	line-height: 1.5;
-    	margin-bottom: 1rem;
-		font-family: Linux Libertine, Charis SIL, serif;
-		@media (min-width: $medium-bp) {
-			margin-bottom: 3rem;
+.symbols-grid {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.wikipedia-h2.h2 {
+		@include font-size(24, 20);
+	}
+	.grid-item,
+	.grid-item > div {
+		width: 32vw;
+		height: 24vw;
+		margin-bottom: 2vw;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		@media (min-width: $medium-bp){
+			width: 16vw;
+			height: 12vw;
+			margin-bottom: 1vw;
 		}
-    	&.label-right {
-    		text-align: right;
-    		&:after {
-    			right: 0;
-    			left: auto;
-    		}	
-    	}
-    	&:after {
-    		content: "↓";
-    		position: absolute;
-    		bottom: -1.5rem;
-    		left: 0;
-    		right: auto;
-    	}
-    }
-    .year:last-of-type .year-label{
-		padding-bottom: 2rem;
-		&:after {
-			content: "";
-			position: absolute;
-			bottom: 0rem;
-			left: 0;
-			right: 0;
-			width: 1rem;
-			height: 1rem;
-			border-bottom: 0.1rem solid $wmui-color-base30 #{"/*rtl:ignore*/"};
-			border-left: 0.1rem solid $wmui-color-base30 #{"/*rtl:ignore*/"};
-			border-right: 0 #{"/*rtl:ignore*/"};
-			border-top: 0 #{"/*rtl:ignore*/"};
-			transform: translate(0.3rem, 0.6rem) rotate(-45deg) #{"/*rtl:ignore*/"};
-			box-sizing: border-box;
-			margin: auto;
-			transform-origin: -0.5rem 0.5rem;
+		@media (min-width: $large-bp){
+			width: 12.5vw;
+			height: 9.375vw;
+			margin-bottom: 1vw;
+		}
+		transition: opacity 0.1s;
+	}
+	.grid-item {
+		position: relative;
+	}
+	.grid-item > div {
+		position: absolute;
+	}
+	.grid-item > div:nth-child(2) {
+		opacity: 0;
+	}
+	@for $i from 1 to length($symbols) {
+		.grid-item:nth-child(#{$i}) {
+			opacity: 0;
+			animation: fadeIn 0.1s;
+			animation-delay: #{nth($random_delay, $i) * 0.2}s;
+			animation-fill-mode: both;
+		}
+		.grid-item:nth-child(#{$i}) > div {
+			animation: fadeInWait #{length($symbols)*0.5}s infinite;
+			animation-delay: #{nth($random_delay, $i) - 1}s;
+			animation-fill-mode: both;
+			animation-timing-function: linear;
+			animation-play-state: running;	
+		}
+		.grid-item:nth-child(#{$i}):hover > div {
+			animation: none;
+		}
+		.grid-item:nth-child(#{$i}) > div:nth-child(1) {
+			background-image: url(#{nth($symbols_alt, $i)});
+			animation-direction: alternate;
+		}
+		.grid-item:nth-child(#{$i}) > div:nth-child(2) {
+			background-image: url(#{nth($symbols, $i)});
+			animation-direction: alternate-reverse;
+		}
+		.grid-item:nth-child(#{$i}) {
+			order: $i*10;
 		}
 	}
-    .year {
-        display: flex;
-        justify-content: center;
-        flex-direction: row-reverse;
-        .top-articles {
-            width: auto;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            @media (min-width: $medium-bp) {
-                width: 40%;
-                flex-direction: row;
-                justify-content: end;
-                flex-grow: 1;
-                padding: 1rem;
-	            &.with-content {
-	            	background: $wmui-color-base90;
-	            	border: 1px solid $wmui-color-base70;
-	            	position: relative;
-	            	&:after {
-						content: "";
-						left: -3rem;
-						top: -0.5rem;
-						bottom: 0;
-						right: auto;
-						margin: auto;
-						position: absolute;
-						border-bottom: 1px dashed $wmui-color-base70;
-						width: 3rem;
-						height: 1rem;
-	            	}
-	            	&:before {
-	            		content: "";
-						left: -3.275rem;
-						top: 0.5rem;
-						bottom: 0;
-						right: auto;
-						margin: auto;
-						position: absolute;
-						width: 0.5rem;
-						height: 0.5rem;
-						background-image: url("./assets/src/svg/circle.svg");
-						background-repeat: no-repeat;
-						background-position: 0% 150%;
-						background-size: contain;
-						z-index: 1;
-	            	}
-	            }
-            }
-            p {
-            	font-size: 0.9375rem;
-                display: none;
-                @media (min-width: $medium-bp) {
-                    display: block;
-                }
-            }
-        }
-        .top-articles,
-        .milestone-heading {
-            margin-top: 1.75rem;
-            margin-bottom: 0;
-            @media (min-width: $medium-bp) {
-                margin-top: 2rem;
-            }
-        }
-        .top-viewed,
-        .top-edited {
-            width: 48px;
-            @media (min-width: $medium-bp) {
-            	width: auto;
-                margin-left: rem(5);
-            }
-        }
-        .top-viewed span,
-        .top-edited span {
-            display: inline-block;
-            width: 48px;
-            height: 48px;
-            border-radius: 2px;
-            background-position: center center;
-            background-size: cover;
-            @media (min-width: $medium-bp) {
-                width: 64px;
-                height: 64px;
-            }
-            @media (min-width: $large-bp) {
-                width: 80px;
-                height: 80px;
-            }
-        }
-        .year-label {
-            color: $wmui-color-base30;
-            margin-right: 0.5rem;
-            margin-left: 0.5rem;
-            padding-bottom: 0.5rem; 
-            text-align: center;
-            position: relative;
-            width: 2.5em;
-            @media (min-width: $medium-bp) {
-            	width: 4em;
-                margin-right: 1rem;
-                margin-left: 1rem;
-            }
-            &.big {
-            	font-size: 1.5rem;
-            }
-            &:before {
-                content: "";
-                height: 100%;
-                width: 1px;
-                position: absolute;
-                background: $wmui-color-base30;
-                top: 0;
-                left: 0;
-                right: 0;
-                margin: auto;
-           }
-           span {
-                position: relative;
-                z-index: 10;
-                display: inline-block;
-           }
-        }
-        .milestone {
-            width: 40%;
-            max-width: 500px;
-            flex-grow: 1;
-        }
-        div {
-            display: inline-block;
-        }
-        &.highlight {
-            .year-label {
-                color: $wmui-color-base0;
-                font-weight: 700;
-            }
-        }
-        &.not-highlight {
-        	.milestone, .top-articles {
-        		color: $wmui-color-base30;
-        	}
-        }
-    }
-    &.timeline-grey {
-	    padding-top: 4rem;
-	    padding-bottom: 4rem;
-	    background-color: $wmui-color-base90;
-	    .year-label span {
-	    	background-color: $wmui-color-base90;
-	    }
-    }
-    &.timeline-white {
-    	background-color: #ffffff;
-    	.year-label span {
-    		background-color: #ffffff;
-    	}
-    }
+	.grid-item:hover {
+		> div:nth-child(1) {
+			opacity: 0;
+		}
+		> div:nth-child(2) {
+			opacity: 1;
+		}
+	}
+	.grid-item.grid-text > div:nth-child(2) {
+		background-image: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	.grid-item.grid-text.grid-text-1 {
+		order: 15;
+		animation-delay: 3s;
+	}
+	.grid-item.grid-text.grid-text-2 {
+		order: 65;
+		animation-delay: 3.6s;
+	}
+	.grid-item.grid-text.grid-text-3 {
+		order: 115;
+		animation-delay: 4.2s;
+	}
+	.grid-item.grid-text.grid-text-4 {
+		order: 165;
+		animation-delay: 4.8s;
+	}
+	@media (min-width: $medium-bp) {
+		.grid-item.grid-text.grid-text-1 {
+			order: 15;
+		}
+		.grid-item.grid-text.grid-text-2 {
+			order: 75;
+		}
+		.grid-item.grid-text.grid-text-3 {
+			order: 145;
+		}
+		.grid-item.grid-text.grid-text-4 {
+			order: 185;
+		}	
+	}
+	@media (min-width: $large-bp) {
+		.grid-item.grid-text.grid-text-1 {
+			order: 15;
+		}
+		.grid-item.grid-text.grid-text-2 {
+			order: 95;
+		}
+		.grid-item.grid-text.grid-text-3 {
+			order: 105;
+		}
+		.grid-item.grid-text.grid-text-4 {
+			order: 195;
+		}	
+	}
+}
+
+.timeline {
+	.timeline-container {
+		position: relative;
+	}
+	.milestones-window {
+		overflow: hidden;
+		margin: auto;
+		width: 100%;
+		@media (min-width: $medium-bp) {
+			width: 600px;
+		}
+	}
+	.milestones {
+		width: 100%;
+		transition: 1s all;
+	}
+	.milestone {
+		display: inline-block;
+		transition: 0.5s all;
+		@include padding(0, 0, 32, 32);
+	}
+	img {
+		margin-bottom: 1rem;
+	}
+	.next, .prev {
+		position: relative;
+		display: inline-block;
+		right: auto;
+		top: 50%;
+		left: 0;
+		cursor: pointer;
+		font-size: 3rem;
+		user-select: none;
+		@include padding(16, 0, 16, 16);
+		transition: 1s all;
+		@media (min-width: $medium-bp) {
+			position: absolute;
+		}
+	}
+	.next {
+		right: 0;
+		left: auto;
+	}
 }
 
 .movement {
@@ -606,6 +600,12 @@
     	max-width: 400px;
     	width: 20vw;
     	z-index: 1;
+    	p {
+    		margin-bottom: 0;
+    	}
+    	strong {
+    		display: block;
+    	}
     }
 }
 
@@ -614,6 +614,9 @@
 		span.p {
 			color: $wmui-color-base30;
 			padding: 0 0.75rem;
+		}
+		span {
+			white-space: nowrap;
 		}
 		select {
 			display: inline-block;
@@ -643,11 +646,20 @@
 	}
 	.top-data-content {
 		padding: 0.5rem;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		margin-left: -0.5rem;
 		transition: $transition;
 		&:hover {
 			background-color: $wmui-color-base90;
+		}
+		.total {
+			display: block;
+			margin-top: 0.5rem;
+			margin-bottom: 1rem;
+		}
+		@media (min-width: $medium-bp) {
+			margin-top: 0;
+			margin-bottom: 1rem;
 		}
 	}
 	.article-image {
@@ -728,21 +740,26 @@
 }
 
 .easter-egg {
-	cursor: pointer;
-	position: relative;
-	padding-bottom: 0.5em;
-	background-image: url("./assets/src/svg/wave.svg");
-	background-repeat: repeat-x;
-	background-size: 0.6em 0.75em; 
-	background-position-x: 0;
-	background-position-y: 100%;
-	animation: move 8s linear infinite;
-	animation-play-state: paused;
-	text-decoration: none;
-	background-color: transparent;
-	pointer-events: none; 
-	@media (min-width: $small-bp) {
-		pointer-events: auto;
+	font-weight: normal;
+	font-style: normal;
+	&.active {
+		cursor: pointer;
+		position: relative;
+		padding-bottom: 0.5em;
+		background-image: url("./assets/src/svg/wave.svg");
+		background-repeat: repeat-x;
+		background-size: 0.6em 0.75em; 
+		background-position-x: 0;
+		background-position-y: 100%;
+		animation: move 8s linear infinite;
+		animation-play-state: paused;
+		animation-direction: alternate;
+		text-decoration: none;
+		background-color: rgba(255, 255, 255, 0);
+		pointer-events: none; 
+		@media (min-width: $small-bp) {
+			pointer-events: auto;
+		}
 	}
 	&.egg-highlight:before,
 	&.egg-highlight:after {
@@ -805,13 +822,6 @@
     transition-duration: 0s, 0.15s;
 }
 
-.wikipedia-h1,
-.wikipedia-h2 {
-	font-family: Linux Libertine, Charis SIL, serif;
-	line-height: 1.1;
-	margin-bottom: 1rem;
-}
-
 .pulse {
 	fill: #ffffff;
 	fill-opacity: 0;
@@ -824,21 +834,29 @@
 	animation-iteration-count: infinite;
 }
 
-.section > div {
-	margin-bottom: 1rem;
-	@media (min-width: $medium-bp) {
-		margin-bottom: none;
-	}
-}
-
-.collage,
-.movement,
-.section,
-.easter-egg-container {
+.page-template-page-freeform .freeform-content {
 	// because of shortcodes empty p tags occur
 	p:empty {
 		display: none;
     }
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInWait {
+	0%, 49% {
+		opacity: 0;
+	}
+	51%, 100% {
+		opacity: 1;
+	}
 }
 
 @keyframes scroll {
@@ -979,5 +997,12 @@
 		left: 90% #{"/*rtl:ignore*/"};
 		top: 40% #{"/*rtl:ignore*/"};
 		transform: scale(0);
+	}
+}
+
+// overrides standard style of module/object
+.wp20.focus-block {
+	.bg-img-container .bg-img::after {
+		content: none;
 	}
 }
