@@ -407,6 +407,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
+	$atts['directory'] = get_stylesheet_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
 	$atts['url_edits'] = get_stylesheet_directory_uri() . $atts['path_edits'];
 	$atts['url_views'] = get_stylesheet_directory_uri() . $atts['path_views'];
 	$content = do_shortcode( $content );

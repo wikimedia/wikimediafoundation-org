@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
 			unit = o === "views" ? "views" : "edits",
 			unit2 = o === "views" ? "pageviews" : "edits",
 			daily = o === "views" ? "daily_views" : "daily_edits";
-		console.log(filterD, o);
+		// console.log(filterD, o);
 		credits.find(".article-photo-credits").text("");
 		credits.hide();
 		contents.each(function() {
@@ -77,8 +77,8 @@ jQuery(document).ready(function($) {
 			if ( langs.indexOf(id) > -1 ) {
 				var desc = content["desc_" + atts.lang.replaceAll("wiki", "")].replaceAll('"', ""),
 					heading = content.pagetitle.replaceAll("_", " "),
-					imgurl = content.image_file,
 					filename = content.file_name.replace("File:", ""),
+					imgurl = atts['directory'] + filename.replace(".svg", ".png").replace(".JPG", ".jpg"),
 					total = d3.format(",")(content[unit2]),
 					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
 					graphid = "#" + id + "-graph";
@@ -86,14 +86,16 @@ jQuery(document).ready(function($) {
 				drawChart(dailyData, graphid);
 				langContainer.find(".heading").text(heading);
 				langContainer.find(".desc").text(desc);
-				langContainer.find(".details")
-					.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
-					.attr("target", "_blank");
+				if (content[wiki].replace("wiki", "").length === 2) {
+					langContainer.find(".details")
+						.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
+						.attr("target", "_blank");
+				}
 				langContainer.find(".data span").text(total + " " + unit);
 				if (filename.length > 0 && imgurl.length > 0) {
 					langContainer.find(".article-image")
 						.removeClass("article-image-fallback")
-						.css("background-image", "url(" + imgurl + ")");
+						.css("background-image", 'url("' + imgurl + '")');
 					langContainer.find(".article-image-link").attr("href", content.image_page);
 					creditInfo += content.artist.length > 0 ? ", " + content.artist : "";
 					creditInfo += content.license.length > 0 ? ", " + content.license : "";
