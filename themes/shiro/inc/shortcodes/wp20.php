@@ -60,7 +60,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'story_carousel', get_stylesheet_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'story_carousel', "var storiesAtts = " . json_encode($atts) . ";");
+	wp_add_inline_script( 'story_carousel', "var storiesAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
 	?>
@@ -96,12 +96,8 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 		'img' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'story' );
-	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
-
-	if ( !empty($attachment) ) {
-		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id, array(400, 400));
-	}
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
+	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 400, 400 ) ) : null;
 
 	ob_start();
 	?>
@@ -156,7 +152,7 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	}
 
 	wp_enqueue_script( 'recent_edits', get_stylesheet_directory_uri() . '/assets/dist/shortcode-recent-edits.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'recent_edits', "var recentEditsAtts = " . json_encode($atts) . ";");
+	wp_add_inline_script( 'recent_edits', "var recentEditsAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
 	?>
@@ -194,7 +190,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$classes = "timeline mod-margin-bottom " . $atts['class'];
 
 	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'timeline', "var timelineAtts = " . json_encode($atts) . ";");
+	wp_add_inline_script( 'timeline', "var timelineAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
 	?>
@@ -233,12 +229,8 @@ function wmf_milestone_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 	$classes = "milestone";
-	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
-
-	if ( !empty($attachment) ) {
-		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id, array(200, 200));
-	}
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
+	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 200, 200 ) ) : null;
 
 	ob_start();
 	?>
@@ -278,14 +270,10 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
 	$classes = "mw-980 wysiwyg section " . $margin;
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
-	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
+	$image = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
 	$title = strlen($atts['title']) > 0 ? '<h1>' . esc_html($atts['title']) . '</h1>' : '';
 	$confetti_opt = 'data-confetti-option="' . random_int(1, 10) . '"';
-
-	if ( !empty($attachment) ) {
-		$img_id = $attachment->ID;
-		$image = wp_get_attachment_image($img_id, array(600, 400));
-	}
 
 	if ( $atts['columns'] === '1' ) {
 		$o = '<div id="' . $id . '" class="' . esc_attr($classes) . '" ' . $confetti_opt . '><div class="' . esc_attr($atts['class']) . '">' . $title . wp_kses_post( $content ) . '</div></div>';
@@ -326,7 +314,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'movement', get_stylesheet_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'movement', "var movementAtts = " . json_encode($atts) . ";");
+	wp_add_inline_script( 'movement', "var movementAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
 	?>
@@ -416,7 +404,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'top-data', "var topAtts = " . json_encode($atts) . ";");
+	wp_add_inline_script( 'top-data', "var topAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
 	?>
@@ -572,7 +560,7 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	wp_enqueue_script( 'wp20_easter_eggs', get_stylesheet_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . json_encode($atts) . ";");
+	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . wp_json_encode($atts) . ";");
 	
 	ob_start();
 	?>
@@ -630,4 +618,20 @@ function custom_filter_shortcode_text($text = "") {
 
 	// Add back in the P and BR tags again, remove empty ones
 	return apply_filters("the_content", $text);
+}
+
+/**
+ * Utility function to get the attachment url based on attachment title
+ */
+function custom_get_attachment_id_by_slug( $slug ) {
+	$args = array(
+		'post_type' => 'attachment',
+		'name' => sanitize_title($slug),
+		'posts_per_page' => 1,
+		'post_status' => 'inherit',
+	);
+	$_header = get_posts( $args );
+	$header = $_header ? array_pop($_header) : null;
+	$id = $header ? $header->ID : null;
+	return $id;
 }
