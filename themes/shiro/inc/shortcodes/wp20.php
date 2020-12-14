@@ -629,6 +629,7 @@ function custom_get_attachment_id_by_slug( $slug ) {
 		'name' => sanitize_title($slug),
 		'posts_per_page' => 1,
 		'post_status' => 'inherit',
+		'suppress_filters' => false,
 	);
 	$_header = get_posts( $args );
 	$header = $_header ? array_pop($_header) : null;
