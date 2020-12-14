@@ -509,6 +509,93 @@ class General extends Base {
 			)
 		);
 
+		// Wikipedia 20 support.
+		$section_id = 'wmf_general_wikipedia20_modal';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Wikipedia 20 content', 'shiro' ),
+				'priority' => 80,
+				'panel'    => $panel_id,
+			)
+		);
+
+		$control_id = 'en_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'English Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited English Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'ar_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Arabic Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited Arabic Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'es_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Spanish Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited Spanish Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'de_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'German Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited German Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'fr_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'French Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited French Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'ru_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Russian Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited Russian Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'zh_wikipedia';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Chinese Wikipedia', 'shiro' ),
+				'description' => __( 'Used e.g. to say "One human just edited Chinese Wikipedia."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 	}
 
 }

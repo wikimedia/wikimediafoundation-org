@@ -76,3 +76,48 @@
         }
     }
 }
+
+// auto tweet shortcode, based on Fact module objects/facts
+// quotes section with 2 or 3 quotes has same structure
+.auto-tweet-container, .quotes-section-container {
+    position: relative;
+
+    .auto-tweet-inner, .quotes-section-inner {
+        position: relative;
+        z-index: 999;
+        padding: rem(20);
+        display: flex;
+        flex-direction: column;
+        background: $color-periwinkle;
+
+        .inline-social-list {
+            font-weight: bold;
+
+            svg, img {
+                height: rem(20);
+                margin: 0;
+            }
+        }
+
+        .social-share {
+            margin-top: auto;
+            width: 100%;
+            align-self: flex-end;
+        }
+    }
+
+    .quotes-section-inner  {
+        background-color: #fff;
+        border: 1px solid $wmui-color-base70;
+    }
+
+    .auto-tweet, .quotes-section {
+        color: $wmui-color-base0;
+        font-weight: normal;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+}
