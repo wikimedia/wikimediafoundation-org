@@ -11,6 +11,7 @@ jQuery(document).ready(function($) {
 		langListLong = shortAtts['lang_list_long'],
 		label = shortAtts['label'],
 		rEditLabel = container.find(".label"),
+		rEditWiki = container.find(".wiki"),
 		rEditTitle = container.find(".title"),
 		accent = container.find(".accent"),
 		apilimit = 5,
@@ -90,12 +91,13 @@ jQuery(document).ready(function($) {
 
 	function startEditAnim() {
 		if (rEdits.length > 0) {
-			rEditLabel.text(label + " " + rEdits[rEditAnimationI].wiki);
+			rEditLabel.text(label);
+			rEditWiki.text(rEdits[rEditAnimationI].wiki);
 			rEditTitle.text(rEdits[rEditAnimationI].title);
 			container.show();
-			accent.css("border-width", "1px");
-			accent.css("border-style", "solid");
-			accent.attr("class", "accent wp20-color-" + (rEditAnimationI % 11 + 1));
+			accent.css("transform", "rotate(" + (Math.random() * 10 + 30) + "deg) scale(" + (Math.random() * (1 - 0.8) + 0.8) + ")");
+			accent.find("svg path").css("stroke", rEditWiki.css("border-bottom-color"));
+			rEditWiki.attr("class", "wiki wp20-underline-color-" + (rEditAnimationI % 10 + 1));
 			setTimeout(function(){
 				rEditAnimationI++;
 				if (rEditAnimationI < rEdits.length) {

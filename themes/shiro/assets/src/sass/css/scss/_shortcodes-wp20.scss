@@ -69,17 +69,17 @@ $symbols_alt: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbol
 
 $random_delay: 5,1,10,4,23,19,3,13,8,21,14,6,22,9,20,16,12,2,7,18,15,11,17,24;
 
-$wp20_color_1: #049DFF;
+$wp20_color_1: #0154D5;
 $wp20_color_2: #DC0816;
-$wp20_color_3: #0154D5;
+$wp20_color_3: #028B3F;
 $wp20_color_4: #EE8019;
-$wp20_color_5: #028B3F;
+$wp20_color_5: #049DFF;
 $wp20_color_6: #F0BC00;
 $wp20_color_7: #E679A6;
-$wp20_color_8: #E9E7C4;
-$wp20_color_9: #8401D5;
-$wp20_color_10: #5EB34F;
-$wp20_color_11: #FD6363;
+$wp20_color_8: #8401D5;
+$wp20_color_9: #5EB34F;
+$wp20_color_10: #FD6363;
+$wp20_color_11: #E9E7C4;
 $wp20_color_12: #222222;
 $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_5,$wp20_color_6,$wp20_color_7,$wp20_color_8,$wp20_color_9,$wp20_color_10,$wp20_color_11;
 
@@ -90,6 +90,9 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	.wp20-fill-color-#{$i}:hover,
 	.wp20-fill-color-#{$i}.active {
 		fill: #{nth($wp20_colors, $i)};
+	}
+	.wp20-underline-color-#{$i} {
+		border-bottom: 0.125em solid #{nth($wp20_colors, $i)};
 	}
 }
 
@@ -198,28 +201,91 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	}
 }
 
+#recent-edits-container {
+	background-color: $wp20_color_11;
+	&:hover .box-accent svg path{
+		animation-play-state: running;
+	}
+}
+
 .recent-edits {
 	font-style: normal;
 	transition: $transition;
 	display: none;
+	font-size: 1.125rem;
 	> div {
-		border: 3px solid $wp20_color_1;
 		border-radius: 5px;
 		padding: 3rem 1rem;
 		text-align: center;
 		background-color: $wmui-color-base90;
+		transition: $transition;
+		position: relative;
+		.box-accent {
+	    	svg {
+	    		width: 100%;
+	    		height: auto;
+	    		path {
+	    			stroke-width: 20;
+	    			transform-origin: center;
+	    			animation: wiggle 5s infinite;
+	    			animation-play-state: paused;
+	    			&:nth-child(1) {
+	    				animation-delay: 1s;
+	    			}
+	    			&:nth-child(2) {
+	    				animation-delay: 2s;
+	    			}
+	    			&:nth-child(3) {
+	    				animation-delay: 3s;
+	    			}
+	    		}
+	    	}
+		}
+	    .box-accent-top {
+	    	position: absolute;
+			top: 0;
+			right: 0;
+			left: auto;
+			width: 2rem;
+			transform: translate(1rem,-100%) rotate(0deg);
+			@media (min-width: $medium-bp) {
+				width: 3rem;
+				transform: translate(60%,-100%) rotate(0deg);
+			}
+	    	svg path {
+	    		stroke: $wp20_color_4;
+	    	}
+	    }
+	    .box-accent-bottom {
+	    	position: absolute;
+			bottom: 0;
+			left: 0;
+			right: auto;
+			width: 2rem;
+			transform: translate(-1rem,100%) rotate(15deg);
+			@media (min-width: $medium-bp) {
+				width: 3rem;
+				transform: translate(-60%,100%) rotate(15deg);
+			}
+	    	svg path {
+	    		stroke: $wp20_color_12;
+	    	}
+	    }
 	}
-    .label {
+    .label-container {
         position: relative;
         font-style: italic;
+        margin-bottom: rem(40, 32);
     }
     .accent {
     	width: 2rem;
-		left: 0px;
-		right: 0px;
-		position: relative;
-		margin: auto;
-		transform: translateY(-0.5rem);
+    	height: 2rem;
+    	margin: 0 auto 1rem;
+    	transition: 0.5s all ease-out;
+    	svg {
+    		width: 100%;
+    		height: auto;
+    	}
     }
 }
 
@@ -597,7 +663,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
     	border-radius: 2px;
     	display: inline-block;
     	min-width: 200px;
-    	max-width: 400px;
+    	max-width: 300px;
     	width: 20vw;
     	z-index: 1;
     	p {
@@ -907,6 +973,28 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		opacity: 0;
 		transform: scale(2.4);
 		stroke-width: 0px;
+	}
+}
+
+@keyframes wiggle {
+	0% {
+		transform: rotate(5deg);
+	}
+
+	5% {
+		transform: rotate(-5deg);
+	}
+
+	10% {
+		transform: rotate(10deg);
+	}
+
+	15% {
+		transform: rotate(-2deg);
+	}
+
+	20% {
+		transform: rotate(0deg);
 	}
 }
 
