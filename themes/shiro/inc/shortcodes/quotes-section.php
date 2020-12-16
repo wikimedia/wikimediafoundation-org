@@ -66,7 +66,7 @@ function wmf_quote_box_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="quotes-section-inner rounded mar-bottom_lg color-blue <?php echo esc_attr( $auto_tweet_width ) . ' unit-' . esc_attr( $index ) . ' ' . $atts['class'] ; ?>" target="_blank">
+	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="quotes-section-inner rounded mar-bottom_lg color-blue <?php echo esc_attr( $auto_tweet_width . ' unit-' . $index . ' ' . $atts['class'] ) ; ?>" target="_blank">
 		<div class="quotes-section-text-wrap">
 			<h3 class="quotes-section mar-bottom p"><?php echo wp_kses_post( $content ) ?></h3>
 		</div>
