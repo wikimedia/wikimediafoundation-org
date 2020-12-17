@@ -37,7 +37,7 @@ jQuery(document).ready(function($) {
 
 		url += "?origin=*";
 		Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
-		return url;
+		return lang.toLowerCase().match(/^[a-zA-Z\-]{2,16}$/) ? url : null;
 	}
 
 	function getRecentEdits(force) {
