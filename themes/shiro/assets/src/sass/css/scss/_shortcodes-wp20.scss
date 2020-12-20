@@ -87,6 +87,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	.wp20-color-#{$i} {
 		border-color: #{nth($wp20_colors, $i)} !important;
 	}
+	.wp20-fill-color-#{$i},
 	.wp20-fill-color-#{$i}:hover,
 	.wp20-fill-color-#{$i}.active {
 		fill: #{nth($wp20_colors, $i)};
@@ -96,9 +97,11 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	}
 }
 
+$wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
+
 .wp20 h1,
 .wp20 h2 {
-	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+	font-family: $wp20_font;
 	font-weight: normal;
 	line-height: 1.1;
 	@include marginBottom(32, 40, $medium-bp);
@@ -107,6 +110,11 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 .wp20 h2 {
 	@include font-size(32, 24);
 	@include marginBottom(16, 24, $medium-bp);
+}
+
+.wp20.story-carousel-container .index,
+.section .wp20.intro p {
+	font-family: $wp20_font;
 }
 
 .section > div {
@@ -120,11 +128,11 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	position: relative;
 	@include marginBottom(24, 32, $medium-bp);
 	p {
-		font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 		@include font-size(24, 20)
 	}
 	h1:nth-of-type(1) {
 		margin-bottom: 1em;
+		position: relative;
 	}
 	h1:nth-of-type(2) {
 		margin-top: 1em;
@@ -137,20 +145,36 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		height: 1em;
 		background-image: url("./assets/src/svg/wave.svg");
 		background-repeat: repeat-x;
-		background-size: 0.7em 0.4em;
+		background-size: 0.71em 0.4em;
 		background-position-x: 102%;
 		background-position-y: 50%;
 		animation: move 8s linear infinite;
-		animation-play-state: paused;
+		animation-play-state: running;
 		animation-direction: alternate;
 		display: block;
-		transform: translate(80%, 20%);
+		transform: translate(45%, 20%);
 		@media (min-width: $medium-bp) {
 			width: 100vw;
 			transform: translate(-102%, 40%);
 			background-position-y: 0;
 			top: 0;
+			animation-play-state: paused;
 		}
+	}
+	h1:first-child:before {
+		content: "";
+		position: absolute;
+		top: auto;
+		bottom: -0.75em;
+		right: 0.5rem;
+		left: auto;
+		width: 1em;
+		height: 1em;
+		background-image: url("./assets/src/foundation-assets/wikipedia20/accents/accent1.svg");
+		background-repeat: no-repeat;
+		background-size: contain;
+		display: block;
+		transform: rotate(-60deg);
 	}
 	.intro h1,
 	> div {
@@ -162,9 +186,8 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	&:after,
 	&:before {
 		content: "";
-		width: 0.35rem;
-		height: 0.35rem;
-		border-radius: 50%;
+		width: 0.4rem;
+		height: 0.5rem;
 		background-color: $wp20_color_1;
 		position: absolute;
 		display: block;
@@ -172,17 +195,21 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		right: -0.5rem;
 		left: auto;
 		z-index: -1;
+		animation: wiggle 3s infinite;
+		transform: rotate(30deg);
+		z-index: 1;
 		@media (min-width: $medium-bp) {
 			right: -2rem;
 		}
 	}
 
 	&:before {
-		width: 0.45rem;
-		height: 0.45rem;
+		width: 0.55rem;
+		height: 0.4rem;
 		top: -3rem;
 		right: 3rem;
 		left: auto;
+		animation-delay: 1s;
 	}
 }
 
@@ -213,11 +240,12 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	transition: $transition;
 	display: none;
 	font-size: 1.125rem;
+	line-height: 1.5;
 	> div {
 		border-radius: 5px;
-		padding: 3rem 1rem;
+		padding: 2.5rem 1rem;
 		text-align: center;
-		background-color: $wmui-color-base90;
+		background-color: rgba(255, 255, 255, 0.9);
 		transition: $transition;
 		position: relative;
 		.box-accent {
@@ -227,16 +255,18 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	    		path {
 	    			stroke-width: 20;
 	    			transform-origin: center;
-	    			animation: wiggle 5s infinite;
+					stroke-dasharray: 100;
+					stroke-dashoffset: 50;
+					animation: dash 3s ease-in-out infinite;
 	    			animation-play-state: paused;
 	    			&:nth-child(1) {
-	    				animation-delay: 1s;
+	    				animation-delay: 0.5s;
 	    			}
 	    			&:nth-child(2) {
-	    				animation-delay: 2s;
+	    				animation-delay: 1s;
 	    			}
 	    			&:nth-child(3) {
-	    				animation-delay: 3s;
+	    				animation-delay: 1.5s;
 	    			}
 	    		}
 	    	}
@@ -246,14 +276,22 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 			top: 0;
 			right: 0;
 			left: auto;
+			transform: translate(1rem,-100%) rotate(0deg) scaleX(1) #{"/*rtl:translate(-1rem,-100%) rotate(0deg) scaleX(-1)*/"};
 			width: 2rem;
-			transform: translate(1rem,-100%) rotate(0deg);
 			@media (min-width: $medium-bp) {
+				transform: translate(60%,-100%) rotate(0deg) scaleX(1) #{"/*rtl:translate(-60%,-100%) rotate(0deg) scaleX(-1)*/"};
 				width: 3rem;
-				transform: translate(60%,-100%) rotate(0deg);
 			}
 	    	svg path {
-	    		stroke: $wp20_color_4;
+    			&:nth-child(1) {
+    				stroke: $wp20_color_6;
+    			}
+    			&:nth-child(2) {
+    				stroke: $wp20_color_4;
+    			}
+    			&:nth-child(3) {
+    				stroke: $wp20_color_6;
+    			}
 	    	}
 	    }
 	    .box-accent-bottom {
@@ -261,14 +299,22 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 			bottom: 0;
 			left: 0;
 			right: auto;
+			transform: translate(-1rem,100%) rotate(15deg) scale(1) #{"/*rtl:translate(1rem,100%) rotate(-15deg) scaleX(-1)*/"};
 			width: 2rem;
-			transform: translate(-1rem,100%) rotate(15deg);
 			@media (min-width: $medium-bp) {
+				transform: translate(-60%,100%) rotate(15deg) scale(1) #{"/*rtl:translate(60%,100%) rotate(-15deg) scaleX(-1)*/"};
 				width: 3rem;
-				transform: translate(-60%,100%) rotate(15deg);
 			}
 	    	svg path {
-	    		stroke: $wp20_color_12;
+    			&:nth-child(1) {
+    				stroke: $wp20_color_3;
+    			}
+    			&:nth-child(2) {
+    				stroke: $wp20_color_7;
+    			}
+    			&:nth-child(3) {
+    				stroke: $wp20_color_3;
+    			}
 	    	}
 	    }
 	}
@@ -276,6 +322,14 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
         position: relative;
         font-style: italic;
         margin-bottom: rem(40, 32);
+    }
+    .wiki {
+		background-image: linear-gradient(to right, $wp20_color_3 50%, $wp20_color_4 50%);
+		background-position: left 0% bottom 0%;
+		background-repeat: repeat-x;
+		background-size: 200% 0.125em;
+		transition: all 3s ease 0s;
+		padding-bottom: 0.125em;
     }
     .accent {
     	width: 2rem;
@@ -290,21 +344,30 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 }
 
 .story-carousel-container {
-	padding-top: 2rem;
-	background-size: 180%;
-	background-repeat: no-repeat;
+	background-image: url('./assets/src/foundation-assets/wikipedia20/accents/confetti.svg');
 	background-position: top center;
+	background-size: 150%;
+	background-repeat: repeat;
 	@media (min-width: $medium-bp) {
-		background-size: 100% auto;
+		background-size: 75% auto;
+		background-repeat: repeat-x;
+	}
+	@media (min-width: $large-bp) {
+		background-size: 60% auto;
+		background-repeat: repeat-x;
 	}
 }
 
+.story-carousel-inner {
+	position: relative;
+	padding-top: rem(0, 40);
+}
+
 .story-carousel {
-    position: relative;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 0;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
-    border: 1px solid $wmui-color-base0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     .story-content-container {
         padding: 1rem 1rem 0 1rem;
@@ -313,10 +376,6 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
         }
     }
 	@media (min-width: $medium-bp) {
-	    left: 0;
-	    right: 0;
-	    top: 0;
-	    bottom: 0;
 	    padding: 0;
 	    margin: auto;
 	}
@@ -326,9 +385,6 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	.story-content-container > div:first-child {
 		display: block;
 	}
-    h2 {
-    	margin-bottom: 0.5rem;
-    }
     .story-icon {
     	height: 1em;
 		margin-top: 0.25em;
@@ -343,9 +399,13 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
         border-radius: 50%;
         background-size: cover;
         background-position: center center;
+		transform: translate(0, -2rem);
+		transform-origin: left bottom;
+		position: relative;
         border: 3px solid $wp20_color_1;
 		@media (min-width: $medium-bp) {
 			border-width: 0.25rem;
+			transform: translate(10%, -10%) scale(1.25);
 		}
     }
     @for $i from 1 to 12 {
@@ -383,19 +443,81 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
         width: 100%;
         height: 4rem;
         padding: 1rem 1rem 0;
-        margin-bottom: 5px;
+        margin-bottom: 1rem;
         background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 40%);
         align-items: center;
         font-size: 1rem;
-        flex-direction: row #{"/*rtl:row-reverse*/"};
+        flex-direction: row;
     	position: sticky;
         z-index: 0;
+        @media (min-width: $medium-bp) {
+        	position: static;
+        	font-size: 1.25rem;
+        	height: auto;
+        	padding: 0 2rem;
+        	margin-bottom: 1.5rem;
+        	flex-direction: row #{"/*rtl:row-reverse*/"};
+        }
         .next-story, .prev-story {
         	cursor: pointer;
         	user-select: none;
         	font-size: 1.75rem;
+        	transform: rotate(0) #{"/*rtl:rotate(180deg)*/"};
         	padding: 0.2rem 0.5rem;
+	        @media (min-width: $medium-bp) {
+	        	position: absolute;
+				display: inline-block;
+				right: auto;
+				top: 50%;
+				left: 2.5rem;
+				font-size: 3rem;
+				padding: 1rem;
+				transition: 1s all;
+	        }
         }
+    	@media (min-width: $medium-bp) {
+	        .prev-story span {
+	        	animation: sideAttnLeft 10s infinite #{"/*rtl:sideAttnRight 10s infinite*/"};
+	        	display: block;
+	        }
+	        .next-story span {
+        		animation: sideAttnRight 10s infinite #{"/*rtl:sideAttnLeft 10s infinite*/"};
+        		display: block;
+	        }
+	        .next-story, .prev-story {
+	        	span:after {
+	        		content: "";
+	        		width: 3rem;
+	        		height: 3rem;
+					position: absolute;
+					top: 0;
+					border-radius: 50%;
+					z-index: -1;
+					bottom: 0;
+					margin: auto;
+	        		display: block;
+	        		background-color: transparent;
+	        		transition: 0.3s all ease-out;
+	        		transform: scale(0) translateX(-2%);
+	        	}
+	        	&:hover span:after {
+	        		background-color: $wp20_color_6;
+	        		transform: scale(1.2) translateX(-2%);
+	        	}
+	        }
+	        .next-story {
+        		right: 2.5rem;
+        		left: auto;
+        	}
+        }
+    	.index {
+    		width: 100%;
+    		flex-grow: 1;
+			text-align: center;
+			@media (min-width: $medium-bp) {
+        		text-align: right;
+			}
+    	}
     }
 }
 
@@ -535,7 +657,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		margin: auto;
 		width: 100%;
 		@media (min-width: $medium-bp) {
-			width: 600px;
+			width: calc(100% - 6rem);
 		}
 	}
 	.milestones {
@@ -545,10 +667,48 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	.milestone {
 		display: inline-block;
 		transition: 0.5s all;
-		@include padding(0, 0, 32, 32);
+		padding: 0;
+		@media (min-width: $medium-bp) {
+			padding: 1rem 2rem 0;
+		}
+		.milestone-container {
+			display: flex;
+			flex-wrap: wrap;
+		}
 	}
 	img {
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
+		min-width: 250px;
+		width: 100%;
+		max-height: 75vw;
+		height: auto;
+		@media (min-width: $medium-bp) {
+			margin-bottom: 0;
+			width: 50%;
+			max-height: 24rem;
+		}
+	}
+	.milestone-desc {
+		min-width: 250px;
+		width: 100%;
+		display: block;
+		@media (min-width: $medium-bp) {
+			width: 50%;
+			display: flex;
+			justify-content: space-evenly;
+			flex-direction: column;
+		}
+		@include padding(0, 0, 0, 32);
+		> p {
+			margin-bottom: 0;
+		}
+	}
+	.milestone-nav {
+		position: sticky;
+		bottom: 0;
+		@media (min-width: $medium-bp) {
+			position: unset;
+		}
 	}
 	.next, .prev {
 		position: relative;
@@ -559,12 +719,48 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 		cursor: pointer;
 		font-size: 3rem;
 		user-select: none;
-		@include padding(16, 0, 16, 16);
+		@include padding(0, 0, 16, 16);
+		transform: rotate(0) #{"/*rtl:rotate(180deg)*/"};
 		transition: 1s all;
 		@media (min-width: $medium-bp) {
 			position: absolute;
 		}
+		span:after {
+			content: "";
+			width: 3rem;
+			height: 3rem;
+			position: absolute;
+			top: 0;
+			border-radius: 50%;
+			z-index: -1;
+			bottom: 0;
+			margin: auto;
+			display: block;
+			background-color: $wp20_color_7;
+    		transition: 0.3s all ease-out;
+    		transform: scale(1.1) translateX(-2%);
+		}
 	}
+	@media (min-width: $medium-bp) {
+        .prev span {
+        	animation: sideAttnLeft 10s infinite #{"/*rtl:sideAttnRight 10s infinite*/"};
+        	display: block;
+        }
+        .next span {
+    		animation: sideAttnRight 10s infinite #{"/*rtl:sideAttnLeft 10s infinite*/"};
+    		display: block;
+        }
+        .next, .prev {
+        	span:after {
+        		background-color: transparent;
+        		transform: scale(0) translateX(-2%);
+        	}
+        	&:hover span:after {
+        		background-color: $wp20_color_7;
+        		transform: scale(1.2) translateX(-2%);
+        	}
+        }
+    }
 	.next {
 		right: 0;
 		left: auto;
@@ -622,6 +818,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
     	padding-left: 1.25em;
 		background-repeat: no-repeat;
 		background-position: left center;
+		display: inline-block;
     }
     a.nonprofit {
 		background-image: url("./assets/src/svg/individual/wikimedia.svg");
@@ -652,12 +849,20 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
     .project-circle {
     	transition: $transition;
     	cursor: crosshair;
+    	stroke: transparent;
+		stroke-width: 3;
+    }
+    circle {
+    	transition: $transition;
+    }
+    &:hover circle:not(.project-circle) {
+    	fill: $color-blue;
     }
     .tooltip {
     	font-size: 1rem;
     	position: fixed;
     	top: 0;
-    	left: 0;
+    	left: 0 #{"/*rtl:ignore*/"};
     	background-color: rgba(248, 249, 250, 0.95);
     	padding: 0.5rem 1rem;
     	border-radius: 2px;
@@ -797,15 +1002,42 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	position: absolute;
 	z-index: 20;
 	padding: 1rem 1rem 0 1rem;
-	background-color: #ffffff;
+	background-color: $wmui-color-base90;
 	box-shadow: 0 5px 20px 0 rgba(0,0,0,.15);
+	border-radius: 5px;
 	margin-bottom: 0.5rem;
+	.easter-egg-content:after {
+		content: "";
+		height: 3rem;
+		width: 3rem;
+		background-image: url("./assets/src/foundation-assets/wikipedia20/accents/accent1.svg");
+		display: block;
+		position: absolute;
+		right: 0.5rem;
+		bottom: 0;
+		left: auto;
+		background-size: contain;
+		background-repeat: no-repeat;
+		transform: rotate(-55deg);
+		transform-origin: 44% 30%;
+		animation: wiggle 4s 1;
+		animation-fill-mode: both;
+		animation-delay: 0.5s;
+		animation-timing-function: ease-in;
+	}
+	.easter-egg-content:nth-child(2n):after {
+		transform: rotate(-30deg);
+		animation-direction: reverse;
+		right: 2rem;
+		left: auto;
+	}
 	.easter-egg-content > p, .easter-egg-content > p > a {
 		font-size: 0.9375rem;
 	}
 }
 
-.easter-egg {
+.easter-egg,
+.bday-fun {
 	font-weight: normal;
 	font-style: normal;
 	&.active {
@@ -925,21 +1157,40 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	}
 }
 
-@keyframes scroll {
+@keyframes sideAttnLeft {
     0% {
-        transform: translateY(0);
+        transform: translateX(0);
         color: $wmui-color-base0;
     }
+    15% {
+        transform: translateX(-0.5rem);
+        color: $color-blue;
+    }
+    25% {
+        transform: translateX(-0.5rem);
+        color: $color-blue;
+    }
     40% {
-        transform: translateY(2vh);
+        transform: translateX(0);
+        color: $wmui-color-base0;
+    }
+}
+
+@keyframes sideAttnRight {
+    0% {
+        transform: translateX(0);
+        color: $wmui-color-base0;
+    }
+    15% {
+        transform: translateX(0.5rem);
         color: $color-blue;
     }
-    55% {
-        transform: translateY(2vh);
+    25% {
+        transform: translateX(0.5rem);
         color: $color-blue;
     }
-    80% {
-        transform: translateY(0);
+    40% {
+        transform: translateX(0);
         color: $wmui-color-base0;
     }
 }
@@ -977,34 +1228,34 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 }
 
 @keyframes wiggle {
-	0% {
-		transform: rotate(5deg);
-	}
-
-	5% {
-		transform: rotate(-5deg);
-	}
-
-	10% {
+	20% {
 		transform: rotate(10deg);
 	}
 
-	15% {
-		transform: rotate(-2deg);
+	30% {
+		transform: rotate(-10deg);
 	}
 
-	20% {
-		transform: rotate(0deg);
+	40% {
+		transform: rotate(15deg);
+	}
+
+	50% {
+		transform: rotate(-7deg);
+	}
+
+	60% {
+		transform: rotate(5deg);
 	}
 }
 
 @keyframes move {
 	0% {
-		background-position-x: 0;
+		background-position-x: 0px #{"/*rtl:ignore*/"};
 	}
 
 	100% {
-		background-position-x: 100px;
+		background-position-x: 100px #{"/*rtl:ignore*/"};
 	}
 }
 
@@ -1088,9 +1339,19 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	}
 }
 
+@keyframes dash {
+	30% {
+		stroke-dashoffset: 0;
+	}
+}
+
 // overrides standard style of module/object
 .wp20.focus-block {
 	.bg-img-container .bg-img::after {
 		content: none;
 	}
+}
+
+.wp20 .wp-video {
+	margin-bottom: 4rem;
 }
