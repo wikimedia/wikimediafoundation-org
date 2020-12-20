@@ -298,9 +298,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
 	$image = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
-	$title = strlen($atts['title']) > 0 ? '<h1>' . esc_html($atts['title']) . '</h1>' : '';
 	$atts['columns'] = $image === null && strlen($atts['title']) === 0 ? '1' : $atts['columns'];
-	$image = $image === null ? $title : $image;
 	$confetti_opt = random_int(1, 10);
 
 	ob_start();
@@ -309,7 +307,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	<?php if ( $atts['columns'] === '1' ) { ?>
 		<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>" data-confetti-option="<?php echo esc_attr( $confetti_opt ) ?>">
 			<div class="<?php echo esc_attr($atts['class']) ?>">
-				<?php echo $title . wp_kses_post( $content ) ?>
+				<?php echo esc_html( $atts['title'] )  . wp_kses_post( $content ) ?>
 			</div>
 		</div>
 	<?php } else { 
@@ -317,13 +315,25 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
 				<div class="flex flex-medium flex-space-between <?php echo esc_attr($atts['class']) ?>">
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
-					<div class="w-48p mod-margin-bottom_xs"><?php echo $image ?></div>
+					<div class="w-48p mod-margin-bottom_xs">
+						<?php if ( $image_id ) { 
+							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
+						} else { ?>
+						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
+						<?php } ?>
+					</div>
 				</div>
 			</div>
 		<?php } else { ?>
 			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
 				<div class="flex flex-medium flex-space-between flex-column-reverse-small <?php echo esc_attr($atts['class']) ?>">
-					<div class="w-48p mod-margin-bottom_xs"><?php echo $image ?></div>
+					<div class="w-48p mod-margin-bottom_xs">
+						<?php if ( $image_id ) { 
+							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
+						} else { ?>
+						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
+						<?php } ?>
+					</div>
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
 				</div>
 			</div>
