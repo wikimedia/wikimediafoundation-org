@@ -54,6 +54,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'id' => 'volunteer-stories',
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'story_carousel' );
 	$content = do_shortcode( $content );
@@ -65,13 +66,15 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr($atts['id']) ?>" class="mw-980 mod-margin-bottom story-carousel-container" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/assets/src/foundation-assets/wikipedia20/accents/confetti.svg')">
-		<div class="story-carousel w-68p">
-			<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-			<div class="story-nav flex flex-all flex-space-between">
-				<a class="prev-story">←</a>
-				<span class="index"></span>
-				<a class="next-story">→</a>
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="mod-margin-bottom story-carousel-container mod-padding-vertical <?php echo esc_attr( $atts['class'] ) ?>">
+		<div class="mw-980 story-carousel-inner">
+			<div class="story-carousel w-68p">
+				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
+				<div class="story-nav flex flex-all flex-space-between">
+					<div class="prev-story"><span>←</span></div>
+					<span class="index"></span>
+					<div class="next-story"><span>→</span></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -140,6 +143,7 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 		'id' => 'recent-edits',
 		'lang_list' => 'en|ar|es|de|fr|ru|zh',
 		'label' => 'One human just edited',
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'recent_edits' );
 	$atts['lang_list'] = preg_split('/\|/', $atts['lang_list']);
@@ -200,12 +204,14 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'id' => 'timeline',
 		'title' => '',
+		'margin' => '0',
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text($content);
-	$classes = "timeline mod-margin-bottom " . $atts['class'];
+	$margin = $atts['margin'] === '0' ? '' : ' mod-margin-bottom';
+	$classes = "timeline " . $atts['class'] . $margin;
 
 	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'timeline', "var timelineAtts = " . wp_json_encode($atts) . ";");
@@ -221,8 +227,8 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 				</div>
 			</div>
 			<div class="milestone-nav flex flex-all flex-space-between">
-				<div id="prev-milestone" class="prev hidden">←</div>
-				<div id="next-milestone" class="next hidden">→</div>
+				<div id="prev-milestone" class="prev hidden"><span>←</span></div>
+				<div id="next-milestone" class="next hidden"><span>→</span></div>
 			</div>
 		</div>
 	</div>
@@ -279,6 +285,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		'img' => '',
 		'margin' => '1',
 		'reverse' => '0',
+		'bg_color' => '0',
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
@@ -286,31 +293,43 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
-	$classes = "mw-980 wysiwyg section " . $margin;
+	$classes = $atts['bg_color'] === '1' ? "wysiwyg section mod-padding-vertical bg-ltgray " . $margin : "mw-980 wysiwyg section " . $margin;
+	$atts['class'] = $atts['bg_color'] === '1' ? $atts['class'] . ' mw-980' :  $atts['class'];
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
 	$image = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
 	$title = strlen($atts['title']) > 0 ? '<h1>' . esc_html($atts['title']) . '</h1>' : '';
-	$confetti_opt = 'data-confetti-option="' . random_int(1, 10) . '"';
+	$atts['columns'] = $image === null && strlen($atts['title']) === 0 ? '1' : $atts['columns'];
+	$image = $image === null ? $title : $image;
+	$confetti_opt = random_int(1, 10);
 
-	if ( $atts['columns'] === '1' ) {
-		$o = '<div id="' . $id . '" class="' . esc_attr($classes) . '" ' . $confetti_opt . '><div class="' . esc_attr($atts['class']) . '">' . $title . wp_kses_post( $content ) . '</div></div>';
-		return $o;
-	} else {
-		if ( isset($image) ) {
-			$col_1 = '<div class="w-48p mod-margin-bottom_xs">' . $title . wp_kses_post( $content ) . '</div>';
-			$col_2 = '<div class="w-48p mod-margin-bottom_xs">' . $image . '</div>';
-		} else {
-			$col_1 = '<div class="w-48p mod-margin-bottom_xs">' . $title . '</div>';
-			$col_2 = '<div class="w-48p mod-margin-bottom_xs">' . wp_kses_post( $content ) . '</div>';
-		}
+	ob_start();
+	?>
 
-		if ( $atts['reverse'] === '0') {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between ' . esc_attr($atts['class']) . '">' . $col_1 . $col_2 . '</div></div>';
-		} else {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between flex-column-reverse-small ' . esc_attr($atts['class']) . '">' . $col_2 . $col_1 . '</div></div>';
-		}
+	<?php if ( $atts['columns'] === '1' ) { ?>
+		<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>" data-confetti-option="<?php echo esc_attr( $confetti_opt ) ?>">
+			<div class="<?php echo esc_attr($atts['class']) ?>">
+				<?php echo $title . wp_kses_post( $content ) ?>
+			</div>
+		</div>
+	<?php } else { 
+		if ( $atts['reverse'] === '0') { ?>
+			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
+				<div class="flex flex-medium flex-space-between <?php echo esc_attr($atts['class']) ?>">
+					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
+					<div class="w-48p mod-margin-bottom_xs"><?php echo $image ?></div>
+				</div>
+			</div>
+		<?php } else { ?>
+			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
+				<div class="flex flex-medium flex-space-between flex-column-reverse-small <?php echo esc_attr($atts['class']) ?>">
+					<div class="w-48p mod-margin-bottom_xs"><?php echo $image ?></div>
+					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
+				</div>
+			</div>
+	<?php } 
 	}
+	return (string) ob_get_clean();
 }
 add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
 
@@ -411,6 +430,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		'lang' => 'en',
 		'id' => 'top-data',
 		'class' => '',
+		'no_data' => 'There is not data for the options you chose. Please choose another year above.',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
 	$atts['directory'] = get_stylesheet_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
@@ -469,7 +489,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 				</p>
 			</div>
 		</div>
-		<div class="no-data" style="display: none;"><p>There is not data for the options you chose. Please choose another year above.</p></div>
+		<div class="no-data" style="display: none;"><p><?php echo esc_html( $atts['no_data'] ) ?></p></div>
 		<div id="top-data-container" class="mod-margin-bottom">
 			<div id="enwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
@@ -636,21 +656,4 @@ function custom_filter_shortcode_text($text = "") {
 
 	// Add back in the P and BR tags again, remove empty ones
 	return apply_filters("the_content", $text);
-}
-
-/**
- * Utility function to get the attachment url based on attachment title
- */
-function custom_get_attachment_id_by_slug( $slug ) {
-	$args = array(
-		'post_type' => 'attachment',
-		'name' => sanitize_title($slug),
-		'posts_per_page' => 1,
-		'post_status' => 'inherit',
-		'suppress_filters' => false,
-	);
-	$_header = get_posts( $args );
-	$header = $_header ? array_pop($_header) : null;
-	$id = $header ? $header->ID : null;
-	return $id;
 }
