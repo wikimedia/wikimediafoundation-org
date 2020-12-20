@@ -37,7 +37,7 @@ jQuery(document).ready(function($) {
 
 		url += "?origin=*";
 		Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
-		return url;
+		return lang.toLowerCase().match(/^[a-zA-Z\-]{2,16}$/) ? url : null;
 	}
 
 	function getRecentEdits(force) {
@@ -97,7 +97,10 @@ jQuery(document).ready(function($) {
 			container.show();
 			accent.css("transform", "rotate(" + (Math.random() * 10 + 30) + "deg) scale(" + (Math.random() * (1 - 0.8) + 0.8) + ")");
 			accent.find("svg path").css("stroke", rEditWiki.css("border-bottom-color"));
-			rEditWiki.attr("class", "wiki wp20-underline-color-" + (rEditAnimationI % 10 + 1));
+			rEditWiki.css({
+				"backgroundPosition": "left -" + 100 * rEditAnimationI + "% bottom 0px",
+				"transition": "3s all",
+			});
 			setTimeout(function(){
 				rEditAnimationI++;
 				if (rEditAnimationI < rEdits.length) {
@@ -105,6 +108,10 @@ jQuery(document).ready(function($) {
 				} else {
 					rEditAnimationI = 0;
 					getRecentEdits();
+					rEditWiki.css({
+						"backgroundPosition": "left 0% bottom 0px",
+						"transition": "0s all",
+					})
 				}
 			}, 3000);
 		}

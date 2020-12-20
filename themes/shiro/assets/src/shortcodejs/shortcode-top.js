@@ -87,7 +87,7 @@ jQuery(document).ready(function($) {
 				drawChart(dailyData, graphid);
 				langContainer.find(".heading").text(heading);
 				langContainer.find(".desc").text(desc);
-				if (content[wiki].replace("wiki", "").length === 2) {
+				if (content[wiki].replace("wiki", "").match(/^[a-zA-Z\-]{2,16}$/)) {
 					langContainer.find(".details")
 						.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
 						.attr("target", "_blank");
@@ -144,15 +144,18 @@ jQuery(document).ready(function($) {
 	}
 
 	function getData(type) {
+		var url = '';
 		if (type === "edits") {
-			d3.csv(atts['url_edits'], function(d) {
+			url = atts['url_edits'].indexOf(".csv") > -1 ? atts['url_edits'] : '';
+			d3.csv(url, function(d) {
 				return d;
 			}).then(function(res) {
 				data.edits = res;
 				evalOption();
 			});
 		} else {
-			d3.csv(atts['url_views'], function(d) {
+			url = atts['url_views'].indexOf(".csv") > -1 ? atts['url_views'] : '';
+			d3.csv(url, function(d) {
 				return d;
 			}).then(function(res) {
 				data.views = res;

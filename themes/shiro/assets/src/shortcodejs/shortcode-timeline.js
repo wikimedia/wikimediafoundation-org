@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
 	var shortAtts = timelineAtts, // eslint-disable-line no-undef
 		containerID = "#" + shortAtts["id"],
 		container = $(containerID),
+		isRTL = $("body").css("direction") === "rtl" ? 1 : -1,
 		milestonesWindow = container.find(".milestones-window"),
 		milestonesContainer = container.find(".milestones"),
 		milestones = container.find(".milestone"),
@@ -14,14 +15,14 @@ jQuery(document).ready(function($) {
 		currentMile = 0;
 
 	function setTimelineWidth() {
-		var w = Math.min(milestonesWindow.width(), 600);
+		var w = milestonesWindow.width();
 		milestones.css("width", w + "px");
 		milestonesContainer.css("width", w * total + "px");
 		updateView();
 	}
 
 	function updateView() {
-		var posX = -100/total * currentMile;
+		var posX = 100/total * currentMile * isRTL;
 		milestonesContainer.css("transform", "translateX(" + posX + "%)");
 		milestones.each(function(i) {
 			if (i === currentMile) {
@@ -44,6 +45,7 @@ jQuery(document).ready(function($) {
 
 	container.find("#next-milestone").click(function(){
 		currentMile++;
+		currentMile = Math.min(currentMile, total - 1);
 		if (currentMile < total) {
 			updateView();
 		}
@@ -51,6 +53,7 @@ jQuery(document).ready(function($) {
 
 	container.find("#prev-milestone").click(function(){
 		currentMile--;
+		currentMile = Math.max( currentMile, 0);
 		if (currentMile >= 0) {
 			updateView();
 		}
