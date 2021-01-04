@@ -63,7 +63,7 @@ function wmf_focus_block_callback( $atts = [], $content = '' ) {
 	$index++;
 
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
-	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 600, 400 ) ) : null;
+	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 600, 600 ) ) : null;
 
 	ob_start();
 	?>
