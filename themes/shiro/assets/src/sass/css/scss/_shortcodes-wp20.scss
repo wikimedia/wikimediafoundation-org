@@ -183,6 +183,7 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 			overflow: visible;
 		}
 	}
+	// confetti
 	&:after,
 	&:before {
 		content: "";
@@ -206,7 +207,7 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 	&:before {
 		width: 0.55rem;
 		height: 0.4rem;
-		top: -3rem;
+		top: -3.25rem;
 		right: 3rem;
 		left: auto;
 		animation-delay: 1s;
@@ -242,7 +243,6 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 	font-size: 1.125rem;
 	line-height: 1.5;
 	> div {
-		border-radius: 5px;
 		padding: 2.5rem 1rem;
 		text-align: center;
 		background-color: rgba(255, 255, 255, 0.9);
@@ -328,7 +328,7 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 		background-position: left 0% bottom 0%;
 		background-repeat: repeat-x;
 		background-size: 200% 0.125em;
-		transition: all 3s ease 0s;
+		transition: background-position 3s ease 0s;
 		padding-bottom: 0.125em;
     }
     .accent {
