@@ -17,25 +17,27 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'text' => '',
+		'id' => 'symbols-grid',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'symbols_grid' );
 	$texts = preg_split('/\|/', $atts['text']);
 	$text1Class = sizeof($texts) >= 1 ? "grid-item grid-text grid-text-1" : "grid-item";
 	$text2Class = sizeof($texts) >= 2 ? "grid-item grid-text grid-text-2" : "grid-item";
 	$text3Class = sizeof($texts) >= 3 ? "grid-item grid-text grid-text-3" : "grid-item";
-	$text4Class = sizeof($texts) >= 4 ? "grid-item grid-text grid-text-4" : "grid-item";
+
+	wp_enqueue_script( 'symbols_grid', get_stylesheet_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'symbols_grid', "var gridAtts = " . wp_json_encode($atts) . ";");
 	
 	ob_start();
 	?>
 
-	<div class="symbols-grid mod-margin-bottom">
-		<?php for ($i=0; $i < 20; $i++) { ?>
-			<div class="grid-item"><div></div><div></div></div>
+	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="symbols-grid mod-margin-bottom">
+		<?php for ($i=0; $i < 24; $i++) { ?>
+			<div class="grid-item grid-symbol"><div></div><div></div></div>
 		<?php } ?>
-		<div class="<?php echo esc_attr($text1Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text2Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text3Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text4Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[3]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text1Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text2Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text3Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
 	</div>
 
 	<?php
@@ -66,7 +68,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr($atts['id']) ?>" class="mod-margin-bottom story-carousel-container mod-padding-vertical <?php echo esc_attr( $atts['class'] ) ?>">
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="mod-margin-bottom_sm story-carousel-container mod-padding-vertical_sm <?php echo esc_attr( $atts['class'] ) ?>">
 		<div class="mw-980 story-carousel-inner">
 			<div class="story-carousel w-68p">
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
@@ -164,8 +166,8 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	<div id="<?php echo esc_attr($atts['id'] . '-container') ?>" class="mod-margin-bottom mod-padding-vertical <?php echo esc_attr( $atts['class'] ) ?>">
 		<div class="mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
 		<div id="<?php echo esc_attr($atts['id']) ?>" class="recent-edits mw-980">
-			<div>
-				<div class="label-container"><span class="label"></span> <span class="wiki wp20-color-11"></span></div>
+			<div class="rounded">
+				<div class="label-container"><span class="label"></span> <span class="wiki wp20-color-7"></span></div>
 				<div class="accent"><svg width="129" height="107" viewBox="0 0 129 107" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M126.08 1C118.84 27.21 97.28 49 71.14 56.48C66.06 57.93 60.4 58.83 55.66 56.48C50.92 54.13 48.22 47.33 51.66 43.33C54.66 39.86 60.66 40.48 63.94 43.62C67.22 46.76 68.49 51.55 68.83 56.11C69.3303 64.1928 67.6724 72.2633 64.0261 79.4943C60.3799 86.7252 54.8765 92.8566 48.08 97.26C41.1726 101.488 33.2655 103.804 25.1686 103.971C17.0716 104.138 9.07579 102.15 2 98.21" stroke="#000000" stroke-width="6" stroke-miterlimit="10"/></svg>
 				</div>

@@ -72,7 +72,7 @@ function wmf_autotweet_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>" class="auto-tweet-inner rounded <?php echo esc_attr( $auto_tweet_width ); ?> mar-bottom_lg color-blue" target="_blank">
+	<a href="<?php echo esc_url( wmf_get_share_url( 'twitter', $args ) ); ?>" class="auto-tweet-inner rounded shadow <?php echo esc_attr( $auto_tweet_width ); ?> mar-bottom_lg color-blue" target="_blank">
 		<div class="auto-tweet-text-wrap">
 			<h3 class="auto-tweet mar-bottom p"><?php echo wp_kses_post( $content ) ?></h3>
 		</div>

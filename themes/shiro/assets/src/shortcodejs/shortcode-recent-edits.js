@@ -99,7 +99,7 @@ jQuery(document).ready(function($) {
 			accent.find("svg path").css("stroke", rEditWiki.css("border-bottom-color"));
 			rEditWiki.css({
 				"backgroundPosition": "left -" + 100 * rEditAnimationI + "% bottom 0px",
-				"transition": "3s all",
+				"transitionDuration": "3s",
 			});
 			setTimeout(function(){
 				rEditAnimationI++;
@@ -110,7 +110,7 @@ jQuery(document).ready(function($) {
 					getRecentEdits();
 					rEditWiki.css({
 						"backgroundPosition": "left 0% bottom 0px",
-						"transition": "0s all",
+						"transitionDuration": "0s",
 					})
 				}
 			}, 3000);

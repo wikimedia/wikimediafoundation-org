@@ -242,6 +242,6 @@ function custom_get_attachment_id_by_slug( $slug ) {
 	);
 	$_header = get_posts( $args );
 	$header = $_header ? array_pop($_header) : null;
-	$id = $header ? $header->ID : null;
+	$id = $header && !empty($slug) ? $header->ID : null;
 	return $id;
 }

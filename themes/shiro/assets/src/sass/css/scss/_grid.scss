@@ -160,5 +160,9 @@
 }
 
 .mod-padding-vertical {
+	@include paddingTopBottom(56, 80);
+}
+
+.mod-padding-vertical_sm {
 	@include paddingTopBottom(48, 48);
 }
