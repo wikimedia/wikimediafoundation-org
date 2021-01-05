@@ -25,14 +25,14 @@ $symbols: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_FI
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_CAKE1.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BRAILLE.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WWW.png",
-	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKINEWS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SMILE.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKIVOYAGE.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_W.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PENANDPAPER.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__WIKIDATA.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_OWL_OF_ATHENA.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_twenty_v1.png",
-	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiVoyge.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_EQUAL.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_KUEBIKO.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MediaWiki.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKI_INCUBATOR.png",
@@ -45,7 +45,7 @@ $symbols: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_FI
 $symbols_alt: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BASKETBALL.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKTIONARY.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MUSIC_PARTY.png",
-	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SMILE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKINEWS.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_heart.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_mail.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKICOMMONS.png",
@@ -58,7 +58,7 @@ $symbols_alt: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbol
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_ESC.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20symbols_Ghyama.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Adinkra_Brave.png",
-	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_EQUAL.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiVoyge.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MosqueDome.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BigBen.png",
 	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_HumanFigure3.png",
@@ -521,130 +521,148 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
     }
 }
 
+$w-sm: 100vw/3;
+$w-med: 100vw/6;
+$w-lg: 100vw/8;
+$row-gutter-sm: 2vw;
+$row-gutter-big: 0.625vw; 
+
 .symbols-grid {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	position: relative;
 	.wikipedia-h2.h2 {
 		@include font-size(24, 20);
 	}
 	.grid-item,
 	.grid-item > div {
-		width: 32vw;
-		height: 24vw;
-		margin-bottom: 2vw;
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
-		overflow: hidden;
-		@media (min-width: $medium-bp){
-			width: 16vw;
-			height: 12vw;
-			margin-bottom: 1vw;
-		}
-		@media (min-width: $large-bp){
-			width: 12.5vw;
-			height: 9.375vw;
-			margin-bottom: 1vw;
-		}
-		transition: opacity 0.1s;
+		transition: opacity 0.2s;
 	}
 	.grid-item {
 		position: relative;
+		width: $w-sm;
+		height: $w-sm * 0.75;
+		margin-bottom: $row-gutter-sm;
+		border: 1px solid #ffffff;
+		overflow: hidden;
+		@media (min-width: $medium-bp){
+			width: $w-med;
+			height: $w-med * 0.75;
+			margin-bottom: $row-gutter-big;
+		}
+		@media (min-width: $large-bp){
+			width: $w-lg;
+			height: $w-lg * 0.75;
+			margin-bottom: $row-gutter-big;
+		}
 	}
 	.grid-item > div {
 		position: absolute;
+	    width: 100%;
+	    height: 100%;
 	}
 	.grid-item > div:nth-child(2) {
 		opacity: 0;
 	}
+	.grid-item.reverse > div:nth-child(2) {
+		opacity: 1;
+	}
 	@for $i from 1 to length($symbols) {
-		.grid-item:nth-child(#{$i}) {
+		.grid-item:nth-child(#{$i}),
+		.grid-item.grid-text > div {
 			opacity: 0;
 			animation: fadeIn 0.1s;
-			animation-delay: #{nth($random_delay, $i) * 0.2}s;
+			animation-delay: #{nth($random_delay, $i) * 0.12}s;
 			animation-fill-mode: both;
-		}
-		.grid-item:nth-child(#{$i}) > div {
-			animation: fadeInWait #{length($symbols)*0.5}s infinite;
-			animation-delay: #{nth($random_delay, $i) - 1}s;
-			animation-fill-mode: both;
-			animation-timing-function: linear;
-			animation-play-state: running;	
-		}
-		.grid-item:nth-child(#{$i}):hover > div {
-			animation: none;
 		}
 		.grid-item:nth-child(#{$i}) > div:nth-child(1) {
-			background-image: url(#{nth($symbols_alt, $i)});
+			background-image: url(#{nth($symbols, $i)});
 			animation-direction: alternate;
 		}
 		.grid-item:nth-child(#{$i}) > div:nth-child(2) {
-			background-image: url(#{nth($symbols, $i)});
+			background-image: url(#{nth($symbols_alt, $i)});
 			animation-direction: alternate-reverse;
 		}
-		.grid-item:nth-child(#{$i}) {
-			order: $i*10;
-		}
 	}
-	.grid-item:hover {
-		> div:nth-child(1) {
-			opacity: 0;
+	.grid-item.grid-text {
+		position: absolute;
+		z-index: 1;
+		background-color: #ffffff;
+		// double width of normal item
+		width: $w-sm * 2;
+		@media (min-width: $medium-bp){
+			width: $w-med * 2;
 		}
-		> div:nth-child(2) {
-			opacity: 1;
+		@media (min-width: $large-bp){
+			width: $w-lg * 2;
 		}
-	}
-	.grid-item.grid-text > div:nth-child(2) {
-		background-image: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
+		> div {
+			width: inherit;
+			background-image: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
 	}
 	.grid-item.grid-text.grid-text-1 {
-		order: 15;
-		animation-delay: 3s;
+		top: $w-sm * 0.75 + 2vw;
+		left: 0;
+		> div {
+			animation-delay: 1.6s;
+		}
 	}
 	.grid-item.grid-text.grid-text-2 {
-		order: 65;
-		animation-delay: 3.6s;
+		top: $w-sm * 0.75 * 3 + 6vw;
+		left: 0;
+		transform: translateX($w-sm);
+		> div {
+			animation-delay: 2.4s;
+		}
 	}
 	.grid-item.grid-text.grid-text-3 {
-		order: 115;
-		animation-delay: 4.2s;
-	}
-	.grid-item.grid-text.grid-text-4 {
-		order: 165;
-		animation-delay: 4.8s;
+		top: $w-sm * 0.75 * 5 + 10vw;
+		left: 0;
+		> div {
+			animation-delay: 3.2s;
+		}
 	}
 	@media (min-width: $medium-bp) {
+		// 4 rows
 		.grid-item.grid-text.grid-text-1 {
-			order: 15;
+			top: 0;
+			transform: translateX($w-med);
 		}
 		.grid-item.grid-text.grid-text-2 {
-			order: 75;
+			top: $w-med * 0.75 + $row-gutter-big;
+			transform: translateX($w-med * 3);	
 		}
 		.grid-item.grid-text.grid-text-3 {
-			order: 145;
+			top: $w-med * 0.75 * 3 + $row-gutter-big * 3;
+			transform: translateX($w-med * 2);
 		}
-		.grid-item.grid-text.grid-text-4 {
-			order: 185;
-		}	
 	}
 	@media (min-width: $large-bp) {
+		// 3 rows
 		.grid-item.grid-text.grid-text-1 {
-			order: 15;
+			transform: translateX($w-lg);
 		}
 		.grid-item.grid-text.grid-text-2 {
-			order: 95;
+			top: $w-lg * 0.75 + $row-gutter-big;
+			transform: translateX($w-lg * 5);
 		}
 		.grid-item.grid-text.grid-text-3 {
-			order: 105;
+			top: $w-lg * 0.75 * 2 + $row-gutter-big * 2;
+			transform: translateX($w-lg * 3);
 		}
-		.grid-item.grid-text.grid-text-4 {
-			order: 195;
-		}	
+	}
+	.grid-item h2 {
+		margin-bottom: 0;
+		font-weight: bold;
 	}
 }
 

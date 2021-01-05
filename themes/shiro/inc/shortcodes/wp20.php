@@ -17,25 +17,27 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'text' => '',
+		'id' => 'symbols-grid',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'symbols_grid' );
 	$texts = preg_split('/\|/', $atts['text']);
 	$text1Class = sizeof($texts) >= 1 ? "grid-item grid-text grid-text-1" : "grid-item";
 	$text2Class = sizeof($texts) >= 2 ? "grid-item grid-text grid-text-2" : "grid-item";
 	$text3Class = sizeof($texts) >= 3 ? "grid-item grid-text grid-text-3" : "grid-item";
-	$text4Class = sizeof($texts) >= 4 ? "grid-item grid-text grid-text-4" : "grid-item";
+
+	wp_enqueue_script( 'symbols_grid', get_stylesheet_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'symbols_grid', "var gridAtts = " . wp_json_encode($atts) . ";");
 	
 	ob_start();
 	?>
 
-	<div class="symbols-grid mod-margin-bottom">
-		<?php for ($i=0; $i < 20; $i++) { ?>
-			<div class="grid-item"><div></div><div></div></div>
+	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="symbols-grid mod-margin-bottom">
+		<?php for ($i=0; $i < 24; $i++) { ?>
+			<div class="grid-item grid-symbol"><div></div><div></div></div>
 		<?php } ?>
-		<div class="<?php echo esc_attr($text1Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text2Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text3Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text4Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[3]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text1Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text2Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text3Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
 	</div>
 
 	<?php
