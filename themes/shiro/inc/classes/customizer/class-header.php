@@ -28,6 +28,30 @@ class Header extends Base {
 		$header_section->panel = 'header_image';
 		$header_section->title = $header_image_title;
 
+		$section_id = 'wmf_alt_header_image';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Alternative header image', 'shiro' ),
+				'priority' => 70,
+				'panel'    => 'header_image',
+			)
+		);
+
+		$control_id = 'wmf_alt_header_image_url';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => '',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'URL to alternative header image', 'shiro' ),
+				'description' => __( 'URL will be applied as inline style background image', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 		$section_id = 'wmf_header_general';
 		$this->customize->add_section(
 			$section_id, array(
@@ -62,6 +86,43 @@ class Header extends Base {
 			$control_id, array(
 				'label'       => __( 'Menu button copy', 'shiro' ),
 				'description' => __( 'This changes the button copy for mobile devices. This can be set in each translation to localize the button.', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$section_id = 'wmf_header_link';
+		$this->customize->add_section(
+			$section_id, array(
+				'title'    => __( 'Header link', 'shiro' ),
+				'priority' => 70,
+				'panel'    => 'header_image',
+			)
+		);
+
+		$control_id = 'wmf_header_link_href';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => '',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Link, clickable on whole header image', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wmf_header_link_aria_label';
+		$this->customize->add_setting(
+			$control_id, array(
+				'default' => '',
+			)
+		);
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Aria label for link', 'shiro' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
