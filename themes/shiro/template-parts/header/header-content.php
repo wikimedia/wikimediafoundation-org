@@ -25,7 +25,7 @@ $wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONA
 $wmf_emergency_message    = get_theme_mod( 'wmf_emergency_message', '' );
 $wmf_header_link_href	= get_theme_mod( 'wmf_header_link_href', '' );
 $wmf_header_link_aria_label	= get_theme_mod( 'wmf_header_link_aria_label', '' );
-$alt_header_file = get_theme_mod( 'wmf_alt_header_image_url', '');
+$wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '');
 
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
@@ -65,11 +65,11 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<?php if ( is_front_page() ) { ?>
 		<?php if ( ! empty( $title ) ) : ?>
 			<?php if ( ! empty( $wmf_header_link_href ) ) : ?>
-				<a href="<?php echo esc_attr($wmf_header_link_href) ?>" aria-label="<?php echo esc_attr($wmf_header_link_aria_label) ?>">
+				<a href="<?php echo esc_url($wmf_header_link_href) ?>" aria-label="<?php echo esc_attr($wmf_header_link_aria_label) ?>">
 			<?php endif; ?>
 					<div class="header-animation">
-						<div class="header-bg-img" style="<?php if ( !empty($alt_header_file) ) : 
-							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $alt_header_file . '")'); 
+						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) : 
+							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $wmf_alt_header_image_url . '")'); 
 							endif; 
 						?>">
 
