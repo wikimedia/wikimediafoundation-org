@@ -442,7 +442,6 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		'lang' => 'en',
 		'id' => 'top-data',
 		'class' => '',
-		'no_data' => 'There is not data for the options you chose. Please choose another year above.',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
 	$atts['directory'] = get_stylesheet_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
@@ -451,6 +450,14 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro' ) );
+	$most_viewed_label = get_theme_mod( 'wikipedia_article_most_viewed', __( 'Most viewed articles', 'shiro' ) );
+	$most_edited_label = get_theme_mod( 'wikipedia_article_most_edited', __( 'most edited articles', 'shiro' ) );
+	$in_label = get_theme_mod( 'wikipedia_article_in', __( 'in', 'shiro' ) );
+	$or_label = get_theme_mod( 'wikipedia_article_or', __( 'or', 'shiro' ) );
+	$no_data_label = get_theme_mod( 'wikipedia_article_no_data', __( 'There is not data for the options you selected. Please change the options above.', 'shiro' ) );
+	// "views" and "edits" needs to be same as the inout values below
+	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro' ) );
+	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro' ) );
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
@@ -468,14 +475,14 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 				<p>
 					<span>
 						<input type="radio" id="views-radio" name="most" value="views" checked>
-						<label for="views-radio">Most viewed articles</label>
+						<label for="views-radio"><?php echo esc_html( $most_viewed_label ) ?></label>
 					</span>
-					<span class="p">or</span>
+					<span class="p"><?php echo esc_html( $or_label ) ?></span>
 					<span>
 						<input type="radio" id="edits-radio" name="most" value="edits">
-						<label for="edits-radio">most edited articles</label>
+						<label for="edits-radio"><?php echo esc_html( $most_edited_label ) ?></label>
 					</span>
-					<span class="p">in</span>
+					<span class="p"><?php echo esc_html( $in_label ) ?></span>
 					<select class="p" name="year" id="year-select">
 					    <option value="2020" selected="selected">2020</option>
 					    <option value="2019">2019</option>
@@ -501,7 +508,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 				</p>
 			</div>
 		</div>
-		<div class="no-data" style="display: none;"><p><?php echo esc_html( $atts['no_data'] ) ?></p></div>
+		<div class="no-data" style="display: none;"><p><?php echo esc_html( $no_data_label ) ?></p></div>
 		<div id="top-data-container" class="mod-margin-bottom">
 			<div id="enwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">

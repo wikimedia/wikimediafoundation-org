@@ -61,7 +61,7 @@ jQuery(document).ready(function($) {
 	function populateData(filterD, o) {
 		var wiki = o === "views" ? "wiki" : "wiki_db",
 			langs = filterD.map(function(d) { return d[wiki]; }),
-			unit = o === "views" ? "views" : "edits",
+			unit = atts[o + "_label"],
 			unit2 = o === "views" ? "pageviews" : "edits",
 			daily = o === "views" ? "daily_views" : "daily_edits",
 			creditsList = [];
