@@ -68,7 +68,7 @@ function wmf_focus_block_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow <?php echo esc_attr( $atts['class'] ) ?>">
+	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow <?php echo esc_attr( $atts['class'] ) ?>" target="_blank">
 		<div class="card">
 			<?php if ( isset($image_url) ) : ?>
 			<div class="bg-img-container">
