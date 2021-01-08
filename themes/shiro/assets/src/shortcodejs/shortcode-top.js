@@ -76,9 +76,10 @@ jQuery(document).ready(function($) {
 			nodata.hide();
 			langContainer.hide();
 			if ( langs.indexOf(id) > -1 ) {
-				var desc = content["desc_" + atts['lang'].replaceAll("wiki", "")].replaceAll('"', ""),
-					heading = content.pagetitle.replaceAll("_", " "),
+				var desc = content["desc_" + atts['lang'].replace("wiki", "")].replace(/"/g, ""),
+					heading = content.pagetitle.replace(/_/g, " "),
 					filename = content.file_name.replace("File:", ""),
+					// assume svgs in dataset converted to png, JPG are downloaded as jpg
 					imgurl = atts['directory'] + filename.replace(".svg", ".png").replace(".JPG", ".jpg"),
 					total = d3.format(",")(content[unit2]),
 					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
