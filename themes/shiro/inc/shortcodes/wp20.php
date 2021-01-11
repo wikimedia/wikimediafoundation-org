@@ -17,25 +17,27 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'text' => '',
+		'id' => 'symbols-grid',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'symbols_grid' );
 	$texts = preg_split('/\|/', $atts['text']);
 	$text1Class = sizeof($texts) >= 1 ? "grid-item grid-text grid-text-1" : "grid-item";
 	$text2Class = sizeof($texts) >= 2 ? "grid-item grid-text grid-text-2" : "grid-item";
 	$text3Class = sizeof($texts) >= 3 ? "grid-item grid-text grid-text-3" : "grid-item";
-	$text4Class = sizeof($texts) >= 4 ? "grid-item grid-text grid-text-4" : "grid-item";
+
+	wp_enqueue_script( 'symbols_grid', get_stylesheet_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_add_inline_script( 'symbols_grid', "var gridAtts = " . wp_json_encode($atts) . ";");
 	
 	ob_start();
 	?>
 
-	<div class="symbols-grid mod-margin-bottom">
-		<?php for ($i=0; $i < 20; $i++) { ?>
-			<div class="grid-item"><div></div><div></div></div>
+	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="symbols-grid mod-margin-bottom">
+		<?php for ($i=0; $i < 24; $i++) { ?>
+			<div class="grid-item grid-symbol"><div></div><div></div></div>
 		<?php } ?>
-		<div class="<?php echo esc_attr($text1Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text2Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text3Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
-		<div class="<?php echo esc_attr($text4Class) ?>"><div></div><div class="wp20"><h2><?php echo esc_html($texts[3]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text1Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[0]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text2Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[1]) ?></h2></div></div>
+		<div class="<?php echo esc_attr($text3Class) ?>"><div class="wp20"><h2><?php echo esc_html($texts[2]) ?></h2></div></div>
 	</div>
 
 	<?php
@@ -54,6 +56,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'title' => '',
 		'id' => 'volunteer-stories',
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'story_carousel' );
 	$content = do_shortcode( $content );
@@ -65,13 +68,15 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr($atts['id']) ?>" class="mw-980 mod-margin-bottom story-carousel-container" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/assets/src/foundation-assets/wikipedia20/accents/confetti.svg')">
-		<div class="story-carousel w-68p">
-			<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-			<div class="story-nav flex flex-all flex-space-between">
-				<a class="prev-story">←</a>
-				<span class="index"></span>
-				<a class="next-story">→</a>
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="mod-margin-bottom_sm story-carousel-container mod-padding-vertical_sm <?php echo esc_attr( $atts['class'] ) ?>">
+		<div class="mw-980 story-carousel-inner">
+			<div class="story-carousel w-68p">
+				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
+				<div class="story-nav flex flex-all flex-space-between">
+					<div class="prev-story"><span>←</span></div>
+					<span class="index"></span>
+					<div class="next-story"><span>→</span></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -140,6 +145,7 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 		'id' => 'recent-edits',
 		'lang_list' => 'en|ar|es|de|fr|ru|zh',
 		'label' => 'One human just edited',
+		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'recent_edits' );
 	$atts['lang_list'] = preg_split('/\|/', $atts['lang_list']);
@@ -157,12 +163,30 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr($atts['id']) ?>" class="mw-980 mod-margin-bottom recent-edits">
-		<div>
-			<p><?php echo wp_kses_post( $content ) ?></p>
-			<p><span class="label"></span></p>
-			<div class="accent"></div>
-			<p><span class="title"></span></p>
+	<div id="<?php echo esc_attr($atts['id'] . '-container') ?>" class="mod-margin-bottom mod-padding-vertical <?php echo esc_attr( $atts['class'] ) ?>">
+		<div class="mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
+		<div id="<?php echo esc_attr($atts['id']) ?>" class="recent-edits mw-980">
+			<div class="rounded">
+				<div class="label-container"><span class="label"></span> <span class="wiki wp20-color-7"></span></div>
+				<div class="accent"><svg width="129" height="107" viewBox="0 0 129 107" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M126.08 1C118.84 27.21 97.28 49 71.14 56.48C66.06 57.93 60.4 58.83 55.66 56.48C50.92 54.13 48.22 47.33 51.66 43.33C54.66 39.86 60.66 40.48 63.94 43.62C67.22 46.76 68.49 51.55 68.83 56.11C69.3303 64.1928 67.6724 72.2633 64.0261 79.4943C60.3799 86.7252 54.8765 92.8566 48.08 97.26C41.1726 101.488 33.2655 103.804 25.1686 103.971C17.0716 104.138 9.07579 102.15 2 98.21" stroke="#000000" stroke-width="6" stroke-miterlimit="10"/></svg>
+				</div>
+				<div class="title"></div>
+				<div class="box-accent box-accent-top">
+					<svg width="240" height="150" viewBox="0 0 240 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M46 101.215L19 21.7153" stroke="black" stroke-width="20"/>
+						<path d="M111 98L139 20" stroke="black" stroke-width="20"/>
+						<path d="M162 130L229 90" stroke="black" stroke-width="20"/>
+					</svg>
+				</div>
+				<div class="box-accent box-accent-bottom">
+					<svg width="240" height="150" viewBox="0 0 240 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M190.398 43.073L225.047 119.55" stroke="black" stroke-width="20"/>
+						<path d="M126.025 52.6325L105.791 132.998" stroke="black" stroke-width="20"/>
+						<path d="M72.1384 25.7759L9.37354 72.1394" stroke="black" stroke-width="20"/>
+					</svg>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -182,12 +206,14 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$defaults = [
 		'id' => 'timeline',
 		'title' => '',
+		'margin' => '0',
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'timeline' );
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text($content);
-	$classes = "timeline mod-margin-bottom " . $atts['class'];
+	$margin = $atts['margin'] === '0' ? '' : ' mod-margin-bottom';
+	$classes = "timeline " . $atts['class'] . $margin;
 
 	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'timeline', "var timelineAtts = " . wp_json_encode($atts) . ";");
@@ -203,8 +229,8 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 				</div>
 			</div>
 			<div class="milestone-nav flex flex-all flex-space-between">
-				<div id="prev-milestone" class="prev hidden">←</div>
-				<div id="next-milestone" class="next hidden">→</div>
+				<div id="prev-milestone" class="prev hidden"><span>←</span></div>
+				<div id="next-milestone" class="next hidden"><span>→</span></div>
 			</div>
 		</div>
 	</div>
@@ -261,6 +287,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 		'img' => '',
 		'margin' => '1',
 		'reverse' => '0',
+		'bg_color' => '0',
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_section' );
@@ -268,31 +295,53 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
-	$classes = "mw-980 wysiwyg section " . $margin;
+	$classes = $atts['bg_color'] === '1' ? "wysiwyg section mod-padding-vertical bg-ltgray " . $margin : "mw-980 wysiwyg section " . $margin;
+	$atts['class'] = $atts['bg_color'] === '1' ? $atts['class'] . ' mw-980' :  $atts['class'];
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
 	$image = $image_id ? wp_get_attachment_image( $image_id, array( 600, 400 ) ) : null;
-	$title = strlen($atts['title']) > 0 ? '<h1>' . esc_html($atts['title']) . '</h1>' : '';
-	$confetti_opt = 'data-confetti-option="' . random_int(1, 10) . '"';
+	$atts['columns'] = $image === null && strlen($atts['title']) === 0 ? '1' : $atts['columns'];
+	$confetti_opt = random_int(1, 10);
 
-	if ( $atts['columns'] === '1' ) {
-		$o = '<div id="' . $id . '" class="' . esc_attr($classes) . '" ' . $confetti_opt . '><div class="' . esc_attr($atts['class']) . '">' . $title . wp_kses_post( $content ) . '</div></div>';
-		return $o;
-	} else {
-		if ( isset($image) ) {
-			$col_1 = '<div class="w-48p mod-margin-bottom_xs">' . $title . wp_kses_post( $content ) . '</div>';
-			$col_2 = '<div class="w-48p mod-margin-bottom_xs">' . $image . '</div>';
-		} else {
-			$col_1 = '<div class="w-48p mod-margin-bottom_xs">' . $title . '</div>';
-			$col_2 = '<div class="w-48p mod-margin-bottom_xs">' . wp_kses_post( $content ) . '</div>';
-		}
+	ob_start();
+	?>
 
-		if ( $atts['reverse'] === '0') {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between ' . esc_attr($atts['class']) . '">' . $col_1 . $col_2 . '</div></div>';
-		} else {
-			return '<div id="' . $id . '" class="' . esc_attr($classes) . '"><div class="flex flex-medium flex-space-between flex-column-reverse-small ' . esc_attr($atts['class']) . '">' . $col_2 . $col_1 . '</div></div>';
-		}
+	<?php if ( $atts['columns'] === '1' ) { ?>
+		<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>" data-confetti-option="<?php echo esc_attr( $confetti_opt ) ?>">
+			<div class="<?php echo esc_attr($atts['class']) ?>">
+				<?php echo esc_html( $atts['title'] )  . wp_kses_post( $content ) ?>
+			</div>
+		</div>
+	<?php } else { 
+		if ( $atts['reverse'] === '0') { ?>
+			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
+				<div class="flex flex-medium flex-space-between <?php echo esc_attr($atts['class']) ?>">
+					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
+					<div class="w-48p mod-margin-bottom_xs">
+						<?php if ( $image_id ) { 
+							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
+						} else { ?>
+						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		<?php } else { ?>
+			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
+				<div class="flex flex-medium flex-space-between flex-column-reverse-small <?php echo esc_attr($atts['class']) ?>">
+					<div class="w-48p mod-margin-bottom_xs">
+						<?php if ( $image_id ) { 
+							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
+						} else { ?>
+						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
+						<?php } ?>
+					</div>
+					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
+				</div>
+			</div>
+	<?php } 
 	}
+	return (string) ob_get_clean();
 }
 add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
 
@@ -401,6 +450,14 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro' ) );
+	$most_viewed_label = get_theme_mod( 'wikipedia_article_most_viewed', __( 'Most viewed articles', 'shiro' ) );
+	$most_edited_label = get_theme_mod( 'wikipedia_article_most_edited', __( 'most edited articles', 'shiro' ) );
+	$in_label = get_theme_mod( 'wikipedia_article_in', __( 'in', 'shiro' ) );
+	$or_label = get_theme_mod( 'wikipedia_article_or', __( 'or', 'shiro' ) );
+	$no_data_label = get_theme_mod( 'wikipedia_article_no_data', __( 'There is not data for the options you selected. Please change the options above.', 'shiro' ) );
+	// "views" and "edits" needs to be same as the inout values below
+	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro' ) );
+	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro' ) );
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
@@ -418,14 +475,14 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 				<p>
 					<span>
 						<input type="radio" id="views-radio" name="most" value="views" checked>
-						<label for="views-radio">Most viewed articles</label>
+						<label for="views-radio"><?php echo esc_html( $most_viewed_label ) ?></label>
 					</span>
-					<span class="p">or</span>
+					<span class="p"><?php echo esc_html( $or_label ) ?></span>
 					<span>
 						<input type="radio" id="edits-radio" name="most" value="edits">
-						<label for="edits-radio">most edited articles</label>
+						<label for="edits-radio"><?php echo esc_html( $most_edited_label ) ?></label>
 					</span>
-					<span class="p">in</span>
+					<span class="p"><?php echo esc_html( $in_label ) ?></span>
 					<select class="p" name="year" id="year-select">
 					    <option value="2020" selected="selected">2020</option>
 					    <option value="2019">2019</option>
@@ -451,7 +508,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 				</p>
 			</div>
 		</div>
-		<div class="no-data" style="display: none;"><p>There is not data for the options you chose. Please choose another year above.</p></div>
+		<div class="no-data" style="display: none;"><p><?php echo esc_html( $no_data_label ) ?></p></div>
 		<div id="top-data-container" class="mod-margin-bottom">
 			<div id="enwiki" class="top-data-content flex flex-medium" style="display: none;">
 				<div class="w-68p flex flex-all main-desc">
@@ -618,21 +675,4 @@ function custom_filter_shortcode_text($text = "") {
 
 	// Add back in the P and BR tags again, remove empty ones
 	return apply_filters("the_content", $text);
-}
-
-/**
- * Utility function to get the attachment url based on attachment title
- */
-function custom_get_attachment_id_by_slug( $slug ) {
-	$args = array(
-		'post_type' => 'attachment',
-		'name' => sanitize_title($slug),
-		'posts_per_page' => 1,
-		'post_status' => 'inherit',
-		'suppress_filters' => false,
-	);
-	$_header = get_posts( $args );
-	$header = $_header ? array_pop($_header) : null;
-	$id = $header ? $header->ID : null;
-	return $id;
 }

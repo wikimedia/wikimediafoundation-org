@@ -61,7 +61,7 @@ jQuery(document).ready(function($) {
 	function populateData(filterD, o) {
 		var wiki = o === "views" ? "wiki" : "wiki_db",
 			langs = filterD.map(function(d) { return d[wiki]; }),
-			unit = o === "views" ? "views" : "edits",
+			unit = atts[o + "_label"],
 			unit2 = o === "views" ? "pageviews" : "edits",
 			daily = o === "views" ? "daily_views" : "daily_edits",
 			creditsList = [];
@@ -76,9 +76,10 @@ jQuery(document).ready(function($) {
 			nodata.hide();
 			langContainer.hide();
 			if ( langs.indexOf(id) > -1 ) {
-				var desc = content["desc_" + atts['lang'].replaceAll("wiki", "")].replaceAll('"', ""),
-					heading = content.pagetitle.replaceAll("_", " "),
+				var desc = content["desc_" + atts['lang'].replace("wiki", "")].replace(/"/g, ""),
+					heading = content.pagetitle.replace(/_/g, " "),
 					filename = content.file_name.replace("File:", ""),
+					// assume svgs in dataset converted to png, JPG are downloaded as jpg
 					imgurl = atts['directory'] + filename.replace(".svg", ".png").replace(".JPG", ".jpg"),
 					total = d3.format(",")(content[unit2]),
 					dailyData = content[daily].split("_").map(function(d) {return parseInt(d, 10);}),
@@ -87,7 +88,7 @@ jQuery(document).ready(function($) {
 				drawChart(dailyData, graphid);
 				langContainer.find(".heading").text(heading);
 				langContainer.find(".desc").text(desc);
-				if (content[wiki].replace("wiki", "").length === 2) {
+				if (content[wiki].replace("wiki", "").match(/^[a-zA-Z\-]{2,16}$/)) {
 					langContainer.find(".details")
 						.attr("href", "https://" + content[wiki].replace("wiki", "") +  ".wikipedia.org/wiki/" + content.pagetitle)
 						.attr("target", "_blank");
@@ -144,15 +145,18 @@ jQuery(document).ready(function($) {
 	}
 
 	function getData(type) {
+		var url = '';
 		if (type === "edits") {
-			d3.csv(atts['url_edits'], function(d) {
+			url = atts['url_edits'].indexOf(".csv") > -1 ? atts['url_edits'] : '';
+			d3.csv(url, function(d) {
 				return d;
 			}).then(function(res) {
 				data.edits = res;
 				evalOption();
 			});
 		} else {
-			d3.csv(atts['url_views'], function(d) {
+			url = atts['url_views'].indexOf(".csv") > -1 ? atts['url_views'] : '';
+			d3.csv(url, function(d) {
 				return d;
 			}).then(function(res) {
 				data.views = res;

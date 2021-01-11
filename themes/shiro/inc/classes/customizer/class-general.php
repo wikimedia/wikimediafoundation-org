@@ -596,6 +596,85 @@ class General extends Base {
 			)
 		);
 
+		$control_id = 'wikipedia_article_views';
+		$this->customize->add_setting( $control_id, array(
+				'default' => __('views', 'shiro'),
+			) );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Wikipedia article views', 'shiro' ),
+				'description' => __( '"views" - used to show stats about Wikipedia articles', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wikipedia_article_edits';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Wikipedia article edits', 'shiro' ),
+				'description' => __( '"edits" - used to show stats about Wikipedia articles', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wikipedia_article_most_viewed';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Most viewed articles', 'shiro' ),
+				'description' => __( '"Most viewed articles" - used to show stats about Wikipedia articles', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wikipedia_article_most_edited';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'Most edited articles', 'shiro' ),
+				'description' => __( '"Most edited articles" - used to show stats about Wikipedia articles', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wikipedia_article_or';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'or', 'shiro' ),
+				'description' => __( '"or" - used to show stats about Wikipedia articles by edits or views', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wikipedia_article_in';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'in', 'shiro' ),
+				'description' => __( '"in" - used to show stats about Wikipedia articles per year', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
+		$control_id = 'wikipedia_article_no_data';
+		$this->customize->add_setting( $control_id );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'       => __( 'No data message', 'shiro' ),
+				'description' => __( '"There is not data for the options you selected. Please change the options above."', 'shiro' ),
+				'section'     => $section_id,
+				'type'        => 'text',
+			)
+		);
+
 	}
 
 }

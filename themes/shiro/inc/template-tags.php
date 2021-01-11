@@ -228,3 +228,20 @@ function remove_devicepx() {
 wp_dequeue_script( 'devicepx' ); 
 } 
 add_action( 'wp_enqueue_scripts', 'remove_devicepx' );
+
+/**
+ * Utility function to get the attachment url based on attachment title
+ */
+function custom_get_attachment_id_by_slug( $slug ) {
+	$args = array(
+		'post_type' => 'attachment',
+		'name' => sanitize_title($slug),
+		'posts_per_page' => 1,
+		'post_status' => 'inherit',
+		'suppress_filters' => false,
+	);
+	$_header = get_posts( $args );
+	$header = $_header ? array_pop($_header) : null;
+	$id = $header && !empty($slug) ? $header->ID : null;
+	return $id;
+}

@@ -23,6 +23,9 @@ $wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
 $wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
 $wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
 $wmf_emergency_message    = get_theme_mod( 'wmf_emergency_message', '' );
+$wmf_header_link_href	= get_theme_mod( 'wmf_header_link_href', '' );
+$wmf_header_link_aria_label	= get_theme_mod( 'wmf_header_link_aria_label', '' );
+$wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '');
 
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
@@ -61,16 +64,25 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<!-- Site front page -->
 	<?php if ( is_front_page() ) { ?>
 		<?php if ( ! empty( $title ) ) : ?>
-			<div class="header-animation">
-				<div class="header-bg-img">
+			<?php if ( ! empty( $wmf_header_link_href ) ) : ?>
+				<a href="<?php echo esc_url($wmf_header_link_href) ?>" aria-label="<?php echo esc_attr($wmf_header_link_aria_label) ?>">
+			<?php endif; ?>
+					<div class="header-animation">
+						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) : 
+							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $wmf_alt_header_image_url . '")'); 
+							endif; 
+						?>">
 
-				</div>
-				<div class="mw-980">
-					<div class="vision_container">
-						<?php get_template_part( 'template-parts/header/vision'); ?>
+						</div>
+						<div class="mw-980">
+							<div class="vision_container">
+								<?php get_template_part( 'template-parts/header/vision'); ?>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
+			<?php if ( ! empty( $wmf_header_link_href ) ) : ?>
+				</a>
+			<?php endif; ?>
 		<?php endif; ?>
         <?php if ( ! empty( $wmf_emergency_message ) ) : ?>
             <div class="urgent-header rounded center" style="">

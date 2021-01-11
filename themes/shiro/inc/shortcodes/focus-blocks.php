@@ -62,17 +62,13 @@ function wmf_focus_block_callback( $atts = [], $content = '' ) {
 	static $index = 0;
 	$index++;
 
-	$attachment = get_page_by_title($atts['img'], OBJECT, 'attachment');
-
-	if ( !empty($attachment) ) {
-		$img_id = $attachment->ID;
-		$image_url = wp_get_attachment_image_url($img_id, array(400, 400));
-	}
+	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
+	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 600, 600 ) ) : null;
 
 	ob_start();
 	?>
 
-	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow <?php echo esc_attr( $atts['class'] ) ?>">
+	<a href="<?php echo esc_url( $atts['uri'] ); ?>" class="w-32p mod-margin-bottom_sm focus-block rounded shadow <?php echo esc_attr( $atts['class'] ) ?>" target="_blank">
 		<div class="card">
 			<?php if ( isset($image_url) ) : ?>
 			<div class="bg-img-container">
