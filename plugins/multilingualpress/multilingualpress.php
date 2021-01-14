@@ -13,7 +13,7 @@
  * Description: The multisite-based plugin for your multilingual WordPress websites.
  * Author: Inpsyde GmbH
  * Author URI: https://inpsyde.com
- * Version: 3.4.0
+ * Version: 3.5.0
  * Text Domain: multilingualpress
  * Domain Path: /languages/
  * License: GPLv2+
@@ -181,7 +181,8 @@ function bootstrap()
             ->add(new Module\WooCommerce\ServiceProvider())
             ->add(new Module\QuickLinks\ServiceProvider())
             ->add(new Onboarding\ServiceProvider())
-            ->add(new Schedule\ServiceProvider());
+            ->add(new Schedule\ServiceProvider())
+            ->add(new Module\ACF\ServiceProvider());
 
         $multilingualpress = new MultilingualPress($container, $providers);
 
