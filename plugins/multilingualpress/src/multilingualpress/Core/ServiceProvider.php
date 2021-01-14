@@ -52,6 +52,7 @@ use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedCon
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingMultiView;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionView;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\Language\EmbeddedLanguage;
 use Inpsyde\MultilingualPress\Translator\PostTranslator;
 use Inpsyde\ProductPagesLicensing\License;
 use Throwable;
@@ -973,7 +974,7 @@ class ServiceProvider implements BootstrappableServiceProvider
                 if (!$siteLanguage) {
                     return $attributes;
                 }
-
+                $siteLanguage = EmbeddedLanguage::changeLanguageVariantLocale($siteLanguage);
                 return preg_replace(
                     '/(lang=[\"\'])' . get_bloginfo('language') . '([\"\'])/',
                     '$1' . $siteLanguage . '$2',

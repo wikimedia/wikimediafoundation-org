@@ -6,11 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
+    'Symfony\\Polyfill\\Php70\\' => array($vendorDir . '/symfony/polyfill-php70'),
+    'Symfony\\Polyfill\\Intl\\Normalizer\\' => array($vendorDir . '/symfony/polyfill-intl-normalizer'),
+    'Symfony\\Polyfill\\Intl\\Idn\\' => array($vendorDir . '/symfony/polyfill-intl-idn'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src', $vendorDir . '/psr/http-factory/src'),
     'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
     'OomphInc\\ComposerInstallersExtender\\' => array($vendorDir . '/oomphinc/composer-installers-extender/src'),
     'Mjelamanov\\GuzzlePsr18\\' => array($vendorDir . '/mjelamanov/psr18-guzzle/src'),
     'Inpsyde\\ProductPagesLicensing\\' => array($vendorDir . '/inpsyde/product-pages-licensing/src'),
+    'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => array($baseDir . '/modules/multilingualpress-woocommerce-brands/src'),
     'Inpsyde\\MultilingualPress\\Module\\' => array($baseDir . '/src/modules'),
     'Inpsyde\\MultilingualPress\\Framework\\' => array($baseDir . '/src/framework'),
     'Inpsyde\\MultilingualPress\\' => array($baseDir . '/src/multilingualpress'),
