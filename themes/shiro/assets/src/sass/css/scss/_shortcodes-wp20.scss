@@ -133,6 +133,8 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 	h1:nth-of-type(1) {
 		margin-bottom: 1em;
 		position: relative;
+		padding-right: 2rem;
+		padding-left: 0;
 	}
 	h1:nth-of-type(2) {
 		margin-top: 1em;
@@ -166,15 +168,15 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 		position: absolute;
 		top: auto;
 		bottom: -0.75em;
-		right: 0.5rem;
+		right: 0;
 		left: auto;
 		width: 1em;
 		height: 1em;
 		background-image: url("./assets/src/foundation-assets/wikipedia20/accents/accent1.svg");
 		background-repeat: no-repeat;
 		background-size: contain;
+		transform: rotate(-60deg) #{"/*rtl:rotate(30deg)*/"};
 		display: block;
-		transform: rotate(-60deg);
 	}
 	.intro h1,
 	> div {
@@ -420,7 +422,17 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
     		border-color: #{nth($wp20_colors, $i)};
     	}
     }
+    .story-since {
+    	background-image: url("./assets/src/svg/calendar.svg");
+    }
+    .story-location {
+    	background-image: url("./assets/src/svg/map pin.svg");
+    }
     .story-location, .story-since {
+    	padding-left: 1.5em;
+    	background-repeat: no-repeat;
+    	background-position: 0 0.25em;
+    	background-size: 1em;
     	flex-wrap: nowrap;
     }
     .story-content .story-location {
