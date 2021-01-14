@@ -24,6 +24,7 @@ $wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( '
 $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro' ) );
 $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro' ) );
 
+global $post;
 $post_slug = $post->post_name;
 ?>
 <!DOCTYPE html>
