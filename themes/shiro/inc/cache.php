@@ -73,7 +73,7 @@ function wmf_clear_profile_cache( $post_id ) {
 
 	$terms = get_the_terms( $post_id, 'role' );
 
-	if ( empty( $terms ) || is_wp_error( $terms ) || !get_post_meta( $post_id, 'profile_featured', true ) ) {
+	if ( empty( $terms ) || is_wp_error( $terms ) ) {
 		return;
 	}
 

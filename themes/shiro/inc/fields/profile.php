@@ -44,7 +44,6 @@ function wmf_profile_fields() {
 			'children'       => array(
 				'profile_role'     => new Fieldmanager_Textfield( __( 'Role', 'shiro' ) ),
 				'profile_featured' => new Fieldmanager_Checkbox( __( 'Featured?', 'shiro' ) ),
-				'profile_featured_list' => new Fieldmanager_Checkbox( __( 'Include in featured profiles list?', 'shiro' ) ),
 			),
 		)
 	);
