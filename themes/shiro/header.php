@@ -23,6 +23,8 @@ $wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip t
 $wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro' ) );
 $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro' ) );
 $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro' ) );
+
+$page_id = get_queried_object_id();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -93,13 +95,13 @@ $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( '
 					<?php endif; ?>
 					<div class="donate-btn">
 						<div class="donate-btn--desktop">
-							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>">
+							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>">
 								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
 								<?php echo esc_html( $wmf_donate_button );?>
 							</a>
 						</div>
 						<div class="donate-btn--mobile">
-							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>">
+							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>">
 								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/heart-pink.svg" alt="<?php echo esc_attr( $wmf_donate_button ); ?>">
 							</a>
 						</div>
