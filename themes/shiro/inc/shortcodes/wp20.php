@@ -72,7 +72,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 		<div class="mw-980 story-carousel-inner">
 			<div class="story-carousel w-68p">
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-				<div class="story-nav flex flex-all flex-space-between">
+				<div class="story-nav flex flex-all flex-space-between" aria-hidden="true">
 					<div class="prev-story"><span>←</span></div>
 					<span class="index"></span>
 					<div class="next-story"><span>→</span></div>
@@ -114,13 +114,13 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 
 		<?php if ( !empty($atts['location'] ) ) { ?>
 			<p class="story-location flex flex-all">
-				<img class="story-icon" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/map pin.svg"><span><?php echo esc_html( $atts['location'] ); ?></span>
+				<span><?php echo esc_html( $atts['location'] ); ?></span>
 			</p>
 		<?php } ?>
 		
 		<?php if ( !empty($atts['since'] ) ) { ?>
 			<p class="story-since flex flex-all">
-				<img class="story-icon" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/calendar.svg"><span><?php echo esc_html( $atts['since'] ); ?></span>
+				<span><?php echo esc_html( $atts['since'] ); ?></span>
 			</p>
 		<?php } ?>
 
@@ -228,7 +228,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 					<?php echo wp_kses_post( $content ) ?>
 				</div>
 			</div>
-			<div class="milestone-nav flex flex-all flex-space-between">
+			<div class="milestone-nav flex flex-all flex-space-between" aria-hidden="true">
 				<div id="prev-milestone" class="prev hidden"><span>←</span></div>
 				<div id="next-milestone" class="next hidden"><span>→</span></div>
 			</div>
@@ -256,14 +256,13 @@ function wmf_milestone_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 	$classes = "milestone";
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
-	$image_url = $image_id ? wp_get_attachment_image_url( $image_id, array( 200, 200 ) ) : null;
 
 	ob_start();
 	?>
 
 	<div class="<?php echo esc_attr($classes) ?>">
 		<div class="milestone-container">
-			<img src="<?php if ( isset($image_url) ) echo esc_url( $image_url ); ?>">
+			<?php if ( $image_id ) echo wp_get_attachment_image( $image_id, array( 500, 500 ) ); ?>
 			<div class="milestone-desc"><?php echo wp_kses_post( $content ) ?></div>
 		</div>
 	</div>
@@ -354,7 +353,6 @@ add_shortcode( 'wmf_section', 'wmf_section_shortcode_callback' );
  */
 function wmf_movement_callback( $atts = [], $content = '' ) {
 	$defaults = [
-		'title' => '',
 		'id' => 'movement-content',
 		'class' => '',
 	];
@@ -371,8 +369,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
 		<div class="mw-980 wysiwyg">
 			<div class="w-68p">
-				<h1><?php echo esc_html( $atts['title'] ); ?></h1>
-				<p><?php echo wp_kses_post( $content ); ?></p>
+				<?php echo wp_kses_post( $content ); ?>
 			</div>
 		</div>
 		<div class="movement-vis">
