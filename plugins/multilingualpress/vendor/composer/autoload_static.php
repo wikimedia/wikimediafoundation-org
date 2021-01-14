@@ -4,16 +4,27 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
+class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Php72\\' => 23,
+            'Symfony\\Polyfill\\Php70\\' => 23,
+            'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
+            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -30,6 +41,7 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'I' => 
         array (
             'Inpsyde\\ProductPagesLicensing\\' => 30,
+            'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => 45,
             'Inpsyde\\MultilingualPress\\Module\\' => 33,
             'Inpsyde\\MultilingualPress\\Framework\\' => 36,
             'Inpsyde\\MultilingualPress\\' => 26,
@@ -51,6 +63,22 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
+        'Symfony\\Polyfill\\Php70\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
+        ),
+        'Symfony\\Polyfill\\Intl\\Normalizer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer',
+        ),
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -71,6 +99,10 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'Inpsyde\\ProductPagesLicensing\\' => 
         array (
             0 => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src',
+        ),
+        'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/multilingualpress-woocommerce-brands/src',
         ),
         'Inpsyde\\MultilingualPress\\Module\\' => 
         array (
@@ -107,6 +139,8 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
     );
 
     public static $classMap = array (
+        'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
+        'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Composer\\Installers\\AglInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AglInstaller.php',
         'Composer\\Installers\\AimeosInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AimeosInstaller.php',
         'Composer\\Installers\\AnnotateCmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AnnotateCmsInstaller.php',
@@ -203,6 +237,8 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'Composer\\Installers\\YawikInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/YawikInstaller.php',
         'Composer\\Installers\\ZendInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZendInstaller.php',
         'Composer\\Installers\\ZikulaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZikulaInstaller.php',
+        'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
+        'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
         'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
@@ -273,6 +309,7 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
         'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
         'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
+        'GuzzleHttp\\Utils' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Utils.php',
         'Http\\Factory\\Guzzle\\RequestFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/RequestFactory.php',
         'Http\\Factory\\Guzzle\\ResponseFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/ResponseFactory.php',
         'Http\\Factory\\Guzzle\\ServerRequestFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/ServerRequestFactory.php',
@@ -529,6 +566,10 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'Inpsyde\\MultilingualPress\\Integration\\WpCli' => __DIR__ . '/../..' . '/src/multilingualpress/Integration/WpCli.php',
         'Inpsyde\\MultilingualPress\\Language\\EmbeddedLanguage' => __DIR__ . '/../..' . '/src/multilingualpress/Language/EmbeddedLanguage.php',
         'Inpsyde\\MultilingualPress\\Language\\Language' => __DIR__ . '/../..' . '/src/multilingualpress/Language/Language.php',
+        'Inpsyde\\MultilingualPress\\Module\\ACF\\FieldCopier' => __DIR__ . '/../..' . '/src/modules/ACF/FieldCopier.php',
+        'Inpsyde\\MultilingualPress\\Module\\ACF\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/ACF/ServiceProvider.php',
+        'Inpsyde\\MultilingualPress\\Module\\ACF\\TranslationUi\\Post\\Field\\CopyACFFields' => __DIR__ . '/../..' . '/src/modules/ACF/TranslationUi/Post/Field/CopyACFFields.php',
+        'Inpsyde\\MultilingualPress\\Module\\ACF\\TranslationUi\\Post\\MetaboxFields' => __DIR__ . '/../..' . '/src/modules/ACF/TranslationUi/Post/MetaboxFields.php',
         'Inpsyde\\MultilingualPress\\Module\\AltLanguageTitleInAdminBar\\AdminBarCustomizer' => __DIR__ . '/../..' . '/src/modules/AltLanguageTitleInAdminBar/AdminBarCustomizer.php',
         'Inpsyde\\MultilingualPress\\Module\\AltLanguageTitleInAdminBar\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/AltLanguageTitleInAdminBar/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Module\\AltLanguageTitleInAdminBar\\SettingsRepository' => __DIR__ . '/../..' . '/src/modules/AltLanguageTitleInAdminBar/SettingsRepository.php',
@@ -716,6 +757,7 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'Inpsyde\\MultilingualPress\\Translator\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Translator/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Translator\\TermTranslator' => __DIR__ . '/../..' . '/src/multilingualpress/Translator/TermTranslator.php',
         'Inpsyde\\MultilingualPress\\Translator\\UrlBlogFragmentTrailingTrait' => __DIR__ . '/../..' . '/src/multilingualpress/Translator/UrlBlogFragmentTrailingTrait.php',
+        'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\ServiceProvider' => __DIR__ . '/../..' . '/modules/multilingualpress-woocommerce-brands/src/ServiceProvider.php',
         'Inpsyde\\ProductPagesLicensing\\Api\\Activator' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/Api/Activator.php',
         'Inpsyde\\ProductPagesLicensing\\Api\\Updater' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/Api/Updater.php',
         'Inpsyde\\ProductPagesLicensing\\License' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/License.php',
@@ -725,9 +767,11 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'Mjelamanov\\GuzzlePsr18\\Exception\\NetworkException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/NetworkException.php',
         'Mjelamanov\\GuzzlePsr18\\Exception\\RequestException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/RequestException.php',
         'Mjelamanov\\GuzzlePsr18\\Exception\\WithRequest' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/WithRequest.php',
+        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'OomphInc\\ComposerInstallersExtender\\Installer' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/Installer.php',
         'OomphInc\\ComposerInstallersExtender\\InstallerHelper' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/InstallerHelper.php',
         'OomphInc\\ComposerInstallersExtender\\Plugin' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/Plugin.php',
+        'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Psr\\Http\\Client\\ClientExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/ClientExceptionInterface.php',
         'Psr\\Http\\Client\\ClientInterface' => __DIR__ . '/..' . '/psr/http-client/src/ClientInterface.php',
         'Psr\\Http\\Client\\NetworkExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/NetworkExceptionInterface.php',
@@ -745,14 +789,23 @@ class ComposerStaticInit589a846b35eaec2625dbe393a66162a6
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
         'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
+        'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
+        'Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
+        'Symfony\\Polyfill\\Intl\\Idn\\Info' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Info.php',
+        'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\DisallowedRanges' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/DisallowedRanges.php',
+        'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\Regex' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/Regex.php',
+        'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
+        'Symfony\\Polyfill\\Php70\\Php70' => __DIR__ . '/..' . '/symfony/polyfill-php70/Php70.php',
+        'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
+        'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit589a846b35eaec2625dbe393a66162a6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit589a846b35eaec2625dbe393a66162a6::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit589a846b35eaec2625dbe393a66162a6::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab::$classMap;
 
         }, null, ClassLoader::class);
     }

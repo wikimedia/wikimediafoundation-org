@@ -1,3 +1,14 @@
+2020-09-28 - version 3.5.0
+* Add: Advanced Custom Fields plugin support.
+* Add: WooCommerce Brands plugin support.
+* Add: Language versions like Deutsch (Sie) to our default list.
+* Fix: Search Engine visibility not working.
+* Fix: PHP notice from CPT rewrite function.
+* Fix: MultilingualPress (org) contact form: Broken link in plugin.
+* Fix: wrong capability check when Author role users are creating new posts
+* Fix: The Greece language information
+* Fix: The conflict with mailjet-for-wordpress plugin
+
 2020-07-06 - version 3.4.0
 * Add: Improve the licence activation/deactivation form view.
 * Add: Add a way to change the language name/view in language switcher widget.

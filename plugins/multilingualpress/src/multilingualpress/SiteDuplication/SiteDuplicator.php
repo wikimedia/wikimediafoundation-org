@@ -28,7 +28,6 @@ class SiteDuplicator
 {
     const NAME_ACTIVATE_PLUGINS = 'mlp_activate_plugins';
     const NAME_BASED_ON_SITE = 'mlp_based_on_site';
-    const NAME_SEARCH_ENGINE_VISIBILITY = 'mlp_search_engine_visibility';
     const NAME_OPTION_SITE_LANGUAGE = 'WPLANG';
     const NAME_SITE_RELATIONS = 'mlp_site_relations';
     const NAME_CONNECT_CONTENT = 'mlp_connect_content';
@@ -175,7 +174,6 @@ class SiteDuplicator
         update_option('blogname', stripslashes($blogData['title'] ?? ''));
 
         $this->renameUserRolesOption($tablePrefix);
-        $this->handleSearchEngineVisibility();
         $this->handlePlugins();
         $this->handleTheme();
 
@@ -337,20 +335,6 @@ class SiteDuplicator
             ['option_name' => "{$this->wpdb->prefix}user_roles"],
             ['option_name' => "{$newTablePrefix}user_roles"]
         );
-    }
-
-    /**
-     * Adapts the search engine visibility according to the setting included in the request.
-     */
-    private function handleSearchEngineVisibility()
-    {
-        $isSiteVisible = $this->request->bodyValue(
-            static::NAME_SEARCH_ENGINE_VISIBILITY,
-            INPUT_POST,
-            FILTER_SANITIZE_NUMBER_INT
-        );
-
-        update_option('blog_public', (bool)$isSiteVisible);
     }
 
     /**

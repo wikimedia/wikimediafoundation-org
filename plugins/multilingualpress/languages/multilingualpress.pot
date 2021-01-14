@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: multilingualpress.php:11, src/multilingualpress/Core/ServiceProvider.php:534, src/multilingualpress/Core/ServiceProvider.php:843, src/multilingualpress/Core/ServiceProvider.php:1068, src/multilingualpress/Core/ServiceProvider.php:1069, src/multilingualpress/Core/ServiceProvider.php:1077, src/multilingualpress/Core/Admin/NewSiteSettings.php:61
+#: multilingualpress.php:11, src/multilingualpress/Core/ServiceProvider.php:535, src/multilingualpress/Core/ServiceProvider.php:844, src/multilingualpress/Core/ServiceProvider.php:1069, src/multilingualpress/Core/ServiceProvider.php:1070, src/multilingualpress/Core/ServiceProvider.php:1078, src/multilingualpress/Core/Admin/NewSiteSettings.php:61
 msgid "MultilingualPress"
 msgstr ""
 
@@ -72,6 +72,18 @@ msgstr ""
 
 #: src/inc/utils.php:168
 msgid "Settings saved."
+msgstr ""
+
+#: src/modules/ACF/ServiceProvider.php:44
+msgid "Enable ACF Support for MultilingualPress."
+msgstr ""
+
+#: src/modules/ACF/ServiceProvider.php:50
+msgid "The module can be activated only if ACF plugin is active at least in the main site."
+msgstr ""
+
+#: src/modules/ACF/ServiceProvider.php:61
+msgid "ACF"
 msgstr ""
 
 #: src/modules/AltLanguageTitleInAdminBar/ServiceProvider.php:62
@@ -275,39 +287,39 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:358
+#: src/multilingualpress/Core/ServiceProvider.php:359
 msgid "Modules"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:370
+#: src/multilingualpress/Core/ServiceProvider.php:371
 msgid "Translatable Post Types"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:382
+#: src/multilingualpress/Core/ServiceProvider.php:383
 msgid "Translatable Taxonomies"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:395
+#: src/multilingualpress/Core/ServiceProvider.php:396
 msgid "License"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:861, src/multilingualpress/Core/ServiceProvider.php:868
+#: src/multilingualpress/Core/ServiceProvider.php:862, src/multilingualpress/Core/ServiceProvider.php:869
 msgid "Post Type Slugs"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:916
+#: src/multilingualpress/Core/ServiceProvider.php:917
 msgid "Site Language"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:918, src/multilingualpress/Core/ServiceProvider.php:936
+#: src/multilingualpress/Core/ServiceProvider.php:919, src/multilingualpress/Core/ServiceProvider.php:937
 msgid "none"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:929, src/multilingualpress/Core/Admin/RelationshipsSiteSetting.php:95
+#: src/multilingualpress/Core/ServiceProvider.php:930, src/multilingualpress/Core/Admin/RelationshipsSiteSetting.php:95
 msgid "Relationships"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:1078, src/multilingualpress/Core/ServiceProvider.php:1091
+#: src/multilingualpress/Core/ServiceProvider.php:1079, src/multilingualpress/Core/ServiceProvider.php:1092
 msgid "Settings"
 msgstr ""
 
@@ -579,15 +591,15 @@ msgstr ""
 msgid "Copy Attachments"
 msgstr ""
 
-#: src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php:52
+#: src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php:53
 msgid "Discourage search engines from indexing this site"
 msgstr ""
 
-#: src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php:60
+#: src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php:61
 msgid "It is up to search engines to honor this request."
 msgstr ""
 
-#: src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php:76
+#: src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php:77
 msgid "Search Engine Visibility"
 msgstr ""
 
@@ -877,6 +889,11 @@ msgctxt "translation term metabox"
 msgid "Term Data"
 msgstr ""
 
+#: src/modules/ACF/TranslationUi/Post/MetaboxFields.php:38
+msgctxt "translation post metabox"
+msgid "ACF"
+msgstr ""
+
 #: src/modules/WooCommerce/TranslationUi/Product/MetaboxAction.php:280
 msgid "Error updating products data. Something went wrong."
 msgstr ""
@@ -1094,6 +1111,18 @@ msgstr ""
 
 #: src/multilingualpress/TranslationUi/Term/Field/Relation.php:285
 msgid "No terms found matching search."
+msgstr ""
+
+#: src/modules/ACF/TranslationUi/Post/Field/CopyACFFields.php:57
+msgid "Copy ACF Fields"
+msgstr ""
+
+#: src/modules/ACF/TranslationUi/Post/Field/CopyACFFields.php:69
+msgid "Overwrites the custom field values on translated post with the values of custom fields of source post ."
+msgstr ""
+
+#: src/modules/ACF/TranslationUi/Post/Field/CopyACFFields.php:78
+msgid "Please note, the ACF fields should be created in remote site for this option to work"
 msgstr ""
 
 #: src/modules/WooCommerce/TranslationUi/Product/Ajax/Search.php:68

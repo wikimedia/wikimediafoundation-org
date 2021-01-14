@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\SiteDuplication;
 
+use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsUpdater;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingViewModel;
 
 /**
@@ -38,15 +39,15 @@ final class SearchEngineVisibilitySetting implements SiteSettingViewModel
          */
         $visible = apply_filters(
             self::FILTER_SEARCH_ENGINE_VISIBILITY,
-            false
+            true
         );
         ?>
         <label for="<?= esc_attr($this->fieldId) ?>">
             <input
                 type="checkbox"
-                value="1"
+                value="0"
                 id="<?= esc_attr($this->fieldId) ?>"
-                name="<?= esc_attr(SiteDuplicator::NAME_SEARCH_ENGINE_VISIBILITY) ?>"
+                name="<?= esc_attr(SiteSettingsUpdater::NAME_SEARCH_ENGINE_VISIBILITY) ?>"
                 <?php checked(!$visible) ?>>
             <?php
             esc_html_e(

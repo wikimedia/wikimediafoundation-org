@@ -21,6 +21,7 @@ class SiteSettingsRepository
 
     const KEY_LANGUAGE = 'lang';
     const NAME_LANGUAGE = 'mlp_site_language';
+    const NAME_LANGUAGE_TYPE = 'mlp_site_language_type';
     const NAME_RELATIONSHIPS = 'mlp_site_relations';
     const NAME_XDEFAULT = 'multilingualpress_xdefault';
     const OPTION = 'multilingualpress_site_settings';
