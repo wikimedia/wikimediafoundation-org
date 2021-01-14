@@ -22,7 +22,7 @@ function wmf_focus_blocks_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 
 	// exclude p tag to avoid empty ones
-	$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [], 'target' => [] ], 'h3' => [ 'class' => [], 'style' => [] ], 'div' => [ 'class' => [], 'style' => [] ], 'h2' => [ 'class' => [] ] ];
+	$allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [], 'style' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [], 'target' => [] ], 'h3' => [ 'class' => [], 'style' => [] ], 'div' => [ 'class' => [], 'style' => [], 'aria-hidden' => [] ], 'h2' => [ 'class' => [] ] ];
 
 	ob_start();
 	?>
@@ -89,7 +89,7 @@ function wmf_focus_block_callback( $atts = [], $content = '' ) {
 				<?php endif; ?>
 
 				<?php if ( ! empty( $atts['uri'] ) && ! empty( $atts['link_text'] ) ) : ?>
-					<div class="arrow-link stick-to-bottom" data-href="<?php echo esc_url( $atts['uri'] ); ?>"><?php echo esc_html( $atts['link_text'] ); ?></div>
+					<div class="arrow-link stick-to-bottom" data-href="<?php echo esc_url( $atts['uri'] ); ?>" aria-hidden="true"><?php echo esc_html( $atts['link_text'] ); ?></div>
 				<?php endif; ?>
 
 			</div>
