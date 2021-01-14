@@ -7,6 +7,8 @@
 
 $template_args = wmf_get_template_data();
 
+$page_id = get_queried_object_id();
+
 if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && empty( $template_args['content'] ) && empty( $template_args['link_uri'] ) ) {
 	return;
 }
@@ -40,8 +42,11 @@ $class    = empty( $template_args['class'] ) ? $bg_class . ' cta-primary' : $tem
 				</div>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
+				<?php if ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) && empty( $template_args['support_cta'] ) ) : ?>
 				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>"><span class="cta-btn-text"><?php echo esc_html( $template_args['link_text'] ); ?></span></a>
+
+				<?php elseif ( ! empty( $template_args['link_uri'] ) && ! empty( $template_args['link_text'] ) ) : ?>
+				<a class="btn " href="<?php echo esc_url( $template_args['link_uri'] ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>"><span class="cta-btn-text"><?php echo esc_html( $template_args['link_text'] ); ?></span></a>
 				<?php endif; ?>
 
 			</div>
