@@ -32,7 +32,8 @@ jQuery(document).ready(function($) {
 				rctype: "edit",
 				rcshow: "!bot",
 				rclimit: limit,
-				format: "json"
+				format: "json",
+				smaxage: 300
 			};
 
 		url += "?origin=*";
@@ -43,11 +44,12 @@ jQuery(document).ready(function($) {
 	function getRecentEdits(force) {
 		if (document.hasFocus() || force) {
 			var start = new Date(),
-				isoStart = start.toISOString(),
+				startRound = new Date(start.getFullYear(), start.getMonth(), start.getDay(), start.getHours(), start.getMinutes()),
+				isoStart = startRound.toISOString(),
 				minutes = 60,
-				end = new Date(start.getTime() - minutes*60000),
+				end = new Date(startRound.getTime() - minutes*60000),
 				isoEnd = end.toISOString();
-			// console.log(isoEnd, "\n", isoStart, "\n", end.toLocaleTimeString() + " to " + start.toLocaleTimeString());
+			// console.log(isoEnd, "\n", isoStart, "\n", end.toLocaleTimeString() + " to " + startRound.toLocaleTimeString());
 			rEdits = [];
 			$.when(
 				$.ajax(recentEditUrl(langList[0], isoStart, isoEnd)),
