@@ -16,6 +16,20 @@ jQuery(document).ready(function($) {
 		return (Math.random() * (max - min) + min).toFixed(2);
 	}
 
+	function getUrlParameter(sParam) {
+		var sPageURL = window.location.search.substring(1),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName;
+		for (var i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? 0 : decodeURIComponent(sParameterName[1]);
+			}
+		}
+		return 0;
+	}
+
 	function getStoryContent() {
 		storyContents.hide();
 		$(storyContents[currentStory]).fadeIn();
@@ -48,12 +62,26 @@ jQuery(document).ready(function($) {
 		scrollToBeginning();
 	});
 
-	for (var j = 0; j < storiesLen; j++) {
-		var rand = Math.min(Math.floor(getRandom(0, storiesLen)), storiesLen - 1);
-		storyContents.eq(rand).insertBefore(storyContents[0]);
+	function shuffteStories() {
+		for (var j = 0; j < storiesLen; j++) {
+			var rand = Math.min(Math.floor(getRandom(0, storiesLen)), storiesLen - 1);
+			storyContents.eq(rand).insertBefore(storyContents[0]);
+		}
 	}
-	storyContents = storyOverlay.find(".story-content"); // reset with new order
-	getStoryContent();
 
+	function init() {
+		var storyParam = parseInt(getUrlParameter("s"), 10),
+			sInRange = storyParam > 0 && storyParam <= storiesLen;
+		if (sInRange) {
+			console.log(storyParam);
+			storyContents.eq(storyParam - 1).insertBefore(storyContents[0]);
+		} else {
+			shuffteStories();
+		}
+		storyContents = storyOverlay.find(".story-content"); // reset with new order
+		getStoryContent();
+	}
+
+	init();
 });
 
