@@ -72,7 +72,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 		<div class="mw-980 story-carousel-inner">
 			<div class="story-carousel w-68p">
 				<div class="story-content-container"><?php echo wp_kses_post( $content ) ?></div>
-				<div class="story-nav flex flex-all flex-space-between" aria-hidden="true">
+				<div class="story-nav flex flex-medium flex-space-between" aria-hidden="true">
 					<div class="prev-story"><span>←</span></div>
 					<span class="index"></span>
 					<div class="next-story"><span>→</span></div>

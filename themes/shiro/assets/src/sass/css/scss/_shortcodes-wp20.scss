@@ -108,8 +108,8 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 }
 
 .wp20 h2 {
-	@include font-size(32, 24);
-	@include marginBottom(16, 24, $medium-bp);
+	@include font-size(44, 24);
+	@include marginBottom(16, 28, $medium-bp);
 }
 
 .wp20.story-carousel-container .index,
@@ -121,6 +121,9 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 	@include marginBottom(16, 0, $medium-bp);
 }
 
+.section .margin-top {
+	margin-top: 1.5em;
+}
 
 .section .wp20.intro {
 	margin-left: auto;
@@ -558,9 +561,6 @@ $row-gutter-big: 0.625vw;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	position: relative;
-	.wikipedia-h2.h2 {
-		@include font-size(24, 20);
-	}
 	.grid-item,
 	.grid-item > div {
 		background-size: contain;
@@ -688,6 +688,17 @@ $row-gutter-big: 0.625vw;
 	.grid-item h2 {
 		margin-bottom: 0;
 		font-weight: bold;
+		// rem independent
+		font-size: 28px;
+		@media (min-width: $small-bp) {
+			font-size: 34px;
+		}
+		@media (min-width: $medium-bp) {
+			font-size: 38px;
+		}
+		@media (min-width: $large-bp) {
+			font-size: 42px;
+		}
 	}
 }
 
