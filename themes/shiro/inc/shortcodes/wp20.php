@@ -366,7 +366,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	ob_start();
 	?>
 
-	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
+	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement section mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
 		<div class="mw-980 wysiwyg">
 			<div class="w-68p">
 				<?php echo wp_kses_post( $content ); ?>
