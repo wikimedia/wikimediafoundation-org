@@ -2,7 +2,7 @@
 
 // FIX for future, font-sizes used .page-template-page-report-landing, .page-template-page-report-section as guide
 .page-template-page-freeform .freeform-content {
-	p, .p {
+	p, .p, li {
 		font-size: 1.125rem;
 		line-height: 1.5;
 		margin-bottom: 1.125rem;
@@ -119,6 +119,13 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 
 .section > div {
 	@include marginBottom(16, 0, $medium-bp);
+}
+
+.section ul {
+	list-style: none;
+	li {
+		margin-left: 0;
+	}
 }
 
 .section .margin-top {
