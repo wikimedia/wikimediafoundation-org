@@ -4,13 +4,17 @@ plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
 
+# Dependencies, except those from included plugins
 node_modules
-*.sass-cache*
 vendor
 !plugins/safe-svg/lib/vendor
 !plugins/wp-seo/vendor
 !plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
+
+# Built asset files
+*.sass-cache*
+themes/shiro/assets/dist
 
 # Uploads directory
 uploads
