@@ -11,6 +11,9 @@ vendor
 !plugins/wp-seo/vendor
 !plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
+plugins/asset-loader/tests
+plugins/asset-loader/phpunit.xml
+plugins/asset-loader/phpcs.xml
 
 # Uploads directory
 uploads
