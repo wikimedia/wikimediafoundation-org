@@ -7,11 +7,11 @@ plugins/user-switching
 # Dependencies managed using composer
 plugins/safe-redirect-manager
 plugins/safe-svg
+plugins/wordpress-fieldmanager
 
 node_modules
 *.sass-cache*
 vendor
-!plugins/safe-svg/lib/vendor
 !plugins/wp-seo/vendor
 !plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
