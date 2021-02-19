@@ -4,6 +4,9 @@ plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
 
+# Dependencies managed using composer
+plugins/safe-svg
+
 node_modules
 *.sass-cache*
 vendor
