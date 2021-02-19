@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45c32c1e229192dfc7f3817fad1ca04e",
+    "content-hash": "efc409df682f37ea159ddd5eb772e049",
     "packages": [
         {
             "name": "composer/installers",
@@ -184,6 +184,24 @@
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
             "time": "2017-03-31T16:57:39+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/safe-redirect-manager",
+            "version": "1.10.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/safe-redirect-manager/",
+                "reference": "tags/1.10.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/safe-redirect-manager.1.10.0.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/safe-redirect-manager/"
         },
         {
             "name": "wpackagist-plugin/safe-svg",
