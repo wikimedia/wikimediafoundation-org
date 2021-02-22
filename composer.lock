@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a50266cf86f2d42816ea72e82a327234",
+    "content-hash": "71b5ea9e0bae12c89fd46ad39be3d847",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -51,6 +51,35 @@
                 "issues": "https://github.com/alleyinteractive/wordpress-fieldmanager/issues"
             },
             "time": "2020-06-22T16:58:51+00:00"
+        },
+        {
+            "name": "automattic/maintenance-mode-wp",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/maintenance-mode-wp.git",
+                "reference": "e2f463da3f08925802b4fa6291cc19647239940d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/maintenance-mode-wp/zipball/e2f463da3f08925802b4fa6291cc19647239940d",
+                "reference": "e2f463da3f08925802b4fa6291cc19647239940d",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Shut down your site for a little while and do some maintenance on it.",
+            "homepage": "https://vip.wordpress.com/plugins/maintenance-mode/",
+            "support": {
+                "source": "https://github.com/Automattic/maintenance-mode-wp/tree/0.2.2",
+                "issues": "https://github.com/Automattic/maintenance-mode-wp/issues"
+            },
+            "time": "2019-08-08T21:40:55+00:00"
         },
         {
             "name": "composer/installers",

@@ -7,6 +7,7 @@ plugins/user-switching
 # Dependencies managed using composer
 plugins/co-authors-plus
 plugins/fieldmanager
+plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
 
