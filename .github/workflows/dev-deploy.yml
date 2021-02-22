@@ -1,0 +1,38 @@
+name: Dev Branch deploy
+
+on:
+  push:
+    branches:
+      - 22-run-build-deploy-on-merge
+
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: Build & Deploy to development branch on VIP Go
+    env:
+      BRANCH: 22-run-build-deploy-on-merge
+      REPO_SSH_URL: git@github.com:wpcomvip/wikimediafoundation-org.git
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+      - name: Lock PHP and composer versions
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.4"
+          tools: composer:v1
+
+      - name: Install Composer Dependencies
+        uses: "ramsey/composer-install@v1"
+
+      - name: Install node packages and build assets
+        run: (cd themes/shiro && npm ci && npm run build)
+
+      - name: Commit changes & Push to VIP
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
+          branch: 22-run-build-deploy-on-merge-built
