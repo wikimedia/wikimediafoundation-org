@@ -56,9 +56,11 @@
       "wordpress-plugin"
     ],
     "installer-paths": {
-      "plugins/{$name}/": [
-        "type:wordpress-plugin",
+      "plugins/fieldmanager": [
         "alleyinteractive/wordpress-fieldmanager"
+      ],
+      "plugins/{$name}/": [
+        "type:wordpress-plugin"
       ]
     }
   }
