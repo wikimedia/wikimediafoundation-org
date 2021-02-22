@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a4586c3f831c5e0bf029f79e673a0b1",
+    "content-hash": "5a55238690ea44646a468a814187a717",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -230,6 +230,24 @@
             "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
             "homepage": "http://www.oomphinc.com/",
             "time": "2017-03-31T16:57:39+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/co-authors-plus",
+            "version": "3.4.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/co-authors-plus/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/co-authors-plus.zip?timestamp=1587414791"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/co-authors-plus/"
         },
         {
             "name": "wpackagist-plugin/safe-redirect-manager",

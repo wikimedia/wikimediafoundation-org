@@ -5,6 +5,7 @@ plugins/query-monitor
 plugins/user-switching
 
 # Dependencies managed using composer
+plugins/co-authors-plus
 plugins/safe-redirect-manager
 plugins/safe-svg
 plugins/wordpress-fieldmanager
