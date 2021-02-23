@@ -4,10 +4,16 @@ plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
 
+# Dependencies managed using composer
+plugins/co-authors-plus
+plugins/fieldmanager
+plugins/maintenance-mode
+plugins/safe-redirect-manager
+plugins/safe-svg
+
 node_modules
 *.sass-cache*
 vendor
-!plugins/safe-svg/lib/vendor
 !plugins/wp-seo/vendor
 !plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
