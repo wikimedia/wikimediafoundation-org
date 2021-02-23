@@ -26,10 +26,6 @@
     },
     {
       "type": "vcs",
-      "url": "git@github.com:alleyinteractive/wordpress-fieldmanager.git"
-    },
-    {
-      "type": "vcs",
       "url": "git@github.com:Automattic/maintenance-mode-wp.git"
     }
   ],
