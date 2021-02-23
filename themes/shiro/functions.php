@@ -166,12 +166,16 @@ function wmf_enqueue_block_editor_assets() {
 		'editor.js',
 		[
 			'dependencies' => [ 'wp-i18n', 'wp-blocks' ],
+			'handle' => 'shiro_editor_js',
 		]
 	);
 
 	Asset_Loader\enqueue_asset(
 		$manifest,
-		'editor.css'
+		is_rtl() ? 'editor.rtl.css' : 'editor.css',
+		[
+			'handle' => 'shiro_editor_css',
+		]
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'wmf_enqueue_block_editor_assets' );

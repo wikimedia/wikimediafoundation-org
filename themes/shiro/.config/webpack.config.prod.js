@@ -1,5 +1,6 @@
 const { helpers, externals, presets } = require( '@humanmade/webpack-helpers' );
 const { filePath } = helpers;
+const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
 
 module.exports = presets.production( {
 	externals,
@@ -8,5 +9,8 @@ module.exports = presets.production( {
 	},
 	output: {
 		path: filePath( 'assets/dist' )
-	}
+	},
+	plugins: [
+		new WebpackRTLPlugin(),
+	]
 } );
