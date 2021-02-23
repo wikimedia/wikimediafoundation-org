@@ -4,21 +4,20 @@ plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
 
+# Dependencies managed using composer
+plugins/asset-loader
+plugins/co-authors-plus
+plugins/fieldmanager
+plugins/maintenance-mode
+plugins/safe-redirect-manager
+plugins/safe-svg
+
 node_modules
 *.sass-cache*
 vendor
-!plugins/safe-svg/lib/vendor
 !plugins/wp-seo/vendor
 !plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
-plugins/asset-loader/tests
-plugins/asset-loader/phpunit.xml
-plugins/asset-loader/phpcs.xml
-plugins/asset-loader/.editorconfig
-plugins/asset-loader/.gitignore
-plugins/asset-loader/.travis.yml
-plugins/asset-loader/composer.json
-plugins/asset-loader/composer.lock
 
 themes/shiro/assets/dist/asset-manifest.json
 themes/shiro/assets/dist/production-asset-manifest.json
