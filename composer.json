@@ -37,7 +37,7 @@
   "prefer-stable": true,
   "require": {
     "php": "^5.2|^7",
-    "oomphinc/composer-installers-extender": "^1.1",
+    "oomphinc/composer-installers-extender": "^2.0",
     "wpackagist-plugin/safe-svg": "^1.9",
     "wpackagist-plugin/safe-redirect-manager": "^1.10",
     "alleyinteractive/wordpress-fieldmanager": "^1.3",
