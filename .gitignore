@@ -12,15 +12,14 @@ plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
 
+# Dependencies, except those from included plugins
 node_modules
-*.sass-cache*
 vendor
-!plugins/wp-seo/vendor
-!plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
 
-themes/shiro/assets/dist/asset-manifest.json
-themes/shiro/assets/dist/production-asset-manifest.json
+# Built asset files
+*.sass-cache*
+themes/shiro/assets/dist
 
 # Uploads directory
 uploads
