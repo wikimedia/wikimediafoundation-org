@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc5ad9e3020fcb8d48c64dd82d35c615",
+    "content-hash": "750fc57e9992c183a1882dd343bbdf56",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -221,6 +221,40 @@
                 }
             ],
             "time": "2021-01-14T11:07:16+00:00"
+        },
+        {
+            "name": "humanmade/asset-loader",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/asset-loader.git",
+                "reference": "717ebc20e999affe7c601015221fe76037c011c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/asset-loader/zipball/717ebc20e999affe7c601015221fe76037c011c4",
+                "reference": "717ebc20e999affe7c601015221fe76037c011c4",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "require-dev": {
+                "10up/wp_mock": "^0.4.2",
+                "humanmade/coding-standards": "^1.1.0",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Utilities to seamlessly consume Webpack-bundled assets in WordPress themes & plugins.",
+            "support": {
+                "issues": "https://github.com/humanmade/asset-loader/issues",
+                "source": "https://github.com/humanmade/asset-loader/tree/v0.5.0"
+            },
+            "time": "2021-01-27T15:20:46+00:00"
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",

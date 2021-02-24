@@ -154,6 +154,32 @@ function wmf_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
 
+function wmf_enqueue_block_editor_assets() {
+	if ( ! function_exists( 'Asset_Loader\\enqueue_asset' ) ) {
+		return;
+	}
+
+	$manifest      = get_stylesheet_directory() . '/assets/dist/asset-manifest.json';
+
+	Asset_Loader\enqueue_asset(
+		$manifest,
+		'editor.js',
+		[
+			'dependencies' => [ 'wp-i18n', 'wp-blocks' ],
+			'handle' => 'shiro_editor_js',
+		]
+	);
+
+	Asset_Loader\enqueue_asset(
+		$manifest,
+		is_rtl() ? 'editor.rtl.css' : 'editor.css',
+		[
+			'handle' => 'shiro_editor_css',
+		]
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'wmf_enqueue_block_editor_assets' );
+
 /**
  * Adds Piwik Analytics to the footer of each page.
  */

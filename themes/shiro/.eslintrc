@@ -153,5 +153,15 @@
 		"wrap-iife": [2, "inside"],
 		"wrap-regex": [0],
 		"yoda": [0]
-	}
+	},
+	"overrides": [
+		{
+			"parser": "babel-eslint",
+			"files": ["assets/src/editor/**/*.js"],
+			"extends": ["@humanmade/eslint-config"],
+			"rules": {
+				"react/react-in-jsx-scope": [0]
+			}
+		}
+	]
 }
