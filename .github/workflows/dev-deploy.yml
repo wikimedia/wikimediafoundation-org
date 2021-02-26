@@ -29,8 +29,13 @@ jobs:
       - name: Install Composer Dependencies
         uses: "ramsey/composer-install@v1"
 
-      - name: Install node packages and build assets
-        run: (cd themes/shiro && npm ci && npm run build)
+      - name: Install npm dependencies
+      - uses: "bahmutov/npm-install@v1"
+        with:
+          working-directory: thems/shiro
+
+      - name: Build assets
+        run: (cd themes/shiro && npm run build)
 
       - name: Checkout deploy branch from upstream repo
         uses: actions/checkout@v2
