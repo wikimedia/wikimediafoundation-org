@@ -36,11 +36,6 @@ jobs:
       - name: Build assets
         run: (cd themes/shiro && npm run build)
 
-      - name: Rsync all content into place in tmp directory
-        run: |
-          mv .deployignore .gitignore
-          rsync -a --delete . ${{ runner.temp }} --exclude='.git'
-
       - name: Checkout deploy branch from upstream repo
         uses: actions/checkout@v2
         with:
@@ -49,9 +44,10 @@ jobs:
           path: "deploy"
           # repository: ${{ env.DEPLOY_REPO }}
 
-      - name: Rsync all content into place in tmp directory
+      - name: Rsync built archive into place
         run: |
-          rsync -a --delete "${{ runner.temp }}/*" deploy
+          mv .deployignore .gitignore
+          rsync -a --delete . deploy --exclude='.git' --exclude='deploy'
 
       - name: Commit changes & Push to VIP
         uses: "actions-js/push@master"
