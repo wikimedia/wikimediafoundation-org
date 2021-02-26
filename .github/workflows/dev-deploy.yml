@@ -57,6 +57,6 @@ jobs:
         uses: "actions-js/push@master"
         with:
           github_token: ${{ secrets.DEPLOY_TOKEN }}
-          branch: {{ env.DEPLOY_BRANCH }}
+          branch: ${{ env.DEPLOY_BRANCH }}
           directory: "deploy"
           # repository: ${{ env.DEPLOY_REPO }}
