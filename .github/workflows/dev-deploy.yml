@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build & Deploy to development branch on VIP Go
     env:
-      BRANCH: 22-run-build-deploy-on-merge
-      REPO_SSH_URL: git@github.com:wpcomvip/wikimediafoundation-org.git
+      DEPLOY_REPO: wpcomvip/wikimediafoundation-org
+      DEPLOY_BRANCH: 22-run-build-deploy-on-merge-built
     steps:
       - name: Checkout this branch
         uses: actions/checkout@v2
@@ -44,9 +44,10 @@ jobs:
       - name: Checkout deploy branch from upstream repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ env.REPO_SSH_URL }}
-          ref: 22-run-build-deploy-on-merge-built
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
+          ref: ${{ env.DEPLOY_BRANCH }}
           path: "deploy"
+          # repository: ${{ env.DEPLOY_REPO }}
 
       - name: Rsync all content into place in tmp directory
         run: |
@@ -56,5 +57,6 @@ jobs:
         uses: "actions-js/push@master"
         with:
           github_token: ${{ secrets.DEPLOY_TOKEN }}
-          branch: 22-run-build-deploy-on-merge-built
+          branch: {{ env.DEPLOY_BRANCH }}
           directory: "deploy"
+          # repository: ${{ env.DEPLOY_REPO }}
