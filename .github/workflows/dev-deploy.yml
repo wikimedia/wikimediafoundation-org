@@ -30,7 +30,7 @@ jobs:
         uses: "ramsey/composer-install@v1"
 
       - name: Install npm dependencies
-      - uses: "bahmutov/npm-install@v1"
+        uses: "bahmutov/npm-install@v1"
         with:
           working-directory: thems/shiro
 
