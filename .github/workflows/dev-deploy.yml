@@ -35,9 +35,9 @@ jobs:
       - name: Checkout deploy branch from upstream repo
         uses: actions/checkout@v2
         with:
-          repository: "${REPO_SSH_URL}"
+          repository: ${{ env.REPO_SSH_URL }}
           branch: 22-run-build-deploy-on-merge-built
-          path: "${BUILD_PATH}"
+          path: ${{ env.BUILD_PATH }}
 
       - name: Rsync all content into place in build directory, push it up.
         run: |
@@ -49,4 +49,4 @@ jobs:
         with:
           github_token: ${{ secrets.DEPLOY_TOKEN }}
           branch: 22-run-build-deploy-on-merge-built
-          directory: "${BUILD_PATH}"
+          directory: ${{ env.BUILD_PATH }}
