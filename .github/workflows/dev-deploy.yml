@@ -51,7 +51,7 @@ jobs:
 
       - name: Rsync all content into place in tmp directory
         run: |
-          rsync -a --delete ${{ runner.temp }} './deploy' --exclude='.git'
+          rsync -a --delete ${{ runner.temp }}.* deploy --exclude='.git'
 
       - name: Commit changes & Push to VIP
         uses: "actions-js/push@master"
