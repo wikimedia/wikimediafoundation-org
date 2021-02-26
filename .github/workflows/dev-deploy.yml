@@ -31,8 +31,11 @@ jobs:
       - name: Install node packages and build assets
         run: (cd themes/shiro && npm ci && npm run build)
 
+      - name: Update gitignore / don't ignore built assets files anymore.
+        run: mv .deployignore .gitignore
+
       - name: Commit changes & Push to VIP
-        uses: actions-js/push@master
+        uses: "actions-js/push@master"
         with:
           github_token: ${{ secrets.DEPLOY_TOKEN }}
           branch: 22-run-build-deploy-on-merge-built
