@@ -93,6 +93,10 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_large', '1200', '675', true );
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
+
+	add_theme_support( 'editor-styles' );
+	$css_file = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
+	add_editor_style( get_stylesheet_directory_uri() . '/' . $css_file );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
