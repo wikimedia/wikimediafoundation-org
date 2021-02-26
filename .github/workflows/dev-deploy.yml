@@ -12,8 +12,9 @@ jobs:
     env:
       BRANCH: 22-run-build-deploy-on-merge
       REPO_SSH_URL: git@github.com:wpcomvip/wikimediafoundation-org.git
+      BUILD_PATH: "/tmp/vip-go-build-${date +%s}"
     steps:
-      - name: Checkout
+      - name: Checkout this branch
         uses: actions/checkout@v2
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
@@ -31,11 +32,21 @@ jobs:
       - name: Install node packages and build assets
         run: (cd themes/shiro && npm ci && npm run build)
 
-      - name: Update gitignore / don't ignore built assets files anymore.
-        run: mv .deployignore .gitignore
+      - name: Checkout deploy branch from upstream repo
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ REPO_SSH_URL }}
+          branch: 22-run-build-deploy-on-merge-built
+          path: ${{ BUILD_PATH }}
+
+      - name: Rsync all content into place in build directory, push it up.
+        run: |
+          rsync -a --delete . "$BUILD PATH" --exclude='.git'
+          mv "${BUILD_PATH}/.deployignore" "${BUILD_PATH}.gitignore"
 
       - name: Commit changes & Push to VIP
         uses: "actions-js/push@master"
         with:
           github_token: ${{ secrets.DEPLOY_TOKEN }}
           branch: 22-run-build-deploy-on-merge-built
+          directory: ${{ BUILD_PATH }}
