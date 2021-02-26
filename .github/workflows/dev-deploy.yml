@@ -12,7 +12,7 @@ jobs:
     env:
       BRANCH: 22-run-build-deploy-on-merge
       REPO_SSH_URL: git@github.com:wpcomvip/wikimediafoundation-org.git
-      BUILD_PATH: "/tmp/vip-go-build-${date +%s}"
+      BUILD_PATH: ${{ runner.temp }}
     steps:
       - name: Checkout this branch
         uses: actions/checkout@v2
