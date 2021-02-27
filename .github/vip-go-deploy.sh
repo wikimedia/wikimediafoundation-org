@@ -17,7 +17,6 @@ COMMIT_SHA=${GITHUB_SHA}
 SRC_DIR="${PWD}"
 BUILD_DIR="/tmp/vip-go-build-$(date +%s)"
 DEPLOY_BRANCH="${BRANCH}${DEPLOY_SUFFIX}"
-cd $SRC_DIR
 
 COMMIT_AUTHOR_NAME="$( git log --format=%an -n 1 ${COMMIT_SHA} )"
 COMMIT_AUTHOR_EMAIL="$( git log --format=%ae -n 1 ${COMMIT_SHA} )"
@@ -34,7 +33,7 @@ echo "Deploying ${BRANCH} to ${DEPLOY_BRANCH}"
 git init "${BUILD_DIR}"
 cd "${BUILD_DIR}"
 git remote add origin "https://git:${DEPLOY_TOKEN}@github.com/${DEPLOY_REPO}.git"
-if [[ 0 = $(git ls-remote --heads "${DEPLOY_REPO}" "${DEPLOY_BRANCH}" | wc -l) ]]; then
+if [[ 0 = $(git ls-remote --heads origin "${DEPLOY_BRANCH}" | wc -l) ]]; then
 	echo -e "\nCreating a ${DEPLOY_BRANCH} branch..."
 	git checkout --quiet --orphan "${DEPLOY_BRANCH}"
 else
@@ -42,9 +41,6 @@ else
 	git fetch origin "${DEPLOY_BRANCH}" --depth=1
 	git checkout --quiet "${DEPLOY_BRANCH}"
 fi
-
-# Expand all submodules
-git submodule update --init --recursive;
 
 # Copy the files over
 # -------------------
