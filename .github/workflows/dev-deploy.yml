@@ -48,17 +48,11 @@ jobs:
           rm -rf .git .github vendor
           rsync -a --delete . deploy --exclude='deploy'
 
-      - name: Commit changes
+      - name: Commit changes & push to VIP
         run: |
           cd deploy
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -m "Add changes" -a
-
-      - name: Commit changes & Push to VIP
-        uses: "actions-js/push@master"
-        with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
-          branch: ${{ env.DEPLOY_BRANCH }}
-          directory: "deploy"
-          # repository: ${{ env.DEPLOY_REPO }}
+          git add -A .
+          git commit -m "Add built asset file changes" -a
+          git push
