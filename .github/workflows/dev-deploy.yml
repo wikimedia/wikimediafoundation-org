@@ -34,25 +34,10 @@ jobs:
       - name: Build assets
         run: (cd themes/shiro && npm run build)
 
-      - name: Checkout deploy branch from upstream repo
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
-          ref: ${{ env.DEPLOY_BRANCH }}
-          path: "deploy"
-          # repository: ${{ env.DEPLOY_REPO }}
-
-      - name: Rsync built archive into place
-        run: |
-          mv .deployignore .gitignore
-          rm -rf .git .github vendor
-          rsync -a --delete . deploy --exclude='deploy' --exclude='.git'
-
-      - name: Commit changes & push to VIP
-        run: |
-          cd deploy
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add -A .
-          git commit -m "Add built asset file changes" -a
-          git push
+      - name: Run VIP Go Deploy script
+        run: ../vip-go-deploy.sh
+        env:
+          SRC_DIR: ${{ github.workspace }}
+          TMP_DIR: ${{ runner.temp }}
+          DEPLOY_REPO: humanmade/Wikimedia
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
