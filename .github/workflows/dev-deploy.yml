@@ -22,7 +22,6 @@ jobs:
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "7.4"
-          tools: composer:v1
 
       - name: Install Composer Dependencies
         uses: "ramsey/composer-install@v1"
