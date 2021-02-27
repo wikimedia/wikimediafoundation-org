@@ -46,7 +46,7 @@ jobs:
         run: |
           mv .deployignore .gitignore
           rm -rf .git .github vendor
-          rsync -a --delete . deploy --exclude='deploy'
+          rsync -a --delete . deploy --exclude='deploy' --exclude='.git'
 
       - name: Commit changes & push to VIP
         run: |
