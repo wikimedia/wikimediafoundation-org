@@ -39,7 +39,7 @@ jobs:
           restore-keys: npm-
 
       - name: Install dependencies
-        run: (cd themes/shiro && npm ci --ignore-scripts)
+        run: (cd themes/shiro && npm ci)
 
       - name: Build assets
         run: (cd themes/shiro && npm run build)
