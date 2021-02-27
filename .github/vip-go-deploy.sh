@@ -33,8 +33,8 @@ echo "Deploying ${BRANCH} to ${DEPLOY_BRANCH}"
 # Making the directory we're going to sync the build into
 git init "${BUILD_DIR}"
 cd "${BUILD_DIR}"
-git remote add origin "https://git:${DEPLOY_TOKEN}@github.com/${REPO_SSH_URL}.git"
-if [[ 0 = $(git ls-remote --heads "${REPO_SSH_URL}" "${DEPLOY_BRANCH}" | wc -l) ]]; then
+git remote add origin "https://git:${DEPLOY_TOKEN}@github.com/${DEPLOY_REPO}.git"
+if [[ 0 = $(git ls-remote --heads "${DEPLOY_REPO}" "${DEPLOY_BRANCH}" | wc -l) ]]; then
 	echo -e "\nCreating a ${DEPLOY_BRANCH} branch..."
 	git checkout --quiet --orphan "${DEPLOY_BRANCH}"
 else
