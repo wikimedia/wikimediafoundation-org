@@ -16,6 +16,7 @@ var themeConfig  = require( './package.json' ).themeConfig;
 
 var paths = {
 	sassSrc: 'assets/src/sass/style.scss',
+	sassEditorSrc: 'assets/src/sass/editor-style.scss',
 	sassRoot: 'assets/src/sass',
 	sassFiles: ['assets/src/sass/**/*.scss', '!assets/src/sass/base/**/*.scss', '!assets/src/sass/_vars.scss'],
 	jsFiles: 'assets/src/js/**/*.js',
@@ -46,11 +47,31 @@ gulp.task( 'sass', gulp.series(function() {
 			   .pipe( gulp.dest( './' ) );
 } ) );
 
+gulp.task( 'sassEditor', gulp.series(function() {
+	return gulp.src( paths.sassEditorSrc )
+		.pipe( sourcemaps.init() )
+		.pipe( sass.sync( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
+		.pipe( sourcemaps.write( 'map', {
+			includeContent: false,
+			sourceRoot: './'
+		}))
+		.pipe( gulp.dest( './' ) );
+} ) );
+
 gulp.task( 'rtl', gulp.series(function () {
 	return gulp.src( 'style.css' )
 		.pipe( rtlcss() )
 		.pipe( footer( 'body{direction:rtl}' ) )
 		.pipe( rename( 'rtl.css' ) )
+		.pipe( gulp.dest( './' ) );
+} ) );
+
+
+gulp.task( 'rtlEditor', gulp.series(function () {
+	return gulp.src( 'editor-style.css' )
+		.pipe( rtlcss() )
+		.pipe( footer( 'body{direction:rtl}' ) )
+		.pipe( rename( 'editor-style.rtl.css' ) )
 		.pipe( gulp.dest( './' ) );
 } ) );
 
@@ -110,7 +131,7 @@ gulp.task( 'pot', gulp.series(function() {
 			   .pipe( gulp.dest( 'languages/' + text_domain + '.pot' ) );
 } ) );
 
-gulp.task( 'styles', gulp.series( [ 'sass', 'rtl' ] ) );
+gulp.task( 'styles', gulp.series( [ 'sass', 'sassEditor', 'rtl', 'rtlEditor' ] ) );
 gulp.task( 'scripts', gulp.series( [ 'jslint', 'concat', 'concat2', 'shortCodeScripts' ] ) );
 gulp.task( 'lint', gulp.series( [ 'jslint' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
