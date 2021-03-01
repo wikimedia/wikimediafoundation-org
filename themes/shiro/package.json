@@ -27,6 +27,7 @@
     "@humanmade/webpack-helpers": "^0.10.1",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
+    "block-editor-hmr": "^0.6.3",
     "browser-sync": "^2.26.12",
     "copy-webpack-plugin": "^6.4.1",
     "css-mqpacker": "^7.0.0",
