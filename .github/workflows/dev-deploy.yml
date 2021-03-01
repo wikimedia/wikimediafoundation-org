@@ -47,6 +47,7 @@ jobs:
       - name: Run VIP Go Deploy script
         run: bash .github/vip-go-deploy.sh
         env:
+          SRC_REPO: ${{ github.repository }}
           SRC_DIR: ${{ github.workspace }}
           TMP_DIR: ${{ runner.temp }}
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
