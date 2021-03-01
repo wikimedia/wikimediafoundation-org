@@ -22,8 +22,7 @@ COMMIT_AUTHOR_NAME="$( git log --format=%an -n 1 ${COMMIT_SHA} )"
 COMMIT_AUTHOR_EMAIL="$( git log --format=%ae -n 1 ${COMMIT_SHA} )"
 COMMIT_COMMITTER_NAME="$( git log --format=%cn -n 1 ${COMMIT_SHA} )"
 COMMIT_COMMITTER_EMAIL="$( git log --format=%ce -n 1 ${COMMIT_SHA} )"
-COMMIT_MESSAGE="$( git log --format=%B -n 1 ${COMMIT_SHA} )"
-
+COMMIT_MESSAGE="$( git log --format=%B -n 1 ${COMMIT_SHA} )" | sed -r 's| #(\d*)| '"${SRC_REPO}"'#\1|'
 
 # Everything seems OK, getting the built repo sorted
 # --------------------------------------------------
@@ -102,4 +101,3 @@ git commit --author="${COMMIT_AUTHOR_NAME} <${COMMIT_AUTHOR_EMAIL}>" -m "${MESSA
 
 # Push it (push it real good).
 git push origin "${DEPLOY_BRANCH}"
-
