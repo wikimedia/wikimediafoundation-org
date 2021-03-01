@@ -22,6 +22,7 @@ COMMIT_AUTHOR_NAME="$( git log --format=%an -n 1 ${COMMIT_SHA} )"
 COMMIT_AUTHOR_EMAIL="$( git log --format=%ae -n 1 ${COMMIT_SHA} )"
 COMMIT_COMMITTER_NAME="$( git log --format=%cn -n 1 ${COMMIT_SHA} )"
 COMMIT_COMMITTER_EMAIL="$( git log --format=%ce -n 1 ${COMMIT_SHA} )"
+COMMIT_MESSAGE="$( git log --format=%B -n 1 ${COMMIT_SHA} )"
 
 
 # Everything seems OK, getting the built repo sorted
@@ -94,7 +95,7 @@ if [ -z "$(git status --porcelain)" ]; then
 fi
 
 # Commit it.
-MESSAGE=$( printf 'Build changes from %s\n\n%s' "${COMMIT_SHA}" "${CIRCLE_BUILD_URL}" )
+MESSAGE=$( printf 'Build changes from %s\n\n%s' "${COMMIT_SHA}" "${COMMIT_MESSAGE}" )
 # Set the Author to the commit (expected to be a client dev) and the committer
 # will be set to the default Git user for this CI system
 git commit --author="${COMMIT_AUTHOR_NAME} <${COMMIT_AUTHOR_EMAIL}>" -m "${MESSAGE}"
