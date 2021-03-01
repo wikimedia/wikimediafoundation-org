@@ -169,7 +169,7 @@ function wmf_enqueue_block_editor_assets() {
 		$manifest,
 		'editor.js',
 		[
-			'dependencies' => [ 'wp-i18n', 'wp-blocks' ],
+			'dependencies' => [ 'wp-dom-ready', 'wp-i18n', 'wp-blocks' ],
 			'handle' => 'shiro_editor_js',
 		]
 	);

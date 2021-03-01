@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import './blocks';
 
 /**
  * Renders the edit of the hello world block.

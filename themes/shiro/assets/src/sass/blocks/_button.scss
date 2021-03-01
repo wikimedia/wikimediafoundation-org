@@ -1,0 +1,30 @@
+.wp-block-button {
+	&.is-style-primary {
+		.wp-block-button__link {
+			@include button($color-blue, $color-blue, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+
+			&:hover {
+				box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+			}
+		}
+	}
+
+	&.is-style-secondary {
+		.wp-block-button__link {
+			@include button($color-pink, $color-pink, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
+			&:hover {
+				box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+			}
+		}
+	}
+
+	&.is-style-tertiary {
+		.wp-block-button__link {
+			@include button($color-white, $color-white, $color-blue, $color-blue, 11px 1.5rem, .6rem 1rem);
+			&:hover {
+				box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+			}
+			font-size: 20px;
+		}
+	}
+}
