@@ -4,8 +4,6 @@ body {
 }
 
 .block-editor-block-list__layout.is-root-container > .wp-block {
-	//max-width: 66.25rem;
-	//padding: 0rem 2.5rem;
 	max-width: rem(1060);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, 20, 0, 40);
