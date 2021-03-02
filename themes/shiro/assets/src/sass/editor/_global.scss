@@ -1,0 +1,35 @@
+body {
+	font-size: 1rem;
+	line-height: normal;
+}
+
+.block-editor-block-list__layout.is-root-container > .wp-block {
+	max-width: rem(1060);
+	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+	@include padding(0, 20, 0, 40);
+}
+
+.wp-block-group__inner-container > .wp-block {
+	max-width: none;
+}
+
+.edit-post-visual-editor__post-title-wrapper .editor-post-title {
+	width: 2000px;
+	max-width: rem(1060);
+	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
+	@include padding(0, 20, 0, 40);
+	margin-bottom: 1rem;
+}
+
+.editor-post-title__input {
+	border-bottom: 3px solid rgb(0, 0, 0);
+	text-transform: none;
+	font-weight: 500;
+	padding-bottom: 0;
+	font-size: 2.375rem;
+	height: 74px;
+
+	&:focus {
+		border-bottom: 3px solid rgb(0, 0, 0);
+	}
+}

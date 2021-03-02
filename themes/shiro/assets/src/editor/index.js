@@ -1,22 +1,15 @@
-import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
+/**
+ * Autoload and require all block editor functionality.
+ */
+import { autoloadBlocks } from 'block-editor-hmr';
 import './blocks';
 
-/**
- * Renders the edit of the hello world block.
- *
- * @returns {*} The rendered editing UI.
- */
-function EditHelloWorld() {
-	// eslint-disable-next-line react/react-in-jsx-scope
-	return (
-		<div>
-			Hello World!
-		</div>
-	);
-}
-
-registerBlockType( 'shiro/hello-world', {
-	title: __( 'Hello world!', 'shiro' ),
-	edit: EditHelloWorld,
-} );
+// Load all block index files.
+autoloadBlocks(
+	{ getContext: () => require.context( './blocks', true, /index\.js$/ ) },
+	( context, loadModules ) => {
+		if ( module.hot ) {
+			module.hot.accept( context.id, loadModules );
+		}
+	}
+);
