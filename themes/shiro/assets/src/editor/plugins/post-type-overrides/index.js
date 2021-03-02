@@ -10,12 +10,12 @@ import { useEffect } from '@wordpress/element';
  */
 export const name = 'post-type-override';
 
-/**
- * "Render" component for this plugin.
- *
- * Returns nothing, just adds a class name as a side effect.
- */
 export const settings = {
+	/**
+	 * "Render" component for this plugin.
+	 *
+	 * Returns nothing, just adds a class name as a side effect.
+	 */
 	render: function Render() {
 		const postType = select( 'core/editor' ).getCurrentPostType();
 
