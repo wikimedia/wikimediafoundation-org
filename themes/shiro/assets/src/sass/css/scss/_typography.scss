@@ -57,6 +57,7 @@ p {
 	line-height: 1.466;
 }
 
+// TODO: Add `article-main` class in the editor, so the second class is no longer required.
 .article-main p,
 .block-editor-block-list__layout p {
 	@include font-size(18, 13);
