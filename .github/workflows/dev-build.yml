@@ -29,6 +29,3 @@ jobs:
 
       - name: Lint
         run: (cd themes/shiro && npm run lint)
-
-      - name: Build assets
-        run: (cd themes/shiro && npm run build)
