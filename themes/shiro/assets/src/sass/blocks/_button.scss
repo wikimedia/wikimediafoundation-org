@@ -1,5 +1,87 @@
+$background-color-framed--focus: $wmui-color-base100;
+// $background-color-framed--active doesn't correspond to the shown color on https://design.wikimedia.org/style-guide/components/buttons.html.
+$background-color-framed--active-alternative: $wmui-color-base80;
+
+@mixin style-guide-button-reset() {
+	display: inline-block;
+	font-weight: bold;
+	border-radius: $border-radius-base;
+	cursor: pointer;
+	padding: 0.5rem 1.25rem;
+}
+
+@mixin style-guide-button(
+	$color,
+	$color-hover,
+	$color-active,
+	$color-focus
+) {
+	@include style-guide-button-reset;
+	background: $color;
+	transition: $transition-duration-base background;
+
+	&:hover {
+		background: $color-hover;
+	}
+
+	&:active {
+		background: $color-active;
+	}
+
+	&:focus {
+		background: $color-focus;
+		outline: 2px solid $color-focus;
+		outline-offset: 1px;
+	}
+}
+
 .wp-block-button {
+	&.is-style-normal {
+		.wp-block-button__link {
+			border: 1px solid $border-color-base;
+			color: $color-base--emphasized;
+
+			@include style-guide-button(
+				$background-color-framed,
+				$background-color-framed--hover,
+				$background-color-framed--active-alternative,
+				$background-color-framed--focus,
+			);
+
+			&:active {
+				border-color: $border-color-base--active;
+			}
+
+			&:focus {
+				outline: 2px solid $border-color-base--focus;
+				outline-offset: -2px;
+			}
+		}
+	}
+
 	&.is-style-primary {
+		.wp-block-button__link {
+			@include style-guide-button(
+				$color-primary,
+				$color-primary--hover,
+				$color-primary--active,
+				$color-primary--focus,
+			);
+		}
+	}
+
+	&.is-style-destructive {
+		.wp-block-button__link {
+			@include style-guide-button(
+				$color-destructive,
+				$color-destructive--hover,
+				$color-destructive--active,
+				$color-destructive--focus,
+			);
+		}
+	}
+
+	&.is-style-primary-old {
 		.wp-block-button__link {
 			@include button($color-blue, $color-blue, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
 

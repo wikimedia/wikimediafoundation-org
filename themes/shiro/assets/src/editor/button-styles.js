@@ -10,6 +10,22 @@ domReady( () => {
 	} );
 
 	registerBlockStyle( 'core/button', {
+		name: 'normal',
+		label: __( 'Normal', 'shiro' ),
+	} );
+
+	registerBlockStyle( 'core/button', {
+		name: 'destructive',
+		label: __( 'Destructive', 'shiro' ),
+	} );
+
+	registerBlockStyle( 'core/button', {
+		name: 'primary-old',
+		label: __( 'Primary (Old)', 'shiro' ),
+		isDefault: true,
+	} );
+
+	registerBlockStyle( 'core/button', {
 		name: 'secondary',
 		label: __( 'Secondary', 'shiro' ),
 	} );

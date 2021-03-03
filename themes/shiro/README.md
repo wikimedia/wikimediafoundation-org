@@ -117,6 +117,9 @@ Lints all file types and runs the following tasks: `csslint`, `jslint` `phplint`
 * `npm run start`
 Begins watching front-end assets (scripts and styles) and compiles them when changed. This will also start the livereload script, which refreshes the page when changes are made.
 
+* `npm run download-style-guide-sass`
+Download the variables file in the style-guide. This is only required when the style guide has changed.
+
 Bootstrap Setup
 ---------------
 For Bootstrap setup instructions see the [Setting Things Up](#setting-things-up) section above. The Bootstrap setup outlined below is optional.
