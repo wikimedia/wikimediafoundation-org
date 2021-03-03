@@ -57,27 +57,49 @@ p {
 	line-height: 1.466;
 }
 
-// TODO: Add `article-main` class in the editor, so the second class is no longer required.
-.article-main p,
-.block-editor-block-list__layout p {
-	@include font-size(18, 13);
-	line-height: 1.72;
-	margin-bottom: 1rem;
+// Override the `article-main` class selector for use in the editor, so that
+// the block editor can be styled in the same way as frontend templates.
+@mixin article-main {
+	$article-main: ".article-main" !default;
+
+	#{$article-main} {
+		@content;
+	}
 }
 
-.single-profile .article-main p {
-	font-size: 1.1rem;
-	font-weight: 500;
+@include article-main {
+	p {
+
+		@include font-size(18, 13);
+		line-height: 1.72;
+		margin-bottom: 1rem;
+	}
 }
 
-.single-story .article-main p {
-  font-size: 1.125rem;
-	font-weight: 400;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+.single-profile {
+
+	@include article-main {
+		p {
+			font-size: 1.1rem;
+			font-weight: 500;
+		}
+	}
+}
+
+.single-story {
+
+	@include article-main {
+		p {
+			font-size: 1.125rem;
+			font-weight: 400;
+			line-height: 1.5;
+			margin-bottom: 1rem;
+		}
+	}
 }
 
 .p {
+
 	@extend p;
 }
 

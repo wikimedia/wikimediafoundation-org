@@ -8,7 +8,6 @@ var sourcemaps   = require( 'gulp-sourcemaps' );
 
 var concat       = require( 'gulp-concat' );
 var uglify       = require( 'gulp-uglify' );
-var eslint       = require( 'gulp-eslint' );
 
 var svgsprite    = require( 'gulp-svg-sprite' );
 var wppot        = require( 'gulp-wp-pot' );
@@ -22,7 +21,6 @@ var paths = {
 	jsFiles: 'assets/src/js/**/*.js',
 	dataVisJsFiles: 'assets/src/datavisjs/*.js',
 	shortCodeJsFiles: 'assets/src/shortcodejs/*.js',
-	jsLintFiles: ['assets/src/js/**/*.js', 'assets/src/datavisjs/*.js', 'assets/src/shortcodejs/*.js', '!assets/src/js/mule-js/**/*.js'],
 	phpFiles: [ '*.php', 'inc/**/*.php', 'template-parts/**/*.php' ],
 	svgFiles: 'assets/src/svg/individual/*.svg'
 }
@@ -106,12 +104,6 @@ gulp.task('shortCodeScripts', function() {
     .pipe( gulp.dest( 'assets/dist' ) )
 });
 
-gulp.task( 'jslint', gulp.series(function() {
-	return gulp.src( paths.jsLintFiles )
-			   .pipe( eslint() )
-			   .pipe( eslint.format() )
-} ) );
-
 gulp.task( 'pot', gulp.series(function() {
 	if ( typeof themeConfig === 'undefined' ) {
 		return;
@@ -132,8 +124,7 @@ gulp.task( 'pot', gulp.series(function() {
 } ) );
 
 gulp.task( 'styles', gulp.series( [ 'sass', 'sassEditor', 'rtl', 'rtlEditor' ] ) );
-gulp.task( 'scripts', gulp.series( [ 'jslint', 'concat', 'concat2', 'shortCodeScripts' ] ) );
-gulp.task( 'lint', gulp.series( [ 'jslint' ] ) );
+gulp.task( 'scripts', gulp.series( [ 'concat', 'concat2', 'shortCodeScripts' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
 gulp.task( 'default', gulp.series('build', (done) => {
 

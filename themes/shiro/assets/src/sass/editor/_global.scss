@@ -4,9 +4,13 @@ body {
 }
 
 .block-editor-block-list__layout.is-root-container > .wp-block {
-	max-width: rem(1060);
+	max-width: rem(980 + 80);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, 20, 0, 40);
+
+	.single-post & {
+		max-width: rem(640 + 80);
+	}
 }
 
 .wp-block-group__inner-container > .wp-block {
@@ -15,10 +19,14 @@ body {
 
 .edit-post-visual-editor__post-title-wrapper .editor-post-title {
 	width: 2000px;
-	max-width: rem(1060);
+	max-width: rem(980 + 80);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, 20, 0, 40);
 	margin-bottom: 1rem;
+
+	.single-post & {
+		max-width: rem(784 + 80);
+	}
 }
 
 .editor-post-title__input {
@@ -31,5 +39,10 @@ body {
 
 	&:focus {
 		border-bottom: 3px solid rgb(0, 0, 0);
+	}
+
+	.single-post & {
+		border-bottom: none;
+		font-weight: 700;
 	}
 }
