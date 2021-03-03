@@ -36,6 +36,13 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 }
 
 .wp-block-button {
+	img {
+		margin-bottom: -2px;
+		margin-right: 0.5em;
+		height: 1em;
+		width: auto;
+	}
+
 	&.is-style-normal {
 		.wp-block-button__link {
 			border: 1px solid $border-color-base;
