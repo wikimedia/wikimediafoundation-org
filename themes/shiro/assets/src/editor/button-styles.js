@@ -1,11 +1,49 @@
+import { InspectorControls } from '@wordpress/block-editor';
 import { unregisterBlockStyle, registerBlockStyle } from '@wordpress/blocks';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import domReady from '@wordpress/dom-ready';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
+import IconSelector from './components/IconSelector';
+
+const withIconSelector = createHigherOrderComponent( ButtonBlockEdit => {
+	/**
+	 * Insert the icon selector in the inspector controls for the button block.
+	 */
+	return function ButtonBlockEditWithIconSelector( props ) {
+		const { name, attributes, setAttributes } = props;
+
+		return (
+			<>
+				<ButtonBlockEdit { ...props } />
+				{ name === 'core/button' && <InspectorControls>
+					<IconSelector
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+					/>
+				</InspectorControls> }
+			</>
+		);
+	};
+} );
+
+wp.hooks.addFilter(
+	'editor.BlockEdit',
+	'shiro/button-styles',
+	withIconSelector
+);
+
 /**
- * Change button example to remove the backgroundColor attribute, this will make
- * the preview show our custom styles.
+ * Change button example to:
+ *
+ * - Remove the backgroundColor attribute, this will make the preview show our
+ *   custom styles.
+ * - Add our custom attributes & variations
+ *
+ * @param {object} settings The original block settings.
+ * @param {string} name     Name of the block.
+ * @returns {object} The altered settings.
  */
 function changeButtonExample( settings, name ) {
 	if ( name !== 'core/button' ) {

@@ -35,6 +35,19 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 	}
 }
 
+@mixin button-icon(
+	$icon-name,
+	$icon-path,
+) {
+	&.has-icon-#{ $icon-name } {
+		.wp-block-button__link {
+			&:before {
+				background-image: url('./assets/src/svg/#{ $icon-path }.svg');
+			}
+		}
+	}
+}
+
 .wp-block-button {
 	img {
 		margin-bottom: -2px;
@@ -116,4 +129,67 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 			font-size: 20px;
 		}
 	}
+
+	&.has-icon {
+		.wp-block-button__link:before {
+			content: '';
+			display: inline-block;
+			background-image: url('./assets/src/svg/lock-white.svg');
+			background-size: contain;
+			margin-right: 0.5em;
+			height: 1em;
+			width: 1em;
+			position: relative;
+			top: 2px;
+		}
+	}
+
+	@include button-icon( 'lock', 'lock' );
+	@include button-icon( 'lock-pink', 'lock-pink' );
+	@include button-icon( 'lock-white', 'lock-white' );
+	@include button-icon( 'calendar', 'calendar' );
+	@include button-icon( 'circle', 'circle' );
+	@include button-icon( 'close', 'close' );
+	@include button-icon( 'diamond', 'diamond' );
+	@include button-icon( 'down', 'down' );
+	@include button-icon( 'edit-ltr', 'edit-ltr' );
+	@include button-icon( 'edit-rtl', 'edit-rtl' );
+	@include button-icon( 'email', 'email' );
+	@include button-icon( 'globe', 'globe' );
+	@include button-icon( 'header', 'header' );
+	@include button-icon( 'header-orig', 'header-orig' );
+	@include button-icon( 'header-wp20', 'header-wp20' );
+	@include button-icon( 'heart-pink', 'heart-pink' );
+	@include button-icon( 'language', 'language' );
+	@include button-icon( 'lock', 'lock' );
+	@include button-icon( 'lock-orig', 'lock-orig' );
+	@include button-icon( 'lock-pink', 'lock-pink' );
+	@include button-icon( 'lock-white', 'lock-white' );
+	@include button-icon( 'map-pin', 'map-pin' );
+	@include button-icon( 'square', 'square' );
+	@include button-icon( 'triangle', 'triangle' );
+	@include button-icon( 'wave', 'wave' );
+	@include button-icon( 'arrow-back', 'individual/arrow-back' );
+	@include button-icon( 'download', 'individual/download' );
+	@include button-icon( 'downTriangle', 'individual/downTriangle' );
+	@include button-icon( 'image', 'individual/image' );
+	@include button-icon( 'logo-horizontal', 'individual/logo-horizontal' );
+	@include button-icon( 'mail', 'individual/mail' );
+	@include button-icon( 'menu', 'individual/menu' );
+	@include button-icon( 'open', 'individual/open' );
+	@include button-icon( 'search', 'individual/search' );
+	@include button-icon( 'social-facebook', 'individual/social-facebook' );
+	@include button-icon( 'social-instagram', 'individual/social-instagram' );
+	@include button-icon( 'social-pinterest', 'individual/social-pinterest' );
+	@include button-icon( 'social-twitter', 'individual/social-twitter' );
+	@include button-icon( 'social-twitter-blue', 'individual/social-twitter-blue' );
+	@include button-icon( 'social-youtube', 'individual/social-youtube' );
+	@include button-icon( 'translate', 'individual/translate' );
+	@include button-icon( 'trending', 'individual/trending' );
+	@include button-icon( 'upTriangle', 'individual/upTriangle' );
+	@include button-icon( 'userAvatar', 'individual/userAvatar' );
+	@include button-icon( 'wikimedia', 'individual/wikimedia' );
+	@include button-icon( 'wikimedia-blue', 'individual/wikimedia-blue' );
+	@include button-icon( 'wikipedia', 'individual/wikipedia' );
+	@include button-icon( 'wikipedia-black', 'individual/wikipedia-black' );
 }

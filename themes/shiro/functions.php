@@ -96,7 +96,7 @@ function wmf_setup() {
 
 	add_theme_support( 'editor-styles' );
 	$css_file = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
-	add_editor_style( get_stylesheet_directory_uri() . '/' . $css_file );
+	add_editor_style( $css_file );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -169,7 +169,14 @@ function wmf_enqueue_block_editor_assets() {
 		$manifest,
 		'editor.js',
 		[
-			'dependencies' => [ 'wp-dom-ready', 'wp-i18n', 'wp-blocks' ],
+			'dependencies' => [
+				'wp-dom-ready',
+				'wp-i18n',
+				'wp-blocks',
+				'wp-compose',
+				'wp-hooks',
+				'wp-token-list',
+			],
 			'handle' => 'shiro_editor_js',
 		]
 	);
