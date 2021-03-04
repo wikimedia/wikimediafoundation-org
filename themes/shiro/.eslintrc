@@ -16,7 +16,9 @@
 			"files": ["assets/src/editor/**/*.js"],
 			"extends": ["@humanmade/eslint-config"],
 			"rules": {
-				"react/react-in-jsx-scope": [0]
+				"react/react-in-jsx-scope": [0],
+				"jsdoc/require-param": [0],
+				"jsdoc/require-returns": [0]
 			}
 		},
 		{
