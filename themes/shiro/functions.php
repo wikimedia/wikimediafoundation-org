@@ -220,6 +220,8 @@ function wmf_enqueue_block_editor_assets() {
 				'wp-dom-ready',
 				'wp-i18n',
 				'wp-blocks',
+				'wp-block-editor',
+				'wp-components',
 				'wp-compose',
 				'wp-hooks',
 				'wp-token-list',
