@@ -57,6 +57,16 @@ function changeButtonExample( settings, name ) {
 				text: __( 'Call to Action', 'shiro' ),
 			},
 		},
+		variations: [
+			{
+				name: 'donate-pink',
+				title: __( 'Pink donate button', 'shiro' ),
+				attributes: {
+					text: __( 'Donate now', 'shiro' ),
+					className: 'is-style-secondary has-icon has-icon-lock-white',
+				},
+			},
+		],
 	};
 }
 addFilter(
