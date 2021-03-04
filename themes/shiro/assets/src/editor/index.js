@@ -2,7 +2,6 @@
  * Autoload and require all block editor functionality.
  */
 import { autoloadBlocks, autoloadPlugins } from 'block-editor-hmr';
-import './button-styles';
 
 // Load all block index files.
 autoloadBlocks(
