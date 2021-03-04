@@ -1,6 +1,31 @@
 import { unregisterBlockStyle, registerBlockStyle } from '@wordpress/blocks';
 import domReady from '@wordpress/dom-ready';
+import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Change button example to remove the backgroundColor attribute, this will make
+ * the preview show our custom styles.
+ */
+function changeButtonExample( settings, name ) {
+	if ( name !== 'core/button' ) {
+		return settings;
+	}
+
+	return {
+		...settings,
+		example: {
+			attributes: {
+				text: __( 'Call to Action', 'shiro' ),
+			},
+		},
+	};
+}
+addFilter(
+	'blocks.registerBlockType',
+	'shiro/button-styles',
+	changeButtonExample
+);
 
 domReady( () => {
 	registerBlockStyle( 'core/button', {
