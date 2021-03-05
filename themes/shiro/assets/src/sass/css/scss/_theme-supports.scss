@@ -1,27 +1,27 @@
 // Definitions of editor styles registered as theme supports.
 
 $color-palette:
-	base-0 $wmui-color-base0,
-	base-10 $wmui-color-base10,
-	base-20 $wmui-color-base20,
-	base-30 $wmui-color-base30,
-	base-50 $wmui-color-base50,
-	base-70 $wmui-color-base70,
-	base-80 $wmui-color-base80,
-	base-90 $wmui-color-base90,
-	base-100 $wmui-color-base100,
+	base-0    $wmui-color-base0,
+	base-10   $wmui-color-base10,
+	base-20   $wmui-color-base20,
+	base-30   $wmui-color-base30,
+	base-50   $wmui-color-base50,
+	base-70   $wmui-color-base70,
+	base-80   $wmui-color-base80,
+	base-90   $wmui-color-base90,
+	base-100  $wmui-color-base100,
 	accent-30 $wmui-color-accent30,
 	accent-50 $wmui-color-accent50,
 	accent-90 $wmui-color-accent90,
-	red-30 $wmui-color-red30,
-	red-50 $wmui-color-red50,
-	red-90 $wmui-color-red90,
+	red-30    $wmui-color-red30,
+	red-50    $wmui-color-red50,
+	red-90    $wmui-color-red90,
 	yellow-30 $wmui-color-yellow30,
 	yellow-50 $wmui-color-yellow50,
 	yellow-90 $wmui-color-yellow90,
-	green-30 $wmui-color-green30,
-	green-50 $wmui-color-green50,
-	green-90 $wmui-color-green90;
+	green-30  $wmui-color-green30,
+	green-50  $wmui-color-green50,
+	green-90  $wmui-color-green90;
 
 @each $color, $value in $color-palette {
 	.has-#{$color}-color {
@@ -36,11 +36,11 @@ $color-palette:
 // Font-sizes: desktop, mobile, line-height.
 $font-sizes:
 	default 18 16 1.75,
-	small 14 12 1.75,
-	medium 20 18 1.5,
-	large 24 21 1.25,
-	xlarge 32 24 1.25
-	jumbo 40 30 1.25;
+	small   14 12 1.75,
+	medium  20 18 1.5,
+	large   24 21 1.25,
+	xlarge  32 24 1.25
+	jumbo   40 30 1.25;
 
 @each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
 	.has-#{$slug}-font-size {
@@ -52,3 +52,5 @@ $font-sizes:
 		}
 	}
 }
+
+
