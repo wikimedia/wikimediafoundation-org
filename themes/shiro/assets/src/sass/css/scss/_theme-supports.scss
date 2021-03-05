@@ -93,4 +93,31 @@ $font-sizes:
 	}
 }
 
+// Negative margins for wide and full align blocks.
+.wysiwyg .alignwide {
 
+	@media ( min-width: $medium-landscape ) {
+		.single-post & {
+			margin-left: ( ( 640px - 980px ) / 2 );
+			margin-right: ( ( 640px - 980px ) / 2 );
+		}
+	}
+}
+
+.wysiwyg .alignfull {
+
+	@media ( min-width: $medium-landscape ) {
+		$negative-margin: calc(#{980px / 2} - 50vw);
+
+		.single-post & {
+			$negative-margin: calc(#{640px / 2} - 50vw);
+		}
+
+		margin-left: $negative-margin;
+		margin-right: $negative-margin;
+
+		.single-story & {
+			margin-right: -50vw;
+		}
+	}
+}
