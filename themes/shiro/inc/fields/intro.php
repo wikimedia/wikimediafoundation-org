@@ -46,12 +46,6 @@ function register_meta_fields() {
  * XXX: This can be removed once the classic editor is no longer used.
  */
 function register_fieldmanager_fields() {
-	$current_screen = get_current_screen();
-
-	if ( $current_screen && $current_screen->is_block_editor() ) {
-		return;
-	}
-
 	add_action( 'fm_post_post', __NAMESPACE__ . '\\wmf_intro_fields', 5 );
 
 	if ( wmf_using_template( 'page-report' ) ) {
@@ -65,6 +59,21 @@ function register_fieldmanager_fields() {
  * XXX: This can be removed once the classic editor is no longer used.
  */
 function wmf_intro_fields() {
+	$current_screen = get_current_screen();
+
+	// Don't register fields in the block editor.
+	if ( $current_screen && $current_screen->is_block_editor() ) {
+		return;
+	}
+
+	// Don't register fields if the post should be using the block editor
+	// (otherwise, Fieldmanager will unset any changes to this field when
+	// processing the classic meta boxes).
+	$post = get_post( $_GET['post'] );
+	if ( wmf_use_block_editor_for_post( true, $post ) ) {
+		return;
+	}
+
 	$intro = new Fieldmanager_RichTextArea(
 		array(
 			'name' => 'page_intro',
