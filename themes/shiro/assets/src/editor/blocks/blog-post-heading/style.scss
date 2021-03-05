@@ -17,7 +17,7 @@
 		min-height: 200px;
 
 		&--empty {
-			background: rgba( 0, 0, 0, 0.05 );
+			background: rgba(0, 0, 0, 0.05);
 			border-radius: 10px;
 		}
 	}
@@ -36,7 +36,7 @@
 		right: 0;
 
 		.dashicon-wrapper {
-			background: rgba( 255, 255, 255, 0.5 );
+			background: rgba(255, 255, 255, 0.5);
 			border-radius: 2px;
 			padding: 5px;
 			position: absolute;
@@ -46,10 +46,10 @@
 		}
 
 		&:hover {
-			background-color: rgba( 0, 0, 0, 0.05 );
+			background-color: rgba(0, 0, 0, 0.05);
 
 			.dashicon-wrapper {
-				background-color: white;
+				background-color: #fff;
 			}
 		}
 	}
@@ -59,7 +59,7 @@
 		margin: 45px auto 60px;
 	}
 
-	&__intro {
+	&__intro p {
 		font: lighter 1.3rem/1.4 sans-serif !important;
 	}
 }

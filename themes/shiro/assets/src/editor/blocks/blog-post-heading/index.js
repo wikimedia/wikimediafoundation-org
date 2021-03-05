@@ -63,6 +63,7 @@ export const settings = {
 		postIntro: {
 			type: 'string',
 			source: 'meta',
+			multiline: 'p',
 			meta: 'page_intro',
 		},
 	},
@@ -109,8 +110,9 @@ export const settings = {
 					<RichText
 						className="post-heading__intro"
 						keepPlaceholderOnFocus
+						multiline="p"
 						placeholder={ __( 'Add a post intro', 'shiro' ) }
-						tagName="h3"
+						tagName="div"
 						value={ attributes.postIntro }
 						onChange={ postIntro => setAttributes( { postIntro } ) }
 					/>
