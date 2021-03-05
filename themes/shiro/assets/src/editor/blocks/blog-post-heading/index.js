@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { createBlock } from '@wordpress/blocks';
 import { Icon } from '@wordpress/components';
-import { useSelect, select, useDispatch, dispatch, subscribe } from '@wordpress/data';
+import { useSelect, select, dispatch, subscribe } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -48,6 +48,8 @@ export const name = 'shiro/blog-post-heading';
 export const settings = {
 	title: __( 'Post Heading controls', 'shiro' ),
 
+	icon: 'cover-image',
+
 	description: __(
 		'Editor controls for selecting featured image and post intro.',
 		'shiro'
@@ -62,15 +64,16 @@ export const settings = {
 	attributes: {
 		postIntro: {
 			type: 'string',
-			source: 'meta',
 			multiline: 'p',
+			source: 'meta',
 			meta: 'page_intro',
 		},
 	},
 
-	icon: 'cover-image',
-
-	edit: ( { attributes, setAttributes } ) => {
+	/**
+	 * Edit component used to manage featured image and page intro.
+	 */
+	edit: function Edit( { attributes, setAttributes } ) {
 
 		// Get the source URL of the post featured image, in the large 16x9
 		// size if available, with a fallback to the full-size image if not
@@ -122,8 +125,6 @@ export const settings = {
 	},
 };
 
-const SUPPORTED_POST_TYPES = [ 'post', 'archive-post' ];
-
 subscribe( () => {
 	const { replaceBlocks, removeBlock } = dispatch( 'core/block-editor' );
 	const { getBlocks } = select( 'core/block-editor' );
@@ -145,7 +146,7 @@ subscribe( () => {
 		replaceBlocks(
 			firstBlock.clientId,
 			[
-				createBlock(  name  ),
+				createBlock( name ),
 				firstBlock,
 			]
 		);
