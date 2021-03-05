@@ -45,10 +45,50 @@ $font-sizes:
 @each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
 	.has-#{$slug}-font-size {
 		// Over-specify styles applied to .single-{post_type} .wysiwyg
-		&, .single .wysiwyg & {
+		&,
+		.single .wysiwyg & {
 
 			@include font-size( $desktop-size, $mobile-size );
 			line-height: $line-height;
+		}
+	}
+}
+
+// Define base styles for headings, etc within text content.
+.single {
+
+	@include wysiwyg {
+
+		// stylelint-disable at-rule-empty-line-before
+		h1 {
+			@extend .has-xlarge-font-size;
+		}
+		h2 {
+			@extend .has-large-font-size;
+			font-weight: 400;
+		}
+		h3 {
+			@extend .has-medium-font-size;
+			font-weight: 700;
+		}
+		h4 {
+			@extend .has-default-font-size;
+			font-weight: 700;
+		}
+		h5,
+		h6 {
+			@extend .has-small-font-size;
+			font-weight: 400;
+		}
+		// stylelint-enable at-rule-empty-line-before
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 0 auto 0.5em;
 		}
 	}
 }
