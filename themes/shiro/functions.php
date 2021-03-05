@@ -100,15 +100,18 @@ function wmf_setup() {
 	$css_file = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
 	add_editor_style( $css_file );
 
-	// Define font sizes selectable in the editor.
+	// Define alternate font sizes selectable in the editor (the default
+	// for body copy is 18px / 1.75 on desktop; 16px / 1.75 on mobile).
 	add_theme_support( 'editor-font-sizes', [
-		[ 'name' => __( 'Default', 'shiro' ), 'shortName' => __( 'R', 'shiro' ),  'size' => 18, 'slug' => 'regular' ],
 		[ 'name' => __( 'Small', 'shiro' ),   'shortName' => __( 'S', 'shiro' ),  'size' => 14, 'slug' => 'small'   ],
 		[ 'name' => __( 'Medium', 'shiro' ),  'shortName' => __( 'M', 'shiro' ),  'size' => 20, 'slug' => 'medium'  ],
 		[ 'name' => __( 'Large', 'shiro' ),   'shortName' => __( 'L', 'shiro' ),  'size' => 24, 'slug' => 'large'   ],
 		[ 'name' => __( 'X-Large', 'shiro' ), 'shortName' => __( 'XL', 'shiro' ), 'size' => 32, 'slug' => 'xlarge'  ],
 		[ 'name' => __( 'Jumbo', 'shiro' ),   'shortName' => __( 'J', 'shiro' ),  'size' => 40, 'slug' => 'jumbo'   ],
 	] );
+
+	// Remove the ability to set custom font sizes in the editor.
+	add_theme_support( 'disable-custom-font-sizes' );
 
 	// Define colors selectable in the editor.
 	add_theme_support( 'editor-color-palette', [
