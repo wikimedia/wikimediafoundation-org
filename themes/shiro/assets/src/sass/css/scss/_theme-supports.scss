@@ -102,8 +102,8 @@ $font-sizes:
 
 	@media ( min-width: $medium-landscape ) {
 		.single-post & {
-			margin-left: ( ( 640px - 980px ) / 2 );
-			margin-right: ( ( 640px - 980px ) / 2 );
+			margin-left: ( ( $content-column-post - $content-column ) / 2 );
+			margin-right: ( ( $content-column-post - $content-column ) / 2 );
 		}
 	}
 }
@@ -111,10 +111,10 @@ $font-sizes:
 .wysiwyg .alignfull {
 
 	@media ( min-width: $medium-landscape ) {
-		$negative-margin: calc(#{980px / 2} - 50vw);
+		$negative-margin: calc(#{$content-column / 2} - 50vw);
 
 		.single-post & {
-			$negative-margin: calc(#{640px / 2} - 50vw);
+			$negative-margin: calc(#{$content-column-post / 2} - 50vw);
 		}
 
 		margin-left: $negative-margin;
