@@ -49,7 +49,7 @@ function register_fieldmanager_fields() {
 	add_action( 'fm_post_post', __NAMESPACE__ . '\\wmf_intro_fields', 5 );
 
 	if ( wmf_using_template( 'page-report' ) ) {
-		add_action( 'fm_post_page', 'wmf_intro_fields', 5 );
+		add_action( 'fm_post_page', __NAMESPACE__ . '\\wmf_intro_fields', 5 );
 	}
 }
 
