@@ -35,7 +35,7 @@ const openFeaturedImageSelector = () => {
 	}
 
 	setTimeout( () => {
-		const button = document.querySelector( '.editor-post-featured-image__preview' );
+		const button = document.querySelector( '.editor-post-featured-image__container .components-button' );
 		const panel = button.closest( '.components-panel__body' );
 		panel.scrollIntoView();
 		button.focus();
