@@ -12,10 +12,10 @@ const BLOCKS_TEMPLATE = [
 	[ 'core/paragraph', { content: __( 'Subscribe to news about ongoing projects and initiatives', 'kps' ) } ],
 	[ 'core/columns', {}, [
 		[ 'core/column', { width: 66.66 }, [
-			[ 'core/paragraph', { content: __( 'Input field goes here...', 'shiro' ) } ],
+			[ 'shiro/input-field' ],
 		] ],
 		[ 'core/column', { width: 33.33 }, [
-			[ 'core/button', { text: __( 'Subscribe', 'shiro' ) } ],
+			[ 'shiro/submit-button', { text: __( 'Subscribe', 'shiro' ) } ],
 		] ],
 	] ],
 	[ 'core/paragraph', { content: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site\'s privacy policy.', 'shiro' ) } ],

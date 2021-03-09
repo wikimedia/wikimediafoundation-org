@@ -3,4 +3,9 @@
 	border: 1px solid $border-color-framed;
 	border-radius: $border-radius-big;
 	padding: 1.5rem;
+
+	// Override gutter to reduce distance between text input and button
+	.wp-block-column:not(:first-child) {
+		margin-left: 0.5rem;
+	}
 }
