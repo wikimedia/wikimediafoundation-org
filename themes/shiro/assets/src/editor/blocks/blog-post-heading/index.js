@@ -126,7 +126,7 @@ export const settings = {
 };
 
 subscribe( () => {
-	const { replaceBlocks, removeBlock } = dispatch( 'core/block-editor' );
+	const { replaceBlocks, removeBlock, selectBlock } = dispatch( 'core/block-editor' );
 	const { getBlocks } = select( 'core/block-editor' );
 	const { getCurrentPostType } = select( 'core/editor' );
 
@@ -143,13 +143,15 @@ subscribe( () => {
 
 	// Ensure that the first block is a blog post heading.
 	if ( firstBlock.name !== name ) {
+		const blogPostHeaderBlock = createBlock( name );
 		replaceBlocks(
 			firstBlock.clientId,
 			[
-				createBlock( name ),
+				blogPostHeaderBlock,
 				firstBlock,
 			]
 		);
+		selectBlock( blogPostHeaderBlock.clientId );
 	}
 
 	// Ensure that the blog post heading hasn't been moved anywhere but the first slot.
