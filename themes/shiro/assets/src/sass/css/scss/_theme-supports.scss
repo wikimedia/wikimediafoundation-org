@@ -39,7 +39,7 @@ $font-sizes:
 	small   14 12 1.75,
 	medium  20 18 1.5,
 	large   24 21 1.25,
-	xlarge  32 24 1.25
+	xlarge  32 24 1.25,
 	jumbo   40 30 1.25;
 
 @each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
@@ -63,24 +63,26 @@ $font-sizes:
 
 		// stylelint-disable at-rule-empty-line-before
 		h1 {
-			@extend .has-xlarge-font-size;
+			@extend .has-jumbo-font-size;
 		}
 		h2 {
-			@extend .has-large-font-size;
+			@extend .has-xlarge-font-size;
 			font-weight: 400;
 		}
 		h3 {
-			@extend .has-medium-font-size;
+			@extend .has-large-font-size;
 			font-weight: 700;
 		}
 		h4 {
-			@extend .has-default-font-size;
+			@extend .has-medium-font-size;
 			font-weight: 700;
 		}
 		h5,
 		h6 {
-			@extend .has-small-font-size;
-			font-weight: 400;
+			@extend .has-default-font-size;
+			color: unset;
+			font-weight: 700;
+			text-transform: unset;
 		}
 		// stylelint-enable at-rule-empty-line-before
 
