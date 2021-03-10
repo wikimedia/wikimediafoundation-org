@@ -1,4 +1,5 @@
 import { useBlockProps } from '@wordpress/block-editor';
+import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import { name as mailchimpSubscribe } from '../mailchimp-subscribe';
@@ -29,16 +30,8 @@ export const
 		 * Render save for an input field block
 		 */
 		save: function SaveInputField() {
-			const blockProps = useBlockProps.save();
-
 			return (
-				<input
-					{ ...blockProps }
-					id="wmf-subscribe-input-email"
-					name="EMAIL"
-					placeholder={ __( 'Email address', 'shiro' ) }
-					required=""
-					type="email" />
+				<RawHTML>{ '<!-- input_field -->' }</RawHTML>
 			);
 		},
 	};

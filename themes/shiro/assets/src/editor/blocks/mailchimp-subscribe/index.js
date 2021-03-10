@@ -1,6 +1,7 @@
 import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { RawHTML } from '@wordpress/element';
 
 const DEFAULT_MAILCHIMP_ACTION = 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56';
 
@@ -71,17 +72,16 @@ export const
 		/**
 		 * Render mailchimp subscribe for the frontend
 		 */
-		save: function MailChimpSubscribeSave( { attributes } ) {
+		save: function MailChimpSubscribeSave() {
 			const blockProps = useBlockProps.save();
-			let { action } = attributes;
-
-			action = action || DEFAULT_MAILCHIMP_ACTION;
 
 			return (
-				<form { ...blockProps } action={ action } method="POST">
+				<div { ...blockProps }>
+					<RawHTML>{ '<!-- form_start -->' }</RawHTML>
 					<InnerBlocks.Content />
-					<input id="mce-group[4037]-4037-1" name="group[4037]" type="hidden" value="2" />
-				</form>
+					<RawHTML>{ '<!-- additional_fields -->' }</RawHTML>
+					<RawHTML>{ '<!-- form_end -->' }</RawHTML>
+				</div>
 			);
 		},
 	};

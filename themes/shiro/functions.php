@@ -7,6 +7,12 @@
  * @package shiro
  */
 
+require_once __DIR__ . '/inc/classes/editor/blocks/mailchimp-subscribe.php';
+require_once __DIR__ . '/inc/classes/editor/blocks/input-field.php';
+
+\WMF\Editor\Blocks\MailChimpSubscribe\bootstrap();
+\WMF\Editor\Blocks\InputField\bootstrap();
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -223,6 +229,7 @@ function wmf_enqueue_block_editor_assets() {
 				'wp-block-editor',
 				'wp-components',
 				'wp-compose',
+				'wp-element',
 				'wp-hooks',
 				'wp-token-list',
 			],
