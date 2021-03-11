@@ -1,0 +1,42 @@
+.wp-block-shiro-card {
+	$image-height: 192px;
+	position: relative;
+	margin-bottom: 14px;
+
+	&__image {
+		width: 314px;
+		height: 192px;
+	}
+
+	&__body {
+		background: $color-white;
+		margin-left: 18px;
+		margin-top: -41px;
+		font-family: $font-family-serif;
+		padding: 1em 1.25em;
+
+		// These make sure the paragraph is rendered over the image & editor media placeholder.
+		display: inline-block;
+		position: relative;
+	}
+
+	.components-placeholder {
+		width: 314px;
+		height: $image-height;
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	&:before {
+		.wp-block-columns .wp-block-column:first-child & {
+			$heading-estimated-height: 42px;
+			$margin: 16px;
+			content: '';
+			height: calc(100% - #{ $image-height + $heading-estimated-height + $margin });
+			width: 1px;
+			background: $color-primary;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+	}
+}
