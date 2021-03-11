@@ -111,14 +111,16 @@ $font-sizes:
 .wysiwyg .alignfull {
 
 	@media ( min-width: $medium-landscape ) {
-		$negative-margin: calc(#{$content-column / 2} - 50vw);
-
-		.single-post & {
-			$negative-margin: calc(#{$content-column-post / 2} - 50vw);
+		.page &,
+		.single & {
+			margin-left: calc(#{$content-column / 2} - 50vw);
+			margin-right: calc(#{$content-column / 2} - 50vw);
 		}
 
-		margin-left: $negative-margin;
-		margin-right: $negative-margin;
+		.single-post & {
+			margin-left: calc(#{$content-column-post / 2} - 50vw);
+			margin-right: calc(#{$content-column-post / 2} - 50vw);
+		}
 
 		.single-story & {
 			margin-right: -50vw;
