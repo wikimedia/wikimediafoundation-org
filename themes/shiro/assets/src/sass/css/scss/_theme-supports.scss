@@ -46,8 +46,8 @@ $font-sizes:
 	.has-#{$slug}-font-size {
 		// Over-specify styles applied to .single-{post_type} .wysiwyg
 		&,
-		.page .wysiwyg &,
-		.single .wysiwyg & {
+		.page.has-blocks .wysiwyg &,
+		.single.has-blocks .wysiwyg & {
 
 			@include font-size( $desktop-size, $mobile-size );
 			line-height: $line-height;
@@ -56,8 +56,8 @@ $font-sizes:
 }
 
 // Define base styles for headings, etc within text content.
-.page,
-.single {
+.page.has-blocks,
+.single.has-blocks {
 
 	@include wysiwyg {
 
@@ -101,7 +101,7 @@ $font-sizes:
 .wysiwyg .alignwide {
 
 	@media ( min-width: $medium-landscape ) {
-		.single-post & {
+		.single-post.has-blocks & {
 			margin-left: ( ( $content-column-post - $content-column ) / 2 );
 			margin-right: ( ( $content-column-post - $content-column ) / 2 );
 		}
@@ -111,18 +111,18 @@ $font-sizes:
 .wysiwyg .alignfull {
 
 	@media ( min-width: $medium-landscape ) {
-		.page &,
-		.single & {
+		.page.has-blocks &,
+		.single.has-blocks & {
 			margin-left: calc(#{$content-column / 2} - 50vw);
 			margin-right: calc(#{$content-column / 2} - 50vw);
 		}
 
-		.single-post & {
+		.single-post.has-blocks & {
 			margin-left: calc(#{$content-column-post / 2} - 50vw);
 			margin-right: calc(#{$content-column-post / 2} - 50vw);
 		}
 
-		.single-story & {
+		.single-story.has-blocks & {
 			margin-right: -50vw;
 		}
 	}
