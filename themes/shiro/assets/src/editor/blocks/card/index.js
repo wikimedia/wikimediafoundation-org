@@ -67,6 +67,7 @@ export const
 					/>
 					<RichText
 						className="wp-block-shiro-card__body"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Start writing your card contents', 'shiro' ) }
 						tagName="p"
 						value={ content }
@@ -75,6 +76,7 @@ export const
 					<RichText
 						allowedFormats={ [ 'core/link' ] }
 						className="wp-block-shiro-card__read-more arrow-link"
+						keepPlaceholderOnFocus
 						placeholder={ __( 'Link to other content', 'shiro' ) }
 						tagName="div"
 						value={ linkText }

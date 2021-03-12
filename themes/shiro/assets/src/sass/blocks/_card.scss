@@ -20,6 +20,7 @@
 		// These make sure the paragraph is rendered over the image & editor media placeholder.
 		display: inline-block;
 		position: relative;
+		width: 100%;
 
 		// Override more general styles.
 		@include article-main-wrap {
