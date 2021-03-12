@@ -99,11 +99,11 @@ export const
 						tagName="p"
 						value={ content }
 					/>
-					<RichText.Content
+					{ ! RichText.isEmpty( linkText ) && ( <RichText.Content
 						className="wp-block-shiro-card__read-more arrow-link"
 						tagName="div"
 						value={ linkText }
-					/>
+					/> ) }
 				</div>
 			);
 		},
