@@ -39,6 +39,7 @@ export const
 				type: 'integer',
 			},
 		},
+		parent: [ 'shiro/cards' ],
 
 		/**
 		 * Render edit of the card block.

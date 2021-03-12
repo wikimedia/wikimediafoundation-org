@@ -2,6 +2,8 @@
 	$image-height: 192px;
 	position: relative;
 	margin-bottom: 14px;
+	flex: 0 1 calc( 50% - 1rem );
+	margin-left: unset;
 
 	&__image {
 		width: 314px;
@@ -26,8 +28,8 @@
 		background: rgba(0, 0, 0, 0.05);
 	}
 
-	&:before {
-		.wp-block-columns .wp-block-column:first-child & {
+	&:nth-child(2n + 1) {
+		&:before {
 			$heading-estimated-height: 42px;
 			$margin: 16px;
 			content: '';
