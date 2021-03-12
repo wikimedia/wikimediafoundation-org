@@ -6,8 +6,20 @@ import {
 	BlockControls,
 } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+
+/**
+ * Helper function for updating block attributes on selecting or removing a media attachment.
+ *
+ * @param {Function} setAttributes Parent block's `setAttributes` function.
+ * @returns {Function} Function which can be used as onChange classback.
+ */
+export const onChange = setAttributes =>
+	( { id, src, alt } ) => setAttributes( {
+		id,
+		src,
+		alt,
+	} );
 
 /**
  * Render an editor image picker component to allow the user to select an image.
@@ -16,6 +28,7 @@ import { __ } from '@wordpress/i18n';
  * @param {number}   props.id Attachment ID of image.
  * @param {string}   props.className Class name to render on preview.
  * @param {string}   props.defaultSize The size the image picker should save.
+ * @param {string}   props.src Image source URL.
  * @param {Function} props.onChange Function that is called when a user selects
  *                   an image in the media library or removes the image.
  */
@@ -24,19 +37,12 @@ function ImagePicker( props ) {
 		// Props passed into the component.
 		id,
 		className,
-		defaultSize,
+		src,
 		onChange,
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
 	} = props;
-
-	const src = useSelect(
-		select => {
-			const media = select( 'core' ).getMedia( id );
-			return media?.media_details.sizes[ defaultSize ]?.source_url || media?.source_url;
-		}
-	);
 
 	/**
 	 * Handle an upload error
@@ -92,6 +98,7 @@ ImagePicker.propTypes = {
 	id: PropTypes.number,
 	className: PropTypes.string,
 	defaultSize: PropTypes.string,
+	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 
 	noticeOperations: PropTypes.object.isRequired,
