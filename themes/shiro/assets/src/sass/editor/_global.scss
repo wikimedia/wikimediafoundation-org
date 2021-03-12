@@ -4,9 +4,12 @@ body {
 }
 
 .block-editor-block-list__layout.is-root-container > .wp-block {
-	max-width: rem(strip-unit($content-column) + 80);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, 20, 0, 40);
+}
+
+.block-editor-block-list__layout > .wp-block {
+	max-width: rem(strip-unit($content-column) + 80);
 
 	.has-background,
 	&.has-background {
