@@ -21,13 +21,12 @@ export const
 		/**
 		 * Render edit of the card block.
 		 */
-		edit: function EditCardBlock( { attributes, setAttributes, noticeUI, noticeOperations } ) {
+		edit: function EditCardBlock() {
 			const blockProps = useBlockProps();
 
 			return (
 				<div { ...blockProps }>
 					<InnerBlocks
-						{ ...blockProps }
 						allowedBlocks={ [ 'shiro/card' ] }
 						template={ template }
 					/>

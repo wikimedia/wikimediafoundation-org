@@ -26,9 +26,6 @@ export const
 			linkText: {
 				type: 'string',
 			},
-			linkUrl: {
-				type: 'string',
-			},
 			imageUrl: {
 				type: 'string',
 			},
@@ -46,7 +43,7 @@ export const
 		 */
 		edit: function EditCardBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps();
-			const { content } = attributes;
+			const { content, linkText } = attributes;
 
 			return (
 				<div { ...blockProps }>
@@ -66,6 +63,14 @@ export const
 						value={ content }
 						onChange={ content => setAttributes( { content } ) }
 					/>
+					<RichText
+						allowedFormats={ [ 'core/link' ] }
+						className="wp-block-shiro-card__read-more arrow-link"
+						placeholder={ __( 'Link to other content', 'shiro' ) }
+						tagName="div"
+						value={ linkText }
+						onChange={ linkText => setAttributes( { linkText } ) }
+					/>
 				</div>
 			);
 		},
@@ -75,7 +80,7 @@ export const
 		 */
 		save: function SaveCardBlock( { attributes } ) {
 			const blockProps = useBlockProps.save();
-			const { imageUrl, imageAlt, content } = attributes;
+			const { imageUrl, imageAlt, content, linkText } = attributes;
 
 			const image = !! imageUrl && (
 				<img
@@ -93,6 +98,11 @@ export const
 						className="wp-block-shiro-card__body"
 						tagName="p"
 						value={ content }
+					/>
+					<RichText.Content
+						className="wp-block-shiro-card__read-more arrow-link"
+						tagName="div"
+						value={ linkText }
 					/>
 				</div>
 			);

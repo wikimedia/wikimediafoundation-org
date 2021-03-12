@@ -1,7 +1,7 @@
 .wp-block-shiro-card {
 	$image-height: 192px;
 	position: relative;
-	margin-bottom: 14px;
+	margin-bottom: 50px;
 	flex: 0 1 calc( 50% - 1rem );
 	margin-left: unset;
 
@@ -20,6 +20,18 @@
 		// These make sure the paragraph is rendered over the image & editor media placeholder.
 		display: inline-block;
 		position: relative;
+
+		// Override more general styles.
+		@include article-main-wrap {
+			margin-bottom: 0;
+		}
+	}
+
+	&__read-more {
+		font-size: 1.125rem;
+		margin-left: 18px;
+		padding: 0 1.25em;
+		margin-bottom: 1rem;
 	}
 
 	.components-placeholder {
