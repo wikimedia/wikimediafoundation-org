@@ -43,7 +43,7 @@ export const
 		 */
 		edit: function EditCardBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps();
-			const { id, content, linkText } = attributes;
+			const { id, imageUrl, content, linkText } = attributes;
 
 			return (
 				<div { ...blockProps }>
@@ -55,12 +55,13 @@ export const
 						className="wp-block-shiro-card__image"
 						defaultSize="image_16x9_small"
 						id={ id }
+						src={ imageUrl }
 						onChange={
-							( { id, alt, url } ) =>
+							( { id, alt, url, sizes } ) =>
 								setAttributes( {
 									id,
-									imageUrl: url,
 									imageAlt: alt,
+									imageUrl: sizes?.image_16x9_large?.url || url,
 								} )
 						}
 					/>
