@@ -43,7 +43,7 @@ export const
 		 */
 		edit: function EditCardBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps();
-			const { content, linkText } = attributes;
+			const { id, content, linkText } = attributes;
 
 			return (
 				<div { ...blockProps }>
@@ -52,9 +52,17 @@ export const
 						templateLock="all"
 					/>
 					<ImagePicker
-						attributes={ attributes }
+						className="wp-block-shiro-card__image"
 						defaultSize="image_16x9_small"
-						setAttributes={ setAttributes }
+						id={ id }
+						onChange={
+							( { id, alt, url } ) =>
+								setAttributes( {
+									id,
+									imageUrl: url,
+									imageAlt: alt,
+								} )
+						}
 					/>
 					<RichText
 						className="wp-block-shiro-card__body"
