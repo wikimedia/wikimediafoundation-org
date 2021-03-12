@@ -327,6 +327,11 @@ require get_template_directory() . '/inc/template-translations.php';
 require get_template_directory() . '/inc/ajax.php';
 
 /**
+ * Block editor migration functionality.
+ */
+require get_template_directory() . '/inc/block-editor.php';
+
+/**
  * Adjustments to queries.
  */
 require get_template_directory() . '/inc/queries.php';
