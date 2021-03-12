@@ -31,6 +31,7 @@
     "babel-eslint": "^10.1.0",
     "block-editor-hmr": "^0.6.3",
     "browser-sync": "^2.26.12",
+    "classnames": "^2.2.6",
     "copy-webpack-plugin": "^6.4.1",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
@@ -81,6 +82,7 @@
     "lodash": "^4.17.19",
     "minimatch": "^3.0.4",
     "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
     "stylelint": "^13.6.1"
   },
   "themeConfig": {
