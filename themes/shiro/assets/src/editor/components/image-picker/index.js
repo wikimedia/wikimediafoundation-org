@@ -1,23 +1,26 @@
+import PropTypes from 'prop-types';
+
 import {
 	MediaPlaceholder,
 	MediaReplaceFlow,
 	BlockControls,
 } from '@wordpress/block-editor';
+import { withNotices } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
- * Returns the id of the image being picked (or undefined).
+ * Return the id of the image being picked (or undefined).
  */
 const defaultGetId = ( { attributes } ) => {
 	return attributes.id;
 };
 
 /**
- * Returns the method used to update the block when an image is selected.
+ * Return the method used to update the block when an image is selected.
  */
-const defaultMakeHandleSelectImage = ( { setAttributes } ) => {
+const defaultMakeOnSelectImage = ( { setAttributes } ) => {
 	return media => {
 		if ( ! media || ! media.url ) {
 			setAttributes( {
@@ -37,17 +40,20 @@ const defaultMakeHandleSelectImage = ( { setAttributes } ) => {
 };
 
 /**
- * Returns the method used to generate the URL for the image.
+ * Return the method used to generate the URL for the image.
  */
-const defaultMakeGetImageUrl = ( id, { attributes } ) => {
+const defaultMakeGetImageUrl = ( id, { attributes }, defaultSize = 'medium_large' ) => {
 	return select => {
-		let media = select( 'core' ).getMedia( id );
-		return media?.media_details.sizes.medium_large?.source_url || media?.source_url || attributes.imageUrl;
+		const media = select( 'core' ).getMedia( id );
+
+		const defaultSizeObject = media?.media_details.sizes[ defaultSize ];
+
+		return defaultSizeObject?.source_url || media?.source_url || attributes.imageUrl;
 	};
 };
 
 /**
- * Returns the method used to make sure the image URL is correctly set.
+ * Return the method used to make sure the image URL is correctly set.
  */
 const defaultMakeUpdateImageUrl = ( imageUrl, { attributes, setAttributes } ) => {
 	return () => {
@@ -58,13 +64,13 @@ const defaultMakeUpdateImageUrl = ( imageUrl, { attributes, setAttributes } ) =>
 };
 
 /**
- * Returns an element containing the image preview (or undefined, if no image).
+ * Return an element containing the image preview (or undefined, if no image).
  */
-const defaultGetPreview = imageUrl => {
+const defaultRenderPreview = imageUrl => {
 	return !! imageUrl && (
 		<img
 			alt={ __( 'Edit image' ) }
-			className={ 'wp-block-shiro-card__image' }
+			className={ 'wp-block-shiro__image-preview' }
 			src={ imageUrl }
 			title={ __( 'Edit image' ) }
 		/>
@@ -72,32 +78,58 @@ const defaultGetPreview = imageUrl => {
 };
 
 /**
+ * Render an editor image picker component to allow the user to select an image.
  *
+ * By default the image data is saved into `id`, `imageUrl` and `imageAlt`
+ * respectively. This can be changed by overriding the factory functions
+ * that make the functions that do this.
+ *
+ * @param {object}   props React props.
+ * @param {string}   props.defaultSize The size the image picker should save.
+ *                   This will only be used when the default `makeGetImageUrl`
+ *                   is used.
+ * @param {Function} props.getId Function to retrieve the image id from the
+ *                   attributes.
+ * @param {Function} props.makeOnSelectImage Function that is called when a user
+ *                   selects an image in the media library. Should set the image
+ *                   attributes that saves the image.
+ * @param {Function} props.makeGetImageUrl Function that should return a
+ *                   selector which returns the image URL based on id and
+ *                   attributes.
+ * @param {Function} props.makeUpdateImageUrl Function that should return an
+ *                   effect that will update the imageUrl attribute. Is used to
+ *                   make sure the imageUrl is up to date if getImageUrl is
+ *                   async.
+ * @param {Function} props.renderPreview Render an image preview to the user. Is
+ *                   passed the image URL returned by makeGetImageUrl
  */
-export default function ImagePicker( props ) {
-	const { noticeUI, noticeOperations, getId, makeHandleSelectImage, makeGetImageUrl, makeUpdateImageUrl, getPreview } = props;
+function ImagePicker( props ) {
+	const {
+		noticeUI,
+		noticeOperations,
+	} = props;
 
-	const finallyGetId = getId || defaultGetId;
-	const finallyMakeHandleSelectImage = makeHandleSelectImage || defaultMakeHandleSelectImage;
-	const finallyMakeGetImageUrl = makeGetImageUrl || defaultMakeGetImageUrl;
-	const finallyMakeUpdateImageUrl = makeUpdateImageUrl || defaultMakeUpdateImageUrl;
-	const finallyGetPreview = getPreview || defaultGetPreview;
+	const getId = props.getId || defaultGetId;
+	const makeOnSelectImage = props.makeOnSelectImage || defaultMakeOnSelectImage;
+	const makeGetImageUrl = props.makeGetImageUrl || defaultMakeGetImageUrl;
+	const makeUpdateImageUrl = props.makeUpdateImageUrl || defaultMakeUpdateImageUrl;
+	const renderPreview = props.renderPreview || defaultRenderPreview;
 
-	const id = finallyGetId( props );
-	const handleSelectImage = finallyMakeHandleSelectImage( props );
-	const getImageUrl = finallyMakeGetImageUrl( id, props );
+	const id = getId( props );
+	const onSelectImage = makeOnSelectImage( props );
+	const getImageUrl = makeGetImageUrl( id, props, props.defaultSize );
 	/**
 	 * Retrieve the right image size from the media store.
 	 */
 	const imageUrl = useSelect( getImageUrl );
-	const updateImageUrl = finallyMakeUpdateImageUrl( imageUrl, props );
+	const updateImageUrl = makeUpdateImageUrl( imageUrl, props );
 	useEffect( updateImageUrl );
-	const mediaPreview = finallyGetPreview( imageUrl );
+	const mediaPreview = renderPreview( imageUrl );
 
 	/**
 	 * Handle an upload error
 	 */
-	const handleUploadError = message => {
+	const onUploadError = message => {
 		noticeOperations.removeAllNotices();
 		noticeOperations.createErrorNotice( message );
 	};
@@ -115,8 +147,8 @@ export default function ImagePicker( props ) {
 					id,
 					src: imageUrl,
 				} }
-				onError={ handleUploadError }
-				onSelect={ handleSelectImage }
+				onError={ onUploadError }
+				onSelect={ onSelectImage }
 			/>
 			<BlockControls>
 				{ !! imageUrl && (
@@ -126,11 +158,28 @@ export default function ImagePicker( props ) {
 						mediaId={ id }
 						mediaURL={ imageUrl }
 						name={ __( 'Replace image', 'shiro' ) }
-						onError={ handleUploadError }
-						onSelect={ handleSelectImage }
+						onError={ onUploadError }
+						onSelect={ onSelectImage }
 					/>
 				) }
 			</BlockControls>
 		</>
 	);
 }
+
+ImagePicker.propTypes = {
+	attributes: PropTypes.object.isRequired,
+	setAttributes: PropTypes.func.isRequired,
+	noticeOperations: PropTypes.object.isRequired,
+	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),
+
+	defaultSize: PropTypes.string,
+
+	getId: PropTypes.func,
+	makeOnSelectImage: PropTypes.func,
+	makeGetImageUrl: PropTypes.func,
+	makeUpdateImageUrl: PropTypes.func,
+	renderPreview: PropTypes.func,
+};
+
+export default withNotices( ImagePicker );
