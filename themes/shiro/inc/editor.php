@@ -3,7 +3,7 @@
  * Functionality related to supporting the stepped migration to block editor content.
  */
 
-namespace Shiro\Block_Editor;
+namespace WMF\Editor;
 
 /**
  * Add "has-blocks" class to posts with block content.
