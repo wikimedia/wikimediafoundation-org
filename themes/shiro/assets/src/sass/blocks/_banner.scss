@@ -1,0 +1,42 @@
+.banner,
+.wp-block-shiro-banner {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.banner__content,
+.banner__image {
+  width: 100%;
+}
+
+.banner__content {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.banner__content .wp-block-button,
+.banner__content .wp-block.rich-text {
+  margin: 0;
+}
+
+.banner__image {
+  object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+  .banner,
+  .wp-block-shiro-banner {
+	flex-direction: row;
+  }
+
+  .banner__content {
+	width: 66%;
+  }
+
+  .banner__image {
+	width: 33%,
+  }
+}

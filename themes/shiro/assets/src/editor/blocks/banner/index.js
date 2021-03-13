@@ -1,8 +1,6 @@
 /**
- * Editor control for setting featured image, flair, and deck text.
+ * Block for implementing the banner component.
  */
-
-import classNames from 'classnames';
 
 /**
  * WordPress dependencies
@@ -10,33 +8,23 @@ import classNames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-/**
- * Internal dependencies
- */
-import './style.scss';
+import ImagePicker from '../../components/image-picker/index.js';
 
 const BLOCKS_TEMPLATE = [
-	[ 'core/columns', {}, [
-		[ 'core/column', { width: 66.66 }, [
-			[ 'core/heading' ],
-			[ 'core/paragraph' ],
-			[ 'core/button' ],
-		] ],
-		[ 'core/column', { width: 33.33 }, [
-			[ 'core/image' ],
-		] ],
-	] ],
+	[ 'core/heading', { level: 3 } ],
+	[ 'core/paragraph' ],
+	[ 'core/button' ],
 ];
 
 export const name = 'shiro/banner';
 
 export const settings = {
-	title: __( 'Banner controls', 'shiro' ),
+	title: __( 'Banner', 'shiro' ),
 
 	icon: 'cover-image',
 
 	description: __(
-		'Editor controls for selecting featured image and post intro.',
+		'Banner with an image and call to action.',
 		'shiro'
 	),
 
@@ -44,16 +32,45 @@ export const settings = {
 		align: [ 'wide', 'full' ],
 	},
 
+	attributes: {
+		imageID: {
+			type: 'interger',
+		},
+		imageSrc: {
+			type: 'string',
+		},
+		imageAlt: {
+			type: 'string',
+		},
+		align: {
+			type: 'string',
+			default: 'wide',
+		},
+	},
+
 	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
 	edit: function BannerEdit( { attributes, setAttributes } ) {
-		const blockProps = useBlockProps();
+		const blockProps = useBlockProps( { className: 'banner' } );
+
 		return (
 			<div { ...blockProps } >
-				<InnerBlocks
-					template={ BLOCKS_TEMPLATE }
-					templateLock={ false } />
+				<div className="banner__content">
+					<InnerBlocks
+						template={ BLOCKS_TEMPLATE }
+						templateLock/>
+				</div>
+				<ImagePicker
+					className={ 'banner__image' }
+					id={ attributes.imageID }
+					src={ attributes.imageSrc }
+					onChange={ ( { id, src, alt, sizes } ) => setAttributes( {
+						imageID: id,
+						imageSrc: sizes?.medium.url || src,
+						imageAlt: alt,
+					} ) }
+				/>
 			</div>
 		);
 	},
@@ -66,7 +83,10 @@ export const settings = {
 
 		return (
 			<div { ...blockProps } >
-				<InnerBlocks.Content />
+				<div className="banner__content">
+					<InnerBlocks.Content/>
+				</div>
+				<img alt={ attributes.imageAlt } class={ 'banner__image' } src={ attributes.imageSrc } />
 			</div>
 		);
 	},
