@@ -7,6 +7,7 @@
  * @package shiro
  */
 
+add_theme_support('align-wide');
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
