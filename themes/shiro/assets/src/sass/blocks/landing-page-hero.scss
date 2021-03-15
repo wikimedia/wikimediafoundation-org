@@ -1,0 +1,50 @@
+.hero {
+
+	&__header {
+		background-color: lightgray;
+
+		@include alignfull-padded;
+
+		padding-top: rem( 28 );
+		padding-bottom: rem( 28 );
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: flex-start;
+		}
+	}
+
+	&__text-column, &__image {
+		width: 50%;
+	}
+
+	&__image {
+		margin: rem( 10 );
+	}
+
+	&__kicker {
+		display: block;
+		font-family: $font-family-serif;
+		font-weight: 400;
+		@include font-size( 24, 21 )
+		line-height: 1.5;
+	}
+
+	&__title {
+		font-family: $font-family-sans;
+		@include font-size( C40, 30 );
+		line-height: 1.25;
+		margin-bottom: rem( 10 );
+	}
+
+	&__cta {
+		@include style-guide-button(
+			$color-primary,
+			$color-primary--hover,
+			$color-primary--active,
+			$color-primary--focus,
+		);
+	}
+
+}

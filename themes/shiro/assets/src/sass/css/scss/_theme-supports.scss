@@ -111,15 +111,15 @@ $font-sizes:
 .wysiwyg .alignfull {
 
 	@media ( min-width: $medium-landscape ) {
-		.page &,
-		.single & {
-			margin-left: calc(#{$content-column / 2} - 50vw);
-			margin-right: calc(#{$content-column / 2} - 50vw);
+		.page.has-blocks &,
+		.single.has-blocks & {
+
+			@include alignfull();
 		}
 
-		.single-post & {
-			margin-left: calc(#{$content-column-post / 2} - 50vw);
-			margin-right: calc(#{$content-column-post / 2} - 50vw);
+		.single-post.has-blocks & {
+
+			@include alignfull( $content-column-post );
 		}
 
 		.single-story & {

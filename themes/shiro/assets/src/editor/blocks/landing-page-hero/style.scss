@@ -1,0 +1,28 @@
+// Editor-specific styles for landing page hero block.
+.wp-block[data-type="shiro/landing-page-hero"] {
+	max-width: unset !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+
+	.hero {
+		max-width: 980px;
+		margin: 0 auto;
+
+		// Override some button focus styles.
+		&__cta {
+			color: #fff !important;
+			display: inline;
+			margin-right: 10px;
+
+			+ .block-editor-url-input__button {
+				display: inline-block;
+				line-height: 40px;
+				vertical-align: middle;
+			}
+		}
+
+		&__link {
+			display: inline-block;
+		}
+	}
+}
