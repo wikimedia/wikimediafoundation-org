@@ -8,18 +8,61 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import './style.scss';
+
 import ImagePicker from '../../components/image-picker/index.js';
 
 const BLOCKS_TEMPLATE = [
-	[ 'core/heading', { level: 3 } ],
+	[ 'core/heading', { level: 4 } ],
 	[ 'core/paragraph' ],
 	[ 'core/button' ],
 ];
 
-export const name = 'shiro/banner';
+export const name = 'shiro/banner',
+	styles = [
+		{
+			name: 'light',
+			label: __( 'Light', 'shiro' ),
+			isDefault: true,
+		},
+		{
+			name: 'gray',
+			label: __( 'Gray', 'shiro' ),
+		},
+		{
+			name: 'dark',
+			label: __( 'Dark', 'shiro' ),
+		},
+		{
+			name: 'blue-fade',
+			label: __( 'Blue - Faded', 'shiro' ),
+		},
+		{
+			name: 'blue-vibrant',
+			label: __( 'Blue - Vibrant', 'shiro' ),
+		},
+		{
+			name: 'red-fade',
+			label: __( 'Red - Faded', 'shiro' ),
+		},
+		{
+			name: 'red-vibrant',
+			label: __( 'Red - Vibrant', 'shiro' ),
+		},
+		{
+			name: 'yellow-fade',
+			label: __( 'Yellow - Faded', 'shiro' ),
+		},
+		{
+			name: 'yellow-vibrant',
+			label: __( 'Yellow - Vibrant', 'shiro' ),
+		},
+	];
 
 export const settings = {
 	title: __( 'Banner', 'shiro' ),
+
+	apiVersion: 2,
 
 	icon: 'cover-image',
 

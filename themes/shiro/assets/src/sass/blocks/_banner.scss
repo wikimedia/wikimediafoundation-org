@@ -2,6 +2,7 @@
 .wp-block-shiro-banner {
   display: flex;
   flex-direction: column-reverse;
+  width: 100%;
 }
 
 .banner__content,
@@ -15,10 +16,19 @@
   flex-direction: column;
   align-items: start;
   justify-content: start;
+  padding: ( 20 / 16 ) * 1rem; // 16px is the base font size
 }
 
-.banner__content .wp-block-button,
-.banner__content .wp-block.rich-text {
+// High specificity necessary because this uses the Heading block
+.wysiwyg .banner__content h4 {
+  margin-bottom: ( 17 / 16 ) * 1rem;
+}
+
+.wysiwyg .banner__content > p {
+  margin-bottom: ( 26 / 16 ) * 1rem;
+}
+
+.banner__content .wp-block-button {
   margin: 0;
 }
 
@@ -30,13 +40,65 @@
   .banner,
   .wp-block-shiro-banner {
 	flex-direction: row;
+    justify-content: space-between;
   }
 
   .banner__content {
-	width: 66%;
+	width: 66.666%;
+    padding-top: ( 23 / 16 ) * 1rem;
+    padding-bottom: ( 26 / 16 ) * 1rem;
+    padding-left: ( 30 / 16 ) * 1rem;
+    padding-right: ( 30 / 16 ) * 1rem;
   }
 
   .banner__image {
-	width: 33%,
+	width: 33.333%,
   }
+}
+
+/** Color Styles */
+
+.is-style-light {
+  background-color: $wmui-color-base90;
+  color: #000;
+}
+
+.is-style-gray {
+  background-color: $wmui-color-base70;
+  color: #000;
+}
+
+.is-style-dark {
+  background-color: $wmui-color-base0;
+  color: #fff;
+}
+
+.is-style-blue-fade {
+  background-color: $wmui-color-accent90;
+  color: #000;
+}
+
+.is-style-blue-vibrant {
+  background-color: $wmui-color-accent50;
+  color: #fff;
+}
+
+.is-style-red-fade {
+  background-color: $wmui-color-red90;
+  color: #000;
+}
+
+.is-style-red-vibrant {
+  background-color: $wmui-color-red50;
+  color: #fff;
+}
+
+.is-style-yellow-fade {
+  background-color: $wmui-color-yellow90;
+  color: #000;
+}
+
+.is-style-yellow-vibrant {
+  background-color: $wmui-color-yellow50;
+  color: #000;
 }
