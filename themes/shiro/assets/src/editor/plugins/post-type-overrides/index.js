@@ -20,7 +20,10 @@ export const settings = {
 		const postType = select( 'core/editor' ).getCurrentPostType();
 
 		useEffect( () => {
-			document.querySelector( '.block-editor-writing-flow' ).classList.add( `single-${postType}` );
+			const wrapperElement = document.querySelector( '.block-editor-writing-flow' );
+			if ( wrapperElement ) {
+				wrapperElement.classList.add( 'single', 'has-blocks', `single-${postType}` );
+			}
 		} );
 
 		return null;

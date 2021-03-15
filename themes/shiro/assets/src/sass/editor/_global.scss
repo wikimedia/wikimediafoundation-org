@@ -3,13 +3,44 @@ body {
 	line-height: normal;
 }
 
+// Default left/right padding for blocks in the editor.
+$block-padding: 40px;
+
 .block-editor-block-list__layout.is-root-container > .wp-block {
-	max-width: rem(980 + 80);
+	max-width: rem(strip-px($content-column + 2 * $block-padding));
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-	@include padding(0, 20, 0, 40);
+	@include padding(0, strip-px($block-padding / 2), 0, strip-px($block-padding));
+
+	.has-background,
+	&.has-background {
+		padding: 1.25em 2.375em;
+	}
+
+	&.has-background {
+		max-width: rem(strip-px($content-column));
+	}
 
 	.single-post & {
-		max-width: rem(640 + 80);
+		max-width: rem(strip-px($content-column-post + 2 * $block-padding));
+
+		&.has-background {
+			max-width: rem(strip-px($content-column-post));
+		}
+
+		&[data-align="wide"] {
+			max-width: rem(strip-px($content-column  + 2 * $block-padding));
+
+			.has-background {
+				padding: 1.25em 2.375em;
+			}
+		}
+
+	}
+
+	.single & {
+		&[data-align="full"] {
+			max-width: unset;
+		}
 	}
 }
 
@@ -19,7 +50,7 @@ body {
 
 .edit-post-visual-editor__post-title-wrapper .editor-post-title {
 	width: 2000px;
-	max-width: rem(980 + 80);
+	max-width: rem(strip-px($content-column + 2 * $block-padding));
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, 20, 0, 40);
 	margin-bottom: 1rem;

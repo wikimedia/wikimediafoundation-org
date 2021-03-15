@@ -1,16 +1,4 @@
-// The `.wysiwyg` class is used to style post content. This mixin provides a
-// way of replacing the wrapper class name used, so that the block editor can be
-// styled in the same way as frontend templates.
-@mixin wysiwyg {
-	$content-wrapper: ".wysiwyg" !default;
-
-	#{$content-wrapper} {
-		@content;
-	}
-}
-
 @include wysiwyg {
-
 	p a,
 	li a {
 		//$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint

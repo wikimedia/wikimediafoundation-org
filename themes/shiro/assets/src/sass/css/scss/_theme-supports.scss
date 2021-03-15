@@ -1,0 +1,129 @@
+// Definitions of editor styles registered as theme supports.
+
+$color-palette:
+	base-0    $wmui-color-base0,
+	base-10   $wmui-color-base10,
+	base-20   $wmui-color-base20,
+	base-30   $wmui-color-base30,
+	base-50   $wmui-color-base50,
+	base-70   $wmui-color-base70,
+	base-80   $wmui-color-base80,
+	base-90   $wmui-color-base90,
+	base-100  $wmui-color-base100,
+	accent-30 $wmui-color-accent30,
+	accent-50 $wmui-color-accent50,
+	accent-90 $wmui-color-accent90,
+	red-30    $wmui-color-red30,
+	red-50    $wmui-color-red50,
+	red-90    $wmui-color-red90,
+	yellow-30 $wmui-color-yellow30,
+	yellow-50 $wmui-color-yellow50,
+	yellow-90 $wmui-color-yellow90,
+	green-30  $wmui-color-green30,
+	green-50  $wmui-color-green50,
+	green-90  $wmui-color-green90;
+
+@each $color, $value in $color-palette {
+	.has-#{$color}-color {
+		color: $value;
+	}
+
+	.has-#{$color}-background-color {
+		background-color: $value;
+	}
+}
+
+// Font-sizes: desktop, mobile, line-height.
+$font-sizes:
+	default 18 16 1.75,
+	small   14 12 1.75,
+	medium  20 18 1.5,
+	large   24 21 1.25,
+	xlarge  32 24 1.25,
+	jumbo   40 30 1.25;
+
+@each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
+	.has-#{$slug}-font-size {
+		// Over-specify styles applied to .single-{post_type} .wysiwyg
+		&,
+		.page .wysiwyg &,
+		.single .wysiwyg & {
+
+			@include font-size( $desktop-size, $mobile-size );
+			line-height: $line-height;
+		}
+	}
+}
+
+// Define base styles for headings, etc within text content.
+.page.has-blocks,
+.single.has-blocks {
+
+	@include wysiwyg {
+
+		// stylelint-disable at-rule-empty-line-before
+		h1 {
+			@extend .has-jumbo-font-size;
+		}
+		h2 {
+			@extend .has-xlarge-font-size;
+			font-weight: 400;
+		}
+		h3 {
+			@extend .has-large-font-size;
+			font-weight: 700;
+		}
+		h4 {
+			@extend .has-medium-font-size;
+			font-weight: 700;
+		}
+		h5,
+		h6 {
+			@extend .has-default-font-size;
+			color: unset;
+			font-weight: 700;
+			text-transform: unset;
+		}
+		// stylelint-enable at-rule-empty-line-before
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 0 auto 0.5em;
+		}
+	}
+}
+
+// Negative margins for wide and full align blocks.
+.wysiwyg .alignwide {
+
+	@media ( min-width: $medium-landscape ) {
+		.single-post & {
+			margin-left: ( ( $content-column-post - $content-column ) / 2 );
+			margin-right: ( ( $content-column-post - $content-column ) / 2 );
+		}
+	}
+}
+
+.wysiwyg .alignfull {
+
+	@media ( min-width: $medium-landscape ) {
+		.page &,
+		.single & {
+			margin-left: calc(#{$content-column / 2} - 50vw);
+			margin-right: calc(#{$content-column / 2} - 50vw);
+		}
+
+		.single-post & {
+			margin-left: calc(#{$content-column-post / 2} - 50vw);
+			margin-right: calc(#{$content-column-post / 2} - 50vw);
+		}
+
+		.single-story & {
+			margin-right: -50vw;
+		}
+	}
+}

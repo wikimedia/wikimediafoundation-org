@@ -94,9 +94,6 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
 
-	add_theme_support( 'editor-styles' );
-	$css_file = is_rtl() ? 'editor-style.rtl.css' : 'editor-style.css';
-	add_editor_style( $css_file );
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -157,39 +154,6 @@ function wmf_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
-
-function wmf_enqueue_block_editor_assets() {
-	if ( ! function_exists( 'Asset_Loader\\enqueue_asset' ) ) {
-		return;
-	}
-
-	$manifest      = get_stylesheet_directory() . '/assets/dist/asset-manifest.json';
-
-	Asset_Loader\enqueue_asset(
-		$manifest,
-		'editor.js',
-		[
-			'dependencies' => [
-				'wp-dom-ready',
-				'wp-i18n',
-				'wp-blocks',
-				'wp-compose',
-				'wp-hooks',
-				'wp-token-list',
-			],
-			'handle' => 'shiro_editor_js',
-		]
-	);
-
-	Asset_Loader\enqueue_asset(
-		$manifest,
-		is_rtl() ? 'editor.rtl.css' : 'editor.css',
-		[
-			'handle' => 'shiro_editor_css',
-		]
-	);
-}
-add_action( 'enqueue_block_editor_assets', 'wmf_enqueue_block_editor_assets' );
 
 /**
  * Adds Piwik Analytics to the footer of each page.
@@ -278,6 +242,11 @@ require get_template_directory() . '/inc/template-translations.php';
  * Ajax related functions
  */
 require get_template_directory() . '/inc/ajax.php';
+
+/**
+ * Block editor functionality.
+ */
+require get_template_directory() . '/inc/editor.php';
 
 /**
  * Adjustments to queries.
