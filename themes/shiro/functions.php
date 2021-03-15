@@ -237,6 +237,14 @@ function wmf_enqueue_block_editor_assets() {
 		]
 	);
 
+	wp_localize_script(
+		'shiro_editor_js',
+		'shiroEditorVariables',
+		array(
+			'themeUrl' => get_stylesheet_directory_uri(),
+		)
+	);
+
 	Asset_Loader\enqueue_asset(
 		$manifest,
 		is_rtl() ? 'editor.rtl.css' : 'editor.css',

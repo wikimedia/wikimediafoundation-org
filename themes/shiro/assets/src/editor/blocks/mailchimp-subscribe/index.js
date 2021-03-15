@@ -1,9 +1,8 @@
-import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import { RawHTML } from '@wordpress/element';
+/* global shiroEditorVariables */
 
-const DEFAULT_MAILCHIMP_ACTION = 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { RawHTML } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/heading', {
@@ -19,8 +18,14 @@ const BLOCKS_TEMPLATE = [
 			[ 'shiro/submit-button', { text: __( 'Subscribe', 'shiro' ) } ],
 		] ],
 	] ],
-	[ 'core/paragraph', { content: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site\'s privacy policy.', 'shiro' ) } ],
+	[ 'core/paragraph', {
+		content: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site\'s privacy policy.', 'shiro' ),
+		textColor: 'base30',
+		fontSize: 'small',
+	} ],
 ];
+
+const iconUrl = shiroEditorVariables.themeUrl + '/assets/dist/icons.svg#email';
 
 export const
 	name = 'shiro/mailchimp-subscribe',
@@ -41,30 +46,16 @@ export const
 		edit: function MailChimpSubscribeEdit( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps();
 
-			/**
-			 * @param {string} newAction New action to save in the attributes.
-			 */
-			const handleActionChange = newAction => {
-				setAttributes( { action: newAction } );
-			};
-
 			return (
 				<>
 					<div { ...blockProps }>
+						<svg className="i icon icon-mail">
+							<use xlinkHref={ iconUrl } />
+						</svg>
 						<InnerBlocks
 							template={ BLOCKS_TEMPLATE }
 							templateLock={ false } />
 					</div>
-					<InspectorControls>
-						<PanelBody initialOpen title={ __( 'Mailchimp settings', 'shiro' ) }>
-							<TextControl
-								help={ __( 'Leave empty to use the default Mailchimp list', 'shiro' ) }
-								label={ __( 'Mailchimp action URL', 'shiro' ) }
-								value={ attributes.action }
-								onChange={ handleActionChange }
-							/>
-						</PanelBody>
-					</InspectorControls>
 				</>
 			);
 		},
@@ -77,6 +68,11 @@ export const
 
 			return (
 				<div { ...blockProps }>
+					<svg className="i icon icon-mail">
+						<RawHTML>
+							{ '<use xlink:href="' + iconUrl + '" />' }
+						</RawHTML>
+					</svg>
 					<RawHTML>{ '<!-- form_start -->' }</RawHTML>
 					<InnerBlocks.Content />
 					<RawHTML>{ '<!-- additional_fields -->' }</RawHTML>
