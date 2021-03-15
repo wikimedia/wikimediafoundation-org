@@ -1,8 +1,10 @@
 /* global shiroEditorVariables */
 
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+
+import './style.scss';
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/heading', {
@@ -10,19 +12,6 @@ const BLOCKS_TEMPLATE = [
 		level: 2,
 	} ],
 	[ 'core/paragraph', { content: __( 'Subscribe to news about ongoing projects and initiatives', 'kps' ) } ],
-	[ 'core/columns', {}, [
-		[ 'core/column', { width: 66.66 }, [
-			[ 'shiro/input-field' ],
-		] ],
-		[ 'core/column', { width: 33.33 }, [
-			[ 'shiro/submit-button', { text: __( 'Subscribe', 'shiro' ) } ],
-		] ],
-	] ],
-	[ 'core/paragraph', {
-		content: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site\'s privacy policy.', 'shiro' ),
-		textColor: 'base30',
-		fontSize: 'small',
-	} ],
 ];
 
 const iconUrl = shiroEditorVariables.themeUrl + '/assets/dist/icons.svg#email';
@@ -38,6 +27,14 @@ export const
 			action: {
 				type: 'string',
 			},
+			description: {
+				type: 'string',
+				default: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy.', 'shiro' ),
+			},
+			buttonText: {
+				type: 'string',
+				default: __( 'Subscribe', 'shiro' ),
+			},
 		},
 
 		/**
@@ -45,6 +42,7 @@ export const
 		 */
 		edit: function MailChimpSubscribeEdit( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps();
+			const { description, buttonText } = attributes;
 
 			return (
 				<>
@@ -55,6 +53,30 @@ export const
 						<InnerBlocks
 							template={ BLOCKS_TEMPLATE }
 							templateLock={ false } />
+						<div className="wp-block-shiro-mailchimp-subscribe__input-container">
+							<div className="wp-block-shiro-mailchimp-subscribe__column-input">
+								<div
+									className="wp-block-shiro-mailchimp-subscribe__input-field"
+								>
+									{ __( 'Email address', 'shiro' ) }
+								</div>
+							</div>
+							<div className="wp-block-shiro-mailchimp-subscribe__column-button">
+								<RichText
+									allowedFormats={ [ 'core/bold', 'core/italic', 'core/image' ] }
+									className="wp-block-shiro-button"
+									tagName="button"
+									value={ buttonText }
+									onChange={ buttonText => setAttributes( { buttonText } ) }
+								/>
+							</div>
+						</div>
+						<RichText
+							className="has-base-30-color has-text-color has-small-font-size"
+							tagName="p"
+							value={ description }
+							onChange={ description => setAttributes( { description } ) }
+						/>
 					</div>
 				</>
 			);
@@ -63,8 +85,9 @@ export const
 		/**
 		 * Render mailchimp subscribe for the frontend
 		 */
-		save: function MailChimpSubscribeSave() {
+		save: function MailChimpSubscribeSave( { attributes } ) {
 			const blockProps = useBlockProps.save();
+			const { description, buttonText } = attributes;
 
 			return (
 				<div { ...blockProps }>
@@ -74,6 +97,26 @@ export const
 						</RawHTML>
 					</svg>
 					<InnerBlocks.Content />
+					<div className="wp-block-shiro-mailchimp-subscribe__input-container">
+						<div
+							className="wp-block-shiro-mailchimp-subscribe__column-input"
+						>
+							<RawHTML>{ '<!-- input_field -->' }</RawHTML>
+						</div>
+						<div className="wp-block-shiro-mailchimp-subscribe__column-button">
+							<RichText.Content
+								className="wp-block-shiro-button"
+								tagName="button"
+								type="submit"
+								value={ buttonText }
+							/>
+						</div>
+					</div>
+					<RichText.Content
+						className="has-base-30-color has-text-color has-small-font-size"
+						tagName="p"
+						value={ description }
+					/>
 				</div>
 			);
 		},

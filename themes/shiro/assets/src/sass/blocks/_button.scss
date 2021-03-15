@@ -210,5 +210,5 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 	font-size: unset;
 }
 
-@include button-wrapper( '.wp-block-shiro-submit-button', '&' );
+@include button-wrapper( '.wp-block-shiro-button', '&' );
 @include button-wrapper( '.wp-block-button', '.wp-block-button__link' );

@@ -21,6 +21,15 @@ function render_block( $block_attributes, $content ) {
 
 	$form_start = '<form action="' . esc_attr( $action ) . '" method="POST">';
 	$form_end   = '</form>';
+	$input_field = '<input' .
+	               ' class="wp-block-shiro-mailchimp-subscribe__input-field"' .
+	               ' id="wmf-subscribe-input-email"' .
+	               ' name="EMAIL"' .
+	               ' placeholder="' . __( 'Email address', 'shiro' ) . '"' .
+	               ' required=""' .
+	               ' type="email" />';
+
+	$content = str_replace( '<!-- input_field -->', $input_field, $content );
 
 	return $form_start . $content . $additional_fields . $form_end;
 }

@@ -13,4 +13,33 @@
 		width: 20px;
 		margin-left: 0;
 	}
+
+	&__input-container {
+		display: flex;
+		margin-bottom: 1rem;
+	}
+
+	&__input-field {
+		// This calc guarantees the same size as a button.
+		padding: calc( 0.5rem - 1px ) 0.5rem;
+
+		/* Base100 */
+		background: $background-color-base;
+		border: 1px solid $border-color-base;
+		border-radius: $border-radius-base;
+	}
+
+	&__column-input {
+		flex-basis: 66%;
+	}
+
+	&__column-button {
+		margin-left: 8px;
+		flex-basis: 33%;
+	}
+
+	// Override too specific selector
+	.has-small-font-size {
+		@extend .has-small-font-size;
+	}
 }
