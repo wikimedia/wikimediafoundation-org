@@ -1,4 +1,3 @@
-.banner,
 .wp-block-shiro-banner {
   display: flex;
   flex-direction: column-reverse;
@@ -20,15 +19,15 @@
 }
 
 // High specificity necessary because this uses the Heading block
-.wysiwyg .banner__content h4 {
+.wp-block-shiro-banner .banner__content h4 {
   margin-bottom: ( 17 / 16 ) * 1rem;
 }
 
-.wysiwyg .banner__content > p {
+.wp-block-shiro-banner .banner__content > p {
   margin-bottom: ( 26 / 16 ) * 1rem;
 }
 
-.banner__content .wp-block-button {
+.wp-block-shiro-banner .banner__content .wp-block-button {
   margin: 0;
 }
 
@@ -37,7 +36,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .banner,
   .wp-block-shiro-banner {
 	flex-direction: row;
     justify-content: space-between;
@@ -58,47 +56,47 @@
 
 /** Color Styles */
 
-.is-style-light {
+.wp-block-shiro-banner.is-style-light {
   background-color: $wmui-color-base90;
   color: #000;
 }
 
-.is-style-gray {
+.wp-block-shiro-banner.is-style-gray {
   background-color: $wmui-color-base70;
   color: #000;
 }
 
-.is-style-dark {
+.wp-block-shiro-banner.is-style-dark {
   background-color: $wmui-color-base0;
   color: #fff;
 }
 
-.is-style-blue-fade {
+.wp-block-shiro-banner.is-style-blue-fade {
   background-color: $wmui-color-accent90;
   color: #000;
 }
 
-.is-style-blue-vibrant {
+.wp-block-shiro-banner.is-style-blue-vibrant {
   background-color: $wmui-color-accent50;
   color: #fff;
 }
 
-.is-style-red-fade {
+.wp-block-shiro-banner.is-style-red-fade {
   background-color: $wmui-color-red90;
   color: #000;
 }
 
-.is-style-red-vibrant {
+.wp-block-shiro-banner.is-style-red-vibrant {
   background-color: $wmui-color-red50;
   color: #fff;
 }
 
-.is-style-yellow-fade {
+.wp-block-shiro-banner.is-style-yellow-fade {
   background-color: $wmui-color-yellow90;
   color: #000;
 }
 
-.is-style-yellow-vibrant {
+.wp-block-shiro-banner.is-style-yellow-vibrant {
   background-color: $wmui-color-yellow50;
   color: #000;
 }
