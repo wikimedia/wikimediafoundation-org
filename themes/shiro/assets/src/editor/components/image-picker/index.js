@@ -23,10 +23,6 @@ export const onChange = setAttributes =>
 		alt,
 	} );
 
-function handleSelectMedia( media ) {
-
-}
-
 /**
  * Render an editor image picker component to allow the user to select an image.
  *
