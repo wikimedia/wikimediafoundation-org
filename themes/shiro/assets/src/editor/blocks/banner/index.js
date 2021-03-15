@@ -6,6 +6,7 @@
  * WordPress dependencies
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
@@ -17,6 +18,15 @@ const BLOCKS_TEMPLATE = [
 	[ 'core/paragraph' ],
 	[ 'core/button' ],
 ];
+
+/**
+ * Split a single string into an array containing individual classes.
+ *
+ * Guaranteed to return an array.
+ */
+const parseClassName = className => {
+	return className?.split( ' ' ) || [];
+};
 
 export const name = 'shiro/banner',
 	styles = [
@@ -77,7 +87,7 @@ export const settings = {
 
 	attributes: {
 		imageID: {
-			type: 'interger',
+			type: 'integer',
 		},
 		imageSrc: {
 			type: 'string',
@@ -94,8 +104,33 @@ export const settings = {
 	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
-	edit: function BannerEdit( { attributes, setAttributes } ) {
+	edit: function BannerEdit( props ) {
+		const { attributes, setAttributes, clientId } = props;
 		const blockProps = useBlockProps( { className: 'banner' } );
+		const bannerClassNames = parseClassName( attributes.className );
+		const usesLightButton = bannerClassNames
+			.filter( x => [ 'is-style-blue-vibrant', 'is-style-red-vibrant' ].includes( x ) )
+			.length > 0;
+		const bannerButtonStyle = usesLightButton ? 'is-style-normal' : 'is-style-primary';
+
+		// Change the styling on buttons to match the banner styling
+		useEffect( () => {
+			const buttons = wp.data.select( 'core/block-editor' ).getBlock( clientId )?.innerBlocks
+				.filter( block => block.name === 'core/button' );
+			if ( buttons && buttons.length > 0 ) {
+				buttons.map( button => {
+					const buttonStyle = parseClassName( button.attributes.className )
+						.filter( className => className.indexOf( 'is-style' ) === 0 );
+
+					// We already have the right style
+					if ( bannerButtonStyle !== buttonStyle ) {
+						wp.data.dispatch( 'core/block-editor' ).updateBlockAttributes( button.clientId, { className: bannerButtonStyle } );
+					}
+
+					return button;
+				} );
+			}
+		} );
 
 		return (
 			<div { ...blockProps } >
@@ -129,7 +164,7 @@ export const settings = {
 				<div className="banner__content">
 					<InnerBlocks.Content/>
 				</div>
-				<img alt={ attributes.imageAlt } class={ 'banner__image' } src={ attributes.imageSrc } />
+				<img alt={ attributes.imageAlt } className={ 'banner__image' } src={ attributes.imageSrc } />
 			</div>
 		);
 	},
