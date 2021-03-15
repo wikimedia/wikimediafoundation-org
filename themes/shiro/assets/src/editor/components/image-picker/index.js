@@ -6,6 +6,8 @@ import {
 	BlockControls,
 } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
+import { select } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,6 +22,10 @@ export const onChange = setAttributes =>
 		src,
 		alt,
 	} );
+
+function handleSelectMedia( media ) {
+
+}
 
 /**
  * Render an editor image picker component to allow the user to select an image.
@@ -37,6 +43,7 @@ function ImagePicker( props ) {
 		// Props passed into the component.
 		id,
 		className,
+		imageSize,
 		src,
 		onChange,
 		// Props provided by withNotices HOC.
@@ -52,7 +59,50 @@ function ImagePicker( props ) {
 		noticeOperations.createErrorNotice( message );
 	};
 
-	const mediaPreview = (
+	// Query the API to get the correct URL for the image size.
+	useEffect( () => {
+		const media = select( 'core' ).getMedia( id );
+		const cropSize = media?.media_details.sizes[ imageSize ]?.source_url || media?.source_url;
+
+		if ( cropSize ) {
+			onChange( {
+				id,
+				alt: media.alt,
+				url: cropSize,
+				media,
+			} );
+		}
+	}, [ id, imageSize, onChange ] );
+
+	/**
+	 * Handle a newly-selected media attachment.
+	 */
+	const onSelect = function Select( media ) {
+		noticeOperations.removeAllNotices();
+
+		// If the selection is cleared, return early.
+		if ( ! media || ! media.url ) {
+			onChange( {
+				id: undefined,
+				src: undefined,
+				alt: undefined,
+				media: undefined,
+			} );
+		} else {
+			const { id, alt, url, sizes } = media;
+
+			// Call the update function now with the uploaded image object.
+			onChange( {
+				id,
+				alt,
+				url: sizes?.[ imageSize ]?.url || url,
+				media,
+			} );
+		}
+
+	};
+
+	const mediaPreview = src && (
 		<img
 			alt={ __( 'Edit image' ) }
 			className={ className }
@@ -75,7 +125,7 @@ function ImagePicker( props ) {
 					src,
 				} }
 				onError={ onUploadError }
-				onSelect={ onChange }
+				onSelect={ onSelect }
 			/>
 			<BlockControls>
 				{ !! src && (
@@ -86,7 +136,7 @@ function ImagePicker( props ) {
 						mediaURL={ src }
 						name={ __( 'Replace image', 'shiro' ) }
 						onError={ onUploadError }
-						onSelect={ onChange }
+						onSelect={ onSelect }
 					/>
 				) }
 			</BlockControls>
