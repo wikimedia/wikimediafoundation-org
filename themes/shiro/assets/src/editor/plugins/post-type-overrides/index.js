@@ -22,7 +22,7 @@ export const settings = {
 		useEffect( () => {
 			const wrapperElement = document.querySelector( '.block-editor-writing-flow' );
 			if ( wrapperElement ) {
-				wrapperElement.classList.add( 'single', `single-${postType}` );
+				wrapperElement.classList.add( 'single', 'has-blocks', `single-${postType}` );
 			}
 		} );
 
