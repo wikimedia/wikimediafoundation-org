@@ -73,10 +73,10 @@ function ImagePicker( props ) {
 	/**
 	 * Handle a newly-selected media attachment.
 	 */
-	const onSelect = function Select( media ) {
+	const onSelect = media => {
 		noticeOperations.removeAllNotices();
 
-		// If the selection is cleared, return early.
+		// If the selection is cleared, unset attributes and return early.
 		if ( ! media || ! media.url ) {
 			onChange( {
 				id: undefined,
@@ -87,7 +87,7 @@ function ImagePicker( props ) {
 		} else {
 			const { id, alt, url, sizes } = media;
 
-			// Call the update function now with the uploaded image object.
+			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
 				alt,
@@ -95,7 +95,6 @@ function ImagePicker( props ) {
 				media,
 			} );
 		}
-
 	};
 
 	const mediaPreview = src && (
