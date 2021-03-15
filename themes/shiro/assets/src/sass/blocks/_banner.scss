@@ -1,102 +1,102 @@
 .wp-block-shiro-banner {
-  display: flex;
-  flex-direction: column-reverse;
-  width: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+	width: 100%;
 }
 
 .banner__content,
 .banner__image {
-  width: 100%;
+	width: 100%;
 }
 
 .banner__content {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  padding: ( 20 / 16 ) * 1rem; // 16px is the base font size
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+	padding: ( 20 / 16 ) * 1rem; // 16px is the base font size
 }
 
 // High specificity necessary because this uses the Heading block
 .wp-block-shiro-banner .banner__content h4 {
-  margin-bottom: ( 17 / 16 ) * 1rem;
+	margin-bottom: ( 17 / 16 ) * 1rem;
 }
 
 .wp-block-shiro-banner .banner__content > p {
-  margin-bottom: ( 26 / 16 ) * 1rem;
+	margin-bottom: ( 26 / 16 ) * 1rem;
 }
 
 .wp-block-shiro-banner .banner__content .wp-block-button {
-  margin: 0;
+	margin: 0;
 }
 
 .banner__image {
-  object-fit: cover;
+	object-fit: cover;
 }
 
 @media screen and (min-width: 768px) {
-  .wp-block-shiro-banner {
-	flex-direction: row;
-    justify-content: space-between;
-  }
+	.wp-block-shiro-banner {
+		flex-direction: row;
+		justify-content: space-between;
+	}
 
-  .banner__content {
-	width: 66.666%;
-    padding-top: ( 23 / 16 ) * 1rem;
-    padding-bottom: ( 26 / 16 ) * 1rem;
-    padding-left: ( 30 / 16 ) * 1rem;
-    padding-right: ( 30 / 16 ) * 1rem;
-  }
+	.banner__content {
+		width: 66.666%;
+		padding-top: ( 23 / 16 ) * 1rem;
+		padding-bottom: ( 26 / 16 ) * 1rem;
+		padding-left: ( 30 / 16 ) * 1rem;
+		padding-right: ( 30 / 16 ) * 1rem;
+	}
 
-  .banner__image {
-	width: 33.333%,
-  }
+	.banner__image {
+		width: 33.333%,
+	}
 }
 
 /** Color Styles */
 
 .wp-block-shiro-banner.is-style-light {
-  background-color: $wmui-color-base90;
-  color: #000;
+	background-color: $wmui-color-base90;
+	color: #000;
 }
 
 .wp-block-shiro-banner.is-style-gray {
-  background-color: $wmui-color-base70;
-  color: #000;
+	background-color: $wmui-color-base70;
+	color: #000;
 }
 
 .wp-block-shiro-banner.is-style-dark {
-  background-color: $wmui-color-base0;
-  color: #fff;
+	background-color: $wmui-color-base0;
+	color: #fff;
 }
 
 .wp-block-shiro-banner.is-style-blue-fade {
-  background-color: $wmui-color-accent90;
-  color: #000;
+	background-color: $wmui-color-accent90;
+	color: #000;
 }
 
 .wp-block-shiro-banner.is-style-blue-vibrant {
-  background-color: $wmui-color-accent50;
-  color: #fff;
+	background-color: $wmui-color-accent50;
+	color: #fff;
 }
 
 .wp-block-shiro-banner.is-style-red-fade {
-  background-color: $wmui-color-red90;
-  color: #000;
+	background-color: $wmui-color-red90;
+	color: #000;
 }
 
 .wp-block-shiro-banner.is-style-red-vibrant {
-  background-color: $wmui-color-red50;
-  color: #fff;
+	background-color: $wmui-color-red50;
+	color: #fff;
 }
 
 .wp-block-shiro-banner.is-style-yellow-fade {
-  background-color: $wmui-color-yellow90;
-  color: #000;
+	background-color: $wmui-color-yellow90;
+	color: #000;
 }
 
 .wp-block-shiro-banner.is-style-yellow-vibrant {
-  background-color: $wmui-color-yellow50;
-  color: #000;
+	background-color: $wmui-color-yellow50;
+	color: #000;
 }
