@@ -73,10 +73,7 @@ export const
 							{ '<use xlink:href="' + iconUrl + '" />' }
 						</RawHTML>
 					</svg>
-					<RawHTML>{ '<!-- form_start -->' }</RawHTML>
 					<InnerBlocks.Content />
-					<RawHTML>{ '<!-- additional_fields -->' }</RawHTML>
-					<RawHTML>{ '<!-- form_end -->' }</RawHTML>
 				</div>
 			);
 		},

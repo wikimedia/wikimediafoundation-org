@@ -22,11 +22,7 @@ function render_block( $block_attributes, $content ) {
 	$form_start = '<form action="' . esc_attr( $action ) . '" method="POST">';
 	$form_end   = '</form>';
 
-	$content = str_replace( '<!-- additional_fields -->', $additional_fields, $content );
-	$content = str_replace( '<!-- form_start -->', $form_start, $content );
-	$content = str_replace( '<!-- form_end -->', $form_end, $content );
-
-	return $content;
+	return $form_start . $content . $additional_fields . $form_end;
 }
 
 /**
