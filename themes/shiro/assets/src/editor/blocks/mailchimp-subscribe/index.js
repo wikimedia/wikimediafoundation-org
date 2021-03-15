@@ -9,7 +9,7 @@ import './style.scss';
 const BLOCKS_TEMPLATE = [
 	[ 'core/heading', {
 		content: __( 'Get email updates', 'shiro' ),
-		level: 2,
+		level: 3,
 	} ],
 	[ 'core/paragraph', { content: __( 'Subscribe to news about ongoing projects and initiatives', 'kps' ) } ],
 ];
