@@ -57,7 +57,7 @@ function ImagePicker( props ) {
 
 	/*
 	 * This combination makes sure that we:
-	 * 1. Use the right image size using `useMediaSize`
+	 * 1. Use the right image size using `useImageSize`
 	 * 2. Show an image on page load using the passed `src`.
 	 */
 	const { url } = useImageSize( id, imageSize, onChange );
