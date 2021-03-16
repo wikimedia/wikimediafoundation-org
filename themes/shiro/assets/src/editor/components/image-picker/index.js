@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import {
 	MediaPlaceholder,
@@ -136,7 +137,7 @@ const ImagePickerWithNotices = withNotices( ImagePicker );
 /**
  * Render image that has been picked for a block save function.
  */
-ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
+ImagePickerWithNotices.Content = ( { id, imageSize, src, alt, className, ...props } ) => {
 	if ( ! src ) {
 		return null;
 	}
@@ -144,6 +145,15 @@ ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
 	return (
 		<img
 			alt={ alt }
+			className={
+				classNames(
+					{
+						[ `wp-image-${ id }` ]: id,
+						[ `size-${ imageSize }` ]: imageSize,
+					},
+					className
+				)
+			}
 			src={ src }
 			{ ...props }
 		/>
@@ -151,8 +161,10 @@ ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
 };
 
 ImagePickerWithNotices.Content.propTypes = {
-	src: PropTypes.string,
 	alt: PropTypes.string,
+	id: PropTypes.number,
+	imageSize: PropTypes.string,
+	src: PropTypes.string.isRequired,
 };
 
 export default ImagePickerWithNotices;
