@@ -6,9 +6,9 @@ import {
 	BlockControls,
 } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
-import { select } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+
+import { useImageSize } from '../../hooks/media';
 
 /**
  * Helper function for updating block attributes on selecting or removing a media attachment.
@@ -40,12 +40,12 @@ function ImagePicker( props ) {
 		id,
 		className,
 		imageSize,
-		src,
 		onChange,
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
 	} = props;
+	let { src } = props;
 
 	/**
 	 * Handle an upload error
@@ -55,20 +55,13 @@ function ImagePicker( props ) {
 		noticeOperations.createErrorNotice( message );
 	};
 
-	// Query the API to get the correct URL for the image size.
-	useEffect( () => {
-		const media = select( 'core' ).getMedia( id );
-		const cropSize = media?.media_details.sizes[ imageSize ]?.source_url || media?.source_url;
-
-		if ( cropSize ) {
-			onChange( {
-				id,
-				alt: media.alt,
-				url: cropSize,
-				media,
-			} );
-		}
-	}, [ id, imageSize, onChange ] );
+	/*
+	 * This combination makes sure that we:
+	 * 1. Use the right image size using `useImageSize`
+	 * 2. Show an image on page load using the passed `src`.
+	 */
+	const { url } = useImageSize( id, imageSize, onChange );
+	src = url || src;
 
 	/**
 	 * Handle a newly-selected media attachment.
@@ -150,4 +143,28 @@ ImagePicker.propTypes = {
 	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),
 };
 
-export default withNotices( ImagePicker );
+const ImagePickerWithNotices = withNotices( ImagePicker );
+
+/**
+ * Render image that has been picked for a block save function.
+ */
+ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
+	if ( ! src ) {
+		return null;
+	}
+
+	return (
+		<img
+			alt={ alt }
+			src={ src }
+			{ ...props }
+		/>
+	);
+};
+
+ImagePickerWithNotices.Content.propTypes = {
+	src: PropTypes.string,
+	alt: PropTypes.string,
+};
+
+export default ImagePickerWithNotices;
