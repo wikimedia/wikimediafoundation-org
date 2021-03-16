@@ -11,19 +11,6 @@ import { __ } from '@wordpress/i18n';
 import { useImageSize } from '../../hooks/media';
 
 /**
- * Helper function for updating block attributes on selecting or removing a media attachment.
- *
- * @param {Function} setAttributes Parent block's `setAttributes` function.
- * @returns {Function} Function which can be used as onChange classback.
- */
-export const onChange = setAttributes =>
-	( { id, src, alt } ) => setAttributes( {
-		id,
-		src,
-		alt,
-	} );
-
-/**
  * Render an editor image picker component to allow the user to select an image.
  *
  * @param {object}   props React props.
