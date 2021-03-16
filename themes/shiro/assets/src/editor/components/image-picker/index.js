@@ -147,10 +147,8 @@ ImagePickerWithNotices.Content = ( { id, imageSize, src, alt, className, ...prop
 			alt={ alt }
 			className={
 				classNames(
-					{
-						[ `wp-image-${ id }` ]: id,
-						[ `size-${ imageSize }` ]: imageSize,
-					},
+					{ [ `wp-image-${ id }` ]: id },
+					{ [ `size-${ imageSize }` ]: imageSize },
 					className
 				)
 			}
