@@ -13,13 +13,13 @@ import { useEffect } from '@wordpress/element';
  * @returns {object} Data about the media item, including the correctly sized URL.
  */
 export const useImageSize = ( id, size, onChange = noop ) => {
+	// Query the API to get the correct URL for the image size.
 	const media = useSelect( select => {
 		return select( 'core' ).getMedia( id );
 	} );
-
 	const url = media?.media_details.sizes[ size ]?.source_url || media?.source_url;
 
-	// Query the API to get the correct URL for the image size.
+	// Call the on change handler only when any of the inputs change.
 	useEffect( () => {
 		if ( url ) {
 			onChange( {
