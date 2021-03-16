@@ -16,7 +16,7 @@ import { useImageSize } from '../../hooks/media';
  * @param {object}   props React props.
  * @param {number}   props.id Attachment ID of image.
  * @param {string}   props.className Class name to render on preview.
- * @param {string}   props.defaultSize The size the image picker should save.
+ * @param {string}   props.imageSize The size the image picker should save.
  * @param {string}   props.src Image source URL.
  * @param {Function} props.onChange Function that is called when a user selects
  *                   an image in the media library or removes the image.
@@ -32,6 +32,7 @@ function ImagePicker( props ) {
 		noticeUI,
 		noticeOperations,
 	} = props;
+
 	let { src } = props;
 
 	/**
@@ -70,8 +71,8 @@ function ImagePicker( props ) {
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
+				src: sizes?.[ imageSize ]?.url || url,
 				alt,
-				url: sizes?.[ imageSize ]?.url || url,
 				media,
 			} );
 		}
@@ -103,7 +104,7 @@ function ImagePicker( props ) {
 				onSelect={ onSelect }
 			/>
 			<BlockControls>
-				{ !! src && (
+				{ src && (
 					<MediaReplaceFlow
 						accept="image/*"
 						allowedTypes={ [ 'image' ] }
@@ -122,7 +123,7 @@ function ImagePicker( props ) {
 ImagePicker.propTypes = {
 	id: PropTypes.number,
 	className: PropTypes.string,
-	defaultSize: PropTypes.string,
+	imageSize: PropTypes.string,
 	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 
