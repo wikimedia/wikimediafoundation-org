@@ -3,6 +3,7 @@ import {
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
+import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
@@ -45,6 +46,14 @@ export const
 			const blockProps = useBlockProps();
 			const { id, imageUrl, content, linkText } = attributes;
 
+			const onChange = useCallback( ( { id, alt, url } ) => {
+				setAttributes( {
+					id,
+					imageAlt: alt,
+					imageUrl: url,
+				} );
+			}, [ setAttributes ] );
+
 			return (
 				<div { ...blockProps }>
 					<InnerBlocks
@@ -53,17 +62,10 @@ export const
 					/>
 					<ImagePicker
 						className="wp-block-shiro-card__image"
-						defaultSize="image_16x9_small"
 						id={ id }
+						imageSize="image_16x9_small"
 						src={ imageUrl }
-						onChange={
-							( { id, alt, url, sizes } ) =>
-								setAttributes( {
-									id,
-									imageAlt: alt,
-									imageUrl: sizes?.image_16x9_large?.url || url,
-								} )
-						}
+						onChange={ onChange }
 					/>
 					<RichText
 						className="wp-block-shiro-card__body"
@@ -93,18 +95,14 @@ export const
 			const blockProps = useBlockProps.save();
 			const { imageUrl, imageAlt, content, linkText } = attributes;
 
-			const image = !! imageUrl && (
-				<img
-					alt={ imageAlt }
-					className={ 'wp-block-shiro-card__image' }
-					src={ imageUrl }
-				/>
-			);
-
 			return (
 				<div { ...blockProps }>
 					<InnerBlocks.Content />
-					{ image }
+					<ImagePicker.Content
+						alt={ imageAlt }
+						className={ 'wp-block-shiro-card__image' }
+						src={ imageUrl }
+					/>
 					<RichText.Content
 						className="wp-block-shiro-card__body"
 						tagName="p"
