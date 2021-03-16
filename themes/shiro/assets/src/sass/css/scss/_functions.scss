@@ -5,7 +5,7 @@ $browser-context: 16; // Default
 	@return #{$pixels/$context}rem;
 }
 
-@function strip-unit($value) {
+@function strip-px($value) {
 
 	@return $value / 1px;
 }
