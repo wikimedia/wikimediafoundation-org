@@ -58,12 +58,12 @@ export const settings = {
 		buttonText: {
 			type: 'string',
 			source: 'html',
-			selector: '.hero__button',
+			selector: '.hero__cta',
 		},
 		buttonLink: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.hero__button',
+			selector: '.hero__cta',
 			attribute: 'href',
 		},
 		pageIntro: {
@@ -176,7 +176,12 @@ export const settings = {
 							value={ title }
 						/>
 						{ buttonLink && (
-							<a href={ buttonLink }>{ buttonText }</a>
+							<a
+								className="hero__cta"
+								href={ buttonLink }
+							>
+								{ buttonText }
+							</a>
 						) }
 					</div>
 					<img
