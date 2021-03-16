@@ -11,6 +11,8 @@ import { __ } from '@wordpress/i18n';
 
 import { useImageSize } from '../../hooks/media';
 
+import './style.scss';
+
 /**
  * Render an editor image picker component to allow the user to select an image.
  *
@@ -94,8 +96,8 @@ function ImagePicker( props ) {
 			<MediaPlaceholder
 				accept="image/*"
 				allowedTypes={ [ 'image' ] }
+				className="image-picker__placeholder"
 				disableMediaButtons={ !! src }
-				mediaPreview={ mediaPreview }
 				notices={ noticeUI }
 				value={ {
 					id,
