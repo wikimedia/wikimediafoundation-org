@@ -164,7 +164,7 @@ ImagePickerWithNotices.Content.propTypes = {
 	alt: PropTypes.string,
 	id: PropTypes.number,
 	imageSize: PropTypes.string,
-	src: PropTypes.string.isRequired,
+	src: PropTypes.string,
 };
 
 export default ImagePickerWithNotices;
