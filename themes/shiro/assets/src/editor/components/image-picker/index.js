@@ -143,4 +143,28 @@ ImagePicker.propTypes = {
 	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),
 };
 
-export default withNotices( ImagePicker );
+const ImagePickerWithNotices = withNotices( ImagePicker );
+
+/**
+ * Render image that has been picked for a block save function.
+ */
+ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
+	if ( ! src ) {
+		return null;
+	}
+
+	return (
+		<img
+			alt={ alt }
+			src={ src }
+			{ ...props }
+		/>
+	);
+};
+
+ImagePickerWithNotices.Content.propTypes = {
+	src: PropTypes.string,
+	alt: PropTypes.string,
+};
+
+export default ImagePickerWithNotices;
