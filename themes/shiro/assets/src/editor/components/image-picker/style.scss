@@ -1,0 +1,10 @@
+// stylelint-disable selector-class-pattern
+.components-placeholder.image-picker__placeholder {
+	align-items: center;
+	justify-content: space-around;
+	padding: 1em 2em;
+
+	.components-placeholder__fieldset {
+		justify-content: center;
+	}
+}

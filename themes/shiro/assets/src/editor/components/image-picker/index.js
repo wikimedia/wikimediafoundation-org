@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import {
@@ -6,22 +7,11 @@ import {
 	BlockControls,
 } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
-import { select } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-/**
- * Helper function for updating block attributes on selecting or removing a media attachment.
- *
- * @param {Function} setAttributes Parent block's `setAttributes` function.
- * @returns {Function} Function which can be used as onChange classback.
- */
-export const onChange = setAttributes =>
-	( { id, src, alt } ) => setAttributes( {
-		id,
-		src,
-		alt,
-	} );
+import { useImageSize } from '../../hooks/media';
+
+import './style.scss';
 
 /**
  * Render an editor image picker component to allow the user to select an image.
@@ -29,7 +19,7 @@ export const onChange = setAttributes =>
  * @param {object}   props React props.
  * @param {number}   props.id Attachment ID of image.
  * @param {string}   props.className Class name to render on preview.
- * @param {string}   props.defaultSize The size the image picker should save.
+ * @param {string}   props.imageSize The size the image picker should save.
  * @param {string}   props.src Image source URL.
  * @param {Function} props.onChange Function that is called when a user selects
  *                   an image in the media library or removes the image.
@@ -40,12 +30,13 @@ function ImagePicker( props ) {
 		id,
 		className,
 		imageSize,
-		src,
 		onChange,
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
 	} = props;
+
+	let { src } = props;
 
 	/**
 	 * Handle an upload error
@@ -55,20 +46,13 @@ function ImagePicker( props ) {
 		noticeOperations.createErrorNotice( message );
 	};
 
-	// Query the API to get the correct URL for the image size.
-	useEffect( () => {
-		const media = select( 'core' ).getMedia( id );
-		const cropSize = media?.media_details.sizes[ imageSize ]?.source_url || media?.source_url;
-
-		if ( cropSize ) {
-			onChange( {
-				id,
-				alt: media.alt,
-				url: cropSize,
-				media,
-			} );
-		}
-	}, [ id, imageSize, onChange ] );
+	/*
+	 * This combination makes sure that we:
+	 * 1. Use the right image size using `useImageSize`
+	 * 2. Show an image on page load using the passed `src`.
+	 */
+	const { url } = useImageSize( id, imageSize, onChange );
+	src = url || src;
 
 	/**
 	 * Handle a newly-selected media attachment.
@@ -90,8 +74,8 @@ function ImagePicker( props ) {
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
+				src: sizes?.[ imageSize ]?.url || url,
 				alt,
-				url: sizes?.[ imageSize ]?.url || url,
 				media,
 			} );
 		}
@@ -112,8 +96,8 @@ function ImagePicker( props ) {
 			<MediaPlaceholder
 				accept="image/*"
 				allowedTypes={ [ 'image' ] }
+				className="image-picker__placeholder"
 				disableMediaButtons={ !! src }
-				mediaPreview={ mediaPreview }
 				notices={ noticeUI }
 				value={ {
 					id,
@@ -123,7 +107,7 @@ function ImagePicker( props ) {
 				onSelect={ onSelect }
 			/>
 			<BlockControls>
-				{ !! src && (
+				{ src && (
 					<MediaReplaceFlow
 						accept="image/*"
 						allowedTypes={ [ 'image' ] }
@@ -142,7 +126,7 @@ function ImagePicker( props ) {
 ImagePicker.propTypes = {
 	id: PropTypes.number,
 	className: PropTypes.string,
-	defaultSize: PropTypes.string,
+	imageSize: PropTypes.string,
 	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 
@@ -150,4 +134,37 @@ ImagePicker.propTypes = {
 	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),
 };
 
-export default withNotices( ImagePicker );
+const ImagePickerWithNotices = withNotices( ImagePicker );
+
+/**
+ * Render image that has been picked for a block save function.
+ */
+ImagePickerWithNotices.Content = ( { id, imageSize, src, alt, className, ...props } ) => {
+	if ( ! src ) {
+		return null;
+	}
+
+	return (
+		<img
+			alt={ alt }
+			className={
+				classNames(
+					{ [ `wp-image-${ id }` ]: id },
+					{ [ `size-${ imageSize }` ]: imageSize },
+					className
+				)
+			}
+			src={ src }
+			{ ...props }
+		/>
+	);
+};
+
+ImagePickerWithNotices.Content.propTypes = {
+	alt: PropTypes.string,
+	id: PropTypes.number,
+	imageSize: PropTypes.string,
+	src: PropTypes.string,
+};
+
+export default ImagePickerWithNotices;
