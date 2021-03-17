@@ -54,6 +54,19 @@
 	}
 }
 
+.banner__cta {
+	background-color: $wmui-color-accent50;
+	color: #fff;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 12px;
+	border-radius: 2px;
+	font-weight: 700;
+	font-size: 14px; // Prob shouldn't hardcode this!
+	line-height: 20 / 14;
+}
+
 /** Color Styles */
 
 .wp-block-shiro-banner.is-style-light {
@@ -79,6 +92,11 @@
 .wp-block-shiro-banner.is-style-blue-vibrant {
 	background-color: $wmui-color-accent50;
 	color: #fff;
+
+	.banner__cta {
+		background-color: $wmui-color-base90;
+		color: $wmui-color-accent50;
+	}
 }
 
 .wp-block-shiro-banner.is-style-red-fade {
@@ -89,6 +107,11 @@
 .wp-block-shiro-banner.is-style-red-vibrant {
 	background-color: $wmui-color-red50;
 	color: #fff;
+
+	.banner__cta {
+		background-color: $wmui-color-base90;
+		color: $wmui-color-accent50;
+	}
 }
 
 .wp-block-shiro-banner.is-style-yellow-fade {

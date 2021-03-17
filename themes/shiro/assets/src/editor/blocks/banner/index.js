@@ -5,28 +5,12 @@
 /**
  * WordPress dependencies
  */
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-import './style.scss';
-
+import Cta from '../../components/cta/index';
 import ImagePicker from '../../components/image-picker/index.js';
-
-const BLOCKS_TEMPLATE = [
-	[ 'core/heading', { level: 4 } ],
-	[ 'core/paragraph' ],
-	[ 'core/button' ],
-];
-
-/**
- * Split a single string into an array containing individual classes.
- *
- * Guaranteed to return an array.
- */
-const parseClassName = className => {
-	return className?.split( ' ' ) || [];
-};
+import './style.scss';
 
 export const name = 'shiro/banner',
 	styles = [
@@ -91,65 +75,99 @@ export const settings = {
 		},
 		imageSrc: {
 			type: 'string',
+			source: 'attribute',
+			selector: '.banner__image',
+			attribute: 'src',
 		},
 		imageAlt: {
 			type: 'string',
+			source: 'attribute',
+			selector: '.banner__image',
+			attribute: 'alt',
 		},
 		align: {
 			type: 'string',
 			default: 'wide',
+		},
+		heading: {
+			type: 'string',
+			source: 'html',
+			selector: '.banner__heading',
+		},
+		text: {
+			type: 'string',
+			source: 'html',
+			selector: '.banner__text',
+		},
+		url: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.banner__cta',
+			attribute: 'href',
+		},
+		buttonText: {
+			type: 'string',
+			source: 'html',
+			selector: '.banner__cta',
 		},
 	},
 
 	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
-	edit: function BannerEdit( props ) {
-		const { attributes, setAttributes, clientId } = props;
-		const blockProps = useBlockProps( { className: 'banner' } );
-		const bannerClassNames = parseClassName( attributes.className );
-		const usesLightButton = bannerClassNames
-			.filter( x => [ 'is-style-blue-vibrant', 'is-style-red-vibrant' ].includes( x ) )
-			.length > 0;
-		const bannerButtonStyle = usesLightButton ? 'is-style-normal' : 'is-style-primary';
+	edit: function BannerEdit( { attributes, setAttributes, isSelected } ) {
+		const {
+			heading,
+			text,
+			buttonText,
+			url,
+			imageID,
+			imageSrc,
+		} = attributes;
 
-		// Change the styling on buttons to match the banner styling
-		useEffect( () => {
-			const buttons = wp.data.select( 'core/block-editor' ).getBlock( clientId )?.innerBlocks
-				.filter( block => block.name === 'core/button' );
-			if ( buttons && buttons.length > 0 ) {
-				buttons.map( button => {
-					const buttonStyle = parseClassName( button.attributes.className )
-						.filter( className => className.indexOf( 'is-style' ) === 0 );
-
-					// We already have the right style
-					if ( bannerButtonStyle !== buttonStyle ) {
-						wp.data.dispatch( 'core/block-editor' ).updateBlockAttributes( button.clientId, { className: bannerButtonStyle } );
-					}
-
-					return button;
-				} );
-			}
+		const blockProps = useBlockProps( {
+			className: 'banner',
 		} );
 
 		return (
-			<div { ...blockProps } >
-				<div className="banner__content">
-					<InnerBlocks
-						template={ BLOCKS_TEMPLATE }
-						templateLock/>
+			<>
+				<div { ...blockProps } >
+					<div className="banner__content">
+						<RichText
+							allowedFormats={ [ 'core/bold', 'core/italic' ] }
+							className="banner__heading"
+							keepPlaceholderOnFocus
+							placeholder={ __( 'Heading for banner', 'shiro' ) }
+							tagName="h4"
+							value={ heading }
+							onChange={ heading => setAttributes( { heading } ) }
+						/>
+						<RichText
+							allowedFormats={ [ 'core/bold', 'core/italic' ] }
+							className="banner__text"
+							placeholder={ __( 'Enter the message for this banner.', 'shiro' ) }
+							tagName="p"
+							value={ text }
+							onChange={ text => setAttributes( { text } ) }
+						/>
+						<Cta
+							setAttributes={ setAttributes }
+							text={ buttonText }
+							url={ url }
+						/>
+					</div>
+					<ImagePicker
+						className={ 'banner__image' }
+						id={ imageID }
+						src={ imageSrc }
+						onChange={ ( { id, src, alt, sizes } ) => setAttributes( {
+							imageID: id,
+							imageSrc: sizes?.medium.url || src,
+							imageAlt: alt,
+						} ) }
+					/>
 				</div>
-				<ImagePicker
-					className={ 'banner__image' }
-					id={ attributes.imageID }
-					src={ attributes.imageSrc }
-					onChange={ ( { id, src, alt, sizes } ) => setAttributes( {
-						imageID: id,
-						imageSrc: sizes?.medium.url || src,
-						imageAlt: alt,
-					} ) }
-				/>
-			</div>
+			</>
 		);
 	},
 
@@ -157,14 +175,37 @@ export const settings = {
 	 * Save the banner
 	 */
 	save: function BannerSave( { attributes } ) {
+		const {
+			heading,
+			text,
+			buttonText,
+			url,
+			imageSrc,
+			imageAlt,
+		} = attributes;
+
 		const blockProps = useBlockProps.save();
 
 		return (
 			<div { ...blockProps } >
 				<div className="banner__content">
-					<InnerBlocks.Content/>
+					<RichText.Content
+						className="banner__heading"
+						tagName="h4"
+						value={ heading }
+					/>
+					<RichText.Content
+						className="banner__text"
+						tagName="p"
+						value={ text }
+					/>
+					<Cta.Content
+						className="banner__cta"
+						text={ buttonText }
+						url={ url }
+					/>
 				</div>
-				<img alt={ attributes.imageAlt } className={ 'banner__image' } src={ attributes.imageSrc } />
+				<img alt={ imageAlt } className={ 'banner__image' } src={ imageSrc } />
 			</div>
 		);
 	},

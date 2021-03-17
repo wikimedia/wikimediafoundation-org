@@ -38,7 +38,7 @@ const CtaWithFocusOutside = withFocusOutside(
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
 						allowedFormats={ [] }
-						className="banner__cta btn btn-blue"
+						className="banner__cta"
 						placeholder={ __( 'Call to action', 'shiro' ) }
 						tagName="div"
 						value={ text }
