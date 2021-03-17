@@ -5,18 +5,23 @@
 /**
  * WordPress dependencies
  */
-import { RichText, URLInputButton } from '@wordpress/block-editor';
+import { RichText, URLInputButton, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
 import ImagePicker from '../../components/image-picker';
+import blockStyles from '../../helpers/block-styles';
 import './style.scss';
 
 export const name = 'shiro/landing-page-hero';
 
+export const styles = blockStyles;
+
 export const settings = {
+	apiVersion: 2,
+
 	title: __( 'Landing page hero', 'shiro' ),
 
 	icon: 'cover-image',
@@ -33,9 +38,6 @@ export const settings = {
 	},
 
 	attributes: {
-		colorTheme: {
-			type: 'string',
-		},
 		kicker: {
 			type: 'string',
 			source: 'html',
@@ -79,7 +81,6 @@ export const settings = {
 	 */
 	edit: function Edit( { attributes, setAttributes } ) {
 		const {
-			colorTheme,
 			kicker,
 			title,
 			imageId,
@@ -89,8 +90,10 @@ export const settings = {
 			pageIntro,
 		} = attributes;
 
+		const blockProps = useBlockProps( { className: 'hero' } );
+
 		return (
-			<div className="hero">
+			<div { ...blockProps } >
 				<header className="hero__header">
 					<div className="hero__text-column">
 						<RichText
@@ -109,23 +112,25 @@ export const settings = {
 							value={ title }
 							onChange={ title => setAttributes( { title } ) }
 						/>
-						<RichText
-							className="hero__cta"
-							placeholder={ __( 'Call to action', 'shiro' ) }
-							tagName="button"
-							value={ buttonText }
-							onChange={ buttonText => setAttributes( { buttonText } ) }
-						/>
-						<URLInputButton
-							url={ buttonLink }
-							onChange={ buttonLink => setAttributes( { buttonLink } ) }
-						/>
+						<div className="hero__button-controls">
+							<RichText
+								className="hero__cta cta-button"
+								placeholder={ __( 'Call to action', 'shiro' ) }
+								tagName="div"
+								value={ buttonText }
+								onChange={ buttonText => setAttributes( { buttonText } ) }
+							/>
+							<URLInputButton
+								url={ buttonLink }
+								onChange={ buttonLink => setAttributes( { buttonLink } ) }
+							/>
+						</div>
 					</div>
 					<div className="hero__image">
 						<ImagePicker
 							id={ imageId }
-							src={ imageUrl }
 							imageSize="image_16x9_small"
+							src={ imageUrl }
 							onChange={
 								( { id: imageId, url: imageUrl } ) => {
 									setAttributes( {
@@ -151,7 +156,10 @@ export const settings = {
 
 	},
 
-	save: ( { attributes, className } ) => {
+	/**
+	 * Save markup for the hero block.
+	 */
+	save: function Save( { attributes, className } ) {
 		const {
 			kicker,
 			title,
@@ -161,8 +169,10 @@ export const settings = {
 			pageIntro,
 		} = attributes;
 
+		const blockProps = useBlockProps.save( { className: 'hero' } );
+
 		return (
-			<div className="hero">
+			<div { ...blockProps }>
 				<header className="hero__header">
 					<div className="hero__text-column">
 						<RichText.Content
@@ -177,7 +187,7 @@ export const settings = {
 						/>
 						{ buttonLink && (
 							<a
-								className="hero__cta"
+								className="hero__cta cta-button"
 								href={ buttonLink }
 							>
 								{ buttonText }

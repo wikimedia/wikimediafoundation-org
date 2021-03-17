@@ -1,13 +1,25 @@
 // New variables and mixins to support the stepped migration to block editor content.
 
 @mixin alignfull( $content-column: 980px ) {
-	margin-left: calc(#{$content-column / 2} - 50vw);
-	margin-right: calc(#{$content-column / 2} - 50vw);
+
+	margin-left: rem(-20);
+	margin-right: rem(-20);
+
+	@media ( min-width: #{$content-column} ) {
+		margin-left: calc(#{$content-column / 2} - 50vw);
+		margin-right: calc(#{$content-column / 2} - 50vw);
+	}
 }
 
 @mixin alignfull-padded( $content-column: 980px ) {
 
 	@include alignfull( $content-column );
-	padding-left: calc(50vw - #{$content-column / 2});
-	padding-right: calc(50vw - #{$content-column / 2});
+
+	padding-left: rem(20);
+	padding-right: rem(20);
+
+	@media ( min-width: #{$content-column} ) {
+		padding-left: calc(50vw - #{$content-column / 2});
+		padding-right: calc(50vw - #{$content-column / 2});
+	}
 }
