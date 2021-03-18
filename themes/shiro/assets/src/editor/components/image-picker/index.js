@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import {
@@ -10,18 +11,7 @@ import { __ } from '@wordpress/i18n';
 
 import { useImageSize } from '../../hooks/media';
 
-/**
- * Helper function for updating block attributes on selecting or removing a media attachment.
- *
- * @param {Function} setAttributes Parent block's `setAttributes` function.
- * @returns {Function} Function which can be used as onChange classback.
- */
-export const onChange = setAttributes =>
-	( { id, src, alt } ) => setAttributes( {
-		id,
-		src,
-		alt,
-	} );
+import './style.scss';
 
 /**
  * Render an editor image picker component to allow the user to select an image.
@@ -29,7 +19,7 @@ export const onChange = setAttributes =>
  * @param {object}   props React props.
  * @param {number}   props.id Attachment ID of image.
  * @param {string}   props.className Class name to render on preview.
- * @param {string}   props.defaultSize The size the image picker should save.
+ * @param {string}   props.imageSize The size the image picker should save.
  * @param {string}   props.src Image source URL.
  * @param {Function} props.onChange Function that is called when a user selects
  *                   an image in the media library or removes the image.
@@ -45,6 +35,7 @@ function ImagePicker( props ) {
 		noticeUI,
 		noticeOperations,
 	} = props;
+
 	let { src } = props;
 
 	/**
@@ -83,8 +74,8 @@ function ImagePicker( props ) {
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
+				src: sizes?.[ imageSize ]?.url || url,
 				alt,
-				url: sizes?.[ imageSize ]?.url || url,
 				media,
 			} );
 		}
@@ -105,8 +96,8 @@ function ImagePicker( props ) {
 			<MediaPlaceholder
 				accept="image/*"
 				allowedTypes={ [ 'image' ] }
+				className="image-picker__placeholder"
 				disableMediaButtons={ !! src }
-				mediaPreview={ mediaPreview }
 				notices={ noticeUI }
 				value={ {
 					id,
@@ -116,7 +107,7 @@ function ImagePicker( props ) {
 				onSelect={ onSelect }
 			/>
 			<BlockControls>
-				{ !! src && (
+				{ src && (
 					<MediaReplaceFlow
 						accept="image/*"
 						allowedTypes={ [ 'image' ] }
@@ -135,7 +126,7 @@ function ImagePicker( props ) {
 ImagePicker.propTypes = {
 	id: PropTypes.number,
 	className: PropTypes.string,
-	defaultSize: PropTypes.string,
+	imageSize: PropTypes.string,
 	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 
@@ -148,7 +139,7 @@ const ImagePickerWithNotices = withNotices( ImagePicker );
 /**
  * Render image that has been picked for a block save function.
  */
-ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
+ImagePickerWithNotices.Content = ( { id, imageSize, src, alt, className, ...props } ) => {
 	if ( ! src ) {
 		return null;
 	}
@@ -156,6 +147,13 @@ ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
 	return (
 		<img
 			alt={ alt }
+			className={
+				classNames(
+					{ [ `wp-image-${ id }` ]: id },
+					{ [ `size-${ imageSize }` ]: imageSize },
+					className
+				)
+			}
 			src={ src }
 			{ ...props }
 		/>
@@ -163,8 +161,10 @@ ImagePickerWithNotices.Content = ( { src, alt, ...props } ) => {
 };
 
 ImagePickerWithNotices.Content.propTypes = {
-	src: PropTypes.string,
 	alt: PropTypes.string,
+	id: PropTypes.number,
+	imageSize: PropTypes.string,
+	src: PropTypes.string,
 };
 
 export default ImagePickerWithNotices;
