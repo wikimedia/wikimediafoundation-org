@@ -2,7 +2,6 @@ import { BlockControls, __experimentalLinkControl as LinkControl } from '@wordpr
 import { Popover, ToolbarButton, ToolbarGroup, KeyboardShortcuts } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { link, linkOff } from '@wordpress/icons';
 import { rawShortcut, displayShortcut } from '@wordpress/keycodes';
 
 /**
@@ -65,7 +64,7 @@ function URLPicker( {
 				<ToolbarGroup>
 					{ ! urlIsSet && (
 						<ToolbarButton
-							icon={ link }
+							icon="admin-links"
 							name="link"
 							shortcut={ displayShortcut.primary( 'k' ) }
 							title={ __( 'Link' ) }
@@ -74,7 +73,7 @@ function URLPicker( {
 					) }
 					{ urlIsSetandSelected && (
 						<ToolbarButton
-							icon={ linkOff }
+							icon="editor-unlink"
 							isActive
 							name="link"
 							shortcut={ displayShortcut.primaryShift( 'k' ) }
