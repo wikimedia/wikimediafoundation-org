@@ -6,6 +6,15 @@ import { __ } from '@wordpress/i18n';
 
 import URLPicker from '../url-picker';
 
+/**
+ * Renders a component that can be used to set the URL and text for a CTA.
+ *
+ * The arguments `onChangeText` and `onChangeLink` are used to set attributes
+ * when the respective items change. `onChangeText` will receive `{ text }` and
+ * `onChangeLink` will receive `{ url }`. Keep in mind that sometimes
+ * `onChangeLink` will receive `{ url: undefined }` which is an expected
+ * value: This is how the "remove link" functionality works.
+ */
 const CtaWithFocusOutside = withFocusOutside(
 	class extends React.Component {
 		constructor( props ) {
@@ -23,7 +32,9 @@ const CtaWithFocusOutside = withFocusOutside(
 			const { showButtons } = this.state;
 			const {
 				text,
-				setAttributes,
+				onChangeText,
+				onChangeLink,
+				className,
 				url,
 			} = this.props;
 
@@ -31,18 +42,18 @@ const CtaWithFocusOutside = withFocusOutside(
 				<>
 					<URLPicker
 						isSelected={ showButtons }
-						setAttributes={ setAttributes }
 						url={ url }
+						onChange={ onChangeLink }
 					/>
 					<RichText
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
 						allowedFormats={ [] }
-						className="banner__cta btn btn-blue"
+						className={ className }
 						placeholder={ __( 'Call to action', 'shiro' ) }
 						tagName="div"
 						value={ text }
-						onChange={ text => setAttributes( { buttonText: text } ) }
+						onChange={ onChangeText }
 						onFocus={ () => this.setState( { showButtons: true } ) }
 					/>
 				</>
