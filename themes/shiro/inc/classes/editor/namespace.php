@@ -22,6 +22,15 @@ function bootstrap() {
  */
 function filter_blocks( $allowed_blocks ) {
 	return [
+		// Custom blocks
+		'shiro/banner',
+		'shiro/blog-post-heading',
+		'shiro/cards',
+		'shiro/card',
+		'shiro/landing-page-hero',
+		'shiro/mailchimp-subscribe',
+
+		// Core blocks
 		'core/paragraph',
 		'core/image',
 		'core/heading',
