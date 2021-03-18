@@ -5,12 +5,14 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint assets/src",
     "build": "run-s build:webpack build:gulp",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
     "build:gulp": "gulp build",
     "start": "run-p start:webpack start:gulp",
     "start:webpack": "webpack serve --config=.config/webpack.config.dev.js",
-    "start:gulp": "gulp"
+    "start:gulp": "gulp",
+    "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/css/scss/_style-guide-variables.scss && rm wikimedia-ui-base.less"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,9 @@
     "@humanmade/webpack-helpers": "^0.10.1",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
+    "block-editor-hmr": "^0.6.3",
     "browser-sync": "^2.26.12",
+    "classnames": "^2.2.6",
     "copy-webpack-plugin": "^6.4.1",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
@@ -44,7 +48,6 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-deporder": "^1.2.0",
-    "gulp-eslint": "^6.0.0",
     "gulp-imagemin": "^7.1.0",
     "gulp-newer": "^1.4.0",
     "gulp-phpcs": "^3.1.0",
@@ -79,6 +82,7 @@
     "lodash": "^4.17.19",
     "minimatch": "^3.0.4",
     "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
     "stylelint": "^13.6.1"
   },
   "themeConfig": {
