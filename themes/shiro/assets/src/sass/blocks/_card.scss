@@ -34,24 +34,4 @@
 		padding: 0 1.25em;
 		margin-bottom: 1rem;
 	}
-
-	.components-placeholder {
-		width: 314px;
-		height: $image-height;
-		background: rgba(0, 0, 0, 0.05);
-	}
-
-	&:nth-child(2n + 1) {
-		&:before {
-			$heading-estimated-height: 42px;
-			$margin: 16px;
-			content: '';
-			height: calc(100% - #{ $image-height + $heading-estimated-height + $margin });
-			width: 1px;
-			background: $color-primary;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-		}
-	}
 }
