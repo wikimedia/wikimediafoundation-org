@@ -1,0 +1,29 @@
+p {
+	&.is-style-h1 {
+		@include h1;
+	}
+	&.is-style-h2 {
+		@include h2;
+	}
+	&.is-style-h3 {
+		@include h3;
+	}
+	&.is-style-h4 {
+		@include h4;
+	}
+	&.is-style-h5 {
+		@include h5;
+	}
+	&.is-style-h6 {
+		@include h6;
+	}
+
+	&.is-style-h1,
+	&.is-style-h2,
+	&.is-style-h3,
+	&.is-style-h4,
+	&.is-style-h5,
+	&.is-style-h6 {
+		@include h-margins;
+	}
+}
