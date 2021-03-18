@@ -191,7 +191,9 @@ export const settings = {
 			imageID,
 		} = attributes;
 
-		const blockProps = useBlockProps.save();
+		const blockProps = useBlockProps.save( {
+			className: 'banner',
+		} );
 
 		return (
 			<div { ...blockProps } >

@@ -1,21 +1,58 @@
 .wp-block-shiro-banner {
+}
+
+.banner {
 	display: flex;
 	flex-direction: column-reverse;
 	min-width: 100%;
-}
 
-.banner__content,
-.banner__image {
-	width: 100%;
-}
+	&__image,
+	&__content {
+		width: 100%;
+	}
 
-.banner__content {
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	justify-content: start;
-	padding: ( 20 / 16 ) * 1rem; // 16px is the base font size
+	&__content {
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		justify-content: start;
+		padding: ( 20 / 16 ) * 1rem; // 16px is the base font size
+	}
+
+	&__image {
+		object-fit: cover;
+	}
+
+	&__cta {
+		background-color: $wmui-color-accent50;
+		color: #fff;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 6px 12px;
+		border-radius: 2px;
+		font-weight: 700;
+		font-size: 14px; // Prob shouldn't hardcode this!
+		line-height: 20 / 14;
+	}
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		flex-direction: row;
+		justify-content: space-between;
+
+		&__content {
+			width: 66.666%;
+			padding-top: ( 23 / 16 ) * 1rem;
+			padding-bottom: ( 26 / 16 ) * 1rem;
+			padding-left: ( 30 / 16 ) * 1rem;
+			padding-right: ( 30 / 16 ) * 1rem;
+		}
+
+		&__image {
+			width: 33.333%,
+		}
+	}
 }
 
 // High specificity necessary because this uses the Heading block
@@ -29,42 +66,6 @@
 
 .wp-block-shiro-banner .banner__content .wp-block-button {
 	margin: 0;
-}
-
-.banner__image {
-	object-fit: cover;
-}
-
-@media screen and (min-width: 768px) {
-	.wp-block-shiro-banner {
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
-	.banner__content {
-		width: 66.666%;
-		padding-top: ( 23 / 16 ) * 1rem;
-		padding-bottom: ( 26 / 16 ) * 1rem;
-		padding-left: ( 30 / 16 ) * 1rem;
-		padding-right: ( 30 / 16 ) * 1rem;
-	}
-
-	.banner__image {
-		width: 33.333%,
-	}
-}
-
-.banner__cta {
-	background-color: $wmui-color-accent50;
-	color: #fff;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 6px 12px;
-	border-radius: 2px;
-	font-weight: 700;
-	font-size: 14px; // Prob shouldn't hardcode this!
-	line-height: 20 / 14;
 }
 
 /** Color Styles */
