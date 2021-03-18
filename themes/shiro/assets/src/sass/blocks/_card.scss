@@ -2,12 +2,16 @@
 	$image-height: 192px;
 	position: relative;
 	margin-bottom: 50px;
-	flex: 0 1 calc( 50% - 1rem );
 	margin-left: unset;
+	max-width: 500px;
+
+	@media (min-width: $medium-bp) {
+		flex: 0 1 calc( 50% - 1rem );
+	}
 
 	&__image {
 		width: 314px;
-		height: 192px;
+		height: auto;
 	}
 
 	&__body {
@@ -24,6 +28,8 @@
 
 		// Override more general styles.
 		@include article-main-wrap {
+			// The cards block should have the same font-size on mobile.
+			@include font-size(16, 16);
 			margin-bottom: 0;
 		}
 	}
