@@ -1,15 +1,15 @@
-// Definitions of styule variants available to blocks:
+// Definitions of style variants available to blocks:
 //  NAME     BACKGROUND    TEXT-COLOR   ACCENT COLOR  BUTTON STYLE
 $block-styles:
-	base90   $wmui-color-base90 $wmui-color-base0 $wmui-color-base0 primary,
-	base70   $wmui-color-base70 $wmui-color-base0 $wmui-color-base0 primary,
-	base0    $wmui-color-base0 $wmui-color-base100 currentColor reverse,
-	blue90 $wmui-color-accent90  $wmui-color-base0 $wmui-color-base0 primary,
-	blue50 $wmui-color-accent50 $wmui-color-base100 currentColor reverse,
-	red90    $wmui-color-red90 $wmui-color-base0 $wmui-color-base0 primary,
-	red50    $wmui-color-red50 $wmui-color-base100 currentColor reverse,
-	yellow50 $wmui-color-yellow50 $wmui-color-base0 $wmui-color-base0 primary,
-	yellow90 $wmui-color-yellow90 $wmui-color-base0 $wmui-color-base0 primary;
+	base90   $wmui-color-base90   $wmui-color-base0   $wmui-color-base0  primary,
+	base70   $wmui-color-base70   $wmui-color-base0   $wmui-color-base0  primary,
+	base0    $wmui-color-base0    $wmui-color-base100 $wmui-color-blue50 reverse,
+	blue90   $wmui-color-blue90   $wmui-color-base0   $wmui-color-blue50 primary,
+	blue50   $wmui-color-blue50   $wmui-color-base100 $wmui-color-base0  reverse,
+	red90    $wmui-color-red90    $wmui-color-base0   $wmui-color-red50  primary,
+	red50    $wmui-color-red50    $wmui-color-base100 $wmui-color-base10 reverse,
+	yellow50 $wmui-color-yellow50 $wmui-color-base0   $wmui-color-blue50 primary,
+	yellow90 $wmui-color-yellow90 $wmui-color-base0   $wmui-color-blue50 primary;
 
 @each $name, $background-color, $text-color, $accent-color, $button-style in $block-styles {
 

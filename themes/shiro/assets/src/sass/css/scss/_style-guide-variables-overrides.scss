@@ -1,0 +1,20 @@
+// Some styles on the Wikimedia Foundation website diverge from those defined
+// in the Wikimedia Base UI Style Guide, which are imported into this build in
+// the _style-guide-variables.scss file. Local overrides are defined here,
+// which can override baseUI definitions.
+
+// Overrides to Base UI color definitions.
+$wmui-color-blue50:   #3a25ff;
+$wmui-color-blue90:   #eeeaff;
+
+$wmui-color-red50:    #d40356;
+$wmui-color-red90:    #fbe9f1;
+
+$wmui-color-yellow50: #fffd33;
+$wmui-color-yellow90: #fffec2;
+
+// Updated branded colors for primary buttons.
+$color-primary:         $wmui-color-blue50;
+$color-primary--hover:  lighten( $wmui-color-blue50, 3 );
+$color-primary--active: darken( $wmui-color-blue50, 25 );
+$color-primary--focus:  $color-primary;
