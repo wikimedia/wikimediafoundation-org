@@ -31,7 +31,7 @@ function URLPicker( {
 	};
 
 	/**
-	 *
+	 * Unset the URL, effectively removing the link.
 	 */
 	const unlinkButton = () => {
 		onLinkChange( { url: undefined } );
