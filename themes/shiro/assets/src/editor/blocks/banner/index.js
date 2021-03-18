@@ -6,6 +6,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import Cta from '../../components/cta/index';
@@ -129,6 +130,14 @@ export const settings = {
 			className: 'banner',
 		} );
 
+		const onChange = useCallback( ( { id, url, alt } ) => {
+			setAttributes( {
+				imageID: id,
+				imageSrc: url,
+				imageAlt: alt,
+			} );
+		}, [ setAttributes ] );
+
 		return (
 			<>
 				<div { ...blockProps } >
@@ -160,11 +169,8 @@ export const settings = {
 						className={ 'banner__image' }
 						id={ imageID }
 						src={ imageSrc }
-						onChange={ ( { id, src, alt, sizes } ) => setAttributes( {
-							imageID: id,
-							imageSrc: sizes?.medium.url || src,
-							imageAlt: alt,
-						} ) }
+						imageSize={ 'medium_large' }
+						onChange={ onChange }
 					/>
 				</div>
 			</>
@@ -182,6 +188,7 @@ export const settings = {
 			url,
 			imageSrc,
 			imageAlt,
+			imageID,
 		} = attributes;
 
 		const blockProps = useBlockProps.save();
@@ -205,7 +212,13 @@ export const settings = {
 						url={ url }
 					/>
 				</div>
-				<img alt={ imageAlt } className={ 'banner__image' } src={ imageSrc } />
+				<ImagePicker.Content
+					alt={ imageAlt }
+					className={ 'banner__image' }
+					id={ imageID }
+					imageSize={ 'medium_large' }
+					src={ imageSrc }
+				/>
 			</div>
 		);
 	},
