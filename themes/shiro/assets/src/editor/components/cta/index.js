@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import { RichText } from '@wordpress/block-editor';
@@ -62,6 +63,14 @@ const CtaWithFocusOutside = withFocusOutside(
 	}
 );
 
+CtaWithFocusOutside.propTypes = {
+	text: PropTypes.string,
+	onChangeText: PropTypes.func.isRequired,
+	onChangeLink: PropTypes.func.isRequired,
+	className: PropTypes.string,
+	url: PropTypes.string,
+};
+
 /**
  *
  */
@@ -76,6 +85,12 @@ CtaWithFocusOutside.Content = ( { url, text, className, ...props } ) => {
 			href={ url }
 			{ ...props }>{ text }</a>
 	);
+};
+
+CtaWithFocusOutside.Content.propTypes = {
+	url: PropTypes.string,
+	text: PropTypes.string,
+	className: PropTypes.string,
 };
 
 export default CtaWithFocusOutside;
