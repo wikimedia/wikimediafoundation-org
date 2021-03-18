@@ -48,7 +48,7 @@ const CtaWithFocusOutside = withFocusOutside(
 					<URLPicker
 						isSelected={ showButtons }
 						url={ url }
-						onChange={ onChangeLink }
+						onChangeLink={ onChangeLink }
 					/>
 					<RichText
 						// For some reason withoutInteractiveFormatting doesn't

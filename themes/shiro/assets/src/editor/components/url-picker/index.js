@@ -15,7 +15,7 @@ import { rawShortcut, displayShortcut } from '@wordpress/keycodes';
 function URLPicker( {
 	isSelected,
 	url,
-	onLinkChange,
+	onChangeLink,
 	anchorRef,
 } ) {
 	const [ isURLPickerOpen, setIsURLPickerOpen ] = useState( false );
@@ -33,7 +33,7 @@ function URLPicker( {
 	 * Unset the URL, effectively removing the link.
 	 */
 	const unlinkButton = () => {
-		onLinkChange( { url: undefined } );
+		onChangeLink( { url: undefined } );
 		setIsURLPickerOpen( false );
 	};
 	const linkControl = ( isURLPickerOpen || urlIsSetandSelected ) && (
@@ -52,7 +52,7 @@ function URLPicker( {
 				value={ {
 					url,
 				} }
-				onChange={ onLinkChange }
+				onChange={ onChangeLink }
 			/>
 		</Popover>
 	);
