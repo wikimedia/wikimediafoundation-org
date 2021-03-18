@@ -37,7 +37,9 @@ const CtaWithFocusOutside = withFocusOutside(
 			const { showButtons } = this.state;
 			const {
 				text,
-				setAttributes,
+				onChangeText,
+				onChangeLink,
+				className,
 				url,
 			} = this.props;
 
@@ -45,18 +47,18 @@ const CtaWithFocusOutside = withFocusOutside(
 				<>
 					<URLPicker
 						isSelected={ showButtons }
-						setAttributes={ setAttributes }
 						url={ url }
+						onChange={ onChangeLink }
 					/>
 					<RichText
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
 						allowedFormats={ [] }
-						className="banner__cta"
+						className={ className }
 						placeholder={ __( 'Call to action', 'shiro' ) }
 						tagName="div"
 						value={ text }
-						onChange={ text => setAttributes( { buttonText: text } ) }
+						onChange={ onChangeText }
 						onFocus={ () => this.setState( { showButtons: true } ) }
 					/>
 				</>
