@@ -7,29 +7,29 @@ import { __ } from '@wordpress/i18n';
 import './style.scss';
 
 const template = [
-	[ 'shiro/card' ],
-	[ 'shiro/card' ],
-	[ 'shiro/card' ],
-	[ 'shiro/card' ],
+	[ 'shiro/stair' ],
+	[ 'shiro/stair' ],
+	[ 'shiro/stair' ],
+	[ 'shiro/stair' ],
 ];
 
 export const
-	name = 'shiro/cards',
+	name = 'shiro/stairs',
 	settings = {
 		apiVersion: 2,
-		title: __( 'Cards', 'shiro' ),
+		title: __( 'Stairs', 'shiro' ),
 		attributes: {},
 
 		/**
-		 * Render edit of the card block.
+		 * Render edit of the stair block.
 		 */
-		edit: function EditCardBlock() {
+		edit: function EditStairsBlock() {
 			const blockProps = useBlockProps();
 
 			return (
 				<div { ...blockProps }>
 					<InnerBlocks
-						allowedBlocks={ [ 'shiro/card' ] }
+						allowedBlocks={ [ 'shiro/stair' ] }
 						template={ template }
 					/>
 				</div>
@@ -37,9 +37,9 @@ export const
 		},
 
 		/**
-		 * Render save of the card block.
+		 * Render save of the stair block.
 		 */
-		save: function SaveCardBlock( { attributes } ) {
+		save: function SaveStairsBlock( { attributes } ) {
 			const blockProps = useBlockProps.save();
 
 			return (

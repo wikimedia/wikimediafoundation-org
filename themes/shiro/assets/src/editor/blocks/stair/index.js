@@ -14,10 +14,10 @@ const template = [
 ];
 
 export const
-	name = 'shiro/card',
+	name = 'shiro/stair',
 	settings = {
 		apiVersion: 2,
-		title: __( 'Card', 'shiro' ),
+		title: __( 'Stair', 'shiro' ),
 		attributes: {
 			content: {
 				type: 'string',
@@ -37,12 +37,12 @@ export const
 				type: 'integer',
 			},
 		},
-		parent: [ 'shiro/cards' ],
+		parent: [ 'shiro/stairs' ],
 
 		/**
-		 * Render edit of the card block.
+		 * Render edit of the stair block.
 		 */
-		edit: function EditCardBlock( { attributes, setAttributes } ) {
+		edit: function EditStairBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps();
 			const { id, imageUrl, content, linkText } = attributes;
 
@@ -61,23 +61,23 @@ export const
 						templateLock="all"
 					/>
 					<ImagePicker
-						className="wp-block-shiro-card__image"
+						className="wp-block-shiro-stair__image"
 						id={ id }
 						imageSize="image_16x9_small"
 						src={ imageUrl }
 						onChange={ onChange }
 					/>
 					<RichText
-						className="wp-block-shiro-card__body"
+						className="wp-block-shiro-stair__body"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Start writing your card contents', 'shiro' ) }
+						placeholder={ __( 'Start writing your stair contents', 'shiro' ) }
 						tagName="p"
 						value={ content }
 						onChange={ content => setAttributes( { content } ) }
 					/>
 					<RichText
 						allowedFormats={ [ 'core/link' ] }
-						className="wp-block-shiro-card__read-more arrow-link"
+						className="wp-block-shiro-stair__read-more arrow-link"
 						keepPlaceholderOnFocus
 						placeholder={ __( 'Link to other content', 'shiro' ) }
 						tagName="div"
@@ -89,9 +89,9 @@ export const
 		},
 
 		/**
-		 * Render save of the card block.
+		 * Render save of the stair block.
 		 */
-		save: function SaveCardBlock( { attributes } ) {
+		save: function SaveStairBlock( { attributes } ) {
 			const blockProps = useBlockProps.save();
 			const { imageUrl, imageAlt, content, linkText } = attributes;
 
@@ -100,16 +100,16 @@ export const
 					<InnerBlocks.Content />
 					<ImagePicker.Content
 						alt={ imageAlt }
-						className={ 'wp-block-shiro-card__image' }
+						className={ 'wp-block-shiro-stair__image' }
 						src={ imageUrl }
 					/>
 					<RichText.Content
-						className="wp-block-shiro-card__body"
+						className="wp-block-shiro-stair__body"
 						tagName="p"
 						value={ content }
 					/>
 					{ ! RichText.isEmpty( linkText ) && ( <RichText.Content
-						className="wp-block-shiro-card__read-more arrow-link"
+						className="wp-block-shiro-stair__read-more arrow-link"
 						tagName="div"
 						value={ linkText }
 					/> ) }

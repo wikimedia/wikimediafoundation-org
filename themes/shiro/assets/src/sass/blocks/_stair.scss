@@ -1,4 +1,4 @@
-.wp-block-shiro-card {
+.wp-block-shiro-stair {
 	$image-height: 192px;
 	position: relative;
 	margin-bottom: 50px;
@@ -28,7 +28,7 @@
 
 		// Override more general styles.
 		@include article-main-wrap {
-			// The cards block should have the same font-size on mobile.
+			// The stairs block should have the same font-size on mobile.
 			@include font-size(16, 16);
 			margin-bottom: 0;
 		}
