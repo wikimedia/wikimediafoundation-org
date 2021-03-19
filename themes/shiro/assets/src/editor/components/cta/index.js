@@ -12,9 +12,11 @@ import URLPicker from '../url-picker';
  *
  * The arguments `onChangeText` and `onChangeLink` are used to set attributes
  * when the respective items change. `onChangeText` will receive `text` and
- * `onChangeLink` will receive `url`. Keep in mind that sometimes
- * `onChangeLink` will receive `undefined` which is an expected value: This is
- * how the "remove link" functionality works.
+ * `onChangeLink` will receive `url` (and a second parameter which contains
+ * additional data if the selected link is an internal resource, like 'ID',
+ * 'title', and 'postType'). Keep in mind that sometimes `onChangeLink` will
+ * receive `undefined` which is an expected value: This is how the "remove
+ * link" functionality works.
  *
  * `withFocusOutside()` is necessary here (paired with the `onFocus` attribute)
  * in order to show & hide the button on the toolbar when the CTA is focused
