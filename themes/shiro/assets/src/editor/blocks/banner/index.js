@@ -123,7 +123,7 @@ export const settings = {
 			align: 'wide',
 			heading: 'Banner Heading',
 			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-			url: '',
+			url: 'https://wikimediafoundation.org/',
 			buttonText: 'Call to Action',
 		},
 	},
