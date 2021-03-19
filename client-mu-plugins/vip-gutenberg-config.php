@@ -4,7 +4,7 @@ function wmf_use_block_editor_for_post( $can_edit, $post ) {
 	$environment = wp_get_environment_type();
 
 	// For now, only run Gutenberg locally.
-	if ( 'local' !== $environment) {
+	if ( 'production' === $environment) {
 		return false;
 	}
 
