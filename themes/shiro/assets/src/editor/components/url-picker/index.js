@@ -16,13 +16,12 @@ function URLPicker( {
 	isSelected,
 	url,
 	onChangeLink,
-	anchorRef,
 } ) {
 	const [ isURLPickerOpen, setIsURLPickerOpen ] = useState( false );
 	const urlIsSet = !! url;
 	const urlIsSetandSelected = urlIsSet && isSelected;
 	/**
-	 *
+	 * Handle opening url entry interface when toolbar button is clicked.
 	 */
 	const openLinkControl = () => {
 		setIsURLPickerOpen( true );
@@ -30,15 +29,14 @@ function URLPicker( {
 	};
 
 	/**
-	 * Unset the URL, effectively removing the link.
+	 * Handle removing url (unsetting link) and closing url entry interface.
 	 */
-	const unlinkButton = () => {
+	const removeLink = () => {
 		onChangeLink( { url: undefined } );
 		setIsURLPickerOpen( false );
 	};
 	const linkControl = ( isURLPickerOpen || urlIsSetandSelected ) && (
 		<Popover
-			anchorRef={ anchorRef?.current }
 			position="bottom center"
 			onClose={ () => setIsURLPickerOpen( false ) }
 		>
@@ -76,7 +74,7 @@ function URLPicker( {
 							name="link"
 							shortcut={ displayShortcut.primaryShift( 'k' ) }
 							title={ __( 'Unlink' ) }
-							onClick={ unlinkButton }
+							onClick={ removeLink }
 						/>
 					) }
 				</ToolbarGroup>
@@ -86,7 +84,7 @@ function URLPicker( {
 					bindGlobal
 					shortcuts={ {
 						[ rawShortcut.primary( 'k' ) ]: openLinkControl,
-						[ rawShortcut.primaryShift( 'k' ) ]: unlinkButton,
+						[ rawShortcut.primaryShift( 'k' ) ]: removeLink,
 					} }
 				/>
 			) }
