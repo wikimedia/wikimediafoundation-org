@@ -7,6 +7,9 @@
  * @package shiro
  */
 
+require_once __DIR__ . '/inc/editor/patterns.php';
+\WMF\Editor\Patterns\bootstrap();
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
