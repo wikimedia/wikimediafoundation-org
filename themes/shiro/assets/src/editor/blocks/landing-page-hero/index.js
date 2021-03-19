@@ -126,7 +126,7 @@ export const settings = {
 							className="hero__cta cta-button"
 							text={ buttonText }
 							url={ buttonLink }
-							onChangeLink={ ( { url } ) => setAttributes( { buttonLink: url } ) }
+							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }
 							onChangeText={ buttonText => setAttributes( { buttonText } ) }
 						/>
 					</div>
