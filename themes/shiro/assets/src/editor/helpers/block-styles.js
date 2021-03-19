@@ -1,6 +1,5 @@
 /**
  * Style variants used commonly for blocks.
- *
  */
 
 import { __ } from '@wordpress/i18n';
