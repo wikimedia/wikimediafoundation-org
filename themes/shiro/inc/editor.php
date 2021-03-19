@@ -46,8 +46,8 @@ function filter_blocks( $allowed_blocks ) {
 		// Custom blocks
 		'shiro/banner',
 		'shiro/blog-post-heading',
-		'shiro/cards',
-		'shiro/card',
+		'shiro/stairs',
+		'shiro/stair',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 
