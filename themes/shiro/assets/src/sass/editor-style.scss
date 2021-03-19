@@ -24,9 +24,4 @@ $article-main: ".block-editor-block-list__layout";
 @import "components/fitvids";
 @import "components/profiles";
 
-// This is a small hack to fix positioning on toolbar buttons.
-.components-accessible-toolbar .components-toolbar-group > .components-button.components-button.has-icon::before {
-	top: 8px;
-}
-
 @import "blocks/button";
