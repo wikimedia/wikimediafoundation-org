@@ -31,6 +31,15 @@ export const settings = {
 		'shiro'
 	),
 
+	example: {
+		attributes: {
+			kicker: __( 'Our Work', 'shiro' ),
+			title: __( 'We help everyone share in the sum of all knowledge', 'shiro' ),
+			pageIntro: __( 'We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains.', 'shiro' ),
+			imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
+		},
+	},
+
 	supports: {
 		inserter: true,
 		multiple: false,
