@@ -194,13 +194,16 @@ export const settings = {
 							onChangeText={ onChangeText }
 						/>
 					</div>
-					<ImagePicker
-						className={ 'banner__image' }
-						id={ imageID }
-						imageSize={ 'medium_large' }
-						src={ imageSrc }
-						onChange={ onImageChange }
-					/>
+					<figure
+						className={ 'banner__imageWrapper' } >
+						<ImagePicker
+							className={ 'banner__image' }
+							id={ imageID }
+							imageSize={ 'medium_large' }
+							src={ imageSrc }
+							onChange={ onImageChange }
+						/>
+					</figure>
 				</div>
 			</>
 		);
@@ -243,13 +246,16 @@ export const settings = {
 						url={ url }
 					/>
 				</div>
-				<ImagePicker.Content
-					alt={ imageAlt }
-					className={ 'banner__image' }
-					id={ imageID }
-					imageSize={ 'medium_large' }
-					src={ imageSrc }
-				/>
+				<figure
+					className={ 'banner__imageWrapper' } >
+					<ImagePicker.Content
+						alt={ imageAlt }
+						className={ 'banner__image' }
+						id={ imageID }
+						imageSize={ 'medium_large' }
+						src={ imageSrc }
+					/>
+				</figure>
 			</div>
 		);
 	},
