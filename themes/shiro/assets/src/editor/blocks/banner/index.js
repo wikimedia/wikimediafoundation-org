@@ -113,6 +113,21 @@ export const settings = {
 		},
 	},
 
+	example: {
+		attributes: {
+			imageID: 0,
+			// This is the same image and source that the core Image block uses
+			// @see https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/image/index.js#L32
+			imageSrc: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
+			imageAlt: '',
+			align: 'wide',
+			heading: 'Banner Heading',
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			url: '',
+			buttonText: 'Call to Action',
+		},
+	},
+
 	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
