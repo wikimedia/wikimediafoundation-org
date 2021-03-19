@@ -1,0 +1,15 @@
+.cta {
+	display: inline-flex;
+
+	// Additional specificity is needed here because otherwise
+	// `.editor-styles-wrapper div` overrides this style.
+	.editor-styles-wrapper &__warning {
+		margin-top: 0.5rem;
+		font-size: small;
+		color: #d40356;
+	}
+
+	&--no-url {
+		opacity: 0.25;
+	}
+}
