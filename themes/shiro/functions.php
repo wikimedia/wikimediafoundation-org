@@ -93,6 +93,7 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_large', '1200', '675', true );
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
+
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -243,6 +244,11 @@ require get_template_directory() . '/inc/template-translations.php';
 require get_template_directory() . '/inc/ajax.php';
 
 /**
+ * Block editor functionality.
+ */
+require get_template_directory() . '/inc/editor.php';
+
+/**
  * Adjustments to queries.
  */
 require get_template_directory() . '/inc/queries.php';
@@ -272,6 +278,7 @@ require get_template_directory() . '/inc/taxonomies.php';
  */
 require get_template_directory() . '/inc/post-types/profile.php';
 require get_template_directory() . '/inc/post-types/story.php';
+require get_template_directory() . '/inc/post-types/post.php';
 
 /**
  * Logic for Custom Page Templates.

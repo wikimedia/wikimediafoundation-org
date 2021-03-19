@@ -98,27 +98,27 @@ The `template-parts` folder contains template parts used by larger templates in 
 
 Build Process
 ---------------
-This theme uses [Gulp](http://gulpjs.com/) for all its build process needs. It will help you to concatenate, lint and build your files. This also includes livereload, which will automatically inject CSS changes, and reload the live page whenever changes are made to JS or PHP files.
+This theme uses [Gulp](http://gulpjs.com/) & [Webpack](https://webpack.js.org) for all its build process needs. They will help you to concatenate, lint and build your files. This also includes livereload, which will automatically inject CSS changes, and reload the live page whenever changes are made to JS or PHP files.
 
-In order to make sure your development envrionment works the way it should, drop this into your `wp-config.php` file.
+In order to make sure your development environment works the way it should, drop this into your `wp-config.php` file.
 
 ```
 define( 'RKV_ENV', 'local' );
 ```
 
-The following gulp tasks are available to you:
+The following tasks are available to you:
 
-* `gulp build`
+* `npm run build`
 This builds out the assets and runs the following tasks: `styles`, `scripts`
 
-* `gulp lint`
+* `npm run lint`
 Lints all file types and runs the following tasks: `csslint`, `jslint` `phplint`
 
-* `gulp watch`
+* `npm run start`
 Begins watching front-end assets (scripts and styles) and compiles them when changed. This will also start the livereload script, which refreshes the page when changes are made.
 
-* `gulp`
-The default. Runs `gulp build` followed by `gulp watch`.
+* `npm run download-style-guide-sass`
+Download the variables file in the style-guide. This is only required when the style guide has changed.
 
 Bootstrap Setup
 ---------------

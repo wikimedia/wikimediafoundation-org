@@ -1,5 +1,4 @@
-.wysiwyg {
-
+@include wysiwyg {
 	p a,
 	li a {
 		//$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
@@ -12,43 +11,55 @@
 	}
 }
 
-.single-post .wysiwyg h1,
-.single-post .wysiwyg h2,
-.single-post .wysiwyg h3,
-.single-post .wysiwyg h4,
-.single-post .wysiwyg li,
-.single-post .wysiwyg p {
-	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
-	@include font-size(18, 16);
-	line-height: 31px;
+.single-post {
+
+	@include wysiwyg {
+		h1,
+		h2,
+		h3,
+		h4,
+		li,
+		p {
+			font-family: "Linux Libertine", Georgia, Times, serif;
+
+			@include font-size(18, 16);
+			line-height: 31px;
+		}
+
+		h3 {
+			font-family: sans-serif;
+			font-size: 1.3rem;
+			font-weight: bolder;
+			margin-bottom: 5px;
+			margin-top: 45px;
+		}
+	}
 }
 
-.single-post .wysiwyg h3 {
-	font-family: sans-serif;
-	font-size: 1.3rem;
-	font-weight: bolder;
-	margin-bottom: 5px;
-	margin-top: 45px;
-}
+.single-story {
 
-.single-story .wysiwyg h1,
-.single-story .wysiwyg h2,
-.single-story .wysiwyg h3,
-.single-story .wysiwyg h4,
-.single-story .wysiwyg li {
-	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
-	@include font-size(18, 16);
-	line-height: 31px;
-}
+	@include wysiwyg {
+		h1,
+		h2,
+		h3,
+		h4,
+		li {
+			font-family: "Linux Libertine", Georgia, Times, serif;
 
-.single-story .wysiwyg h3 {
-	font-family: sans-serif;
-	font-size: 1.3rem;
-	font-weight: bolder;
-	margin-bottom: 5px;
-	margin-top: 45px;
+			@include font-size(18, 16);
+			line-height: 31px;
+		}
 
-  &:first-of-type {
-    margin-top: 0;
-  }
+		h3 {
+			font-family: sans-serif;
+			font-size: 1.3rem;
+			font-weight: bolder;
+			margin-bottom: 5px;
+			margin-top: 45px;
+
+			&:first-of-type {
+				margin-top: 0;
+			}
+		}
+	}
 }
