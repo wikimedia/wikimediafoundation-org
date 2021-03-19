@@ -116,7 +116,7 @@ export const settings = {
 	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
-	edit: function BannerEdit( { attributes, setAttributes, isSelected } ) {
+	edit: function BannerEdit( { attributes, setAttributes } ) {
 		const {
 			heading,
 			text,
@@ -130,11 +130,23 @@ export const settings = {
 			className: 'banner',
 		} );
 
-		const onChange = useCallback( ( { id, url, alt } ) => {
+		const onImageChange = useCallback( ( { id, url, alt } ) => {
 			setAttributes( {
 				imageID: id,
 				imageSrc: url,
 				imageAlt: alt,
+			} );
+		}, [ setAttributes ] );
+
+		const onChangeLink = useCallback( ( { url } ) => {
+			setAttributes( {
+				url,
+			} );
+		}, [ setAttributes ] );
+
+		const onChangeText = useCallback( text => {
+			setAttributes( {
+				buttonText: text,
 			} );
 		}, [ setAttributes ] );
 
@@ -160,17 +172,19 @@ export const settings = {
 							onChange={ text => setAttributes( { text } ) }
 						/>
 						<Cta
-							setAttributes={ setAttributes }
+							className={ 'banner__cta' }
 							text={ buttonText }
 							url={ url }
+							onChangeLink={ onChangeLink }
+							onChangeText={ onChangeText }
 						/>
 					</div>
 					<ImagePicker
 						className={ 'banner__image' }
 						id={ imageID }
-						src={ imageSrc }
 						imageSize={ 'medium_large' }
-						onChange={ onChange }
+						src={ imageSrc }
+						onChange={ onImageChange }
 					/>
 				</div>
 			</>
