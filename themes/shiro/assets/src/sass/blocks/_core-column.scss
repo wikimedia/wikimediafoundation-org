@@ -1,5 +1,33 @@
+// FIXME: Move these to the new global variables file
+$core-gutenberg-break-medium: 782px;
+$core-gutenberg-break-small: 600px;
+$wm-column-gutter: 20px;
+
 .wp-block-column {
-	&:not(:first-child) {
-		margin-left: 20px;
+	> .wp-block-group:only-child {
+		height: 100%;
+	}
+
+	@media (max-width: #{ ($core-gutenberg-break-small - 1) }) {
+		&:not(:first-child) {
+			margin-top: $wm-column-gutter;
+		}
+	}
+
+	// Gutenberg allows 2 columns between these two sizes and wraps the rest
+	@media (min-width: #{ ($core-gutenberg-break-small) }) and (max-width: #{ ($core-gutenberg-break-medium - 1) }) {
+		&:not(:nth-child(1)):not(:nth-child(2)) {
+			margin-top: $wm-column-gutter;
+		}
+
+		&:nth-child(even) {
+			margin-left: $wm-column-gutter;
+		}
+	}
+
+	@media (min-width: $core-gutenberg-break-medium) {
+		&:not(:first-child) {
+			margin-left: $wm-column-gutter;
+		}
 	}
 }
