@@ -138,7 +138,7 @@ export const settings = {
 					<div className="hero__image">
 						<ImagePicker
 							id={ imageId }
-							imageSize="image_16x9_small"
+							imageSize="image_16x9_large"
 							src={ imageUrl }
 							onChange={
 								( { id: imageId, url: imageUrl } ) => {
