@@ -5,12 +5,13 @@
 /**
  * WordPress dependencies
  */
-import { RichText, URLInputButton, useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
+import Cta from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
 import blockStyles from '../../helpers/block-styles';
 import './style.scss';
@@ -121,19 +122,13 @@ export const settings = {
 							value={ title }
 							onChange={ title => setAttributes( { title } ) }
 						/>
-						<div className="hero__button-controls">
-							<RichText
-								className="hero__cta cta-button"
-								placeholder={ __( 'Call to action', 'shiro' ) }
-								tagName="div"
-								value={ buttonText }
-								onChange={ buttonText => setAttributes( { buttonText } ) }
-							/>
-							<URLInputButton
-								url={ buttonLink }
-								onChange={ buttonLink => setAttributes( { buttonLink } ) }
-							/>
-						</div>
+						<Cta
+							className="hero__cta cta-button"
+							text={ buttonText }
+							url={ buttonLink }
+							onChangeLink={ ( { url } ) => setAttributes( { buttonLink: url } ) }
+							onChangeText={ buttonText => setAttributes( { buttonText } ) }
+						/>
 					</div>
 					<div className="hero__image">
 						<ImagePicker
