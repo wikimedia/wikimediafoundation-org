@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -5,6 +6,7 @@ import { RichText } from '@wordpress/block-editor';
 import { withFocusOutside } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import './style.scss';
 import URLPicker from '../url-picker';
 
 /**
@@ -54,13 +56,22 @@ const CtaWithFocusOutside = withFocusOutside(
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
 						allowedFormats={ [] }
-						className={ className }
+						className={ classNames(
+							className,
+							'cta',
+							{ 'cta--no-url': ! url }
+						 ) }
 						placeholder={ __( 'Call to action', 'shiro' ) }
 						tagName="div"
 						value={ text }
 						onChange={ onChangeText }
 						onFocus={ () => this.setState( { showButtons: true } ) }
 					/>
+					{ ! url && <div className={ 'cta__warning' }>
+						<span aria-label={ 'Warning' } role={ 'img' }>⚠️</span>
+						&nbsp;
+						<span>Add a URL to this CTA</span>
+					</div> }
 				</>
 			);
 		}
