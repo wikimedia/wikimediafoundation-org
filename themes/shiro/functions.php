@@ -250,6 +250,7 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
+WMF\Editor\bootstrap();
 
 /**
  * Adjustments to queries.
