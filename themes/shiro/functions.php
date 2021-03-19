@@ -7,10 +7,6 @@
  * @package shiro
  */
 
-require_once __DIR__ . '/inc/classes/editor/namespace.php';
-
-\WMF\Editor\bootstrap();
-
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -251,6 +247,7 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
+WMF\Editor\bootstrap();
 
 /**
  * Adjustments to queries.
