@@ -1,0 +1,34 @@
+.new-card {
+	border: 1px solid $wmui-color-base80;
+	border-radius: 5px;
+	height: 100%;
+	position: relative;
+
+	&__contents {
+		padding: rem(20) rem(20) rem(20 + 22);
+	}
+
+	&__cta {
+		position: absolute;
+		bottom: rem(20);
+		@include font-size(18, 18);
+
+		color: $color-blue;
+		font-weight: bold;
+
+		&::after {
+			content: ' →' #{"/*rtl:'← '*/;"};
+		}
+	}
+}
+
+.page.has-blocks,
+.single.has-blocks {
+	@include wysiwyg {
+		.new-card {
+			&__heading {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
