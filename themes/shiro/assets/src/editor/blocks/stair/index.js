@@ -7,6 +7,7 @@ import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
+import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
 
 const template = [
@@ -22,18 +23,32 @@ export const
 			content: {
 				type: 'string',
 				source: 'html',
-				selector: 'p',
+				selector: '.stair__body',
 			},
 			linkText: {
 				type: 'string',
+				source: 'html',
+				selector: '.stair__read-more',
+			},
+			linkUrl: {
+				type: 'string',
+				source: 'attribute',
+				selector: '.stair__read-more',
+				attribute: 'href',
 			},
 			imageUrl: {
 				type: 'string',
+				source: 'attribute',
+				selector: '.stair__image',
+				attribute: 'src',
 			},
 			imageAlt: {
 				type: 'string',
+				source: 'attribute',
+				selector: '.stair__image',
+				attribute: 'alt',
 			},
-			id: {
+			imageId: {
 				type: 'integer',
 			},
 		},
@@ -43,14 +58,14 @@ export const
 		 * Render edit of the stair block.
 		 */
 		edit: function EditStairBlock( { attributes, setAttributes } ) {
-			const blockProps = useBlockProps();
-			const { id, imageUrl, content, linkText } = attributes;
+			const blockProps = useBlockProps( { className: 'stair' } );
+			const { imageId, imageUrl, content, linkText, linkUrl } = attributes;
 
-			const onChange = useCallback( ( { id, alt, url } ) => {
+			const onChange = useCallback( ( { id, alt, src } ) => {
 				setAttributes( {
-					id,
+					imageId: id,
 					imageAlt: alt,
-					imageUrl: url,
+					imageUrl: src,
 				} );
 			}, [ setAttributes ] );
 
@@ -61,28 +76,26 @@ export const
 						templateLock="all"
 					/>
 					<ImagePicker
-						className="wp-block-shiro-stair__image"
-						id={ id }
+						className="stair__image"
+						id={ imageId }
 						imageSize="image_16x9_small"
 						src={ imageUrl }
 						onChange={ onChange }
 					/>
 					<RichText
-						className="wp-block-shiro-stair__body"
+						className="stair__body"
 						keepPlaceholderOnFocus
 						placeholder={ __( 'Start writing your stair contents', 'shiro' ) }
 						tagName="p"
 						value={ content }
 						onChange={ content => setAttributes( { content } ) }
 					/>
-					<RichText
-						allowedFormats={ [ 'core/link' ] }
-						className="wp-block-shiro-stair__read-more arrow-link"
-						keepPlaceholderOnFocus
-						placeholder={ __( 'Link to other content', 'shiro' ) }
-						tagName="div"
-						value={ linkText }
-						onChange={ linkText => setAttributes( { linkText } ) }
+					<CallToActionPicker
+						className="stair__read-more arrow-link"
+						text={ linkText }
+						url={ linkUrl }
+						onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
+						onChangeText={ linkText => setAttributes( { linkText } ) }
 					/>
 				</div>
 			);
@@ -92,27 +105,28 @@ export const
 		 * Render save of the stair block.
 		 */
 		save: function SaveStairBlock( { attributes } ) {
-			const blockProps = useBlockProps.save();
-			const { imageUrl, imageAlt, content, linkText } = attributes;
+			const blockProps = useBlockProps.save( { className: 'stair' } );
+			const { imageUrl, imageAlt, content, imageId, linkText, linkUrl } = attributes;
 
 			return (
 				<div { ...blockProps }>
 					<InnerBlocks.Content />
 					<ImagePicker.Content
 						alt={ imageAlt }
-						className={ 'wp-block-shiro-stair__image' }
+						className={ 'stair__image' }
+						id={ imageId }
 						src={ imageUrl }
 					/>
 					<RichText.Content
-						className="wp-block-shiro-stair__body"
+						className="stair__body"
 						tagName="p"
 						value={ content }
 					/>
-					{ ! RichText.isEmpty( linkText ) && ( <RichText.Content
-						className="wp-block-shiro-stair__read-more arrow-link"
-						tagName="div"
-						value={ linkText }
-					/> ) }
+					<CallToActionPicker.Content
+						className="stair__read-more arrow-link"
+						text={ linkText }
+						url={ linkUrl }
+					/>
 				</div>
 			);
 		},
