@@ -8,6 +8,16 @@ namespace WMF\Editor;
 use Asset_Loader;
 
 /**
+ * Bootstrap hooks relevant to the block editor.
+ */
+function bootstrap() {
+	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
+	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks' );
+	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
+	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+}
+
+/**
  * Add "has-blocks" class to posts with block content.
  *
  * Used to support a stepped migration to the new block editor styles.
@@ -23,7 +33,47 @@ function body_class( $body_classes ) {
 	return $body_classes;
 }
 
-add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
+/**
+ * Filter the allowed blocks to an include list of blocks that we deem as
+ * relevant to the project. Can return true to include all blocks, or false to
+ * include no blocks.
+ *
+ * @param bool|string[] $allowed_blocks
+ * @return bool|string[]
+ */
+function filter_blocks( $allowed_blocks ) {
+	return [
+		// Custom blocks
+		'shiro/banner',
+		'shiro/blog-post-heading',
+		'shiro/cards',
+		'shiro/card',
+		'shiro/landing-page-hero',
+		'shiro/mailchimp-subscribe',
+
+		// Core blocks
+		'core/paragraph',
+		'core/image',
+		'core/heading',
+		'core/list',
+		'core/table',
+		'core/audio',
+		'core/video',
+		'core/file',
+		'core/columns',
+		'core/column',
+		'core/group',
+		'core/separator',
+		'core/spacer',
+		'core/embed',
+		'core/freeform',
+		'core/missing',
+		'core/block',
+		'core/button',
+		'core/buttons',
+		'core/latest-posts',
+	];
+}
 
 /**
  * Add theme supports for editor functionality.
@@ -82,8 +132,6 @@ function add_theme_supports() {
 	add_theme_support( 'align-wide' );
 }
 
-add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
-
 function enqueue_block_editor_assets() {
 	if ( ! function_exists( 'Asset_Loader\\enqueue_asset' ) ) {
 		return;
@@ -126,6 +174,3 @@ function enqueue_block_editor_assets() {
 		]
 	);
 }
-
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
-

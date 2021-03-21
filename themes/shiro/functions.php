@@ -7,8 +7,10 @@
  * @package shiro
  */
 
+require_once __DIR__ . '/inc/editor/patterns.php';
 require_once __DIR__ . '/inc/classes/editor/blocks/mailchimp-subscribe.php';
 
+\WMF\Editor\Patterns\bootstrap();
 \WMF\Editor\Blocks\MailChimpSubscribe\bootstrap();
 
 /**
@@ -251,6 +253,7 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
+WMF\Editor\bootstrap();
 
 /**
  * Adjustments to queries.
