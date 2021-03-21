@@ -64,7 +64,7 @@ function ImagePicker( props ) {
 		if ( ! media || ! media.url ) {
 			onChange( {
 				id: undefined,
-				src: undefined,
+				url: undefined,
 				alt: undefined,
 				media: undefined,
 			} );
@@ -74,7 +74,7 @@ function ImagePicker( props ) {
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
-				src: sizes?.[ imageSize ]?.url || url,
+				url: sizes?.[ imageSize ]?.url || url,
 				alt,
 				media,
 			} );
