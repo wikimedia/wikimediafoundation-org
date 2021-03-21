@@ -95,10 +95,10 @@ export const settings = {
 		const blockProps = useBlockProps( { className: 'new-card' } );
 		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
 
-		const onSelectImage = useCallback( ( { id, src, alt } ) => {
+		const onSelectImage = useCallback( ( { id, url, alt } ) => {
 			setAttributes( {
 				imageId: id,
-				imageSrc: src,
+				imageSrc: url,
 				imageAlt: alt,
 			} );
 		}, [ setAttributes ] );
