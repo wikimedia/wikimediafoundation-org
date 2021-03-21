@@ -25,6 +25,11 @@ export const
 				source: 'html',
 				selector: '.stair__body',
 			},
+			heading: {
+				type: 'string',
+				source: 'html',
+				selector: '.stair__heading',
+			},
 			linkText: {
 				type: 'string',
 				source: 'html',
@@ -59,21 +64,25 @@ export const
 		 */
 		edit: function EditStairBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'stair' } );
-			const { imageId, imageUrl, content, linkText, linkUrl } = attributes;
+			const { imageId, imageUrl, content, linkText, linkUrl, heading } = attributes;
 
-			const onChange = useCallback( ( { id, alt, src } ) => {
+			const onChange = useCallback( ( { id, alt, url } ) => {
 				setAttributes( {
 					imageId: id,
 					imageAlt: alt,
-					imageUrl: src,
+					imageUrl: url,
 				} );
 			}, [ setAttributes ] );
 
 			return (
 				<div { ...blockProps }>
-					<InnerBlocks
-						template={ template }
-						templateLock="all"
+					<RichText
+						className="stair__heading is-style-h3"
+						keepPlaceholderOnFocus
+						placeholder={ __( 'Write heading', 'shiro' ) }
+						tagName="h2"
+						value={ heading }
+						onChange={ heading => setAttributes( { heading } ) }
 					/>
 					<ImagePicker
 						className="stair__image"
@@ -106,14 +115,18 @@ export const
 		 */
 		save: function SaveStairBlock( { attributes } ) {
 			const blockProps = useBlockProps.save( { className: 'stair' } );
-			const { imageUrl, imageAlt, content, imageId, linkText, linkUrl } = attributes;
+			const { imageUrl, imageAlt, content, imageId, linkText, linkUrl, heading } = attributes;
 
 			return (
 				<div { ...blockProps }>
-					<InnerBlocks.Content />
+					<RichText.Content
+						className="stair__heading is-style-h3"
+						tagName="h2"
+						value={ heading }
+					/>
 					<ImagePicker.Content
 						alt={ imageAlt }
-						className={ 'stair__image' }
+						className="stair__image"
 						id={ imageId }
 						src={ imageUrl }
 					/>

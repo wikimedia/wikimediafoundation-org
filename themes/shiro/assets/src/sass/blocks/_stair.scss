@@ -1,12 +1,15 @@
 .stair {
-	$image-height: 192px;
 	position: relative;
 	margin-bottom: 50px;
 	margin-left: unset;
 	max-width: 500px;
 
 	@media (min-width: $medium-bp) {
-		flex: 0 1 calc( 50% - 1rem );
+		flex: 0 1 calc( 50% - 20px );
+	}
+
+	&__heading {
+		line-height: 1.5 !important;
 	}
 
 	&__image {
