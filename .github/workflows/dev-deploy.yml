@@ -3,7 +3,7 @@ name: Build and deploy to VIP Go
 on:
   push:
     branches:
-      - main
+      - preprod
       - develop
 
 jobs:
