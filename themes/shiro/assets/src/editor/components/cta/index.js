@@ -54,26 +54,34 @@ const CtaWithFocusOutside = withFocusOutside(
 						url={ url }
 						onChangeLink={ onChangeLink }
 					/>
-					<RichText
+					<div className={
+						classNames(
+							'cta-wrapper',
+							{ 'cta--no-url': ! url }
+						)
+					}>
+						<RichText
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
-						allowedFormats={ [] }
-						className={ classNames(
-							className,
-							'cta',
-							{ 'cta--no-url': ! url }
-						 ) }
-						placeholder={ __( 'Call to action', 'shiro' ) }
-						tagName="div"
-						value={ text }
-						onChange={ onChangeText }
-						onFocus={ () => this.setState( { showButtons: true } ) }
-					/>
-					{ ! url && <div className={ 'cta__warning' }>
-						<span aria-label={ __( 'Warning', 'shiro' ) } role={ 'img' }>⚠️</span>
+							allowedFormats={ [] }
+							className={
+								classNames(
+									'cta',
+									className
+								)
+							}
+							placeholder={ __( 'Call to action', 'shiro' ) }
+							tagName="div"
+							value={ text }
+							onChange={ onChangeText }
+							onFocus={ () => this.setState( { showButtons: true } ) }
+						/>
+						{ ! url && <div className={ 'cta__warning' }>
+							<span aria-label={ __( 'Warning', 'shiro' ) } role={ 'img' }>⚠️</span>
 						&nbsp;
-						<span>{ __( 'Add a URL to this CTA', 'shiro' ) }</span>
-					</div> }
+							<span>{ __( 'Add a URL to this CTA', 'shiro' ) }</span>
+						</div> }
+					</div>
 				</>
 			);
 		}

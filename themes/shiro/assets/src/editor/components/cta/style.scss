@@ -1,15 +1,33 @@
 .cta {
-	display: inline-flex;
+	&-wrapper {
+		position: relative;
+		display: inline-flex;
+		align-items: start;
+		justify-content: start;
+		flex-wrap: wrap;
+	}
 
 	// Additional specificity is needed here because otherwise
 	// `.editor-styles-wrapper div` overrides this style.
 	.editor-styles-wrapper &__warning {
-		margin-top: 0.5rem;
 		font-size: small;
 		color: #d40356;
+		padding: 0.5rem;
+		border: 1px solid #000;
+		background-color: #fff;
+		border-radius: 1rem;
 	}
 
-	&--no-url {
-		opacity: 0.25;
+	// Increased specificity has been chosen instead of !important here
+	// so that in the event that something that uses this component needs
+	// to define its own "no url" styles, it can override these ones.
+	&--no-url.cta-wrapper &,
+	&--no-url.cta-wrapper &:hover {
+		background-color: #c8ccd1;
+
+		.is-style-base70 & {
+			color: #000;
+			background-color: #f8f9fa;
+		}
 	}
 }
