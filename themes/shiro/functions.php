@@ -7,7 +7,9 @@
  * @package shiro
  */
 
-add_theme_support('align-wide');
+require_once __DIR__ . '/inc/editor/patterns.php';
+\WMF\Editor\Patterns\bootstrap();
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -248,6 +250,7 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
+WMF\Editor\bootstrap();
 
 /**
  * Adjustments to queries.
