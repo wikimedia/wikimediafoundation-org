@@ -38,17 +38,39 @@
 		padding-bottom: 56.6%;
 	}
 
+	/** Button styles */
 	&__cta {
-		background-color: $wmui-color-accent50;
-		color: #fff;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		padding: 6px 12px;
-		border-radius: 2px;
-		font-weight: 700;
-		font-size: 14px; // Prob shouldn't hardcode this!
-		line-height: 20 / 14;
+
+		@include style-guide-button(
+			$color-primary,
+			$color-primary--hover,
+			$color-primary--active,
+			$color-primary--focus,
+		);
+
+		color: $wmui-color-base100;
+
+		.is-style-blue-vibrant &,
+		.is-style-red-vibrant & {
+			border: 1px solid $border-color-base;
+			color: $color-base--emphasized;
+
+			@include style-guide-button(
+				$background-color-framed,
+				$background-color-framed--hover,
+				$background-color-framed--active-alternative,
+				$background-color-framed--focus,
+			);
+
+			&:active {
+				border-color: $border-color-base--active;
+			}
+
+			&:focus {
+				outline: 2px solid $border-color-base--focus;
+				outline-offset: -2px;
+			}
+		}
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
@@ -79,7 +101,7 @@
 		}
 	}
 
-	/** Color Styles */
+	/** Background Colors */
 
 	&.is-style-light {
 		background-color: $wmui-color-base90;
@@ -104,11 +126,6 @@
 	&.is-style-blue-vibrant {
 		background-color: $wmui-color-accent50;
 		color: #fff;
-
-		.banner__cta {
-			background-color: $wmui-color-base90;
-			color: $wmui-color-accent50;
-		}
 	}
 
 	&.is-style-red-fade {
@@ -119,11 +136,6 @@
 	&.is-style-red-vibrant {
 		background-color: $wmui-color-red50;
 		color: #fff;
-
-		.banner__cta {
-			background-color: $wmui-color-base90;
-			color: $wmui-color-accent50;
-		}
 	}
 
 	&.is-style-yellow-fade {
