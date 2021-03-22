@@ -70,9 +70,9 @@ const CtaWithFocusOutside = withFocusOutside(
 						onFocus={ () => this.setState( { showButtons: true } ) }
 					/>
 					{ ! url && <div className={ 'cta__warning' }>
-						<span aria-label={ 'Warning' } role={ 'img' }>⚠️</span>
+						<span aria-label={ __( 'Warning', 'shiro' ) } role={ 'img' }>⚠️</span>
 						&nbsp;
-						<span>Add a URL to this CTA</span>
+						<span>{ __( 'Add a URL to this CTA', 'shiro' ) }</span>
 					</div> }
 				</>
 			);
