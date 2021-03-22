@@ -68,26 +68,6 @@ export const settings = {
 		},
 	},
 
-	/*
- 		imageUrl: {
- 			type: 'string',
- 			source: 'attribute',
- 			selector: '.hero__image',
- 			attribute: 'src',
- 		},
- 		buttonText: {
- 			type: 'string',
- 			source: 'html',
- 			selector: '.hero__cta',
- 		},
- 		buttonLink: {
- 			type: 'string',
- 			source: 'attribute',
- 			selector: '.hero__cta',
- 			attribute: 'href',
- 		},
-	 */
-
 	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
@@ -147,8 +127,6 @@ export const settings = {
 	save: function Save( { attributes } ) {
 		const blockProps = useBlockProps.save( { className: 'new-card click-to-call-to-action' } );
 		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
-
-		console.log( 'Saving attrs', attributes );
 
 		return (
 			<div { ...blockProps }>
