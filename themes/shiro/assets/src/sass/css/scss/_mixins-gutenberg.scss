@@ -1,0 +1,36 @@
+// New mixins to support the stepped migration to block editor content.
+
+@mixin alignfull( $content-column: 980px ) {
+
+	margin-left: rem(-20);
+	margin-right: rem(-20);
+	width: 100vw;
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		margin-left: rem(-40);
+		margin-right: rem(-40);
+	}
+
+	@media ( min-width: #{$width-breakpoint-desktop} ) {
+		margin-left: calc(#{$content-column / 2} - 50vw);
+		margin-right: calc(#{$content-column / 2} - 50vw);
+	}
+}
+
+@mixin alignfull-padded( $content-column: 980px ) {
+
+	@include alignfull( $content-column );
+
+	padding-left: rem(20);
+	padding-right: rem(20);
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		padding-left: rem(40);
+		padding-right: rem(40);
+	}
+
+	@media ( min-width: #{$width-breakpoint-desktop} ) {
+		padding-left: calc(50vw - #{$content-column / 2});
+		padding-right: calc(50vw - #{$content-column / 2});
+	}
+}

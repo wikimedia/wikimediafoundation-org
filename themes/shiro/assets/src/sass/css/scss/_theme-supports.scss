@@ -34,23 +34,34 @@ $color-palette:
 }
 
 // Font-sizes: desktop, mobile, line-height.
-$font-sizes:
-	default 18 16 1.75,
-	small   14 12 1.75,
-	medium  20 18 1.5,
-	large   24 21 1.25,
-	xlarge  32 24 1.25,
-	jumbo   40 30 1.25;
+$font-sizes: (
+	"default": 18 16 1.75,
+	"small":   14 12 1.75,
+	"medium":  20 18 1.5,
+	"large":   24 21 1.25,
+	"xlarge":  32 24 1.25,
+	"jumbo":   40 30 1.25
+);
+
+@mixin has-font-size( $size ) {
+	$values: map-get( $font-sizes, $size );
+	$desktop: nth($values, 1);
+	$mobile: nth($values, 2);
+	$line-height: nth( $values, 3);
+
+	@include font-size( $desktop, $mobile );
+	line-height: $line-height;
+}
 
 @each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
+
 	.has-#{$slug}-font-size {
 		// Over-specify styles applied to .single-{post_type} .wysiwyg
 		&,
 		.page .wysiwyg &,
 		.single .wysiwyg & {
 
-			@include font-size( $desktop-size, $mobile-size );
-			line-height: $line-height;
+			@include has-font-size( $slug );
 		}
 	}
 }
@@ -163,15 +174,15 @@ $font-sizes:
 .wysiwyg .alignfull {
 
 	@media ( min-width: $medium-landscape ) {
-		.page &,
-		.single & {
-			margin-left: calc(#{$content-column / 2} - 50vw);
-			margin-right: calc(#{$content-column / 2} - 50vw);
+		.page.has-blocks &,
+		.single.has-blocks & {
+
+			@include alignfull();
 		}
 
-		.single-post & {
-			margin-left: calc(#{$content-column-post / 2} - 50vw);
-			margin-right: calc(#{$content-column-post / 2} - 50vw);
+		.single-post.has-blocks & {
+
+			@include alignfull( $content-column-post );
 		}
 
 		.single-story & {
