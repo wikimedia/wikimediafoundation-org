@@ -4,7 +4,13 @@
 	height: 100%;
 	position: relative;
 
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0 0 20px 5px rgba($color-base--active, 0.15);
+	}
+
 	&__contents {
+		// 22 extra to make room for the absolutely positioned call to action
 		padding: rem(20) rem(20) rem(20 + 22);
 	}
 

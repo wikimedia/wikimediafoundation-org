@@ -114,4 +114,15 @@ jQuery(document).ready(function($) {
   })
   /* eslint-enable */
 
+  var onClickCard = function() {
+    // Prevent an infinite recursion
+    $( '.click-to-call-to-action' ).off( 'click', onClickCard );
+
+    var callToAction = $( this ).find( '.call-to-action' );
+
+    if ( callToAction.length > 0 ) {
+      callToAction.get( 0 ).click();
+    }
+  };
+  $( '.click-to-call-to-action' ).on( 'click', onClickCard );
 });

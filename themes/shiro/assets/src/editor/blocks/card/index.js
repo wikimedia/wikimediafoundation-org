@@ -145,7 +145,7 @@ export const settings = {
 	 * Render the frontend representation of the card block.
 	 */
 	save: function Save( { attributes } ) {
-		const blockProps = useBlockProps.save( { className: 'new-card' } );
+		const blockProps = useBlockProps.save( { className: 'new-card click-to-call-to-action' } );
 		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
 
 		console.log( 'Saving attrs', attributes );
@@ -170,7 +170,7 @@ export const settings = {
 						value={ body }
 					/>
 					<CallToActionPicker.Content
-						className="new-card__cta"
+						className="new-card__cta call-to-action"
 						text={ linkText }
 						url={ linkUrl }
 					/>
