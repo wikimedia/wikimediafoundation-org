@@ -40,6 +40,7 @@
 
 	/** Button styles */
 	&__cta {
+		margin-right: 1rem;
 
 		@include style-guide-button(
 			$color-primary,
