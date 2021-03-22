@@ -66,6 +66,36 @@ $font-sizes: (
 	}
 }
 
+@mixin h1 {
+	@extend .has-jumbo-font-size;
+	font-weight: 700;
+}
+@mixin h2 {
+	@extend .has-xlarge-font-size;
+	font-weight: 400;
+}
+@mixin h3 {
+	@extend .has-large-font-size;
+	font-weight: 700;
+}
+@mixin h4 {
+	@extend .has-medium-font-size;
+	font-weight: 700;
+}
+
+@mixin h5 {
+	@extend .has-default-font-size;
+	color: unset;
+	font-weight: 700;
+	text-transform: unset;
+}
+@mixin h6 {
+	@include h5;
+}
+@mixin h-margins {
+	margin: 0 auto 0.5em;
+}
+
 // Define base styles for headings, etc within text content.
 .page.has-blocks,
 .single.has-blocks {
@@ -74,26 +104,19 @@ $font-sizes: (
 
 		// stylelint-disable at-rule-empty-line-before
 		h1 {
-			@extend .has-jumbo-font-size;
+			@include h1;
 		}
 		h2 {
-			@extend .has-xlarge-font-size;
-			font-weight: 400;
+			@include h2;
 		}
 		h3 {
-			@extend .has-large-font-size;
-			font-weight: 700;
+			@include h3;
 		}
 		h4 {
-			@extend .has-medium-font-size;
-			font-weight: 700;
+			@include h4;
 		}
-		h5,
-		h6 {
-			@extend .has-default-font-size;
-			color: unset;
-			font-weight: 700;
-			text-transform: unset;
+		h5, h6 {
+			@include h5;
 		}
 		// stylelint-enable at-rule-empty-line-before
 
@@ -103,10 +126,39 @@ $font-sizes: (
 		h4,
 		h5,
 		h6 {
-			margin: 0 auto 0.5em;
+			@include h-margins;
+		}
+
+		.is-style-h1 {
+			@include h1;
+		}
+		.is-style-h2 {
+			@include h2;
+		}
+		.is-style-h3 {
+			@include h3;
+		}
+		.is-style-h4 {
+			@include h4;
+		}
+		.is-style-h5 {
+			@include h5;
+		}
+		.is-style-h6 {
+			@include h6;
+		}
+
+		.is-style-h1,
+		.is-style-h2,
+		.is-style-h3,
+		.is-style-h4,
+		.is-style-h5,
+		.is-style-h6 {
+			@include h-margins;
 		}
 	}
 }
+
 
 // Negative margins for wide and full align blocks.
 .wysiwyg .alignwide {
