@@ -13,12 +13,11 @@
 	}
 
 	&__image {
-		width: 314px;
-		height: auto;
+		width: 320px;
 	}
 
 	&__body {
-		background: $color-white;
+		background: $background-color-base;
 		margin-left: 18px;
 		margin-top: -41px;
 		font-family: $font-family-serif;
@@ -29,10 +28,10 @@
 		position: relative;
 		width: 100%;
 
+		@extend .has-default-font-size;
+
 		// Override more general styles.
 		@include article-main-wrap {
-			// The stairs block should have the same font-size on mobile.
-			@include font-size(16, 16);
 			margin-bottom: 0;
 		}
 	}

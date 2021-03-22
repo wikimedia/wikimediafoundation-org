@@ -1,5 +1,4 @@
 import {
-	InnerBlocks,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
@@ -9,10 +8,6 @@ import { __ } from '@wordpress/i18n';
 import './style.scss';
 import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
-
-const template = [
-	[ 'core/heading', { level: 3 } ],
-];
 
 export const
 	name = 'shiro/stair',
