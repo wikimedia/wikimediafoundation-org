@@ -153,7 +153,7 @@ export const settings = {
 			} );
 		}, [ setAttributes ] );
 
-		const onChangeLink = useCallback( ( { url } ) => {
+		const onChangeLink = useCallback( url => {
 			setAttributes( {
 				url,
 			} );
