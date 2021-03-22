@@ -72,12 +72,12 @@ export const settings = {
 		buttonText: {
 			type: 'string',
 			source: 'html',
-			selector: '.hero__cta',
+			selector: '.hero__call-to-action',
 		},
 		buttonLink: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.hero__cta',
+			selector: '.hero__call-to-action',
 			attribute: 'href',
 		},
 		pageIntro: {
@@ -125,7 +125,7 @@ export const settings = {
 							onChange={ title => setAttributes( { title } ) }
 						/>
 						<Cta
-							className="hero__cta cta-button"
+							className="hero__call-to-action cta-button"
 							text={ buttonText }
 							url={ buttonLink }
 							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }

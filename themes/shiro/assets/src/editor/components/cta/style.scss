@@ -1,9 +1,9 @@
-.cta {
+.call-to-action {
 	&-wrapper {
 		position: relative;
 		display: inline-flex;
-		align-items: start;
-		justify-content: start;
+		align-items: flex-start;
+		justify-content: flex-start;
 		flex-wrap: wrap;
 	}
 
@@ -21,8 +21,8 @@
 	// Increased specificity has been chosen instead of !important here
 	// so that in the event that something that uses this component needs
 	// to define its own "no url" styles, it can override these ones.
-	&--no-url.cta-wrapper &,
-	&--no-url.cta-wrapper &:hover {
+	&--no-url.call-to-action-wrapper &,
+	&--no-url.call-to-action-wrapper &:hover {
 		background-color: #c8ccd1;
 
 		.is-style-base70 & {

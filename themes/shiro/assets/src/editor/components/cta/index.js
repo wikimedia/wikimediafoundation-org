@@ -56,8 +56,8 @@ const CtaWithFocusOutside = withFocusOutside(
 					/>
 					<div className={
 						classNames(
-							'cta-wrapper',
-							{ 'cta--no-url': ! url }
+							'call-to-action-wrapper',
+							{ 'call-to-action--no-url': ! url }
 						)
 					}>
 						<RichText
@@ -66,7 +66,7 @@ const CtaWithFocusOutside = withFocusOutside(
 							allowedFormats={ [] }
 							className={
 								classNames(
-									'cta',
+									'call-to-action',
 									className
 								)
 							}
@@ -76,7 +76,7 @@ const CtaWithFocusOutside = withFocusOutside(
 							onChange={ onChangeText }
 							onFocus={ () => this.setState( { showButtons: true } ) }
 						/>
-						{ ! url && <div className={ 'cta__warning' }>
+						{ ! url && <div className={ 'call-to-action__warning' }>
 							<span aria-label={ __( 'Warning', 'shiro' ) } role={ 'img' }>⚠️</span>
 						&nbsp;
 							<span>{ __( 'Add a URL to this CTA', 'shiro' ) }</span>
