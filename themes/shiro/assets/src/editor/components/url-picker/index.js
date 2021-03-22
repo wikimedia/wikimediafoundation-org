@@ -62,7 +62,7 @@ function URLPicker( {
 				<ToolbarGroup>
 					{ ! urlIsSet && (
 						<ToolbarButton
-							className={ 'url-picker__link-button' }
+							className="url-picker__link-button"
 							icon="admin-links"
 							name="link"
 							shortcut={ displayShortcut.primary( 'k' ) }
@@ -72,7 +72,7 @@ function URLPicker( {
 					) }
 					{ urlIsSetandSelected && (
 						<ToolbarButton
-							className={ 'url-picker__link-button url-picker__link-button--remove' }
+							className="url-picker__link-button"
 							icon="editor-unlink"
 							isActive
 							name="link"
