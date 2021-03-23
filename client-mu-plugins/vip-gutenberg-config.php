@@ -19,3 +19,8 @@ function wmf_use_block_editor_for_post( $can_edit, $post ) {
 
 /* VIP: Disable Gutenberg editor */
 add_filter( 'use_block_editor_for_post', 'wmf_use_block_editor_for_post', 20, 2 );
+
+// If Gutenberg RAMP plugin still exists, don't bypass the block editor.
+if ( function_exists( 'gutenberg_ramp_load_gutenberg' ) ) {
+	gutenberg_ramp_load_gutenberg();
+}
