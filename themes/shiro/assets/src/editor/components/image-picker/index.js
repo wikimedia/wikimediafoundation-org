@@ -51,8 +51,8 @@ function ImagePicker( props ) {
 	 * 1. Use the right image size using `useImageSize`
 	 * 2. Show an image on page load using the passed `src`.
 	 */
-	const { url } = useImageSize( id, imageSize, onChange );
-	src = url || src;
+	const { src: imageSizeSrc } = useImageSize( id, imageSize, onChange );
+	src = imageSizeSrc || src;
 
 	/**
 	 * Handle a newly-selected media attachment.
@@ -64,7 +64,7 @@ function ImagePicker( props ) {
 		if ( ! media || ! media.url ) {
 			onChange( {
 				id: undefined,
-				url: undefined,
+				src: undefined,
 				alt: undefined,
 				media: undefined,
 			} );
@@ -74,7 +74,7 @@ function ImagePicker( props ) {
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
-				url: sizes?.[ imageSize ]?.url || url,
+				src: sizes?.[ imageSize ]?.url || url,
 				alt,
 				media,
 			} );

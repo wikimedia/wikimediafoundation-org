@@ -25,7 +25,7 @@ export const useImageSize = ( id, size, onChange = noop ) => {
 			onChange( {
 				id,
 				alt: media?.alt,
-				url,
+				src: url,
 				media,
 			} );
 		}
@@ -33,7 +33,7 @@ export const useImageSize = ( id, size, onChange = noop ) => {
 
 	return {
 		alt: media?.alt,
-		url,
+		src: url,
 		media,
 	};
 };
