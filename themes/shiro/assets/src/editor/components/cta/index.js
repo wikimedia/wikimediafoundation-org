@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -5,6 +6,7 @@ import { RichText } from '@wordpress/block-editor';
 import { withFocusOutside } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import './style.scss';
 import URLPicker from '../url-picker';
 
 /**
@@ -52,17 +54,34 @@ const CtaWithFocusOutside = withFocusOutside(
 						url={ url }
 						onChangeLink={ onChangeLink }
 					/>
-					<RichText
+					<div className={
+						classNames(
+							'call-to-action-wrapper',
+							{ 'call-to-action--no-url': ! url }
+						)
+					}>
+						<RichText
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
-						allowedFormats={ [] }
-						className={ className }
-						placeholder={ __( 'Call to action', 'shiro' ) }
-						tagName="div"
-						value={ text }
-						onChange={ onChangeText }
-						onFocus={ () => this.setState( { showButtons: true } ) }
-					/>
+							allowedFormats={ [] }
+							className={
+								classNames(
+									'call-to-action',
+									className
+								)
+							}
+							placeholder={ __( 'Call to action', 'shiro' ) }
+							tagName="div"
+							value={ text }
+							onChange={ onChangeText }
+							onFocus={ () => this.setState( { showButtons: true } ) }
+						/>
+						{ ! url && <div className={ 'call-to-action__warning' }>
+							<span aria-label={ __( 'Warning', 'shiro' ) } role={ 'img' }>⚠️</span>
+						&nbsp;
+							<span>{ __( 'Add a URL to this CTA', 'shiro' ) }</span>
+						</div> }
+					</div>
 				</>
 			);
 		}

@@ -1,0 +1,17 @@
+// Editor-specific styles for landing page hero block.
+.hero {
+	&__button-controls {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	&__call-to-action {
+		margin-right: 10px !important;
+
+		// stylelint-disable-next-line selector-class-pattern
+		+ .block-editor-url-input__button {
+			color: #222 !important; // Override text color from block styles.
+			overflow: visible;
+		}
+	}
+}
