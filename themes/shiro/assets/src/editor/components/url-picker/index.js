@@ -4,6 +4,8 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { rawShortcut, displayShortcut } from '@wordpress/keycodes';
 
+import './style.scss';
+
 /**
  * For selecting URLs in the Toolbar, like in core/button.
  * (In fact it's largely swiped from the core/button code.)
@@ -60,6 +62,7 @@ function URLPicker( {
 				<ToolbarGroup>
 					{ ! urlIsSet && (
 						<ToolbarButton
+							className="url-picker__link-button"
 							icon="admin-links"
 							name="link"
 							shortcut={ displayShortcut.primary( 'k' ) }
@@ -69,6 +72,7 @@ function URLPicker( {
 					) }
 					{ urlIsSetandSelected && (
 						<ToolbarButton
+							className="url-picker__link-button"
 							icon="editor-unlink"
 							isActive
 							name="link"
