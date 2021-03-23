@@ -11,7 +11,7 @@ const BLOCKS_TEMPLATE = [
 		content: __( 'Get email updates', 'shiro' ),
 		level: 3,
 	} ],
-	[ 'core/paragraph', { content: __( 'Subscribe to news about ongoing projects and initiatives', 'kps' ) } ],
+	[ 'core/paragraph', { content: __( 'Subscribe to news about ongoing projects and initiatives', 'shiro' ) } ],
 ];
 
 const iconUrl = shiroEditorVariables.themeUrl + '/assets/dist/icons.svg#email';
