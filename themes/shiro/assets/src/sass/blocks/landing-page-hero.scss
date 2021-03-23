@@ -68,6 +68,7 @@
 			$color-primary--hover,
 			$color-primary--active,
 			$color-primary--focus,
+			$wmui-color-base100,
 		);
 
 		color: $wmui-color-base100;
@@ -83,6 +84,7 @@
 				$background-color-framed--hover,
 				$background-color-framed--active-alternative,
 				$background-color-framed--focus,
+				$color-base,
 			);
 
 			&:active {
