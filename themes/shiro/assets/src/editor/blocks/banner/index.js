@@ -11,48 +11,11 @@ import { __ } from '@wordpress/i18n';
 
 import Cta from '../../components/cta/index';
 import ImagePicker from '../../components/image-picker/index.js';
+import sharedStyles from '../../helpers/block-styles';
 import './style.scss';
 
 export const name = 'shiro/banner',
-	styles = [
-		{
-			name: 'light',
-			label: __( 'Light', 'shiro' ),
-			isDefault: true,
-		},
-		{
-			name: 'gray',
-			label: __( 'Gray', 'shiro' ),
-		},
-		{
-			name: 'dark',
-			label: __( 'Dark', 'shiro' ),
-		},
-		{
-			name: 'blue-fade',
-			label: __( 'Blue - Faded', 'shiro' ),
-		},
-		{
-			name: 'blue-vibrant',
-			label: __( 'Blue - Vibrant', 'shiro' ),
-		},
-		{
-			name: 'red-fade',
-			label: __( 'Red - Faded', 'shiro' ),
-		},
-		{
-			name: 'red-vibrant',
-			label: __( 'Red - Vibrant', 'shiro' ),
-		},
-		{
-			name: 'yellow-fade',
-			label: __( 'Yellow - Faded', 'shiro' ),
-		},
-		{
-			name: 'yellow-vibrant',
-			label: __( 'Yellow - Vibrant', 'shiro' ),
-		},
-	];
+	styles = sharedStyles;
 
 export const settings = {
 	title: __( 'Banner', 'shiro' ),

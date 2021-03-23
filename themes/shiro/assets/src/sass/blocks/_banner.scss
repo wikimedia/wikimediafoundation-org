@@ -2,6 +2,12 @@
 	display: flex;
 	flex-direction: column-reverse;
 	min-width: 100%;
+	// Default style is the "light" (Base90) style.
+	--background-color: #{$wmui-color-base90};
+	--text-color: #{$wmui-color-base0};
+	--accent-color: #{$wmui-color-base0};
+	background-color: var(--background-color);
+	color: var(--text-color);
 
 	&__image,
 	&__content {
@@ -51,8 +57,8 @@
 
 		color: $wmui-color-base100;
 
-		.is-style-blue-vibrant &,
-		.is-style-red-vibrant & {
+		.is-style-blue50 &,
+		.is-style-red50 & {
 			border: 1px solid $border-color-base;
 			color: $color-base--emphasized;
 
@@ -100,53 +106,6 @@
 			padding-bottom: 0;
 			overflow: hidden;
 		}
-	}
-
-	/** Background Colors */
-
-	&.is-style-light {
-		background-color: $wmui-color-base90;
-		color: #000;
-	}
-
-	&.is-style-gray {
-		background-color: $wmui-color-base70;
-		color: #000;
-	}
-
-	&.is-style-dark {
-		background-color: $wmui-color-base0;
-		color: #fff;
-	}
-
-	&.is-style-blue-fade {
-		background-color: $wmui-color-accent90;
-		color: #000;
-	}
-
-	&.is-style-blue-vibrant {
-		background-color: $wmui-color-accent50;
-		color: #fff;
-	}
-
-	&.is-style-red-fade {
-		background-color: $wmui-color-red90;
-		color: #000;
-	}
-
-	&.is-style-red-vibrant {
-		background-color: $wmui-color-red50;
-		color: #fff;
-	}
-
-	&.is-style-yellow-fade {
-		background-color: $wmui-color-yellow90;
-		color: #000;
-	}
-
-	&.is-style-yellow-vibrant {
-		background-color: $wmui-color-yellow50;
-		color: #000;
 	}
 }
 
