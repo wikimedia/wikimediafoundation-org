@@ -34,7 +34,7 @@ function URLPicker( {
 	 * Handle removing url (unsetting link) and closing url entry interface.
 	 */
 	const removeLink = () => {
-		onChangeLink( { url: undefined } );
+		onChangeLink( undefined );
 		setIsURLPickerOpen( false );
 	};
 	const linkControl = ( isURLPickerOpen || urlIsSetandSelected ) && (
