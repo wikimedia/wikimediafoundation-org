@@ -108,10 +108,10 @@ export const settings = {
 			className: 'banner',
 		} );
 
-		const onImageChange = useCallback( ( { id, url, alt } ) => {
+		const onImageChange = useCallback( ( { id, src, alt } ) => {
 			setAttributes( {
 				imageID: id,
-				imageSrc: url,
+				imageSrc: src,
 				imageAlt: alt,
 			} );
 		}, [ setAttributes ] );
@@ -129,46 +129,44 @@ export const settings = {
 		}, [ setAttributes ] );
 
 		return (
-			<>
-				<div { ...blockProps } >
-					<div className="banner__content">
-						<RichText
-							allowedFormats={ [ 'core/bold', 'core/italic' ] }
-							className="banner__heading"
-							keepPlaceholderOnFocus
-							placeholder={ __( 'Heading for banner', 'shiro' ) }
-							tagName="h4"
-							value={ heading }
-							onChange={ heading => setAttributes( { heading } ) }
-						/>
-						<RichText
-							allowedFormats={ [ 'core/bold', 'core/italic' ] }
-							className="banner__text"
-							placeholder={ __( 'Enter the message for this banner.', 'shiro' ) }
-							tagName="p"
-							value={ text }
-							onChange={ text => setAttributes( { text } ) }
-						/>
-						<Cta
-							className={ 'banner__cta' }
-							text={ buttonText }
-							url={ url }
-							onChangeLink={ onChangeLink }
-							onChangeText={ onChangeText }
-						/>
-					</div>
-					<figure
-						className={ 'banner__imageWrapper' } >
-						<ImagePicker
-							className={ 'banner__image' }
-							id={ imageID }
-							imageSize={ 'medium_large' }
-							src={ imageSrc }
-							onChange={ onImageChange }
-						/>
-					</figure>
+			<div { ...blockProps } >
+				<div className="banner__content">
+					<RichText
+						allowedFormats={ [ 'core/bold', 'core/italic' ] }
+						className="banner__heading is-style-h4"
+						keepPlaceholderOnFocus
+						placeholder={ __( 'Heading for banner', 'shiro' ) }
+						tagName="h2"
+						value={ heading }
+						onChange={ heading => setAttributes( { heading } ) }
+					/>
+					<RichText
+						allowedFormats={ [ 'core/bold', 'core/italic' ] }
+						className="banner__text"
+						placeholder={ __( 'Enter the message for this banner.', 'shiro' ) }
+						tagName="p"
+						value={ text }
+						onChange={ text => setAttributes( { text } ) }
+					/>
+					<Cta
+						className={ 'banner__cta' }
+						text={ buttonText }
+						url={ url }
+						onChangeLink={ onChangeLink }
+						onChangeText={ onChangeText }
+					/>
 				</div>
-			</>
+				<figure
+					className={ 'banner__image-wrapper' } >
+					<ImagePicker
+						className={ 'banner__image' }
+						id={ imageID }
+						imageSize={ 'medium_large' }
+						src={ imageSrc }
+						onChange={ onImageChange }
+					/>
+				</figure>
+			</div>
 		);
 	},
 
@@ -210,7 +208,7 @@ export const settings = {
 					/>
 				</div>
 				<figure
-					className={ 'banner__imageWrapper' } >
+					className={ 'banner__image-wrapper' } >
 					<ImagePicker.Content
 						alt={ imageAlt }
 						className={ 'banner__image' }
