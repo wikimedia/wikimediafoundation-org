@@ -25,3 +25,8 @@ $color-primary--focus:  $color-primary;
 $width-breakpoint-tablet: 768px;
 $width-breakpoint-desktop: 1060px;
 
+// Gutenberg uses different breakpoints for columns. To adjust based on these,
+// define those breakpoints here.
+$core-gutenberg-break-medium: 782px;
+$core-gutenberg-break-small: 600px;
+$wm-column-gutter: 20px;

@@ -17,6 +17,15 @@
 	&__input-container {
 		display: flex;
 		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
+
+	&__column-input {
+		width: 100%;
+	}
+
+	&__column-button {
+		margin-top: 8px;
 	}
 
 	&__input-field {
@@ -29,17 +38,24 @@
 		border-radius: $border-radius-base;
 	}
 
-	&__column-input {
-		flex-basis: 66%;
-	}
-
-	&__column-button {
-		margin-left: 8px;
-		flex-basis: 33%;
-	}
-
 	// Override too specific selector
 	.has-small-font-size {
 		@extend .has-small-font-size;
+	}
+
+	@media (min-width: #{ ($width-breakpoint-desktop) }) {
+		&__input-container {
+			flex-wrap: nowrap;
+		}
+
+		&__column-input {
+			flex-basis: 66%;
+		}
+
+		&__column-button {
+			margin-top: 0;
+			margin-left: 8px;
+			flex-basis: 33%;
+		}
 	}
 }
