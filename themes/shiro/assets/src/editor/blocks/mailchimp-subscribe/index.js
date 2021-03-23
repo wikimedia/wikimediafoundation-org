@@ -21,6 +21,8 @@ export const
 	settings = {
 		apiVersion: 2,
 
+		icon: 'email',
+
 		title: __( 'Mailchimp subscription form', 'shiro' ),
 
 		attributes: {
