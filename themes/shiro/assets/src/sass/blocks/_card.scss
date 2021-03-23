@@ -1,8 +1,12 @@
 .new-card {
 	border: 1px solid $wmui-color-base80;
 	border-radius: 5px;
-	height: 100%;
 	position: relative;
+	transition: 0.3s box-shadow;
+
+	&:only-child {
+		height: 100%;
+	}
 
 	&:hover {
 		cursor: pointer;
@@ -10,8 +14,8 @@
 	}
 
 	&__contents {
-		// 22 extra to make room for the absolutely positioned call to action
-		padding: rem(20) rem(20) rem(20 + 22);
+		// 28 extra to make room for the absolutely positioned call to action
+		padding: rem(20) rem(20) rem(20 + 28);
 	}
 
 	&__cta {
@@ -33,7 +37,7 @@
 	@include wysiwyg {
 		.new-card {
 			&__heading {
-				margin-bottom: 0;
+				margin-bottom: rem(4);
 			}
 		}
 	}
