@@ -2,7 +2,6 @@
 	position: relative;
 	margin-bottom: 50px;
 	margin-left: unset;
-	max-width: 500px;
 
 	@media (min-width: $medium-bp) {
 		flex: 0 1 calc( 50% - 20px );
