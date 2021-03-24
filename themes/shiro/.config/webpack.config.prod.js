@@ -15,7 +15,7 @@ module.exports = presets.production( {
 	},
 	plugins: [
 		clean( {
-			cleanOnceBeforeBuildPatterns: [ '*', '!editor-styles.css' ],
+			cleanOnceBeforeBuildPatterns: [ '*' ],
 		} ),
 		miniCssExtract( {
 			filename: './[name]-[chunkhash].css',
