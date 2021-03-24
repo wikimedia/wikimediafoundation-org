@@ -5,9 +5,9 @@
 	// Default style is the "light" (Base90) style.
 	--background-color: #{$wmui-color-base90};
 	--text-color: #{$wmui-color-base0};
-	--accent-color: #{$wmui-color-base0};
-	background-color: var(--background-color);
-	color: var(--text-color);
+
+	@include block-style-background-color;
+	@include block-style-text-color;
 
 	&__image,
 	&__content {
