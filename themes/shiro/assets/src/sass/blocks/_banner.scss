@@ -25,7 +25,7 @@
 
 	&__heading {
 		min-width: 100%;
-		margin-bottom: ( 17 / 16 ) * 1rem;
+		margin-bottom: rem(17);
 	}
 
 	&__image {
@@ -87,13 +87,13 @@
 
 		&__content {
 			width: 66.666%;
-			padding-top: ( 23 / 16 ) * 1rem;
-			padding-bottom: ( 26 / 16 ) * 1rem;
-			padding-left: ( 30 / 16 ) * 1rem;
-			padding-right: ( 30 / 16 ) * 1rem;
+			padding-top: rem(23);
+			padding-bottom: rem(26);
+			padding-left: rem(30);
+			padding-right: rem(30);
 
 			p {
-				margin-bottom: ( 26 / 16 ) * 1rem;
+				padding-bottom: rem(26);
 			}
 		}
 
