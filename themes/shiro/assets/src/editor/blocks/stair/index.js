@@ -61,11 +61,11 @@ export const
 			const blockProps = useBlockProps( { className: 'stair' } );
 			const { imageId, imageUrl, content, linkText, linkUrl, heading } = attributes;
 
-			const onChange = useCallback( ( { id, alt, url } ) => {
+			const onChange = useCallback( ( { id, alt, src } ) => {
 				setAttributes( {
 					imageId: id,
 					imageAlt: alt,
-					imageUrl: url,
+					imageUrl: src,
 				} );
 			}, [ setAttributes ] );
 
