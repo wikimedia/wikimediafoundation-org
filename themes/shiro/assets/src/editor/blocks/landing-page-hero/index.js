@@ -193,7 +193,7 @@ export const settings = {
 						/>
 						{ buttonLink && (
 							<a
-								className="hero__cta cta-button"
+								className="hero__call-to-action cta-button"
 								href={ buttonLink }
 							>
 								{ buttonText }
