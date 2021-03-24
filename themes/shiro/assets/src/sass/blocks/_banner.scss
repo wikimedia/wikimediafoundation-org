@@ -1,7 +1,8 @@
 .banner {
 	display: flex;
 	flex-direction: column-reverse;
-	min-width: 100%;
+	width: 100%;
+
 	// Default style is the "light" (Base90) style.
 	--background-color: #{$wmui-color-base90};
 	--text-color: #{$wmui-color-base0};
