@@ -7,9 +7,12 @@ body {
 $block-padding: 40px;
 
 .block-editor-block-list__layout.is-root-container > .wp-block {
-	max-width: rem(strip-px($content-column + 2 * $block-padding));
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, strip-px($block-padding / 2), 0, strip-px($block-padding));
+}
+
+.block-editor-block-list__layout > .wp-block {
+	max-width: rem(strip-px($content-column + 2 * $block-padding));
 
 	.has-background,
 	&.has-background {
