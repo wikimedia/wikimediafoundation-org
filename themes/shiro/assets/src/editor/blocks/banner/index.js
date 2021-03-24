@@ -29,10 +29,6 @@ export const settings = {
 		'shiro'
 	),
 
-	supports: {
-		align: [ 'wide', 'full' ],
-	},
-
 	attributes: {
 		imageID: {
 			type: 'integer',
