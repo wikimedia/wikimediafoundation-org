@@ -149,7 +149,7 @@ export const settings = {
 						onChange={ text => setAttributes( { text } ) }
 					/>
 					<Cta
-						className={ 'banner__cta' }
+						className="banner__cta"
 						text={ buttonText }
 						url={ url }
 						onChangeLink={ onChangeLink }
@@ -157,9 +157,9 @@ export const settings = {
 					/>
 				</div>
 				<figure
-					className={ 'banner__image-wrapper' } >
+					className="banner__image-wrapper" >
 					<ImagePicker
-						className={ 'banner__image' }
+						className="banner__image"
 						id={ imageID }
 						imageSize={ 'medium_large' }
 						src={ imageSrc }
@@ -208,10 +208,10 @@ export const settings = {
 					/>
 				</div>
 				<figure
-					className={ 'banner__image-wrapper' } >
+					className="banner__image-wrapper" >
 					<ImagePicker.Content
 						alt={ imageAlt }
-						className={ 'banner__image' }
+						className="banner__image"
 						id={ imageID }
 						imageSize={ 'medium_large' }
 						src={ imageSrc }
