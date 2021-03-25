@@ -15,6 +15,7 @@ function bootstrap() {
 	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
 }
 
 /**
@@ -161,5 +162,23 @@ function enqueue_block_editor_assets() {
 		[
 			'handle' => 'shiro_editor_css',
 		]
+	);
+}
+
+/**
+ * Add categories relevant to Wikimedia
+ *
+ * @param array $categories Original categories
+ * @return array Modified categories
+ */
+function add_block_categories( $categories ) {
+	return array_merge(
+		array(
+			array(
+				'slug' => 'wikimedia',
+				'title' => __( 'Wikimedia', 'shiro' ),
+			),
+		),
+		$categories
 	);
 }
