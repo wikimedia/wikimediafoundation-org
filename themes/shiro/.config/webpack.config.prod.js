@@ -1,7 +1,7 @@
-const { helpers, externals, presets } = require( '@humanmade/webpack-helpers' );
+const { helpers, externals, plugins, presets } = require( '@humanmade/webpack-helpers' );
 const { filePath } = helpers;
+const { copy, clean, manifest, miniCssExtract } = plugins;
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
-const CopyPlugin = require( 'copy-webpack-plugin' );
 
 module.exports = presets.production( {
 	externals,
@@ -9,17 +9,24 @@ module.exports = presets.production( {
 		editor: filePath( 'assets/src/editor/index.js' ),
 	},
 	output: {
-		path: filePath( 'assets/dist' )
+		path: filePath( 'assets/dist' ),
+		filename: './[name]-[chunkhash].js',
 	},
 	plugins: [
+		clean( {
+			cleanOnceBeforeBuildPatterns: [ '*' ],
+		} ),
+		miniCssExtract( {
+			filename: './[name]-[chunkhash].css',
+		} ),
 		new WebpackRTLPlugin(),
-		new CopyPlugin({
+		copy( {
 			patterns: [
 				{ from: filePath( 'assets/src/fonts' ), to: filePath( 'assets/dist/fonts' ) },
 				{ from: filePath( 'assets/src/admin-copy' ), to: filePath( 'assets/dist/admin' ) },
 				{ from: filePath( 'assets/src/images' ), to: filePath( 'assets/dist/images' ) },
 				{ from: filePath( 'assets/src/libs' ), to: filePath( 'assets/dist' ) }
 			]
-		}),
+		} ),
 	]
 } );
