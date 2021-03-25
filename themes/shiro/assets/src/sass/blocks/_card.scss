@@ -5,6 +5,7 @@
 	transition: 0.3s box-shadow;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 
 	&:only-child {
 		height: 100%;
@@ -12,10 +13,6 @@
 
 	&:hover {
 		box-shadow: 0 0 20px 5px rgba($color-base--active, 0.15);
-	}
-
-	&__image {
-		border-radius: 4px;
 	}
 
 	&__contents {
