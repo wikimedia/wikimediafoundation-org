@@ -67,7 +67,7 @@ export const
 								<RichText
 									allowedFormats={ [ 'core/bold', 'core/italic', 'core/image' ] }
 									className="wp-block-shiro-button"
-									tagName="button"
+									tagName="div"
 									value={ buttonText }
 									onChange={ buttonText => setAttributes( { buttonText } ) }
 								/>
