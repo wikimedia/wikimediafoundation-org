@@ -176,7 +176,7 @@ function add_block_categories( $categories ) {
 		array(
 			array(
 				'slug' => 'wikimedia',
-				'title' => __( 'Wikimedia', 'my-plugin' ),
+				'title' => __( 'Wikimedia', 'shiro' ),
 			),
 		),
 		$categories
