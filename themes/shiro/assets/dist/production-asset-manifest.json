@@ -1,6 +1,6 @@
 {
-  "editor.css": "editor.rtl.css",
-  "editor.js": "editor.js",
+  "editor.css": "./editor-6df7b5d78f960c480477.rtl.css",
+  "editor.js": "./editor-6df7b5d78f960c480477.js",
   "assets/src/admin-copy/admin.css": "admin/admin.css",
   "assets/src/admin-copy/customize-control.js": "admin/customize-control.js",
   "assets/src/libs/flickity-min.js": "flickity-min.js",
