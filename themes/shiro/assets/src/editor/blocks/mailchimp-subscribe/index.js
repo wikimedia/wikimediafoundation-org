@@ -43,7 +43,7 @@ export const
 		 * Render mailchimp subscribe for the editor
 		 */
 		edit: function MailChimpSubscribeEdit( { attributes, setAttributes } ) {
-			const blockProps = useBlockProps();
+			const blockProps = useBlockProps( { className: 'mailchimp-subscribe' } );
 			const { description, buttonText } = attributes;
 
 			return (
@@ -55,15 +55,15 @@ export const
 						<InnerBlocks
 							template={ BLOCKS_TEMPLATE }
 							templateLock={ false } />
-						<div className="wp-block-shiro-mailchimp-subscribe__input-container">
-							<div className="wp-block-shiro-mailchimp-subscribe__column-input">
+						<div className="mailchimp-subscribe__input-container">
+							<div className="mailchimp-subscribe__column-input">
 								<div
-									className="wp-block-shiro-mailchimp-subscribe__input-field"
+									className="mailchimp-subscribe__input-field"
 								>
 									{ __( 'Email address', 'shiro' ) }
 								</div>
 							</div>
-							<div className="wp-block-shiro-mailchimp-subscribe__column-button">
+							<div className="mailchimp-subscribe__column-button">
 								<RichText
 									allowedFormats={ [ 'core/bold', 'core/italic', 'core/image' ] }
 									className="wp-block-shiro-button"
@@ -88,7 +88,7 @@ export const
 		 * Render mailchimp subscribe for the frontend
 		 */
 		save: function MailChimpSubscribeSave( { attributes } ) {
-			const blockProps = useBlockProps.save();
+			const blockProps = useBlockProps.save( { className: 'mailchimp-subscribe' } );
 			const { description, buttonText } = attributes;
 
 			return (
@@ -99,13 +99,13 @@ export const
 						</RawHTML>
 					</svg>
 					<InnerBlocks.Content />
-					<div className="wp-block-shiro-mailchimp-subscribe__input-container">
+					<div className="mailchimp-subscribe__input-container">
 						<div
-							className="wp-block-shiro-mailchimp-subscribe__column-input"
+							className="mailchimp-subscribe__column-input"
 						>
 							<RawHTML>{ '<!-- input_field -->' }</RawHTML>
 						</div>
-						<div className="wp-block-shiro-mailchimp-subscribe__column-button">
+						<div className="mailchimp-subscribe__column-button">
 							<RichText.Content
 								className="wp-block-shiro-button"
 								tagName="button"
