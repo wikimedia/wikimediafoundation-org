@@ -67,6 +67,14 @@ p {
 	}
 }
 
+@mixin article-main-wrap {
+	$article-main: ".article-main" !default;
+
+	#{$article-main} & {
+		@content;
+	}
+}
+
 @include article-main {
 	p {
 

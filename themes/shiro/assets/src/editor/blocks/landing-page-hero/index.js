@@ -138,7 +138,7 @@ export const settings = {
 							imageSize="image_16x9_large"
 							src={ imageUrl }
 							onChange={
-								( { id: imageId, url: imageUrl } ) => {
+								( { id: imageId, src: imageUrl } ) => {
 									setAttributes( {
 										imageId,
 										imageUrl,
@@ -193,7 +193,7 @@ export const settings = {
 						/>
 						{ buttonLink && (
 							<a
-								className="hero__cta cta-button"
+								className="hero__call-to-action cta-button"
 								href={ buttonLink }
 							>
 								{ buttonText }
