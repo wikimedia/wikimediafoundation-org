@@ -66,15 +66,30 @@ $page_id = get_queried_object_id();
 								$lang_code = explode('/',$selected[0]['uri'])[3];
 							}
 						?>
-						<div class="language-dropdown" role="navigation">
-							<button aria-label="<?php echo esc_attr( $wmf_select_language_label ); ?>" aria-haspopup="listbox" aria-expanded="false">
-								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/language.svg" alt="" class="language-icon">
-								<span><?php echo esc_html($lang_code); ?></span>
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/down.svg" alt="" class="down-indicator">
-							</button>
+						<script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+						<script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+						<?php
+							$selected = array_reduce($wmf_translations, function($carry, $item) {
+								if (is_string($carry)) {
+									return $carry;
+								}
 
-							<div class="language-list">
+								return $item['selected'] ? esc_html( $item['shortname'] ) : null;
+							}, null);
+						?>
+						<div class="dropdown" x-data="{ open: false }">
+							<button class="dropdown__button" @click="open = !open">
+								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
+								<svg class="dropdown__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+									<title>
+										language
+									</title>
+									<path d="M20 18h-1.44a.61.61 0 0 1-.4-.12.81.81 0 0 1-.23-.31L17 15h-5l-1 2.54a.77.77 0 0 1-.22.3.59.59 0 0 1-.4.14H9l4.55-11.47h1.89zm-3.53-4.31L14.89 9.5a11.62 11.62 0 0 1-.39-1.24q-.09.37-.19.69l-.19.56-1.58 4.19zm-6.3-1.58a13.43 13.43 0 0 1-2.91-1.41 11.46 11.46 0 0 0 2.81-5.37H12V4H7.31a4 4 0 0 0-.2-.56C6.87 2.79 6.6 2 6.6 2l-1.47.5s.4.89.6 1.5H0v1.33h2.15A11.23 11.23 0 0 0 5 10.7a17.19 17.19 0 0 1-5 2.1q.56.82.87 1.38a23.28 23.28 0 0 0 5.22-2.51 15.64 15.64 0 0 0 3.56 1.77zM3.63 5.33h4.91a8.11 8.11 0 0 1-2.45 4.45 9.11 9.11 0 0 1-2.46-4.45z" fill="currentColor"/>
+								</svg>
+								<span class="dropdown__label"><?php echo $selected; ?></span>
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/down.svg" alt="" class="dropdown__state" :class="{ 'dropdown__state--open': open, 'dropdown__state--closed': !open }">
+							</button>
+							<div class="dropdown__content" :class="{ 'dropdown__content--open': open, 'dropdown__content--closed': !open }">
 								<ul role="listbox" id="lang-list" tabindex="-1">
 									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
 										<li>

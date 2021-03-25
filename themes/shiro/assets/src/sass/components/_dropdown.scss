@@ -1,0 +1,64 @@
+.dropdown {
+	&__button {
+		@include style-guide-button-reset();
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		padding: 6px 8px 6px 12px;
+		background-color: $wmui-color-base90;
+		border: 1px solid $wmui-color-base50;
+		box-sizing: border-box;
+		border-radius: 2px;
+		color: $wmui-color-base10;
+
+		&:hover {
+			background-color: $wmui-color-base100;
+		}
+
+		&:active,
+		&:focus {
+			outline: none;
+			border-width: 2px;
+			border-color: $wmui-color-accent50;
+			// These account for the increased width of the border
+			padding: 5px 7px 5px 11px;
+		}
+	}
+
+	&__icon {
+		margin-right: 6px;
+	}
+
+	&__label {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: rem( 14 );
+		margin-right: 9px;
+		// Hidden on mobile
+		display: none;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			display: inline-block;
+		}
+	}
+
+	&__content {
+		&--open {
+			display: flex;
+			flex-direction: column;
+		}
+		&--closed {
+			display: none;
+		}
+	}
+
+	&__state {
+		position: relative;
+		transform: rotate(0);
+
+		&--open {
+			transform: rotate(180deg);
+		}
+	}
+}
