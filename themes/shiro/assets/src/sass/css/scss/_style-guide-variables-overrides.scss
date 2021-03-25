@@ -18,6 +18,7 @@ $color-primary:         $wmui-color-blue50;
 $color-primary--hover:  lighten( $wmui-color-blue50, 3 );
 $color-primary--active: darken( $wmui-color-blue50, 25 );
 $color-primary--focus:  $color-primary;
+$color-secondary:       $wmui-color-red50;
 
 // Breakpoints are different than in Base UI. Tablet breakpoint excludes any
 // device smaller than an iPad, and the desktop breakpoint is based off the
