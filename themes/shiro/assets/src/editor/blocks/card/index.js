@@ -58,12 +58,12 @@ export const settings = {
 		linkText: {
 			type: 'string',
 			source: 'html',
-			selector: '.new-card__cta',
+			selector: '.new-card__call-to-action',
 		},
 		linkUrl: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.new-card__cta',
+			selector: '.new-card__call-to-action',
 			attribute: 'href',
 		},
 	},
