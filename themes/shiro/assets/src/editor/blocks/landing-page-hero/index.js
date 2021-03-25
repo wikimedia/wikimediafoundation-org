@@ -38,6 +38,8 @@ export const settings = {
 			title: __( 'We help everyone share in the sum of all knowledge', 'shiro' ),
 			pageIntro: __( 'We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains.', 'shiro' ),
 			imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
+			buttonText: 'Learn More',
+			buttonLink: 'https://wikimediafoundation.org/',
 		},
 	},
 
@@ -70,12 +72,12 @@ export const settings = {
 		buttonText: {
 			type: 'string',
 			source: 'html',
-			selector: '.hero__cta',
+			selector: '.hero__call-to-action',
 		},
 		buttonLink: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.hero__cta',
+			selector: '.hero__call-to-action',
 			attribute: 'href',
 		},
 		pageIntro: {
@@ -123,7 +125,7 @@ export const settings = {
 							onChange={ title => setAttributes( { title } ) }
 						/>
 						<Cta
-							className="hero__cta cta-button"
+							className="hero__call-to-action cta-button"
 							text={ buttonText }
 							url={ buttonLink }
 							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }
@@ -136,7 +138,7 @@ export const settings = {
 							imageSize="image_16x9_large"
 							src={ imageUrl }
 							onChange={
-								( { id: imageId, url: imageUrl } ) => {
+								( { id: imageId, src: imageUrl } ) => {
 									setAttributes( {
 										imageId,
 										imageUrl,
@@ -191,7 +193,7 @@ export const settings = {
 						/>
 						{ buttonLink && (
 							<a
-								className="hero__cta cta-button"
+								className="hero__call-to-action cta-button"
 								href={ buttonLink }
 							>
 								{ buttonText }
