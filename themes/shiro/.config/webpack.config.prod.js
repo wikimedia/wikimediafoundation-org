@@ -2,7 +2,6 @@ const { helpers, externals, plugins, presets } = require( '@humanmade/webpack-he
 const { filePath } = helpers;
 const { copy, clean, manifest, miniCssExtract } = plugins;
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
-const CopyPlugin = require( 'copy-webpack-plugin' );
 
 module.exports = presets.production( {
 	externals,
