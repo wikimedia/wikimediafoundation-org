@@ -1,4 +1,4 @@
-.new-card {
+.content-card {
 	border: 1px solid $wmui-color-base80;
 	border-radius: 4px;
 	position: relative;
@@ -51,7 +51,7 @@
 .page.has-blocks,
 .single.has-blocks {
 	@include wysiwyg {
-		.new-card {
+		.content-card {
 			&__heading {
 				margin-bottom: rem(4);
 				margin-left: 0;

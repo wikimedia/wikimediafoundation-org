@@ -36,34 +36,34 @@ export const settings = {
 		imageSrc: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.new-card__image',
+			selector: '.content-card__image',
 			attribute: 'src',
 		},
 		imageAlt: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.new-card__image',
+			selector: '.content-card__image',
 			attribute: 'alt',
 		},
 		heading: {
 			type: 'string',
 			source: 'html',
-			selector: '.new-card__heading',
+			selector: '.content-card__heading',
 		},
 		body: {
 			type: 'string',
 			source: 'html',
-			selector: '.new-card__body',
+			selector: '.content-card__body',
 		},
 		linkText: {
 			type: 'string',
 			source: 'html',
-			selector: '.new-card__call-to-action',
+			selector: '.content-card__call-to-action',
 		},
 		linkUrl: {
 			type: 'string',
 			source: 'attribute',
-			selector: '.new-card__call-to-action',
+			selector: '.content-card__call-to-action',
 			attribute: 'href',
 		},
 	},
@@ -72,7 +72,7 @@ export const settings = {
 	 * Edit component used to manage featured image and page intro.
 	 */
 	edit: function CardBlock( { attributes, setAttributes } ) {
-		const blockProps = useBlockProps( { className: 'new-card' } );
+		const blockProps = useBlockProps( { className: 'content-card' } );
 		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
 
 		const onSelectImage = useCallback( ( { id, url, alt } ) => {
@@ -85,9 +85,9 @@ export const settings = {
 
 		return (
 			<div { ...blockProps }>
-				<div className="new-card__contents">
+				<div className="content-card__contents">
 					<RichText
-						className="new-card__heading is-style-h3"
+						className="content-card__heading is-style-h3"
 						keepPlaceholderOnFocus
 						placeholder={ __( 'Heading of the card', 'shiro' ) }
 						tagName="h2"
@@ -95,7 +95,7 @@ export const settings = {
 						onChange={ heading => setAttributes( { heading } ) }
 					/>
 					<RichText
-						className="new-card__body has-small-font-size"
+						className="content-card__body has-small-font-size"
 						keepPlaceholderOnFocus
 						placeholder={ __( 'Body of the card', 'shiro' ) }
 						tagName="p"
@@ -103,7 +103,7 @@ export const settings = {
 						onChange={ body => setAttributes( { body } ) }
 					/>
 					<CallToActionPicker
-						className="new-card__call-to-action arrow-link"
+						className="content-card__call-to-action arrow-link"
 						text={ linkText }
 						url={ linkUrl }
 						onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
@@ -111,7 +111,7 @@ export const settings = {
 					/>
 				</div>
 				<ImagePicker
-					className="new-card__image"
+					className="content-card__image"
 					id={ imageId }
 					imageSize="image_16x9_small"
 					src={ imageSrc }
@@ -125,30 +125,30 @@ export const settings = {
 	 * Render the frontend representation of the card block.
 	 */
 	save: function Save( { attributes } ) {
-		const blockProps = useBlockProps.save( { className: 'new-card click-to-call-to-action' } );
+		const blockProps = useBlockProps.save( { className: 'content-card click-to-call-to-action' } );
 		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
 
 		return (
 			<div { ...blockProps }>
-				<div className="new-card__contents">
+				<div className="content-card__contents">
 					<RichText.Content
-						className="new-card__heading is-style-h3"
+						className="content-card__heading is-style-h3"
 						tagName="h2"
 						value={ heading }
 					/>
 					<RichText.Content
-						className="new-card__body has-small-font-size"
+						className="content-card__body has-small-font-size"
 						tagName="p"
 						value={ body }
 					/>
 					<CallToActionPicker.Content
-						className="new-card__call-to-action call-to-action"
+						className="content-card__call-to-action call-to-action"
 						text={ linkText }
 						url={ linkUrl }
 					/>
 				</div>
 				<ImagePicker.Content
-					className="new-card__image"
+					className="content-card__image"
 					id={ imageId }
 					imageSize="image_16x9_small"
 					src={ imageSrc }

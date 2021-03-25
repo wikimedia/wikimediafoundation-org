@@ -2,7 +2,7 @@
 @import "../../../sass/css/scss/variables";
 @import "../../../sass/css/scss/mixins";
 
-.new-card {
+.content-card {
 	.editor-styles-wrapper .block-editor-block-list__layout & {
 		&__body {
 			@include font-size(14, 12);
