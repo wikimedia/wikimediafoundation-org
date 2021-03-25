@@ -376,6 +376,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'viewBox' => true,
 				'width'   => true,
 				'height'  => true,
+				'class'   => true,
 			],
 			'rect' => [
 				'fill'   => true,
@@ -383,6 +384,9 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'height' => true,
 				'x'      => true,
 				'y'      => true,
+			],
+			'use' => [
+				'xlink:href' => true,
 			],
 		]
 	);
