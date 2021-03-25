@@ -48,6 +48,8 @@ export const name = 'shiro/blog-post-heading';
 export const settings = {
 	title: __( 'Post Heading controls', 'shiro' ),
 
+	category: 'wikimedia',
+
 	icon: 'cover-image',
 
 	description: __(

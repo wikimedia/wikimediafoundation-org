@@ -25,6 +25,8 @@ export const settings = {
 
 	title: __( 'Landing page hero', 'shiro' ),
 
+	category: 'wikimedia',
+
 	icon: 'cover-image',
 
 	description: __(
