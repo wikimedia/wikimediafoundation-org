@@ -85,13 +85,6 @@ export const settings = {
 
 		return (
 			<div { ...blockProps }>
-				<ImagePicker
-					className="new-card__image"
-					id={ imageId }
-					imageSize="image_16x9_small"
-					src={ imageSrc }
-					onChange={ onSelectImage }
-				/>
 				<div className="new-card__contents">
 					<RichText
 						className="new-card__heading is-style-h3"
@@ -117,6 +110,13 @@ export const settings = {
 						onChangeText={ linkText => setAttributes( { linkText } ) }
 					/>
 				</div>
+				<ImagePicker
+					className="new-card__image"
+					id={ imageId }
+					imageSize="image_16x9_small"
+					src={ imageSrc }
+					onChange={ onSelectImage }
+				/>
 			</div>
 		);
 	},
@@ -130,12 +130,6 @@ export const settings = {
 
 		return (
 			<div { ...blockProps }>
-				<ImagePicker.Content
-					className="new-card__image"
-					id={ imageId }
-					imageSize="image_16x9_small"
-					src={ imageSrc }
-				/>
 				<div className="new-card__contents">
 					<RichText.Content
 						className="new-card__heading is-style-h3"
@@ -153,6 +147,12 @@ export const settings = {
 						url={ linkUrl }
 					/>
 				</div>
+				<ImagePicker.Content
+					className="new-card__image"
+					id={ imageId }
+					imageSize="image_16x9_small"
+					src={ imageSrc }
+				/>
 			</div>
 		);
 	},
