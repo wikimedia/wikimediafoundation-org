@@ -29,8 +29,8 @@
 	}
 
 	&__input-field {
-		// This calc guarantees the same size as a button.
-		padding: calc( 0.5rem - 1px ) 0.5rem;
+		// This calc guarantees the same size as a button. 8 (padding) - 1 (border) = 7.
+		padding: rem( 7 ) rem( 8 );
 
 		/* Base100 */
 		background: $background-color-base;

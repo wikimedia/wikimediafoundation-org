@@ -8,7 +8,7 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 	font-weight: bold;
 	border-radius: $border-radius-base;
 	cursor: pointer;
-	padding: 0.5rem 1.25rem;
+	padding: rem(8) rem(20);
 }
 
 @mixin style-guide-button(
