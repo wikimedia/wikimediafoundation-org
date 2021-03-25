@@ -11,7 +11,6 @@
 	}
 
 	&:hover {
-		cursor: pointer;
 		box-shadow: 0 0 20px 5px rgba($color-base--active, 0.15);
 	}
 
@@ -31,7 +30,7 @@
 		flex: 1;
 	}
 
-	&__cta {
+	&__call-to-action {
 		@include font-size(18, 18);
 
 		color: $color-blue;
@@ -39,6 +38,15 @@
 
 		&::after {
 			content: ' →' #{"/*rtl:'← '*/;"};
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
 		}
 	}
 }

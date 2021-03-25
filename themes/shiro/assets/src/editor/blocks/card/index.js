@@ -110,7 +110,7 @@ export const settings = {
 						onChange={ body => setAttributes( { body } ) }
 					/>
 					<CallToActionPicker
-						className="new-card__cta arrow-link"
+						className="new-card__call-to-action arrow-link"
 						text={ linkText }
 						url={ linkUrl }
 						onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
@@ -148,7 +148,7 @@ export const settings = {
 						value={ body }
 					/>
 					<CallToActionPicker.Content
-						className="new-card__cta call-to-action"
+						className="new-card__call-to-action call-to-action"
 						text={ linkText }
 						url={ linkUrl }
 					/>
