@@ -7,6 +7,7 @@ module.exports = presets.production( {
 	externals,
 	entry: {
 		editor: filePath( 'assets/src/editor/index.js' ),
+		shiro: filePath( 'assets/src/scripts/shiro.js' ),
 	},
 	output: {
 		path: filePath( 'assets/dist' ),
