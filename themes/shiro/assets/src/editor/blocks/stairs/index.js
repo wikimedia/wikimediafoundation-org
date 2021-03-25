@@ -18,6 +18,7 @@ export const
 	settings = {
 		apiVersion: 2,
 		title: __( 'Stairs', 'shiro' ),
+		category: 'wikimedia',
 		attributes: {},
 
 		/**
