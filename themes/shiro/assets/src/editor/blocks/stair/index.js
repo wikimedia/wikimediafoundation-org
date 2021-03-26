@@ -14,6 +14,7 @@ export const
 	settings = {
 		apiVersion: 2,
 		title: __( 'Stair', 'shiro' ),
+		category: 'wikimedia',
 		attributes: {
 			content: {
 				type: 'string',

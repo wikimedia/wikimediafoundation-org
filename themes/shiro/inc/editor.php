@@ -6,6 +6,7 @@
 namespace WMF\Editor;
 
 use Asset_Loader;
+use Asset_Loader\Manifest;
 
 /**
  * Bootstrap hooks relevant to the block editor.
@@ -15,6 +16,7 @@ function bootstrap() {
 	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
+	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
 }
 
 /**
@@ -133,11 +135,12 @@ function add_theme_supports() {
 }
 
 function enqueue_block_editor_assets() {
-	if ( ! function_exists( 'Asset_Loader\\enqueue_asset' ) ) {
-		return;
-	}
 
-	$manifest = get_stylesheet_directory() . '/assets/dist/asset-manifest.json';
+	// Use dev server if running, otherwise load from production asset manifest.
+	$manifest = Manifest\get_active_manifest( [
+		get_stylesheet_directory() . '/assets/dist/asset-manifest.json',
+		get_stylesheet_directory() . '/assets/dist/production-asset-manifest.json'
+	] );
 
 	Asset_Loader\enqueue_asset(
 		$manifest,
@@ -172,5 +175,23 @@ function enqueue_block_editor_assets() {
 		[
 			'handle' => 'shiro_editor_css',
 		]
+	);
+}
+
+/**
+ * Add categories relevant to Wikimedia
+ *
+ * @param array $categories Original categories
+ * @return array Modified categories
+ */
+function add_block_categories( $categories ) {
+	return array_merge(
+		array(
+			array(
+				'slug' => 'wikimedia',
+				'title' => __( 'Wikimedia', 'shiro' ),
+			),
+		),
+		$categories
 	);
 }

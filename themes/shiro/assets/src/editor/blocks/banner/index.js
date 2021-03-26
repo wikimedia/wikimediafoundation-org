@@ -20,6 +20,8 @@ export const name = 'shiro/banner',
 export const settings = {
 	title: __( 'Banner', 'shiro' ),
 
+	category: 'wikimedia',
+
 	apiVersion: 2,
 
 	icon: 'cover-image',
