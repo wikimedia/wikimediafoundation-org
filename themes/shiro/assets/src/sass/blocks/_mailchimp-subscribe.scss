@@ -4,11 +4,6 @@
 	border-radius: $border-radius-big;
 	padding: 1.5rem;
 
-	// Override gutter to reduce distance between text input and button
-	.wp-block-column:not(:first-child) {
-		margin-left: 0.5rem;
-	}
-
 	.icon {
 		width: 20px;
 		margin-left: 0;
@@ -32,7 +27,6 @@
 		// This calc guarantees the same size as a button. 8 (padding) - 1 (border) = 7.
 		padding: rem( 7 ) rem( 8 );
 
-		/* Base100 */
 		background: $background-color-base;
 		border: 1px solid $border-color-base;
 		border-radius: $border-radius-base;
@@ -49,13 +43,12 @@
 		}
 
 		&__column-input {
-			flex-basis: 66%;
+			flex: 1;
 		}
 
 		&__column-button {
 			margin-top: 0;
 			margin-left: 8px;
-			flex-basis: 33%;
 		}
 	}
 }
