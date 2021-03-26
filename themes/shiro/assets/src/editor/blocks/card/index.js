@@ -24,6 +24,8 @@ export const settings = {
 
 	title: __( 'Card', 'shiro' ),
 
+	category: 'wikimedia',
+
 	description: __(
 		'Card creates a call to action with an image, heading and paragraph.',
 		'shiro'
