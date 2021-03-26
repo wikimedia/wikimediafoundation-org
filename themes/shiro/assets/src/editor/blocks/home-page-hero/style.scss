@@ -1,0 +1,23 @@
+.editor-styles-wrapper.editor-styles-wrapper {
+	.hero-home {
+		&__header {
+		}
+
+		&__image-wrapper {
+			z-index: unset;
+
+			&--disable-animation {
+				animation-play-state: paused;
+			}
+		}
+
+		&__heading-wrapper {
+			z-index: 1;
+			position: relative;
+		}
+
+		&__heading {
+			font-weight: 700;
+		}
+	}
+}
