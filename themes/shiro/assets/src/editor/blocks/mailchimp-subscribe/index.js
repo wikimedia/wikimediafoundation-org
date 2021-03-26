@@ -25,6 +25,8 @@ export const
 
 		title: __( 'Mailchimp subscription form', 'shiro' ),
 
+		category: 'wikimedia',
+
 		attributes: {
 			action: {
 				type: 'string',
