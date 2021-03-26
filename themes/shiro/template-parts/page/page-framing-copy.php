@@ -22,4 +22,4 @@ $rand_translation = wmf_get_random_translation(
 
 $template_args['rand_translation_title'] = empty( $rand_translation['pre_heading'] ) ? '' : $rand_translation['pre_heading'];
 
-wmf_get_template_part( 'template-parts/modules/section/framing-copy', $template_args );
+get_template_part( 'template-parts/modules/section/framing-copy', null, $template_args );

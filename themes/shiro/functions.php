@@ -294,11 +294,6 @@ require get_template_directory() . '/inc/template-redirect.php';
 require get_template_directory() . '/inc/template-stories.php';
 
 /**
- * Add Template Data Helper.
- */
-require get_template_directory() . '/inc/classes/class-wmf-template-data.php';
-
-/**
  * Add Cache related functions.
  */
 require get_template_directory() . '/inc/cache.php';

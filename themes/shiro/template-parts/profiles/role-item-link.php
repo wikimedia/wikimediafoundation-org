@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$post_data = wmf_get_template_data();
+$post_data = $args;
 
 if ( empty( $post_data ) ) {
 	return;

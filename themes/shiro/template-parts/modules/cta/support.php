@@ -22,4 +22,4 @@ if ( empty( $template_args['link_uri'] ) || empty( $template_args['link_text'] )
 	return; // CTAs need links.
 }
 
-wmf_get_template_part( 'template-parts/modules/cta/page', $template_args );
+get_template_part( 'template-parts/modules/cta/page', null, $template_args );

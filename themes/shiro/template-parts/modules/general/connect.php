@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 $defaults = array(
 	// Headings.
@@ -126,7 +126,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 					<!-- Single link -->
 					<a class="arrow-link" href="<?php echo esc_url( $contact_link_href ); ?>" target="_blank"><?php echo esc_html( $contact_link_text ); ?></a>
 				<?php endif; ?>
-				<?php wmf_get_template_part( 'template-parts/modules/social/follow', $template_args, 'horizontal' ); ?>
+				<?php get_template_part( 'template-parts/modules/social/follow', 'horizontal', $template_args ); ?>
 			</div><!-- End .multi-use -->
 		</div>
 	</div>

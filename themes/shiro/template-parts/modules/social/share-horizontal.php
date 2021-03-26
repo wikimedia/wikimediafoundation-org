@@ -5,15 +5,15 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
-$services      = ! empty( $template_data['services'] ) ? $template_data['services'] : array( 'facebook', 'twitter' );
-$share_text    = isset( $template_data['title'] ) ? $template_data['title'] : get_theme_mod( 'wmf_social_share_text', __( 'Share', 'shiro' ) );
-
 $args = wp_parse_args(
 	array(
 		'uri' => wmf_get_current_url(),
-	), wmf_get_template_data()
+	), $args
 );
+
+$services      = ! empty( $args['services'] ) ? $args['services'] : array( 'facebook', 'twitter' );
+$share_text    = isset( $args['title'] ) ? $args['title'] : get_theme_mod( 'wmf_social_share_text', __( 'Share', 'shiro' ) );
+
 ?>
 
 <div class="social-share social-share-home">

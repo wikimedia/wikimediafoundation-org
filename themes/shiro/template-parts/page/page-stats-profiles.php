@@ -7,4 +7,4 @@
 
 $template_args = get_post_meta( get_the_ID(), 'stats_profiles', true );
 
-wmf_get_template_part( 'template-parts/modules/data-vis/stats-profiles', $template_args );
+get_template_part( 'template-parts/modules/data-vis/stats-profiles', null, $template_args );
