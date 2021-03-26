@@ -28,16 +28,17 @@ export const
 		category: 'wikimedia',
 
 		attributes: {
-			action: {
-				type: 'string',
-			},
 			description: {
+				source: 'html',
 				type: 'string',
 				default: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy.', 'shiro' ),
+				selector: '.mailchimp-subscribe__description',
 			},
 			buttonText: {
+				source: 'html',
 				type: 'string',
 				default: __( 'Subscribe', 'shiro' ),
+				selector: '.wp-block-shiro-button',
 			},
 		},
 
@@ -117,7 +118,7 @@ export const
 						</div>
 					</div>
 					<RichText.Content
-						className="has-base-30-color has-text-color has-small-font-size"
+						className="mailchimp-subscribe__description has-base-30-color has-text-color has-small-font-size"
 						tagName="p"
 						value={ description }
 					/>
