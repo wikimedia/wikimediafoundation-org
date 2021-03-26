@@ -19,13 +19,17 @@ function render_block( $block_attributes, $content ) {
 	$additional_fields = get_theme_mod( 'wmf_subscribe_additional_fields', '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">' );
 	$additional_fields = kses_input_fields( $additional_fields );
 
+	$input_placeholder = empty( $block_attributes['inputPlaceholder'] ) ?
+		__( 'Email address', 'shiro' ) :
+		$block_attributes['inputPlaceholder'];
+
 	$form_start = '<form action="' . esc_attr( $action ) . '" method="POST">';
 	$form_end   = '</form>';
 	$input_field = '<input' .
 	               ' class="mailchimp-subscribe__input-field"' .
 	               ' id="wmf-subscribe-input-email"' .
 	               ' name="EMAIL"' .
-	               ' placeholder="' . __( 'Email address', 'shiro' ) . '"' .
+	               ' placeholder="' . esc_attr( $input_placeholder ) . '"' .
 	               ' required=""' .
 	               ' type="email" />';
 

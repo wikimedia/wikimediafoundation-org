@@ -40,6 +40,10 @@ export const
 				default: __( 'Subscribe', 'shiro' ),
 				selector: '.wp-block-shiro-button',
 			},
+			inputPlaceholder: {
+				type: 'string',
+				default: __( 'Email address', 'shiro' ),
+			},
 		},
 
 		/**
@@ -47,7 +51,7 @@ export const
 		 */
 		edit: function MailChimpSubscribeEdit( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'mailchimp-subscribe' } );
-			const { description, buttonText } = attributes;
+			const { description, buttonText, inputPlaceholder } = attributes;
 
 			return (
 				<>
@@ -60,11 +64,13 @@ export const
 							templateLock={ false } />
 						<div className="mailchimp-subscribe__input-container">
 							<div className="mailchimp-subscribe__column-input">
-								<div
+								<RichText
+									allowedFormats={ [] }
 									className="mailchimp-subscribe__input-field"
-								>
-									{ __( 'Email address', 'shiro' ) }
-								</div>
+									tagName="div"
+									value={ inputPlaceholder }
+									onChange={ inputPlaceholder => setAttributes( { inputPlaceholder } ) }
+								/>
 							</div>
 							<div className="mailchimp-subscribe__column-button">
 								<RichText
