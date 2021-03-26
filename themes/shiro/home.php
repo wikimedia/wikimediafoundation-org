@@ -25,8 +25,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 ?>
 
-<div class="w-100p cta mod-margin-bottom cta-secondary img-left-content-right cta-news header-featured-news no-duotone">
-	<div class="mw-980">
+<div class="blog-list">
 
 	<?php
 	$post = get_post( $featured_post_id );
@@ -34,8 +33,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		setup_postdata( $post );
 		$featured_post_id = (int) $post->ID;
 		get_template_part(
-			'template-parts/modules/cards/card-featured',
-			null,
+			'template-parts/modules/cards/card',
+			'horizontal',
 			array(
 				'link'       => get_the_permalink(),
 				'image_id'   => get_post_thumbnail_id(),
@@ -44,51 +43,48 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				'date'       => get_the_date(),
 				'excerpt'    => get_the_excerpt(),
 				'categories' => get_the_category(),
+				'class'      => 'blog-post blog-post--featured',
 			)
 		);
 
 		wp_reset_postdata();
 	}
 	?>
-	</div>
-</div>
 
-<?php get_template_part( 'template-parts/category-list' ); ?>
+	<?php get_template_part( 'template-parts/category-list' ); ?>
 
-<div class="w-100p news-list-container news-card-list mod-margin-bottom">
-	<div class="mw-980">
-		<?php if ( have_posts() ) : ?>
-			<div class="card-list-container">
-			<?php
-			while ( have_posts() ) :
-				the_post();
+	<?php if ( have_posts() ) : ?>
+		<div class="card-list-container">
+		<?php
+		while ( have_posts() ) :
+			the_post();
 
-				if ( get_the_ID() === intval( $featured_post_id ) ) {
-					continue;
-				}
+			if ( get_the_ID() === intval( $featured_post_id ) ) {
+				continue;
+			}
 
-				get_template_part(
-					'template-parts/modules/cards/card-horizontal',
-					null,
-					array(
-						'link'       => get_the_permalink(),
-						'image_id'   => get_post_thumbnail_id(),
-						'title'      => get_the_title(),
-						'authors'    => wmf_byline(),
-						'date'       => get_the_date(),
-						'excerpt'    => get_the_excerpt(),
-						'categories' => get_the_category(),
-					)
-				);
-			endwhile;
-			?>
-			</div>
-			<?php
-		else :
-			get_template_part( 'template-parts/content', 'none' );
-		endif;
+			get_template_part(
+				'template-parts/modules/cards/card',
+				'horizontal',
+				array(
+					'link'       => get_the_permalink(),
+					'image_id'   => get_post_thumbnail_id(),
+					'title'      => get_the_title(),
+					'authors'    => wmf_byline(),
+					'date'       => get_the_date(),
+					'excerpt'    => get_the_excerpt(),
+					'categories' => get_the_category(),
+				)
+			);
+		endwhile;
 		?>
-	</div>
+		</div>
+		<?php
+	else :
+		get_template_part( 'template-parts/content', 'none' );
+	endif;
+	?>
+
 </div>
 
 <?php

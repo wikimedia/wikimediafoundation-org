@@ -1,0 +1,33 @@
+@mixin style-guide-link {
+
+	color: $color-primary;
+
+	&:hover {
+		color: $color-primary--hover;
+		text-decoration: underline;
+	}
+}
+
+@mixin style-guide-arrow-link {
+	@include has-font-size( 'default' );
+	@include style-guide-link;
+
+	font-weight: 700;
+	position: relative;
+
+	&::after {
+		content: ' →' #{"/*rtl:'← '*/;"};
+		color: $wmui-color-accent50;
+		position: absolute;
+		right: -1em; /*rtl: left: -1em;*/
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+}
