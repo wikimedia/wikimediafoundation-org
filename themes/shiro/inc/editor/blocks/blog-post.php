@@ -37,7 +37,7 @@ function register_block() {
 }
 
 /**
- * Render this block, given it's attributes.
+ * Render this block, given its attributes.
  *
  * @param [] $attributes Block attributes.
  * @return string HTML markup.
@@ -47,12 +47,12 @@ function render_block( $attributes ) {
 		return '';
 	}
 
-	$post = get_post( $attributes['post_id'] );
-	if ( ! $post || is_wp_error( $post ) ) {
-		return '';
-	}
+	global $post;
+	$backed_up_global_post = $post;
 
+	$post = get_post( $attributes['post_id'] );
 	setup_postdata( $post );
+
 	ob_start();
 
 	get_template_part(
@@ -66,10 +66,11 @@ function render_block( $attributes ) {
 			'date'       => get_the_date(),
 			'excerpt'    => get_the_excerpt(),
 			'categories' => get_the_category(),
-			'class'      => 'blog-post' . ( $attributes['is_featured'] ? ' blog-post--featured' : '' ),
+			'class'      => 'blog-post' . ( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ),
 		]
 	);
 
+	$post = $backed_up_global_post;
 	wp_reset_postdata();
 	return ob_get_clean();
 }
