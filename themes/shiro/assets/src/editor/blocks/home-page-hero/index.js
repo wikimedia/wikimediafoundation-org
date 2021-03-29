@@ -2,6 +2,7 @@
  * External dependencies
  */
 import classNames from 'classnames';
+import { isBoolean } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -10,7 +11,6 @@ import { RichText, useBlockProps, InspectorControls } from '@wordpress/block-edi
 import { Button, PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { isBoolean } from 'lodash';
 
 /**
  * Internal dependencies
