@@ -1,4 +1,5 @@
 .dropdown {
+	position: relative;
 	&__button {
 		@include style-guide-button-reset();
 		display: flex;
@@ -44,12 +45,12 @@
 	}
 
 	&__content {
+		display: none;
+		position: absolute;
+		border: 1px solid grey;
 		&--open {
 			display: flex;
 			flex-direction: column;
-		}
-		&--closed {
-			display: none;
 		}
 	}
 
