@@ -136,11 +136,7 @@ function add_theme_supports() {
 
 function enqueue_block_editor_assets() {
 
-	// Use dev server if running, otherwise load from production asset manifest.
-	$manifest = Manifest\get_active_manifest( [
-		get_stylesheet_directory() . '/assets/dist/asset-manifest.json',
-		get_stylesheet_directory() . '/assets/dist/production-asset-manifest.json'
-	] );
+	$manifest = \WMF\Assets\get_manifest_path();
 
 	Asset_Loader\enqueue_asset(
 		$manifest,

@@ -10,6 +10,9 @@
 require_once __DIR__ . '/inc/editor/patterns.php';
 \WMF\Editor\Patterns\bootstrap();
 
+// Loading this early so we'll have access to in when enqueuing
+require_once __DIR__ . '/inc/assets.php';
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -137,7 +140,14 @@ function wmf_scripts() {
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody', 'mm-polyfill', 'micromodal' ), $script_version, true );
-	wp_enqueue_script( 'shiro-modern', get_stylesheet_directory_uri() . '/assets/dist/shiro.js', array( 'shiro-script' ), '0.0.1', true);
+	Asset_Loader\enqueue_asset(
+		\WMF\Assets\get_manifest_path(),
+		'shiro.js',
+		[
+			'dependencies' => [],
+			'handle' => 'shiro-modern',
+		]
+	);
 
 	wp_localize_script(
 		'shiro-script', 'shiro', array(
