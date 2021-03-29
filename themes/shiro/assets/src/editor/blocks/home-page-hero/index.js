@@ -6,10 +6,11 @@ import classNames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
+import { RichText, useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { Button, PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { isBoolean } from 'lodash';
 
 /**
  * Internal dependencies
@@ -79,6 +80,11 @@ export const settings = {
 					source: 'attribute',
 					attribute: 'lang',
 				},
+				classNames: {
+					type: 'string',
+					source: 'attribute',
+					attribute: 'class',
+				},
 			},
 		},
 	},
@@ -96,6 +102,14 @@ export const settings = {
 
 		// This allows the user to 'delete' headings, by leaving them empty
 		rotatingHeadings = rotatingHeadings.filter( heading => ! RichText.isEmpty( heading.text ) );
+		rotatingHeadings = rotatingHeadings.map( heading => {
+			return {
+				...heading,
+				switchRtl: isBoolean( heading.switchRtl ) ?
+					heading.switchRtl :
+					( heading.classNames || '' ).includes( 'rtl-switch' ),
+			};
+		} );
 
 		const lastHeading = rotatingHeadings[ rotatingHeadings.length - 1 ];
 		if ( ! lastHeading || ! RichText.isEmpty( lastHeading.text ) ) {
@@ -106,6 +120,7 @@ export const settings = {
 
 		const blockProps = useBlockProps( { className: 'hero-home' } );
 		const [ showRotatingHeadings, setShowRotatingHeadings ] = useState( false );
+		const [ activeRotatingHeading, setActiveRotatingHeading ] = useState( null );
 
 		return (
 			<div { ...blockProps } >
@@ -174,11 +189,52 @@ export const settings = {
 												} ),
 											} );
 										} }
+										onFocus={ () => setActiveRotatingHeading( index ) }
 									/>
 								</div>
 							);
 						} ) }
 					</div>
+					{ activeRotatingHeading !== null && <InspectorControls>
+						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
+							<TextControl
+								label={ __( 'Language code', 'shiro' ) }
+								value={ rotatingHeadings[ activeRotatingHeading ].lang || '' }
+								onChange={ lang => {
+									setAttributes( {
+										rotatingHeadings: rotatingHeadings.map( ( headingAttributes, attributesIndex ) => {
+											if ( attributesIndex === activeRotatingHeading ) {
+												return {
+													...headingAttributes,
+													lang,
+												};
+											}
+
+											return headingAttributes;
+										} ),
+									} );
+								} }
+							/>
+							<ToggleControl
+								checked={ rotatingHeadings[ activeRotatingHeading ].switchRtl || false }
+								label={ __( 'Switch text direction for this heading', 'rtl' ) }
+								onChange={ switchRtl => {
+									setAttributes( {
+										rotatingHeadings: rotatingHeadings.map( ( headingAttributes, attributesIndex ) => {
+											if ( attributesIndex === activeRotatingHeading ) {
+												return {
+													...headingAttributes,
+													switchRtl,
+												};
+											}
+
+											return headingAttributes;
+										} ),
+									} );
+								} }
+							/>
+						</PanelBody>
+					</InspectorControls> }
 				</header>
 			</div>
 		);
@@ -200,6 +256,14 @@ export const settings = {
 		} = attributes;
 
 		rotatingHeadings = rotatingHeadings.filter( heading => ! RichText.isEmpty( heading.text ) );
+		rotatingHeadings = rotatingHeadings.map( heading => {
+			return {
+				...heading,
+				switchRtl: isBoolean( heading.switchRtl ) ?
+					heading.switchRtl :
+					( heading.classNames || '' ).includes( 'rtl-switch' ),
+			};
+		} );
 
 		const blockProps = useBlockProps.save( { className: 'hero-home' } );
 
@@ -225,7 +289,11 @@ export const settings = {
 								return (
 									<RichText.Content
 										key={ index }
-										className="hero-home__rotating-heading hero-home__rotating-heading--hidden"
+										className={ classNames( {
+											'hero-home__rotating-heading hero-home__rotating-heading--hidden': true,
+											'rtl-switch': heading.switchRtl || false,
+										} ) }
+										lang={ heading.lang }
 										tagName="h1"
 										value={ heading.text }
 									/>
