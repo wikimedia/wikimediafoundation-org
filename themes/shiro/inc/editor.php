@@ -6,7 +6,7 @@
 namespace WMF\Editor;
 
 use Asset_Loader;
-use Asset_Loader\Manifest;
+use WMF\Assets;
 
 /**
  * Bootstrap hooks relevant to the block editor.
@@ -136,7 +136,7 @@ function add_theme_supports() {
 
 function enqueue_block_editor_assets() {
 
-	$manifest = \WMF\Assets\get_manifest_path();
+	$manifest = Assets\get_manifest_path();
 
 	Asset_Loader\enqueue_asset(
 		$manifest,
