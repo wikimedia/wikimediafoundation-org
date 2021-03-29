@@ -66,6 +66,12 @@ export const settings = {
 			source: 'html',
 			selector: '.hero-home__heading',
 		},
+		mainLang: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.hero-home__heading',
+			attribute: 'lang',
+		},
 		rotatingHeadings: {
 			type: 'array',
 			source: 'query',
@@ -97,6 +103,7 @@ export const settings = {
 			imageId,
 			imageUrl,
 			heading,
+			mainLang,
 		} = attributes;
 		let { rotatingHeadings }  = attributes;
 
@@ -154,6 +161,7 @@ export const settings = {
 								tagName="div"
 								value={ heading }
 								onChange={ heading => setAttributes( { heading } ) }
+								onFocus={ () => setActiveRotatingHeading( null ) }
 							/>
 						</div>
 						<Button
@@ -195,7 +203,16 @@ export const settings = {
 							);
 						} ) }
 					</div>
-					{ activeRotatingHeading !== null && <InspectorControls>
+					{ activeRotatingHeading === null && ( <InspectorControls>
+						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
+							<TextControl
+								label={ __( 'Language code', 'shiro' ) }
+								value={ mainLang || '' }
+								onChange={ mainLang => setAttributes( { mainLang } ) }
+							/>
+						</PanelBody>
+					</InspectorControls> ) }
+					{ activeRotatingHeading !== null && ( <InspectorControls>
 						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
 							<TextControl
 								label={ __( 'Language code', 'shiro' ) }
@@ -234,7 +251,7 @@ export const settings = {
 								} }
 							/>
 						</PanelBody>
-					</InspectorControls> }
+					</InspectorControls> ) }
 				</header>
 			</div>
 		);
@@ -250,6 +267,7 @@ export const settings = {
 			imageUrl,
 			imageAlt,
 			heading,
+			mainLang,
 		} = attributes;
 		let {
 			rotatingHeadings,
@@ -282,6 +300,7 @@ export const settings = {
 						<div className="hero-home__heading-color">
 							<RichText.Content
 								className="hero-home__heading"
+								lang={ mainLang }
 								tagName="h1"
 								value={ heading }
 							/>
