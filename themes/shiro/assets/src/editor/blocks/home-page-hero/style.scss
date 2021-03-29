@@ -17,6 +17,7 @@
 		&__heading-wrapper {
 			z-index: 1;
 			position: relative;
+			padding-top: 4rem;
 		}
 
 		&__heading,
@@ -34,7 +35,14 @@
 		}
 
 		&__heading-color {
-			margin-top: 1rem;
+			&:not(:first-child) {
+				margin-top: 1rem;
+			}
+
+			&:first-child {
+				margin-top: 0;
+				margin-bottom: 1rem;
+			}
 		}
 	}
 }
