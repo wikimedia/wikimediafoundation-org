@@ -37,19 +37,28 @@
 		@include padding(0, 20, 0, strip-px($block-padding));
 	}
 
+	&__heading-color {
+		background-color: $wmui-color-yellow50;
+		width: 454px;
+		margin-top: 4rem;
+	}
+
 	&__heading,
 	&__rotating-heading {
-		background-color: $wmui-color-yellow50;
-		transition: height 300ms ease;
-		display: inline-block;
+		transition: opacity 750ms ease;
 		padding: 1rem;
-		width: 454px;
 
 		@include has-blocks-wrap {
-			margin-top: 4rem;
 			@include font-size(24, 24);
 			line-height: 1.5;
 		}
+	}
 
+	&__rotating-heading {
+		opacity: 0;
+
+		&--hidden {
+			display: none;
+		}
 	}
 }

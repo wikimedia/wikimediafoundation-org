@@ -7,9 +7,9 @@ import classNames from 'classnames';
  * WordPress dependencies
  */
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -130,15 +130,17 @@ export const settings = {
 						/>
 					</div>
 					<div className="hero-home__heading-wrapper">
-						<RichText
-							allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
-							className="hero-home__heading"
-							keepPlaceholderOnFocus
-							placeholder={ __( 'Add a heading', 'shiro' ) }
-							tagName="div"
-							value={ heading }
-							onChange={ heading => setAttributes( { heading } ) }
-						/>
+						<div className="hero-home__heading-color">
+							<RichText
+								allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
+								className="hero-home__heading"
+								keepPlaceholderOnFocus
+								placeholder={ __( 'Add a heading', 'shiro' ) }
+								tagName="div"
+								value={ heading }
+								onChange={ heading => setAttributes( { heading } ) }
+							/>
+						</div>
 						<Button
 							className="hero-home__toggle-rotating-headings"
 							isPrimary
@@ -150,29 +152,30 @@ export const settings = {
 						</Button>
 						{ showRotatingHeadings && rotatingHeadings.map( ( heading, index ) => {
 							return (
-								<RichText
-									key={ index }
-									allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
-									className="hero-home__rotating-heading"
-									keepPlaceholderOnFocus
-									placeholder={ __( 'Add a rotating heading', 'shiro' ) }
-									tagName="div"
-									value={ heading.text }
-									onChange={ text => {
-										setAttributes( {
-											rotatingHeadings: rotatingHeadings.map( ( headingAttributes, attributesIndex ) => {
-												if ( attributesIndex === index ) {
-													return {
-														...headingAttributes,
-														text,
-													};
-												}
+								<div key={ index } className="hero-home__heading-color">
+									<RichText
+										allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
+										className="hero-home__rotating-heading"
+										keepPlaceholderOnFocus
+										placeholder={ __( 'Add a rotating heading', 'shiro' ) }
+										tagName="div"
+										value={ heading.text }
+										onChange={ text => {
+											setAttributes( {
+												rotatingHeadings: rotatingHeadings.map( ( headingAttributes, attributesIndex ) => {
+													if ( attributesIndex === index ) {
+														return {
+															...headingAttributes,
+															text,
+														};
+													}
 
-												return headingAttributes;
-											} ),
-										} );
-									} }
-								/>
+													return headingAttributes;
+												} ),
+											} );
+										} }
+									/>
+								</div>
 							);
 						} ) }
 					</div>
@@ -212,21 +215,23 @@ export const settings = {
 						/>
 					</div>
 					<div className="hero-home__heading-wrapper">
-						<RichText.Content
-							className="hero-home__heading"
-							tagName="h1"
-							value={ heading }
-						/>
-						{ rotatingHeadings.map( ( heading, index ) => {
-							return (
-								<RichText.Content
-									key={ index }
-									className="hero-home__rotating-heading"
-									tagName="h1"
-									value={ heading.text }
-								/>
-							);
-						} ) }
+						<div className="hero-home__heading-color">
+							<RichText.Content
+								className="hero-home__heading"
+								tagName="h1"
+								value={ heading }
+							/>
+							{ rotatingHeadings.map( ( heading, index ) => {
+								return (
+									<RichText.Content
+										key={ index }
+										className="hero-home__rotating-heading hero-home__rotating-heading--hidden"
+										tagName="h1"
+										value={ heading.text }
+									/>
+								);
+							} ) }
+						</div>
 					</div>
 				</header>
 			</div>

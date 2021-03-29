@@ -26,22 +26,15 @@
 
 		&__rotating-heading {
 			display: block;
+			opacity: 1;
 		}
 
 		&__toggle-rotating-headings {
 			display: block;
-			margin-top: 1rem;
 		}
-	}
 
-	.page.has-blocks,
-	.single.has-blocks {
-		.block-editor-block-list__layout {
-			.hero-home {
-				&__rotating-heading:not(:first-child) {
-					margin-top: 1rem;
-				}
-			}
+		&__heading-color {
+			margin-top: 1rem;
 		}
 	}
 }
