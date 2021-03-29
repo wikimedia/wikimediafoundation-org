@@ -22,6 +22,23 @@
 			}
 		},
 		{
+			"files": ["assets/src/scripts/shiro.js"],
+			"extends": ["@humanmade/eslint-config"],
+			"rules": {
+				"no-restricted-globals": [
+					"error",
+					{
+						"name": "jQuery",
+						"message": "jQuery is not allowed in this file, we are moving towards a no-jQuery frontend"
+					},
+					{
+						"name": "$",
+						"message": "jQuery is not allowed in this file, we are moving towards a no-jQuery frontend"
+					}
+				]
+			}
+		},
+		{
 			"files": [
 				"assets/src/js/*.js",
 				"assets/src/js/rkv/*.js",
