@@ -7,7 +7,9 @@ import classNames from 'classnames';
  * WordPress dependencies
  */
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { Button } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -63,6 +65,22 @@ export const settings = {
 			source: 'html',
 			selector: '.hero-home__heading',
 		},
+		rotatingHeadings: {
+			type: 'array',
+			source: 'query',
+			selector: '.hero-home__rotating-heading',
+			query: {
+				text: {
+					type: 'string',
+					source: 'html',
+				},
+				lang: {
+					type: 'string',
+					source: 'attribute',
+					attribute: 'lang',
+				},
+			},
+		},
 	},
 
 	/**
@@ -74,8 +92,20 @@ export const settings = {
 			imageUrl,
 			heading,
 		} = attributes;
+		let { rotatingHeadings }  = attributes;
+
+		// This allows the user to 'delete' headings, by leaving them empty
+		rotatingHeadings = rotatingHeadings.filter( heading => ! RichText.isEmpty( heading.text ) );
+
+		const lastHeading = rotatingHeadings[ rotatingHeadings.length - 1 ];
+		if ( ! lastHeading || ! RichText.isEmpty( lastHeading.text ) ) {
+			rotatingHeadings.push( {
+				text: '',
+			} );
+		}
 
 		const blockProps = useBlockProps( { className: 'hero-home' } );
+		const [ showRotatingHeadings, setShowRotatingHeadings ] = useState( false );
 
 		return (
 			<div { ...blockProps } >
@@ -104,11 +134,47 @@ export const settings = {
 							allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 							className="hero-home__heading"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Add a home heading', 'shiro' ) }
+							placeholder={ __( 'Add a heading', 'shiro' ) }
 							tagName="div"
 							value={ heading }
 							onChange={ heading => setAttributes( { heading } ) }
 						/>
+						<Button
+							className="hero-home__toggle-rotating-headings"
+							isPrimary
+							onClick={ () => setShowRotatingHeadings( ! showRotatingHeadings ) }
+						>
+							{ showRotatingHeadings ?
+								__( 'Hide rotating headings', 'shiro' ) :
+								__( 'Show rotating headings', 'shiro' ) }
+						</Button>
+						{ showRotatingHeadings && rotatingHeadings.map( ( heading, index ) => {
+							return (
+								<RichText
+									key={ index }
+									allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
+									className="hero-home__rotating-heading"
+									keepPlaceholderOnFocus
+									placeholder={ __( 'Add a rotating heading', 'shiro' ) }
+									tagName="div"
+									value={ heading.text }
+									onChange={ text => {
+										setAttributes( {
+											rotatingHeadings: rotatingHeadings.map( ( headingAttributes, attributesIndex ) => {
+												if ( attributesIndex === index ) {
+													return {
+														...headingAttributes,
+														text,
+													};
+												}
+
+												return headingAttributes;
+											} ),
+										} );
+									} }
+								/>
+							);
+						} ) }
 					</div>
 				</header>
 			</div>
@@ -126,6 +192,11 @@ export const settings = {
 			imageAlt,
 			heading,
 		} = attributes;
+		let {
+			rotatingHeadings,
+		} = attributes;
+
+		rotatingHeadings = rotatingHeadings.filter( heading => ! RichText.isEmpty( heading.text ) );
 
 		const blockProps = useBlockProps.save( { className: 'hero-home' } );
 
@@ -146,6 +217,16 @@ export const settings = {
 							tagName="h1"
 							value={ heading }
 						/>
+						{ rotatingHeadings.map( ( heading, index ) => {
+							return (
+								<RichText.Content
+									key={ index }
+									className="hero-home__rotating-heading"
+									tagName="h1"
+									value={ heading.text }
+								/>
+							);
+						} ) }
 					</div>
 				</header>
 			</div>
