@@ -7,20 +7,31 @@
 
 	display: flex;
 	flex-direction: column;
-	margin: rem(40) 0;
+	padding: rem(20);
+
+	&__image {
+
+		@include hover-box-shadow;
+	}
 
 	&__content {
-		padding: 0 $padding-horizontal-base;
+		padding: rem(16) 0 0 0;
 	}
 
 	&__title {
 
 		@include h4;
 		@include h-margins;
+
+		a {
+
+			@include style-guide-link;
+			color: $wmui-color-base0;
+		}
 	}
 
 	&__categories {
-		margin-bottom: rem(18);
+		margin-bottom: rem(6);
 	}
 
 	&__category-link {
@@ -28,10 +39,11 @@
 		@include style-guide-link;
 		@include has-font-size( "small" );
 		background-color: $wmui-color-blue90;
-		padding: $padding-base;
 		border-radius: rem(4);
-		margin: 0 10px 10px 0;
+		display: inline-block;
 		font-weight: 700;
+		margin: 0 10px 10px 0;
+		padding: 0 $padding-horizontal-base;
 	}
 
 	&__excerpt p {
@@ -67,18 +79,25 @@
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		flex-direction: row-reverse;
 		align-items: stretch;
+		padding: rem(40) 0;
 
 		&__image-link,
 		&__content {
 			flex-basis: 50%;
 		}
 
+		&__content {
+			margin-right: rem(20);
+			padding: 0;
+		}
+
 		&--featured {
 			flex-direction: row;
 
+			// stylelint-disable selector-class-pattern
 			.blog-post__image-link {
 				margin-right: -322px;
-				flex-basis: 75%;
+				flex-basis: 77.5%;
 			}
 
 			.blog-post__content {

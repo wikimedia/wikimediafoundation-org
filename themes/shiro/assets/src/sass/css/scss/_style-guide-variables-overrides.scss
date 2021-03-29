@@ -25,3 +25,5 @@ $color-primary--focus:  $color-primary;
 $width-breakpoint-tablet: 768px;
 $width-breakpoint-desktop: 1060px;
 
+// Box shadows for elements larger than those specified in the style guide.
+$box-shadow-card-element: 0 5px 20px 0 rgba(0,0,0,.15);

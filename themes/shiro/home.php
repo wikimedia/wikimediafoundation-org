@@ -53,9 +53,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 	<?php get_template_part( 'template-parts/category-list' ); ?>
 
-	<?php if ( have_posts() ) : ?>
-		<div class="card-list-container">
-		<?php
+	<?php
+	if ( have_posts() ) :
 		while ( have_posts() ) :
 			the_post();
 
@@ -77,9 +76,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				)
 			);
 		endwhile;
-		?>
-		</div>
-		<?php
+
 	else :
 		get_template_part( 'template-parts/content', 'none' );
 	endif;

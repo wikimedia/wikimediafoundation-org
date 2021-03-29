@@ -27,7 +27,7 @@ $class      = $card_data['class'] ?? 'blog-post';
 	<div class="<?php echo esc_attr( $class ); ?>">
 
 	<?php if ( ! empty( $image_id ) ) : ?>
-		<a class="blog-post__image-link" href="<?php echo esc_url( $link ); ?>"x >
+		<a class="blog-post__image-link" alt="" tabindex="-1" href="<?php echo esc_url( $link ); ?>">
 			<?php echo wp_get_attachment_image(
 				$image_id,
 				$image_size,
