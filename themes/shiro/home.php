@@ -30,24 +30,13 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	<?php
 	$post = get_post( $featured_post_id );
 	if ( ! empty( $post ) ) {
-		setup_postdata( $post );
 		$featured_post_id = (int) $post->ID;
-		get_template_part(
-			'template-parts/modules/cards/card',
-			'horizontal',
-			array(
-				'link'       => get_the_permalink(),
-				'image_id'   => get_post_thumbnail_id(),
-				'title'      => get_the_title(),
-				'authors'    => wmf_byline(),
-				'date'       => get_the_date(),
-				'excerpt'    => get_the_excerpt(),
-				'categories' => get_the_category(),
-				'class'      => 'blog-post blog-post--featured',
-			)
+		echo WMF\Editor\Blocks\BlogPost\render_block(
+			[
+				'post_id' => $featured_post_id,
+				'is_featured' => true,
+			]
 		);
-
-		wp_reset_postdata();
 	}
 	?>
 
@@ -62,18 +51,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				continue;
 			}
 
-			get_template_part(
-				'template-parts/modules/cards/card',
-				'horizontal',
-				array(
-					'link'       => get_the_permalink(),
-					'image_id'   => get_post_thumbnail_id(),
-					'title'      => get_the_title(),
-					'authors'    => wmf_byline(),
-					'date'       => get_the_date(),
-					'excerpt'    => get_the_excerpt(),
-					'categories' => get_the_category(),
-				)
+			echo WMF\Editor\Blocks\BlogPost\render_block(
+				[ 'post_id' => $post->ID ]
 			);
 		endwhile;
 

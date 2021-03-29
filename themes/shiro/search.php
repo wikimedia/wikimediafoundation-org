@@ -28,19 +28,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			while ( have_posts() ) :
 				the_post();
 
-				get_template_part(
-					'template-parts/modules/cards/card',
-					'horizontal',
-					array(
-						'link'       => get_the_permalink(),
-						'image_id'   => get_post_thumbnail_id(),
-						'title'      => get_the_title(),
-						'authors'    => wmf_byline(),
-						'date'       => get_the_date(),
-						'excerpt'    => get_the_excerpt(),
-						'categories' => get_the_category(),
-						'sidebar'    => false,
-					)
+				echo WMF\Editor\Blocks\BlogPost\render_block(
+					[ 'post_id' => $post->ID ]
 				);
 			endwhile;
 			?>
