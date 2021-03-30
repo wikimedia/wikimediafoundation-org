@@ -1,6 +1,6 @@
 <?php
 /**
- * Filter the output of the core/latest posts block
+ * Register the shiro/blog-list block.
  */
 
 namespace WMF\Editor\Blocks\BlogList;
@@ -53,7 +53,7 @@ function register_block() {
 }
 
 /**
- * Updated render callback for the core/latest-posts block.
+ * Callback for server-side rendering for the blog-list block.
  *
  * @param [] $attributes  Parsed block attributes.
  * @return string HTML markup.
