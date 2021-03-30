@@ -107,6 +107,7 @@ export const settings = {
 		} = attributes;
 		let { rotatingHeadings }  = attributes;
 
+		rotatingHeadings = rotatingHeadings || [];
 		// This allows the user to 'delete' headings, by leaving them empty
 		rotatingHeadings = rotatingHeadings.filter( heading => ! RichText.isEmpty( heading.text ) );
 		rotatingHeadings = rotatingHeadings.map( heading => {
