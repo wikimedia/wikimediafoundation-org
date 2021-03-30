@@ -2,19 +2,16 @@
  * Block for implementing the blog-list component.
  */
 
-//import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
 import apiFetch from '@wordpress/api-fetch';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, QueryControls } from '@wordpress/components';
-//import { useSelect } from '@wordpress/data';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 import { addQueryArgs } from '@wordpress/url';
-import './style.scss';
 
 export const name = 'shiro/blog-list';
 
