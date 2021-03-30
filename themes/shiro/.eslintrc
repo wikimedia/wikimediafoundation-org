@@ -22,7 +22,7 @@
 			}
 		},
 		{
-			"files": ["assets/src/scripts/shiro.js"],
+			"files": ["assets/src/scripts/**/*.js"],
 			"extends": ["@humanmade/eslint-config"],
 			"rules": {
 				"no-restricted-globals": [
