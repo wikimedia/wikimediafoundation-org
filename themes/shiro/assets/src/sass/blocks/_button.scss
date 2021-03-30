@@ -52,6 +52,47 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 	}
 }
 
+@mixin button-primary() {
+	@include style-guide-button(
+		$color-primary,
+		$color-primary--hover,
+		$color-primary--active,
+		$color-primary--focus,
+		$color-base--inverted,
+	);
+}
+
+@mixin button-secondary() {
+	@include style-guide-button(
+		$color-secondary,
+		$color-secondary--hover,
+		$color-secondary--active,
+		$color-secondary--focus,
+		$color-base--inverted,
+	)
+}
+
+@mixin button-tertiary() {
+	@include style-guide-button(
+		$background-color-framed,
+		$background-color-framed--hover,
+		$background-color-framed--active-alternative,
+		$background-color-framed--focus,
+		$color-primary,
+	);
+
+	border: 1px solid $border-color-base;
+
+	&:active {
+		border-color: $border-color-base--active;
+	}
+
+	&:focus {
+		outline: 2px solid $border-color-base--focus;
+		outline-offset: -2px;
+	}
+}
+
 @mixin button-wrapper( $container-selector, $inner-selector ) {
 	#{ $container-selector } {
 		img {
@@ -64,80 +105,18 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		// This is both the default, and a selectable button style.
 		#{ $inner-selector },
 		&.is-style-primary #{ $inner-selector } {
-			@include style-guide-button(
-				$color-primary,
-				$color-primary--hover,
-				$color-primary--active,
-				$color-primary--focus,
-				$color-base--inverted,
-			);
-		}
-
-		&.is-style-normal {
-			#{ $inner-selector } {
-				@include style-guide-button(
-					$background-color-framed,
-					$background-color-framed--hover,
-					$background-color-framed--active-alternative,
-					$background-color-framed--focus,
-					$color-base,
-				);
-
-				border: 1px solid $border-color-base;
-				color: $color-base--emphasized;
-
-				&:active {
-					border-color: $border-color-base--active;
-				}
-
-				&:focus {
-					outline: 2px solid $border-color-base--focus;
-					outline-offset: -2px;
-				}
-			}
-		}
-
-		&.is-style-destructive {
-			#{ $inner-selector } {
-				@include style-guide-button(
-					$color-destructive,
-					$color-destructive--hover,
-					$color-destructive--active,
-					$color-destructive--focus,
-					$color-base--inverted,
-				);
-			}
-		}
-
-		&.is-style-primary-old {
-			#{ $inner-selector } {
-				@include button($color-primary, $color-primary, $color-base--inverted, $color-base--inverted, 11px 1.5rem, .6rem 1rem);
-
-				&:hover {
-					box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-				}
-			}
+			@include button-primary;
 		}
 
 		&.is-style-secondary {
 			#{ $inner-selector } {
-				@include button($color-secondary, $color-secondary, $color-base--inverted, $color-base--inverted, 11px 1.5rem, .6rem 1rem);
-
-				&:hover {
-					box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-				}
+				@include button-secondary;
 			}
 		}
 
 		&.is-style-tertiary {
 			#{ $inner-selector } {
-				@include button($color-base--inverted, $color-base--inverted, $color-primary, $color-primary, 11px 1.5rem, .6rem 1rem);
-
-				&:hover {
-					box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-				}
-
-				font-size: 20px;
+				@include button-tertiary;
 			}
 		}
 

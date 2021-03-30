@@ -79,18 +79,6 @@ export const
 			isDefault: true,
 		},
 		{
-			name: 'normal',
-			label: __( 'Normal', 'shiro' ),
-		},
-		{
-			name: 'destructive',
-			label: __( 'Destructive', 'shiro' ),
-		},
-		{
-			name: 'primary-old',
-			label: __( 'Primary (Old)', 'shiro' ),
-		},
-		{
 			name: 'secondary',
 			label: __( 'Secondary', 'shiro' ),
 		},

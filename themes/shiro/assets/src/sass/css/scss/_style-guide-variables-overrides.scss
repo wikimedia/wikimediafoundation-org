@@ -18,7 +18,16 @@ $color-primary:         $wmui-color-blue50;
 $color-primary--hover:  lighten( $wmui-color-blue50, 3 );
 $color-primary--active: darken( $wmui-color-blue50, 25 );
 $color-primary--focus:  $color-primary;
-$color-secondary:       $wmui-color-red50;
+
+$color-secondary:         $wmui-color-red50;
+$color-secondary--hover:  lighten( $wmui-color-red50, 3 );
+$color-secondary--active: darken( $wmui-color-red50, 25 );
+$color-secondary--focus:  $color-secondary;
+
+$color-tertiary:         $wmui-color-base90;
+$color-tertiary--hover:  lighten( $wmui-color-base90, 3 );
+$color-tertiary--active: darken( $wmui-color-base90, 25 );
+$color-tertiary--focus:  $color-tertiary;
 
 // The style-guide doesn't contain variables for the border color of framed
 // elements
