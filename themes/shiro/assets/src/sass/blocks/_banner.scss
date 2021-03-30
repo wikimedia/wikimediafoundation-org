@@ -49,35 +49,11 @@
 	&__cta {
 		margin-right: 1rem;
 
-		@include style-guide-button(
-			$color-primary,
-			$color-primary--hover,
-			$color-primary--active,
-			$color-primary--focus,
-		);
-
-		color: $wmui-color-base100;
+		@include button-primary;
 
 		.is-style-blue50 &,
 		.is-style-red50 & {
-			border: 1px solid $border-color-base;
-			color: $color-base--emphasized;
-
-			@include style-guide-button(
-				$background-color-framed,
-				$background-color-framed--hover,
-				$background-color-framed--active-alternative,
-				$background-color-framed--focus,
-			);
-
-			&:active {
-				border-color: $border-color-base--active;
-			}
-
-			&:focus {
-				outline: 2px solid $border-color-base--focus;
-				outline-offset: -2px;
-			}
+			@include button-tertiary;
 		}
 	}
 

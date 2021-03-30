@@ -250,14 +250,16 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
-require get_template_directory() . '/inc/editor/blocks/core-latest-posts.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
+require get_template_directory() . '/inc/editor/blocks/core-latest-posts.php';
+require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\Patterns\bootstrap();
-WMF\Editor\Blocks\CoreLatestPosts\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
+WMF\Editor\Blocks\CoreLatestPosts\bootstrap();
+WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 
 /**
  * Adjustments to queries.
@@ -375,6 +377,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'viewBox' => true,
 				'width'   => true,
 				'height'  => true,
+				'class'   => true,
 			],
 			'rect' => [
 				'fill'   => true,
@@ -382,6 +385,9 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'height' => true,
 				'x'      => true,
 				'y'      => true,
+			],
+			'use' => [
+				'xlink:href' => true,
 			],
 		]
 	);
