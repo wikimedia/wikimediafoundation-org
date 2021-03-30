@@ -18,13 +18,10 @@ function observe( list, observer ) {
 	list.forEach( r => {
 		const el = r.target;
 		const { content } = el.dropdown;
-		const { height } = el.getBoundingClientRect();
 		if ( el.dataset.open === 'true' ) {
-			content.style.top = `${height}px`;
 			content.classList.add( 'dropdown__content--open' );
 		} else {
 			content.classList.remove( 'dropdown__content--open' );
-			content.style.top = null;
 		}
 	} );
 }

@@ -46,11 +46,19 @@
 
 	&__content {
 		display: none;
+		width: 100%;
+		background-color: grey;
 		position: absolute;
-		border: 1px solid grey;
+		right: 0;
 		&--open {
 			display: flex;
 			flex-direction: column;
+		}
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			max-width: 768px;
+			// This aligns the top of the content with the bottom of the button
+			top: 100%;
 		}
 	}
 
