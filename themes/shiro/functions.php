@@ -8,7 +8,10 @@
  */
 
 require_once __DIR__ . '/inc/editor/patterns.php';
+require_once __DIR__ . '/inc/classes/editor/blocks/mailchimp-subscribe.php';
+
 \WMF\Editor\Patterns\bootstrap();
+\WMF\Editor\Blocks\MailChimpSubscribe\bootstrap();
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -376,6 +379,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'viewBox' => true,
 				'width'   => true,
 				'height'  => true,
+				'class'   => true,
 			],
 			'rect' => [
 				'fill'   => true,
@@ -383,6 +387,9 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'height' => true,
 				'x'      => true,
 				'y'      => true,
+			],
+			'use' => [
+				'xlink:href' => true,
 			],
 		]
 	);

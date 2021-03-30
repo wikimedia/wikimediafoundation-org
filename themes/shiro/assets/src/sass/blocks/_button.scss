@@ -3,21 +3,24 @@ $background-color-framed--focus: $wmui-color-base100;
 $background-color-framed--active-alternative: $wmui-color-base80;
 
 @mixin style-guide-button-reset() {
+	border: none;
 	display: inline-block;
 	font-weight: bold;
 	border-radius: $border-radius-base;
 	cursor: pointer;
-	padding: 0.5rem 1.25rem;
+	padding: rem(8) rem(20);
 }
 
 @mixin style-guide-button(
 	$color,
 	$color-hover,
 	$color-active,
-	$color-focus
+	$color-focus,
+	$color-text,
 ) {
 	@include style-guide-button-reset;
 	background: $color;
+	color: $color-text;
 	transition: $transition-duration-base background;
 
 	&:hover {
@@ -38,9 +41,10 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 @mixin button-icon(
 	$icon-name,
 	$icon-path,
+	$inner-selector,
 ) {
 	&.has-icon-#{ $icon-name } {
-		.wp-block-button__link {
+		#{ $inner-selector } {
 			&:before {
 				background-image: url('./assets/src/svg/#{ $icon-path }.svg');
 			}
@@ -48,148 +52,163 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 	}
 }
 
-.wp-block-button {
-	img {
-		margin-bottom: -2px;
-		margin-right: 0.5em;
-		height: 1em;
-		width: auto;
-	}
-
-	// This is both the default, and a selectable button style.
-	.wp-block-button__link,
-	&.is-style-primary .wp-block-button__link {
-		@include style-guide-button(
-			$color-primary,
-			$color-primary--hover,
-			$color-primary--active,
-			$color-primary--focus,
-		);
-	}
-
-	&.is-style-normal {
-		.wp-block-button__link {
-			border: 1px solid $border-color-base;
-			color: $color-base--emphasized;
-
-			@include style-guide-button(
-				$background-color-framed,
-				$background-color-framed--hover,
-				$background-color-framed--active-alternative,
-				$background-color-framed--focus,
-			);
-
-			&:active {
-				border-color: $border-color-base--active;
-			}
-
-			&:focus {
-				outline: 2px solid $border-color-base--focus;
-				outline-offset: -2px;
-			}
-		}
-	}
-
-	&.is-style-destructive {
-		.wp-block-button__link {
-			@include style-guide-button(
-				$color-destructive,
-				$color-destructive--hover,
-				$color-destructive--active,
-				$color-destructive--focus,
-			);
-		}
-	}
-
-	&.is-style-primary-old {
-		.wp-block-button__link {
-			@include button($color-blue, $color-blue, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-
-			&:hover {
-				box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-			}
-		}
-	}
-
-	&.is-style-secondary {
-		.wp-block-button__link {
-			@include button($color-pink, $color-pink, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-			&:hover {
-				box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-			}
-		}
-	}
-
-	&.is-style-tertiary {
-		.wp-block-button__link {
-			@include button($color-white, $color-white, $color-blue, $color-blue, 11px 1.5rem, .6rem 1rem);
-			&:hover {
-				box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-			}
-			font-size: 20px;
-		}
-	}
-
-	&.has-icon {
-		.wp-block-button__link:before {
-			content: '';
-			display: inline-block;
-			background-image: url('./assets/src/svg/lock-white.svg');
-			background-size: contain;
+@mixin button-wrapper( $container-selector, $inner-selector ) {
+	#{ $container-selector } {
+		img {
+			margin-bottom: -2px;
 			margin-right: 0.5em;
 			height: 1em;
-			width: 1em;
-			position: relative;
-			top: 2px;
+			width: auto;
 		}
-	}
 
-	@include button-icon( 'lock', 'lock' );
-	@include button-icon( 'lock-pink', 'lock-pink' );
-	@include button-icon( 'lock-white', 'lock-white' );
-	@include button-icon( 'calendar', 'calendar' );
-	@include button-icon( 'circle', 'circle' );
-	@include button-icon( 'close', 'close' );
-	@include button-icon( 'diamond', 'diamond' );
-	@include button-icon( 'down', 'down' );
-	@include button-icon( 'edit-ltr', 'edit-ltr' );
-	@include button-icon( 'edit-rtl', 'edit-rtl' );
-	@include button-icon( 'email', 'email' );
-	@include button-icon( 'globe', 'globe' );
-	@include button-icon( 'header', 'header' );
-	@include button-icon( 'header-orig', 'header-orig' );
-	@include button-icon( 'header-wp20', 'header-wp20' );
-	@include button-icon( 'heart-pink', 'heart-pink' );
-	@include button-icon( 'language', 'language' );
-	@include button-icon( 'lock', 'lock' );
-	@include button-icon( 'lock-orig', 'lock-orig' );
-	@include button-icon( 'lock-pink', 'lock-pink' );
-	@include button-icon( 'lock-white', 'lock-white' );
-	@include button-icon( 'map-pin', 'map-pin' );
-	@include button-icon( 'square', 'square' );
-	@include button-icon( 'triangle', 'triangle' );
-	@include button-icon( 'wave', 'wave' );
-	@include button-icon( 'arrow-back', 'individual/arrow-back' );
-	@include button-icon( 'download', 'individual/download' );
-	@include button-icon( 'downTriangle', 'individual/downTriangle' );
-	@include button-icon( 'image', 'individual/image' );
-	@include button-icon( 'logo-horizontal', 'individual/logo-horizontal' );
-	@include button-icon( 'mail', 'individual/mail' );
-	@include button-icon( 'menu', 'individual/menu' );
-	@include button-icon( 'open', 'individual/open' );
-	@include button-icon( 'search', 'individual/search' );
-	@include button-icon( 'social-facebook', 'individual/social-facebook' );
-	@include button-icon( 'social-instagram', 'individual/social-instagram' );
-	@include button-icon( 'social-pinterest', 'individual/social-pinterest' );
-	@include button-icon( 'social-twitter', 'individual/social-twitter' );
-	@include button-icon( 'social-twitter-blue', 'individual/social-twitter-blue' );
-	@include button-icon( 'social-youtube', 'individual/social-youtube' );
-	@include button-icon( 'translate', 'individual/translate' );
-	@include button-icon( 'trending', 'individual/trending' );
-	@include button-icon( 'upTriangle', 'individual/upTriangle' );
-	@include button-icon( 'userAvatar', 'individual/userAvatar' );
-	@include button-icon( 'wikimedia', 'individual/wikimedia' );
-	@include button-icon( 'wikimedia-blue', 'individual/wikimedia-blue' );
-	@include button-icon( 'wikipedia', 'individual/wikipedia' );
-	@include button-icon( 'wikipedia-black', 'individual/wikipedia-black' );
+		// This is both the default, and a selectable button style.
+		#{ $inner-selector },
+		&.is-style-primary #{ $inner-selector } {
+			@include style-guide-button(
+				$color-primary,
+				$color-primary--hover,
+				$color-primary--active,
+				$color-primary--focus,
+				$color-base--inverted,
+			);
+		}
+
+		&.is-style-normal {
+			#{ $inner-selector } {
+				@include style-guide-button(
+					$background-color-framed,
+					$background-color-framed--hover,
+					$background-color-framed--active-alternative,
+					$background-color-framed--focus,
+					$color-base,
+				);
+
+				border: 1px solid $border-color-base;
+				color: $color-base--emphasized;
+
+				&:active {
+					border-color: $border-color-base--active;
+				}
+
+				&:focus {
+					outline: 2px solid $border-color-base--focus;
+					outline-offset: -2px;
+				}
+			}
+		}
+
+		&.is-style-destructive {
+			#{ $inner-selector } {
+				@include style-guide-button(
+					$color-destructive,
+					$color-destructive--hover,
+					$color-destructive--active,
+					$color-destructive--focus,
+					$color-base--inverted,
+				);
+			}
+		}
+
+		&.is-style-primary-old {
+			#{ $inner-selector } {
+				@include button($color-primary, $color-primary, $color-base--inverted, $color-base--inverted, 11px 1.5rem, .6rem 1rem);
+
+				&:hover {
+					box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+				}
+			}
+		}
+
+		&.is-style-secondary {
+			#{ $inner-selector } {
+				@include button($color-secondary, $color-secondary, $color-base--inverted, $color-base--inverted, 11px 1.5rem, .6rem 1rem);
+
+				&:hover {
+					box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+				}
+			}
+		}
+
+		&.is-style-tertiary {
+			#{ $inner-selector } {
+				@include button($color-base--inverted, $color-base--inverted, $color-primary, $color-primary, 11px 1.5rem, .6rem 1rem);
+
+				&:hover {
+					box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
+				}
+
+				font-size: 20px;
+			}
+		}
+
+		&.has-icon {
+			#{ $inner-selector }:before {
+				content: '';
+				display: inline-block;
+				background-image: url('./assets/src/svg/lock-white.svg');
+				background-size: contain;
+				margin-right: 0.5em;
+				height: 1em;
+				width: 1em;
+				position: relative;
+				top: 2px;
+			}
+		}
+
+		@include button-icon('lock', 'lock', $inner-selector);
+		@include button-icon('lock-pink', 'lock-pink', $inner-selector);
+		@include button-icon('lock-white', 'lock-white', $inner-selector);
+		@include button-icon('calendar', 'calendar', $inner-selector);
+		@include button-icon('circle', 'circle', $inner-selector);
+		@include button-icon('close', 'close', $inner-selector);
+		@include button-icon('diamond', 'diamond', $inner-selector);
+		@include button-icon('down', 'down', $inner-selector);
+		@include button-icon('edit-ltr', 'edit-ltr', $inner-selector);
+		@include button-icon('edit-rtl', 'edit-rtl', $inner-selector);
+		@include button-icon('email', 'email', $inner-selector);
+		@include button-icon('globe', 'globe', $inner-selector);
+		@include button-icon('header', 'header', $inner-selector);
+		@include button-icon('header-orig', 'header-orig', $inner-selector);
+		@include button-icon('header-wp20', 'header-wp20', $inner-selector);
+		@include button-icon('heart-pink', 'heart-pink', $inner-selector);
+		@include button-icon('language', 'language', $inner-selector);
+		@include button-icon('lock', 'lock', $inner-selector);
+		@include button-icon('lock-orig', 'lock-orig', $inner-selector);
+		@include button-icon('lock-pink', 'lock-pink', $inner-selector);
+		@include button-icon('lock-white', 'lock-white', $inner-selector);
+		@include button-icon('map-pin', 'map-pin', $inner-selector);
+		@include button-icon('square', 'square', $inner-selector);
+		@include button-icon('triangle', 'triangle', $inner-selector);
+		@include button-icon('wave', 'wave', $inner-selector);
+		@include button-icon('arrow-back', 'individual/arrow-back', $inner-selector);
+		@include button-icon('download', 'individual/download', $inner-selector);
+		@include button-icon('downTriangle', 'individual/downTriangle', $inner-selector);
+		@include button-icon('image', 'individual/image', $inner-selector);
+		@include button-icon('logo-horizontal', 'individual/logo-horizontal', $inner-selector);
+		@include button-icon('mail', 'individual/mail', $inner-selector);
+		@include button-icon('menu', 'individual/menu', $inner-selector);
+		@include button-icon('open', 'individual/open', $inner-selector);
+		@include button-icon('search', 'individual/search', $inner-selector);
+		@include button-icon('social-facebook', 'individual/social-facebook', $inner-selector);
+		@include button-icon('social-instagram', 'individual/social-instagram', $inner-selector);
+		@include button-icon('social-pinterest', 'individual/social-pinterest', $inner-selector);
+		@include button-icon('social-twitter', 'individual/social-twitter', $inner-selector);
+		@include button-icon('social-twitter-blue', 'individual/social-twitter-blue', $inner-selector);
+		@include button-icon('social-youtube', 'individual/social-youtube', $inner-selector);
+		@include button-icon('translate', 'individual/translate', $inner-selector);
+		@include button-icon('trending', 'individual/trending', $inner-selector);
+		@include button-icon('upTriangle', 'individual/upTriangle', $inner-selector);
+		@include button-icon('userAvatar', 'individual/userAvatar', $inner-selector);
+		@include button-icon('wikimedia', 'individual/wikimedia', $inner-selector);
+		@include button-icon('wikimedia-blue', 'individual/wikimedia-blue', $inner-selector);
+		@include button-icon('wikipedia', 'individual/wikipedia', $inner-selector);
+		@include button-icon('wikipedia-black', 'individual/wikipedia-black', $inner-selector);
+	}
 }
+
+.wp-block-button__link {
+	font-size: unset;
+}
+
+@include button-wrapper( '.wp-block-shiro-button', '&' );
+@include button-wrapper( '.wp-block-button', '.wp-block-button__link' );

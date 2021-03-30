@@ -1,0 +1,54 @@
+.mailchimp-subscribe {
+	background: $background-color-framed;
+	border: 1px solid $border-color-framed;
+	border-radius: $border-radius-big;
+	padding: 1.5rem;
+
+	.icon {
+		width: 20px;
+		margin-left: 0;
+	}
+
+	&__input-container {
+		display: flex;
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
+
+	&__column-input {
+		width: 100%;
+	}
+
+	&__column-button {
+		margin-top: 8px;
+	}
+
+	&__input-field {
+		// This calc guarantees the same size as a button. 8 (padding) - 1 (border) = 7.
+		padding: rem( 7 ) rem( 8 );
+
+		background: $background-color-base;
+		border: 1px solid $border-color-base;
+		border-radius: $border-radius-base;
+	}
+
+	// Override too specific selector
+	.has-small-font-size {
+		@extend .has-small-font-size;
+	}
+
+	@media (min-width: #{ ($width-breakpoint-desktop) }) {
+		&__input-container {
+			flex-wrap: nowrap;
+		}
+
+		&__column-input {
+			flex: 1;
+		}
+
+		&__column-button {
+			margin-top: 0;
+			margin-left: 8px;
+		}
+	}
+}
