@@ -3,36 +3,53 @@
  * Filter the output of the core/latest posts block
  */
 
-namespace WMF\Editor\Blocks\CoreLatestPosts;
+namespace WMF\Editor\Blocks\BlogList;
 
 use WMF\Editor\Blocks\BlogPost;
 
-const BLOCK_NAME = 'core/latest-posts';
+const BLOCK_NAME = 'shiro/blog-list';
 
 /**
  * Bootstrap this block functionality.
  */
 function bootstrap() {
-	add_filter( 'register_block_type_args', __NAMESPACE__ . '\\filter_register_block_type_args', 10, 2 );
+	add_action( 'init', __NAMESPACE__ . '\\register_block' );
 }
 
-
 /**
- * Filter the args registered with the latest-posts block type.
- *
- * @param []|string $args Block registration args.
- * @param string    $name Block name.
- * @return [] Updated block registration arguments.
+ * Register the block here.
  */
-function filter_register_block_type_args( $args, $name ) {
-	if ( $name !== BLOCK_NAME ) {
-		return $args;
-	}
-
-	// Add a custom render callback.
-	$args['render_callback'] = __NAMESPACE__ . '\\render_block';
-
-	return $args;
+function register_block() {
+	register_block_type(
+		BLOCK_NAME,
+		[
+			'apiVersion'      => 2,
+			'render_callback' => __NAMESPACE__ . '\\render_block',
+			'attributes' => [
+				'postsToShow' => [
+					'type' => 'integer',
+					'default' => 2,
+				],
+				'categories' => [
+					'type' => 'array',
+					'items' => [
+						'type' => 'object',
+					],
+				],
+				'order' => [
+					'type' => 'string',
+					'default' => 'desc',
+				],
+				'orderBy' => [
+					'type' => 'string',
+					'default' => 'date',
+				],
+				'selectedAuthor' => [
+					'type' => 'number',
+				],
+			],
+		]
+	);
 }
 
 /**
