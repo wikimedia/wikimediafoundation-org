@@ -20,7 +20,7 @@ while ( have_posts() ) {
 		'h1_title' => '',
 	);
 
-	wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+	get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 
 	?>
 		<div class="freeform-content">

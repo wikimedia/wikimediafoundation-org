@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 
 if ( empty( $template_data ) || empty( $template_data['title'] ) || empty( $template_data['id'] ) ) {
 	return;

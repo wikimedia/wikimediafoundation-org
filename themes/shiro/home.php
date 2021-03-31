@@ -21,7 +21,7 @@ $template_args = array(
 	'h2_title' => get_the_title( $post_id ),
 );
 
-wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 ?>
 
@@ -33,8 +33,10 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 	if ( ! empty( $post ) ) {
 		setup_postdata( $post );
 		$featured_post_id = (int) $post->ID;
-		wmf_get_template_part(
-			'template-parts/modules/cards/card-featured', array(
+		get_template_part(
+			'template-parts/modules/cards/card-featured',
+			null,
+			array(
 				'link'       => get_the_permalink(),
 				'image_id'   => get_post_thumbnail_id(),
 				'title'      => get_the_title(),
@@ -65,8 +67,10 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 					continue;
 				}
 
-				wmf_get_template_part(
-					'template-parts/modules/cards/card-horizontal', array(
+				get_template_part(
+					'template-parts/modules/cards/card-horizontal',
+					null,
+					array(
 						'link'       => get_the_permalink(),
 						'image_id'   => get_post_thumbnail_id(),
 						'title'      => get_the_title(),

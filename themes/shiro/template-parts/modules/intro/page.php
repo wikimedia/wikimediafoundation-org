@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['intro'] ) ) {
 	return;
@@ -20,5 +20,5 @@ $button = ! empty( $template_args['button'] ) ? $template_args['button'] : '';
 		<?php echo wp_kses_post( do_shortcode( wpautop( $template_args['intro'] ) ) ); ?>
 	</div>
 
-	<?php wmf_get_template_part( 'template-parts/modules/intro/button', $button ); ?>
+	<?php get_template_part( 'template-parts/modules/intro/button', null, $button ); ?>
 </div>

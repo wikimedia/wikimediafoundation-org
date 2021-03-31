@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$post_list = wmf_get_template_data();
+$post_list = $args;
 
 if ( empty( $post_list ) ) {
 	return;
@@ -44,8 +44,10 @@ foreach ( $post_list as $term_id => $term_data ) :
 		<div class="mod-margin-bottom_xs staff-list">
 			<?php
 			foreach ( $term_data['posts'] as $post_id ) {
-				wmf_get_template_part(
-					'template-parts/profiles/role-item', array(
+				get_template_part(
+					'template-parts/profiles/role',
+					'item',
+					array(
 						'id' => $post_id,
 					)
 				);
@@ -87,8 +89,10 @@ foreach ( $post_list as $term_id => $term_data ) :
 					<?php
 
 					foreach ( $child_term_data['posts'] as $post_id ) :
-						wmf_get_template_part(
-							'template-parts/profiles/role-item', array(
+						get_template_part(
+							'template-parts/profiles/role',
+							'item',
+							array(
 								'id' => $post_id,
 							)
 						);

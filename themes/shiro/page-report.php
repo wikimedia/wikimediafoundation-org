@@ -24,9 +24,9 @@ while ( have_posts() ) :
 
 	if ( has_post_thumbnail() ) {
 		$template_args['image'] = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-		wmf_get_template_part( 'template-parts/header/page-image', $template_args );
+		get_template_part( 'template-parts/header/page', 'image', $template_args );
 	} else {
-		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 	}
 	?>
 <div class="mw-980 mod-margin-bottom flex flex-medium">
@@ -43,7 +43,7 @@ while ( have_posts() ) :
 		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
-        
+
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>
 </div>

@@ -31,4 +31,4 @@ if ( ! empty( $services ) ) {
 	$template_data['services'] = $services;
 }
 
-wmf_get_template_part( 'template-parts/modules/social/share-vertical', $template_data );
+get_template_part( 'template-parts/modules/social/share', 'vertical', $template_data );

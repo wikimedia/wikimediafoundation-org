@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$post_list = wmf_get_template_data();
+$post_list = $args;
 
 if ( empty( $post_list ) || count( $post_list ) === 1 ) {
 	return;
@@ -16,8 +16,10 @@ if ( empty( $post_list ) || count( $post_list ) === 1 ) {
 <ul class="toc fixedsticky">
 <?php
 foreach ( $post_list as $term_id => $post_data ) :
-	wmf_get_template_part(
-		'template-parts/profiles/role-item-link', array(
+	get_template_part(
+		'template-parts/profiles/role',
+		'item-link',
+		array(
 			'term_id' => $term_id,
 			'name'    => $post_data['name'],
 		)

@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$page_header_data = wmf_get_template_data();
+$page_header_data = $args;
 
 $h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
 $h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';

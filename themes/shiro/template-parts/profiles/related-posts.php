@@ -15,8 +15,10 @@ $author_posts = wmf_get_recent_author_posts( $connected_user );
 /* translators: %s: Title of Author */
 $title = sprintf( __( 'Recent posts by %s', 'shiro' ), get_the_title() );
 
-wmf_get_template_part(
-	'template-parts/modules/related/posts', array(
+get_template_part(
+	'template-parts/modules/related/posts',
+	null,
+	array(
 		'description' => $title,
 		'posts'       => $author_posts,
 	)
