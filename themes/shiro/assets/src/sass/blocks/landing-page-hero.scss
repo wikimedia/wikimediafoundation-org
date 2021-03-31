@@ -34,7 +34,6 @@
 
 		&__text-column {
 			margin-right: rem(40);
-			padding-bottom: rem(40);
 		}
 
 		&__image {
@@ -78,12 +77,13 @@
 
 		border-left: 1px solid var(--accent-color);
 
-		margin: rem(-18) 0 0 0;
-		padding: rem(60) rem(10) rem(40) rem(30);
+		margin: rem(-32) 0 0 0;
+		padding: rem(72) rem(10) rem(40) rem(30);
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin: rem(-40) 0 0 0;
-			padding: rem(100) rem(10) rem(60) rem(30);
+			margin-top: calc(var(--padding-bottom, 0) * -1);
+			padding-top: calc(var(--padding-bottom, 0) + 60px);
+			padding-bottom: rem(60);
 		}
 
 		p {
