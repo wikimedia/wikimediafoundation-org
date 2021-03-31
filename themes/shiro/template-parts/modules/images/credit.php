@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$image_id = wmf_get_template_data();
+$image_id = $args['image_id'];
 
 if ( empty( $image_id ) ) {
 	return;

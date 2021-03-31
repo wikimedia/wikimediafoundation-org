@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 
 $cardlink  = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 $cardtitle = ! empty( $template_data['title'] ) ? $template_data['title'] : '';

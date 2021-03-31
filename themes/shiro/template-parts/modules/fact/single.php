@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && empty( $template_args['content'] ) ) {
 	return;
@@ -42,7 +42,7 @@ $image = is_numeric( $image ) ? wp_get_attachment_image_url( $image, 'large' ) :
 			'services' => array( 'twitter' ),
 			'title'    => '',
 		);
-		wmf_get_template_part( 'template-parts/modules/social/share', $template_args, 'vertical' );
+		get_template_part( 'template-parts/modules/social/share', 'vertical', $template_args );
 		?>
 	</div>
 	<?php endif; ?>

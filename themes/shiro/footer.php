@@ -13,7 +13,7 @@ use WMF\Images\Credits;
 
 // Automatically add credits to all content that is not an archive or search.
 if ( ! is_archive() && ! is_home() ) {
-	wmf_get_template_part( 'template-parts/modules/images/credits', Credits::get_instance()->get_ids() );
+	get_template_part( 'template-parts/modules/images/credits', null, [ 'image_ids' => Credits::get_instance()->get_ids() ] );
 }
 ?>
 </main>

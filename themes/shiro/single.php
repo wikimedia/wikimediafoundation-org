@@ -14,8 +14,10 @@ while ( have_posts() ) {
 	$parent_page = get_option( 'page_for_posts' );
     $allowed_tags         = [ 'span' => [ 'class' => [], 'style' => [] ], 'img' => [ 'src' => [], 'height' => [], 'width' => [], 'alt' => [], 'style' => [], 'class' => [] ], 'em' => [], 'strong' => [], 'a' => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ], 'p' => [], 'br' => [] ];
 
-	wmf_get_template_part(
-		'template-parts/header/page-single', array(
+	get_template_part(
+		'template-parts/header/page',
+		'single',
+		array(
 			'h4_link'   => get_the_permalink( $parent_page ),
 			'h4_title'  => get_the_title( $parent_page ),
 			'h1_title'  => get_the_title(),
@@ -23,8 +25,9 @@ while ( have_posts() ) {
 		)
 	);
 
-	wmf_get_template_part(
-		'template-parts/thumbnail-full',
+	get_template_part(
+		'template-parts/thumbnail',
+		'full',
 		array(
 			'inner_image' => get_post_thumbnail_id(),
 		)
@@ -46,8 +49,10 @@ while ( have_posts() ) {
 		<?php get_template_part( 'template-parts/post-categories' ); ?>
 
 		<?php
-		wmf_get_template_part(
-			'template-parts/modules/social/share-horizontal', array(
+		get_template_part(
+			'template-parts/modules/social/share',
+			'horizontal',
+			array(
 				'services' => get_post_meta( get_the_ID(), 'share_links', true ),
 			)
 		);

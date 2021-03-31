@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 
 if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 	return;
@@ -44,8 +44,10 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 			<?php
 			foreach ( $template_data['posts'] as $post ) :
 				setup_postdata( $post );
-				wmf_get_template_part(
-					'template-parts/modules/cards/card-vertical', array(
+				get_template_part(
+					'template-parts/modules/cards/card',
+					'vertical',
+					array(
 						'title'      => get_the_title(),
 						'link'       => get_the_permalink(),
 						'image_id'   => get_post_thumbnail_id(),

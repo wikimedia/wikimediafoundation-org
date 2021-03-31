@@ -13,5 +13,5 @@ $template_args = get_post_meta( get_the_ID(), 'featured_story', true );
 if ( ! empty( $template_args ) && ! empty( $template_args['story_id'] ) ) {
 	$template_args['image_id'] = get_post_thumbnail_id( $template_args['story_id'] );
 	$template_args['link']     = get_the_permalink( $template_args['story_id'] );
-	wmf_get_template_part( 'template-parts/modules/stories/card', $template_args );
+	get_template_part( 'template-parts/modules/stories/card', null, $template_args );
 }

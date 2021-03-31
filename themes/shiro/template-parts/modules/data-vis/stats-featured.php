@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['copy'] ) && empty( $template_args['main_image'] ) ) {
 	return;
@@ -29,7 +29,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 
 		<div class="primary-stat w-100p">
 			<div class="ungrid-top-box data-bite mar-bottom wysiwyg w-32p">
-				<?php wmf_get_template_part( 'template-parts/modules/data-vis/data-bite', $template_args['copy'][0] ); ?>
+				<?php get_template_part( 'template-parts/modules/data-vis/data-bite', null, $template_args['copy'][0] ); ?>
 			</div>
 		</div>
 
@@ -47,7 +47,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 		<div class="secondary-stats w-32p">
 			<?php for ($i = 1; $i < $no_of_modules; $i++) { ?>
 			<div class="data-bite mar-bottom_lg wysiwyg">
-				<?php wmf_get_template_part( 'template-parts/modules/data-vis/data-bite', $template_args['copy'][$i] ); ?>
+				<?php get_template_part( 'template-parts/modules/data-vis/data-bite', null, $template_args['copy'][$i] ); ?>
 			</div>
 			<?php } ?>
 			<p class="updated-date"><?php echo esc_html( $template_args['updated-date'] ); ?></p>

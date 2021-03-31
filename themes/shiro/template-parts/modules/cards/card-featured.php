@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$card_data = wmf_get_template_data();
+$card_data = $args;
 
 if ( empty( $card_data ) ) {
 	return;

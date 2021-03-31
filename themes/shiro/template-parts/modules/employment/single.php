@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['listings'][0] ) ) {
 	return;
@@ -17,5 +17,5 @@ if ( empty( $template_args['listings'][0] ) ) {
 	<?php if ( ! empty( $template_args['heading'] ) ) : ?>
 	<h3 class="mar-bottom_lg"><?php echo esc_html( $template_args['heading'] ); ?></h3>
 	<?php endif; ?>
-	<?php wmf_get_template_part( 'template-parts/modules/employment/listing', $template_args['listings'][0] ); ?>
+	<?php get_template_part( 'template-parts/modules/employment/listing', null, $template_args['listings'][0] ); ?>
 </div>

@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['links'] ) || ! is_array( $template_args['links'] ) ) {
 	return;
@@ -35,7 +35,7 @@ $title_class = $split ? 'small' : '';
 			<?php
 			foreach ( $template_args['links'] as $link ) {
 				$link['split'] = $split;
-				wmf_get_template_part( 'template-parts/modules/links/off-site-link', $link );
+				get_template_part( 'template-parts/modules/links/off-site-link', null, $link );
 			}
 			?>
 		</div>

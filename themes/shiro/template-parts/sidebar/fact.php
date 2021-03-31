@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 $callout       = ! empty( $template_data['callout'] ) ? $template_data['callout'] : '';
 $caption       = ! empty( $template_data['caption'] ) ? $template_data['caption'] : '';
 
@@ -33,7 +33,7 @@ if ( empty( $caption ) && empty( $callout ) ) {
 		'message'    => sprintf( '%1$s - %2$s', $callout, $caption ),
 		'list_class' => '',
 	);
-	wmf_get_template_part( 'template-parts/modules/social/share', $template_args, 'vertical' );
+	get_template_part( 'template-parts/modules/social/share', 'vertical', $template_args );
 	?>
 
 	</div>

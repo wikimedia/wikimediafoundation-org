@@ -15,9 +15,9 @@ if ( ! empty( $template_args ) ) {
 	if ( ! empty( $facts ) && is_array( $facts ) ) {
 		if ( 1 === count( $facts ) ) {
 			$template_args = $template_args + $facts[0];
-			wmf_get_template_part( 'template-parts/modules/fact/single', $template_args );
+			get_template_part( 'template-parts/modules/fact/single', null, $template_args );
 		} else {
-			wmf_get_template_part( 'template-parts/modules/fact/multiple', $template_args );
+			get_template_part( 'template-parts/modules/fact/multiple', null, $template_args );
 		}
 	}
 }

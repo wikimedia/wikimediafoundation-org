@@ -17,7 +17,7 @@ $template_args = array(
 	'h1_title' => sprintf( __( $wmf_results_copy, 'shiro' ), get_search_query() ),
 );
 
-wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 ?>
 
@@ -28,8 +28,10 @@ wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
 			while ( have_posts() ) :
 				the_post();
 
-				wmf_get_template_part(
-					'template-parts/modules/cards/card-horizontal', array(
+				get_template_part(
+					'template-parts/modules/cards/card',
+					'horizontal',
+					array(
 						'link'       => get_the_permalink(),
 						'image_id'   => get_post_thumbnail_id(),
 						'title'      => get_the_title(),
