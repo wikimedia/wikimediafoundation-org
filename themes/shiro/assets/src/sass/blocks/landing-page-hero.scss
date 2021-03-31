@@ -3,6 +3,7 @@
 	--background-color: #{$wmui-color-base90};
 	--text-color: #{$wmui-color-base0};
 	--accent-color: #{$wmui-color-base0};
+	--padding-bottom: 40px; // This is overwritten from javascript.
 
 	&__header {
 
@@ -81,8 +82,8 @@
 		padding: rem(72) rem(10) rem(40) rem(30);
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin-top: calc(var(--padding-bottom, 0) * -1);
-			padding-top: calc(var(--padding-bottom, 0) + 60px);
+			margin-top: calc(var(--padding-bottom) * -1);
+			padding-top: calc(var(--padding-bottom) + #{rem(60)});
 			padding-bottom: rem(60);
 		}
 
