@@ -33,6 +33,7 @@
 		}
 
 		&__text-column {
+			margin-right: rem(40);
 			padding-bottom: rem(40);
 		}
 
@@ -56,7 +57,7 @@
 		@include has-font-size("jumbo");
 		font-family: $font-family-sans;
 		line-height: 1.25;
-		margin-bottom: rem(10);
+		margin-bottom: rem(5) 0 rem(10);
 	}
 
 	&__call-to-action {
@@ -68,9 +69,9 @@
 		.is-style-base0 &,
 		.is-style-blue50 &,
 		.is-style-red50 & {
+
 			@include button-tertiary;
 		}
-
 	}
 
 	&__intro {
@@ -89,6 +90,7 @@
 
 			@include has-font-size("large");
 			font-family: $font-family-serif;
+			line-height: 1.5;
 
 			&:last-child {
 				margin-bottom: 0;
