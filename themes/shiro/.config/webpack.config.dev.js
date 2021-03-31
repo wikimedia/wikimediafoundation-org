@@ -1,10 +1,13 @@
-const {helpers, externals, presets} = require('@humanmade/webpack-helpers');
+const {helpers, plugins, externals, presets} = require('@humanmade/webpack-helpers');
 const {withDynamicPort, choosePort, cleanOnExit, filePath} = helpers;
 
 // Clean up manifests on exit.
 cleanOnExit([
 	filePath('assets/dist/asset-manifest.json'),
 ]);
+
+// This allows our configs to share the same manifest when using dev-server
+let seed = {};
 
 module.exports = choosePort( 8080).then( port => [
 		presets.development({
@@ -18,8 +21,13 @@ module.exports = choosePort( 8080).then( port => [
 			},
 			output: {
 				path: filePath('assets/dist'),
-				publicPath: `http://localhost:8080/shiro-blocks/`
-			}
+				publicPath: `http://localhost:${port}/shiro-blocks/`
+			},
+			plugins: [
+				plugins.manifest( {
+					seed,
+				} )
+			],
 		}),
 		presets.development({
 			name: 'theme',
@@ -31,8 +39,13 @@ module.exports = choosePort( 8080).then( port => [
 			},
 			output: {
 				path: filePath('assets/dist'),
-				publicPath: `http://localhost:8080/shiro-theme/`
-			}
+				publicPath: `http://localhost:${port}/shiro-theme/`
+			},
+			plugins: [
+				plugins.manifest( {
+					seed
+				} ),
+			],
 		}),
 	]
 );
