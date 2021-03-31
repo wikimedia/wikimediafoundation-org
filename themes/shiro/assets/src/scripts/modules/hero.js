@@ -2,7 +2,7 @@
  * Responsive style adjustments for landing page hero blocks.
  */
 
-import debounce from 'lodash.debounce';
+import { debounce } from 'lodash';
 
 /**
  * Kick off all functionality in this module.
@@ -24,9 +24,10 @@ const balanceColumns = block => {
 	block.style.setProperty( '--padding-bottom', `${ headerBottom - textColBottom }px` );
 };
 
+// Store a debounced version of the setup function, so that it can be removed if necessary.
 const debouncedInit = debounce( init, 100 );
 
-document.addEventListener( 'DOMReady', init );
+window.addEventListener( 'load', debouncedInit );
 window.addEventListener( 'resize', debouncedInit );
 
 if ( module.hot ) {
