@@ -264,11 +264,15 @@ require get_template_directory() . '/inc/ajax.php';
 /**
  * Block editor functionality.
  */
-require get_template_directory() . '/inc/editor.php';
+require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-list.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/patterns.php';
+require get_template_directory() . '/inc/editor/patterns/blog-list.php';
+require get_template_directory() . '/inc/editor/patterns/card-columns.php';
+require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
+require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\Blocks\BlogList\bootstrap();
