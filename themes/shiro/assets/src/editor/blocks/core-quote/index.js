@@ -1,4 +1,17 @@
+import { __ } from '@wordpress/i18n';
 import './style.scss';
+
+export const styles = [
+	{
+		name: 'default',
+		label: __( 'Default', 'shiro' ),
+		isDefault: true,
+	},
+	{
+		name: 'pullquote',
+		label: __( 'Pullquote', 'shiro' ),
+	},
+];
 
 /**
  * Change quote registration to fit the needs of the Wikimedia design.
@@ -14,13 +27,12 @@ function changeQuoteRegistration( settings, name ) {
 
 	return {
 		...settings,
-		styles: [],
+		styles,
 	};
 }
 
 export const
 	name = 'core/quote',
-	styles = [],
 	filters = [
 		{
 			hook: 'blocks.registerBlockType',

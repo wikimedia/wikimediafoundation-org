@@ -76,7 +76,6 @@ function filter_blocks( $allowed_blocks ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
-		'core/pullquote',
 	];
 }
 

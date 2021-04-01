@@ -4,8 +4,7 @@
 	font-style: italic;
 	padding-left: rem(24);
 
-	cite,
-	&__citation {
+	cite {
 		&:before {
 			content: "\2014";
 			margin: 0 0.5em;
@@ -14,5 +13,24 @@
 
 	p:first-child {
 		padding-left: 0;
+	}
+
+	&.is-style-pullquote {
+		border-left: none;
+		padding-left: 0;
+
+		@include wysiwyg-wrap {
+			p, cite {
+				@include has-font-size("medium");
+			}
+		}
+
+		cite {
+			display: block;
+			margin-top: rem(20);
+			&:before {
+				content: none;
+			}
+		}
 	}
 }

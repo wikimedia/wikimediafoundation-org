@@ -35,9 +35,28 @@
 	}
 }
 
+// Font-sizes: desktop, mobile, line-height.
+$font-sizes: (
+	"default": 18 16 1.75,
+	"small":   14 12 1.75,
+	"medium":  20 18 1.5,
+	"large":   24 21 1.25,
+	"xlarge":  32 24 1.25,
+	"jumbo":   40 30 1.25
+);
+
+@mixin has-font-size( $size ) {
+	$values: map-get( $font-sizes, $size );
+	$desktop: nth($values, 1);
+	$mobile: nth($values, 2);
+	$line-height: nth( $values, 3);
+
+	@include font-size( $desktop, $mobile );
+	line-height: $line-height;
+}
+
 @mixin article-font {
 	font-family: $font-family-serif;
 
-	@include font-size(18, 16);
-	line-height: 31px;
+	@include has-font-size("default");
 }
