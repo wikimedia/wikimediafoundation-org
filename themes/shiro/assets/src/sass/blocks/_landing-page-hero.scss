@@ -3,7 +3,6 @@
 	--background-color: #{$wmui-color-base90};
 	--text-color: #{$wmui-color-base0};
 	--accent-color: #{$wmui-color-base0};
-	--padding-bottom: 40px; // This is overwritten from javascript.
 
 	&__header {
 
@@ -12,9 +11,7 @@
 		@include block-style-text-color;
 
 		display: flex;
-		padding-top: rem(28);
-		padding-bottom: rem(28);
-
+		padding: rem(28) rem(20);
 	}
 
 	&__image {
@@ -25,7 +22,6 @@
 
 		&__header {
 			flex-flow: row nowrap;
-			align-items: flex-start;
 		}
 
 		&__text-column,
@@ -35,11 +31,21 @@
 
 		&__text-column {
 			margin-right: rem(40);
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: flex-start;
+
+			&::after {
+				border-left: 1px solid var(--accent-color);
+				content: "";
+				flex-grow: 1;
+				margin-bottom: rem(-28);
+				min-height: rem(28);
+			}
 		}
 
 		&__image {
 			display: block;
-			margin: rem(10);
 		}
 	}
 
@@ -58,6 +64,7 @@
 		@include has-font-size("jumbo");
 		font-family: $font-family-sans;
 		line-height: 1.25;
+		width: 100%;
 	}
 
 	&__call-to-action {
@@ -82,9 +89,9 @@
 		padding: rem(72) rem(10) rem(40) rem(30);
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin-top: calc(var(--padding-bottom) * -1);
-			padding-top: calc(var(--padding-bottom) + #{rem(60)});
+			margin-top: 0;
 			padding-bottom: rem(60);
+			padding-top: rem(60);
 		}
 
 		p {
