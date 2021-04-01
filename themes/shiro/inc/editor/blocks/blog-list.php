@@ -78,7 +78,7 @@ function render_block( $attributes ) {
 
 	$recent_posts = get_posts( $args );
 
-	if ( $recent_posts ) {
+	if ( count( $recent_posts ) > 0 ) {
 		$output = '';
 
 		foreach ( $recent_posts as $recent_post ) {
