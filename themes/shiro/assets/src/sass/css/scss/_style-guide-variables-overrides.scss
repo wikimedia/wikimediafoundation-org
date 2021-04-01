@@ -47,3 +47,6 @@ $width-breakpoint-desktop: 1060px;
 $core-gutenberg-break-medium: 782px;
 $core-gutenberg-break-small: 600px;
 $wm-column-gutter: 20px;
+
+// Box shadows for elements larger than those specified in the style guide.
+$box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
