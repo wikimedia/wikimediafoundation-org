@@ -1,5 +1,6 @@
 @import "style-guide-variables";
 @import "style-guide-variables-overrides";
+@import "style-guide-variables-mixins";
 
 // Colors
 $color-blue: #3A25FF;
@@ -20,9 +21,6 @@ $color-gray: #6D8799;
 $color-ltgray: #B6C3CC;
 $color-black: #212025;
 $color-white: #fff;
-$border-color-framed: $wmui-color-base80;
-// Border radius for bigger elements
-$border-radius-big: 5px;
 
 $link-highlight-color: #c1bffa;
 $cta-bg-color: #fdf3f8;

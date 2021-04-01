@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 $follow_text = ! empty( $template_args['follow_text'] ) ? $template_args['follow_text'] : get_theme_mod( 'wmf_social_follow_text', __( 'Follow', 'shiro' ) );
 $facebook    = ! empty( $template_args['facebook_url'] ) ? $template_args['facebook_url'] : get_theme_mod( 'wmf_facebook_url' );

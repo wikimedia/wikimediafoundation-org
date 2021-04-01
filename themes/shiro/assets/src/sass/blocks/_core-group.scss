@@ -2,4 +2,9 @@
 	&.has-background {
 		padding: 20px;
 	}
+
+	&.alignfull {
+
+		@include alignfull-padded;
+	}
 }

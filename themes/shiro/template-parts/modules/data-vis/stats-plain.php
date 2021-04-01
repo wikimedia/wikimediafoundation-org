@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['headline'] ) ) {
 	return;
@@ -20,7 +20,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 
 <div class="stats-plain-container w-100p bg-white mod-margin-bottom_sm">
 	<div class="mw-980">
-		
+
 		<div class="heading mar-bottom_lg wysiwyg">
 			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['subheadline'] ); ?></h3>
 			<h2 class="h2"><?php echo esc_html( $template_args['headline'] ); ?></h2>
@@ -28,7 +28,7 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 		</div>
 
 		<div class="flex flex-medium flex-wrap flex-space-between mar-bottom">
-			<?php for ($i = 0; $i < $no_of_modules; $i++) { 
+			<?php for ($i = 0; $i < $no_of_modules; $i++) {
 			$this_module = $template_args['copy'][$i];
 			?>
 			<div class="<?php echo esc_attr($width); ?> mar-top wysiwyg">

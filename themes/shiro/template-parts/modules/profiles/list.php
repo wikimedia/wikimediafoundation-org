@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 
 $profiles = ! empty( $template_data['profiles_list'] ) ? $template_data['profiles_list'] : '';
 
@@ -43,8 +43,10 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 			if ( ! empty( $team ) && ! is_wp_error( $team ) ) {
 				$team_name = $team[0]->name;
 			}
-			wmf_get_template_part(
-				'template-parts/modules/profiles/card', array(
+			get_template_part(
+				'template-parts/modules/profiles/card',
+				null,
+				array(
 					'title'  => get_the_title( $profile_id ),
 					'img_id' => get_post_thumbnail_id( $profile_id ),
 					'link'   => get_the_permalink( $profile_id ),

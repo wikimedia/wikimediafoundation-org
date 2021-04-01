@@ -5,6 +5,11 @@
 	padding: 1em 2em;
 
 	.components-placeholder__fieldset {
-		justify-content: center;
+		flex-flow: row nowrap;
+		justify-content: space-around;
+
+		.components-button {
+			margin-right: unset;
+		}
 	}
 }

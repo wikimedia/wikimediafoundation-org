@@ -33,5 +33,5 @@ if ( ! empty( $services ) ) {
 }
 
 ?><div class="social-share-aside"><?php
-wmf_get_template_part( 'template-parts/modules/social/share-vertical', $template_data );
+get_template_part( 'template-parts/modules/social/share', 'vertical', $template_data );
 ?></div>

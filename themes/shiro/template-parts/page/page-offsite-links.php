@@ -20,4 +20,4 @@ if ( ( 'page-landing.php' === $template ) || ( 'page-report.php' === $template )
 	$template_args['split'] = true;
 }
 
-wmf_get_template_part( 'template-parts/modules/links/off-site-links', $template_args );
+get_template_part( 'template-parts/modules/links/off-site-links', null, $template_args );

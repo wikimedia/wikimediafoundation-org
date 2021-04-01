@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 
 if ( empty( $template_data ) || empty( $template_data['links'] ) ) {
 	return;
@@ -37,8 +37,10 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_pages_pre_hea
 		<div class="related-pages flex flex-medium">
 			<?php
 			foreach ( $links as $page ) :
-				wmf_get_template_part(
-					'template-parts/modules/related/item', array(
+				get_template_part(
+					'template-parts/modules/related/item',
+					null,
+					array(
 						'title' => get_the_title( $page ),
 						'link'  => get_the_permalink( $page ),
 						'image' => get_post_thumbnail_id( $page ),

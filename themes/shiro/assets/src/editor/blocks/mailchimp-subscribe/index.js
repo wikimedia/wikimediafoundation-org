@@ -25,17 +25,24 @@ export const
 
 		title: __( 'Mailchimp subscription form', 'shiro' ),
 
+		category: 'wikimedia',
+
 		attributes: {
-			action: {
-				type: 'string',
-			},
 			description: {
+				source: 'html',
 				type: 'string',
 				default: __( 'This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy.', 'shiro' ),
+				selector: '.mailchimp-subscribe__description',
 			},
 			buttonText: {
+				source: 'html',
 				type: 'string',
 				default: __( 'Subscribe', 'shiro' ),
+				selector: '.wp-block-shiro-button',
+			},
+			inputPlaceholder: {
+				type: 'string',
+				default: __( 'Email address', 'shiro' ),
 			},
 		},
 
@@ -44,7 +51,7 @@ export const
 		 */
 		edit: function MailChimpSubscribeEdit( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'mailchimp-subscribe' } );
-			const { description, buttonText } = attributes;
+			const { description, buttonText, inputPlaceholder } = attributes;
 
 			return (
 				<>
@@ -57,11 +64,13 @@ export const
 							templateLock={ false } />
 						<div className="mailchimp-subscribe__input-container">
 							<div className="mailchimp-subscribe__column-input">
-								<div
+								<RichText
+									allowedFormats={ [] }
 									className="mailchimp-subscribe__input-field"
-								>
-									{ __( 'Email address', 'shiro' ) }
-								</div>
+									tagName="div"
+									value={ inputPlaceholder }
+									onChange={ inputPlaceholder => setAttributes( { inputPlaceholder } ) }
+								/>
 							</div>
 							<div className="mailchimp-subscribe__column-button">
 								<RichText
@@ -115,7 +124,7 @@ export const
 						</div>
 					</div>
 					<RichText.Content
-						className="has-base-30-color has-text-color has-small-font-size"
+						className="mailchimp-subscribe__description has-base-30-color has-text-color has-small-font-size"
 						tagName="p"
 						value={ description }
 					/>

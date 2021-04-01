@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['listings'] ) ) {
 	return;
@@ -23,7 +23,7 @@ $listing_width = 3 === count( $template_args['listings'] ) ? 'w-32p' : 'w-45p';
 	<div class="mw-1360 flex flex-medium flex-wrap">
 		<?php foreach ( $template_args['listings'] as $listing ) : ?>
 		<div class="listing-inner module-mu <?php echo esc_attr( $listing_width ); ?>">
-			<?php wmf_get_template_part( 'template-parts/modules/employment/listing', $listing ); ?>
+			<?php get_template_part( 'template-parts/modules/employment/listing', null, $listing ); ?>
 		</div>
 		<?php endforeach; ?>
 	</div>

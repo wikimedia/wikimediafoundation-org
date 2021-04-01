@@ -22,9 +22,9 @@ while ( have_posts() ) {
 
 	if ( has_post_thumbnail() ) {
 		$template_args['image'] = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-		wmf_get_template_part( 'template-parts/header/header-content', $template_args );
+		get_template_part( 'template-parts/header/header-content', null, $template_args );
 	} else {
-		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 
 	get_template_part( 'template-parts/header/index' );

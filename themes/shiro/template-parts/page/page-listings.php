@@ -15,9 +15,9 @@ if ( ! empty( $template_args ) ) {
 	if ( ! empty( $listings ) && is_array( $listings ) ) {
 		if ( 1 === count( $listings ) ) {
 			$template_args = $template_args + $listings[0];
-			wmf_get_template_part( 'template-parts/modules/employment/single', $template_args );
+			get_template_part( 'template-parts/modules/employment/single', null, $template_args );
 		} else {
-			wmf_get_template_part( 'template-parts/modules/employment/multiple', $template_args );
+			get_template_part( 'template-parts/modules/employment/multiple', null, $template_args );
 		}
 	}
 }

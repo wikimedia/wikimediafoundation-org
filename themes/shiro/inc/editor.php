@@ -6,7 +6,7 @@
 namespace WMF\Editor;
 
 use Asset_Loader;
-use Asset_Loader\Manifest;
+use WMF\Assets;
 
 /**
  * Bootstrap hooks relevant to the block editor.
@@ -47,7 +47,9 @@ function filter_blocks( $allowed_blocks ) {
 	return [
 		// Custom blocks
 		'shiro/banner',
+		'shiro/blog-list',
 		'shiro/blog-post-heading',
+		'shiro/card',
 		'shiro/stairs',
 		'shiro/stair',
 		'shiro/landing-page-hero',
@@ -136,7 +138,7 @@ function add_theme_supports() {
 
 function enqueue_block_editor_assets() {
 
-	$manifest = \WMF\Assets\get_manifest_path();
+	$manifest = Assets\get_manifest_path();
 
 	Asset_Loader\enqueue_asset(
 		$manifest,
