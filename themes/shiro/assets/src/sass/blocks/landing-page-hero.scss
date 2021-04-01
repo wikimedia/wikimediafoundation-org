@@ -50,6 +50,7 @@
 		font-family: $font-family-serif;
 		font-weight: 400;
 		line-height: 1.5;
+		margin-bottom: rem(5);
 	}
 
 	&__title {
@@ -57,7 +58,6 @@
 		@include has-font-size("jumbo");
 		font-family: $font-family-sans;
 		line-height: 1.25;
-		margin-bottom: rem(5) 0 rem(10);
 	}
 
 	&__call-to-action {
