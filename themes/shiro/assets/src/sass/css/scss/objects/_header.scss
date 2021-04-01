@@ -111,21 +111,6 @@ $header-bp-mw: 1049px;
 				min-height: auto;
 			}
 		}
-
-
-		&--news {
-			min-height: auto;
-			padding-bottom: rem(5);
-
-			@media (min-width: $medium-bp) {
-				padding-bottom: rem(300);
-			}
-
-			// TODO: Take header height and header-inner height to auto.
-			.header-inner {
-				min-height: auto;
-			}
-		}
 	}
 
 

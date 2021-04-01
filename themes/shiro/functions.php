@@ -7,15 +7,6 @@
  * @package shiro
  */
 
-require_once __DIR__ . '/inc/editor/patterns.php';
-require_once __DIR__ . '/inc/classes/editor/blocks/mailchimp-subscribe.php';
-
-\WMF\Editor\Patterns\bootstrap();
-\WMF\Editor\Blocks\MailChimpSubscribe\bootstrap();
-
-// Loading this early so we'll have access to it when enqueuing
-require_once __DIR__ . '/inc/assets.php';
-
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -244,6 +235,13 @@ function wmf_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
 
 /**
+ * Functions for enqueuing assets.
+ *
+ * Loading this early so we'll have access to it when enqueuing
+ */
+require_once __DIR__ . '/inc/assets.php';
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -267,7 +265,16 @@ require get_template_directory() . '/inc/ajax.php';
  * Block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
+require get_template_directory() . '/inc/editor/blocks/blog-list.php';
+require get_template_directory() . '/inc/editor/blocks/blog-post.php';
+require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
+require get_template_directory() . '/inc/editor/patterns.php';
+
 WMF\Editor\bootstrap();
+WMF\Editor\Blocks\BlogList\bootstrap();
+WMF\Editor\Blocks\BlogPost\bootstrap();
+WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
+WMF\Editor\Patterns\bootstrap();
 
 /**
  * Adjustments to queries.

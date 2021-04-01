@@ -1,0 +1,39 @@
+@mixin style-guide-link {
+
+	color: $color-primary;
+
+	&:focus {
+		color: $color-primary--active;
+	}
+
+	&:hover {
+		color: $color-primary--active;
+		text-decoration: underline;
+	}
+}
+
+@mixin hover-box-shadow {
+	border: 1px solid transparent;
+	transition: $transition-ease-medium border-color box-shadow;
+
+	&:hover {
+		border-color: $wmui-color-base90;
+		box-shadow: $box-shadow-card-element;
+	}
+}
+
+@mixin style-guide-arrow-link {
+
+	@include has-font-size( "default" );
+	@include style-guide-link;
+	display: inline-block;
+	font-weight: 700;
+	position: relative;
+
+	&::after {
+		content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
+		color: $wmui-color-accent50;
+		position: absolute;
+		right: -2em; /*rtl: left: -1em;*/
+	}
+}
