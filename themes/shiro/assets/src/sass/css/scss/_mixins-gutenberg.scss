@@ -34,3 +34,10 @@
 		padding-right: calc(50vw - #{$content-column / 2});
 	}
 }
+
+@mixin article-font {
+	font-family: $font-family-serif;
+
+	@include font-size(18, 16);
+	line-height: 31px;
+}
