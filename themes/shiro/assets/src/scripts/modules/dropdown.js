@@ -1,5 +1,7 @@
 /**
- * @returns Element[]
+ * Get an array of all elements that seem to be dropdowns.
+ *
+ * @returns {Element[]} All the potential dropdowns in this document.
  */
 function getInstances() {
 	const dropdowns = document.querySelectorAll( '[data-dropdown]' );
@@ -11,42 +13,48 @@ function getInstances() {
 }
 
 /**
- * @param list
- * @param observer
+ * Change content classes when dropdown state changes.
+ *
+ * @param {MutationRecord[]} list List of MutationRecords
+ * @param {MutationObserver} observer The MutationObserver instance
+ *
+ * @returns {void}
  */
-function observe( list, observer ) {
+function handleMutation( list, observer ) {
 	list.forEach( r => {
-		const el = r.target;
-		const { content } = el.dropdown;
-		if ( el.dataset.open === 'true' ) {
-			content.classList.add( 'dropdown__content--open' );
-		} else {
-			content.classList.remove( 'dropdown__content--open' );
+		if ( r.attributeName === 'data-open' ) {
+			const el = r.target;
+			const open = el.dataset.open;
+			const { content, toggle } = el.dropdown;
+			content.hidden = open !== 'true';
+
+			toggle.setAttribute( 'aria-expanded', open );
 		}
 	} );
 }
 
 /**
- * @param el
+ * Add dropdown functionality to a specific element.
+ *
+ * @param {Element} el The element to upgrade and instantiate.
+ *
+ * @returns {Element} Upgraded and instantiated element.
  */
-function intialize( el ) {
+function instantiate( el ) {
 	const name = el.dataset.dropdown;
 	const content = el.querySelector( '.dropdown__content' );
-	const toggles = Array.from( document.querySelectorAll( `[data-dropdown-toggle='${name}']` ) );
+	const toggle = document.querySelector( `[data-dropdown-toggle='${name}']` );
+
 	/**
-	 * Handle toggling the dropdown.
+	 * Swap content state when click happens.
 	 */
-	const toggleAction = () => {
-		el.dataset.open = String( el.dataset.open !== 'true' );
+	const handleClick = () => {
+		el.dataset.open = el.dataset.open === 'true' ? 'false': 'true';
 	};
 
-	toggles.map( toggle => {
-		toggle.addEventListener( 'click', toggleAction );
+	toggle.addEventListener( 'click', handleClick );
 
-		return toggle;
-	} );
-
-	const observer = new MutationObserver( observe );
+	const observer = new MutationObserver( handleMutation );
 	observer.observe( el, {
 		attributes: true,
 		childList: false,
@@ -54,27 +62,29 @@ function intialize( el ) {
 	} );
 
 	el.dropdown = {
-		name: name,
-		content: content,
-		toggles: toggles,
-		observer: observer,
-		toggleAction: toggleAction,
+		name,
+		content,
+		toggle,
+		observer,
+		handleClick,
 	};
 
 	return el;
 }
 
 /**
- * @param el
+ * Remove the dropdown functionality from a specific element.
+ *
+ * @param {Element} el The element to remove dropdown functionality from
+ *
+ * @returns {Element} The element, with dropdown functionality removed
  */
 function destroy( el ) {
 	if ( el.dropdown ) {
 		// Stop watching mutations
 		el.dropdown.observer.disconnect();
-		// Remove all event listeners
-		el.dropdown.toggles.map( toggle => {
-			toggle.removeEventListener( 'click', el.dropdown.toggleAction );
-		} );
+		// Remove click watcher
+		el.dropdown.toggle.removeEventListener( 'click', el.dropdown.handleClick );
 		// Remove all data
 		el.dropdown = null;
 	}
@@ -83,20 +93,41 @@ function destroy( el ) {
 }
 
 /**
- * @returns void
+ * Set up the dropdowns with support for HMR.
+ *
+ * If you /just/ want to set up dropdowns, import `setup`.
+ *
+ * @returns {void}
  */
-function setup() {
-	const dropdowns = getInstances();
-	dropdowns.map( intialize );
+function initialize() {
+	if ( module.hot ) {
+		module.hot.accept();
+		module.hot.dispose( teardown );
+		setup();
+	} else {
+		setup();
+	}
 }
 
 /**
+ * Set up all dropdowns on the page.
  *
+ * @returns {void}
  */
-function teardown() {
-	const dropdowns = getInstances();
-	dropdowns.map( destroy );
+function setup() {
+	getInstances().map( instantiate );
 }
 
-export default setup;
-export { teardown };
+/**
+ * Remove functionality from all dropdowns on page.
+ *
+ * @returns {void}
+ */
+function teardown() {
+	getInstances().map( destroy );
+}
+
+export default initialize;
+export {
+	teardown, setup,
+};
