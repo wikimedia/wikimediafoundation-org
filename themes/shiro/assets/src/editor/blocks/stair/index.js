@@ -124,6 +124,7 @@ export const
 						alt={ imageAlt }
 						className="stair__image"
 						id={ imageId }
+						imageSize="image_16x9_small"
 						src={ imageUrl }
 					/>
 					<RichText.Content
