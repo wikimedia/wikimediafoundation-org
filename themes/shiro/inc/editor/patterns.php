@@ -97,7 +97,7 @@ CONTENT,
 <div class="wp-block-group has-accent-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">200,000+</p>
 <!-- /wp:paragraph -->
-
+G
 <!-- wp:paragraph -->
 <p><strong>Editors contribute to Wikimedia projects every month</strong></p>
 <!-- /wp:paragraph -->
@@ -190,4 +190,21 @@ CONTENT,
 <!-- /wp:columns -->
 CONTENT,
 	] );
+
+	register_block_pattern( 'shiro/blog-list', [
+		'title' => __( 'Blog list section', 'shiro' ),
+		'categories' => [ 'wikimedia-columns' ],
+		'content' => <<<CONTENT
+<!-- wp:group {"align":"full","backgroundColor":"base90"} -->
+<div class="wp-block-group alignfull has-base-90-background-color has-background"><div class="wp-block-group__inner-container">
+<!-- wp:heading -->
+<h2>News about Wikimedia:</h2>
+<!-- /wp:heading -->
+
+<!-- wp:shiro/blog-list /-->
+</div></div>
+<!-- /wp:group -->
+CONTENT,
+	] );
+
 }
