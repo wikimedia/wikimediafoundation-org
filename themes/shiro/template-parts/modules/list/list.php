@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args ) || ! is_array( $template_args ) ) {
 	return;
@@ -45,7 +45,7 @@ foreach ( $template_args as $i => $list_section ) {
 	<?php
 	if ( isset( $list_section['links'] ) ) :
 		foreach ( $list_section['links'] as $link ) :
-			wmf_get_template_part( 'template-parts/modules/list/item', $link );
+			get_template_part( 'template-parts/modules/list/item', null, $link );
 		endforeach;
 	endif;
 	?>

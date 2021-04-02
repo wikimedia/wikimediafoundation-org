@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$data = wmf_get_template_data();
+$data = $args;
 
 if ( empty( $data['inner_image'] ) ) {
 	return;

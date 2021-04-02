@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['blocks'] ) || ! is_array( $template_args['blocks'] ) ) {
 	return;
@@ -23,6 +23,6 @@ foreach ( $template_args['blocks'] as $block ) {
 
 	$block['class'] = 0 === $block_count % 2 ? 'img-right-content-left' : 'img-left-content-right';
 
-	wmf_get_template_part( 'template-parts/modules/focus-blocks/block', $block );
+	get_template_part( 'template-parts/modules/focus-blocks/block', null, $block );
 }
 ?></div><?php

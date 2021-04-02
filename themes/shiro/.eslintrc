@@ -22,7 +22,7 @@
 			}
 		},
 		{
-			"files": ["assets/src/js/frontend.js"],
+			"files": ["assets/src/scripts/**/*.js"],
 			"extends": ["@humanmade/eslint-config"],
 			"rules": {
 				"no-restricted-globals": [

@@ -12,4 +12,4 @@ foreach ( $template_args as $list_section ) {
 	}
 }
 
-wmf_get_template_part( 'template-parts/modules/list/list', $template_args );
+get_template_part( 'template-parts/modules/list/list', null, $template_args );

@@ -8,4 +8,4 @@
  */
 
 $template_args = get_post_meta( get_the_ID(), 'page_cta', true );
-wmf_get_template_part( 'template-parts/modules/cta/page', $template_args );
+get_template_part( 'template-parts/modules/cta/page', null, $template_args );

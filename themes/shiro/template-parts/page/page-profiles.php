@@ -18,5 +18,5 @@ $rand_translation = wmf_get_random_translation(
 $template_args['rand_translation_title'] = empty( $rand_translation['pre_heading'] ) ? '' : $rand_translation['pre_heading'];
 
 if ( ! empty( $template_args ) ) {
-	wmf_get_template_part( 'template-parts/modules/profiles/list', $template_args );
+	get_template_part( 'template-parts/modules/profiles/list', null, $template_args );
 }

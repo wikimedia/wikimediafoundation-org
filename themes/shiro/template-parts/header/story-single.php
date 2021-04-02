@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$story_header_data = wmf_get_template_data();
+$story_header_data = $args;
 
 $back_to_link = ! empty( $story_header_data['back_to_link'] ) ? $story_header_data['back_to_link'] : home_url( '/about/transparency' );
 $story_name   = ! empty( $story_header_data['back_to_label'] ) ? $story_header_data['back_to_label'] : __( 'Transparency Report', 'shiro' );
