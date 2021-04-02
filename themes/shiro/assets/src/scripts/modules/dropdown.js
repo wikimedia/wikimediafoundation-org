@@ -29,6 +29,11 @@ function handleMutation( list, observer ) {
 			content.hidden = open !== 'true';
 
 			toggle.setAttribute( 'aria-expanded', open );
+
+			const backdrop = document.querySelector( '[data-dropdown-backdrop]' );
+			if ( backdrop ) {
+				backdrop.dataset.dropdownBackdrop = open === 'true' ? 'active' : 'inactive';
+			}
 		}
 	} );
 }
@@ -42,7 +47,7 @@ function handleMutation( list, observer ) {
  */
 function instantiate( el ) {
 	const name = el.dataset.dropdown;
-	const content = el.querySelector( '.dropdown__content' );
+	const content = el.querySelector( '[data-dropdown-content]' );
 	const toggle = document.querySelector( `[data-dropdown-toggle='${name}']` );
 
 	/**
@@ -93,6 +98,38 @@ function destroy( el ) {
 }
 
 /**
+ * Returns the backdrop element.
+ *
+ * This will only ever return one, even if multiple backdrops exist in the HTML.
+ *
+ * @returns {Element} Backdrop element (if found)
+ */
+function getBackdrop() {
+	return document.querySelector( '[data-dropdown-backdrop]' );
+}
+
+/**
+ * Handles clicks on the backdrop.
+ */
+function handleBackdropClick() {
+	getInstances().map( dropdown => {
+		dropdown.dataset.open = 'false';
+	} );
+}
+
+/**
+ * Sets up the backdrop, which closese all active dropdowns when clicked.
+ *
+ * If it can't find any backdrops, this fails quietly.
+ */
+function initializeBackdrop() {
+	const backdrop = getBackdrop();
+	if ( backdrop ) {
+		backdrop.addEventListener( 'click', handleBackdropClick );
+	}
+}
+
+/**
  * Set up the dropdowns with support for HMR.
  *
  * If you /just/ want to set up dropdowns, import `setup`.
@@ -116,6 +153,7 @@ function initialize() {
  */
 function setup() {
 	getInstances().map( instantiate );
+	initializeBackdrop();
 }
 
 /**
@@ -125,6 +163,12 @@ function setup() {
  */
 function teardown() {
 	getInstances().map( destroy );
+	const backdrop = getBackdrop();
+	if ( backdrop ) {
+		backdrop.removeEventListener( 'click', handleBackdropClick );
+		// Probably don't want it left open
+		backdrop.dataset.dropdownBackdrop = 'inactive';
+	}
 }
 
 export default initialize;

@@ -1,72 +1,58 @@
-.dropdown {
+[data-dropdown] {
 	position: relative;
-	&__button {
-		@include style-guide-button-reset();
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		align-items: center;
-		padding: 6px 8px 6px 12px;
-		background-color: $wmui-color-base90;
-		border: 1px solid $wmui-color-base50;
-		box-sizing: border-box;
-		border-radius: 2px;
-		color: $wmui-color-base10;
+	z-index: 2001;
+}
 
-		&:hover {
-			background-color: $wmui-color-base100;
-		}
+[data-dropdown-toggle] {
 
-		&:active,
-		&:focus {
-			outline: none;
-			border-width: 2px;
-			border-color: $wmui-color-accent50;
-			// These account for the increased width of the border
-			padding: 5px 7px 5px 11px;
-		}
+	@include style-guide-button-reset();
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 6px 8px 6px 12px;
+	background-color: $wmui-color-base90;
+	border: 1px solid $wmui-color-base50;
+	box-sizing: border-box;
+	border-radius: 2px;
+	color: $wmui-color-base10;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: rem( 14 );
+
+	&:hover {
+		background-color: $wmui-color-base100;
 	}
 
-	&__icon {
-		margin-right: 6px;
+	&:active,
+	&:focus {
+		outline: none;
+		border-color: $wmui-color-accent50;
 	}
+}
 
-	&__label {
-		text-transform: uppercase;
-		font-weight: bold;
-		font-size: rem( 14 );
-		margin-right: 9px;
-		// Hidden on mobile
+[data-dropdown-content] {
+	&[hidden] {
+		// For browsers that don't understand hidden
 		display: none;
-
-		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			display: inline-block;
-		}
 	}
+}
 
-	&__content {
-		width: 100%;
-		background-color: grey;
-		position: absolute;
-		right: 0;
-		&--open {
-			display: flex;
-			flex-direction: column;
-		}
+[data-dropdown-backdrop] {
+	position: fixed;
+	display: block;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100vw;
+	z-index: 1999;
+	opacity: 0;
+	background: #000;
+	pointer-events: none;
+	transition: 300ms opacity;
+}
 
-		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			max-width: 768px;
-			// This aligns the top of the content with the bottom of the button
-			top: 100%;
-		}
-	}
-
-	&__state {
-		position: relative;
-		transform: rotate(0);
-
-		&--open {
-			transform: rotate(180deg);
-		}
-	}
+[data-dropdown-backdrop="active"] {
+	pointer-events: auto;
+	opacity: 0.6;
 }

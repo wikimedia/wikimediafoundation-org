@@ -1,0 +1,102 @@
+.language-switcher {
+	position: relative;
+
+	&__button {
+		color: $wmui-color-accent50;
+	}
+
+	&__icon {
+		margin-right: 6px;
+	}
+
+	&__label {
+		margin-right: 9px;
+		// Hidden on mobile
+		display: none;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			display: inline-block;
+		}
+	}
+
+	&__content {
+		width: 100%;
+		padding: rem( 40 ) rem( 12 );
+		font-size: rem( 16 );
+		box-sizing: border-box;
+		position: fixed;
+		right: 0;
+		// Magic number alert
+		top: rem( 65 );
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			border: 1px solid $wmui-color-accent50;
+			font-size: rem( 14 );
+			position: absolute;
+			width: 200px;
+			max-width: 100vw;
+			padding: rem( 20 );
+			right: 0;
+			// This aligns the top of the content with the bottom of the button
+			top: calc( 100% - 1px );
+		}
+
+		@media ( min-width: 1060px ) {
+			left: 0;
+			right: unset;
+		}
+
+		ul {
+			display: flex;
+			flex-direction: column;
+
+			li {
+				list-style: none;
+				margin: 0;
+				margin-bottom: rem( 19 );
+
+				@media ( min-width: #{$width-breakpoint-tablet} ) {
+					margin-bottom: rem( 14 );
+				}
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	&__language {
+		--language-picker-item-border-color: transparent;
+
+		&--selected {
+			--language-picker-item-border-color: #{$wmui-color-accent50};
+		}
+
+		a {
+			display: block;
+			padding-left: rem( 8 );
+			padding-right: rem( 8 );
+			padding-top: rem( 6 );
+
+			&:hover {
+				background-color: $wmui-color-accent90;
+			}
+		}
+
+	}
+
+	&__language-name {
+		display: inline-block;
+
+		&::after {
+			content: '';
+			display: block;
+			margin-top: rem( 6 );
+			border-bottom: 3px solid var(--language-picker-item-border-color);
+		}
+	}
+}
