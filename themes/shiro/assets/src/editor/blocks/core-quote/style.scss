@@ -10,7 +10,7 @@
 	}
 
 	&__citation {
-		@include article-font;
+		@include has-font-size("default");
 
 		&:before {
 			content: "\2014";
@@ -22,7 +22,6 @@
 		.wp-block-quote__citation {
 			display: block;
 			margin-top: rem(20);
-			@include has-font-size("medium");
 			&:before {
 				content: none;
 			}
