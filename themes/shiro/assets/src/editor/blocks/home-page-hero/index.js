@@ -93,6 +93,10 @@ export const settings = {
 				},
 			},
 		},
+		enableAnimation: {
+			type: 'boolean',
+			default: true,
+		},
 	},
 
 	/**
@@ -104,6 +108,7 @@ export const settings = {
 			imageUrl,
 			heading,
 			mainLang,
+			enableAnimation,
 		} = attributes;
 		let { rotatingHeadings }  = attributes;
 
@@ -138,7 +143,7 @@ export const settings = {
 					<div className={ classNames(
 						'hero-home__image-wrapper',
 						{
-							'hero-home__image-wrapper--disable-animation': ! isSelected || ! hasImage,
+							'hero-home__image-wrapper--disable-animation': ! isSelected || ! hasImage || ! enableAnimation,
 							'hero-home__image-wrapper--no-image': ! hasImage,
 						}
 					) }>
@@ -209,6 +214,15 @@ export const settings = {
 							);
 						} ) }
 					</div> ) }
+					<InspectorControls>
+						<PanelBody initialOpen title={ __( 'Image settings', 'shiro' ) }>
+							<ToggleControl
+								checked={ enableAnimation }
+								label={ __( 'Enable animation', 'shiro' ) }
+								onChange={ enableAnimation => setAttributes( { enableAnimation } ) }
+							/>
+						</PanelBody>
+					</InspectorControls>
 					{ activeRotatingHeading === null && ( <InspectorControls>
 						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
 							<TextControl
@@ -274,11 +288,13 @@ export const settings = {
 			imageAlt,
 			heading,
 			mainLang,
+			enableAnimation,
 		} = attributes;
 		let {
 			rotatingHeadings,
 		} = attributes;
 
+		rotatingHeadings = rotatingHeadings || [];
 		rotatingHeadings = rotatingHeadings.filter( heading => ! RichText.isEmpty( heading.text ) );
 		rotatingHeadings = rotatingHeadings.map( heading => {
 			return {
@@ -294,7 +310,12 @@ export const settings = {
 		return (
 			<div { ...blockProps } >
 				<header className="hero-home__header">
-					<div className="hero-home__image-wrapper">
+					<div className={ classNames(
+						'hero-home__image-wrapper',
+						{
+							'hero-home__image-wrapper--disable-animation': ! enableAnimation,
+						}
+					) }>
 						<ImagePicker.Content
 							alt={ imageAlt }
 							className="hero-home__image"

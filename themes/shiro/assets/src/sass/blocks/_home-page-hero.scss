@@ -29,6 +29,10 @@
 		width: 4237px;
 		z-index: -1;
 		animation: hero-home-animation 300s linear infinite;
+
+		&--disable-animation {
+			animation-play-state: paused;
+		}
 	}
 
 	&__heading-wrapper {

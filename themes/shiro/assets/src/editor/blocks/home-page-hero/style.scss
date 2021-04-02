@@ -9,10 +9,6 @@
 		&__image-wrapper {
 			z-index: unset;
 
-			&--disable-animation {
-				animation-play-state: paused;
-			}
-
 			&--no-image {
 				position: relative;
 				width: unset;
