@@ -1,3 +1,30 @@
+@mixin dropdown-caret-blue() {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Ctitle%3E down %3C/title%3E%3Cpath d='M10.085 2.943L6.05 6.803l-3.947-3.86L1.05 3.996l5 5 5-5z' fill='%233A25FF'/%3E%3C/svg%3E%0A");
+}
+
+@mixin dropdown-caret-black() {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Ctitle%3E down %3C/title%3E%3Cpath d='M10.085 2.943L6.05 6.803l-3.947-3.86L1.05 3.996l5 5 5-5z' fill='%23000'/%3E%3C/svg%3E ");
+}
+
+@mixin dropdown-toggle-styles() {
+	@include style-guide-button-reset();
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: rem( 6 ) rem( 25 ) rem( 6 ) rem( 12 );
+	background-color: $wmui-color-base90;
+	border: 1px solid $wmui-color-base50;
+	box-sizing: border-box;
+	border-radius: 2px;
+	color: $wmui-color-base10;
+	font-weight: bold;
+	font-size: rem( 14 );
+	background-repeat: no-repeat;
+	background-position: calc( 100% - #{rem( 13 )} ) center;
+
+}
+
 [data-dropdown] {
 	position: relative;
 	z-index: 2001;
@@ -5,20 +32,9 @@
 
 [data-dropdown-toggle] {
 
-	@include style-guide-button-reset();
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	align-items: center;
-	padding: 6px 8px 6px 12px;
-	background-color: $wmui-color-base90;
-	border: 1px solid $wmui-color-base50;
-	box-sizing: border-box;
-	border-radius: 2px;
-	color: $wmui-color-base10;
+	@include dropdown-toggle-styles();
+	@include dropdown-caret-blue();
 	text-transform: uppercase;
-	font-weight: bold;
-	font-size: rem( 14 );
 
 	&:hover {
 		background-color: $wmui-color-base100;
@@ -55,4 +71,16 @@
 [data-dropdown-backdrop="active"] {
 	pointer-events: auto;
 	opacity: 0.6;
+}
+
+// Allow styling selects like dropdowns
+.dropdown-select {
+	@include dropdown-toggle-styles();
+	@include dropdown-caret-black();
+
+	&:active,
+	&:focus {
+		@include dropdown-caret-blue();
+		color: $wmui-color-accent50;
+	}
 }
