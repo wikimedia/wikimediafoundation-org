@@ -47,8 +47,7 @@
 		margin-top: 4rem;
 	}
 
-	&__heading,
-	&__rotating-heading {
+	&__heading {
 		transition: opacity 750ms ease;
 		padding: 1rem;
 
@@ -56,10 +55,10 @@
 			@include font-size(24, 24);
 			line-height: 1.5;
 		}
-	}
 
-	&__rotating-heading {
-		opacity: 0;
+		&--transparent {
+			opacity: 0;
+		}
 
 		&--hidden {
 			display: none;

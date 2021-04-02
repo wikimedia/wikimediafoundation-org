@@ -29,14 +29,8 @@
 			padding-top: 4rem;
 		}
 
-		&__heading,
-		&__rotating-heading {
+		&__heading {
 			font-weight: 700;
-		}
-
-		&__rotating-heading {
-			display: block;
-			opacity: 1;
 		}
 
 		&__toggle-rotating-headings {

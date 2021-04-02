@@ -11,7 +11,7 @@ const NO_CYCLING_HEADING_COUNT = 1;
 const CYCLE_TIME = 5000;
 const OPACITY_TRANSITION_TIME = 750;
 const BROWSER_PAINT_WAIT = 20;
-const headings = document.querySelectorAll( '.hero-home__heading, .hero-home__rotating-heading' );
+const headings = document.querySelectorAll( '.hero-home__heading' );
 let currentHeadingIndex = 0, previousHeadingIndex = 0;
 let currentHeading = headings[0];
 let previousHeading = headings[0];
@@ -38,8 +38,7 @@ function cycleHeading() {
  * @returns {void}
  */
 function fadeOutPreviousHeading() {
-	previousHeading.classList.remove( 'hero-home--heading' );
-	previousHeading.classList.add( 'hero-home__rotating-heading' );
+	previousHeading.classList.add( 'hero-home__heading--transparent' );
 	timeout = setTimeout( fadeInCurrentHeading, OPACITY_TRANSITION_TIME );
 }
 
@@ -49,13 +48,12 @@ function fadeOutPreviousHeading() {
  * @returns {void}
  */
 function fadeInCurrentHeading() {
-	previousHeading.classList.add( 'hero-home__rotating-heading--hidden' );
-	currentHeading.classList.remove( 'hero-home__rotating-heading--hidden' );
+	previousHeading.classList.add( 'hero-home__heading--hidden' );
+	currentHeading.classList.remove( 'hero-home__heading--hidden' );
 
 	// Allow the browser to display the element with opacity 0 before setting it to 1.
 	setTimeout( function () {
-		currentHeading.classList.add( 'hero-home__heading' );
-		currentHeading.classList.remove( 'hero-home__rotating-heading' );
+		currentHeading.classList.remove( 'hero-home__heading--transparent' );
 	}, BROWSER_PAINT_WAIT );
 
 	// Setup the next cycle
