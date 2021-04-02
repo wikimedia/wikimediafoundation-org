@@ -18,6 +18,11 @@ module.exports = choosePort( 8080 ).then( port =>
 		output: {
 			path: filePath( 'assets/dist' ),
 			publicPath: `http://localhost:${ port }/shiro/`
+		},
+		resolve: {
+			alias: {
+				"sass-lib": filePath('assets/src/sass/css/scss/')
+			}
 		}
 	} )
 );
