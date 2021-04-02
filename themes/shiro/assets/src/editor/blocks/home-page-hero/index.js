@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classNames from 'classnames';
-import { isBoolean, tail, partial } from 'lodash';
+import { isBoolean, tail, partial, last } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -29,8 +29,7 @@ export const name = 'shiro/home-page-hero';
  * @returns {Array} The modified list of headings
  */
 const ensureEmptyHeading = headings => {
-	const lastHeading = headings[ headings.length - 1 ];
-	if ( ! lastHeading || ! RichText.isEmpty( lastHeading.text ) ) {
+	if ( headings.length === 0 || ! RichText.isEmpty( last( headings ).text ) ) {
 		headings = [
 			...headings,
 			{
