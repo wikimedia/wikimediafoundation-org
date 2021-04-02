@@ -6,7 +6,11 @@
 	}
 
 	&__icon {
+		margin: 0;
 		margin-right: 6px;
+		width: rem( 20 );
+		height: rem( 20 );
+		fill: currentColor;
 	}
 
 	&__label {
