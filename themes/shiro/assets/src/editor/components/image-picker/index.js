@@ -70,12 +70,14 @@ function ImagePicker( props ) {
 				media: undefined,
 			} );
 		} else {
-			const { id, alt, url, sizes } = media;
+			const { id, alt, url, sizes, width, height } = media;
 
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
 				src: sizes?.[ imageSize ]?.url || url,
+				width: sizes?.[ imageSize ]?.width || width,
+				height: sizes?.[ imageSize ]?.height || height,
 				alt,
 				media,
 			} );
@@ -137,41 +139,6 @@ ImagePicker.propTypes = {
 
 const ImagePickerWithNotices = withNotices( ImagePicker );
 
-const SIZES = {
-	profile_thumb: {
-		width: '206',
-		height: '257',
-	},
-	image_4x3_small: {
-		width: '400',
-		height: '300',
-	},
-	image_4x3_large: {
-		width: '800',
-		height: '600',
-	},
-	image_4x5_small: {
-		width: '400',
-		height: '500',
-	},
-	image_4x5_large: {
-		width: '800',
-		height: '1000',
-	},
-	image_16x9_large: {
-		width: '1200',
-		height: '675',
-	},
-	image_16x9_small: {
-		width: '600',
-		height: '338',
-	},
-	image_square_medium: {
-		width: '250',
-		height: '250',
-	},
-};
-
 /**
  * Render image that has been picked for a block save function.
  */
@@ -190,9 +157,7 @@ ImagePickerWithNotices.Content = ( { id, imageSize, src, alt, className, ...prop
 					className
 				)
 			}
-			height={ get( SIZES, [ imageSize, 'height' ], null ) }
 			src={ src }
-			width={ get( SIZES, [ imageSize, 'width' ], null ) }
 			{ ...props }
 		/>
 	);

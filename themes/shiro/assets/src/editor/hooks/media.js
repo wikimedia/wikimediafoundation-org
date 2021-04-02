@@ -17,7 +17,10 @@ export const useImageSize = ( id, size, onChange = noop ) => {
 	const media = useSelect( select => {
 		return select( 'core' ).getMedia( id );
 	} );
-	const url = media?.media_details.sizes[ size ]?.source_url || media?.source_url;
+	const sizeData = media?.media_details.sizes[ size ];
+	const url = sizeData?.source_url || media?.source_url;
+	const width = sizeData?.width || media?.width;
+	const height = sizeData?.height || media?.height;
 
 	// Call the on change handler only when any of the inputs change.
 	useEffect( () => {
@@ -26,6 +29,8 @@ export const useImageSize = ( id, size, onChange = noop ) => {
 				id,
 				alt: media?.alt,
 				src: url,
+				width,
+				height,
 				media,
 			} );
 		}
