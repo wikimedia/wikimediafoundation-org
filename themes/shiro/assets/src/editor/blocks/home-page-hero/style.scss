@@ -12,6 +12,19 @@
 			&--disable-animation {
 				animation-play-state: paused;
 			}
+
+			&--no-image {
+				position: relative;
+				width: unset;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+
+				.image-picker__placeholder {
+					width: 400px;
+					margin: 0 auto;
+				}
+			}
 		}
 
 		&__heading-wrapper {

@@ -130,12 +130,17 @@ export const settings = {
 		const [ showRotatingHeadings, setShowRotatingHeadings ] = useState( false );
 		const [ activeRotatingHeading, setActiveRotatingHeading ] = useState( null );
 
+		const hasImage = !! imageId;
+
 		return (
 			<div { ...blockProps } >
 				<header className="hero-home__header">
 					<div className={ classNames(
 						'hero-home__image-wrapper',
-						{ 'hero-home__image-wrapper--disable-animation': ! isSelected }
+						{
+							'hero-home__image-wrapper--disable-animation': ! isSelected || ! hasImage,
+							'hero-home__image-wrapper--no-image': ! hasImage,
+						}
 					) }>
 						<ImagePicker
 							className="hero-home__image"
@@ -152,7 +157,7 @@ export const settings = {
 							}
 						/>
 					</div>
-					<div className="hero-home__heading-wrapper">
+					{ hasImage && ( <div className="hero-home__heading-wrapper">
 						<div className="hero-home__heading-color">
 							<RichText
 								allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
@@ -203,7 +208,7 @@ export const settings = {
 								</div>
 							);
 						} ) }
-					</div>
+					</div> ) }
 					{ activeRotatingHeading === null && ( <InspectorControls>
 						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
 							<TextControl
