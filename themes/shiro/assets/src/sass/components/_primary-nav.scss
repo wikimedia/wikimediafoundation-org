@@ -1,0 +1,49 @@
+.primary-nav {
+	margin-top: rem( 66 );
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid $wmui-color-base80;
+	padding: 0;
+	padding-top: rem( 12 );
+
+	&__items {
+		list-style: none;
+		display: flex;
+
+		li {
+			display: inline-block;
+			margin: 0;
+
+			&::after {
+				content: "";
+				display: block;
+				margin-top: rem(18);
+				border-bottom: 3px solid transparent;
+			}
+
+			&.current-menu-item.current-menu-item,
+			&.current-page-ancestor.current-page-ancestor {
+				&::after {
+					border-bottom-color: $wmui-color-accent50;
+				}
+
+				a {
+					color: $wmui-color-accent50;
+
+					span {
+						border: 0;
+					}
+				}
+			}
+
+			a {
+				padding: rem( 6 ) 0;
+
+				&:hover {
+					background-color: $wmui-color-accent90;
+					color: $wmui-color-accent50;
+				}
+			}
+		}
+	}
+}

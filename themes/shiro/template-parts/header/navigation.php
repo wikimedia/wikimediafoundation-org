@@ -6,14 +6,14 @@
  */
 ?>
 
-<nav class="main-nav flex flex-medium flex-align-center">
+<nav class="primary-nav">
 
 	<?php
 	if ( has_nav_menu( 'header' ) ) {
 		wp_nav_menu(
 			array(
 				'theme_location' => 'header',
-				'menu_class'     => 'nav-links list-inline',
+				'menu_class'     => 'primary-nav__items',
 				'container'      => '',
 			)
 		);
