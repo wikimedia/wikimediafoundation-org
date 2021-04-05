@@ -13,7 +13,7 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
-			align-items: center;
+			align-items: start;
 			width: 100%;
 		}
 
@@ -43,6 +43,8 @@
 		@media ( min-width: #{$medium-landscape} ) {
 			flex-direction: row;
 			align-items: center;
+			flex-wrap: wrap;
+			margin-top: rem( -17 );
 		}
 
 		li {
@@ -52,6 +54,7 @@
 
 			@media ( min-width: #{$medium-landscape} ) {
 				margin-bottom: 0;
+				margin-top: rem( 17 );
 			}
 
 			&::after {
@@ -62,7 +65,6 @@
 
 				@media ( min-width: #{$medium-landscape} ) {
 					margin-bottom: 0;
-					margin-top: rem( 18 );
 				}
 			}
 
