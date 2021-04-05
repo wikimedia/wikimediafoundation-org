@@ -8,6 +8,7 @@
 
 <nav class="primary-nav">
 
+	<div class="primary-nav__drawer">
 	<?php
 	if ( has_nav_menu( 'header' ) ) {
 		wp_nav_menu(
@@ -21,6 +22,7 @@
 	?>
 	<div class="search-cta-container">
 		<?php get_search_form( true ); ?>
+	</div>
 	</div>
 
 </nav>
