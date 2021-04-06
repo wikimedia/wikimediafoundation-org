@@ -15,7 +15,7 @@ $color-palette:
 	blue-90   $wmui-color-blue90   $wmui-color-base0,
 	red-50    $wmui-color-red50    $wmui-color-base100,
 	red-90    $wmui-color-red90    $wmui-color-base0,
-	yellow-50 $wmui-color-yellow50 $wmui-color-base100,
+	yellow-50 $wmui-color-yellow50 $wmui-color-base0,
 	yellow-90 $wmui-color-yellow90 $wmui-color-base0;
 
 @each $color, $background-color, $text-color in $color-palette {
