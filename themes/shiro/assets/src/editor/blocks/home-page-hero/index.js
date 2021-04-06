@@ -316,7 +316,8 @@ export const settings = {
 									<RichText.Content
 										key={ index }
 										className={ classNames( {
-											'hero-home__heading hero-home__heading--hidden': true,
+											'hero-home__heading': true,
+											'hero-home__heading--hidden': index !== 0,
 											'rtl-switch': heading.switchRtl || false,
 										} ) }
 										lang={ heading.lang }
