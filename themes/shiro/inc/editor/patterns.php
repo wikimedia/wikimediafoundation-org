@@ -44,7 +44,7 @@ function register_pattern() {
 	register_block_pattern( BlogList\NAME, [
 		'title' => __( 'Blog list section', 'shiro' ),
 		'categories' => [ CATEGORY_NAME ],
-		'content' => BlogList\PATTERN
+		'content' => BlogList\PATTERN,
 	] );
 
 }

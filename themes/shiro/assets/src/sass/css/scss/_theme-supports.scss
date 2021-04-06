@@ -15,7 +15,7 @@ $color-palette:
 	blue-90   $wmui-color-blue90   $wmui-color-base0,
 	red-50    $wmui-color-red50    $wmui-color-base100,
 	red-90    $wmui-color-red90    $wmui-color-base0,
-	yellow-50 $wmui-color-yellow50 $wmui-color-base100,
+	yellow-50 $wmui-color-yellow50 $wmui-color-base0,
 	yellow-90 $wmui-color-yellow90 $wmui-color-base0;
 
 @each $color, $background-color, $text-color in $color-palette {
@@ -24,26 +24,6 @@ $color-palette:
 		background-color: $background-color;
 		color: $text-color;
 	}
-}
-
-// Font-sizes: desktop, mobile, line-height.
-$font-sizes: (
-	"default": 18 16 1.75,
-	"small":   14 12 1.75,
-	"medium":  20 18 1.5,
-	"large":   24 21 1.25,
-	"xlarge":  32 24 1.25,
-	"jumbo":   40 30 1.25
-);
-
-@mixin has-font-size( $size ) {
-	$values: map-get($font-sizes, $size);
-	$desktop: nth($values, 1);
-	$mobile: nth($values, 2);
-	$line-height: nth($values, 3);
-
-	@include font-size( $desktop, $mobile );
-	line-height: $line-height;
 }
 
 @each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
