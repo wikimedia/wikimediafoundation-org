@@ -10,13 +10,19 @@ $color-palette:
 	base-70   $wmui-color-base70   $wmui-color-base0   $wmui-color-blue50,
 	base-80   $wmui-color-base80   $wmui-color-base0   $wmui-color-blue50,
 	base-90   $wmui-color-base90   $wmui-color-base0   $wmui-color-blue50,
-	base-100  $wmui-color-base100  $wmui-color-base0   $wmui-color-blue50,
+	base-100  $wmui-color-base100  $wmui-color-base10  $wmui-color-blue50,
 	blue-50   $wmui-color-blue50   $wmui-color-base100 $wmui-color-blue90,
 	blue-90   $wmui-color-blue90   $wmui-color-base0   $wmui-color-blue50,
 	red-50    $wmui-color-red50    $wmui-color-base100 $wmui-color-accent90,
 	red-90    $wmui-color-red90    $wmui-color-base0   $wmui-color-blue50,
 	yellow-50 $wmui-color-yellow50 $wmui-color-base0   $wmui-color-blue50,
 	yellow-90 $wmui-color-yellow90 $wmui-color-base0   $wmui-color-blue50;
+
+:root {
+	--background-color: #{$wmui-color-base100};
+	--text-color: #{$wmui-color-base10};
+	--link-color: #{$wmui-color-blue50};
+}
 
 @each $color, $background-color, $text-color, $link-color in $color-palette {
 
