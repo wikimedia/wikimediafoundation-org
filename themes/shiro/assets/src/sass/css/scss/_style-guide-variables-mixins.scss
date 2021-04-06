@@ -16,10 +16,12 @@
 }
 
 /**
- * Darkens a color by 3%, using CSS calc() function.
+ * Darkens a color by 3%, using CSS linear-gradient function.
  *
  * This is necessary for building things like link hover styles, where the
- * base color is defined by a CSS property on a parent block.
+ * base color is defined by a CSS property on a parent block. Since the color
+ * is set to the original text color, it should fallback gracefully in browsers
+ * that don't support the `background-clip` property.
  *
  * @param Color $color Base color.
  * @returns value Expression evaluating to a linear-gradient setting the specified color.
