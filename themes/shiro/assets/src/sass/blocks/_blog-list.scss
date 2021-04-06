@@ -28,6 +28,11 @@
 
 			@include style-guide-link;
 			color: $wmui-color-base0;
+			color: var(--text-color);
+
+			&:hover {
+				color: var(--link-color);
+			}
 		}
 	}
 
@@ -51,6 +56,7 @@
 
 		@include has-font-size( "default" );
 		color: $wmui-color-base0;
+		color: var(--text-color);
 		font-family: $font-family-serif;
 		margin: 0 0 rem(10);
 	}
@@ -59,6 +65,7 @@
 
 		@include has-font-size( "small" );
 		color: $wmui-color-base0;
+		color: var(--text-color);
 		margin-bottom: rem(20);
 	}
 

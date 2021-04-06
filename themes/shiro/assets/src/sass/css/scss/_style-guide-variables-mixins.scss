@@ -1,13 +1,16 @@
 @mixin style-guide-link {
 
 	color: $color-primary;
+	color: var(--link-color);
 
 	&:focus {
 		color: $color-primary--active;
+		color: var(--link-color);
 	}
 
 	&:hover {
 		color: $color-primary--active;
+		color: var(--link-color);
 		text-decoration: underline;
 	}
 }
