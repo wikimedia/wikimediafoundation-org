@@ -20,6 +20,8 @@
 	}
 
 	&__title {
+		// The link around the heading should display in same color as text.
+		--link-color: var(--text-color);
 
 		@include h4;
 		@include h-margins;
@@ -27,12 +29,6 @@
 		a {
 
 			@include style-guide-link;
-			color: $wmui-color-base0;
-			color: var(--text-color);
-
-			&:hover {
-				color: var(--link-color);
-			}
 		}
 	}
 

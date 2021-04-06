@@ -4,15 +4,30 @@
 	color: var(--link-color);
 
 	&:focus {
-		color: $color-primary--active;
-		color: var(--link-color);
+
+		@include active-color(var(--link-color));
 	}
 
 	&:hover {
-		color: $color-primary--active;
-		color: var(--link-color);
 		text-decoration: underline;
+
+		@include active-color(var(--link-color));
 	}
+}
+
+/**
+ * Darkens a color by 3%, using CSS calc() function.
+ *
+ * This is necessary for building things like link hover styles, where the
+ * base color is defined by a CSS property on a parent block.
+ *
+ * @param Color $color Base color.
+ * @returns value Expression evaluating to a linear-gradient setting the specified color.
+ */
+@mixin active-color( $color, $percent: 3% ) {
+	background: linear-gradient(#{$color} #{$percent * -100}, #000 #{(100 - $percent) * 100});
+	background-clip: text;
+	color: $color;
 }
 
 @mixin hover-box-shadow {
