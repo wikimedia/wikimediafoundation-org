@@ -93,7 +93,7 @@ CONTENT,
 		'content' => <<<CONTENT
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"accent90"} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90"} -->
 <div class="wp-block-group has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">200,000+</p>
 <!-- /wp:paragraph -->
@@ -111,7 +111,7 @@ CONTENT,
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"accent90"} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90"} -->
 <div class="wp-block-group has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">68+ million</p>
 <!-- /wp:paragraph -->
@@ -129,7 +129,7 @@ CONTENT,
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"accent90"} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90"} -->
 <div class="wp-block-group has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">1+ billion</p>
 <!-- /wp:paragraph -->
