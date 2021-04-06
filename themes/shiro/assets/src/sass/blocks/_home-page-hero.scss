@@ -1,12 +1,12 @@
 @keyframes hero-home-animation {
 	0% {
-		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 	50% {
-		-webkit-transform: translateX(calc((4237px * -1) + 100vw));
+		transform: translateX(calc((4237px * -1) + 100vw));
 	}
 	100% {
-		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 }
 
