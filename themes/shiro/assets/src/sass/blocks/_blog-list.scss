@@ -5,7 +5,6 @@
 }
 
 .blog-post {
-
 	display: flex;
 	flex-direction: column;
 	padding: rem(20);
@@ -38,14 +37,19 @@
 
 	&__category-link {
 
-		@include style-guide-link;
 		@include has-font-size( "small" );
 		background-color: $wmui-color-blue90;
 		border-radius: rem(4);
+		color: $color-primary;
 		display: inline-block;
 		font-weight: 700;
 		margin: 0 10px 10px 0;
 		padding: 0 $padding-horizontal-base;
+
+		&:hover {
+			background-color: $wmui-color-base100;
+			box-shadow: $box-shadow-card;
+		}
 	}
 
 	&__excerpt p {
