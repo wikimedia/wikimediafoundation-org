@@ -14,7 +14,6 @@ const PATTERN = <<<CONTENT
 <div class="wp-block-group has-accent-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">200,000+</p>
 <!-- /wp:paragraph -->
-G
 <!-- wp:paragraph -->
 <p><strong>Editors contribute to Wikimedia projects every month</strong></p>
 <!-- /wp:paragraph -->
