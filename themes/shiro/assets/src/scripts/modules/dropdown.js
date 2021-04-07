@@ -4,7 +4,7 @@
  * @returns {Element[]} All the potential dropdowns in this document.
  */
 function getInstances() {
-	const dropdowns = [ ...document.querySelectorAll( '[data-dropdown]' ) ];
+	return [ ...document.querySelectorAll( '[data-dropdown]' ) ];
 }
 
 /**
