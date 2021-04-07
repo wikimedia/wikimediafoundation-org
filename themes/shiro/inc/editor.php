@@ -54,6 +54,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/stair',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
+		'shiro/inline-languages',
 
 		// Core blocks
 		'core/paragraph',
