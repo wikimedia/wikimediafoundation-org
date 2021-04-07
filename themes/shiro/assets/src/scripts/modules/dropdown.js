@@ -4,12 +4,7 @@
  * @returns {Element[]} All the potential dropdowns in this document.
  */
 function getInstances() {
-	const dropdowns = document.querySelectorAll( '[data-dropdown]' );
-	if ( dropdowns && dropdowns.length > 0 ) {
-		return Array.from( dropdowns );
-	}
-
-	return [];
+	const dropdowns = [ ...document.querySelectorAll( '[data-dropdown]' ) ];
 }
 
 /**
