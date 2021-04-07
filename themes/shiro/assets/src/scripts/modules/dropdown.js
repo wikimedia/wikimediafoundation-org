@@ -113,7 +113,7 @@ function handleBackdropClick() {
 }
 
 /**
- * Sets up the backdrop, which closese all active dropdowns when clicked.
+ * Sets up the backdrop, which closes all active dropdowns when clicked.
  *
  * If it can't find any backdrops, this fails quietly.
  */
