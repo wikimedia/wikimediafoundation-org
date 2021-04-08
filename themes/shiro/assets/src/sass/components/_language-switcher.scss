@@ -66,6 +66,12 @@
 					font-size: rem( 14 );
 				}
 
+				a {
+					
+					/** Necessary to override some pre-existing styles */
+					font-size: inherit;
+				}
+
 				&:last-child {
 					margin-bottom: 0;
 				}
