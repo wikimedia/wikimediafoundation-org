@@ -32,14 +32,14 @@ function render_block( $attributes ) {
 	if (isset($attributes['align']) && $attributes['align'] === 'full') {
 		$class .= ' alignfull';
 	}
-	$output = '<div class="' . $class . '"><div class="inline-languages__scroller"><ul class="inline-languages__list">';
+	$output = '<div class="' . $class . '"><ul class="inline-languages__list">';
 	foreach ( \wmf_get_translations() as $index => $lang ) {
 		$el = $lang['selected']
 			? '<span>' . esc_html( $lang['name'] ) . '</span>'
 			: '<a href="' . esc_url( $lang['uri'] ) . '" lang="' . esc_attr( $lang['shortname'] ) . '">' . esc_html( $lang['name'] ) . '</a>';
 		$output .= '<li class="inline-languages__language' . ( $lang['selected'] ? ' inline-languages__language--current' : ' ' ) . '">' . $el . '</li>';
 	}
-	$output .= '</ul></div></div>';
+	$output .= '</ul></div>';
 
 	return $output;
 }
