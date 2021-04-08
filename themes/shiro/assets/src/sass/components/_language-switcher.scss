@@ -2,7 +2,8 @@
 	position: relative;
 
 	&__button {
-		color: $wmui-color-accent50;
+		@include style-guide-dropdown-toggle();
+		color: $wmui-color-blue50;
 	}
 
 	&__icon {
@@ -35,7 +36,7 @@
 		background: #fff;
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			border: 1px solid $wmui-color-accent50;
+			border: 1px solid $wmui-color-blue50;
 			position: absolute;
 			width: 200px;
 			max-width: 100vw;
@@ -83,7 +84,7 @@
 		--language-picker-item-border-color: transparent;
 
 		&--selected {
-			--language-picker-item-border-color: #{$wmui-color-accent50};
+			--language-picker-item-border-color: #{$wmui-color-blue50};
 		}
 
 		a {
@@ -93,7 +94,7 @@
 			padding-top: rem( 4 );
 
 			&:hover {
-				background-color: $wmui-color-accent90;
+				background-color: $wmui-color-blue90;
 			}
 		}
 
