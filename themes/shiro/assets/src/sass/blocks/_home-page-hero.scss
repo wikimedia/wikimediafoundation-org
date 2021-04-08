@@ -11,6 +11,10 @@
 }
 
 .hero-home {
+	&__link {
+		display: block;
+	}
+
 	&__header {
 		width: 100vw;
 		position: relative;

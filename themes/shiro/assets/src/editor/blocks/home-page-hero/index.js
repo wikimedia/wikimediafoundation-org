@@ -90,6 +90,12 @@ export const settings = {
 			type: 'string',
 			default: 'yellow50',
 		},
+		linkUrl: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.hero-home__link',
+			attribute: 'href',
+		},
 	},
 
 	edit: HomePageHeroBlock,
@@ -104,6 +110,7 @@ export const settings = {
 			imageAlt,
 			enableAnimation,
 			headingColor,
+			linkUrl,
 		} = attributes;
 		let {
 			headings = [],
@@ -114,47 +121,66 @@ export const settings = {
 		const blockProps = useBlockProps.save( { className: 'hero-home' } );
 		const headingColorClassName = getColorClassName( 'background-color', headingColor );
 
+		/**
+		 * Render wrapper link if it is set, otherwise simply render the children as-is.
+		 */
+		const ConditionalLink = ( { children } ) => {
+			if ( linkUrl ) {
+				return (
+					<a className="hero-home__link" href={ linkUrl }>
+						{ children }
+					</a>
+				);
+			}
+
+			return ( <>
+				{ children }
+			</> );
+		};
+
 		return (
 			<div { ...blockProps } >
-				<header className="hero-home__header">
-					<div className={ classNames(
-						'hero-home__image-wrapper',
-						{
-							'hero-home__image-wrapper--disable-animation': ! enableAnimation,
-						}
-					) }>
-						<ImagePicker.Content
-							alt={ imageAlt }
-							className="hero-home__image"
-							id={ imageId }
-							src={ imageUrl }
-						/>
-					</div>
-					<div className="hero-home__heading-wrapper">
+				<ConditionalLink>
+					<header className="hero-home__header">
 						<div className={ classNames(
-							'hero-home__heading-color',
+							'hero-home__image-wrapper',
 							{
-								[ headingColorClassName ]: headingColorClassName,
+								'hero-home__image-wrapper--disable-animation': ! enableAnimation,
 							}
 						) }>
-							{ headings.map( ( heading, index ) => {
-								return (
-									<RichText.Content
-										key={ index }
-										className={ classNames( {
-											'hero-home__heading': true,
-											'hero-home__heading--hidden': index !== 0,
-											'rtl-switch': heading.switchRtl || false,
-										} ) }
-										lang={ heading.lang }
-										tagName="h1"
-										value={ heading.text }
-									/>
-								);
-							} ) }
+							<ImagePicker.Content
+								alt={ imageAlt }
+								className="hero-home__image"
+								id={ imageId }
+								src={ imageUrl }
+							/>
 						</div>
-					</div>
-				</header>
+						<div className="hero-home__heading-wrapper">
+							<div className={ classNames(
+								'hero-home__heading-color',
+								{
+									[ headingColorClassName ]: headingColorClassName,
+								}
+							) }>
+								{ headings.map( ( heading, index ) => {
+									return (
+										<RichText.Content
+											key={ index }
+											className={ classNames( {
+												'hero-home__heading': true,
+												'hero-home__heading--hidden': index !== 0,
+												'rtl-switch': heading.switchRtl || false,
+											} ) }
+											lang={ heading.lang }
+											tagName="h1"
+											value={ heading.text }
+										/>
+									);
+								} ) }
+							</div>
+						</div>
+					</header>
+				</ConditionalLink>
 			</div>
 		);
 	},

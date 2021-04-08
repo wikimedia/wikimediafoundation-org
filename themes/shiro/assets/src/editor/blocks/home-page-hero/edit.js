@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { partial, tail } from 'lodash';
 
-import { RichText, useBlockProps, InspectorControls, withColors, PanelColorSettings } from '@wordpress/block-editor';
+import { RichText, useBlockProps, InspectorControls, withColors, PanelColorSettings, URLInput } from '@wordpress/block-editor';
 import { Button, PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { useState } from '@wordpress/element';
@@ -19,6 +19,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 		imageId,
 		imageUrl,
 		enableAnimation,
+		linkUrl,
 	} = attributes;
 	let {
 		headings = [],
@@ -137,6 +138,14 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 							checked={ enableAnimation }
 							label={ __( 'Enable animation', 'shiro' ) }
 							onChange={ enableAnimation => setAttributes( { enableAnimation } ) }
+						/>
+					</PanelBody>
+					<PanelBody initialOpen title={ __( 'Link settings', 'shiro' ) }>
+						<URLInput
+							isFullWidth
+							label={ __( 'Link', 'shiro' ) }
+							value={ linkUrl }
+							onChange={ linkUrl => setAttributes( { linkUrl } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
