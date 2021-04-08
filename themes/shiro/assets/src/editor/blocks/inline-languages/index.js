@@ -21,7 +21,7 @@ export const
 			align: [ 'center', 'full' ],
 		},
 		/**
-		 *
+		 * Edit the block.
 		 */
 		edit: function EditInlineLanguagesBlock( { attributes } ) {
 			const blockProps = useBlockProps();
@@ -37,8 +37,6 @@ export const
 		},
 		/**
 		 * Save nothing, to allow for server-size rendering.
-		 *
-		 * @returns {null}
 		 */
 		save: function () {
 			return null;
