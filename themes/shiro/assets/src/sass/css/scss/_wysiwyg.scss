@@ -19,11 +19,9 @@
 		h3,
 		h4,
 		li,
-		p {
-			font-family: "Linux Libertine", Georgia, Times, serif;
-
-			@include font-size(18, 16);
-			line-height: 31px;
+		p,
+		cite {
+			@include article-font;
 		}
 
 		h3 {
@@ -44,10 +42,7 @@
 		h3,
 		h4,
 		li {
-			font-family: "Linux Libertine", Georgia, Times, serif;
-
-			@include font-size(18, 16);
-			line-height: 31px;
+			@include article-font;
 		}
 
 		h3 {

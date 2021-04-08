@@ -1,0 +1,40 @@
+.wp-block-quote {
+	border-left: 4px solid $wmui-color-base80;
+	margin: 3rem 0;
+	font-style: italic;
+	padding-left: rem(24);
+
+	cite {
+		@include wysiwyg-wrap {
+			font-family: $font-family-sans;
+		}
+
+		&:before {
+			content: "\2014";
+			margin: 0 0.5em;
+		}
+	}
+
+	p:first-child {
+		padding-left: 0;
+	}
+
+	&.is-style-pullquote {
+		border-left: none;
+		padding-left: 0;
+
+		@include wysiwyg-wrap {
+			p {
+				@include has-font-size("medium");
+			}
+		}
+
+		cite {
+			display: block;
+			margin-top: rem(20);
+			&:before {
+				content: none;
+			}
+		}
+	}
+}
