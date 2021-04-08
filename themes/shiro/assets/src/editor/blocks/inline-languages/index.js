@@ -23,9 +23,8 @@ export const
 		/**
 		 *
 		 */
-		edit: function EditInlineLanguagesBlock( { attributes, setAttributes } ) {
+		edit: function EditInlineLanguagesBlock( { attributes } ) {
 			const blockProps = useBlockProps();
-			const { align } = attributes;
 
 			return (
 				<div { ...blockProps }>
