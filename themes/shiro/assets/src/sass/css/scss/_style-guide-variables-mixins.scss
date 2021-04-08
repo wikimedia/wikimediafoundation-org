@@ -23,12 +23,18 @@
  * is set to the original text color, it should fallback gracefully in browsers
  * that don't support the `background-clip` property.
  *
- * @param Color $color Base color.
+ * @param {Color}  $color   Base color.
+ * @param {Number} $percent Degree by which to lighten the color, expected as a percent.
  * @returns value Expression evaluating to a linear-gradient setting the specified color.
  */
 @mixin active-color( $color, $percent: 3% ) {
-	background: linear-gradient(#{$color} #{$percent * -100}, #000 #{(100 - $percent) * 100});
-	background-clip: text;
+
+	@supports (background-clip: text) or (-webkit-background-clip: text) {
+		background: linear-gradient(#{$color} #{$percent * -100}, #000 #{(100 - $percent) * 100});
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
 	color: $color;
 }
 
