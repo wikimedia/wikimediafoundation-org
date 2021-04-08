@@ -27,6 +27,8 @@ function changeQuoteRegistration( settings, name ) {
 
 	return {
 		...settings,
+		// To register these styles we could also export them from this file.
+		// However, the problem in that case is that core styles aren't removed.
 		styles,
 	};
 }

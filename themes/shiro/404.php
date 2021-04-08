@@ -19,7 +19,7 @@ $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Wha
 $wmf_404_copy           = get_theme_mod( 'wmf_404_copy' );
 $wmf_404_search_text    = get_theme_mod( 'wmf_404_search_text', __( 'What are you looking for?', 'shiro' ) );
 
-wmf_get_template_part( 'template-parts/header/page-404', $template_args );
+get_template_part( 'template-parts/header/page', '404', $template_args );
 
 ?>
 

@@ -51,3 +51,6 @@ $wm-column-gutter: 20px;
 // Content widths
 $content-column: 980px;
 $content-column-post: 640px;
+
+// Box shadows for elements larger than those specified in the style guide.
+$box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);

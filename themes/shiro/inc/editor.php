@@ -6,7 +6,7 @@
 namespace WMF\Editor;
 
 use Asset_Loader;
-use Asset_Loader\Manifest;
+use WMF\Assets;
 
 /**
  * Bootstrap hooks relevant to the block editor.
@@ -47,6 +47,7 @@ function filter_blocks( $allowed_blocks ) {
 	return [
 		// Custom blocks
 		'shiro/banner',
+		'shiro/blog-list',
 		'shiro/blog-post-heading',
 		'shiro/card',
 		'shiro/stairs',
@@ -113,18 +114,12 @@ function add_theme_supports() {
 		[ 'name' => __( 'Base 80', 'shiro' ),   'slug' => 'base80',   'color' => '#eaecf0' ],
 		[ 'name' => __( 'Base 90', 'shiro' ),   'slug' => 'base90',   'color' => '#f8f9fa' ],
 		[ 'name' => __( 'Base 100', 'shiro' ),  'slug' => 'base100',  'color' => '#ffffff' ],
-		[ 'name' => __( 'Accent 30', 'shiro' ), 'slug' => 'accent30', 'color' => '#2a4b8d' ],
-		[ 'name' => __( 'Accent 50', 'shiro' ), 'slug' => 'accent50', 'color' => '#3366cc' ],
-		[ 'name' => __( 'Accent 90', 'shiro' ), 'slug' => 'accent90', 'color' => '#eaf3ff' ],
-		[ 'name' => __( 'Red 30', 'shiro' ),    'slug' => 'red30',    'color' => '#b32424' ],
-		[ 'name' => __( 'Red 50', 'shiro' ),    'slug' => 'red50',    'color' => '#dd3333' ],
-		[ 'name' => __( 'Red 90', 'shiro' ),    'slug' => 'red90',    'color' => '#fee7e6' ],
-		[ 'name' => __( 'Yellow 30', 'shiro' ), 'slug' => 'yellow30', 'color' => '#ac6600' ],
-		[ 'name' => __( 'Yellow 50', 'shiro' ), 'slug' => 'yellow50', 'color' => '#ffcc33' ],
+		[ 'name' => __( 'Blue 50', 'shiro' ),   'slug' => 'blue50',   'color' => '#3a25ff' ],
+		[ 'name' => __( 'Blue 90', 'shiro' ),   'slug' => 'blue90',   'color' => '#eeeaff' ],
+		[ 'name' => __( 'Red 50', 'shiro' ),    'slug' => 'red50',    'color' => '#d40356' ],
+		[ 'name' => __( 'Red 90', 'shiro' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
+		[ 'name' => __( 'Yellow 50', 'shiro' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
 		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
-		[ 'name' => __( 'Green 30', 'shiro' ),  'slug' => 'green30',  'color' => '#14866d' ],
-		[ 'name' => __( 'Green 50', 'shiro' ),  'slug' => 'green50',  'color' => '#00af89' ],
-		[ 'name' => __( 'Green 90', 'shiro' ),  'slug' => 'green90',  'color' => '#d5fdf4' ],
 	] );
 
 	// Disable custom color and gradient selection in the editor.
@@ -138,11 +133,7 @@ function add_theme_supports() {
 
 function enqueue_block_editor_assets() {
 
-	// Use dev server if running, otherwise load from production asset manifest.
-	$manifest = Manifest\get_active_manifest( [
-		get_stylesheet_directory() . '/assets/dist/asset-manifest.json',
-		get_stylesheet_directory() . '/assets/dist/production-asset-manifest.json'
-	] );
+	$manifest = Assets\get_manifest_path();
 
 	Asset_Loader\enqueue_asset(
 		$manifest,

@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && empty( $template_args['copy'] ) && empty( $template_args['link_url'] ) && empty( $template_args['link_text'] ) ) {
 	return;

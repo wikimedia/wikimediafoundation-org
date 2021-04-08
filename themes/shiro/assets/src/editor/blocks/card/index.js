@@ -151,9 +151,11 @@ export const settings = {
 				</div>
 				<ImagePicker.Content
 					className="content-card__image"
+					height="338"
 					id={ imageId }
 					imageSize="image_16x9_small"
 					src={ imageSrc }
+					width="600"
 				/>
 			</div>
 		);

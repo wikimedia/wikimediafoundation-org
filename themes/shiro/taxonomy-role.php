@@ -45,8 +45,9 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 		'h4_title' => $h4_title,
 	);
 
-	wmf_get_template_part(
+	get_template_part(
 		'template-parts/header/page-noimage',
+		null,
 		$header_args
 	);
 
@@ -71,11 +72,11 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 </div>
 
 <div class="mw-980 mod-margin-bottom flex flex-medium">
-	<?php wmf_get_template_part( 'template-parts/profiles/role-sidebar', $post_list ); ?>
+	<?php get_template_part( 'template-parts/profiles/role-sidebar', null, $post_list ); ?>
 
 	<div class="w-68p">
 		<div class="mod-margin-bottom">
-			<?php wmf_get_template_part( 'template-parts/profiles/role-list', $post_list ); ?>
+			<?php get_template_part( 'template-parts/profiles/role-list', null, $post_list ); ?>
 		</div>
 
 	</div>

@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 $context  = empty( $template_args['context'] ) ? '' : $template_args['context'];
 $subtitle = empty( $template_args['subtitle'] ) ? '' : $template_args['subtitle'];

@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['pre_heading'] ) && empty( $template_args['heading'] ) && empty( $template_args['modules'] ) ) {
 	return;
@@ -32,7 +32,7 @@ $has_image = get_the_post_thumbnail_url();
 			<?php for ($i = 0; $i < 3; $i++) { ?>
 				<div class="ungrid-top-box ungrid-top-box-<?php echo esc_attr($i); ?>">
 					<div class="code <?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></div>
-					<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
+					<?php get_template_part( 'template-parts/modules/mu/ungrid', null, $template_args['modules'][$i] ); ?>
 				</div>
 			<?php } ?>
 		</div>
@@ -41,7 +41,7 @@ $has_image = get_the_post_thumbnail_url();
 			<div class="ungrid-bottom-1">
 				<div class="ungrid-bottom-box ungrid-bottom-box-4">
 					<div class="code <?php echo esc_attr($ungrid_color); ?>">04</div>
-					<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][3] ); ?>
+					<?php get_template_part( 'template-parts/modules/mu/ungrid', null, $template_args['modules'][3] ); ?>
 				</div>
 			</div>
 		<?php } ?>
@@ -51,7 +51,7 @@ $has_image = get_the_post_thumbnail_url();
 				<?php for ($i = 3; $i < 5; $i++) { ?>
 					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
 						<div class="code <?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></div>
-						<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
+						<?php get_template_part( 'template-parts/modules/mu/ungrid', null, $template_args['modules'][$i] ); ?>
 					</div>
 				<?php } ?>
 			</div>
@@ -62,7 +62,7 @@ $has_image = get_the_post_thumbnail_url();
 				<?php for ($i = 3; $i < 6; $i++) { ?>
 					<div class="ungrid-bottom-box ungrid-bottom-box-<?php echo esc_attr( $i ); ?>">
 						<div class="code <?php echo esc_attr($ungrid_color); ?>">0<?php echo esc_html($i+1); ?></div>
-						<?php wmf_get_template_part( 'template-parts/modules/mu/ungrid', $template_args['modules'][$i] ); ?>
+						<?php get_template_part( 'template-parts/modules/mu/ungrid', null, $template_args['modules'][$i] ); ?>
 					</div>
 				<?php } ?>
 			</div>
@@ -75,7 +75,7 @@ $has_image = get_the_post_thumbnail_url();
 		<?php
 			foreach ( $template_args['modules'] as $key=>$module ) {
 				$module["index"] = $key;
-				wmf_get_template_part( 'template-parts/modules/mu/text-home', $module );
+				get_template_part( 'template-parts/modules/mu/text-home', null, $module );
 			}
 		?>
 	</div>
@@ -84,7 +84,7 @@ $has_image = get_the_post_thumbnail_url();
 		<?php
 			foreach ( $template_args['modules'] as $key=>$module ) {
 				$module["index"] = $key;
-				wmf_get_template_part( 'template-parts/modules/mu/text', $module );
+				get_template_part( 'template-parts/modules/mu/text', null, $module );
 			}
 		?>
 	</div>
