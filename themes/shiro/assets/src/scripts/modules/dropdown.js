@@ -121,7 +121,7 @@ function getBackdrop() {
  * Handles clicks on the backdrop.
  */
 function handleBackdropClick() {
-	getInstances().map( dropdown => {
+	getInstances().forEach( dropdown => {
 		dropdown.dataset.open = 'false';
 	} );
 }
