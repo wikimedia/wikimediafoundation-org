@@ -1,13 +1,10 @@
-const {helpers, plugins, externals, presets} = require('@humanmade/webpack-helpers');
-const {withDynamicPort, choosePort, cleanOnExit, filePath} = helpers;
+const {helpers, externals, presets} = require('@humanmade/webpack-helpers');
+const {choosePort, cleanOnExit, filePath} = helpers;
 
 // Clean up manifests on exit.
 cleanOnExit([
 	filePath('assets/dist/asset-manifest.json'),
 ]);
-
-// This allows our configs to share the same manifest when using dev-server
-let seed = {};
 
 module.exports = choosePort( 8080).then( port => [
 		presets.development({
@@ -23,11 +20,6 @@ module.exports = choosePort( 8080).then( port => [
 				path: filePath('assets/dist'),
 				publicPath: `http://localhost:${port}/shiro-blocks/`
 			},
-			plugins: [
-				plugins.manifest( {
-					seed,
-				} )
-			],
 			resolve: {
 				alias: {
 					"sass-lib": filePath('assets/src/sass/css/scss/')
@@ -46,11 +38,6 @@ module.exports = choosePort( 8080).then( port => [
 				path: filePath('assets/dist'),
 				publicPath: `http://localhost:${port}/shiro-theme/`
 			},
-			plugins: [
-				plugins.manifest( {
-					seed
-				} ),
-			],
 		}),
 	]
 );
