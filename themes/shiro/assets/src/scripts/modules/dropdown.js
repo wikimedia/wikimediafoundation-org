@@ -38,7 +38,15 @@ function handleMutation( list, observer ) {
 			toggle.setAttribute( 'aria-expanded', open );
 
 			const backdrop = getBackdrop();
-			if ( backdrop ) {
+			// Only modify the backdrop if it exists /and/ there are no other
+			// open dropdowns.
+			if ( backdrop && getInstances()
+				.filter( dropdown => {
+					if ( dropdown === el ) {
+						return false; // Skip *this* dropdown
+					}
+					return dropdown.dataset.open === 'true';
+				} ).length < 1 ) {
 				backdrop.dataset.dropdownBackdrop = open === 'true' ? 'active' : 'inactive';
 			}
 		}
