@@ -87,7 +87,16 @@ export const settings = {
 	 */
 	edit: function CardBlock( { attributes, setAttributes } ) {
 		const blockProps = useBlockProps( { className: 'content-card' } );
-		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
+		const {
+			imageId,
+			imageSrc,
+			heading,
+			body,
+			linkText,
+			linkUrl,
+			imageWidth,
+			imageHeight,
+		} = attributes;
 
 		const onSelectImage = useCallback( ( { id, src, alt, width, height } ) => {
 			setAttributes( {
@@ -129,7 +138,9 @@ export const settings = {
 				<ImagePicker
 					className="content-card__image"
 					id={ imageId }
+					imageHeight={ imageHeight }
 					imageSize="image_16x9_small"
+					imageWidth={ imageWidth }
 					src={ imageSrc }
 					onChange={ onSelectImage }
 				/>

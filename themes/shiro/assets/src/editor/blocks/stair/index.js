@@ -72,7 +72,16 @@ export const
 		 */
 		edit: function EditStairBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'stair' } );
-			const { imageId, imageUrl, content, linkText, linkUrl, heading } = attributes;
+			const {
+				imageId,
+				imageUrl,
+				content,
+				linkText,
+				linkUrl,
+				heading,
+				imageWidth,
+				imageHeight,
+			} = attributes;
 
 			const onChange = useCallback( ( { id, alt, src, width, height } ) => {
 				setAttributes( {
@@ -100,6 +109,8 @@ export const
 						imageSize="image_16x9_small"
 						src={ imageUrl }
 						onChange={ onChange }
+						imageWidth={ imageWidth }
+						imageHeight={ imageHeight }
 					/>
 					<RichText
 						className="stair__body"

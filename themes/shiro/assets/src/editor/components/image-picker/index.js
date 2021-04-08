@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import {
@@ -35,6 +34,8 @@ function ImagePicker( props ) {
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
+		imageWidth,
+		imageHeight,
 	} = props;
 
 	let { src } = props;
@@ -88,8 +89,10 @@ function ImagePicker( props ) {
 		<img
 			alt={ __( 'Edit image' ) }
 			className={ className }
+			height={ imageHeight }
 			src={ src }
 			title={ __( 'Edit image' ) }
+			width={ imageWidth }
 		/>
 	);
 
@@ -132,6 +135,8 @@ ImagePicker.propTypes = {
 	imageSize: PropTypes.string,
 	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
+	imageWidth: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
+	imageHeight: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
 
 	noticeOperations: PropTypes.object.isRequired,
 	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),
