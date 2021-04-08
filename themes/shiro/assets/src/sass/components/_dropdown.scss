@@ -43,7 +43,7 @@
 	&:active,
 	&:focus {
 		outline: none;
-		border-color: $wmui-color-accent50;
+		border-color: $wmui-color-blue50;
 	}
 }
 
@@ -81,6 +81,6 @@
 	&:active,
 	&:focus {
 		@include dropdown-caret-blue();
-		color: $wmui-color-accent50;
+		color: $wmui-color-blue50;
 	}
 }
