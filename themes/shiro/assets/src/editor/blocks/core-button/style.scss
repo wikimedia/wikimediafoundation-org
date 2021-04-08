@@ -1,0 +1,16 @@
+@mixin button-wrapper( $container-selector, $inner-selector ) {
+	#{ $container-selector } {
+		&.is-style-as-link {
+			&.has-icon {
+				#{ $inner-selector }:before {
+					top: 7px;
+				}
+			}
+		}
+	}
+}
+
+.editor-styles-wrapper {
+	@include button-wrapper('.wp-block-shiro-button', '&');
+	@include button-wrapper('.wp-block-button', '.wp-block-button__link');
+}

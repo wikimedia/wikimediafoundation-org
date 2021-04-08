@@ -52,6 +52,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/card',
 		'shiro/stairs',
 		'shiro/stair',
+		'shiro/tweet-this',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 
