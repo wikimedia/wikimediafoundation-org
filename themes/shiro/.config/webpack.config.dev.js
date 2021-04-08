@@ -28,6 +28,11 @@ module.exports = choosePort( 8080).then( port => [
 					seed,
 				} )
 			],
+			resolve: {
+				alias: {
+					"sass-lib": filePath('assets/src/sass/css/scss/')
+				}
+			}
 		}),
 		presets.development({
 			name: 'theme',
