@@ -17,6 +17,7 @@ function register_block() {
 		[
 			'apiVersion' => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
+			'icon' => 'translation',
 			'attributes' => [
 				'align' => [
 					'type' => 'string',

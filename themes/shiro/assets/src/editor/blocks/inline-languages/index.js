@@ -16,6 +16,7 @@ export const
 	settings = {
 		apiVersion: 2,
 		title: __( 'Inline Languages', 'shiro' ),
+		icon: 'translation',
 		supports: {
 			align: [ 'center', 'full' ],
 		},
