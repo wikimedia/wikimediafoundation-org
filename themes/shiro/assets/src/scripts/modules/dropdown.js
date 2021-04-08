@@ -36,13 +36,17 @@ function handleMutation( list, observer ) {
 /**
  * Add dropdown functionality to a specific element.
  *
+ * The dropdown wrapper is considered the single source of truth for the
+ * content and toggle it contains. If you want to know or change the state of
+ * the dropdown, look at this element.
+ *
  * @param {Element} el The element to upgrade and instantiate.
  *
  * @returns {Element} Upgraded and instantiated element.
  */
 function instantiate( el ) {
 	const name = el.dataset.dropdown;
-	const content = el.querySelector( '[data-dropdown-content]' );
+	const content = el.querySelector( `[data-dropdown-content='${name}']` );
 	const toggle = document.querySelector( `[data-dropdown-toggle='${name}']` );
 
 	/**

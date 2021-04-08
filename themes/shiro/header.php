@@ -71,7 +71,7 @@ $page_id = get_queried_object_id();
 								<?php echo wmf_show_icon( 'translate', 'language-switcher__icon' ); ?>
 								<span class="language-switcher__label"><?php echo $selected; ?></span>
 							</button>
-							<div data-dropdown-content class="language-switcher__content" hidden>
+							<div data-dropdown-content="language-switcher" class="language-switcher__content" hidden>
 								<ul>
 									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
 										<li class="language-switcher__language <?php echo $wmf_translation['selected'] ? 'language-switcher__language--selected' : '' ?>">
