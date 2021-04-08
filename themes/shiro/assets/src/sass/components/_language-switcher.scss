@@ -24,7 +24,7 @@
 
 	&__content {
 		width: 100%;
-		padding: rem( 40 ) rem( 12 );
+		padding: rem( 30 ) rem( 12 );
 		box-sizing: border-box;
 		position: fixed;
 		right: 0;
@@ -67,7 +67,7 @@
 				}
 
 				a {
-					
+
 					/** Necessary to override some pre-existing styles */
 					font-size: inherit;
 				}
