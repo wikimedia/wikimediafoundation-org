@@ -6,7 +6,7 @@ import classNames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps, getColorClassName } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -86,8 +86,9 @@ export const settings = {
 			type: 'boolean',
 			default: true,
 		},
-		color: {
+		headingColor: {
 			type: 'string',
+			default: 'yellow50',
 		},
 	},
 
@@ -102,6 +103,7 @@ export const settings = {
 			imageUrl,
 			imageAlt,
 			enableAnimation,
+			headingColor,
 		} = attributes;
 		let {
 			headings = [],
@@ -110,6 +112,7 @@ export const settings = {
 		headings = prepareHeadings( headings );
 
 		const blockProps = useBlockProps.save( { className: 'hero-home' } );
+		const headingColorClassName = getColorClassName( 'background-color', headingColor );
 
 		return (
 			<div { ...blockProps } >
@@ -128,7 +131,12 @@ export const settings = {
 						/>
 					</div>
 					<div className="hero-home__heading-wrapper">
-						<div className="hero-home__heading-color">
+						<div className={ classNames(
+							'hero-home__heading-color',
+							{
+								[ headingColorClassName ]: headingColorClassName,
+							}
+						) }>
 							{ headings.map( ( heading, index ) => {
 								return (
 									<RichText.Content

@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import { partial, tail } from 'lodash';
 
-import { RichText, useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { RichText, useBlockProps, InspectorControls, withColors, PanelColorSettings } from '@wordpress/block-editor';
 import { Button, PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import { compose } from '@wordpress/compose';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -13,7 +14,7 @@ import { ensureEmptyHeading, prepareHeadings } from './helpers';
 /**
  * Edit component used to manage featured image and page intro.
  */
-export default function HomePageHeroBlock( { attributes, setAttributes, isSelected } ) {
+const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingColor, headingColor } ) => {
 	const {
 		imageId,
 		imageUrl,
@@ -83,7 +84,10 @@ export default function HomePageHeroBlock( { attributes, setAttributes, isSelect
 					/>
 				</div>
 				{ hasImage && ( <div className="hero-home__heading-wrapper">
-					<div className="hero-home__heading-color">
+					<div className={ classNames(
+						'hero-home__heading-color',
+						headingColor?.class
+					) }>
 						<RichText
 							allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 							className="hero-home__heading"
@@ -109,7 +113,10 @@ export default function HomePageHeroBlock( { attributes, setAttributes, isSelect
 						headingIndex += 1;
 
 						return (
-							<div key={ headingIndex } className="hero-home__heading-color">
+							<div key={ headingIndex } className={ classNames(
+								'hero-home__heading-color',
+								headingColor?.class
+							) }>
 								<RichText
 									allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 									className="hero-home__heading"
@@ -147,7 +154,25 @@ export default function HomePageHeroBlock( { attributes, setAttributes, isSelect
 						/>
 					</PanelBody>
 				</InspectorControls> ) }
+				<InspectorControls>
+					<PanelColorSettings
+						colorSettings={ [
+							{
+								value: headingColor.color,
+								onChange: setHeadingColor,
+								label: __( 'Heading background color' ),
+								clearable: false,
+							},
+						] }
+						title={ __( 'Color settings' ) }
+					>
+					</PanelColorSettings>
+				</InspectorControls>
 			</header>
 		</div>
 	);
-}
+};
+
+export default compose(
+	withColors( { headingColor: 'background-color' } )
+)( HomePageHeroBlock );
