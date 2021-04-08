@@ -34,8 +34,8 @@ function ImagePicker( props ) {
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
-		imageWidth,
-		imageHeight,
+		width,
+		height,
 	} = props;
 
 	let { src } = props;
@@ -89,10 +89,10 @@ function ImagePicker( props ) {
 		<img
 			alt={ __( 'Edit image' ) }
 			className={ className }
-			height={ imageHeight }
+			height={ height }
 			src={ src }
 			title={ __( 'Edit image' ) }
-			width={ imageWidth }
+			width={ width }
 		/>
 	);
 
@@ -135,8 +135,8 @@ ImagePicker.propTypes = {
 	imageSize: PropTypes.string,
 	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
-	imageWidth: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
-	imageHeight: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
+	width: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
+	height: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
 
 	noticeOperations: PropTypes.object.isRequired,
 	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),

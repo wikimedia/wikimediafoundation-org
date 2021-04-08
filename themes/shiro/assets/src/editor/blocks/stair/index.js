@@ -105,12 +105,12 @@ export const
 					/>
 					<ImagePicker
 						className="stair__image"
+						height={ imageHeight }
 						id={ imageId }
 						imageSize="image_16x9_small"
 						src={ imageUrl }
+						width={ imageWidth }
 						onChange={ onChange }
-						imageWidth={ imageWidth }
-						imageHeight={ imageHeight }
 					/>
 					<RichText
 						className="stair__body"

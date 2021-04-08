@@ -137,11 +137,11 @@ export const settings = {
 				</div>
 				<ImagePicker
 					className="content-card__image"
+					height={ imageHeight }
 					id={ imageId }
-					imageHeight={ imageHeight }
 					imageSize="image_16x9_small"
-					imageWidth={ imageWidth }
 					src={ imageSrc }
+					width={ imageWidth }
 					onChange={ onSelectImage }
 				/>
 			</div>
