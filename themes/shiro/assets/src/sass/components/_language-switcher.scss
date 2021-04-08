@@ -25,7 +25,6 @@
 	&__content {
 		width: 100%;
 		padding: rem( 40 ) rem( 12 );
-		font-size: rem( 16 );
 		box-sizing: border-box;
 		position: fixed;
 		right: 0;
@@ -37,11 +36,10 @@
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
 			border: 1px solid $wmui-color-accent50;
-			font-size: rem( 14 );
 			position: absolute;
 			width: 200px;
 			max-width: 100vw;
-			padding: rem( 20 );
+			padding: rem( 12 );
 			right: 0;
 			// This aligns the top of the content with the bottom of the button
 			top: calc( 100% - 1px );
@@ -60,9 +58,12 @@
 				list-style: none;
 				margin: 0;
 				margin-bottom: rem( 19 );
+				line-height: 175%;
+				font-size: rem( 16 );
 
 				@media ( min-width: #{$width-breakpoint-tablet} ) {
 					margin-bottom: rem( 14 );
+					font-size: rem( 14 );
 				}
 
 				&:last-child {
@@ -83,7 +84,7 @@
 			display: block;
 			padding-left: rem( 8 );
 			padding-right: rem( 8 );
-			padding-top: rem( 6 );
+			padding-top: rem( 4 );
 
 			&:hover {
 				background-color: $wmui-color-accent90;
@@ -98,7 +99,7 @@
 		&::after {
 			content: '';
 			display: block;
-			margin-top: rem( 6 );
+			margin-top: rem( 4 );
 			border-bottom: 3px solid var(--language-picker-item-border-color);
 		}
 	}
