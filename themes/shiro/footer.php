@@ -242,6 +242,5 @@ $wmf_search_esc_label  = get_theme_mod( 'wmf_search_esc_label', __( 'esc', 'shir
 <?php wp_footer(); ?>
 
 </div>
-<div data-dropdown-backdrop></div>
 </body>
 </html>

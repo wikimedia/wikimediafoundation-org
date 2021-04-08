@@ -36,6 +36,7 @@ $page_id = get_queried_object_id();
 </head>
 
 <body <?php body_class(); ?>>
+	<div data-dropdown-backdrop></div>
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
 <div class="mobile-cover"></div>
 <div id="page" class="site">
