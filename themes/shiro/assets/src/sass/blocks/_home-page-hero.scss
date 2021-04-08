@@ -28,7 +28,10 @@
 		height: 454px;
 		width: 4237px;
 		z-index: -1;
-		animation: hero-home-animation 300s linear infinite;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: hero-home-animation 300s linear infinite;
+		}
 
 		&--disable-animation {
 			animation-play-state: paused;
