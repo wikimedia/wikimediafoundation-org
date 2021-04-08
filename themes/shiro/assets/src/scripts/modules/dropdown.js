@@ -1,12 +1,14 @@
 /**
- * This is set outside of any method to 'cache' this value.
- * Methods shouldn't access this directly--they should use getBackdrop()--but
- * this allows us to only look it up once /and/ unset/reset it if necessary
- * i.e. potentially during HMR.
+ * These are set outside of any method to 'cache' their values.
+ *
+ * Don't access these directly unless you need to reset them to something else
+ * (i.e. you're modifying the DOM w/ JavaScript). Use their get methods
+ * (getBackdrop and getInstances) instead.
  *
  * @type {Element}
  */
 let _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
+let _instances = [ ...document.querySelectorAll( '[data-dropdown]' ) ];
 
 /**
  * Get an array of all elements that seem to be dropdowns.
@@ -14,7 +16,7 @@ let _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
  * @returns {Element[]} All the potential dropdowns in this document.
  */
 function getInstances() {
-	return [ ...document.querySelectorAll( '[data-dropdown]' ) ];
+	return _instances;
 }
 
 /**
