@@ -1,4 +1,14 @@
 /**
+ * This is set outside of any method to 'cache' this value.
+ * Methods shouldn't access this directly--they should use getBackdrop()--but
+ * this allows us to only look it up once /and/ unset/reset it if necessary
+ * i.e. potentially during HMR.
+ *
+ * @type {Element}
+ */
+let _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
+
+/**
  * Get an array of all elements that seem to be dropdowns.
  *
  * @returns {Element[]} All the potential dropdowns in this document.
@@ -25,7 +35,7 @@ function handleMutation( list, observer ) {
 
 			toggle.setAttribute( 'aria-expanded', open );
 
-			const backdrop = document.querySelector( '[data-dropdown-backdrop]' );
+			const backdrop = getBackdrop();
 			if ( backdrop ) {
 				backdrop.dataset.dropdownBackdrop = open === 'true' ? 'active' : 'inactive';
 			}
@@ -104,7 +114,7 @@ function destroy( el ) {
  * @returns {Element} Backdrop element (if found)
  */
 function getBackdrop() {
-	return document.querySelector( '[data-dropdown-backdrop]' );
+	return _backdrop;
 }
 
 /**
