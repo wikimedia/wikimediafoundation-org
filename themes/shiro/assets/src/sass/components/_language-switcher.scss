@@ -61,6 +61,7 @@
 				margin-bottom: rem( 19 );
 				line-height: 175%;
 				font-size: rem( 16 );
+				font-weight: 500;
 
 				@media ( min-width: #{$width-breakpoint-tablet} ) {
 					margin-bottom: rem( 14 );
@@ -71,6 +72,7 @@
 
 					/** Necessary to override some pre-existing styles */
 					font-size: inherit;
+					font-weight: inherit;
 				}
 
 				&:last-child {
