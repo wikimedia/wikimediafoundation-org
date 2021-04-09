@@ -19,7 +19,7 @@
 
 		.nav-open & {
 			display: flex;
-			flex-direction: column;
+			flex-direction: column-reverse;
 			align-items: start;
 			padding: 1.5rem;
 			position: fixed;
