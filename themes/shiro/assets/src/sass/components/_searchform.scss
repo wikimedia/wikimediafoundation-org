@@ -1,0 +1,7 @@
+.search-form {
+	display: flex;
+
+	&__button {
+		@include style-guide-button-reset();
+	}
+}
