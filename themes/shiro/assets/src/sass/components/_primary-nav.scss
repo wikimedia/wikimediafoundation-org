@@ -1,0 +1,103 @@
+.primary-nav {
+	margin-top: rem( 66 );
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid $wmui-color-base80;
+	padding: 0;
+	padding-top: rem( 12 );
+
+	&__drawer {
+		display: none;
+
+		@media ( min-width: #{$medium-landscape} ) {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: start;
+			width: 100%;
+		}
+
+		.nav-open & {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			padding: 1.5rem;
+			position: fixed;
+			width: 100%;
+			background: $color-white;
+			left: 0;
+			color: #fff;
+			z-index: 3000;
+			top: 65px;
+			overflow: auto;
+			max-height: calc( 100vh - 65px );
+		}
+	}
+
+	&__items {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+
+		@media ( min-width: #{$medium-landscape} ) {
+			flex-direction: row;
+			align-items: center;
+			flex-wrap: wrap;
+			margin-top: rem( -17 );
+		}
+
+		li {
+			display: inline-block;
+			margin: 0;
+			margin-bottom: rem( 17 );
+
+			@media ( min-width: #{$medium-landscape} ) {
+				margin-bottom: 0;
+				margin-top: rem( 17 );
+			}
+
+			&::after {
+				content: "";
+				display: block;
+				margin-top: rem( 13 );
+				border-bottom: 3px solid transparent;
+
+				@media ( min-width: #{$medium-landscape} ) {
+					margin-bottom: 0;
+				}
+			}
+
+			&.current-menu-item.current-menu-item,
+			&.current-page-ancestor.current-page-ancestor {
+				&::after {
+					border-bottom-color: $wmui-color-accent50;
+				}
+
+				a {
+					color: $wmui-color-accent50;
+
+					span {
+						border: 0;
+					}
+				}
+			}
+
+			a {
+				padding: rem( 6 ) 0;
+
+				&:hover {
+					background-color: $wmui-color-accent90;
+					color: $wmui-color-accent50;
+				}
+			}
+		}
+	}
+}
+
+/**
+This prevents users from inadvertently scrolling the site when the nav is open.
+ */
+body.primary-nav-open {
+	overflow: hidden;
+}
