@@ -30,7 +30,12 @@ module.exports = [
 					{ from: filePath( 'assets/src/libs' ), to: filePath( 'assets/dist' ) }
 				]
 			} ),
-		]
+		],
+		resolve: {
+			alias: {
+				"sass-lib": filePath('assets/src/sass/css/scss/')
+			}
+		}
 	} ),
 	presets.production({
 		name: 'theme',

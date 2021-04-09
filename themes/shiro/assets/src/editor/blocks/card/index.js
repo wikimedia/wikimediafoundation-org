@@ -47,6 +47,18 @@ export const settings = {
 			selector: '.content-card__image',
 			attribute: 'alt',
 		},
+		imageWidth: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.content-card__image',
+			attribute: 'width',
+		},
+		imageHeight: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.content-card__image',
+			attribute: 'height',
+		},
 		heading: {
 			type: 'string',
 			source: 'html',
@@ -75,13 +87,24 @@ export const settings = {
 	 */
 	edit: function CardBlock( { attributes, setAttributes } ) {
 		const blockProps = useBlockProps( { className: 'content-card' } );
-		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
+		const {
+			imageId,
+			imageSrc,
+			heading,
+			body,
+			linkText,
+			linkUrl,
+			imageWidth,
+			imageHeight,
+		} = attributes;
 
-		const onSelectImage = useCallback( ( { id, src, alt } ) => {
+		const onSelectImage = useCallback( ( { id, src, alt, width, height } ) => {
 			setAttributes( {
 				imageId: id,
 				imageSrc: src,
 				imageAlt: alt,
+				imageWidth: width,
+				imageHeight: height,
 			} );
 		}, [ setAttributes ] );
 
@@ -114,9 +137,11 @@ export const settings = {
 				</div>
 				<ImagePicker
 					className="content-card__image"
+					height={ imageHeight }
 					id={ imageId }
 					imageSize="image_16x9_small"
 					src={ imageSrc }
+					width={ imageWidth }
 					onChange={ onSelectImage }
 				/>
 			</div>
@@ -128,7 +153,16 @@ export const settings = {
 	 */
 	save: function Save( { attributes } ) {
 		const blockProps = useBlockProps.save( { className: 'content-card click-to-call-to-action' } );
-		const { imageId, imageSrc, heading, body, linkText, linkUrl } = attributes;
+		const {
+			imageId,
+			imageSrc,
+			heading,
+			body,
+			linkText,
+			linkUrl,
+			imageWidth,
+			imageHeight,
+		} = attributes;
 
 		return (
 			<div { ...blockProps }>
@@ -151,11 +185,11 @@ export const settings = {
 				</div>
 				<ImagePicker.Content
 					className="content-card__image"
-					height="338"
+					height={ imageHeight }
 					id={ imageId }
 					imageSize="image_16x9_small"
 					src={ imageSrc }
-					width="600"
+					width={ imageWidth }
 				/>
 			</div>
 		);
