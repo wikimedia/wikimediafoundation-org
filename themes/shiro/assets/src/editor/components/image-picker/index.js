@@ -34,6 +34,8 @@ function ImagePicker( props ) {
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
+		width,
+		height,
 	} = props;
 
 	let { src } = props;
@@ -69,12 +71,14 @@ function ImagePicker( props ) {
 				media: undefined,
 			} );
 		} else {
-			const { id, alt, url, sizes } = media;
+			const { id, alt, url, sizes, width, height } = media;
 
 			// Call the onChange now with the uploaded image object.
 			onChange( {
 				id,
 				src: sizes?.[ imageSize ]?.url || url,
+				width: sizes?.[ imageSize ]?.width || width,
+				height: sizes?.[ imageSize ]?.height || height,
 				alt,
 				media,
 			} );
@@ -85,8 +89,10 @@ function ImagePicker( props ) {
 		<img
 			alt={ __( 'Edit image' ) }
 			className={ className }
+			height={ height }
 			src={ src }
 			title={ __( 'Edit image' ) }
+			width={ width }
 		/>
 	);
 
@@ -129,6 +135,8 @@ ImagePicker.propTypes = {
 	imageSize: PropTypes.string,
 	src: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
+	width: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
+	height: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
 
 	noticeOperations: PropTypes.object.isRequired,
 	noticeUI: PropTypes.oneOfType( [ PropTypes.bool, PropTypes.node ] ),
