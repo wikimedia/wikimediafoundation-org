@@ -120,12 +120,13 @@ export const settings = {
 
 		const blockProps = useBlockProps.save( { className: 'hero-home' } );
 		const headingColorClassName = getColorClassName( 'background-color', headingColor );
+		const hasLink = ! ! linkUrl;
 
 		/**
 		 * Render wrapper link if it is set, otherwise simply render the children as-is.
 		 */
 		const ConditionalLink = ( { children } ) => {
-			if ( linkUrl ) {
+			if ( hasLink ) {
 				return (
 					<a className="hero-home__link" href={ linkUrl }>
 						{ children }
@@ -169,6 +170,7 @@ export const settings = {
 											className={ classNames( {
 												'hero-home__heading': true,
 												'hero-home__heading--hidden': index !== 0,
+												'hero-home__heading--has-link': hasLink,
 												'rtl-switch': heading.switchRtl || false,
 											} ) }
 											lang={ heading.lang }

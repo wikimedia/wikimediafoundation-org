@@ -69,5 +69,11 @@
 		&--hidden {
 			display: none;
 		}
+
+		&--has-link {
+			&:after {
+				@include style-guide-arrow-content;
+			}
+		}
 	}
 }
