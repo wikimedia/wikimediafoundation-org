@@ -1,6 +1,4 @@
-@import "../../../sass/css/scss/functions";
-@import "../../../sass/css/scss/variables";
-@import "../../../sass/css/scss/mixins";
+@import "~sass-lib/editor-includes";
 
 .wp-block-quote {
 	.editor-styles-wrapper .single-post .block-editor-block-list__layout > &.wp-block {

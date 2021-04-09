@@ -3,6 +3,8 @@
  */
 import { autoloadBlocks, autoloadPlugins } from 'block-editor-hmr';
 
+import './style.scss';
+
 // Load all block index files.
 autoloadBlocks(
 	{ getContext: () => require.context( './blocks', true, /index\.js$/ ) },
