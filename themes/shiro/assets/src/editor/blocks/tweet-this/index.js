@@ -11,8 +11,6 @@ import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import './style.scss';
-
 export const
 	name = 'shiro/tweet-this',
 	settings = {
