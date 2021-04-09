@@ -1,0 +1,13 @@
+// Re-style the URLInput like a normal input when used in the sidebar
+.edit-post-sidebar {
+	.block-editor-url-input__input[type="text"] {
+		border-radius: 2px;
+		border: 1px solid rgb(117, 117, 117);
+
+		&:focus {
+			border-color: var(--wp-admin-theme-color);
+			box-shadow: 0 0 0 0.5px var(--wp-admin-theme-color);
+			outline: transparent solid 2px;
+		}
+	}
+}
