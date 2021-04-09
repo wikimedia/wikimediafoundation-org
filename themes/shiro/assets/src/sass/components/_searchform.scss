@@ -1,7 +1,41 @@
 .search-form {
 	display: flex;
+	align-items: center;
+	font-size: rem( 14 );
+	line-height: 143%;
+	color: $wmui-color-base30;
 
 	&__button {
-		@include style-guide-button-reset();
+		// remove browser button styling
+		border: none;
+		margin: 0;
+		padding: 0;
+		width: auto;
+		overflow: visible;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		line-height: 1;
+		-webkit-appearance: none;
+
+		flex: 0 0 auto;
+		display: inline-block;
+	}
+
+	&__label {
+		flex-grow: 1;
+		margin-right: 0.5rem;
+	}
+
+	&__field {
+		padding: 0;
+		border: 0;
+	}
+
+	& &__icon {
+		width: rem( 16 );
+		height: rem( 16 );
+		margin: 0;
+		display: block;
 	}
 }

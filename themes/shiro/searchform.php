@@ -18,6 +18,6 @@ $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Sea
 	</label>
 	<button type="submit" class="search-form__button">
 		<span class="screen-reader-text"><?php echo esc_html( $wmf_search_button ) ?></span>
-		<?php wmf_show_icon( 'search', 'material' ); ?>
+		<?php wmf_show_icon( 'search', 'search-form__icon' ); ?>
 	</button>
 </form>
