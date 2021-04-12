@@ -52,6 +52,18 @@ export const
 			imageId: {
 				type: 'integer',
 			},
+			imageWidth: {
+				type: 'string',
+				source: 'attribute',
+				selector: '.stair__image',
+				attribute: 'width',
+			},
+			imageHeight: {
+				type: 'string',
+				source: 'attribute',
+				selector: '.stair__image',
+				attribute: 'height',
+			},
 		},
 		parent: [ 'shiro/stairs' ],
 
@@ -60,13 +72,24 @@ export const
 		 */
 		edit: function EditStairBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'stair' } );
-			const { imageId, imageUrl, content, linkText, linkUrl, heading } = attributes;
+			const {
+				imageId,
+				imageUrl,
+				content,
+				linkText,
+				linkUrl,
+				heading,
+				imageWidth,
+				imageHeight,
+			} = attributes;
 
-			const onChange = useCallback( ( { id, alt, src } ) => {
+			const onChange = useCallback( ( { id, alt, src, width, height } ) => {
 				setAttributes( {
 					imageId: id,
 					imageAlt: alt,
 					imageUrl: src,
+					imageWidth: width,
+					imageHeight: height,
 				} );
 			}, [ setAttributes ] );
 
@@ -82,9 +105,11 @@ export const
 					/>
 					<ImagePicker
 						className="stair__image"
+						height={ imageHeight }
 						id={ imageId }
 						imageSize="image_16x9_small"
 						src={ imageUrl }
+						width={ imageWidth }
 						onChange={ onChange }
 					/>
 					<RichText
@@ -111,7 +136,17 @@ export const
 		 */
 		save: function SaveStairBlock( { attributes } ) {
 			const blockProps = useBlockProps.save( { className: 'stair' } );
-			const { imageUrl, imageAlt, content, imageId, linkText, linkUrl, heading } = attributes;
+			const {
+				imageUrl,
+				imageAlt,
+				content,
+				imageId,
+				linkText,
+				linkUrl,
+				heading,
+				imageWidth,
+				imageHeight,
+			} = attributes;
 
 			return (
 				<div { ...blockProps }>
@@ -123,8 +158,11 @@ export const
 					<ImagePicker.Content
 						alt={ imageAlt }
 						className="stair__image"
+						height={ imageHeight }
 						id={ imageId }
+						imageSize="image_16x9_small"
 						src={ imageUrl }
+						width={ imageWidth }
 					/>
 					<RichText.Content
 						className="stair__body"
