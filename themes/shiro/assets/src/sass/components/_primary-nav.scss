@@ -71,11 +71,11 @@
 			&.current-menu-item.current-menu-item,
 			&.current-page-ancestor.current-page-ancestor {
 				&::after {
-					border-bottom-color: $wmui-color-accent50;
+					border-bottom-color: $wmui-color-blue50;
 				}
 
 				a {
-					color: $wmui-color-accent50;
+					color: $wmui-color-blue50;
 
 					span {
 						border: 0;
@@ -87,8 +87,8 @@
 				padding: rem( 6 ) 0;
 
 				&:hover {
-					background-color: $wmui-color-accent90;
-					color: $wmui-color-accent50;
+					background-color: $wmui-color-blue90;
+					color: $wmui-color-blue50;
 				}
 			}
 		}
