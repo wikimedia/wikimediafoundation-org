@@ -28,6 +28,10 @@
 		a {
 
 			@include style-guide-link;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 	}
 
