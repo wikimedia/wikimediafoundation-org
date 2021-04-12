@@ -47,8 +47,12 @@
 		padding: 0 $padding-horizontal-base;
 
 		&:hover {
-			background-color: $wmui-color-base100;
-			box-shadow: $box-shadow-card;
+			background-color: $wmui-color-blue50;
+			color: $wmui-color-base100;
+			// The alternative is to *significantly* increase the complexity,
+			// making this much less readable, hence the !important.
+			// When old styles are removed, we may be able to revisit this.
+			text-decoration: none !important;
 		}
 	}
 
