@@ -22,8 +22,15 @@
 		// The link around the heading should display in same color as text.
 		--link-color: var(--text-color);
 
-		@include h4;
 		@include h-margins;
+
+		// Additional specificity necessary to override base h3 styles
+		.page.has-blocks .wysiwyg & {
+			font-weight: 700;
+			font-size: rem( 18 );
+			line-height: 150%;
+			margin-bottom: rem( 16 );
+		}
 
 		a {
 
@@ -96,6 +103,13 @@
 		flex-direction: row-reverse;
 		align-items: stretch;
 		padding: rem(40) 0;
+
+		&__title {
+			// Additional specificity necessary to override base h3 styles
+			.page.has-blocks .wysiwyg & {
+				font-size: rem(20);
+			}
+		}
 
 		&__image-link,
 		&__content {
