@@ -55,12 +55,14 @@
 	display: inline-block;
 	font-weight: 700;
 	position: relative;
+	// This reflects amount of actual padding (8) plus width of arrow (17)
+	padding-right: rem( 8 + 17 ); /*rtl: padding-left: rem( 8 + 17 )*/
 
 	&::after {
 		content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
 		color: $wmui-color-accent50;
 		color: var(--link-color);
 		position: absolute;
-		right: -2em; /*rtl: left: -1em;*/
+		right: 0; /*rtl: left: 0;*/
 	}
 }
