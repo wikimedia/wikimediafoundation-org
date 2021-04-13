@@ -7,7 +7,7 @@
 .blog-post {
 	display: flex;
 	flex-direction: column;
-	padding: rem(20);
+	padding: rem(20) 0;
 
 	&__image {
 
@@ -97,6 +97,12 @@
 	&__read-more {
 
 		@include style-guide-arrow-link;
+	}
+
+	@media not screen and ( min-width: #{$width-breakpoint-tablet} ) {
+		&:first-of-type {
+			padding-top: 0;
+		}
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
