@@ -7,7 +7,7 @@
 .blog-post {
 	display: flex;
 	flex-direction: column;
-	padding: rem(20);
+	padding: rem(20) 0;
 
 	&__image {
 
@@ -19,26 +19,22 @@
 	}
 
 	&__title {
-		// The link around the heading should display in same color as text.
-		--link-color: var(--text-color);
 
 		@include h-margins;
 
 		// Additional specificity necessary to override base h3 styles
 		.page.has-blocks .wysiwyg & {
-			font-weight: 700;
-			font-size: rem( 18 );
-			line-height: 150%;
-			margin-bottom: rem( 16 );
+
+			@include h4;
+			margin-bottom: rem(16);
 		}
 
 		a {
 
 			@include style-guide-link;
 
-			&:hover {
-				text-decoration: none;
-			}
+			// The link around the heading should display in same color as text.
+			color: var(--text-color);
 		}
 	}
 
@@ -97,6 +93,12 @@
 	&__read-more {
 
 		@include style-guide-arrow-link;
+	}
+
+	@media not screen and ( min-width: #{$width-breakpoint-tablet} ) {
+		&:first-of-type {
+			padding-top: 0;
+		}
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {

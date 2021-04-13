@@ -55,8 +55,8 @@
 	display: inline-block;
 	font-weight: 700;
 	position: relative;
-	// This reflects amount of actual padding (8) plus width of arrow (17)
-	padding-right: rem( 8 + 17 ); /*rtl: padding-left: rem( 8 + 17 )*/
+	// This reflects one en space plus the width of the arrow (1em).
+	padding-right: 1.5em; /*rtl: padding-left: 1.5em)*/
 
 	&::after {
 		content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
