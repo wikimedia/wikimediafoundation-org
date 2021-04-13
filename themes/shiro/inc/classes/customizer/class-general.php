@@ -20,7 +20,7 @@ class General extends Base {
 		$panel_id = 'wmf_general';
 		$this->customize->add_panel(
 			$panel_id, array(
-				'title'    => __( 'General', 'shiro' ),
+				'title'    => __( 'General', 'shiro-admin' ),
 				'priority' => 70,
 			)
 		);
@@ -29,7 +29,7 @@ class General extends Base {
 		$section_id = 'wmf_general_rtl';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'RTL Support', 'shiro' ),
+				'title'    => __( 'RTL Support', 'shiro-admin' ),
 				'priority' => 10,
 				'panel'    => $panel_id,
 			)
@@ -39,8 +39,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Enable RTL', 'shiro' ),
-				'description' => __( 'If checked, this will cause the front end of site to shift from left to right to right to left display.', 'shiro' ),
+				'label'       => __( 'Enable RTL', 'shiro-admin' ),
+				'description' => __( 'If checked, this will cause the front end of site to shift from left to right to right to left display.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'checkbox',
 			)
@@ -50,7 +50,7 @@ class General extends Base {
 		$section_id = 'wmf_general_labels';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Labels & Headings', 'shiro' ),
+				'title'    => __( 'Labels & Headings', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
@@ -65,8 +65,8 @@ class General extends Base {
 			);
 			$this->customize->add_control(
 				$control_id, array(
-					'label'       => __( 'Incomplete Translation Notice', 'shiro' ),
-					'description' => __( 'Shows in the header if the content has not been marked as having a complete translation.', 'shiro' ),
+					'label'       => __( 'Incomplete Translation Notice', 'shiro-admin' ),
+					'description' => __( 'Shows in the header if the content has not been marked as having a complete translation.', 'shiro-admin' ),
 					'section'     => $section_id,
 					'type'        => 'text',
 				)
@@ -76,13 +76,13 @@ class General extends Base {
 		$control_id = 'wmf_featured_post_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'NEWS', 'shiro' ),
+				'default' => __( 'NEWS', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Featured Post Pre Heading', 'shiro' ),
-				'description' => __( 'Shows above featured posts module in landing page and the home page.', 'shiro' ),
+				'label'       => __( 'Featured Post Pre Heading', 'shiro-admin' ),
+				'description' => __( 'Shows above featured posts module in landing page and the home page.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -91,13 +91,13 @@ class General extends Base {
 		$control_id = 'wmf_projects_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Projects', 'shiro' ),
+				'default' => __( 'Projects', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Projects Pre Heading', 'shiro' ),
-				'description' => __( 'Shows above projects module in landing page and the home page.', 'shiro' ),
+				'label'       => __( 'Projects Pre Heading', 'shiro-admin' ),
+				'description' => __( 'Shows above projects module in landing page and the home page.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -111,8 +111,8 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Off Site Links Pre Heading', 'shiro' ),
-				'description' => __( 'Shows above off site links module throughout the site.', 'shiro' ),
+				'label'       => __( 'Off Site Links Pre Heading', 'shiro-admin' ),
+				'description' => __( 'Shows above off site links module throughout the site.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -126,8 +126,8 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Related Pages Pre Heading', 'shiro' ),
-				'description' => __( 'Shows above related pages module throughout the site.', 'shiro' ),
+				'label'       => __( 'Related Pages Pre Heading', 'shiro-admin' ),
+				'description' => __( 'Shows above related pages module throughout the site.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -141,8 +141,8 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Photo Credits Heading', 'shiro' ),
-				'description' => __( 'Shows above photo credits module throughout the site.', 'shiro' ),
+				'label'       => __( 'Photo Credits Heading', 'shiro-admin' ),
+				'description' => __( 'Shows above photo credits module throughout the site.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -152,7 +152,7 @@ class General extends Base {
 		$section_id = 'wmf_general_support_module';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Support Module', 'shiro' ),
+				'title'    => __( 'Support Module', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
@@ -163,8 +163,8 @@ class General extends Base {
 		$this->customize->add_control(
 			new \WP_Customize_Media_Control(
 				$this->customize, $control_id, array(
-					'label'       => __( 'Image', 'shiro' ),
-					'description' => __( 'Image should be 16:9 aspect ratio with min width of 1200px for best appearance. The image will automatically crop to that size if larger.', 'shiro' ),
+					'label'       => __( 'Image', 'shiro-admin' ),
+					'description' => __( 'Image should be 16:9 aspect ratio with min width of 1200px for best appearance. The image will automatically crop to that size if larger.', 'shiro-admin' ),
 					'section'     => $section_id,
 				)
 			)
@@ -174,7 +174,7 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Heading', 'shiro' ),
+				'label'   => __( 'Heading', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -184,7 +184,7 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Content', 'shiro' ),
+				'label'   => __( 'Content', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'textarea',
 			)
@@ -194,7 +194,7 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'CTA Link URI', 'shiro' ),
+				'label'   => __( 'CTA Link URI', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -204,7 +204,7 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'CTA Link Text', 'shiro' ),
+				'label'   => __( 'CTA Link Text', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -214,12 +214,12 @@ class General extends Base {
         $section_id = 'wmf_search_page';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Search Page', 'shiro' ),
+				'title'    => __( 'Search Page', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
 		);
-        
+
         $control_id = 'wmf_search_results_copy';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -228,12 +228,12 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Search results message', 'shiro' ),
+				'label'   => __( 'Search results message', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_no_results_title';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -242,8 +242,8 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'No Results Title', 'shiro' ),
-				'description' => __( 'This displays on archive and search pages when there are no results found.', 'shiro' ),
+				'label'       => __( 'No Results Title', 'shiro-admin' ),
+				'description' => __( 'This displays on archive and search pages when there are no results found.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -257,7 +257,7 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'No Results Description', 'shiro' ),
+				'label'   => __( 'No Results Description', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'textarea',
 			)
@@ -267,7 +267,7 @@ class General extends Base {
 		$section_id = 'wmf_404_page';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( '404 Page', 'shiro' ),
+				'title'    => __( '404 Page', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
@@ -278,8 +278,8 @@ class General extends Base {
 		$this->customize->add_control(
 			new \WP_Customize_Media_Control(
 				$this->customize, $control_id, array(
-					'label'       => __( 'Background Image', 'shiro' ),
-					'description' => __( 'Displayed in header.', 'shiro' ),
+					'label'       => __( 'Background Image', 'shiro-admin' ),
+					'description' => __( 'Displayed in header.', 'shiro-admin' ),
 					'section'     => $section_id,
 				)
 			)
@@ -293,7 +293,7 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Header message', 'shiro' ),
+				'label'   => __( 'Header message', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -307,7 +307,7 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Header title', 'shiro' ),
+				'label'   => __( 'Header title', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -320,7 +320,7 @@ class General extends Base {
 				$this->customize,
 				$control_id,
 				array(
-					'label'   => __( 'Content', 'shiro' ),
+					'label'   => __( 'Content', 'shiro-admin' ),
 					'section' => $section_id,
 				)
 			)
@@ -334,7 +334,7 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Text above search bar', 'shiro' ),
+				'label'   => __( 'Text above search bar', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -344,16 +344,16 @@ class General extends Base {
 		$section_id = 'wmf_general_aria_support';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'ARIA Support', 'shiro' ),
+				'title'    => __( 'ARIA Support', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
 		);
-        
+
         $control_id = 'wmf_search_toggle';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Toggle search', 'shiro' ),
+				'default' => __( 'Toggle search', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(

@@ -20,7 +20,7 @@ class Footer extends Base {
 		$section_id = 'wmf_footer';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Footer', 'shiro' ),
+				'title'    => __( 'Footer', 'shiro-admin' ),
 				'priority' => 70,
 			)
 		);
@@ -30,7 +30,7 @@ class Footer extends Base {
 		$this->customize->add_control(
 			new \WP_Customize_Image_Control(
 				$this->customize, $control_id, array(
-					'label'   => __( 'Footer Logo', 'shiro' ),
+					'label'   => __( 'Footer Logo', 'shiro-admin' ),
 					'section' => $section_id,
 				)
 			)
@@ -44,8 +44,8 @@ class Footer extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Footer Text', 'shiro' ),
-				'description' => __( 'This changes the large text to the right of the footer logo. This can be set in each translation to localize the button.', 'shiro' ),
+				'label'       => __( 'Footer Text', 'shiro-admin' ),
+				'description' => __( 'This changes the large text to the right of the footer logo. This can be set in each translation to localize the button.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -59,8 +59,8 @@ class Footer extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Projects Menu Label', 'shiro' ),
-				'description' => __( 'Label above the 3 column projects menu. This can be set in each translation to localize the button.', 'shiro' ),
+				'label'       => __( 'Projects Menu Label', 'shiro-admin' ),
+				'description' => __( 'Label above the 3 column projects menu. This can be set in each translation to localize the button.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -74,8 +74,8 @@ class Footer extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Movement Affilaites Menu Label', 'shiro' ),
-				'description' => __( 'Label above the 1 column movement affiliates menu. This can be set in each translation to localize the button.', 'shiro' ),
+				'label'       => __( 'Movement Affilaites Menu Label', 'shiro-admin' ),
+				'description' => __( 'Label above the 1 column movement affiliates menu. This can be set in each translation to localize the button.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -89,8 +89,8 @@ class Footer extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Other Links Menu Label', 'shiro' ),
-				'description' => __( 'Label above the 1 column other links menu. This can be set in each translation to localize the button.', 'shiro' ),
+				'label'       => __( 'Other Links Menu Label', 'shiro-admin' ),
+				'description' => __( 'Label above the 1 column other links menu. This can be set in each translation to localize the button.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -104,8 +104,8 @@ class Footer extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Copyright', 'shiro' ),
-				'description' => __( 'The copyright statement at the bottom of the page. This can be set in each translation to localize the button.', 'shiro' ),
+				'label'       => __( 'Copyright', 'shiro-admin' ),
+				'description' => __( 'The copyright statement at the bottom of the page. This can be set in each translation to localize the button.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)

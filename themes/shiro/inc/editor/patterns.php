@@ -14,7 +14,7 @@ function bootstrap() {
 
 function register_pattern() {
 	register_block_pattern_category( 'wikimedia-columns', [
-		'label' => __( 'Wikimedia columns', 'shiro' ),
+		'label' => __( 'Wikimedia columns', 'shiro-admin' ),
 	] );
 
 	register_block_pattern( 'shiro/fact-columns', [
@@ -88,7 +88,7 @@ CONTENT,
 	] );
 
 	register_block_pattern( 'shiro/tweet-columns', [
-		'title' => __( 'Tweet this columns', 'shiro' ),
+		'title' => __( 'Tweet this columns', 'shiro-admin' ),
 		'categories' => [ 'wikimedia-columns' ],
 		'content' => <<<CONTENT
 <!-- wp:columns -->

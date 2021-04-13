@@ -51,11 +51,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header'            => esc_html__( 'Header', 'shiro' ),
-			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro' ),
-			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro' ),
-			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro' ),
-			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro' ),
+			'header'            => esc_html__( 'Header', 'shiro-admin' ),
+			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro-admin' ),
+			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro-admin' ),
+			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro-admin' ),
+			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro-admin' ),
 		)
 	);
 
@@ -105,7 +105,7 @@ add_action( 'after_setup_theme', 'wmf_setup' );
 function wmf_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'shiro' ),
+			'name'          => esc_html__( 'Sidebar', 'shiro-admin' ),
 			'id'            => 'sidebar-1',
 			'description'   => '',
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',

@@ -95,11 +95,11 @@ function add_theme_supports() {
 	// Define alternate font sizes selectable in the editor (the default
 	// for body copy is 18px / 1.75 on desktop; 16px / 1.75 on mobile).
 	add_theme_support( 'editor-font-sizes', [
-		[ 'name' => __( 'Small', 'shiro' ),   'shortName' => __( 'S', 'shiro' ),  'size' => 14, 'slug' => 'small'   ],
-		[ 'name' => __( 'Medium', 'shiro' ),  'shortName' => __( 'M', 'shiro' ),  'size' => 20, 'slug' => 'medium'  ],
-		[ 'name' => __( 'Large', 'shiro' ),   'shortName' => __( 'L', 'shiro' ),  'size' => 24, 'slug' => 'large'   ],
-		[ 'name' => __( 'X-Large', 'shiro' ), 'shortName' => __( 'XL', 'shiro' ), 'size' => 32, 'slug' => 'xlarge'  ],
-		[ 'name' => __( 'Jumbo', 'shiro' ),   'shortName' => __( 'J', 'shiro' ),  'size' => 40, 'slug' => 'jumbo'   ],
+		[ 'name' => __( 'Small', 'shiro-admin' ),   'shortName' => __( 'S', 'shiro-admin' ),  'size' => 14, 'slug' => 'small'   ],
+		[ 'name' => __( 'Medium', 'shiro-admin' ),  'shortName' => __( 'M', 'shiro-admin' ),  'size' => 20, 'slug' => 'medium'  ],
+		[ 'name' => __( 'Large', 'shiro-admin' ),   'shortName' => __( 'L', 'shiro-admin' ),  'size' => 24, 'slug' => 'large'   ],
+		[ 'name' => __( 'X-Large', 'shiro-admin' ), 'shortName' => __( 'XL', 'shiro-admin' ), 'size' => 32, 'slug' => 'xlarge'  ],
+		[ 'name' => __( 'Jumbo', 'shiro-admin' ),   'shortName' => __( 'J', 'shiro-admin' ),  'size' => 40, 'slug' => 'jumbo'   ],
 	] );
 
 	// Remove the ability to set custom font sizes in the editor.
@@ -107,21 +107,21 @@ function add_theme_supports() {
 
 	// Define colors selectable in the editor.
 	add_theme_support( 'editor-color-palette', [
-		[ 'name' => __( 'Base 0', 'shiro' ),    'slug' => 'base0',    'color' => '#000000' ],
-		[ 'name' => __( 'Base 10', 'shiro' ),   'slug' => 'base10',   'color' => '#202122' ],
-		[ 'name' => __( 'Base 20', 'shiro' ),   'slug' => 'base20',   'color' => '#54595d' ],
-		[ 'name' => __( 'Base 30', 'shiro' ),   'slug' => 'base30',   'color' => '#72777d' ],
-		[ 'name' => __( 'Base 50', 'shiro' ),   'slug' => 'base50',   'color' => '#a2a9b1' ],
-		[ 'name' => __( 'Base 70', 'shiro' ),   'slug' => 'base70',   'color' => '#c8ccd1' ],
-		[ 'name' => __( 'Base 80', 'shiro' ),   'slug' => 'base80',   'color' => '#eaecf0' ],
-		[ 'name' => __( 'Base 90', 'shiro' ),   'slug' => 'base90',   'color' => '#f8f9fa' ],
-		[ 'name' => __( 'Base 100', 'shiro' ),  'slug' => 'base100',  'color' => '#ffffff' ],
-		[ 'name' => __( 'Blue 50', 'shiro' ),   'slug' => 'blue50',   'color' => '#3a25ff' ],
-		[ 'name' => __( 'Blue 90', 'shiro' ),   'slug' => 'blue90',   'color' => '#eeeaff' ],
-		[ 'name' => __( 'Red 50', 'shiro' ),    'slug' => 'red50',    'color' => '#d40356' ],
-		[ 'name' => __( 'Red 90', 'shiro' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
-		[ 'name' => __( 'Yellow 50', 'shiro' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
-		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
+		[ 'name' => __( 'Base 0', 'shiro-admin' ),    'slug' => 'base0',    'color' => '#000000' ],
+		[ 'name' => __( 'Base 10', 'shiro-admin' ),   'slug' => 'base10',   'color' => '#202122' ],
+		[ 'name' => __( 'Base 20', 'shiro-admin' ),   'slug' => 'base20',   'color' => '#54595d' ],
+		[ 'name' => __( 'Base 30', 'shiro-admin' ),   'slug' => 'base30',   'color' => '#72777d' ],
+		[ 'name' => __( 'Base 50', 'shiro-admin' ),   'slug' => 'base50',   'color' => '#a2a9b1' ],
+		[ 'name' => __( 'Base 70', 'shiro-admin' ),   'slug' => 'base70',   'color' => '#c8ccd1' ],
+		[ 'name' => __( 'Base 80', 'shiro-admin' ),   'slug' => 'base80',   'color' => '#eaecf0' ],
+		[ 'name' => __( 'Base 90', 'shiro-admin' ),   'slug' => 'base90',   'color' => '#f8f9fa' ],
+		[ 'name' => __( 'Base 100', 'shiro-admin' ),  'slug' => 'base100',  'color' => '#ffffff' ],
+		[ 'name' => __( 'Blue 50', 'shiro-admin' ),   'slug' => 'blue50',   'color' => '#3a25ff' ],
+		[ 'name' => __( 'Blue 90', 'shiro-admin' ),   'slug' => 'blue90',   'color' => '#eeeaff' ],
+		[ 'name' => __( 'Red 50', 'shiro-admin' ),    'slug' => 'red50',    'color' => '#d40356' ],
+		[ 'name' => __( 'Red 90', 'shiro-admin' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
+		[ 'name' => __( 'Yellow 50', 'shiro-admin' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
+		[ 'name' => __( 'Yellow 90', 'shiro-admin' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
 	] );
 
 	// Disable custom color and gradient selection in the editor.
@@ -184,7 +184,7 @@ function add_block_categories( $categories ) {
 		array(
 			array(
 				'slug' => 'wikimedia',
-				'title' => __( 'Wikimedia', 'shiro' ),
+				'title' => __( 'Wikimedia', 'shiro-admin' ),
 			),
 		),
 		$categories

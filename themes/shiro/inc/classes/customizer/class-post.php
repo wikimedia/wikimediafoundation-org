@@ -22,7 +22,7 @@ class Post extends Base {
 		$section_id = 'wmf_post_content';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Post Settings', 'shiro' ),
+				'title'    => __( 'Post Settings', 'shiro-admin' ),
 				'priority' => 60,
 			)
 		);
@@ -35,8 +35,8 @@ class Post extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Related Posts Section Title', 'shiro' ),
-				'description' => __( 'This displays at the bottom of each single post.', 'shiro' ),
+				'label'       => __( 'Related Posts Section Title', 'shiro-admin' ),
+				'description' => __( 'This displays at the bottom of each single post.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -50,7 +50,7 @@ class Post extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Related Posts Section Description', 'shiro' ),
+				'label'   => __( 'Related Posts Section Description', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'textarea',
 			)
