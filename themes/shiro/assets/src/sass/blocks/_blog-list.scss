@@ -22,12 +22,23 @@
 		// The link around the heading should display in same color as text.
 		--link-color: var(--text-color);
 
-		@include h4;
 		@include h-margins;
+
+		// Additional specificity necessary to override base h3 styles
+		.page.has-blocks .wysiwyg & {
+			font-weight: 700;
+			font-size: rem( 18 );
+			line-height: 150%;
+			margin-bottom: rem( 16 );
+		}
 
 		a {
 
 			@include style-guide-link;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 	}
 
@@ -47,8 +58,12 @@
 		padding: 0 $padding-horizontal-base;
 
 		&:hover {
-			background-color: $wmui-color-base100;
-			box-shadow: $box-shadow-card;
+			background-color: $wmui-color-blue50;
+			color: $wmui-color-base100;
+			// The alternative is to *significantly* increase the complexity,
+			// making this much less readable, hence the !important.
+			// When old styles are removed, we may be able to revisit this.
+			text-decoration: none !important;
 		}
 	}
 
@@ -88,6 +103,13 @@
 		flex-direction: row-reverse;
 		align-items: stretch;
 		padding: rem(40) 0;
+
+		&__title {
+			// Additional specificity necessary to override base h3 styles
+			.page.has-blocks .wysiwyg & {
+				font-size: rem(20);
+			}
+		}
 
 		&__image-link,
 		&__content {
