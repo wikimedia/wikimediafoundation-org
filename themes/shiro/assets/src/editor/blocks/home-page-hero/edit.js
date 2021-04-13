@@ -72,6 +72,9 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 					<ImagePicker
 						className="hero-home__image"
 						id={ imageId }
+						labels={ {
+							instructions: __( '⚠️ Scrolling images are expected to be 4237px high and 454px wide (or multiples of those values). Using a different resolution will result in strange behavior.', 'shiro' ),
+						} }
 						src={ imageUrl }
 						onChange={
 							( { id: imageId, src: imageUrl, alt: imageAlt } ) => {

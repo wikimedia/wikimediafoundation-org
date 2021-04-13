@@ -31,6 +31,8 @@ function ImagePicker( props ) {
 		className,
 		imageSize,
 		onChange,
+		// For customizing MediaPlaceholder's labels attributes
+		labels,
 		// Props provided by withNotices HOC.
 		noticeUI,
 		noticeOperations,
@@ -104,6 +106,7 @@ function ImagePicker( props ) {
 				allowedTypes={ [ 'image' ] }
 				className="image-picker__placeholder"
 				disableMediaButtons={ !! src }
+				labels={ labels }
 				notices={ noticeUI }
 				value={ {
 					id,
@@ -134,6 +137,7 @@ ImagePicker.propTypes = {
 	className: PropTypes.string,
 	imageSize: PropTypes.string,
 	src: PropTypes.string,
+	labels: PropTypes.object,
 	onChange: PropTypes.func.isRequired,
 	width: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
 	height: PropTypes.oneOfType( [ PropTypes.string, PropTypes.number ] ),
