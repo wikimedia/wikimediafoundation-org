@@ -16,9 +16,9 @@
 				'theme_location' => 'header',
 				'menu_class'     => 'primary-nav__items',
 				'container'      => '',
-				// Remove this when implementing multi-leve navigation.
+				// Remove this when implementing multi-level navigation.
 				// For now it's here because the existing menu implementation
-				// doesn't super more than one level and looks very odd if
+				// doesn't support more than one level and looks very odd if
 				// you try.
 				'depth' => 1,
 			)
