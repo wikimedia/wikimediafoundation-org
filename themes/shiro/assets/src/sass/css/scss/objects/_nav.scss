@@ -61,31 +61,6 @@
   .logo-container_sm {
     display:none;
   }
-  .main-nav {
-    flex-grow: 1;
-
-    &.flex.flex-medium {
-      flex-direction: row;
-    }
-
-    @media (min-width: 1024px) {
-      float: right;
-    }
-    .current-menu-item {
-      color: $color-turquoise;
-    }
-
-    a {
-      //$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
-      @include linkHighlight($color-periwinkle, $color-blue, 0, 0, 48, 48, $medium-bp);
-      font-weight: normal;
-      z-index: 1;
-
-      &:hover {
-        color: $color-blue;
-      }
-    }
-  }
 
   .logo-container {
     width: 145px;
@@ -127,57 +102,6 @@
     }
   }
 
-  .main-nav {
-    @media (min-width: 1024px) {
-
-      .mobile-nav-toggle {
-        display: none;
-
-        i {
-          margin-right: 5px;
-        }
-      }
-    }
-
-    @media (max-width: $medium-landscape) {
-      border: none !important;
-
-      &.flex.flex-medium {
-        flex-direction: row;
-      }
-
-      ul.list-inline {
-        display: none;
-
-        &.open {
-          display: block;
-          position: fixed;
-          width: 100%;
-          background: $color-white;
-          left: 0;
-          color: #fff;
-          z-index: 3000;
-          top: 65px;
-        }
-
-        li {
-          overflow: hidden;
-          display: block;
-          text-align: left;
-          margin-right: 0;
-          margin-bottom: 0;
-          margin-left: 0;
-
-          a {
-            padding: 1rem;
-            display: inline-block;
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-
   .mobile-cover {
     position: fixed;
     z-index: 1500;
@@ -215,13 +139,6 @@
       }
     }
   }
-
-.main-nav {
-  margin-top: 66px;
-  border-top: 1px solid #f4f4f4;
-  padding-top: 0.2rem;
-  justify-content: space-between;
-}
 
 .donate-btn {
   @include buttonNoStyles();

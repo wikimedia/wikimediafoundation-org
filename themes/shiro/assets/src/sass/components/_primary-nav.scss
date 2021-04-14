@@ -44,51 +44,65 @@
 			flex-direction: row;
 			align-items: center;
 			flex-wrap: wrap;
-			margin-top: rem( -17 );
+			margin-top: rem( -11 );
 		}
 
 		li {
 			display: inline-block;
 			margin: 0;
-			margin-bottom: rem( 17 );
+			margin-bottom: rem( 11 );
 
 			@media ( min-width: #{$medium-landscape} ) {
 				margin-bottom: 0;
-				margin-top: rem( 17 );
-			}
-
-			&::after {
-				content: "";
-				display: block;
-				margin-top: rem( 13 );
-				border-bottom: 3px solid transparent;
-
-				@media ( min-width: #{$medium-landscape} ) {
-					margin-bottom: 0;
-				}
+				margin-top: rem( 11 );
 			}
 
 			&.current-menu-item.current-menu-item,
 			&.current-page-ancestor.current-page-ancestor {
-				&::after {
-					border-bottom-color: $wmui-color-accent50;
-				}
-
 				a {
-					color: $wmui-color-accent50;
+					color: $wmui-color-blue50;
 
 					span {
 						border: 0;
 					}
+
+					&::after {
+						background-color: $wmui-color-blue50;
+					}
+
 				}
 			}
 
 			a {
-				padding: rem( 6 ) 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+
+				span {
+					font-weight: 500;
+					padding: rem( 6 ) rem( 2 );
+					display: inline-block;
+				}
+
+				&::after {
+					content: "";
+					display: block;
+					margin-top: rem( 12 );
+					position: relative;
+					z-index: 10;
+					height: 3px;
+					border: 0;
+
+					@media ( min-width: #{$medium-landscape} ) {
+						margin-bottom: 0;
+					}
+				}
 
 				&:hover {
-					background-color: $wmui-color-accent90;
-					color: $wmui-color-accent50;
+					span {
+						background-color: $wmui-color-blue90;
+						color: $wmui-color-blue50;
+					}
 				}
 			}
 		}
@@ -96,7 +110,7 @@
 }
 
 /**
-This prevents users from inadvertently scrolling the site when the nav is open.
+ * This prevents users from inadvertently scrolling the site when the nav is open.
  */
 body.primary-nav-open {
 	overflow: hidden;
