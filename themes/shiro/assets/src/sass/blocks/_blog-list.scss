@@ -5,10 +5,9 @@
 }
 
 .blog-post {
-
 	display: flex;
 	flex-direction: column;
-	padding: rem(20);
+	padding: rem(20) 0;
 
 	&__image {
 
@@ -21,13 +20,21 @@
 
 	&__title {
 
-		@include h4;
 		@include h-margins;
+
+		// Additional specificity necessary to override base h3 styles
+		.page.has-blocks .wysiwyg & {
+
+			@include h4;
+			margin-bottom: rem(16);
+		}
 
 		a {
 
 			@include style-guide-link;
-			color: $wmui-color-base0;
+
+			// The link around the heading should display in same color as text.
+			color: var(--text-color);
 		}
 	}
 
@@ -37,20 +44,30 @@
 
 	&__category-link {
 
-		@include style-guide-link;
 		@include has-font-size( "small" );
 		background-color: $wmui-color-blue90;
 		border-radius: rem(4);
+		color: $color-primary;
 		display: inline-block;
 		font-weight: 700;
 		margin: 0 10px 10px 0;
 		padding: 0 $padding-horizontal-base;
+
+		&:hover {
+			background-color: $wmui-color-blue50;
+			color: $wmui-color-base100;
+			// The alternative is to *significantly* increase the complexity,
+			// making this much less readable, hence the !important.
+			// When old styles are removed, we may be able to revisit this.
+			text-decoration: none !important;
+		}
 	}
 
 	&__excerpt p {
 
 		@include has-font-size( "default" );
 		color: $wmui-color-base0;
+		color: var(--text-color);
 		font-family: $font-family-serif;
 		margin: 0 0 rem(10);
 	}
@@ -59,6 +76,7 @@
 
 		@include has-font-size( "small" );
 		color: $wmui-color-base0;
+		color: var(--text-color);
 		margin-bottom: rem(20);
 	}
 
@@ -77,10 +95,23 @@
 		@include style-guide-arrow-link;
 	}
 
+	@media not screen and ( min-width: #{$width-breakpoint-tablet} ) {
+		&:first-of-type {
+			padding-top: 0;
+		}
+	}
+
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		flex-direction: row-reverse;
 		align-items: stretch;
 		padding: rem(40) 0;
+
+		&__title {
+			// Additional specificity necessary to override base h3 styles
+			.page.has-blocks .wysiwyg & {
+				font-size: rem(20);
+			}
+		}
 
 		&__image-link,
 		&__content {

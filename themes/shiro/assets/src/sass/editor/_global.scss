@@ -44,12 +44,13 @@ body {
 	.single & {
 		&[data-align="full"] {
 			max-width: unset;
+			padding: 0;
 		}
 	}
 }
 
 .wp-block-group__inner-container > .wp-block {
-	max-width: none;
+	max-width: rem(strip-px($content-column));
 }
 
 .edit-post-visual-editor__post-title-wrapper .editor-post-title {

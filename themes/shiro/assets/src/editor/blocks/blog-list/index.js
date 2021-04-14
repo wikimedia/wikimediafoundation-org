@@ -171,9 +171,9 @@ export const settings = {
 								} )
 							}
 							onCategoryChange={ selectCategories }
+							onNumberOfItemsChange={ postsToShow => setAttributes( { postsToShow } ) }
 							onOrderByChange={ orderBy => setAttributes( { orderBy } ) }
 							onOrderChange={ order => setAttributes( { order } ) }
-							onNumberOfItemsChange={ postsToShow => setAttributes( { postsToShow } ) }
 						/>
 					</PanelBody>
 
