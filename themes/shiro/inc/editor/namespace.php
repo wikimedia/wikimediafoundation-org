@@ -7,9 +7,6 @@ namespace WMF\Editor;
 
 use Asset_Loader;
 use WMF\Assets;
-use WP_HTTP_Response;
-use WP_REST_Request;
-use WP_REST_Server;
 
 /**
  * Bootstrap hooks relevant to the block editor.

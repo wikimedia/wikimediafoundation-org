@@ -23,7 +23,7 @@ function register_pattern() {
 	] );
 
 	register_block_pattern( FactColumns\NAME, [
-		'title' => __( 'Numbered fact columns' ),
+		'title' => __( 'Numbered fact columns', 'shiro' ),
 		'categories' => [ CATEGORY_NAME ],
 		'content' => FactColumns\PATTERN,
 	] );
@@ -32,7 +32,6 @@ function register_pattern() {
 		'title' => __( 'Tweet this columns', 'shiro' ),
 		'categories' => [ CATEGORY_NAME ],
 		'content' => TweetColumns\PATTERN,
-
 	] );
 
 	register_block_pattern( LinkColumns\NAME, [
