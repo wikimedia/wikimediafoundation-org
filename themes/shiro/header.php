@@ -36,6 +36,7 @@ $page_id = get_queried_object_id();
 </head>
 
 <body <?php body_class(); ?>>
+	<div data-dropdown-backdrop></div>
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
 <div class="mobile-cover"></div>
 <div id="page" class="site">
@@ -56,37 +57,31 @@ $page_id = get_queried_object_id();
 				<div class="top-nav-buttons">
 					<?php if ( ! empty( $wmf_translations ) ) : ?>
 						<?php
-							// Find which is the current language and display that.
-							$selected = array_filter($wmf_translations, function ($lang) {
-								return $lang['selected'];
-							});
-							if ( strpos($selected[0]['name'],'English' ) === 0 ) {
-							     $lang_code = "en";
-							} else {
-								$lang_code = explode('/',$selected[0]['uri'])[3];
-							}
-						?>
-						<div class="language-dropdown" role="navigation">
-							<button aria-label="<?php echo esc_attr( $wmf_select_language_label ); ?>" aria-haspopup="listbox" aria-expanded="false">
-								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/language.svg" alt="" class="language-icon">
-								<span><?php echo esc_html($lang_code); ?></span>
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/down.svg" alt="" class="down-indicator">
-							</button>
+							$selected = array_reduce($wmf_translations, function($carry, $item) {
+								if (is_string($carry)) {
+									return $carry;
+								}
 
-							<div class="language-list">
-								<ul role="listbox" id="lang-list" tabindex="-1">
+								return $item['selected'] ? esc_html( $item['shortname'] ) : null;
+							}, null);
+						?>
+						<div class="language-switcher" data-dropdown="language-switcher" data-open="false">
+							<button class="language-switcher__button" data-dropdown-toggle="language-switcher" aria-expanded="false">
+								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
+								<?php echo wmf_show_icon( 'translate', 'language-switcher__icon' ); ?>
+								<span class="language-switcher__label"><?php echo $selected; ?></span>
+							</button>
+							<div data-dropdown-content="language-switcher" class="language-switcher__content" hidden>
+								<ul>
 									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
-										<li>
-											<?php if ( $wmf_translation['selected'] ) : ?>
-												<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
-											<?php else : ?>
+										<li class="language-switcher__language <?php echo $wmf_translation['selected'] ? 'language-switcher__language--selected' : '' ?>">
 												<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>">
 													<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>">
-														<?php echo esc_html( $wmf_translation['name'] ); ?>
+														<span class="language-switcher__language-name">
+															<?php echo esc_html( $wmf_translation['name'] ); ?>
+														</span>
 													</a>
 												</span>
-											<?php endif; ?>
 										</li>
 									<?php endforeach ?>
 								</ul>
