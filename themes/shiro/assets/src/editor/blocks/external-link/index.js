@@ -5,6 +5,7 @@
 /**
  * Dependencies
  */
+import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
@@ -82,6 +83,50 @@ const ExternalLinkWithFocusOutside = withFocusOutside(
 	}
 );
 
+ExternalLinkWithFocusOutside.propTypes = {
+	url: PropTypes.string,
+	heading: PropTypes.string,
+	text: PropTypes.string,
+	setUrl: PropTypes.func.isRequired,
+	setHeading: PropTypes.func.isRequired,
+	setText: PropTypes.func.isRequired,
+};
+
+/**
+ * Provide a simple content structure.
+ */
+ExternalLinkWithFocusOutside.Content = ( { url, heading, text, ...props } ) => {
+	if ( ! url ) {
+		return null;
+	}
+
+	return (
+		<>
+			<p className="external-link__heading">
+				<a
+					className="external-link__link"
+					href={ url }>
+					<span className="external-link__heading-text">{ heading }</span>
+					<SvgSprite
+						className="external-link__icon"
+						svg="open" />
+				</a>
+			</p>
+			<RichText.Content
+				className="external-link__text"
+				tagName="p"
+				value={ text }
+			/>
+		</>
+	);
+};
+
+ExternalLinkWithFocusOutside.Content.propTypes = {
+	url: PropTypes.string,
+	heading: PropTypes.string,
+	text: PropTypes.string,
+};
+
 export const
 	name = 'shiro/external-link',
 	settings = {
@@ -143,20 +188,10 @@ export const
 
 			return (
 				<div { ...blockProps }>
-					<p className="external-link__heading">
-						<a
-							className="external-link__link"
-							href={ url }>
-							<span className="external-link__heading-text">{ heading }</span>
-							<SvgSprite
-								className="external-link__icon"
-								svg="open" />
-						</a>
-					</p>
-					<RichText.Content
-						className="external-link__text"
-						tagName="p"
-						value={ text }
+					<ExternalLinkWithFocusOutside.Content
+						heading={ heading }
+						text={ text }
+						url={ url }
 					/>
 				</div>
 			);
