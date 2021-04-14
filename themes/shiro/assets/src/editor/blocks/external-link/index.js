@@ -3,13 +3,18 @@
  */
 
 /**
+ * Dependencies
+ */
+import React from 'react';
+
+/**
  * WordPress dependencies
  */
 import {
 	useBlockProps,
 	RichText,
 } from '@wordpress/block-editor';
-import { useCallback } from '@wordpress/element';
+import { withFocusOutside } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -18,6 +23,64 @@ import { __ } from '@wordpress/i18n';
 import './style.scss';
 import SvgSprite from '../../components/svg-sprite';
 import URLPicker from '../../components/url-picker';
+
+const ExternalLinkWithFocusOutside = withFocusOutside(
+	class extends React.Component {
+		constructor( props ) {
+			super( props );
+			this.state = {
+				showButtons: false,
+			};
+		}
+
+		handleFocusOutside() {
+			this.setState( { showButtons: false } );
+		}
+
+		render() {
+			const { showButtons } = this.state;
+			const {
+				url,
+				heading,
+				text,
+				setUrl,
+				setHeading,
+				setText,
+			} = this.props;
+
+			return (
+				<>
+					<URLPicker
+						isSelected={ showButtons }
+						url={ url }
+						onChangeLink={ setUrl }
+					/>
+					<p className="external-link__heading">
+						<RichText
+							allowedFormats={ [ ] }
+							className="external-link__link"
+							placeholder={ __( 'Link heading', 'shiro' ) }
+							tagName="span"
+							value={ heading }
+							onChange={ setHeading }
+							onFocus={ () => this.setState( { showButtons: true } ) }
+						/>
+						<SvgSprite
+							className="external-link__icon"
+							svg="open" />
+					</p>
+					<RichText
+						className="external-link__text"
+						placeholder={ __( 'Enter a description of this link', 'shiro' ) }
+						tagName="p"
+						value={ text }
+						onChange={ setText }
+					/>
+				</>
+			);
+		}
+	}
+);
 
 export const
 	name = 'shiro/external-link',
@@ -54,38 +117,15 @@ export const
 				text,
 			} = attributes;
 
-			const onChangeLink = useCallback( url => {
-				setAttributes( {
-					url,
-				} );
-			}, [ setAttributes ] );
-
 			return (
 				<div { ...blockProps }>
-					<URLPicker
-						isSelected
+					<ExternalLinkWithFocusOutside
+						heading={ heading }
+						setHeading={ heading => setAttributes( { heading } ) }
+						setText={ text => setAttributes( { text } ) }
+						setUrl={ url => setAttributes( { url } ) }
+						text={ text }
 						url={ url }
-						onChangeLink={ onChangeLink }
-					/>
-					<p className="external-link__heading">
-						<RichText
-							allowedFormats={ [ ] }
-							className="external-link__link"
-							placeholder={ __( 'Link heading', 'shiro' ) }
-							tagName="span"
-							value={ heading }
-							onChange={ heading => setAttributes( { heading } ) }
-						/>
-						<SvgSprite
-							className="external-link__icon"
-							svg="open" />
-					</p>
-					<RichText
-						className="external-link__text"
-						placeholder={ __( 'Enter a description of this link', 'shiro' ) }
-						tagName="p"
-						value={ text }
-						onChange={ text => setAttributes( { text } ) }
 					/>
 				</div>
 			);
