@@ -48,6 +48,10 @@
 	}
 }
 
+@mixin style-guide-arrow-content {
+	content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
+}
+
 @mixin style-guide-arrow-link {
 
 	@include has-font-size( "default" );
@@ -59,7 +63,7 @@
 	padding-right: 1.5em; /*rtl: padding-left: 1.5em)*/
 
 	&::after {
-		content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
+		@include style-guide-arrow-content;
 		color: $wmui-color-accent50;
 		color: var(--link-color);
 		position: absolute;

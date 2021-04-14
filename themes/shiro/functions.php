@@ -268,6 +268,7 @@ require get_template_directory() . '/inc/editor/namespace.php';
 require get_template_directory() . '/inc/editor/blocks/blog-list.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
+require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
@@ -278,6 +279,7 @@ WMF\Editor\bootstrap();
 WMF\Editor\Blocks\BlogList\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
+WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Patterns\bootstrap();
 
 /**
@@ -408,6 +410,12 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 			'use' => [
 				'xlink:href' => true,
 			],
+			'h1' => array_merge(
+				$context['h1'],
+				[
+					'lang'  => true,
+				]
+			),
 		]
 	);
 }

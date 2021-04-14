@@ -3,9 +3,6 @@ body {
 	line-height: normal;
 }
 
-// Default left/right padding for blocks in the editor.
-$block-padding: 40px;
-
 .block-editor-block-list__layout.is-root-container > .wp-block {
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, strip-px($block-padding / 2), 0, strip-px($block-padding));

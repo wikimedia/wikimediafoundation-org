@@ -48,5 +48,13 @@ $core-gutenberg-break-medium: 782px;
 $core-gutenberg-break-small: 600px;
 $wm-column-gutter: 20px;
 
+// Content widths
+$content-column: 980px;
+$content-column-post: 640px;
+
+// Default left/right padding for blocks in the editor.
+$block-padding: 40px;
+
 // Box shadows for elements larger than those specified in the style guide.
 $box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
+
