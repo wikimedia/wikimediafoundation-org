@@ -1,0 +1,13 @@
+.nav-search {
+	border: 1px solid #a2a9b1;
+	box-sizing: border-box;
+	border-radius: 2px;
+	background: #fff;
+	margin-bottom: rem( 21 );
+	width: 100%;
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		flex: 0 0 rem( 220 );
+		margin-bottom: 0;
+	}
+}
