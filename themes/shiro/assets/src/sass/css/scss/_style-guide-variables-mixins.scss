@@ -1,15 +1,41 @@
 @mixin style-guide-link {
 
 	color: $color-primary;
+	color: var(--link-color);
 
 	&:focus {
-		color: $color-primary--active;
+
+		@include active-color(var(--link-color));
 	}
 
 	&:hover {
-		color: $color-primary--active;
 		text-decoration: underline;
+
+		@include active-color(var(--link-color));
 	}
+}
+
+/**
+ * Darkens a color by 3%, using CSS linear-gradient function.
+ *
+ * This is necessary for building things like link hover styles, where the
+ * base color is defined by a CSS property on a parent block. Since the color
+ * is set to the original text color, it should fallback gracefully in browsers
+ * that don't support the `background-clip` property.
+ *
+ * @param {Color}  $color   Base color.
+ * @param {Number} $percent Degree by which to lighten the color, expected as a percent.
+ * @returns value Expression evaluating to a linear-gradient setting the specified color.
+ */
+@mixin active-color( $color, $percent: 3% ) {
+
+	@supports (background-clip: text) or (-webkit-background-clip: text) {
+		background: linear-gradient(#{$color} #{$percent * -100}, #000 #{(100 - $percent) * 100});
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
+	color: $color;
 }
 
 @mixin hover-box-shadow {
@@ -33,11 +59,14 @@
 	display: inline-block;
 	font-weight: 700;
 	position: relative;
+	// This reflects one en space plus the width of the arrow (1em).
+	padding-right: 1.5em; /*rtl: padding-left: 1.5em)*/
 
 	&::after {
 		@include style-guide-arrow-content;
 		color: $wmui-color-accent50;
+		color: var(--link-color);
 		position: absolute;
-		right: -2em; /*rtl: left: -1em;*/
+		right: 0; /*rtl: left: 0;*/
 	}
 }

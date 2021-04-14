@@ -47,13 +47,13 @@ $class      = $card_data['class'] ?? 'blog-post';
 		<?php endif; ?>
 
 		<?php if ( ! empty( $categories ) ) : ?>
-			<p class="blog-post__categories">
+			<div class="blog-post__categories">
 				<?php
 					foreach ( $categories as $category ) {
 						printf( '<a class="blog-post__category-link" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
 					}
 					?>
-			</p>
+			</div>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $excerpt ) ) : ?>
