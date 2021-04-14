@@ -85,6 +85,14 @@
 
 			a {
 				padding: rem( 6 ) 0;
+				// This is a pretty non-semantic rule; it's only used because
+				// this level of specificity overrides existing styles that
+				// can't yet be removed. Once .header-default can be removed,
+				// this rule should be moved up the tree to a more semantic
+				// location.
+				span {
+					font-weight: 500;
+				}
 
 				&:hover {
 					background-color: $wmui-color-blue90;
