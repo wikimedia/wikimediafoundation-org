@@ -7,6 +7,9 @@ namespace WMF\Editor;
 
 use Asset_Loader;
 use WMF\Assets;
+use WP_HTTP_Response;
+use WP_REST_Request;
+use WP_REST_Server;
 
 /**
  * Bootstrap hooks relevant to the block editor.
@@ -17,6 +20,7 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
+	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\pass_theme_uri_to_editor' );
 }
 
 /**
@@ -56,6 +60,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
+		'shiro/external-link',
 
 		// Core blocks
 		'core/paragraph',
@@ -189,4 +194,15 @@ function add_block_categories( $categories ) {
 		),
 		$categories
 	);
+}
+
+/**
+ * Add a variable containing the theme URI before the editor is created.
+ *
+ * Useful for loading files from the theme in the editor, i.e. SVG sprites.
+ */
+function pass_theme_uri_to_editor() {
+	$theme_uri = trailingslashit(get_stylesheet_directory_uri());
+	$script = "var shiro_theme_dir_uri = '$theme_uri';";
+	wp_add_inline_script('shiro_editor_js', $script, 'before');
 }

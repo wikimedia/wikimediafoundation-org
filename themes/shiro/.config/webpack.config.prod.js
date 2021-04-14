@@ -6,7 +6,10 @@ const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
 module.exports = [
 	presets.production( {
 		name: 'editor',
-		externals,
+		externals: {
+			'shiro_theme_dir_uri': 'shiro_theme_dir_uri',
+			...externals,
+		},
 		entry: {
 			editor: filePath( 'assets/src/editor/index.js' ),
 		},
