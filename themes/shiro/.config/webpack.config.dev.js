@@ -9,10 +9,7 @@ cleanOnExit([
 module.exports = choosePort( 8080).then( port => [
 		presets.development({
 			name: 'editor',
-			externals: {
-				'shiro_theme_dir_uri': 'shiro_theme_dir_uri',
-				...externals,
-			},
+			externals,
 			devServer: {
 				port,
 			},
