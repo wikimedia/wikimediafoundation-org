@@ -1,5 +1,4 @@
 /* global shiroEditorVariables */
-
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -18,7 +17,6 @@ import PropTypes from 'prop-types';
  * @param {object}   props React props.
  * @param {number}   props.svg The (file) name of the sprite.
  * @param {string}   props.className Optional class, added to the <svg> element.
- * @returns {JSX.Element}	A React element containing and SVG definition.
  */
 function SvgSprite( props ) {
 	const {
