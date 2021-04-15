@@ -192,14 +192,3 @@ function add_block_categories( $categories ) {
 		$categories
 	);
 }
-
-/**
- * Add a variable containing the theme URI before the editor is created.
- *
- * Useful for loading files from the theme in the editor, i.e. SVG sprites.
- */
-function pass_theme_uri_to_editor() {
-	$theme_uri = trailingslashit(get_stylesheet_directory_uri());
-	$script = "var shiro_theme_dir_uri = '$theme_uri';";
-	wp_add_inline_script('shiro_editor_js', $script, 'before');
-}

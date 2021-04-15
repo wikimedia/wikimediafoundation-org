@@ -1,3 +1,5 @@
+/* global shiroEditorVariables */
+
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -10,7 +12,9 @@ function SvgSprite( props ) {
 		className,
 	} = props;
 
-	const svgPath = `${shiro_theme_dir_uri}assets/dist/icons.svg#${svg}`;
+	const { themeUrl } = shiroEditorVariables;
+
+	const svgPath = `${themeUrl}/assets/dist/icons.svg#${svg}`;
 
 	return (
 		<svg
