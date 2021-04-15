@@ -37,7 +37,7 @@ function register_pattern() {
 	register_block_pattern( LinkColumns\NAME, [
 		'title' => __( 'External link columns', 'shiro' ),
 		'categories' => [ CATEGORY_NAME ],
-		'content' => LinkColumns\PATTERN,
+		'content' => LinkColumns\pattern(),
 	] );
 
 	register_block_pattern( CardColumns\NAME, [
