@@ -25,6 +25,15 @@ import './style.scss';
 import SvgSprite from '../../components/svg-sprite';
 import URLPicker from '../../components/url-picker';
 
+/**
+ * Edit and Save use the same icon implementation.
+ */
+const ExternalIcon = (
+	<SvgSprite
+		className="external-link__icon"
+		svg="open" />
+);
+
 const ExternalLinkWithFocusOutside = withFocusOutside(
 	class extends React.Component {
 		constructor( props ) {
@@ -66,9 +75,7 @@ const ExternalLinkWithFocusOutside = withFocusOutside(
 							onChange={ setHeading }
 							onFocus={ () => this.setState( { showButtons: true } ) }
 						/>
-						<SvgSprite
-							className="external-link__icon"
-							svg="open" />
+						{ ExternalIcon }
 					</p>
 					<RichText
 						className="external-link__text"
@@ -103,9 +110,7 @@ ExternalLinkWithFocusOutside.Content = ( { url, heading, text } ) => {
 					className="external-link__link"
 					href={ url }>
 					<span className="external-link__heading-text">{ heading }</span>
-					<SvgSprite
-						className="external-link__icon"
-						svg="open" />
+					{ ExternalIcon }
 				</a>
 			</p>
 			<RichText.Content
