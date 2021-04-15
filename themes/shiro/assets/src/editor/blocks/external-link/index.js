@@ -95,7 +95,7 @@ ExternalLinkWithFocusOutside.propTypes = {
 /**
  * Provide a simple content structure.
  */
-ExternalLinkWithFocusOutside.Content = ( { url, heading, text, ...props } ) => {
+ExternalLinkWithFocusOutside.Content = ( { url, heading, text } ) => {
 	return (
 		<>
 			<p className="external-link__heading">
