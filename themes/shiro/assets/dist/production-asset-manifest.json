@@ -1,8 +1,8 @@
 {
   "shiro.js": "./shiro-5fd2b54fab326963b2dd.js",
-  "editor.css": "./editor-559b81da65442449dc7c.css",
-  "editor.js": "./editor-559b81da65442449dc7c.js",
-  "editor.rtl.css": "./editor-559b81da65442449dc7c.rtl.css",
+  "editor.css": "./editor-c79a0ed5ad86b945931a.css",
+  "editor.js": "./editor-c79a0ed5ad86b945931a.js",
+  "editor.rtl.css": "./editor-c79a0ed5ad86b945931a.rtl.css",
   "admin/admin.css": "admin/admin.css",
   "admin/customize-control.js": "admin/customize-control.js",
   "flickity-min.js": "flickity-min.js",
