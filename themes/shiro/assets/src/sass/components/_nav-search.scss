@@ -6,8 +6,17 @@
 	margin-bottom: rem( 21 );
 	width: 100%;
 
-	@media ( min-width: #{$width-breakpoint-tablet} ) {
+	@media ( min-width: #{$width-breakpoint-desktop} ) {
 		flex: 0 0 rem( 220 );
 		margin-bottom: 0;
+	}
+
+	.search-form__field {
+
+		/**
+		 * Without this, Safari mobile will zoom in when selecting this field.
+		 * @see: https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone
+		 */
+		font-size: 16px;
 	}
 }
