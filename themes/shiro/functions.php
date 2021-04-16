@@ -410,6 +410,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 			],
 			'use' => [
 				'xlink:href' => true,
+				'href'       => true,
 			],
 			'h1' => array_merge(
 				$context['h1'],

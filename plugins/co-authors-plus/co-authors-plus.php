@@ -3,7 +3,7 @@
 Plugin Name: Co-Authors Plus
 Plugin URI: http://wordpress.org/extend/plugins/co-authors-plus/
 Description: Allows multiple authors to be assigned to a post. This plugin is an extended version of the Co-Authors plugin developed by Weston Ruter.
-Version: 3.4.3
+Version: 3.4.5
 Author: Mohammad Jangda, Daniel Bachhuber, Automattic
 Copyright: 2008-2015 Shared and distributed between Mohammad Jangda, Daniel Bachhuber, Weston Ruter
 
@@ -32,7 +32,7 @@ Co-author - in the context of a single post, a guest author or user assigned to 
 Author - user with the role of author
 */
 
-define( 'COAUTHORS_PLUS_VERSION', '3.4.3' );
+define( 'COAUTHORS_PLUS_VERSION', '3.4.5' );
 
 require_once( dirname( __FILE__ ) . '/template-tags.php' );
 require_once( dirname( __FILE__ ) . '/deprecated.php' );
@@ -1259,6 +1259,12 @@ class CoAuthors_Plus {
 		$found_users = array();
 		foreach ( $found_terms as $found_term ) {
 			$found_user = $this->get_coauthor_by( 'user_nicename', $found_term->slug );
+			if ( ! $found_user && 0 === strpos( $found_term->slug, 'cap-cap-' ) ) {
+				// Account for guest author terms that start with 'cap-'.
+				// e.g. "Cap Ri" -> "cap-cap-ri".
+				$cap_slug = substr( $found_term->slug, 4, strlen( $found_term->slug ) );
+				$found_user = $this->get_coauthor_by( 'user_nicename', $cap_slug );
+			}
 			if ( ! empty( $found_user ) ) {
 				$found_users[ $found_user->user_login ] = $found_user;
 			}
@@ -1406,12 +1412,14 @@ class CoAuthors_Plus {
 	public function get_to_be_filtered_caps() {
 		if( ! empty( $this->supported_post_types ) && empty( $this->to_be_filtered_caps ) ) {
 			$this->to_be_filtered_caps[] = 'edit_post'; // Need to filter this too, unfortunately: http://core.trac.wordpress.org/ticket/22415
+			$this->to_be_filtered_caps[] = 'read_post';
 
 			foreach( $this->supported_post_types as $single ) {
 				$obj = get_post_type_object( $single );
 
 				$this->to_be_filtered_caps[] = $obj->cap->edit_post;
 				$this->to_be_filtered_caps[] = $obj->cap->edit_others_posts; // This as well: http://core.trac.wordpress.org/ticket/22417
+				$this->to_be_filtered_caps[] = $obj->cap->read_post;
 			}
 
 			$this->to_be_filtered_caps = array_unique( $this->to_be_filtered_caps );
@@ -1443,6 +1451,8 @@ class CoAuthors_Plus {
 				$obj->cap->edit_post,
 				'edit_post', // Need to filter this too, unfortunately: http://core.trac.wordpress.org/ticket/22415
 				$obj->cap->edit_others_posts, // This as well: http://core.trac.wordpress.org/ticket/22417
+				'read_post',
+				$obj->cap->read_post,
 			);
 		if ( ! in_array( $cap, $caps_to_modify ) ) {
 			return $allcaps;
