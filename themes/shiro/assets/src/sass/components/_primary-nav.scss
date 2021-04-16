@@ -31,6 +31,19 @@
 			top: 65px;
 			overflow: auto;
 			max-height: calc( 100vh - 65px );
+
+			.admin-bar & {
+
+				@media ( min-width: 600px ) {
+					top: 65px + 46px;
+					max-height: calc(100vh - (65px + 46px));
+				}
+
+				@media ( min-width: 784px ) {
+					top: 65px + 32px;
+					max-height: calc( 100vh - ( 65px + 32px ) );
+				}
+			}
 		}
 	}
 
