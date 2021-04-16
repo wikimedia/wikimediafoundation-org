@@ -6,7 +6,7 @@
 	margin-bottom: rem( 21 );
 	width: 100%;
 
-	@media ( min-width: #{$width-breakpoint-tablet} ) {
+	@media ( min-width: #{$width-breakpoint-desktop} ) {
 		flex: 0 0 rem( 220 );
 		margin-bottom: 0;
 	}
