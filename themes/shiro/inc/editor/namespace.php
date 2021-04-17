@@ -58,6 +58,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
 		'shiro/external-link',
+		'shiro/spotlight',
 
 		// Core blocks
 		'core/paragraph',
