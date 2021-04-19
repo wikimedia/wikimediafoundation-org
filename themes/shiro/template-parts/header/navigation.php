@@ -9,6 +9,9 @@
 <nav class="primary-nav">
 
 	<div class="primary-nav__drawer">
+		<div class="nav-search">
+			<?php get_search_form( true ); ?>
+		</div>
 	<?php
 	if ( has_nav_menu( 'header' ) ) {
 		wp_nav_menu(
@@ -25,9 +28,6 @@
 		);
 	}
 	?>
-	<div class="nav-search">
-		<?php get_search_form( true ); ?>
-	</div>
 	</div>
 
 </nav>
