@@ -65,6 +65,15 @@
 	}
 }
 
+// Responsive padding
+@mixin padding($topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop) {
+	padding: rem($topBottomMobile) rem($leftRightMobile);
+
+	@media (min-width: $medium-bp) {
+		padding: rem($topBottomDesktop) rem($leftRightDesktop);
+	}
+}
+
 // Font-sizes: desktop, mobile, line-height.
 $font-sizes: (
 	"default": 18 16 1.75,
