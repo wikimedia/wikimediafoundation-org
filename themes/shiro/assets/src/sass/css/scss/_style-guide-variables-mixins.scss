@@ -68,6 +68,16 @@
 		color: var(--link-color);
 		position: absolute;
 		right: 0; /*rtl: left: 0;*/
+		transition: 300ms ease-in all;
+	}
+
+	&:hover {
+		text-decoration-thickness: 0.5px;
+		text-decoration-offset: 2px;
+
+		&::after {
+			right: rem(-5);
+		}
 	}
 }
 
