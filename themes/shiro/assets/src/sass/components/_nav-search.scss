@@ -6,7 +6,7 @@
 	margin-bottom: rem( 21 );
 	width: 100%;
 
-	@media ( min-width: #{$width-breakpoint-desktop} ) {
+	@media ( min-width: #{$medium-landscape} ) {
 		flex: 0 0 rem( 220 );
 		margin-bottom: 0;
 	}
