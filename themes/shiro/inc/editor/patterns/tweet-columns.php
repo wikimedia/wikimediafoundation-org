@@ -24,8 +24,8 @@ function pattern() {
 	return <<<CONTENT
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90"} -->
-<div class="wp-block-group has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90","className":"has-border-radius has-radius-big"} -->
+<div class="wp-block-group has-border-radius has-radius-big has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">200,000+</p>
 <!-- /wp:paragraph -->
 
@@ -40,8 +40,8 @@ function pattern() {
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90"} -->
-<div class="wp-block-group has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90","className":"has-border-radius has-radius-big"} -->
+<div class="wp-block-group has-border-radius has-radius-big has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">68+ million</p>
 <!-- /wp:paragraph -->
 
@@ -56,8 +56,8 @@ function pattern() {
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90"} -->
-<div class="wp-block-group has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90","className":"has-border-radius has-radius-big"} -->
+<div class="wp-block-group has-border-radius has-radius-big has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
 <p class="is-style-h1">1+ billion</p>
 <!-- /wp:paragraph -->
 
