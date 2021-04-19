@@ -1,7 +1,7 @@
 .spotlight {
 	display: flex;
 	width: 100%;
-	padding: rem( 40 ) rem( 20 );
+	padding: rem(40) rem(20);
 
 	// Default style is the "light" (Base90) style.
 	--background-color: #{$wmui-color-base90};
@@ -11,7 +11,7 @@
 	@include block-style-text-color;
 
 	&__inner {
-		width: rem( 979 );
+		width: rem(979);
 		max-width: 100%;
 		display: flex;
 		flex-direction: column-reverse;
@@ -82,10 +82,7 @@
 
 		&__content {
 			width: 50%;
-			padding-top: 0;
-			padding-bottom: 0;
-			padding-left: rem( 50 );
-			padding-right: rem( 30 );
+			padding: 0 rem(30) 0 rem(50);
 
 			p {
 				padding-bottom: rem(26);
