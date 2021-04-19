@@ -11,7 +11,7 @@
 
 		@media ( min-width: #{$medium-landscape} ) {
 			display: flex;
-			flex-direction: row;
+			flex-direction: row-reverse;
 			justify-content: space-between;
 			align-items: start;
 			width: 100%;
@@ -19,9 +19,7 @@
 
 		.nav-open & {
 			--full-window-height: calc( var( --vh, 1vh ) * 100 );
-			display: flex;
-			flex-direction: column-reverse;
-			align-items: start;
+			display: block;
 			padding: 1.5rem;
 			position: fixed;
 			width: 100%;
