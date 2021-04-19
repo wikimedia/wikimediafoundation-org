@@ -24,6 +24,7 @@
 		{
 			"files": ["assets/src/scripts/**/*.js"],
 			"extends": ["@humanmade/eslint-config"],
+			"parser": "babel-eslint",
 			"rules": {
 				"no-restricted-globals": [
 					"error",

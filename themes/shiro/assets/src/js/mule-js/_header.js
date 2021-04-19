@@ -8,17 +8,7 @@ jQuery(document).ready(function($) {
   MicroModal.init();
 
   function toggleNav() {
-    if (wmfrtl.enable == '1') {
-        $('#menu-header-menu').prepend(
-            $('.search-toggle').show().css('float','left')
-        );
-    } else {
-        $('#menu-header-menu').prepend(
-            $('.search-toggle').show().css('float','right')
-        );
-    }
-
-    $('.nav-links').toggleClass('open');
+  	$('body').toggleClass('primary-nav-open');
     $('.header-inner').toggleClass('nav-open');
 
     $('.mobile-nav-toggle .icon-close').toggle();
@@ -30,7 +20,7 @@ jQuery(document).ready(function($) {
   }
 
   function closeNav() {
-    $('.nav-links').removeClass('open');
+    $('body').toggleClass('primary-nav-open');
     $('.header-inner').removeClass('nav-open');
 
     $('.mobile-nav-toggle .icon-close').hide();

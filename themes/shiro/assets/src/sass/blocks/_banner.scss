@@ -51,8 +51,15 @@
 
 		@include button-primary;
 
+		/**
+		 * Tertiary buttons have a border, so this "dummy" border is added
+		 * to make all buttons the same height.
+		 */
+		border: 1px solid transparent;
+
 		.is-style-blue50 &,
 		.is-style-red50 & {
+
 			@include button-tertiary;
 		}
 	}

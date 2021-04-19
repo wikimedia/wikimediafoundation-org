@@ -2,42 +2,6 @@ $background-color-framed--focus: $wmui-color-base100;
 // $background-color-framed--active doesn't correspond to the shown color on https://design.wikimedia.org/style-guide/components/buttons.html.
 $background-color-framed--active-alternative: $wmui-color-base80;
 
-@mixin style-guide-button-reset() {
-	border: none;
-	display: inline-block;
-	font-weight: bold;
-	border-radius: $border-radius-base;
-	cursor: pointer;
-	padding: rem(8) rem(20);
-}
-
-@mixin style-guide-button(
-	$color,
-	$color-hover,
-	$color-active,
-	$color-focus,
-	$color-text,
-) {
-	@include style-guide-button-reset;
-	background: $color;
-	color: $color-text;
-	transition: $transition-duration-base background;
-
-	&:hover {
-		background: $color-hover;
-	}
-
-	&:active {
-		background: $color-active;
-	}
-
-	&:focus {
-		background: $color-focus;
-		outline: 2px solid $color-focus;
-		outline-offset: 1px;
-	}
-}
-
 @mixin button-icon(
 	$icon-name,
 	$icon-path,

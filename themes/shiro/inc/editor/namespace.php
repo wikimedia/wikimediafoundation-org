@@ -17,6 +17,7 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
+	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\pass_theme_uri_to_editor' );
 }
 
 /**
@@ -56,6 +57,8 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/tweet-this',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
+		'shiro/inline-languages',
+		'shiro/external-link',
 
 		// Core blocks
 		'core/paragraph',
