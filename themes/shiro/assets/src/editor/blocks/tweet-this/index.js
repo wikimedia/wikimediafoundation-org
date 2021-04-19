@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import { isString, trim } from 'lodash';
 
 import { InspectorControls } from '@wordpress/block-editor';
 import {
@@ -87,7 +87,7 @@ export const
 			tweetText = encodeURIComponent( tweetText );
 			tweetUrl = encodeURIComponent( tweetUrl );
 
-			const tweetThisUrl = `https://twitter.com/intent/tweet?text=${ tweetText } ${ tweetUrl }`;
+			const tweetThisUrl = trim( `https://twitter.com/intent/tweet?text=${ tweetText } ${ tweetUrl }` );
 
 			return (
 				<RichText.Content
