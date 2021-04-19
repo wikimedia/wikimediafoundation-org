@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import Cta from '../../components/cta';
+import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker';
 import blockStyles from '../../helpers/block-styles';
 import './style.scss';
@@ -71,6 +72,10 @@ export const settings = {
 			selector: '.hero__image',
 			attribute: 'src',
 		},
+		imageFilter: {
+			type: 'string',
+			default: DEFAULT_IMAGE_FILTER,
+		},
 		buttonText: {
 			type: 'string',
 			source: 'html',
@@ -102,6 +107,7 @@ export const settings = {
 			buttonText,
 			buttonLink,
 			pageIntro,
+			imageFilter,
 		} = attributes;
 
 		const blockProps = useBlockProps( { className: 'hero' } );
@@ -134,21 +140,27 @@ export const settings = {
 							onChangeText={ buttonText => setAttributes( { buttonText } ) }
 						/>
 					</div>
-					<div className="hero__image">
-						<ImagePicker
-							id={ imageId }
-							imageSize="image_16x9_large"
-							src={ imageUrl }
-							onChange={
-								( { id: imageId, src: imageUrl } ) => {
-									setAttributes( {
-										imageId,
-										imageUrl,
-									} );
+					<ImageFilter
+						className="hero__image-container"
+						value={ imageFilter }
+						onChange={ imageFilter => setAttributes( { imageFilter } ) }
+					>
+						<div className="hero__image">
+							<ImagePicker
+								id={ imageId }
+								imageSize="image_16x9_large"
+								src={ imageUrl }
+								onChange={
+									( { id: imageId, src: imageUrl } ) => {
+										setAttributes( {
+											imageId,
+											imageUrl,
+										} );
+									}
 								}
-							}
-						/>
-					</div>
+							/>
+						</div>
+					</ImageFilter>
 				</header>
 				<RichText
 					className="hero__intro"
@@ -175,6 +187,7 @@ export const settings = {
 			buttonText,
 			buttonLink,
 			pageIntro,
+			imageFilter,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
@@ -202,11 +215,15 @@ export const settings = {
 							</a>
 						) }
 					</div>
-					<img
-						alt=""
-						className="hero__image"
-						src={ imageUrl }
-					/>
+					<ImagePicker.Content
+						className="hero__image-container"
+						value={ imageFilter }>
+						<img
+							alt=""
+							className="hero__image"
+							src={ imageUrl }
+						/>
+					</ImagePicker.Content>
 				</header>
 				<RichText.Content
 					className="hero__intro"
