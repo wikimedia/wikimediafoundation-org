@@ -3,7 +3,9 @@
 		&.is-style-as-link {
 			&.has-icon {
 				#{ $inner-selector }:before {
-					top: 7px;
+					// In Firefox, in the editor, this inherits `white-space: pre-wrap` from `div`.
+					// That results in a different positioning of the icon as compared to the frontend.
+					white-space: normal;
 				}
 			}
 		}
