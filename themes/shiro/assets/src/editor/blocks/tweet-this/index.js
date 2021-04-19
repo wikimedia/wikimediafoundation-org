@@ -48,6 +48,7 @@ export const
 			return (
 				<div { ...blockProps }>
 					<RichText
+						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="wp-block-shiro-button is-style-as-link has-icon has-icon-social-twitter-blue"
 						keepPlaceholderOnFocus
 						placeholder={ __( 'Write tweet this text', 'shiro' ) }
