@@ -309,52 +309,6 @@ a.hover-img-zoom {
 	}
 }
 
-
-// Pagination
-.pagination-container {
-	border-top: 1px solid $color-ltgray;
-	border-bottom: 1px solid $color-ltgray;
-	padding: 2rem 0;
-}
-
-.pagination-inner {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.page-number-list {
-	display: none;
-
-	@media (min-width: $medium-bp) {
-		display: flex;
-	}
-
-	li.active a,
-	.current {
-		background: $color-blue;
-		color: #fff;
-	}
-
-	a,
-	span {
-		width: 40px;
-		height: 40px;
-		display: block;
-		text-align: center;
-		transition: 0.3s all;
-
-		&:hover {
-			background: #E5E5E5;
-		}
-	}
-
-	.elipsis {
-		margin-right: 1.5rem;
-		margin-left: 1rem;
-	}
-}
-
 .card-list-container {
 
 	.img-container {
