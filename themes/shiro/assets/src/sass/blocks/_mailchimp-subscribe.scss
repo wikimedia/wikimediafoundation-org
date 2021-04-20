@@ -24,8 +24,10 @@
 	}
 
 	&__input-field {
-		// This calc guarantees the same size as a button. 8 (padding) - 1 (border) = 7.
-		padding: rem( 7 ) rem( 8 );
+		// This padding guarantees the same size as a button. 6 (padding) - 1 (border) = 5.
+		padding: rem( 5 ) rem( 8 );
+		@include font-size(14, 16);
+		@include line-height(20, 22);
 
 		background: $background-color-base;
 		border: 1px solid $border-color-base;
