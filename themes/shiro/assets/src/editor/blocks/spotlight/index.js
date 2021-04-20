@@ -86,7 +86,7 @@ export const settings = {
 	},
 
 	/**
-	 * Sets alignment.
+	 * Set alignment.
 	 *
 	 * @see https://stackoverflow.com/questions/56192925/how-do-we-add-custom-data-attributes-to-gutenburgs-editor-blocklistblock
 	 */
