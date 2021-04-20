@@ -6,6 +6,8 @@ import { __ } from '@wordpress/i18n';
 
 import IconSelector from './IconSelector';
 
+import './style.scss';
+
 const withIconSelector = createHigherOrderComponent( ButtonBlockEdit => {
 	/**
 	 * Insert the icon selector in the inspector controls for the button block.
@@ -85,6 +87,10 @@ export const
 		{
 			name: 'tertiary',
 			label: __( 'Tertiary', 'shiro' ),
+		},
+		{
+			name: 'as-link',
+			label: __( 'As link', 'shiro' ),
 		},
 	],
 	filters = [

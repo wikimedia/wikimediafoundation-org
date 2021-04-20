@@ -31,7 +31,7 @@ function register_pattern() {
 	register_block_pattern( TweetColumns\NAME, [
 		'title' => __( 'Tweet this columns', 'shiro' ),
 		'categories' => [ CATEGORY_NAME ],
-		'content' => TweetColumns\PATTERN,
+		'content' => TweetColumns\pattern(),
 	] );
 
 	register_block_pattern( LinkColumns\NAME, [

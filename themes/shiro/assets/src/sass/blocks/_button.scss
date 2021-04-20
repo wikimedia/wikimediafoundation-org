@@ -84,6 +84,15 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 			}
 		}
 
+		&.is-style-as-link {
+			#{ $inner-selector } {
+				background: none;
+				color: $color-primary;
+				@include has-font-size("default");
+				padding: 0;
+			}
+		}
+
 		&.has-icon {
 			#{ $inner-selector }:before {
 				content: '';

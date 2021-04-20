@@ -4,7 +4,14 @@
 	}
 
 	&.alignfull {
-
 		@include alignfull-padded;
+	}
+
+	&.has-radius-big {
+		border-radius: $border-radius-big;
+	}
+
+	&.has-radius-small {
+		border-radius: $border-radius-base;
 	}
 }
