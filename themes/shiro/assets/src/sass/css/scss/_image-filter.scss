@@ -3,6 +3,7 @@
 .image-filter-yellow,
 .image-filter-red {
 	&:after {
+		pointer-events: none;
 		content: '';
 		position: absolute;
 		top: 0;
