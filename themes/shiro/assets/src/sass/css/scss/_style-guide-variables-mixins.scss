@@ -68,7 +68,7 @@
 		color: var(--link-color);
 		position: absolute;
 		right: 0; /*rtl: left: 0;*/
-		transition: 300ms ease-in all;
+		transition: 300ms ease-in right;
 	}
 
 	&:hover {
