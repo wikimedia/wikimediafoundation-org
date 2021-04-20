@@ -215,7 +215,7 @@ export const settings = {
 							</a>
 						) }
 					</div>
-					<ImagePicker.Content
+					<ImageFilter.Content
 						className="hero__image-container"
 						value={ imageFilter }>
 						<img
@@ -223,7 +223,7 @@ export const settings = {
 							className="hero__image"
 							src={ imageUrl }
 						/>
-					</ImagePicker.Content>
+					</ImageFilter.Content>
 				</header>
 				<RichText.Content
 					className="hero__intro"
