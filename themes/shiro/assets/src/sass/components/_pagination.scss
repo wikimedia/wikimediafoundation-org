@@ -81,11 +81,11 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+		}
 
-			&:hover {
-				background: $wmui-color-base80;
-				color: $wmui-color-base0;
-			}
+		a:hover {
+			background: $wmui-color-base80;
+			color: $wmui-color-base0;
 		}
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
