@@ -201,7 +201,7 @@ export const settings = {
 					<div className="spotlight__content">
 						<RichText.Content
 							className="spotlight__heading is-style-h1"
-							tagName="h4"
+							tagName="h2"
 							value={ heading }
 						/>
 						<RichText.Content
