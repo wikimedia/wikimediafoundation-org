@@ -107,8 +107,8 @@ function replaceActiveIcon( className, activeIcon, newIcon ) {
 export default function IconSelector( { attributes, setAttributes } ) {
 	const { className } = attributes;
 	const options = icons.map( icon => ( {
-		label: icon,
-		value: icon || __( 'No icon', 'shiro' ),
+		label: icon || __( 'No icon', 'shiro' ),
+		value: icon,
 	} ) );
 	const activeIcon = getActiveIcon( icons, className );
 
