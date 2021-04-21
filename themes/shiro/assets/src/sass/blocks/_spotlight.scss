@@ -28,7 +28,7 @@
 		flex-direction: column;
 		align-items: start;
 		justify-content: start;
-		padding-top: rem(20);
+		margin-top: rem(20);
 	}
 
 	&__heading {
@@ -78,7 +78,7 @@
 
 		&__content {
 			width: 50%;
-			padding: 0 rem(30) 0 rem(50);
+			margin: 0 rem(30) 0 rem(50);
 
 			p {
 				padding-bottom: rem(26);
