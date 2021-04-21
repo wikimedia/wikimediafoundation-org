@@ -3,12 +3,11 @@
 	box-sizing: border-box;
 	border-radius: 2px;
 	background: #fff;
-	margin-bottom: rem( 21 );
+	margin-bottom: 0;
 	width: 100%;
 
 	@media ( min-width: #{$medium-landscape} ) {
 		flex: 0 0 rem( 220 );
-		margin-bottom: 0;
 	}
 
 	.search-form__field {
