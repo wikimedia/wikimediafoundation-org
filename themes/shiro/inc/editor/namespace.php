@@ -52,13 +52,13 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/blog-post-heading',
 		'shiro/card',
 		'shiro/home-page-hero',
+		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
 		'shiro/external-link',
-		'shiro/spotlight',
 
 		// Core blocks
 		'core/paragraph',

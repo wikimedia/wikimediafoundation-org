@@ -1,6 +1,5 @@
 @import "./button"; // XXX: this is out of alphabetical order because it defines mixins used elsewhere.
 @import "./banner";
-@import "./spotlight";
 @import "./blog-list";
 @import "./card";
 @import "./core-column";
@@ -9,6 +8,7 @@
 @import "./home-page-hero";
 @import "./landing-page-hero";
 @import "./mailchimp-subscribe";
+@import "./spotlight";
 @import "./stair";
 @import "./stairs";
 @import "./inline-languages";
