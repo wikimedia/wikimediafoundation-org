@@ -26,3 +26,12 @@
 		}
 	}
 }
+
+/**
+ * This is a core style that is for some reason over-riden in the editor,
+ * making the editor and front-end not match. Redefining it here provides
+ * enough specificity for the rule to apply correctly.
+ */
+.wp-block-columns {
+	margin-bottom: 1.75em;
+}
