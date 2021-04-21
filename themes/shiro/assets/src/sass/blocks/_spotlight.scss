@@ -31,6 +31,10 @@
 		margin-top: rem(20);
 	}
 
+	&__text {
+		flex-grow: 1;
+	}
+
 	&__heading {
 		min-width: 100%;
 		margin-bottom: rem(17);
@@ -81,10 +85,6 @@
 
 			p {
 				padding-bottom: rem(26);
-			}
-
-			*:last-child {
-				margin-top: auto;
 			}
 		}
 
