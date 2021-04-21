@@ -22,15 +22,18 @@ $block-styles:
 
 @mixin block-style-background-color {
 	background-color: $wmui-color-base90;
+	--background-color: #{$wmui-color-base90};
 	background-color: var(--background-color);
 }
 
 @mixin block-style-text-color {
 	color: $wmui-color-base0;
+	--text-color: #{$wmui-color-base0};
 	color: var(--text-color);
 }
 
 @mixin block-style-accent-color {
 	color: $wmui-color-base0;
+	--accent-color: #{$wmui-color-base0};
 	color: var(--accent-color);
 }
