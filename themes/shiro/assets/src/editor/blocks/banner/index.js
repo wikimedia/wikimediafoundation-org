@@ -10,6 +10,7 @@ import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import Cta from '../../components/cta/index';
+import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
 import sharedStyles from '../../helpers/block-styles';
 import './style.scss';
@@ -46,6 +47,10 @@ export const settings = {
 			source: 'attribute',
 			selector: '.banner__image',
 			attribute: 'alt',
+		},
+		imageFilter: {
+			type: 'string',
+			default: DEFAULT_IMAGE_FILTER,
 		},
 		align: {
 			type: 'string',
@@ -100,6 +105,7 @@ export const settings = {
 			url,
 			imageID,
 			imageSrc,
+			imageFilter,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
@@ -154,8 +160,10 @@ export const settings = {
 						onChangeText={ onChangeText }
 					/>
 				</div>
-				<figure
-					className="banner__image-wrapper" >
+				<ImageFilter
+					className="banner__image-wrapper"
+					value={ imageFilter }
+					onChange={ imageFilter => setAttributes( { imageFilter } ) }>
 					<ImagePicker
 						className="banner__image"
 						id={ imageID }
@@ -163,7 +171,7 @@ export const settings = {
 						src={ imageSrc }
 						onChange={ onImageChange }
 					/>
-				</figure>
+				</ImageFilter>
 			</div>
 		);
 	},
@@ -180,6 +188,7 @@ export const settings = {
 			imageSrc,
 			imageAlt,
 			imageID,
+			imageFilter,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( {
@@ -205,8 +214,9 @@ export const settings = {
 						url={ url }
 					/>
 				</div>
-				<figure
-					className="banner__image-wrapper" >
+				<ImageFilter.Content
+					className="banner__image-wrapper"
+					value={ imageFilter }>
 					<ImagePicker.Content
 						alt={ imageAlt }
 						className="banner__image"
@@ -214,7 +224,7 @@ export const settings = {
 						imageSize={ 'medium_large' }
 						src={ imageSrc }
 					/>
-				</figure>
+				</ImageFilter.Content>
 			</div>
 		);
 	},
