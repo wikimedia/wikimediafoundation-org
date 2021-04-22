@@ -145,21 +145,20 @@ export const settings = {
 						value={ imageFilter }
 						onChange={ imageFilter => setAttributes( { imageFilter } ) }
 					>
-						<div className="hero__image">
-							<ImagePicker
-								id={ imageId }
-								imageSize="image_16x9_large"
-								src={ imageUrl }
-								onChange={
-									( { id: imageId, src: imageUrl } ) => {
-										setAttributes( {
-											imageId,
-											imageUrl,
-										} );
-									}
+						<ImagePicker
+							className="hero__image"
+							id={ imageId }
+							imageSize="image_16x9_large"
+							src={ imageUrl }
+							onChange={
+								( { id: imageId, src: imageUrl } ) => {
+									setAttributes( {
+										imageId,
+										imageUrl,
+									} );
 								}
-							/>
-						</div>
+							}
+						/>
 					</ImageFilter>
 				</header>
 				<RichText
