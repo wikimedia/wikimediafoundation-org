@@ -218,30 +218,26 @@ article {
 		text-decoration: underline;
 	}
 
-	span {
-
-	}
 }
 
 .article-title {
-	width: 40rem;
-	@media (max-width: $medium-bp) {
-		width: 100%;
-		padding: 0 1.25rem;
-	}
-}
 
-.article-title .h3 {
-	font-size: 1.3rem;
-	font-family: sans-serif;
-	margin-bottom: 5px;
-	font-weight: lighter;
-	margin-top: 45px;
-	color: $color-black;
-	line-height: 1.8;
+	margin: 45px auto;
+	width: 40rem;
+
 	@include marginBottom(30, 60, $medium-bp);
 
+	@media (max-width: $medium-bp) {
+		width: 100%;
+		padding: 0 rem(20);
+	}
+
 	p {
-		font-size: 1.3rem;
+
+		@include has-font-size( large );
+		color: $wmui-color-base0;
+		font-family: $font-family-serif;
+		font-weight: 400;
+		line-height: 1.5;
 	}
 }
