@@ -1,4 +1,7 @@
+/* global shiroEditorVariables */
+
 import { useSelect, dispatch } from '@wordpress/data';
+import domReady from '@wordpress/dom-ready';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -13,6 +16,36 @@ export const name = 'page-migration-flow';
 
 // The default template has an empty string as the template value.
 const PAGE_TEMPLATE_DEFAULT = '';
+
+/**
+ * Hide field manager meta boxes.
+ */
+function hideFieldManagerMetaBoxes() {
+	const metaBoxes = document.querySelectorAll( `
+		#fm_meta_box_connect,
+		#fm_meta_box_featured_post_sub_title,
+		#fm_meta_box_framing_copy,
+		#fm_meta_box_hide_support_module,
+		#fm_meta_box_intro_button,
+		#fm_meta_box_listings,
+		#fm_meta_box_off_site_links,
+		#fm_meta_box_page_cta,
+		#fm_meta_box_page_facts,
+		#fm_meta_box_page_header_background,
+		#fm_meta_box_profiles,
+		#fm_meta_box_projects_module,
+		#fm_meta_box_related_pages,
+		#fm_meta_box_share_links,
+		#fm_meta_box_sidebar_downloads,
+		#fm_meta_box_sidebar_facts,
+		#fm_meta_box_social_share,
+		#fm_meta_box_sub_title
+	` );
+
+	[ ...metaBoxes ].forEach( element => {
+		element.style.display = 'none';
+	} );
+}
 
 export const settings = {
 	/**
@@ -51,3 +84,7 @@ export const settings = {
 		return null;
 	},
 };
+
+if ( shiroEditorVariables.hideFieldManagerMetaBoxes ) {
+	domReady( hideFieldManagerMetaBoxes );
+}

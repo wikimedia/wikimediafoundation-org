@@ -159,11 +159,17 @@ function enqueue_block_editor_assets() {
 		]
 	);
 
+	$post_id     = $_GET['post'] ?? false;
+	$post        = get_post( $post_id );
+	$is_new_post = ! $post || $post->post_content === '';
+	$has_blocks  = $post && has_blocks( $post->post_content );
+
 	wp_localize_script(
 		'shiro_editor_js',
 		'shiroEditorVariables',
 		array(
 			'themeUrl' => get_stylesheet_directory_uri(),
+			'hideFieldManagerMetaBoxes' => $is_new_post || $has_blocks,
 		)
 	);
 
