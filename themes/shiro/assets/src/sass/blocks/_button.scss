@@ -29,7 +29,7 @@
 		$color-secondary--active,
 		$color-secondary--focus,
 		$color-base--inverted,
-	)
+	);
 }
 
 @mixin button-tertiary() {
@@ -39,9 +39,8 @@
 		$color-tertiary--active,
 		$color-tertiary--focus,
 		$color-primary,
+		$border-color-base,
 	);
-
-	border: 1px solid $border-color-base;
 
 	&:hover,
 	&:active,

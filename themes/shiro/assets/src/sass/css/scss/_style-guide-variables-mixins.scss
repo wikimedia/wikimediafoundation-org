@@ -68,6 +68,16 @@
 		color: var(--link-color);
 		position: absolute;
 		right: 0; /*rtl: left: 0;*/
+		transition: 300ms ease-in right;
+	}
+
+	&:hover {
+		text-decoration-thickness: 0.5px;
+		text-decoration-offset: 2px;
+
+		&::after {
+			right: rem(-5);
+		}
 	}
 }
 
@@ -88,11 +98,15 @@
 	$color-active,
 	$color-focus,
 	$color-text,
+	$border-color: transparent,
 ) {
 	@include style-guide-button-reset;
 	background: $color;
 	color: $color-text;
 	transition: $transition-duration-base background;
+
+	/** So that buttons with and without borders take up the same space */
+	border: 1px solid $border-color;
 
 	&:hover {
 		background: $color-hover;
