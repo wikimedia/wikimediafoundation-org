@@ -33,7 +33,7 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		$color-secondary--active,
 		$color-secondary--focus,
 		$color-base--inverted,
-	)
+	);
 }
 
 @mixin button-tertiary() {
@@ -43,9 +43,8 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		$background-color-framed--active-alternative,
 		$background-color-framed--focus,
 		$color-primary,
+		$border-color-base,
 	);
-
-	border: 1px solid $border-color-base;
 
 	&:active {
 		border-color: $border-color-base--active;
