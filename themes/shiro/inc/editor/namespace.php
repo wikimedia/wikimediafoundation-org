@@ -52,6 +52,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/blog-post-heading',
 		'shiro/card',
 		'shiro/home-page-hero',
+		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
 		'shiro/tweet-this',
