@@ -54,7 +54,9 @@ $wm-column-gutter: 20px;
 
 // Content widths
 $content-column: 980px;
+$content-column-rem: rem(strip-px($content-column));
 $content-column-post: 640px;
+$content-column-post-rem: rem(strip-px($content-column-post));
 
 // Default left/right padding for blocks in the editor.
 $block-padding: 40px;

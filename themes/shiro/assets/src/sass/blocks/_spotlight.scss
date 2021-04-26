@@ -7,7 +7,7 @@
 	@include block-style-text-color;
 
 	&__inner {
-		width: $content-column;
+		width: $content-column-rem;
 		max-width: 100%;
 		display: flex;
 		flex-direction: column-reverse;
