@@ -169,11 +169,11 @@ export const settings = {
 						/>
 					</div>
 					<ImageFilter
-						className="banner__image-wrapper"
+						className="spotlight__image-wrapper"
 						value={ imageFilter }
 						onChange={ imageFilter => setAttributes( { imageFilter } ) }>
 						<ImagePicker
-							className="banner__image"
+							className="spotlight__image"
 							id={ imageID }
 							imageSize={ 'medium_large' }
 							src={ imageSrc }
@@ -225,11 +225,11 @@ export const settings = {
 						/>
 					</div>
 					<ImageFilter.Content
-						className="banner__image-wrapper"
+						className="spotlight__image-wrapper"
 						value={ imageFilter }>
 						<ImagePicker.Content
 							alt={ imageAlt }
-							className="banner__image"
+							className="spotlight__image"
 							id={ imageID }
 							imageSize={ 'medium_large' }
 							src={ imageSrc }
