@@ -10,6 +10,8 @@ jQuery(document).ready(function($) {
   function toggleNav() {
   	$('body').toggleClass('primary-nav-open');
     $('.header-inner').toggleClass('nav-open');
+    // Make sure the menu is always at the top when opened
+    $('.primary-nav__drawer').scrollTop(0);
 
     $('.mobile-nav-toggle .icon-close').toggle();
     $('.mobile-nav-toggle .icon-menu').toggle();

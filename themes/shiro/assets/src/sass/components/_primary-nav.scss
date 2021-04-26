@@ -1,3 +1,10 @@
+/**
+ * This is necessary to prevent a 1px "wide" breakpoint overlap
+ * where both the menu toggle button and the "desktop" menu are
+ * visible at the same time.
+ */
+$primary-nav-breakpoint: $medium-landscape + 1px;
+
 .primary-nav {
 	margin-top: rem( 66 );
 	display: flex;
@@ -9,9 +16,9 @@
 	&__drawer {
 		display: none;
 
-		@media ( min-width: #{$medium-landscape} ) {
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
 			display: flex;
-			flex-direction: row;
+			flex-direction: row-reverse;
 			justify-content: space-between;
 			align-items: start;
 			width: 100%;
@@ -19,9 +26,7 @@
 
 		.nav-open & {
 			--full-window-height: calc( var( --vh, 1vh ) * 100 );
-			display: flex;
-			flex-direction: column-reverse;
-			align-items: start;
+			display: block;
 			padding: 1.5rem;
 			position: fixed;
 			width: 100%;
@@ -53,8 +58,9 @@
 		display: flex;
 		flex-direction: column;
 		align-items: start;
+		margin-top: rem( 21 );
 
-		@media ( min-width: #{$medium-landscape} ) {
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
 			flex-direction: row;
 			align-items: center;
 			flex-wrap: wrap;
@@ -66,7 +72,7 @@
 			margin: 0;
 			margin-bottom: rem( 11 );
 
-			@media ( min-width: #{$medium-landscape} ) {
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
 				margin-bottom: 0;
 				margin-top: rem( 11 );
 			}
@@ -106,7 +112,7 @@
 					height: 3px;
 					border: 0;
 
-					@media ( min-width: #{$medium-landscape} ) {
+					@media ( min-width: #{$primary-nav-breakpoint} ) {
 						margin-bottom: 0;
 					}
 				}

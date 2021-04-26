@@ -55,6 +55,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
+		'shiro/tweet-this',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
@@ -124,7 +125,7 @@ function add_theme_supports() {
 		[ 'name' => __( 'Red 50', 'shiro' ),    'slug' => 'red50',    'color' => '#d40356' ],
 		[ 'name' => __( 'Red 90', 'shiro' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
 		[ 'name' => __( 'Yellow 50', 'shiro' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
-		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
+		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fffec2' ],
 	] );
 
 	// Disable custom color and gradient selection in the editor.
