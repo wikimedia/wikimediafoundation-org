@@ -13,9 +13,22 @@
 	.search-form__field {
 
 		/**
-		 * Without this, Safari mobile will zoom in when selecting this field.
+		 * On iPhones, if the font size in an input field is less than 16px,
+		 * Safari will zoom in when the field is activated--and *not* zoom back
+		 * out when the field is left, which creates a bad UX. This fakes the
+		 * visual effect and does an end-run around the browser. The correct
+		 * font size is set on desktop to minimize situations where this hack
+		 * might get weird.
 		 * @see: https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone
+		 * @see: https://stackoverflow.com/a/53106477
 		 */
 		font-size: 16px;
+		transform: scale(0.875);
+		transform-origin: left center;
+
+		@media ( min-width: #{$medium-landscape} ) {
+			font-size: 14px;
+			transform: scale(1);
+		}
 	}
 }
