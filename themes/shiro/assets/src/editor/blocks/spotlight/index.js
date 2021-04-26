@@ -10,6 +10,7 @@ import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import Cta from '../../components/cta/index';
+import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
 import sharedStyles from '../../helpers/block-styles';
 import './style.scss';
@@ -46,6 +47,10 @@ export const settings = {
 			source: 'attribute',
 			selector: '.spotlight__image',
 			attribute: 'alt',
+		},
+		imageFilter: {
+			type: 'string',
+			default: DEFAULT_IMAGE_FILTER,
 		},
 		heading: {
 			type: 'string',
@@ -107,6 +112,7 @@ export const settings = {
 			url,
 			imageID,
 			imageSrc,
+			imageFilter,
 		} = attributes;
 
 		const blockProps = useBlockProps( {
@@ -162,16 +168,18 @@ export const settings = {
 							onChangeText={ onChangeText }
 						/>
 					</div>
-					<figure
-						className="spotlight__image-wrapper" >
+					<ImageFilter
+						className="banner__image-wrapper"
+						value={ imageFilter }
+						onChange={ imageFilter => setAttributes( { imageFilter } ) }>
 						<ImagePicker
-							className="spotlight__image"
+							className="banner__image"
 							id={ imageID }
 							imageSize={ 'medium_large' }
 							src={ imageSrc }
 							onChange={ onImageChange }
 						/>
-					</figure>
+					</ImageFilter>
 				</div>
 			</div>
 		);
@@ -189,6 +197,7 @@ export const settings = {
 			imageSrc,
 			imageAlt,
 			imageID,
+			imageFilter,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( {
@@ -215,16 +224,17 @@ export const settings = {
 							url={ url }
 						/>
 					</div>
-					<figure
-						className="spotlight__image-wrapper" >
+					<ImageFilter.Content
+						className="banner__image-wrapper"
+						value={ imageFilter }>
 						<ImagePicker.Content
 							alt={ imageAlt }
-							className="spotlight__image"
+							className="banner__image"
 							id={ imageID }
 							imageSize={ 'medium_large' }
 							src={ imageSrc }
 						/>
-					</figure>
+					</ImageFilter.Content>
 				</div>
 			</div>
 		);
