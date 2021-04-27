@@ -156,20 +156,26 @@ $color-palette:
 
 .wysiwyg .alignfull {
 
-	@media ( min-width: $medium-landscape ) {
-		.page.has-blocks &,
-		.single.has-blocks & {
+	.page.has-blocks &,
+	.single.has-blocks & {
 
-			@include alignfull();
-		}
+		@include alignfull();
+	}
 
-		.single-post.has-blocks & {
+	.single-story & {
+		margin-right: -50vw;
+	}
 
-			@include alignfull( $content-column-post );
-		}
+	.single-post.has-blocks & {
 
-		.single-story & {
-			margin-right: -50vw;
+		margin-left: rem(-20);
+		margin-right: rem(-20);
+		min-width: 100%;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			margin-left: calc(#{$content-column-post / 2} - 50vw);
+			margin-right: calc(#{$content-column-post / 2} - 50vw);
 		}
 	}
+
 }

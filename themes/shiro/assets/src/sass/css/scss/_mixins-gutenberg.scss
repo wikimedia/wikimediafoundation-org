@@ -4,7 +4,7 @@
 
 	margin-left: rem(-20);
 	margin-right: rem(-20);
-	width: 100vw;
+	min-width: 100%;
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		margin-left: rem(-40);

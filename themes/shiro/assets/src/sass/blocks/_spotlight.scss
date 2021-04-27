@@ -1,6 +1,6 @@
 .spotlight {
 	display: flex;
-	width: 100%;
+	min-width: 100%;
 	padding: rem(40) rem(20);
 
 	@include block-style-background-color;
