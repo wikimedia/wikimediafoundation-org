@@ -51,6 +51,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/blog-list',
 		'shiro/blog-post-heading',
 		'shiro/card',
+		'shiro/double-heading',
 		'shiro/home-page-hero',
 		'shiro/stairs',
 		'shiro/stair',
@@ -159,11 +160,15 @@ function enqueue_block_editor_assets() {
 		]
 	);
 
+	$languages = wmf_get_translations();
+
 	wp_localize_script(
 		'shiro_editor_js',
 		'shiroEditorVariables',
 		array(
-			'themeUrl' => get_stylesheet_directory_uri(),
+			'themeUrl'     => get_stylesheet_directory_uri(),
+			'languages'    => $languages,
+			'siteLanguage' => $languages[0]['shortname'],
 		)
 	);
 

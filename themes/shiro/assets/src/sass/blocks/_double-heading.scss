@@ -1,0 +1,13 @@
+.double-heading {
+	&__primary {
+		line-height: 1.5;
+		color: $wmui-color-base0;
+	}
+
+	&__secondary {
+		@include has-blocks-wrap {
+			margin-bottom: rem(4);
+			color: $wmui-color-base30;
+		}
+	}
+}
