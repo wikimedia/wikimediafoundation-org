@@ -48,6 +48,10 @@ function render_block( $attributes ) {
 			continue;
 		}
 
+		$heading['className'] = '';
+		if ( $heading['switchRtl'] ) {
+			$heading['className'] = 'switch-rtl';
+		}
 		$translated_headings[] = $heading;
 	}
 
@@ -62,7 +66,10 @@ function render_block( $attributes ) {
 					<span><?php echo esc_html( $site_language_heading['text'] ) ?></span>
 					<?php if ( ! empty( $translated_heading ) ) : ?>
 						—
-						<span lang="<?php echo esc_attr( $translated_heading['lang'] ) ?>">
+						<span
+							class="<?php echo esc_attr( $translated_heading['className'] ); ?>"
+							lang="<?php echo esc_attr( $translated_heading['lang'] ) ?>"
+						>
 							<?php echo esc_html( $translated_heading['text'] ) ?>
 						</span>
 					<?php endif; ?>

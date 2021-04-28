@@ -1,6 +1,6 @@
 /* global shiroEditorVariables */
 
-import { partial, findIndex, negate } from 'lodash';
+import { partial, findIndex, zipObject, get } from 'lodash';
 
 import {
 	RichText,
@@ -14,6 +14,16 @@ import { __ } from '@wordpress/i18n';
 import { ensureEmptyHeading, prepareHeadings } from '../home-page-hero/helpers';
 
 const { languages, siteLanguage } = shiroEditorVariables;
+
+const isRtlMap = zipObject(
+	languages.map( language => language.shortname ),
+	languages.map( language => language.is_rtl )
+);
+
+/**
+ * Return whether the language is a RTL language.
+ */
+const isRtl = language => get( isRtlMap, language );
 
 /**
  * Determine whether the given heading has the site language.
@@ -100,6 +110,14 @@ export const
 						return heading;
 					} ),
 				} );
+
+				if ( attribute === 'lang' ) {
+					const switchRtl = isRtl( newValue ) !== isRtl( siteLanguage );
+
+					if ( switchRtl !== headings[ headingToUpdate ].switchRtl ) {
+						setHeadingAttribute( 'switchRtl', headingToUpdate, switchRtl );
+					}
+				}
 			};
 
 			return (
