@@ -54,8 +54,6 @@ export const
 		attributes: {
 			primaryHeading: {
 				type: 'string',
-				source: 'html',
-				selector: '.double-heading__primary',
 			},
 			secondaryHeadings: {
 				type: 'array',
@@ -201,42 +199,9 @@ export const
 		},
 
 		/**
-		 * Render save of the stair block.
+		 * Render nothing for a dynamic block.
 		 */
-		save: function Save( { attributes } ) {
-			const blockProps = useBlockProps.save( { className: 'double-heading' } );
-			const { primaryHeading, secondaryHeadings = [] } = attributes;
-
-			// Clone to prevent modification.
-			let headings = [ ...secondaryHeadings ];
-
-			const { siteLanguageHeading } = ensureSiteLanguageHeading( headings );
-
-			// PHP will manage the randomizing, but save the first one so there's always content.
-			const translatedHeadings = headings.filter( negate( isSiteLanguageHeading ) );
-
-			return (
-				<div { ...blockProps }>
-					<p className="double-heading__secondary is-style-h5">
-						<RichText.Content
-							tagName="span"
-							value={ siteLanguageHeading.text }
-						/>
-						{ translatedHeadings.length > 0 && ( <>
-							&nbsp;—&nbsp;
-							<RichText.Content
-								lang={ translatedHeadings[0].lang }
-								tagName="span"
-								value={ translatedHeadings[0].text }
-							/>
-						</> ) }
-					</p>
-					<RichText.Content
-						className="double-heading__primary is-style-h3"
-						tagName="h2"
-						value={ primaryHeading }
-					/>
-				</div>
-			);
+		save: function Save() {
+			return null;
 		},
 	};
