@@ -4,11 +4,11 @@
 	height: 62px;
 
 	&__image {
-		max-height: 32px;
+		max-height: 24px;
 		width: auto;
 
-		@media (max-width: $medium-landscape) {
-			max-height: 42px;
+		@media (min-width: $primary-nav-breakpoint) {
+			max-height: 32px;
 		}
 	}
 }
