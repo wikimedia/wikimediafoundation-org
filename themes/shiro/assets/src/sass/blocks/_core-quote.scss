@@ -23,7 +23,8 @@
 
 		@include wysiwyg-wrap {
 			p {
-				@include has-font-size("medium");
+				@include has-font-size("large");
+				line-height: 1.5;
 			}
 		}
 	}
