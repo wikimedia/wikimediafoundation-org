@@ -35,6 +35,13 @@ $medium-bp: 768px;
 $medium-landscape: 1023px;
 $small-bp: 500px;
 
+/**
+ * This is necessary to prevent a 1px "wide" breakpoint overlap
+ * where both the menu toggle button and the "desktop" menu are
+ * visible at the same time.
+ */
+$primary-nav-breakpoint: $medium-landscape + 1px;
+
 $space: 16px;
 
 // Animation
