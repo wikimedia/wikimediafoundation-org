@@ -9,3 +9,8 @@ $browser-context: 16; // Default
 
 	@return $value / 1px;
 }
+
+@function px-to-rem($value, $context: $browser-context) {
+
+	@return rem(strip-px($value), $context);
+}

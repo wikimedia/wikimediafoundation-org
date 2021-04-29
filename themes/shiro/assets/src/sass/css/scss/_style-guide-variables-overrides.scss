@@ -54,10 +54,18 @@ $wm-column-gutter: 20px;
 
 // Content widths
 $content-column: 980px;
+$content-column-rem: px-to-rem($content-column);
 $content-column-post: 640px;
+$content-column-post-rem: px-to-rem($content-column-post);
 
 // Default left/right padding for blocks in the editor.
 $block-padding: 40px;
+
+// Padded content widths
+$content-column-padded: $content-column + 2 * $block-padding;
+$content-column-padded-rem: px-to-rem($content-column-padded);
+$content-column-post-padded: $content-column-post + 2 * $block-padding;
+$content-column-post-padded-rem: px-to-rem($content-column-post-padded);
 
 // Box shadows for elements larger than those specified in the style guide.
 $box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
