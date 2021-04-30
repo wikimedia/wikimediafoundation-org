@@ -1,3 +1,5 @@
+import initialize from '../util/initialize';
+
 /**
  * These are set outside of any method to 'cache' their values.
  *
@@ -149,23 +151,6 @@ function initializeBackdrop() {
 }
 
 /**
- * Set up the dropdowns with support for HMR.
- *
- * If you /just/ want to set up dropdowns, import `setup`.
- *
- * @returns {void}
- */
-function initialize() {
-	if ( module.hot ) {
-		module.hot.accept();
-		module.hot.dispose( teardown );
-		setup();
-	} else {
-		setup();
-	}
-}
-
-/**
  * Set up all dropdowns on the page.
  *
  * @returns {void}
@@ -190,7 +175,8 @@ function teardown() {
 	}
 }
 
-export default initialize;
+export default initialize( setup, teardown );
+
 export {
 	teardown, setup,
 };

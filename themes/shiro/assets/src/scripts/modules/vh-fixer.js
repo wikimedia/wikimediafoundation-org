@@ -1,3 +1,5 @@
+import initialize from '../util/initialize';
+
 /**
  * This module provides a very tiny fix to handle unreliable behavior from
  * mobile browsers.
@@ -32,22 +34,8 @@ function teardown() {
 	document.documentElement.style.removeProperty( '--vh' );
 }
 
-/**
- * Initialize module with HMR support.
- *
- * If you /just/ want to setup it up, import `setup`.
- */
-function initialize() {
-	if ( module.hot ) {
-		module.hot.accept();
-		module.hot.dispose( teardown );
-		setup();
-	} else {
-		setup();
-	}
-}
+export default initialize( setup, teardown );
 
-export default initialize;
 export {
 	teardown, setup,
 };
