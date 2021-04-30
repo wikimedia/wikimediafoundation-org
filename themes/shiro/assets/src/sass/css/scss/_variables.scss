@@ -42,6 +42,12 @@ $small-bp: 500px;
  */
 $primary-nav-breakpoint: $medium-landscape + 1px;
 
+/**
+ * WordPress admin bar breakpoints
+ */
+$admin-bar-breakpoint-sm: 601px;
+$admin-bar-breakpoint-lg: 784px;
+
 $space: 16px;
 
 // Animation
