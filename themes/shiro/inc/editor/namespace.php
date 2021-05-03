@@ -17,7 +17,6 @@ function bootstrap() {
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
-	add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\pass_theme_uri_to_editor' );
 }
 
 /**
@@ -52,6 +51,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/blog-post-heading',
 		'shiro/card',
 		'shiro/home-page-hero',
+		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
 		'shiro/tweet-this',
@@ -124,7 +124,7 @@ function add_theme_supports() {
 		[ 'name' => __( 'Red 50', 'shiro' ),    'slug' => 'red50',    'color' => '#d40356' ],
 		[ 'name' => __( 'Red 90', 'shiro' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
 		[ 'name' => __( 'Yellow 50', 'shiro' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
-		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
+		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fffec2' ],
 	] );
 
 	// Disable custom color and gradient selection in the editor.
