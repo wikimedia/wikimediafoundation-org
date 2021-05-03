@@ -71,7 +71,7 @@ export const
 		},
 
 		/**
-		 * Render edit of the stair block.
+		 * Render edit of the double heading block.
 		 */
 		edit: function DoubleHeadingBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'double-heading' } );
