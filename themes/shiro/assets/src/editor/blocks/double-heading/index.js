@@ -11,7 +11,7 @@ import { Button, PanelBody, SelectControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import { ensureEmptyHeading, prepareHeadings } from '../home-page-hero/helpers';
+import { ensureEmptyHeading, prepareHeadings } from '../../helpers/repeating-headings';
 
 const { languages, siteLanguage } = shiroEditorVariables;
 
