@@ -43,6 +43,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 			if ( ! empty( $team ) && ! is_wp_error( $team ) ) {
 				$team_name = $team[0]->name;
 			}
+			var_dump('Profile id: ' . $profile_id);
 			get_template_part(
 				'template-parts/modules/profiles/card',
 				null,
