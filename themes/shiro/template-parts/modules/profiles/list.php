@@ -44,6 +44,8 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 				$team_name = $team[0]->name;
 			}
 			var_dump('Profile id: ' . $profile_id);
+			var_dump($profile_id);
+			var_dump(get_the_permalink( $profile_id ));
 			get_template_part(
 				'template-parts/modules/profiles/card',
 				null,
