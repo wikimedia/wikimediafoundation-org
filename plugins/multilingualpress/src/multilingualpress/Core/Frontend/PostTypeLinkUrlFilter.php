@@ -66,7 +66,6 @@ final class PostTypeLinkUrlFilter implements Filter
         if ($postType->query_var && !$this->isDraftOrPending($post)) {
             $args = [$postType->query_var => $post->post_name];
         }
-        var_dump((string)home_url(add_query_arg($args, '')));
 
         return (string)home_url(add_query_arg($args, ''));
     }
