@@ -62,6 +62,10 @@ final class PostTypeLinkUrlFilter implements Filter
             return $postLink;
         }
 
+        if ($postType === 'profile') {
+            return $postLink;
+        }
+
         $args = ['p' => $post->ID];
         if ($postType->query_var && !$this->isDraftOrPending($post)) {
             $args = [$postType->query_var => $post->post_name];
