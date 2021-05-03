@@ -17,8 +17,6 @@ $team   = ! empty( $template_data['team'] ) ? $template_data
 $img_id = ! empty( $template_data['img_id'] ) ? $template_data
 ['img_id'] : '';
 
-var_dump('Template data - link: ' . $template_data['link']);
-var_dump('Link variable: ' . $link);
 ?>
 
 <a class="card card-vertical card-person rounded shadow hover-img-zoom w-32p" href="<?php echo esc_url( $link ); ?>">

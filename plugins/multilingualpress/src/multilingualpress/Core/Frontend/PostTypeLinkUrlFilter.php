@@ -52,17 +52,13 @@ final class PostTypeLinkUrlFilter implements Filter
         string $postLink,
         \WP_Post $post
     ): string {
-        var_dump($postLink);
+
         if (!$this->postTypeRepository->isPostTypeQueryBased($post->post_type)) {
             return $postLink;
         }
 
         $postType = get_post_type_object($post->post_type);
         if (!$postType instanceof \WP_Post_Type) {
-            return $postLink;
-        }
-
-        if ($postType === 'profile') {
             return $postLink;
         }
 
