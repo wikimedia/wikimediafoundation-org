@@ -52,7 +52,7 @@ final class PostTypeLinkUrlFilter implements Filter
         string $postLink,
         \WP_Post $post
     ): string {
-
+        var_dump($postLink);
         if (!$this->postTypeRepository->isPostTypeQueryBased($post->post_type)) {
             return $postLink;
         }
