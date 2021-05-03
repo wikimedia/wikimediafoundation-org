@@ -707,7 +707,7 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 	}
 
 	?>
-	<a href="<?php echo esc_attr( $possible_url ); ?>" target="_blank">
+	<a href="<?php echo esc_attr( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 		<?php echo esc_html( $text ); ?>
 	</a>
 	<?php
