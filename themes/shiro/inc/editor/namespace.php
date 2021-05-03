@@ -136,6 +136,41 @@ function add_theme_supports() {
 	add_theme_support( 'align-wide' );
 }
 
+/**
+ * Return the post that is being edited.
+ *
+ * @return false|array|\WP_Post|null
+ */
+function get_admin_post() {
+	$post_id            = $_GET['post'] ?? false;
+	return get_post( $post_id );
+}
+
+/**
+ * Determine whether the current admin post has blocks.
+ */
+function admin_post_has_blocks(): bool {
+	$post = get_admin_post();
+
+	return $post && has_blocks( $post->post_content );
+}
+
+/**
+ * Determine whether the current admin post is a new post.
+ */
+function admin_post_is_new(): bool {
+	$post = get_admin_post();
+
+	return ! $post || $post->post_content === '';
+}
+
+/**
+ * Determine whether the field manager meta boxes should be shown.
+ */
+function is_using_block_editor(): bool {
+	return admin_post_is_new() || admin_post_has_blocks();
+}
+
 function enqueue_block_editor_assets() {
 
 	$manifest = Assets\get_manifest_path();
@@ -159,17 +194,11 @@ function enqueue_block_editor_assets() {
 		]
 	);
 
-	$post_id     = $_GET['post'] ?? false;
-	$post        = get_post( $post_id );
-	$is_new_post = ! $post || $post->post_content === '';
-	$has_blocks  = $post && has_blocks( $post->post_content );
-
 	wp_localize_script(
 		'shiro_editor_js',
 		'shiroEditorVariables',
 		array(
 			'themeUrl' => get_stylesheet_directory_uri(),
-			'hideFieldManagerMetaBoxes' => $is_new_post || $has_blocks,
 		)
 	);
 
