@@ -5,13 +5,11 @@
 	padding-left: rem(24);
 
 	cite {
+		display: block;
+		margin-top: rem(20);
+
 		@include wysiwyg-wrap {
 			font-family: $font-family-sans;
-		}
-
-		&:before {
-			content: "\2014";
-			margin: 0 0.5em;
 		}
 	}
 
@@ -25,15 +23,8 @@
 
 		@include wysiwyg-wrap {
 			p {
-				@include has-font-size("medium");
-			}
-		}
-
-		cite {
-			display: block;
-			margin-top: rem(20);
-			&:before {
-				content: none;
+				@include has-font-size("large");
+				line-height: 1.5;
 			}
 		}
 	}

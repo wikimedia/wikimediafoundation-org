@@ -77,7 +77,7 @@ $color-palette:
 	@include h5;
 }
 @mixin h-margins {
-	margin: 0 auto 0.5em;
+	margin: 0 0 0.5em;
 }
 
 // Define base styles for headings, etc within text content.

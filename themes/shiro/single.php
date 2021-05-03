@@ -35,8 +35,8 @@ while ( have_posts() ) {
 	?>
 
 	<?php if ( ! empty( $intro ) ) : ?>
-	<div class="article-title mw-784">
-		<h3 class="h3"><?php echo wp_kses( $intro, $allowed_tags ); ?></h3>
+	<div class="article-title">
+		<?php echo wp_kses( $intro, $allowed_tags ); ?>
 	</div>
 	<?php endif; ?>
 
