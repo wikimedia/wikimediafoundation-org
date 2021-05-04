@@ -1,8 +1,8 @@
 // Modern JS
 
 import './block-hero-home';
+import dimensionShim from './modules/dimension-shim';
 import dropdown from './modules/dropdown';
-import vhFixer from './modules/vh-fixer';
 
 dropdown();
-vhFixer();
+dimensionShim();
