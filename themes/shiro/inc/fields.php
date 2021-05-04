@@ -268,7 +268,7 @@ function wmf_get_categories_options() {
 	return $category_list;
 }
 
-// As soon as a post has block we should no longer register these fields.
+// As soon as a post has blocks we should no longer register these fields.
 // Registering these fields would generate confusion.
 if ( ! admin_post_has_blocks() ) {
 	require get_template_directory() . '/inc/fields/button.php';
