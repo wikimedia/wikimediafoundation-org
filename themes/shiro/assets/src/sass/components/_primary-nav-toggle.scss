@@ -1,0 +1,43 @@
+.primary-nav-toggle {
+	// button-tertiary
+	@include style-guide-button(
+		$color-tertiary,
+		$color-tertiary--hover,
+		$color-tertiary--active,
+		$color-tertiary--focus,
+		$color-primary,
+		$border-color-base,
+	);
+
+	order: 10;
+	width: rem(40);
+	height: rem(34);
+	padding: 0;
+	margin-right: rem(17);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+	@media screen and (min-width: #{$primary-nav-breakpoint}) {
+		display: none;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		border-color: $color-primary;
+		outline: none;
+	}
+
+	&__icon {
+		width: rem(20);
+		height: rem(20);
+		margin: 0;
+		display: none;
+
+		[aria-expanded="true"] &--opened,
+		[aria-expanded="false"] &--closed {
+			display: block;
+		}
+	}
+}

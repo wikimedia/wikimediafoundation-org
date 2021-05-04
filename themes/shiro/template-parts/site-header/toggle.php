@@ -9,9 +9,11 @@
 $label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro' ) );
 ?>
 
-<button class="mobile-nav-toggle bold" aria-label="<?php echo esc_attr( $label ); ?>">
+<button class="primary-nav-toggle"
+		aria-label="<?php echo esc_attr( $label ); ?>"
+		data-dropdown-toggle="primary-nav"
+		aria-expanded="false">
 	<span class="btn-label-a11y"><?php echo esc_html( $label ); ?></span>
-	<?php wmf_show_icon( 'menu', 'material' ); ?>
-	<img src="<?php echo wmf_get_svg_uri( 'close' ) ?>" alt=""
-		 class="icon-close">
+	<?php wmf_show_icon( 'menu', 'primary-nav-toggle__icon primary-nav-toggle__icon--closed' ); ?>
+	<?php wmf_show_icon( 'close', 'primary-nav-toggle__icon primary-nav-toggle__icon--opened' ); ?>
 </button>
