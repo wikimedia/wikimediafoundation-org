@@ -62,3 +62,4 @@ $block-padding: 40px;
 // Box shadows for elements larger than those specified in the style guide.
 $box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
 
+$half-scrollbar-width: calc(var(--scrollbar, 0px) / 2);
