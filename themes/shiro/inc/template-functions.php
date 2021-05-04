@@ -694,3 +694,21 @@ function wmf_get_page_stories() {
 
 	return $stories;
 }
+
+/**
+ * Echo & wrap a piece of text with an href if the possible URL is set.
+ *
+ * @param string $text The text to wrap
+ * @param string $possible_url The URL to put in the href of the link.
+ */
+function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
+	if ( empty( $possible_url ) ) {
+		echo esc_html( $text );
+	}
+
+	?>
+	<a href="<?php echo esc_attr( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
+		<?php echo esc_html( $text ); ?>
+	</a>
+	<?php
+}

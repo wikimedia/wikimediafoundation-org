@@ -43,7 +43,7 @@
 	}
 
 	&__heading-wrapper {
-		max-width: rem(strip-px($content-column + 2 * $block-padding));
+		max-width: $content-column-padded-rem;
 		margin: 0 auto;
 		@include padding(0, 20, 0, strip-px($block-padding));
 	}

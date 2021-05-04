@@ -14,8 +14,9 @@
 		padding: rem(28) rem(20);
 	}
 
-	&__image {
+	&__image-container {
 		display: none;
+		position: relative;
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
@@ -25,7 +26,7 @@
 		}
 
 		&__text-column,
-		&__image {
+		&__image-container {
 			width: 50%;
 		}
 
@@ -44,7 +45,8 @@
 			}
 		}
 
-		&__image {
+		&__image,
+		&__image-container {
 			display: block;
 		}
 	}

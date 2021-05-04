@@ -1,7 +1,3 @@
-$background-color-framed--focus: $wmui-color-base100;
-// $background-color-framed--active doesn't correspond to the shown color on https://design.wikimedia.org/style-guide/components/buttons.html.
-$background-color-framed--active-alternative: $wmui-color-base80;
-
 @mixin button-icon(
 	$icon-name,
 	$icon-path,
@@ -33,27 +29,24 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		$color-secondary--active,
 		$color-secondary--focus,
 		$color-base--inverted,
-	)
+	);
 }
 
 @mixin button-tertiary() {
 	@include style-guide-button(
-		$background-color-framed,
-		$background-color-framed--hover,
-		$background-color-framed--active-alternative,
-		$background-color-framed--focus,
+		$color-tertiary,
+		$color-tertiary--hover,
+		$color-tertiary--active,
+		$color-tertiary--focus,
 		$color-primary,
+		$border-color-base,
 	);
 
-	border: 1px solid $border-color-base;
-
-	&:active {
-		border-color: $border-color-base--active;
-	}
-
+	&:hover,
+	&:active,
 	&:focus {
-		outline: 2px solid $border-color-base--focus;
-		outline-offset: -2px;
+		border-color: $color-primary;
+		outline: none;
 	}
 }
 
@@ -81,6 +74,30 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		&.is-style-tertiary {
 			#{ $inner-selector } {
 				@include button-tertiary;
+			}
+		}
+
+		&.is-style-as-link {
+			#{ $inner-selector } {
+				background: none;
+				color: $color-primary;
+				@include has-font-size("default");
+				padding: 0;
+				box-shadow: none;
+
+				&:hover {
+					color: $color-primary--hover;
+				}
+
+				&:active {
+					outline: none;
+				}
+
+				&:focus {
+					outline-offset: 0;
+					outline: 1px dotted currentColor;
+					color: $color-primary--focus;
+				}
 			}
 		}
 

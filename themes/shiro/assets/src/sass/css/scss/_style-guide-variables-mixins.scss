@@ -87,7 +87,9 @@
 	font-weight: bold;
 	border-radius: $border-radius-base;
 	cursor: pointer;
-	padding: rem(8) rem(20);
+	padding: rem(6) rem(12);
+	@include font-size(14, 16);
+	@include line-height(20, 22);
 }
 
 @mixin style-guide-button(
@@ -96,23 +98,35 @@
 	$color-active,
 	$color-focus,
 	$color-text,
+	$border-color: transparent,
 ) {
 	@include style-guide-button-reset;
 	background: $color;
 	color: $color-text;
 	transition: $transition-duration-base background;
 
+	/** So that buttons with and without borders take up the same space */
+	border: 1px solid $border-color;
+
 	&:hover {
 		background: $color-hover;
+		box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.15);
+	}
+
+	&:active,
+	&:focus {
+		box-shadow: none;
 	}
 
 	&:active {
 		background: $color-active;
+		outline: 1px solid $color-active;
+		outline-offset: 1px;
 	}
 
 	&:focus {
 		background: $color-focus;
-		outline: 2px solid $color-focus;
+		outline: 1px solid $color-focus;
 		outline-offset: 1px;
 	}
 }
