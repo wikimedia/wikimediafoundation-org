@@ -1,3 +1,5 @@
+$primary-nav-mobile-height: 62px;
+
 .primary-nav {
 	margin-top: rem( 66 );
 	display: flex;
@@ -5,9 +7,10 @@
 	border-top: 1px solid $wmui-color-base80;
 	padding: 0;
 	padding-top: rem( 12 );
+	width: 100%;
 
 	&__drawer {
-		display: none;
+		width: 100%;
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
 			display: flex;
@@ -17,30 +20,37 @@
 			width: 100%;
 		}
 
-		.nav-open & {
-			--full-window-height: calc( var( --vh, 1vh ) * 100 );
-			display: block;
-			padding: 1.5rem;
-			position: fixed;
-			width: 100%;
-			background: $color-white;
-			left: 0;
-			color: #fff;
-			z-index: 3000;
-			top: 65px;
-			overflow: auto;
-			max-height: calc( var( --full-window-height, 100vh ) - 65px );
+		/**
+		 * "mobile-first" is generally preferable, but in this case "unsetting"
+		 * the mobile styles on desktop would be overly-complicated for no real
+		 * benefit, hence this "backwards" query.
+		 */
+		@media ( max-width: $medium-landscape ) {
+			[data-open="true"] & {
+				--full-window-height: calc(var(--vh, 1vh) * 100);
+				display: block;
+				padding: 1.5rem;
+				position: fixed;
+				width: 100%;
+				background: $color-white;
+				left: 0;
+				color: #fff;
+				z-index: 3000;
+				top: $primary-nav-mobile-height;
+				overflow: auto;
+				max-height: calc(var(--full-window-height, 100vh) - #{$primary-nav-mobile-height});
 
-			.admin-bar & {
+				.admin-bar & {
 
-				@media ( min-width: 600px ) {
-					top: 65px + 46px;
-					max-height: calc( var( --full-window-height, 100vh ) - (65px + 46px));
-				}
+					@media (min-width: 600px) {
+						top: $primary-nav-mobile-height + 46px;
+						max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+					}
 
-				@media ( min-width: 784px ) {
-					top: 65px + 32px;
-					max-height: calc( var( --full-window-height, 100vh ) - ( 65px + 32px ) );
+					@media (min-width: 784px) {
+						top: $primary-nav-mobile-height + 32px;
+						max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 32px));
+					}
 				}
 			}
 		}
@@ -124,6 +134,10 @@
 /**
  * This prevents users from inadvertently scrolling the site when the nav is open.
  */
-body.primary-nav-open {
-	overflow: hidden;
+body.primary-nav-is-open {
+	overflow-y: hidden;
+
+	@media (min-width: $primary-nav-breakpoint) {
+		overflow-y: auto;
+	}
 }

@@ -6,7 +6,7 @@
  */
 ?>
 <nav class="primary-nav">
-	<div class="primary-nav__drawer">
+	<div class="primary-nav__drawer" data-dropdown-content="primary-nav" hidden>
 		<?php
 		get_template_part( 'template-parts/site-navigation/search' );
 		get_template_part( 'template-parts/site-navigation/menu' );
