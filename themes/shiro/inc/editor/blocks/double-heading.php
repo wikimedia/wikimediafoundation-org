@@ -39,7 +39,7 @@ function render_block( $attributes ) {
 	$site_language_heading = null;
 
 	foreach ( $attributes['secondaryHeadings'] as $heading ) {
-		if ( $site_language['shortname'] === $heading['lang'] ) {
+		if ( $site_language['shortname'] === ( $heading['lang'] ?? '' ) ) {
 			$site_language_heading = $heading;
 			continue;
 		}
@@ -68,7 +68,7 @@ function render_block( $attributes ) {
 						—
 						<span
 							class="<?php echo esc_attr( $translated_heading['className'] ); ?>"
-							lang="<?php echo esc_attr( $translated_heading['lang'] ) ?>"
+							lang="<?php echo esc_attr( $translated_heading['lang'] ?? '' ) ?>"
 						>
 							<?php echo esc_html( $translated_heading['text'] ) ?>
 						</span>
