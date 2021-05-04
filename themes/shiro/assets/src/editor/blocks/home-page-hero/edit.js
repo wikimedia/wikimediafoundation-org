@@ -8,8 +8,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import ImagePicker from '../../components/image-picker';
-
-import { ensureEmptyHeading, prepareHeadings } from './helpers';
+import { ensureEmptyHeading, prepareHeadings } from '../../helpers/repeating-headings';
 
 /**
  * Edit component used to manage featured image and page intro.

@@ -166,6 +166,7 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 			'shortname'  => $translation->language()->isoCode(),
 			'uri'        => $translation->remoteUrl(),
 			'content_id' => $translation->remoteContentId(),
+			'is_rtl'     => $translation->language()->isRtl(),
 		);
 
 		// Default English is now presented as "English (United States)", convert it to just "English".

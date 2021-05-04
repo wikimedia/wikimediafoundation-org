@@ -156,20 +156,33 @@ $color-palette:
 
 .wysiwyg .alignfull {
 
-	@media ( min-width: $medium-landscape ) {
-		.page.has-blocks &,
-		.single.has-blocks & {
+	.page.has-blocks &,
+	.single.has-blocks & {
 
-			@include alignfull();
-		}
+		@include alignfull();
+	}
 
-		.single-post.has-blocks & {
+	.single-story & {
 
-			@include alignfull( $content-column-post );
-		}
+		/**
+		 * alignfull does not behave in any kind of rational way on stories,
+		 * so we want to effectively disable it.
+		 * Eventually stories may receive more attention, at which point we
+		 * will probably want to return to this styling.
+		 */
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
 
-		.single-story & {
-			margin-right: -50vw;
+	.single-post.has-blocks & {
+		margin-left: rem(-20);
+		margin-right: rem(-20);
+		min-width: 100%;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			margin-left: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
+			margin-right: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
 		}
 	}
+
 }
