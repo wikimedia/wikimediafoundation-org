@@ -175,14 +175,13 @@ $color-palette:
 	}
 
 	.single-post.has-blocks & {
-
 		margin-left: rem(-20);
 		margin-right: rem(-20);
 		min-width: 100%;
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin-left: calc(#{$content-column-post / 2} - 50vw);
-			margin-right: calc(#{$content-column-post / 2} - 50vw);
+			margin-left: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
+			margin-right: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
 		}
 	}
 
