@@ -89,9 +89,7 @@ function instantiate( el ) {
 
 	const observer = new MutationObserver( handleMutation );
 	observer.observe( el, {
-		attributes: true,
-		childList: false,
-		subtree: false,
+		attributeFilter: [ 'data-open' ],
 	} );
 
 	el.dropdown = {
