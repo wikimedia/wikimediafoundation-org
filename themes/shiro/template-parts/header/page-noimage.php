@@ -15,7 +15,4 @@ $page_header_data = $args;
 <!-- <?php get_template_part( 'template-parts/header/social' ); ?> -->
 </div>
 
-</div>
-</header>
-
-<main id="content">
+<?php get_template_part( 'template-parts/header/closing-tags' ); ?>
