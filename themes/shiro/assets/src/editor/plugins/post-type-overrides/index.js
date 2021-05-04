@@ -22,7 +22,30 @@ export const settings = {
 		useEffect( () => {
 			const wrapperElement = document.querySelector( '.block-editor-writing-flow' );
 			if ( wrapperElement ) {
-				wrapperElement.classList.add( 'single', 'has-blocks', `single-${postType}` );
+				const classes = [
+					'single',
+					'has-blocks',
+					`single-${postType}`,
+				];
+
+				// Add on first load
+				wrapperElement.classList.add( ...classes );
+
+				// Make sure the classes we add stick around
+				const observer = new MutationObserver( ( list, observer ) => {
+					list.forEach( mutation => {
+						if ( mutation.type === 'attributes' && mutation.attributeName === 'class' ) {
+							classes.forEach( className => {
+								if ( ! wrapperElement.classList.contains( className ) ) {
+									wrapperElement.classList.add( className );
+								}
+							} );
+						}
+					} );
+				} );
+				observer.observe( wrapperElement, {
+					attributeFilter: [ 'class' ],
+				} );
 			}
 		} );
 
