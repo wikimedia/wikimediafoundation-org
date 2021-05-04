@@ -13,10 +13,10 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import ImagePicker from '../../components/image-picker';
+import { prepareHeadings } from '../../helpers/repeating-headings';
 
 import './style.scss';
 import HomePageHeroBlock from './edit';
-import { prepareHeadings } from './helpers';
 
 export const name = 'shiro/home-page-hero';
 
