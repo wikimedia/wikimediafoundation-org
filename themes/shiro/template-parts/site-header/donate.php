@@ -12,7 +12,7 @@ $uri     = get_theme_mod( 'wmf_donate_now_uri',
 $copy    = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate', 'shiro' ) );
 ?>
 
-<div class="donate-btn">
+<div class="nav-donate donate-btn">
 	<div class="donate-btn--desktop">
 		<a href="<?php echo esc_url( $uri ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>">
 			<img src="<?php echo wmf_get_svg_uri( 'lock-pink' ); ?>"
