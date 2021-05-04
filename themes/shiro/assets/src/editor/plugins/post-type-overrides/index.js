@@ -35,9 +35,9 @@ export const settings = {
 				const observer = new MutationObserver( ( list, observer ) => {
 					list.forEach( mutation => {
 						if ( mutation.type === 'attributes' && mutation.attributeName === 'class' ) {
-							classes.forEach( cl => {
-								if ( ! wrapperElement.classList.contains( cl ) ) {
-									wrapperElement.classList.add( cl );
+							classes.forEach( className => {
+								if ( ! wrapperElement.classList.contains( className ) ) {
+									wrapperElement.classList.add( className );
 								}
 							} );
 						}
