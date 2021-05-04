@@ -34,10 +34,17 @@ function handleMutation( list, observer ) {
 		if ( r.attributeName === 'data-open' ) {
 			const el = r.target;
 			const open = el.dataset.open;
-			const { content, toggle } = el.dropdown;
+			const { content, toggle, customHandler } = el.dropdown;
 			content.hidden = open !== 'true';
 
 			toggle.setAttribute( 'aria-expanded', open );
+
+			/**
+			 * Make it easier to hook custom code into the observer.
+			 */
+			if ( customHandler ) {
+				customHandler( r );
+			}
 
 			const backdrop = getBackdrop();
 			// Only modify the backdrop if it exists /and/ there are no other
@@ -178,5 +185,8 @@ function teardown() {
 export default initialize( setup, teardown );
 
 export {
-	teardown, setup,
+	teardown,
+	setup,
+	getBackdrop,
+	getInstances,
 };
