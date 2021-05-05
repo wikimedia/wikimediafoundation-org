@@ -3,6 +3,7 @@ plugins/log-deprecated-notices
 plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
+*.log
 
 # Dependencies managed using composer
 plugins/asset-loader
