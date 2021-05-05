@@ -43,13 +43,20 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 			if ( ! empty( $team ) && ! is_wp_error( $team ) ) {
 				$team_name = $team[0]->name;
 			}
+
+			$profile      = get_post( $profile_id );
+			$profile_link = get_the_permalink( $profile_id );
+			$profile_base = home_url( 'profile/' );
+			if ( $profile_link === $profile_base ) {
+				$profile_link = $profile_base . $profile->post_name;
+			}
 			get_template_part(
 				'template-parts/modules/profiles/card',
 				null,
 				array(
 					'title'  => get_the_title( $profile_id ),
 					'img_id' => get_post_thumbnail_id( $profile_id ),
-					'link'   => get_the_permalink( $profile_id ),
+					'link'   => $profile_link,
 					'role'   => get_post_meta( $profile_id, 'profile_role', true ),
 					'team'   => $team_name,
 				)
