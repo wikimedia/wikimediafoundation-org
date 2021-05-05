@@ -44,10 +44,10 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 				$team_name = $team[0]->name;
 			}
 
-			$profile      = get_post( $profile_id );
 			$profile_link = get_the_permalink( $profile_id );
 			$profile_base = home_url( 'profile/' );
 			if ( $profile_link === $profile_base ) {
+				$profile      = get_post( $profile_id );
 				$profile_link = $profile_base . $profile->post_name;
 			}
 			get_template_part(
