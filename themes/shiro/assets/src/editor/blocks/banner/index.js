@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
 import Cta from '../../components/cta/index';
 import ImagePicker from '../../components/image-picker/index.js';
 import sharedStyles from '../../helpers/block-styles';
+import applyDefaultStyle from '../../helpers/default-style';
 import './style.scss';
 
 export const name = 'shiro/banner',
@@ -127,7 +128,7 @@ export const settings = {
 		}, [ setAttributes ] );
 
 		return (
-			<div { ...blockProps } >
+			<div { ...applyDefaultStyle( blockProps ) } >
 				<div className="banner__content">
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
@@ -187,7 +188,7 @@ export const settings = {
 		} );
 
 		return (
-			<div { ...blockProps } >
+			<div { ...applyDefaultStyle( blockProps ) } >
 				<div className="banner__content">
 					<RichText.Content
 						className="banner__heading"
