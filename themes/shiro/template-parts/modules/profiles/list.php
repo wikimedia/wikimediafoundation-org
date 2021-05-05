@@ -5,8 +5,6 @@
  * @package shiro
  */
 
-use function Inpsyde\MultilingualPress\Core\Frontend\unprettifyPermalink;
-
 $template_data = $args;
 
 $profiles = ! empty( $template_data['profiles_list'] ) ? $template_data['profiles_list'] : '';
@@ -44,9 +42,6 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 			$team      = get_the_terms( $profile_id, 'role' );
 			if ( ! empty( $team ) && ! is_wp_error( $team ) ) {
 				$team_name = $team[0]->name;
-			}
-			if ( function_exists( 'unprettifyPermalink' ) ) {
-				var_dump( unprettifyPermalink( get_the_permalink( $profile_id ), get_post( $profile_id ) ) );
 			}
 			get_template_part(
 				'template-parts/modules/profiles/card',
