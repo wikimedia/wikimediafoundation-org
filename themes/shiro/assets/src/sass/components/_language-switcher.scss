@@ -4,7 +4,13 @@
 
 	&__button {
 		@include style-guide-dropdown-toggle();
-		color: $wmui-color-blue50;
+
+		&:focus,
+		&[aria-expanded=true] {
+			color: $wmui-color-blue50;
+			border-color: currentColor;
+			@include style-guide-dropdown-caret-blue();
+		}
 	}
 
 	&__icon {
