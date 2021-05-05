@@ -3,6 +3,8 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 
 import BorderRadiusSelector from './BorderRadiusSelector';
 
+import './style.scss';
+
 const withRadiusSelector = createHigherOrderComponent( GroupBlockEdit => {
 	/**
 	 * Insert the icon selector in the inspector controls for the button block.

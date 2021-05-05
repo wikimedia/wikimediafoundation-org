@@ -110,15 +110,23 @@
 
 	&:hover {
 		background: $color-hover;
+		box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.15);
+	}
+
+	&:active,
+	&:focus {
+		box-shadow: none;
 	}
 
 	&:active {
 		background: $color-active;
+		outline: 1px solid $color-active;
+		outline-offset: 1px;
 	}
 
 	&:focus {
 		background: $color-focus;
-		outline: 2px solid $color-focus;
+		outline: 1px solid $color-focus;
 		outline-offset: 1px;
 	}
 }

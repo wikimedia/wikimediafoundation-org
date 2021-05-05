@@ -19,19 +19,19 @@ $wmui-color-image-filter-yellow: rgba(255, 254, 168, .85);
 
 // Updated branded colors for primary buttons.
 $color-primary:         $wmui-color-blue50;
-$color-primary--hover:  lighten( $wmui-color-blue50, 3 );
-$color-primary--active: darken( $wmui-color-blue50, 25 );
-$color-primary--focus:  $color-primary;
+$color-primary--hover:  #3200be;
+$color-primary--active: $color-primary;
+$color-primary--focus:  $color-primary--hover;
 
 $color-secondary:         $wmui-color-red50;
-$color-secondary--hover:  lighten( $wmui-color-red50, 3 );
-$color-secondary--active: darken( $wmui-color-red50, 25 );
-$color-secondary--focus:  $color-secondary;
+$color-secondary--hover:  #a00040;
+$color-secondary--active: $color-secondary;
+$color-secondary--focus:  $color-secondary--hover;
 
 $color-tertiary:         $wmui-color-base90;
-$color-tertiary--hover:  lighten( $wmui-color-base90, 3 );
-$color-tertiary--active: darken( $wmui-color-base90, 25 );
-$color-tertiary--focus:  $color-tertiary;
+$color-tertiary--hover:  $wmui-color-base100;
+$color-tertiary--active: $wmui-color-base100;
+$color-tertiary--focus:  $wmui-color-base100;
 
 // The style-guide doesn't contain variables for the border color of framed
 // elements
@@ -54,10 +54,18 @@ $wm-column-gutter: 20px;
 
 // Content widths
 $content-column: 980px;
+$content-column-rem: px-to-rem($content-column);
 $content-column-post: 640px;
+$content-column-post-rem: px-to-rem($content-column-post);
 
 // Default left/right padding for blocks in the editor.
 $block-padding: 40px;
+
+// Padded content widths
+$content-column-padded: $content-column + 2 * $block-padding;
+$content-column-padded-rem: px-to-rem($content-column-padded);
+$content-column-post-padded: $content-column-post + 2 * $block-padding;
+$content-column-post-padded-rem: px-to-rem($content-column-post-padded);
 
 // Box shadows for elements larger than those specified in the style guide.
 $box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
@@ -70,3 +78,5 @@ $box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
  * The breakpoint this 'corresponds' to is $medium-landscape.
  */
 $primary-nav-breakpoint: 1024px;
+
+$half-scrollbar-width: calc(var(--scrollbar, 0px) / 2);

@@ -8,6 +8,7 @@
 namespace WMF\Fields\Page_Intro;
 
 use Fieldmanager_RichTextArea;
+use function WMF\Editor\is_using_block_editor;
 
 /**
  * Name of the meta field.
@@ -69,8 +70,7 @@ function wmf_intro_fields() {
 	// Don't register fields if the post should be using the block editor
 	// (otherwise, Fieldmanager will unset any changes to this field when
 	// processing the classic meta boxes).
-	$post = get_post( $_GET['post'] );
-	if ( wmf_use_block_editor_for_post( true, $post ) ) {
+	if ( is_using_block_editor() ) {
 		return;
 	}
 

@@ -1,13 +1,13 @@
 .spotlight {
 	display: flex;
-	width: 100%;
-	padding: rem(40) rem(20);
+	min-width: 100%;
+	padding: rem(20);
 
 	@include block-style-background-color;
 	@include block-style-text-color;
 
 	&__inner {
-		width: $content-column;
+		width: $content-column-rem;
 		max-width: 100%;
 		display: flex;
 		flex-direction: column-reverse;
@@ -78,6 +78,7 @@
 		flex-direction: row;
 		justify-content: center;
 		min-height: 340px;
+		padding: rem(40);
 
 		&__content {
 			width: 50%;
