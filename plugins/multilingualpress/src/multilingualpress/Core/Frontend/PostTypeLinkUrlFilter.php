@@ -54,13 +54,11 @@ final class PostTypeLinkUrlFilter implements Filter
     ): string {
 
         if (!$this->postTypeRepository->isPostTypeQueryBased($post->post_type)) {
-            var_dump('isPostTypeQueryBased');
             return $postLink;
         }
 
         $postType = get_post_type_object($post->post_type);
         if (!$postType instanceof \WP_Post_Type) {
-            var_dump('!$postType instanceof \WP_Post_Type');
             return $postLink;
         }
 
@@ -68,7 +66,6 @@ final class PostTypeLinkUrlFilter implements Filter
         if ($postType->query_var && !$this->isDraftOrPending($post)) {
             $args = [$postType->query_var => $post->post_name];
         }
-        var_dump('Link processing happening');
 
         return (string)home_url(add_query_arg($args, ''));
     }
