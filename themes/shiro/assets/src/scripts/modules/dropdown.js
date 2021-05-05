@@ -35,9 +35,18 @@ function handleMutation( list, observer ) {
 			const el = r.target;
 			const open = el.dataset.open;
 			const { content, toggle, customHandler } = el.dropdown;
+			// Set visibility of content
 			content.hidden = open !== 'true';
 
+			// Set aria attributes
 			toggle.setAttribute( 'aria-expanded', open );
+
+			// Capture or release tab
+			if ( open ) {
+				enterContent( el );
+			} else {
+				exitContent( el );
+			}
 
 			/**
 			 * Make it easier to hook custom code into the observer.
@@ -60,6 +69,88 @@ function handleMutation( list, observer ) {
 			}
 		}
 	} );
+}
+
+/**
+ * Gets elements that can be focusable.
+ *
+ * @param {Element} el The dropdown wrapper
+ * @param {string} filter (optional) Selector(s) to limit the allowed elements
+ * @returns {object} An object containing the first, last, and all of focusable elements
+ */
+function getFocusableElements( el, filter ) {
+	const { content }= el.dropdown;
+	const allowedElements = filter || 'a, input[type=search]';
+	const elements = content.querySelectorAll( allowedElements );
+
+	return {
+		first: elements[0],
+		last: elements[elements.length - 1],
+		all: elements,
+	};
+}
+
+/**
+ * Returns a function suitable for attachment to the 'keydown' event.
+ *
+ * @param {Element} el The dropdown wrapper
+ * @returns {Function} The function to attach
+ */
+function keywatcher( el ) {
+	return e => {
+		const {
+			first,
+			last,
+		} = getFocusableElements( el );
+		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+		let isEscPressed = e.key === 'Escape' || e.keyCode === 27;
+
+		if ( ! isTabPressed && ! isEscPressed ) {
+			return;
+		}
+
+		if ( isEscPressed ) {
+			exitContent( el );
+			return;
+		}
+
+		if ( e.shiftKey ) { // if shift key pressed for shift + tab combination
+			if ( document.activeElement === first ) {
+				last.focus(); // add focus for the last focusable element
+				e.preventDefault();
+			}
+		} else { // if tab key is pressed
+			if ( document.activeElement === last ) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+				first.focus(); // add focus for the first focusable element
+				e.preventDefault();
+			}
+
+		}
+	};
+}
+
+/**
+ * Adds special "in-dropdown" accessibility logic and moves focus to first focusable element in content.
+ *
+ * @param {Element} el The dropdown wrapper
+ */
+function enterContent( el ) {
+	const { first } = getFocusableElements( el );
+	// Move focus to first element
+	first.focus();
+	document.addEventListener( 'keydown', keywatcher( el ) );
+}
+
+/**
+ * Removes special "in-dropdown" accessibility logic and returns focus to toggle.
+ *
+ * @param  {Element} el The dropdown wrapper
+ */
+function exitContent( el ) {
+	const { toggle } = el.dropdown;
+	document.removeEventListener( 'keydown', keywatcher( el ) );
+	el.dataset.open = 'false';
+	toggle.focus();
 }
 
 /**
@@ -187,4 +278,6 @@ export {
 	setup,
 	getBackdrop,
 	getInstances,
+	exitContent,
+	enterContent,
 };
