@@ -12,6 +12,5 @@ if (empty($wmf_header_image)) {
 ?>
 
 <a href="<?php echo esc_url( get_site_url() ); ?>" class="nav-logo">
-	<span class='btn-label-a11y'><?php bloginfo('name'); ?></span>
-	<img class="nav-logo__image" src="<?php echo esc_url( $wmf_header_image ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>" />
+	<img class="nav-logo__image" src="<?php echo esc_url( $wmf_header_image ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
 </a>
