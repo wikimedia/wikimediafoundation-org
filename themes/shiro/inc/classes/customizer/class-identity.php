@@ -8,8 +8,8 @@
 namespace WMF\Customizer;
 
 /**
- * Setups the customizer and related settings.
- * Adds new fields to create sections for the contact details
+ * Adds controls & settings to existing (core-provided) "Site Identity" section
+ * of the Customizer.
  */
 class Identity extends Base {
 	public function setup_fields() {
