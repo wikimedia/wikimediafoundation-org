@@ -45,16 +45,35 @@ const styles = [
 ];
 
 /**
+ * The default style (or an empty string if none is set).
+ *
+ * @type {string}
+ */
+const defaultStyle = styles.reduce( ( accumulator, current ) => {
+	const { isDefault, name } = current;
+	if ( accumulator === '' && isDefault ) {
+		return `is-style-${name}`;
+	}
+	return accumulator;
+}, '' );
+
+/**
  * If no style class is applied, then add a default class.
+ * The default class is the first item in the shared block-styles.js with the
+ * isDefault: true.
  *
  * @param {object} blockProps A blockProps object
  * @param {string} blockProps.className The classes we're concerned with
- * @param {string} [defaultStyle=is-style-base90] The style to be applied
+ * @param {string} [style=] The style to be applied
  * @returns {object} A blockProps object
  */
-const applyDefaultStyle = ( blockProps, defaultStyle = 'is-style-base90' ) => {
+const applyDefaultStyle = ( blockProps, style ) => {
+	if ( ! style ) {
+		style = defaultStyle;
+	}
+
 	if ( ! blockProps.className.includes( 'is-style-' ) ) {
-		blockProps.className = `${blockProps.className} ${defaultStyle}`;
+		blockProps.className = `${blockProps.className} ${style}`;
 	}
 
 	return blockProps;
@@ -62,5 +81,6 @@ const applyDefaultStyle = ( blockProps, defaultStyle = 'is-style-base90' ) => {
 
 export default styles;
 export {
+	defaultStyle,
 	applyDefaultStyle,
 };
