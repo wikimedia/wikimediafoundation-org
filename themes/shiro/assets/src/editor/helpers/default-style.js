@@ -7,7 +7,7 @@
  * @returns {object} A blockProps object
  */
 const applyDefaultStyle = ( blockProps, defaultStyle = 'is-style-base90' ) => {
-	if ( blockProps.className.indexOf( 'is-style-' ) === -1 ) {
+	if ( ! blockProps.className.includes( 'is-style-' ) ) {
 		blockProps.className = `${blockProps.className} ${defaultStyle}`;
 	}
 
