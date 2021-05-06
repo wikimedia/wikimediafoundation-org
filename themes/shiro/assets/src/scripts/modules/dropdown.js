@@ -42,7 +42,7 @@ function handleMutation( list, observer ) {
 			toggle.setAttribute( 'aria-expanded', open );
 
 			// Capture or release tab
-			if ( open ) {
+			if ( open === 'true' ) {
 				enterContent( el );
 			} else {
 				exitContent( el );
@@ -72,25 +72,6 @@ function handleMutation( list, observer ) {
 }
 
 /**
- * Gets elements that can be focusable.
- *
- * @param {Element} el The dropdown wrapper
- * @param {string} filter (optional) Selector(s) to limit the allowed elements
- * @returns {object} An object containing the first, last, and all of focusable elements
- */
-function getFocusableElements( el, filter ) {
-	const { content }= el.dropdown;
-	const allowedElements = filter || 'a, input[type=search]';
-	const elements = content.querySelectorAll( allowedElements );
-
-	return {
-		first: elements[0],
-		last: elements[elements.length - 1],
-		all: elements,
-	};
-}
-
-/**
  * Returns a function suitable for attachment to the 'keydown' event.
  *
  * @param {Element} el The dropdown wrapper
@@ -101,7 +82,7 @@ function keywatcher( el ) {
 		const {
 			first,
 			last,
-		} = getFocusableElements( el );
+		} = el.dropdown.focusable;
 		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 		let isEscPressed = e.key === 'Escape' || e.keyCode === 27;
 
@@ -110,7 +91,7 @@ function keywatcher( el ) {
 		}
 
 		if ( isEscPressed ) {
-			exitContent( el );
+			el.dataset.open = 'false';
 			return;
 		}
 
@@ -124,7 +105,6 @@ function keywatcher( el ) {
 				first.focus(); // add focus for the first focusable element
 				e.preventDefault();
 			}
-
 		}
 	};
 }
@@ -135,10 +115,21 @@ function keywatcher( el ) {
  * @param {Element} el The dropdown wrapper
  */
 function enterContent( el ) {
-	const { first } = getFocusableElements( el );
-	// Move focus to first element
-	first.focus();
+	const { skip, all } = el.dropdown.focusable;
+	/**
+	 * To prevent tabbing to elements in the 'tab path' that we don't want to
+	 * be accessible when the dropdown is open, we temporarily set their
+	 * tabindex to -1. This is later reverted by `exitContent()`.
+	 */
+	skip.forEach( toSkip => {
+		if ( toSkip.tabIndex ) {
+			toSkip.dataset.tabindex = toSkip.tabIndex;
+		}
+		toSkip.tabIndex = -1;
+	} );
 	document.addEventListener( 'keydown', keywatcher( el ) );
+	// Focus the first element, not the toggle
+	all[1].focus();
 }
 
 /**
@@ -148,8 +139,19 @@ function enterContent( el ) {
  */
 function exitContent( el ) {
 	const { toggle } = el.dropdown;
+	const { skip } = el.dropdown.focusable;
 	document.removeEventListener( 'keydown', keywatcher( el ) );
-	el.dataset.open = 'false';
+	/**
+	 * Resets (or removes) and tabindex that were modified by
+	 * `enterContent()` to remove them from the 'tab path'.
+	 */
+	skip.forEach( toSkip => {
+		if ( toSkip.dataset.tabindex ) {
+			toSkip.tabIndex = toSkip.dataset.tabindex;
+		} else {
+			toSkip.removeAttribute( 'tabindex' );
+		}
+	} );
 	toggle.focus();
 }
 
@@ -183,11 +185,29 @@ function instantiate( el ) {
 		attributeFilter: [ 'data-open' ],
 	} );
 
+	const typeCanBeFocused = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+	const allFocusable = Array.from( el.querySelectorAll( typeCanBeFocused ) );
+	const allow = Array.from( content.querySelectorAll( typeCanBeFocused ) );
+	// The toggle should *always* be accessible
+	allow.unshift( toggle );
+	// Get elements that would normally be in the 'tab path' but which we want
+	// to skip when tabbing through the element
+	const skip = allFocusable.filter( potentiallySkippable => {
+		return allow.indexOf( potentiallySkippable ) === -1;
+	} );
+	const focusable = {
+		first: allow[0],
+		last: allow[allow.length - 1],
+		all: allow,
+		skip,
+	};
+
 	el.dropdown = {
 		name,
 		content,
 		toggle,
 		observer,
+		focusable,
 		handleClick,
 	};
 
@@ -207,6 +227,8 @@ function destroy( el ) {
 		el.dropdown.observer.disconnect();
 		// Remove click watcher
 		el.dropdown.toggle.removeEventListener( 'click', el.dropdown.handleClick );
+		// Remove any content modifications
+		exitContent( el );
 		// Remove all data
 		el.dropdown = null;
 	}
