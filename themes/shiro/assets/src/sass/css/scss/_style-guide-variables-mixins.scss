@@ -72,9 +72,7 @@
 	}
 
 	&:hover {
-		text-decoration-thickness: 0.5px;
-		text-decoration-offset: 2px;
-
+		text-decoration: none;
 		&::after {
 			right: rem(-5);
 		}
