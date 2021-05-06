@@ -56,16 +56,23 @@ function handleMutation( list, observer ) {
 			}
 
 			const backdrop = getBackdrop();
-			// Only modify the backdrop if it exists /and/ there are no other
-			// open dropdowns.
-			if ( backdrop && getInstances()
-				.filter( dropdown => {
-					if ( dropdown === el ) {
-						return false; // Skip *this* dropdown
-					}
-					return dropdown.dataset.open === 'true';
-				} ).length < 1 ) {
-				backdrop.dataset.dropdownBackdrop = open === 'true' ? 'active' : 'inactive';
+			/**
+			 * Track which dropdowns have opened, and close the backdrop when
+			 * there are no open dropdowns.
+			 */
+			if ( backdrop ) {
+				const activeDropdownsArray = backdrop.dataset.activeDropdowns ? backdrop.dataset.activeDropdowns.split( ' ' ) : [];
+				const activeDropdowns = new Set( activeDropdownsArray );
+				const name = el.dataset.dropdown;
+
+				if ( open === 'true' ) {
+					activeDropdowns.add( name );
+				} else {
+					activeDropdowns.delete( name );
+				}
+
+				backdrop.dataset.dropdownBackdrop = activeDropdowns.size < 1 ? 'inactive' : 'active';
+				backdrop.dataset.activeDropdowns = Array.from( activeDropdowns.values() ).join( ' ' );
 			}
 		}
 	} );
