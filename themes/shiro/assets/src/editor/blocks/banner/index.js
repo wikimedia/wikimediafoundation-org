@@ -11,8 +11,7 @@ import { __ } from '@wordpress/i18n';
 
 import Cta from '../../components/cta/index';
 import ImagePicker from '../../components/image-picker/index.js';
-import sharedStyles from '../../helpers/block-styles';
-import applyDefaultStyle from '../../helpers/default-style';
+import sharedStyles, { applyDefaultStyle } from '../../helpers/block-styles';
 import './style.scss';
 
 export const name = 'shiro/banner',
