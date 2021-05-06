@@ -139,5 +139,9 @@ body.primary-nav-is-open {
 
 	@media (min-width: $primary-nav-breakpoint) {
 		overflow-y: auto;
+
+		& [data-dropdown-backdrop][data-active-dropdowns="primary-nav"] {
+			display: none;
+		}
 	}
 }
