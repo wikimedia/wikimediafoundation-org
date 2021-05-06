@@ -71,3 +71,7 @@ $content-column-post-padded-rem: px-to-rem($content-column-post-padded);
 $box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
 
 $half-scrollbar-width: calc(var(--scrollbar, 0px) / 2);
+
+// The height of the primary nav on mobile.
+// This is a magic number!
+$primary-nav-mobile-height: 62px;
