@@ -8,6 +8,9 @@ const _dropdown = document.querySelector( dropdownSelector );
 const _toggle = document.querySelector( buttonSelector );
 const _content = document.querySelector( contentSelector );
 
+// We need to know the language picker so we can disable/close it
+const _languagePicker = document.querySelector( '[data-dropdown="language-switcher"]' );
+
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe
  */
@@ -26,6 +29,12 @@ function processEntry( entry ) {
 		 * toggled.
 		 */
 		_content.removeAttribute( 'hidden' );
+
+		/**
+		 * The language picker should also be enabled, since it can no longer
+		 * conflict with the primary nav.
+		 */
+		_languagePicker?.dropdown.toggle.removeAttribute( 'disabled' );
 	} else if ( _dropdown.dataset.open === 'false' ) {
 		/**
 		 * The toggle is visible, and the state of the dropdown is
@@ -35,6 +44,14 @@ function processEntry( entry ) {
 		 * visually and semantically to that state.
 		 */
 		_content.hidden = true;
+	} else if ( _dropdown.dataset.open === 'true' ) {
+		/**
+		 * If the primary nav is open when we transition to mobile, then we
+		 * need to make sure the language picker is disabled.
+		 */
+		if ( _languagePicker ) {
+			_languagePicker.dropdown.toggle.disabled = true;
+		}
 	}
 }
 
@@ -53,8 +70,13 @@ function handleIntersection( entries ) {
 function handleMutation( record ) {
 	if ( record.target.dataset.open === 'true' ) {
 		document.body.classList.add( 'primary-nav-is-open' );
+		if ( _languagePicker ) {
+			_languagePicker.dataset.open = 'false';
+			_languagePicker.dropdown.toggle.disabled = true;
+		}
 	} else {
 		document.body.classList.remove( 'primary-nav-is-open' );
+		_languagePicker?.dropdown.toggle.removeAttribute( 'disabled' );
 	}
 }
 

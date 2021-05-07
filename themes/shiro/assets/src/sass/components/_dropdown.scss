@@ -27,3 +27,8 @@
 	pointer-events: auto;
 	opacity: 0.6;
 }
+
+[data-dropdown-toggle][disabled] {
+	pointer-events: none;
+	opacity: 0.5;
+}
