@@ -67,10 +67,7 @@ const defaultStyle = styles.reduce( ( accumulator, current ) => {
  * @param {string} [style=] The style to be applied
  * @returns {object} A blockProps object
  */
-const applyDefaultStyle = ( blockProps, style ) => {
-	if ( ! style ) {
-		style = defaultStyle;
-	}
+const applyDefaultStyle = ( blockProps, style = defaultStyle ) => {
 
 	if ( ! blockProps.className.includes( 'is-style-' ) ) {
 		blockProps.className = `${blockProps.className} ${style}`;
