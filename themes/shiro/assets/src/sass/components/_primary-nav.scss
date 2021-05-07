@@ -143,3 +143,19 @@ body.primary-nav-is-open {
 		}
 	}
 }
+
+/**
+ * This handles a somewhat complex condition:
+ * - The admin bar is present
+ * - The viewport is < 600px wide
+ * - The user has not scrolled down
+ * In *only* this condition, the primary nav drawer needs a little tweak or
+ * will be positioned too far down the screen.
+ */
+.admin-bar .site-header:not(.site-header--pinned) + .header-inner .primary-nav__drawer {
+
+	@media (max-width: 599px) {
+		top: $primary-nav-mobile-height + 46px;
+		max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+	}
+}
