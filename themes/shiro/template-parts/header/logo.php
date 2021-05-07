@@ -5,16 +5,12 @@
  * @package shiro
  */
 
-$wmf_header_image = get_header_image();
+$wmf_header_image = get_theme_mod('wmf_site_logo');
+if (empty($wmf_header_image)) {
+	$wmf_header_image = get_stylesheet_directory_uri() . '/assets/src/svg/logo-horizontal.svg';
+}
 ?>
 
-<a href="<?php echo esc_url( get_site_url() ); ?>">
-	<span class='btn-label-a11y'><?php bloginfo('name'); ?></span>
-	<?php
-	if ( empty( $wmf_header_image ) ) :
-		wmf_show_icon( 'logo-horizontal' );
-	else :
-		?>
-		<img src="<?php echo esc_url( $wmf_header_image ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>" />
-	<?php endif; ?>
+<a href="<?php echo esc_url( get_site_url() ); ?>" class="nav-logo">
+	<img class="nav-logo__image" src="<?php echo esc_url( $wmf_header_image ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
 </a>
