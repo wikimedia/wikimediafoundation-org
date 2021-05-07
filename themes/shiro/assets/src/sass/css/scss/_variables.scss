@@ -28,26 +28,6 @@ $cta-color: #e33a72;
 $footer-gray: $wmui-color-base20;
 $color-periwinkle: #eeeaff;
 
-// Grid
-$xlarge-bp: 1400px;
-$large-bp: 1200px;
-$medium-bp: 768px;
-$medium-landscape: 1023px;
-$small-bp: 500px;
-
-/**
- * This is necessary to prevent a 1px "wide" breakpoint overlap
- * where both the menu toggle button and the "desktop" menu are
- * visible at the same time.
- */
-$primary-nav-breakpoint: $medium-landscape + 1px;
-
-/**
- * WordPress admin bar breakpoints
- */
-$admin-bar-breakpoint-sm: 601px;
-$admin-bar-breakpoint-lg: 784px;
-
 $space: 16px;
 
 // Animation
