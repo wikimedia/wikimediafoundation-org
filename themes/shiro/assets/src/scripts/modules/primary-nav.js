@@ -89,13 +89,13 @@ function handleMutation( record ) {
  * Set up the observer.
  */
 function observe() {
+	// MutationObserver
+	_dropdown.dropdown.customHandler = handleMutation;
+
 	if ( _dropdown && _toggle && _content ) {
 		// IntersectionObserver
 		_dropdown.observer = createObserver();
 		_dropdown.observer.observe( _toggle );
-
-		// MutationObserver
-		_dropdown.dropdown.customHandler = handleMutation;
 	}
 }
 
