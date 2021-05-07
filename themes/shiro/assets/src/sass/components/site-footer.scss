@@ -15,10 +15,82 @@
 	&__inner {
 		width: $content-column;
 		max-width: 100%;
+		display: flex;
+		flex-direction: column;
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
 			margin-top: rem(64);
 			margin-bottom: rem(54);
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+	}
+
+	&__description {
+		order: 10;
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			flex: 0 1 rem(553);
+		}
+
+		p {
+			line-height: 175%;
+		}
+	}
+
+	&__logo {
+		margin-bottom: rem(40);
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-bottom: rem(15);
+		}
+	}
+
+	&__callout-nav {
+		order: 20;
+		margin-top: rem(30);
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-top: 0;
+			flex: 1 1 auto;
+			display: flex;
+			justify-content: flex-end;
+		}
+
+		&__items {
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+
+			@media (min-width: #{$width-breakpoint-desktop}) {
+				justify-content: flex-end;
+			}
+		}
+
+		li {
+			margin-left: rem(16);
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		a {
+			@include style-guide-button(
+				$color-tertiary,
+				$color-tertiary--hover,
+				$color-tertiary--active,
+				$color-tertiary--focus,
+				$color-primary,
+				$border-color-base,
+			);
+
+			&:hover,
+			&:active,
+			&:focus {
+				border-color: $color-primary;
+				outline: none;
+			}
 		}
 	}
 
