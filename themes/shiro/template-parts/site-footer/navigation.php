@@ -5,7 +5,7 @@ $wmf_movement_affiliates_menu_label = get_theme_mod( 'wmf_movement_affiliates_me
 	__( 'Movement Affiliates', 'shiro' ) );
 $wmf_other_links_menu_label         = get_theme_mod( 'wmf_other_links_menu_label', __( 'Other', 'shiro' ) );
 ?>
-<div class="footer-row flex flex-medium projects-affiliation">
+<div class="site-footer__navigation">
 	<div class="w-50p">
 		<h2 class="h3"><?php echo esc_html( $wmf_projects_menu_label ); ?></h2>
 		<?php
