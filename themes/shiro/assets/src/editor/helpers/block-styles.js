@@ -11,6 +11,7 @@ import { __ } from '@wordpress/i18n';
  */
 const defaultStyle = {
 	name: 'base90',
+	className: 'is-style-base90',
 	label: __( 'Light', 'shiro' ),
 	isDefault: true,
 };
@@ -52,19 +53,6 @@ const styles = [
 ];
 
 /**
- * The default style (or an empty string if none is set).
- *
- * @type {string}
- */
-const defaultStyle = styles.reduce( ( accumulator, current ) => {
-	const { isDefault, name } = current;
-	if ( accumulator === '' && isDefault ) {
-		return `is-style-${name}`;
-	}
-	return accumulator;
-}, '' );
-
-/**
  * If no style class is applied, then add a default class.
  * The default class is the first item in the shared block-styles.js with the
  * isDefault: true.
@@ -74,7 +62,7 @@ const defaultStyle = styles.reduce( ( accumulator, current ) => {
  * @param {string} [style=] The style to be applied
  * @returns {object} A blockProps object
  */
-const applyDefaultStyle = ( blockProps, style = defaultStyle ) => {
+const applyDefaultStyle = ( blockProps, style = defaultStyle.className ) => {
 
 	if ( ! blockProps.className.includes( 'is-style-' ) ) {
 		blockProps.className = `${blockProps.className} ${style}`;
