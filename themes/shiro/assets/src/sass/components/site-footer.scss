@@ -1,0 +1,19 @@
+.site-footer {
+	background-color: $wmui-color-base20;
+	color: #fff;
+	padding: rem(20);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	&__inner {
+		width: $content-column;
+		max-width: 100%;
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-top: rem(64);
+			margin-bottom: rem(54);
+		}
+	}
+}
