@@ -7,6 +7,11 @@
 	justify-content: center;
 	width: 100%;
 
+	li {
+		list-style: none;
+		margin: 0;
+	}
+
 	&__inner {
 		width: $content-column;
 		max-width: 100%;
