@@ -4,12 +4,19 @@
 
 import { __ } from '@wordpress/i18n';
 
+/**
+ * The default style (or an empty string if none is set).
+ *
+ * @type {string}
+ */
+const defaultStyle = {
+	name: 'base90',
+	label: __( 'Light', 'shiro' ),
+	isDefault: true,
+};
+
 const styles = [
-	{
-		name: 'base90',
-		label: __( 'Light', 'shiro' ),
-		isDefault: true,
-	},
+	defaultStyle,
 	{
 		name: 'base70',
 		label: __( 'Gray', 'shiro' ),
