@@ -36,8 +36,7 @@
 		box-sizing: border-box;
 		position: fixed;
 		right: 0;
-		// Magic number alert
-		top: rem( 65 );
+		top: $primary-nav-mobile-height;
 		display: flex;
 		flex-direction: column;
 		background: #fff;
@@ -53,9 +52,29 @@
 			top: calc( 100% - 1px );
 		}
 
-		@media ( min-width: 1060px ) {
+		@media ( min-width: #{$width-breakpoint-desktop} ) {
 			left: 0;
 			right: unset;
+		}
+
+		/**
+		 * The presence--and behavior--of the WordPress admin bar means that we
+		 * need to get a little weird with some of the positiong for the open
+		 * content drawer.
+		 */
+		.admin-bar & {
+			top: $primary-nav-mobile-height + 46px;
+
+			@media ( min-width: #{$width-breakpoint-tablet} ) {
+				top: calc( 100% - 1px );
+			}
+		}
+
+		.admin-bar .site-header--pinned & {
+
+			@media (max-width: 599px) {
+				top: $primary-nav-mobile-height;
+			}
 		}
 
 		ul {
