@@ -11,32 +11,18 @@ const pinnedClass = `${siteHeaderSelector}--pinned`;
 /**
  * This is set outside of any method to 'cache' its value.
  *
- * Don't access it directly unless you need to reset it to something else
- * (i.e. you're modifying the DOM w/ JavaScript). Use its get method
- * (getSiteHeaderBar) instead.
- *
  * @type {Element}
  */
-let _siteHeaderBar = document.querySelector( `.${siteHeaderSelector}` );
-
-/**
- * Get the element that is the site header.
- *
- * @returns {Element} The element that represents the site header.
- */
-function getSiteHeaderBar() {
-	return _siteHeaderBar;
-}
+const _siteHeaderBar = document.querySelector( `.${siteHeaderSelector}` );
 
 /**
  * Handles everything this module needs to do when a scroll event happens.
  */
 function handleScroll() {
-	const el = getSiteHeaderBar();
 	if ( document.documentElement.scrollTop > 0 ) {
-		el.classList.add( pinnedClass );
+		_siteHeaderBar.classList.add( pinnedClass );
 	} else {
-		el.classList.remove( pinnedClass );
+		_siteHeaderBar.classList.remove( pinnedClass );
 	}
 }
 
@@ -55,9 +41,8 @@ function setup() {
  */
 function teardown() {
 	window.removeEventListener( 'scroll', handleScroll );
-	const el = getSiteHeaderBar();
-	if ( el ) {
-		el.classList.remove( pinnedClass );
+	if ( _siteHeaderBar ) {
+		_siteHeaderBar.classList.remove( pinnedClass );
 	}
 }
 
