@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
 import Cta from '../../components/cta';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker';
-import blockStyles from '../../helpers/block-styles';
+import blockStyles, { applyDefaultStyle } from '../../helpers/block-styles';
 import './style.scss';
 
 export const name = 'shiro/landing-page-hero';
@@ -113,7 +113,7 @@ export const settings = {
 		const blockProps = useBlockProps( { className: 'hero' } );
 
 		return (
-			<div { ...blockProps } >
+			<div { ...applyDefaultStyle( blockProps ) } >
 				<header className="hero__header">
 					<div className="hero__text-column">
 						<RichText
@@ -192,7 +192,7 @@ export const settings = {
 		const blockProps = useBlockProps.save( { className: 'hero' } );
 
 		return (
-			<div { ...blockProps }>
+			<div { ...applyDefaultStyle( blockProps ) }>
 				<header className="hero__header">
 					<div className="hero__text-column">
 						<RichText.Content
