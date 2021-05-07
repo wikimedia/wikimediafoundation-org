@@ -1,9 +1,4 @@
 .hero {
-	// Default style is the "light" (Base90) style.
-	--background-color: #{$wmui-color-base90};
-	--text-color: #{$wmui-color-base0};
-	--accent-color: #{$wmui-color-base0};
-
 	&__header {
 
 		@include alignfull-padded;
