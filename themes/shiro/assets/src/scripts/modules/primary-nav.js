@@ -22,6 +22,11 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
+	/**
+	 * The following is some shuffling that is necessary in order to allow the
+	 * behavior of the primary navigation to make sense if someone resizes
+	 * the window while the menu is open.
+	 */
 	if ( ! entry.isIntersecting ) {
 		/**
 		 * The toggle is not visible; we can reasonably conclude that
