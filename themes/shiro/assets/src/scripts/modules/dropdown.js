@@ -200,7 +200,7 @@ function instantiate( el ) {
 	// Get elements that would normally be in the 'tab path' but which we want
 	// to skip when tabbing through the element
 	const skip = allFocusable.filter( potentiallySkippable => {
-		return allow.indexOf( potentiallySkippable ) === -1;
+		return ! allow.includes( potentiallySkippable );
 	} );
 	const focusable = {
 		first: allow[0],
