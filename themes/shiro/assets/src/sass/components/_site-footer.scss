@@ -29,6 +29,9 @@
 	}
 
 	&__description {
+
+		@include has-font-size("small");
+
 		order: 10;
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
@@ -36,7 +39,7 @@
 		}
 
 		p {
-			line-height: 175%;
+			line-height: inherit;
 		}
 	}
 
@@ -79,6 +82,7 @@
 		}
 
 		a {
+
 			@include style-guide-button(
 				$color-tertiary,
 				$color-tertiary--hover,
@@ -98,13 +102,15 @@
 	}
 
 	&__navigation {
+
+		@include has-font-size("small");
 		order: 30;
 		margin-top: rem(30);
-		line-height: 175%;
-		font-size: rem(12);
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
 			margin-top: rem(48);
+			width: 100%;
+			display: flex;
 		}
 	}
 
@@ -125,6 +131,19 @@
 			margin-bottom: rem(12);
 			margin-top: rem(5);
 		}
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-right: rem(16);
+			flex: 1 1 25%;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&--footer-projects {
+				flex: 1 1 50%;
+			}
+		}
 	}
 
 	&__navmenu {
@@ -139,12 +158,16 @@
 	}
 
 	&__legal {
+
+		@include has-font-size("small");
 		order: 40;
-		line-height: 175%;
-		font-size: rem(12);
 		border-top: 1px solid $wmui-color-base30;
 		margin-top: rem(30);
 		padding-top: rem(8);
 		padding-bottom: rem(8);
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			width: 100%;
+		}
 	}
 }
