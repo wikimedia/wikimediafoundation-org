@@ -97,7 +97,44 @@
 		}
 	}
 
-	&__logo {
-		max-width: rem(145);
+	&__navigation {
+		order: 30;
+		margin-top: rem(30);
+		line-height: 175%;
+		font-size: rem(12);
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-top: rem(48);
+		}
+	}
+
+	&__navigation-section {
+		border-top: 1px solid $wmui-color-base30;
+
+		& + & {
+			margin-top: rem(30);
+
+			@media (min-width: #{$width-breakpoint-desktop}) {
+				margin-top: 0;
+			}
+		}
+
+		& > h2 {
+			font-size: inherit;
+			text-transform: uppercase;
+			margin-bottom: rem(12);
+			margin-top: rem(5);
+		}
+	}
+
+	&__navmenu {
+		.site-footer__navigation-section--footer-projects & {
+			columns: 2;
+		}
+
+		li {
+			margin-bottom: rem(10);
+			font-size: inherit;
+		}
 	}
 }
