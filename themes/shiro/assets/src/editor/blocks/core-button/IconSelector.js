@@ -42,6 +42,8 @@ const icons = [
 	'social-pinterest',
 	'social-twitter',
 	'social-twitter-blue',
+	'social-linkedin',
+	'social-linkedin-blue',
 	'social-youtube',
 	'translate',
 	'trending',
