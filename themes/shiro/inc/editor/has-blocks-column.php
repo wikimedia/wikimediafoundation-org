@@ -70,14 +70,39 @@ function add_has_blocks_filter( $post_type ) {
 }
 
 /**
+ * Determine the amount of posts per page.
+ *
+ * Copied from WordPress core
+ *
+ * @see https://github.com/WordPress/wordpress-develop/blob/5.7.1/src/wp-admin/includes/post.php#L1160-L1189
+ */
+function posts_per_page( $post_type ) {
+	$per_page       = "edit_{$post_type}_per_page";
+	$posts_per_page = (int) get_user_option( $per_page );
+	if ( empty( $posts_per_page ) || $posts_per_page < 1 ) {
+		$posts_per_page = 20;
+	}
+
+	/**
+	 * Documented in wp-admin/includes/post.php
+	 */
+	$posts_per_page = apply_filters( "edit_{$post_type}_per_page", $posts_per_page );
+
+	/**
+	 * Documented in wp-admin/includes/post.php
+	 */
+	$posts_per_page = apply_filters( 'edit_posts_per_page', $posts_per_page, $post_type );
+
+	return $posts_per_page;
+}
+
+/**
  * Filter posts table query to filter based on the has_blocks filter.
  *
  * @param \WP_Query $query The current query.
  * @return \WP_Query The potentially altered query.
  */
 function filter_on_has_blocks( $query ) {
-	global $wpdb;
-
 	$current_filter = $_GET['shiro_has_blocks_filter'] ?? '';
 
 	if ( $current_filter === '' ) {
@@ -85,6 +110,27 @@ function filter_on_has_blocks( $query ) {
 	}
 
 	$query->query_vars['has_blocks'] = $current_filter === 'has_blocks' ? 'yes' : 'no';
+
+	/*
+	 * WordPress has special handling for hierarchical post types. It tries to query
+	 * all posts to make sure it can display them hierarchically. However, when
+	 * filtering with a LIKE, we much rather have a proper LIMIT on the query.
+	 *
+	 * So reset those query vars to their proper values.
+	 *
+	 * @see https://github.com/WordPress/wordpress-develop/blob/5.7.1/src/wp-admin/includes/post.php#L1194-L1200
+	 */
+	$post_type = $query->query_vars['post_type'];
+	if (
+		! empty( $post_type ) &&
+		is_post_type_hierarchical( $post_type ) &&
+		$query->query_vars['orderby'] === 'menu_order title' &&
+		$query->query_vars['posts_per_page'] === -1
+	) {
+		$posts_per_page                              = posts_per_page( $post_type );
+		$query->query_vars['posts_per_page']         = $posts_per_page;
+		$query->query_vars['posts_per_archive_page'] = $posts_per_page;
+	}
 
 	return $query;
 }
