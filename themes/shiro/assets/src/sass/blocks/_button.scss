@@ -152,7 +152,9 @@
 		@include button-icon('open', 'individual/open', $inner-selector);
 		@include button-icon('search', 'individual/search', $inner-selector);
 		@include button-icon('social-facebook', 'individual/social-facebook', $inner-selector);
+		@include button-icon('social-facebook-blue', 'individual/social-facebook-blue', $inner-selector);
 		@include button-icon('social-instagram', 'individual/social-instagram', $inner-selector);
+		@include button-icon('social-instagram-blue', 'individual/social-instagram-blue', $inner-selector);
 		@include button-icon('social-pinterest', 'individual/social-pinterest', $inner-selector);
 		@include button-icon('social-twitter', 'individual/social-twitter', $inner-selector);
 		@include button-icon('social-twitter-blue', 'individual/social-twitter-blue', $inner-selector);

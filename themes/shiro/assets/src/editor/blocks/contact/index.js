@@ -18,7 +18,7 @@ const BLOCKS_TEMPLATE = [
 	[ 'core/buttons', {}, [
 		[ 'core/button', {
 			text: 'Facebook',
-			className: 'is-style-as-link has-icon has-icon-social-facebook',
+			className: 'is-style-as-link has-icon has-icon-social-facebook-blue',
 			linkTarget: '_blank',
 			rel: 'noreferrer noopener',
 			url: 'https://www.facebook.com/wikimediafoundation/',
@@ -32,14 +32,14 @@ const BLOCKS_TEMPLATE = [
 		} ],
 		[ 'core/button', {
 			text: 'Instagram',
-			className: 'is-style-as-link has-icon has-icon-social-instagram',
+			className: 'is-style-as-link has-icon has-icon-social-instagram-blue',
 			linkTarget: '_blank',
 			rel: 'noreferrer noopener',
 			url: 'https://www.instagram.com/wikimediafoundation/',
 		} ],
 		[ 'core/button', {
 			text: 'LinkedIn',
-			className: 'is-style-as-link has-icon has-icon-social-linkedin',
+			className: 'is-style-as-link has-icon has-icon-social-linkedin-blue',
 			linkTarget: '_blank',
 			rel: 'noreferrer noopener',
 			url: 'https://www.linkedin.com/company/wikimedia-foundation',
