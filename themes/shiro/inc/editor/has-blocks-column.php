@@ -5,6 +5,8 @@
 
 namespace WMF\Editor\HasBlockColumn;
 
+use WP_Query;
+
 /**
  * Bootstrap all hooks related to the has-block column.
  */
@@ -105,8 +107,8 @@ function posts_per_page( $post_type ) {
 /**
  * Filter posts table query to filter based on the has_blocks filter.
  *
- * @param \WP_Query $query The current query.
- * @return \WP_Query The potentially altered query.
+ * @param WP_Query $query The current query.
+ * @return WP_Query The potentially altered query.
  */
 function filter_on_has_blocks( $query ) {
 	$current_filter = $_GET['shiro_has_blocks_filter'] ?? '';
@@ -144,12 +146,12 @@ function filter_on_has_blocks( $query ) {
 /**
  * Adjust SQL query to filter by presence of blocks.
  *
- * @param string    $where
- * @param \WP_Query $query
+ * @param string   $where The current WHERE SQL clause.
+ * @param WP_Query $query The current WP_Query.
  *
- * @return string
+ * @return string The altered WHERE SQL clause.
  */
-function where_has_blocks( string $where, \WP_Query $query ) {
+function where_has_blocks( string $where, WP_Query $query ) {
 	if ( $query->get('has_blocks', false ) ) {
 		$comparison = $query->get('has_blocks', 'no' ) === 'yes' ? 'LIKE' : 'NOT LIKE';
 
@@ -167,9 +169,9 @@ QUERY,
 /**
  * Add has_blocks query vary, so `where_has_blocks()` can look for it.
  *
- * @param $vars
+ * @param array $vars
  *
- * @return mixed
+ * @return array
  */
 function add_has_blocks_query_var( $vars ) {
 	$vars[] = 'has_blocks';
