@@ -42,6 +42,12 @@ function render_column_content( $column, $post ) {
 	}
 }
 
+/**
+ * Add HTML select input for filtering on has_blocks. Has no visible filter
+ * because it needs to be displayed compact.
+ *
+ * @param string $post_type The post type we we are rendering for.
+ */
 function add_has_blocks_filter( $post_type ) {
 	if ( $post_type !== 'page' ) {
 		return;
