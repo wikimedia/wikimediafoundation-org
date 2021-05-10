@@ -13,6 +13,8 @@ function bootstrap() {
 	add_action( 'manage_page_posts_custom_column', __NAMESPACE__ . '\\render_column_content', 10, 2 );
 	add_action( 'restrict_manage_posts', __NAMESPACE__ . '\\add_has_blocks_filter' );
 	add_filter( 'parse_query', __NAMESPACE__ . '\\filter_on_has_blocks' );
+	add_filter( 'query_vars', __NAMESPACE__ . '\\add_has_blocks_query_var' );
+	add_filter( 'posts_where', __NAMESPACE__ . '\\where_has_blocks', 10, 2 );
 }
 
 /**
@@ -82,38 +84,42 @@ function filter_on_has_blocks( $query ) {
 		return $query;
 	}
 
-	$should_have_blocks = $current_filter === 'has_blocks';
-	$has_blocks_search  = '<!-- wp:';
-
-	if ( $should_have_blocks ) {
-		$result = $wpdb->get_results(
-			$wpdb->prepare(<<<QUERY
-				SELECT `ID`
-				FROM `wp_posts`
-				WHERE `post_content` LIKE '%%%s%%'
-				  AND `post_type` = 'page'
-				LIMIT 250
-QUERY,
-				$has_blocks_search
-			)
-		);
-
-		$query->query_vars['post__in'] = wp_list_pluck( $result, 'ID' );
-	} else {
-		$result = $wpdb->get_results(
-			$wpdb->prepare( <<<QUERY
-				SELECT `ID`
-				FROM `wp_posts`
-				WHERE `post_content` NOT LIKE '%%%s%%'
-				  AND `post_type` = 'page'
-				LIMIT 250
-QUERY,
-				$has_blocks_search
-			)
-		);
-
-		$query->query_vars['post__in'] = wp_list_pluck( $result, 'ID' );
-	}
+	$query->query_vars['has_blocks'] = $current_filter === 'has_blocks' ? 'yes' : 'no';
 
 	return $query;
+}
+
+/**
+ * Adjust SQL query to filter by presence of blocks.
+ *
+ * @param string    $where
+ * @param \WP_Query $query
+ *
+ * @return string
+ */
+function where_has_blocks( string $where, \WP_Query $query ) {
+	if ( $query->get('has_blocks', false ) ) {
+		$comparison = $query->get('has_blocks', 'no' ) === 'yes' ? 'LIKE' : 'NOT LIKE';
+
+		global $wpdb;
+		$where .= $wpdb->prepare( <<<QUERY
+			AND `post_content` $comparison '%%%s%%%'
+QUERY,
+			'<!-- wp:'
+		);
+	}
+
+	return $where;
+}
+
+/**
+ * Add has_blocks query vary, so `where_has_blocks()` can look for it.
+ *
+ * @param $vars
+ *
+ * @return mixed
+ */
+function add_has_blocks_query_var( $vars ) {
+	$vars[] = 'has_blocks';
+	return $vars;
 }
