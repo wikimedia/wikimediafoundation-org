@@ -137,4 +137,14 @@
 			font-size: inherit;
 		}
 	}
+
+	&__legal {
+		order: 40;
+		line-height: 175%;
+		font-size: rem(12);
+		border-top: 1px solid $wmui-color-base30;
+		margin-top: rem(30);
+		padding-top: rem(8);
+		padding-bottom: rem(8);
+	}
 }
