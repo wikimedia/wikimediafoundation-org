@@ -1,4 +1,11 @@
+@import "~sass-lib/editor-includes";
+@import "~sass-lib/_style-guide-variables-mixins.scss";
+
 .contact {
+	.call-to-action-wrapper .call-to-action.contact__call-to-action {
+		@include style-guide-arrow-link;
+		background: none;
+	}
 
 	.wp-block-button {
 		margin-top: 0;
