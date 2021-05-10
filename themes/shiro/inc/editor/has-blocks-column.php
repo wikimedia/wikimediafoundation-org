@@ -36,7 +36,7 @@ function render_column_content( $column, $post ) {
 	if ( $column === 'has_blocks' ) {
 		$has_blocks = has_blocks( $post );
 
-		$output = $has_blocks ? __( 'Yes', 'shiro' ) : 'No';
+		$output = $has_blocks ? __( 'Yes', 'shiro' ) : __( 'No', 'shiro' );
 
 		echo esc_html( $output );
 	}
@@ -52,7 +52,7 @@ function add_has_blocks_filter( $post_type ) {
 	?>
 		<label for="shiro_has_blocks_filter">
 			<span class="screen-reader-text">
-				<?php esc_html_e( 'Has blocks filter', 'shiro' ); ?>
+				<?php esc_html_e( 'Filter by whether the page has blocks', 'shiro' ); ?>
 			</span>
 			<select id="shiro_has_blocks_filter" name="shiro_has_blocks_filter">
 				<option value=""<?php selected( '', $current_filter ); ?>>
