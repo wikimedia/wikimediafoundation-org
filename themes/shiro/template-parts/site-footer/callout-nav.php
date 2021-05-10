@@ -1,4 +1,9 @@
 <?php
+/**
+ * Display the a selection of highlighted links.
+ *
+ * @package shiro
+ */
 
 if ( has_nav_menu( 'footer-under-text' ) ) {
 	wp_nav_menu(

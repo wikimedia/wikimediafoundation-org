@@ -43,7 +43,7 @@ $wmf_blackout_modal_cookie_expiration = get_theme_mod( 'wmf_blackout_modal_cooki
 	<!-- /Blackout Modal -->
 <?php endif; ?>
 
-<?php get_template_part('template-parts/site-footer/wrapper'); ?>
+<?php get_template_part('template-parts/site-footer/wrapper') ?>
 
 <?php wp_footer(); ?>
 
