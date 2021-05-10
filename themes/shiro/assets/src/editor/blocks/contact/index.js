@@ -90,16 +90,6 @@ export const name = 'shiro/contact',
 				socialTitle,
 			} = attributes;
 
-			/*
-			<RichText
-											keepPlaceholderOnFocus
-											placeholder={ __( 'Write secondary heading', 'shiro' ) }
-											tagName="span"
-											value={ siteLanguageHeading.text }
-											onChange={ partial( setHeadingAttribute, 'text', siteLanguageIndex ) }
-											onFocus={ () => setActiveHeading( null ) }
-										/>
-			 */
 			return ( <div { ...blockProps }>
 				<svg className="i icon icon-mail">
 					<use xlinkHref={ iconUrl } />
