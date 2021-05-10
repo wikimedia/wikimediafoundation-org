@@ -1,6 +1,6 @@
 <?php
 /**
- * Display the a selection of highlighted links.
+ * Display a selection of highlighted links.
  *
  * @package shiro
  */
