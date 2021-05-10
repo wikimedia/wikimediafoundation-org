@@ -17,6 +17,8 @@
 		max-width: 100%;
 		display: flex;
 		flex-direction: column;
+		margin-top: rem(20);
+		margin-bottom: rem(20);
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
 			margin-top: rem(64);
