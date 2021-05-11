@@ -45,27 +45,24 @@ while ( have_posts() ) {
 
 	<article class="mw-784 wysiwyg">
 		<?php the_content(); ?>
+
+		<?php
+			if ( ! $has_social_share ) {
+				echo \WMF\Editor\Blocks\ShareArticle\render_block( [
+					'enableTwitter'  => true,
+					'enableFacebook' => true,
+				] );
+			}
+
+			if ( ! $has_social_share && ! $has_read_more_categories ) { ?>
+				<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
+			<?php }
+
+			if ( ! $has_read_more_categories ) {
+				echo \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] );
+			}
+		?>
 	</article>
-
-	<?php if ( ! $has_read_more_categories || ! $has_social_share ) : ?>
-		<div class="article-footer mw-980 mod-margin-bottom">
-			<?php if ( ! $has_read_more_categories ) : ?>
-				<?php get_template_part( 'template-parts/post-categories' ); ?>
-			<?php endif; ?>
-
-			<?php
-				if ( ! $has_social_share ) {
-					get_template_part(
-						'template-parts/modules/social/share',
-						'horizontal',
-						array(
-							'services' => get_post_meta( get_the_ID(), 'share_links', true ),
-						)
-					);
-				}
-			?>
-		</div>
-	<?php endif; ?>
 
 	<?php
 }
