@@ -1,3 +1,6 @@
+@import "~sass-lib/editor-includes";
+@import "~sass-lib/_style-guide-variables-mixins.scss";
+
 .wp-block-shiro-stair {
 	.wp-block-shiro__image-preview {
 		width: 314px;
@@ -8,5 +11,10 @@
 		width: 314px;
 		height: 192px;
 		background: rgba(0, 0, 0, 0.05);
+	}
+
+	.call-to-action-wrapper .call-to-action.stair__read-more {
+		@include style-guide-arrow-link;
+		background: none;
 	}
 }
