@@ -67,16 +67,23 @@ while ( have_posts() ) {
 	<?php
 }
 
+$has_blog_list = has_block( 'shiro/blog-list' );
+$has_connect   = has_block( 'shiro/mailchimp-subscribe' ) || has_block( 'shiro/contact' );
+
 $modules = array(
 	'profile',
 	'offsite-links',
 	'cta',
-	'related-posts',
+	$has_blog_list ? false : 'related-posts',
 	'support',
-	'connect',
+	$has_connect ? false : 'connect',
 );
 
 foreach ( $modules as $module ) {
+	if ( ! $module ) {
+		continue;
+	}
+
 	get_template_part( 'template-parts/page/page', $module );
 }
 get_footer();
