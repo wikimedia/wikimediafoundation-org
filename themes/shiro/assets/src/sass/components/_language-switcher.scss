@@ -57,6 +57,10 @@
 			right: unset;
 		}
 
+		&[hidden] {
+			display: none;
+		}
+
 		/**
 		 * The presence--and behavior--of the WordPress admin bar means that we
 		 * need to get a little weird with some of the positiong for the open

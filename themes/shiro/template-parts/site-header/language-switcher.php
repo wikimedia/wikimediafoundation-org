@@ -20,14 +20,14 @@ $current       = array_reduce( $translations, function ( $carry, $item ) {
 }, null );
 
 if ( ! empty( $translations ) ) : ?>
-	<div class="language-switcher" data-dropdown="language-switcher" data-open="false">
-		<button class="language-switcher__button" data-dropdown-toggle="language-switcher"
-				aria-expanded="false">
+	<div class="language-switcher" data-dropdown="language-switcher" data-dropdown-toggle=".language-switcher__button" data-dropdown-content=".language-switcher__content"
+		 data-visible="no" data-trap="inactive" data-backdrop="inactive" data-toggleable="yes">
+		<button class="language-switcher__button" aria-expanded="false">
 			<span class="btn-label-a11y"><?php echo esc_html( $current_label ); ?> </span>
 			<?php wmf_show_icon( 'translate', 'language-switcher__icon' ); ?>
 			<span class="language-switcher__label"><?php echo $current; ?></span>
 		</button>
-		<div data-dropdown-content="language-switcher" class="language-switcher__content" hidden>
+		<div class="language-switcher__content" hidden>
 			<ul>
 				<?php foreach ( $translations as $translation ) : ?>
 					<li class="language-switcher__language <?php echo $translation['selected'] ? 'language-switcher__language--selected' : '' ?>">

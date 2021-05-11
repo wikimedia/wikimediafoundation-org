@@ -32,7 +32,7 @@ $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Se
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
 <div class="mobile-cover"></div>
 <div id="page" class="site">
-	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" data-dropdown="primary-nav" data-open="false">
+	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" data-dropdown="primary-nav" data-dropdown-content=".primary-nav__drawer" data-dropdown-toggle=".primary-nav-toggle" data-toggleable="yes" data-trap="inactive" data-backdrop="inactive" data-visible="false">
 		<?php get_template_part('template-parts/site-header/wrapper' ); ?>
 		<div class="header-inner mw-980">
 			<?php get_template_part( 'template-parts/site-navigation/wrapper' ); ?>

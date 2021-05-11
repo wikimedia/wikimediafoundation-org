@@ -24,7 +24,7 @@
 		 * benefit, hence this "backwards" query.
 		 */
 		@media ( max-width: $medium-landscape ) {
-			[data-open="true"] & {
+			[data-visible="yes"] & {
 				--full-window-height: calc(var(--vh, 1vh) * 100);
 				display: block;
 				padding: 1.5rem;
@@ -132,7 +132,7 @@
 /**
  * This prevents users from inadvertently scrolling the site when the nav is open.
  */
-body.primary-nav-is-open {
+body.disable-body-scrolling {
 	overflow-y: hidden;
 
 	@media (min-width: $primary-nav-breakpoint) {

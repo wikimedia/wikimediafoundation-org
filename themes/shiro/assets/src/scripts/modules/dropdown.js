@@ -1,95 +1,197 @@
-import initialize from '../util/initialize';
-
 /**
- * These are set outside of any method to 'cache' their values.
- *
- * Don't access these directly unless you need to reset them to something else
- * (i.e. you're modifying the DOM w/ JavaScript). Use their get methods
- * (getBackdrop and getInstances) instead.
  *
  * @type {Element}
+ * @private
  */
-let _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
-let _instances = [ ...document.querySelectorAll( '[data-dropdown]' ) ];
+const _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
+/**
+ *
+ * @type {Element[]}
+ * @private
+ */
+const _instances = [ ...document.querySelectorAll( '[data-dropdown]' ) ];
 
 /**
- * Get an array of all elements that seem to be dropdowns.
  *
- * @returns {Element[]} All the potential dropdowns in this document.
+ * @type {MutationObserverInit}
  */
-function getInstances() {
-	return _instances;
+const mutationObserverOptions = {
+	attributeFilter: [
+		'data-visible', // 'yes'/'no'
+		'data-backdrop', // 'active'/'inactive'
+		'data-trap', // 'active'/'inactive'
+		'data-toggleable', // 'yes'/'no'
+	],
+	attributeOldValue: true,
+};
+
+/**
+ *
+ * @param {MutationRecord} record
+ */
+function processMutationRecord( record ) {
+	const { target } = record;
+
+	if ( ! target.dropdown ) {
+		// This isn't an actual dropdown
+		return;
+	}
+
+	const {
+		visibleChange,
+		backdropChange,
+		trapChange,
+		toggleableChange,
+	} = target.dropdown.handlers;
+
+	switch ( record.attributeName ) {
+		case 'data-visible':
+			visibleChange( record );
+			break;
+		case 'data-backdrop':
+			backdropChange( record );
+			break;
+		case 'data-trap':
+			trapChange( record );
+			break;
+		case 'data-toggleable':
+			toggleableChange( record );
+			break;
+		default:
+			break;
+	}
 }
 
 /**
- * Change content classes when dropdown state changes.
  *
- * @param {MutationRecord[]} list List of MutationRecords
- * @param {MutationObserver} observer The MutationObserver instance
- *
- * @returns {void}
+ * @param {MutationRecord[]} list
+ * @param {MutationObserver} observer
  */
 function handleMutation( list, observer ) {
-	list.forEach( r => {
-		if ( r.attributeName === 'data-open' ) {
-			const el = r.target;
-			const open = el.dataset.open;
-			const { content, toggle, customHandler } = el.dropdown;
-			// Set visibility of content
-			content.hidden = open !== 'true';
-
-			// Set aria attributes
-			toggle.setAttribute( 'aria-expanded', open );
-
-			// Capture or release tab
-			if ( open === 'true' ) {
-				enterContent( el );
-			} else {
-				exitContent( el );
-			}
-
-			/**
-			 * Make it easier to hook custom code into the observer.
-			 */
-			if ( customHandler ) {
-				customHandler( r );
-			}
-
-			const backdrop = getBackdrop();
-			/**
-			 * Track which dropdowns have opened, and close the backdrop when
-			 * there are no open dropdowns.
-			 */
-			if ( backdrop ) {
-				const activeDropdownsArray = backdrop.dataset.activeDropdowns ? backdrop.dataset.activeDropdowns.split( ' ' ) : [];
-				const activeDropdowns = new Set( activeDropdownsArray );
-				const name = el.dataset.dropdown;
-
-				if ( open === 'true' ) {
-					activeDropdowns.add( name );
-				} else {
-					activeDropdowns.delete( name );
-				}
-
-				backdrop.dataset.dropdownBackdrop = activeDropdowns.size < 1 ? 'inactive' : 'active';
-				backdrop.dataset.activeDropdowns = Array.from( activeDropdowns.values() ).join( ' ' );
-			}
-		}
-	} );
+	list.forEach( processMutationRecord );
 }
 
 /**
- * Returns a function suitable for attachment to the 'keydown' event.
  *
- * @param {Element} el The dropdown wrapper
- * @returns {Function} The function to attach
+ * @param {Element} element
  */
-function keywatcher( el ) {
+function observeMutations( element ) {
+	const observer = new MutationObserver( handleMutation );
+	observer.observe( element, mutationObserverOptions );
+	return observer;
+}
+
+/**
+ *
+ * @param {MutationRecord} record
+ */
+function handleVisibleChange( record ) {
+	const el = record.target;
+	const { content: contentElement, toggle: toggleElement } = el.dropdown;
+	const { toggleable, visible } = el.dataset;
+	const contentIsVisible = visible === 'yes';
+
+	// Handle content visibility
+	if ( contentIsVisible ) {
+		contentElement.removeAttribute( 'hidden' );
+	} else {
+		contentElement.hidden = true;
+	}
+
+	// Handle toggle aria
+	if ( toggleable === 'yes' ) {
+		toggleElement.setAttribute(
+			'aria-expanded',
+			contentIsVisible ? 'true' : 'false'
+		);
+	}
+
+	// Handle tab trap
+	if ( contentIsVisible && toggleable === 'yes' ) {
+		el.dataset.trap = 'active';
+	} else {
+		el.dataset.trap = 'inactive';
+	}
+
+	// Handle backdrop change
+	el.dataset.backdrop = contentIsVisible && toggleable === 'yes' ? 'active' : 'inactive';
+}
+
+/**
+ *
+ * @param {MutationRecord} record
+ */
+function handleBackdropChange( record ) {
+	if ( ! _backdrop ) {
+		return;
+	}
+
+	const activeDropdowns = _instances
+		.filter( instance => instance.dataset.backdrop === 'active' )
+		.map( instance => instance.dataset.dropdown );
+
+	_backdrop.dataset.activeDropdowns = activeDropdowns.join( ' ' );
+	_backdrop.dataset.dropdownBackdrop =
+		activeDropdowns.length < 1 ? 'inactive' : 'active';
+}
+
+/**
+ *
+ * @param {MutationRecord} record
+ */
+function handleTrapChange( record ) {
+	const el = record.target;
+	if ( el.dataset.trap === 'active' ) {
+		el.addEventListener( 'keydown', el.dropdown.handlers.keydown );
+	} else {
+		el.removeEventListener( 'keydown', el.dropdown.handlers.keydown );
+	}
+}
+
+/**
+ *
+ * @param {MutationRecord} record
+ */
+function handleToggleableChange( record ) {
+	const el = record.target;
+	if ( el.dataset.toggleable === 'no' ) {
+		el.dropdown.toggle.disabled = true;
+		// If the dropdown can't be toggled, we should always show it
+		el.dataset.visible = 'yes';
+	} else {
+		el.dropdown.toggle.removeAttribute( 'disabled' );
+	}
+}
+
+/**
+ * Close all dropdowns with an active backdrop.
+ */
+function handleBackdropClick() {
+	_instances
+		.filter( instance => instance.dataset.backdrop === 'active' )
+		.map( instance => ( instance.dataset.visible = 'no' ) );
+}
+
+/**
+ *
+ * @param {Element} wrapper
+ * @return {Function}
+ */
+function buildHandleToggleClick( wrapper ) {
 	return e => {
-		const {
-			first,
-			last,
-		} = el.dropdown.focusable;
+		wrapper.dataset.visible =
+			wrapper.dataset.visible === 'yes' ? 'no' : 'yes';
+	};
+}
+
+/**
+ *
+ * @param {Element} wrapper
+ * @return {(function(*): void)|*}
+ */
+function buildHandleKeydown( wrapper ) {
+	return e => {
+		const { first, last } = wrapper.dropdown.focusable;
 		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 		let isEscPressed = e.key === 'Escape' || e.keyCode === 27;
 
@@ -98,17 +200,20 @@ function keywatcher( el ) {
 		}
 
 		if ( isEscPressed ) {
-			el.dataset.open = 'false';
+			wrapper.dataset.visible = 'no';
 			return;
 		}
 
-		if ( e.shiftKey ) { // if shift key pressed for shift + tab combination
+		if ( e.shiftKey ) {
+			// if shift key pressed for shift + tab combination
 			if ( document.activeElement === first ) {
 				last.focus(); // add focus for the last focusable element
 				e.preventDefault();
 			}
-		} else { // if tab key is pressed
-			if ( document.activeElement === last ) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+		} else {
+			// if tab key is pressed
+			if ( document.activeElement === last ) {
+				// if focused has reached to last focusable element then focus first focusable element after pressing tab
 				first.focus(); // add focus for the first focusable element
 				e.preventDefault();
 			}
@@ -117,196 +222,73 @@ function keywatcher( el ) {
 }
 
 /**
- * Adds special "in-dropdown" accessibility logic and moves focus to first focusable element in content.
  *
- * @param {Element} el The dropdown wrapper
+ * @param {Element} wrapper
+ * @return {array}
  */
-function enterContent( el ) {
-	const { skip, all } = el.dropdown.focusable;
-	/**
-	 * To prevent tabbing to elements in the 'tab path' that we don't want to
-	 * be accessible when the dropdown is open, we temporarily set their
-	 * tabindex to -1. This is later reverted by `exitContent()`.
-	 */
-	skip.forEach( toSkip => {
-		if ( toSkip.tabIndex ) {
-			toSkip.dataset.tabindex = toSkip.tabIndex;
-		}
-		toSkip.tabIndex = -1;
-	} );
-	document.addEventListener( 'keydown', keywatcher( el ) );
-	// Focus the first element, not the toggle
-	all[1].focus();
+function getFocusable( wrapper ) {
+	return Array.from(
+		wrapper.querySelectorAll(
+			'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+		)
+	);
 }
 
 /**
- * Removes special "in-dropdown" accessibility logic and returns focus to toggle.
  *
- * @param  {Element} el The dropdown wrapper
+ * @param {HTMLElement} element
  */
-function exitContent( el ) {
-	const { toggle } = el.dropdown;
-	const { skip } = el.dropdown.focusable;
-	document.removeEventListener( 'keydown', keywatcher( el ) );
-	/**
-	 * Resets (or removes) and tabindex that were modified by
-	 * `enterContent()` to remove them from the 'tab path'.
-	 */
-	skip.forEach( toSkip => {
-		if ( toSkip.dataset.tabindex ) {
-			toSkip.tabIndex = toSkip.dataset.tabindex;
-		} else {
-			toSkip.removeAttribute( 'tabindex' );
-		}
-	} );
-	toggle.focus();
-}
+function initializeDropdown( element ) {
+	const { dropdownContent, dropdownToggle } = element.dataset;
 
-/**
- * Add dropdown functionality to a specific element.
- *
- * The dropdown wrapper is considered the single source of truth for the
- * content and toggle it contains. If you want to know or change the state of
- * the dropdown, look at this element.
- *
- * @param {Element} el The element to upgrade and instantiate.
- *
- * @returns {Element} Upgraded and instantiated element.
- */
-function instantiate( el ) {
-	const name = el.dataset.dropdown;
-	const content = el.querySelector( `[data-dropdown-content='${name}']` );
-	const toggle = document.querySelector( `[data-dropdown-toggle='${name}']` );
+	const content = element.querySelector( dropdownContent );
+	const toggle = element.querySelector( dropdownToggle );
+	const observer = observeMutations( element );
+	const focusable = getFocusable( element );
 
-	/**
-	 * Swap content state when click happens.
-	 */
-	const handleClick = () => {
-		el.dataset.open = el.dataset.open === 'true' ? 'false': 'true';
-	};
+	// Toggle should always be first focusable item
+	if ( focusable[ 0 ] !== toggle ) {
+		focusable.unshift( toggle );
+	}
 
-	toggle.addEventListener( 'click', handleClick );
-
-	const observer = new MutationObserver( handleMutation );
-	observer.observe( el, {
-		attributeFilter: [ 'data-open' ],
-	} );
-
-	const typeCanBeFocused = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
-	const allFocusable = Array.from( el.querySelectorAll( typeCanBeFocused ) );
-	const allow = Array.from( content.querySelectorAll( typeCanBeFocused ) );
-	// The toggle should *always* be accessible
-	allow.unshift( toggle );
-	// Get elements that would normally be in the 'tab path' but which we want
-	// to skip when tabbing through the element
-	const skip = allFocusable.filter( potentiallySkippable => {
-		return ! allow.includes( potentiallySkippable );
-	} );
-	const focusable = {
-		first: allow[0],
-		last: allow[allow.length - 1],
-		all: allow,
-		skip,
-	};
-
-	el.dropdown = {
-		name,
+	element.dropdown = {
 		content,
 		toggle,
 		observer,
-		focusable,
-		handleClick,
+		focusable: {
+			first: focusable[ 0 ],
+			last: focusable[ focusable.length - 1 ],
+			all: focusable,
+		},
+		handlers: {
+			backdropChange: handleBackdropChange,
+			toggleableChange: handleToggleableChange,
+			trapChange: handleTrapChange,
+			visibleChange: handleVisibleChange,
+			keydown: buildHandleKeydown( element ),
+			toggleClick: buildHandleToggleClick( element ),
+		},
 	};
 
-	return el;
-}
-
-/**
- * Remove the dropdown functionality from a specific element.
- *
- * @param {Element} el The element to remove dropdown functionality from
- *
- * @returns {Element} The element, with dropdown functionality removed
- */
-function destroy( el ) {
-	if ( el.dropdown ) {
-		// Stop watching mutations
-		el.dropdown.observer.disconnect();
-		// Remove click watcher
-		el.dropdown.toggle.removeEventListener( 'click', el.dropdown.handleClick );
-		// Remove any content modifications
-		exitContent( el );
-		// Remove all data
-		el.dropdown = null;
-	}
-
-	return el;
-}
-
-/**
- * Returns the backdrop element.
- *
- * This will only ever return one, even if multiple backdrops exist in the HTML.
- *
- * @returns {Element} Backdrop element (if found)
- */
-function getBackdrop() {
-	return _backdrop;
-}
-
-/**
- * Handles clicks on the backdrop.
- */
-function handleBackdropClick() {
-	getInstances().forEach( dropdown => {
-		dropdown.dataset.open = 'false';
-	} );
-}
-
-/**
- * Sets up the backdrop, which closes all active dropdowns when clicked.
- *
- * If it can't find any backdrops, this fails quietly.
- */
-function initializeBackdrop() {
-	const backdrop = getBackdrop();
-	if ( backdrop ) {
-		backdrop.addEventListener( 'click', handleBackdropClick );
+	toggle.addEventListener( 'click', element.dropdown.handlers.toggleClick );
+	if ( _backdrop ) {
+		_backdrop.addEventListener( 'click', handleBackdropClick );
 	}
 }
 
 /**
- * Set up all dropdowns on the page.
  *
- * @returns {void}
  */
 function setup() {
-	getInstances().map( instantiate );
-	initializeBackdrop();
+	_instances.map( initializeDropdown );
 }
 
-/**
- * Remove functionality from all dropdowns on page.
- *
- * @returns {void}
- */
-function teardown() {
-	getInstances().map( destroy );
-	const backdrop = getBackdrop();
-	if ( backdrop ) {
-		backdrop.removeEventListener( 'click', handleBackdropClick );
-		// Probably don't want it left open
-		backdrop.dataset.dropdownBackdrop = 'inactive';
-	}
-}
-
-export default initialize( setup, teardown );
-
+export default setup;
 export {
-	teardown,
-	setup,
-	getBackdrop,
-	getInstances,
-	exitContent,
-	enterContent,
+	_backdrop as backdrop,
+	_instances as instances,
+	handleTrapChange,
+	handleVisibleChange,
+	handleToggleableChange,
+	handleBackdropChange,
 };
