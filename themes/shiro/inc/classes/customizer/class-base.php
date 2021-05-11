@@ -90,6 +90,7 @@ abstract class Base {
 function load_customizer_classes() {
 	// Add customizer class name to list to instantiate.
 	$customizers = array(
+		'Identity',
 		'Connect',
 		'General',
 		'Header',

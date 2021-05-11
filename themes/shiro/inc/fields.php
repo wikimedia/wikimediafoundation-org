@@ -5,6 +5,8 @@
  * @package shiro
  */
 
+use function WMF\Editor\admin_post_has_blocks;
+
 /**
  * Verify a template is being used on the backend.
  *
@@ -266,25 +268,28 @@ function wmf_get_categories_options() {
 	return $category_list;
 }
 
-require get_template_directory() . '/inc/fields/button.php';
-require get_template_directory() . '/inc/fields/common.php';
-require get_template_directory() . '/inc/fields/connect.php';
-require get_template_directory() . '/inc/fields/datapage.php';
-require get_template_directory() . '/inc/fields/default.php';
-require get_template_directory() . '/inc/fields/header.php';
-require get_template_directory() . '/inc/fields/home.php';
-require get_template_directory() . '/inc/fields/intro.php';
-require get_template_directory() . '/inc/fields/landing.php';
-require get_template_directory() . '/inc/fields/links.php';
-require get_template_directory() . '/inc/fields/list.php';
-require get_template_directory() . '/inc/fields/listing.php';
-require get_template_directory() . '/inc/fields/media.php';
-require get_template_directory() . '/inc/fields/page-cta.php';
-require get_template_directory() . '/inc/fields/post.php';
-require get_template_directory() . '/inc/fields/posts-page.php';
-require get_template_directory() . '/inc/fields/profile.php';
-require get_template_directory() . '/inc/fields/profiles.php';
-require get_template_directory() . '/inc/fields/projects.php';
-require get_template_directory() . '/inc/fields/related-pages.php';
-require get_template_directory() . '/inc/fields/stories.php';
-require get_template_directory() . '/inc/fields/support.php';
+// As soon as a post has blocks we should no longer register these fields.
+// Registering these fields would generate confusion.
+if ( ! admin_post_has_blocks() ) {
+	require get_template_directory() . '/inc/fields/button.php';
+	require get_template_directory() . '/inc/fields/common.php';
+	require get_template_directory() . '/inc/fields/connect.php';
+	require get_template_directory() . '/inc/fields/datapage.php';
+	require get_template_directory() . '/inc/fields/default.php';
+	require get_template_directory() . '/inc/fields/header.php';
+	require get_template_directory() . '/inc/fields/home.php';
+	require get_template_directory() . '/inc/fields/landing.php';
+	require get_template_directory() . '/inc/fields/links.php';
+	require get_template_directory() . '/inc/fields/list.php';
+	require get_template_directory() . '/inc/fields/listing.php';
+	require get_template_directory() . '/inc/fields/media.php';
+	require get_template_directory() . '/inc/fields/page-cta.php';
+	require get_template_directory() . '/inc/fields/post.php';
+	require get_template_directory() . '/inc/fields/posts-page.php';
+	require get_template_directory() . '/inc/fields/profile.php';
+	require get_template_directory() . '/inc/fields/profiles.php';
+	require get_template_directory() . '/inc/fields/projects.php';
+	require get_template_directory() . '/inc/fields/related-pages.php';
+	require get_template_directory() . '/inc/fields/stories.php';
+	require get_template_directory() . '/inc/fields/support.php';
+}
