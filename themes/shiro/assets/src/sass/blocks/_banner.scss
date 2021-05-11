@@ -34,16 +34,6 @@
 		bottom: 0;
 		height: 100%;
 		width: 100%;
-
-		@include target-ie {
-			left: 50%;
-			height: auto;
-			min-height: 100%;
-			min-width: 100%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			width: auto;
-		}
 	}
 
 	&__image-wrapper {
@@ -73,14 +63,7 @@
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		flex-direction: row;
 		justify-content: space-between;
-		min-height: rem(200);
-
-		@include target-ie {
-			&__content,
-			&__image-wrapper {
-				min-height: rem(200);
-			}
-		}
+		min-height: 200px;
 
 		&__content {
 			width: 66.666%;

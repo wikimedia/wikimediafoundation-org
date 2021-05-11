@@ -290,9 +290,3 @@ $content-wrapper: ".wysiwyg" !default;
 		}
 	}
 }
-
-@mixin target-ie {
-	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-		@content;
-	}
-}
