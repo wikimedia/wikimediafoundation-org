@@ -138,6 +138,9 @@ function filter_on_has_blocks( $query ) {
 		$posts_per_page                              = posts_per_page( $post_type );
 		$query->query_vars['posts_per_page']         = $posts_per_page;
 		$query->query_vars['posts_per_archive_page'] = $posts_per_page;
+
+		// Set this to force WordPress to use non-hierarchical display
+		$query->query['orderby'] = 'title';
 	}
 
 	return $query;
