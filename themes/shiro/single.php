@@ -32,6 +32,9 @@ while ( have_posts() ) {
 			'inner_image' => get_post_thumbnail_id(),
 		)
 	);
+
+	$has_read_more_categories = has_block( 'shiro/read-more-categories' );
+	$has_social_share         = has_block( 'shiro/share-article' );
 	?>
 
 	<?php if ( ! empty( $intro ) ) : ?>
@@ -45,19 +48,25 @@ while ( have_posts() ) {
 		<?php the_content(); ?>
 	</article>
 
-	<div class="article-footer mw-980 mod-margin-bottom">
-		<?php get_template_part( 'template-parts/post-categories' ); ?>
+	<?php if ( ! $has_read_more_categories || ! $has_social_share ) : ?>
+		<div class="article-footer mw-980 mod-margin-bottom">
+			<?php if ( ! $has_read_more_categories ) : ?>
+				<?php get_template_part( 'template-parts/post-categories' ); ?>
+			<?php endif; ?>
 
-		<?php
-		get_template_part(
-			'template-parts/modules/social/share',
-			'horizontal',
-			array(
-				'services' => get_post_meta( get_the_ID(), 'share_links', true ),
-			)
-		);
-		?>
-	</div>
+			<?php
+				if ( ! $has_social_share ) {
+					get_template_part(
+						'template-parts/modules/social/share',
+						'horizontal',
+						array(
+							'services' => get_post_meta( get_the_ID(), 'share_links', true ),
+						)
+					);
+				}
+			?>
+		</div>
+	<?php endif; ?>
 
 	<?php
 }
