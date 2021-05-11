@@ -219,7 +219,7 @@ class General extends Base {
 				'panel'    => $panel_id,
 			)
 		);
-        
+
         $control_id = 'wmf_search_results_copy';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -233,7 +233,7 @@ class General extends Base {
 				'type'    => 'text',
 			)
 		);
-        
+
         $control_id = 'wmf_no_results_title';
 		$this->customize->add_setting(
 			$control_id, array(
@@ -349,7 +349,7 @@ class General extends Base {
 				'panel'    => $panel_id,
 			)
 		);
-        
+
         $control_id = 'wmf_search_toggle';
 		$this->customize->add_setting(
 			$control_id, array(

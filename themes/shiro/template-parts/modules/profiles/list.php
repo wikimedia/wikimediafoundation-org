@@ -44,6 +44,13 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 				$team_name = $team[0]->name;
 			}
 
+			/**
+			 * Get the permalink, but check to see if it's a broken url pattern.
+			 * For some reason, these permalink urls are being rewritten to the
+			 * home/profile pattern, which is not a valid URL (or the permalink).
+			 *
+			 * See https://github.com/humanmade/wikimedia/issues/146
+			 */
 			$profile_link = get_the_permalink( $profile_id );
 			$profile_base = home_url( 'profile/' );
 			if ( $profile_link === $profile_base ) {
