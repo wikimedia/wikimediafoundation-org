@@ -44,7 +44,6 @@ while ( have_posts() ) {
 	<?php endif; ?>
 
 	<article class="mw-784 wysiwyg">
-		<?php get_template_part( 'template-parts/header/social-aside' ); ?>
 		<?php the_content(); ?>
 	</article>
 
