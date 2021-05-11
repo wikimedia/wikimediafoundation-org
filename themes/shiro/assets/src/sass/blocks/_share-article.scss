@@ -30,4 +30,8 @@
 		fill: $color-primary;
 		transition: 0.3s transform;
 	}
+
+	.header-main & {
+		margin-top: rem(16);
+	}
 }
