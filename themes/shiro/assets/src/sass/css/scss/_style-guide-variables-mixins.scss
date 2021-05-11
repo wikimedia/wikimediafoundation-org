@@ -56,27 +56,22 @@
 
 	@include has-font-size( "default" );
 	@include style-guide-link;
-	display: inline-block;
+	display: inline-flex;
 	font-weight: 700;
 	position: relative;
-	// This reflects one en space plus the width of the arrow (1em).
-	padding-right: 1.5em; /*rtl: padding-left: 1.5em)*/
 
 	&::after {
 		@include style-guide-arrow-content;
 		color: $wmui-color-accent50;
 		color: var(--link-color);
-		position: absolute;
-		right: 0; /*rtl: left: 0;*/
-		transition: 300ms ease-in right;
+		margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
+		transition: 300ms ease-in transform;
 	}
 
 	&:hover {
-		text-decoration-thickness: 0.5px;
-		text-decoration-offset: 2px;
-
+		text-decoration: none;
 		&::after {
-			right: rem(-5);
+			transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
 		}
 	}
 }

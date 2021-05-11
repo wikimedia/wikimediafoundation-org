@@ -37,7 +37,7 @@
 
 	&__read-more {
 		display: inline-block;
-		font-size: 1.125rem;
+		@include style-guide-arrow-link;
 		margin-left: 18px;
 		padding: 0 1.25em;
 		margin-bottom: 1rem;
