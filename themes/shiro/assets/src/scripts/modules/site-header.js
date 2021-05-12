@@ -104,9 +104,9 @@ function handleLanguagePickerVisibleChange( record ) {
 }
 
 /**
- * Set up the observer.
+ * Set up the site header.
  */
-function observe() {
+function initializeSiteHeader() {
 	if ( _primaryNav ) {
 		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
 		_primaryNav.observer = createObserver();
@@ -119,9 +119,9 @@ function observe() {
 }
 
 /**
- * Remove the observer.
+ * Tear down the site header.
  */
-function unobserve() {
+function teardownSiteHeader() {
 	if ( _primaryNav && _primaryNav.observer ) {
 		_primaryNav.observer.disconnect();
 	}
@@ -132,14 +132,14 @@ function unobserve() {
  * Set up functionality for this module.
  */
 function setup() {
-	observe();
+	initializeSiteHeader();
 }
 
 /**
  * Tear down functionality and side-effects of this module.
  */
 function teardown() {
-	unobserve();
+	teardownSiteHeader();
 }
 
 export default initialize( setup, teardown );
