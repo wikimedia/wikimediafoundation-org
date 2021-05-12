@@ -165,8 +165,10 @@ function handleBackdropChange( record ) {
 function handleTrapChange( record ) {
 	const el = record.target;
 	if ( el.dataset.trap === 'active' ) {
+		activateTabSkip( el );
 		el.addEventListener( 'keydown', el.dropdown.handlers.keydown );
 	} else {
+		deactivateTabSkip( el );
 		el.removeEventListener( 'keydown', el.dropdown.handlers.keydown );
 	}
 }
@@ -294,6 +296,55 @@ function calculateFocusableElements( all, skip = [] ) {
 		allowed,
 		skip,
 	};
+}
+
+/**
+ * Remove an element from the tab order.
+ *
+ * @param {HTMLElement} element The element
+ */
+function setSkipElement( element ) {
+	if ( element.hasAttribute( 'tabindex' ) ) {
+		element.dataset.tabindex = element.tabindex;
+	}
+	element.tabindex = -1;
+}
+
+/**
+ * Return an element to the tab order.
+ *
+ * @param {HTMLElement} element The element
+ */
+function resetSkipElement( element ) {
+	if ( element.dataset.tabindex ) {
+		element.tabindex = element.dataset.tabindex;
+	} else {
+		element.removeAttribute( 'tabindex' );
+	}
+}
+
+/**
+ * Remove a dropdown's to-skip elements from tab order.
+ *
+ * @param {HTMLElement} dropdown A dropdown wrapper
+ */
+function activateTabSkip( dropdown ) {
+	const { skip } = dropdown.dropdown.focusable;
+	if ( skip.length > 0 ) {
+		skip.forEach( setSkipElement );
+	}
+}
+
+/**
+ * Restore a dropdown's to-skip elements to tab order.
+ *
+ * @param {HTMLElement} dropdown A dropdown wrapper
+ */
+function deactivateTabSkip( dropdown ) {
+	const { skip } = dropdown.dropdown.focusable;
+	if ( skip.length > 0 ) {
+		skip.forEach( resetSkipElement );
+	}
 }
 
 /**

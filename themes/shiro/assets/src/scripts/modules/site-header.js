@@ -1,6 +1,10 @@
 import initialize from '../util/initialize';
 
-import { handleVisibleChange } from './dropdown';
+import {
+	handleVisibleChange,
+	getFocusable,
+	calculateFocusableElements,
+} from './dropdown';
 
 const _primaryNav = document.querySelector( '[data-dropdown="primary-nav"]' );
 
@@ -109,6 +113,14 @@ function handleLanguagePickerVisibleChange( record ) {
 function initializeSiteHeader() {
 	if ( _primaryNav ) {
 		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
+		const skip = [
+			...getFocusable( _primaryNav.querySelector( '.header-content' ) ),
+			...getFocusable( _primaryNav.querySelector( '.translation-bar' ) ),
+		];
+		_primaryNav.dropdown.focusable = calculateFocusableElements(
+			getFocusable( _primaryNav ),
+			skip
+		);
 		_primaryNav.observer = createObserver();
 		_primaryNav.observer.observe( _primaryNav.dropdown.toggle );
 	}
