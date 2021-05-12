@@ -224,6 +224,7 @@ function buildHandleToggleClick( dropdown ) {
  */
 function buildHandleKeydown( dropdown ) {
 	return e => {
+		const { toggle } = dropdown.dropdown;
 		const { first, last } = dropdown.dropdown.focusable;
 		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 		let isEscPressed = e.key === 'Escape' || e.keyCode === 27;
@@ -234,6 +235,11 @@ function buildHandleKeydown( dropdown ) {
 
 		if ( isEscPressed ) {
 			dropdown.dataset.visible = 'no';
+			/**
+			 * If we don't return focus to the toggle, then our focused element
+			 * is inside of a hidden element, which seems...bad.
+			 */
+			toggle.focus();
 			return;
 		}
 
