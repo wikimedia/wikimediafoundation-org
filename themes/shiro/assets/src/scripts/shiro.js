@@ -7,6 +7,6 @@ import siteHeader from './modules/site-header';
 import stickySiteHeader from './modules/sticky-site-header';
 
 dropdown();
+siteHeader();
 dimensionShim();
 stickySiteHeader();
-siteHeader();

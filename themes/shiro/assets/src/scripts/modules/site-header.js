@@ -1,4 +1,5 @@
 import initialize from '../util/initialize';
+
 import { handleVisibleChange } from './dropdown';
 
 const _primaryNav = document.querySelector( '[data-dropdown="primary-nav"]' );
@@ -16,6 +17,16 @@ function createObserver() {
 }
 
 /**
+ * Manipulate primary nav to have the viewport-correct behavior.
+ *
+ * The primary nav behaves differently on "mobile" and "desktop"--it uses
+ * the dropdown hide/show functionality on mobile, but not on desktop. Here,
+ * we change change the appropriate states so that the menu behaves correctly,
+ * using the visibility of the toggle button to tell us which viewport we're
+ * on. By using IntersectionObserver, we don't have to fire the logic once
+ * on load and again when the viewport size changes--all of that is handled for
+ * us by the browser.
+ *
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
@@ -42,6 +53,12 @@ function handleIntersection( entries ) {
 /**
  * Handles the mutation action of the dropdown.
  *
+ * This expands on the base behavior of the dropdown's visibility handler.
+ * It applies a class to disable body scrolling while the menu is open, and
+ * provides half of the logic that allows the language switcher and primary nav
+ * to close one another (for the other half,
+ * see handleLanguagePickerVisibleChange()).
+ *
  * @param {MutationRecord} record The record to handle
  */
 function handlePrimaryNavVisibleChange( record ) {
@@ -60,6 +77,16 @@ function handlePrimaryNavVisibleChange( record ) {
 	}
 }
 
+/**
+ * Handles the mutation action of the language picker.
+ *
+ * This expands on the base behavior of the dropdown's visibility handler.
+ * It applies half of the logic that allows the language switcher and primary
+ * nav to close one another (for the other half,
+ * see handlePrimaryNavVisibleChange()).
+ *
+ * @param {MutationRecord} record The record to handle
+ */
 function handleLanguagePickerVisibleChange( record ) {
 	handleVisibleChange( record );
 	if ( _primaryNav ) {
@@ -67,10 +94,10 @@ function handleLanguagePickerVisibleChange( record ) {
 		const menuIsVisible = el.dataset.visible === 'yes';
 		const {
 			visible: navIsVisible,
-			toggleable: navIsTogglable,
+			toggleable: navIsToggleable,
 		} = _primaryNav.dataset;
 
-		if ( menuIsVisible && navIsVisible && navIsTogglable ) {
+		if ( menuIsVisible && navIsVisible && navIsToggleable ) {
 			_primaryNav.dataset.visible = 'no';
 		}
 	}
@@ -82,12 +109,11 @@ function handleLanguagePickerVisibleChange( record ) {
 function observe() {
 	if ( _primaryNav ) {
 		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
-		// IntersectionObserver
 		_primaryNav.observer = createObserver();
 		_primaryNav.observer.observe( _primaryNav.dropdown.toggle );
 	}
 
-	if (_languagePicker) {
+	if ( _languagePicker ) {
 		_languagePicker.dropdown.handlers.visibleChange = handleLanguagePickerVisibleChange;
 	}
 }
@@ -117,4 +143,7 @@ function teardown() {
 }
 
 export default initialize( setup, teardown );
-export { setup, teardown };
+export {
+	setup,
+	teardown,
+};

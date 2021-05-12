@@ -1,10 +1,12 @@
 /**
+ * The shared backdrop element.
  *
  * @type {Element}
  * @private
  */
 const _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
 /**
+ * A collection of all dropdowns on the page.
  *
  * @type {Element[]}
  * @private
@@ -12,6 +14,10 @@ const _backdrop = document.querySelector( '[data-dropdown-backdrop]' );
 const _instances = [ ...document.querySelectorAll( '[data-dropdown]' ) ];
 
 /**
+ * Options to be passed to the MutationObserver.
+ *
+ * The comments next to each attribute reflect the possible values it might
+ * have.
  *
  * @type {MutationObserverInit}
  */
@@ -26,8 +32,9 @@ const mutationObserverOptions = {
 };
 
 /**
+ * Dispatch MutationRecord to appropriate handler function.
  *
- * @param {MutationRecord} record
+ * @param {MutationRecord} record Emitted by a MutationObserver
  */
 function processMutationRecord( record ) {
 	const { target } = record;
@@ -37,6 +44,11 @@ function processMutationRecord( record ) {
 		return;
 	}
 
+	/**
+	 * Because all of these handlers are defined on the DOM element, they can
+	 * be dynamically replaced, i.e.:
+	 * _dropdown.dropdown.handlers.visibleChange = () => console.log('do nothing')
+	 */
 	const {
 		visibleChange,
 		backdropChange,
@@ -63,32 +75,38 @@ function processMutationRecord( record ) {
 }
 
 /**
+ * Iterate over the list of MutationRecords and pass them to processor.
  *
- * @param {MutationRecord[]} list
- * @param {MutationObserver} observer
+ * @param {MutationRecord[]} list Collection of records from observed event
  */
-function handleMutation( list, observer ) {
+function handleMutation( list ) {
 	list.forEach( processMutationRecord );
 }
 
 /**
+ * Begin observing element for specific data-attribute mutations.
  *
- * @param {Element} element
+ * @param {Element} dropdown The wrapper element for the dropdown
+ * @returns {MutationObserver} The observer watching element
  */
-function observeMutations( element ) {
+function observeMutations( dropdown ) {
 	const observer = new MutationObserver( handleMutation );
-	observer.observe( element, mutationObserverOptions );
+	observer.observe( dropdown, mutationObserverOptions );
 	return observer;
 }
 
 /**
+ * Do any actions required by changes to data-visible.
  *
- * @param {MutationRecord} record
+ * @param {MutationRecord} record Emitted by a MutationObserver
  */
 function handleVisibleChange( record ) {
-	const el = record.target;
-	const { content: contentElement, toggle: toggleElement } = el.dropdown;
-	const { toggleable, visible } = el.dataset;
+	const dropdown = record.target;
+	const {
+		content: contentElement,
+		toggle: toggleElement,
+	} = dropdown.dropdown;
+	const { toggleable, visible } = dropdown.dataset;
 	const contentIsVisible = visible === 'yes';
 
 	// Handle content visibility
@@ -108,18 +126,20 @@ function handleVisibleChange( record ) {
 
 	// Handle tab trap
 	if ( contentIsVisible && toggleable === 'yes' ) {
-		el.dataset.trap = 'active';
+		dropdown.dataset.trap = 'active';
 	} else {
-		el.dataset.trap = 'inactive';
+		dropdown.dataset.trap = 'inactive';
 	}
 
 	// Handle backdrop change
-	el.dataset.backdrop = contentIsVisible && toggleable === 'yes' ? 'active' : 'inactive';
+	dropdown.dataset.backdrop =
+		contentIsVisible && toggleable === 'yes' ? 'active' : 'inactive';
 }
 
 /**
+ * Do any actions required by changes to data-backdrop.
  *
- * @param {MutationRecord} record
+ * @param {MutationRecord} record Emitted by a MutationObserver
  */
 function handleBackdropChange( record ) {
 	if ( ! _backdrop ) {
@@ -136,8 +156,9 @@ function handleBackdropChange( record ) {
 }
 
 /**
+ * Do any actions require by changes to data-trap.
  *
- * @param {MutationRecord} record
+ * @param {MutationRecord} record Emitted by a MutationObserver
  */
 function handleTrapChange( record ) {
 	const el = record.target;
@@ -149,8 +170,9 @@ function handleTrapChange( record ) {
 }
 
 /**
+ * Do any actions required by changes to data-toggleable.
  *
- * @param {MutationRecord} record
+ * @param {MutationRecord} record Emitted by a MutationObserver
  */
 function handleToggleableChange( record ) {
 	const el = record.target;
@@ -173,25 +195,34 @@ function handleBackdropClick() {
 }
 
 /**
+ * Create a function specific to the passed dropdown to fire when the toggle is clicked.
  *
- * @param {Element} wrapper
- * @return {Function}
+ * @param {Element} dropdown The wrapper element for a dropdown.
+ * @returns {Function} To be executed when the toggle is clicked.
  */
-function buildHandleToggleClick( wrapper ) {
+function buildHandleToggleClick( dropdown ) {
 	return e => {
-		wrapper.dataset.visible =
-			wrapper.dataset.visible === 'yes' ? 'no' : 'yes';
+		dropdown.dataset.visible =
+			dropdown.dataset.visible === 'yes' ? 'no' : 'yes';
 	};
 }
 
 /**
+ * Create a function specific to the passed dropdown to fire when keys are pressed.
  *
- * @param {Element} wrapper
- * @return {(function(*): void)|*}
+ * It does the following:
+ * - Tabbing (or shift-tabbing) pst the first (or last) element loops around.
+ * - Pressing "ESC" hides the dropdown
+ *
+ * This should not be active when the menu is hidden, *or* when the menu is
+ * visible but not toggleable.
+ *
+ * @param {Element} dropdown The wrapper element for a dropdown.
+ * @returns {Function} To be executed when the keydown event occurs.
  */
-function buildHandleKeydown( wrapper ) {
+function buildHandleKeydown( dropdown ) {
 	return e => {
-		const { first, last } = wrapper.dropdown.focusable;
+		const { first, last } = dropdown.dropdown.focusable;
 		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 		let isEscPressed = e.key === 'Escape' || e.keyCode === 27;
 
@@ -200,7 +231,7 @@ function buildHandleKeydown( wrapper ) {
 		}
 
 		if ( isEscPressed ) {
-			wrapper.dataset.visible = 'no';
+			dropdown.dataset.visible = 'no';
 			return;
 		}
 
@@ -222,21 +253,23 @@ function buildHandleKeydown( wrapper ) {
 }
 
 /**
+ * Return all focusable elements in dropdown wrapper.
  *
- * @param {Element} wrapper
- * @return {array}
+ * @param {Element} dropdown The wrapper for a dropdown
+ * @returns {Array} All potentially focusable elements in the dropdown
  */
-function getFocusable( wrapper ) {
+function getFocusable( dropdown ) {
 	return Array.from(
-		wrapper.querySelectorAll(
+		dropdown.querySelectorAll(
 			'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
 		)
 	);
 }
 
 /**
+ * Set up the dropdown that this element contains.
  *
- * @param {HTMLElement} element
+ * @param {HTMLElement} element The wrapper for a dropdown
  */
 function initializeDropdown( element ) {
 	const { dropdownContent, dropdownToggle } = element.dataset;
@@ -277,7 +310,7 @@ function initializeDropdown( element ) {
 }
 
 /**
- *
+ * Activate all dropdown instances on the page.
  */
 function setup() {
 	_instances.map( initializeDropdown );
