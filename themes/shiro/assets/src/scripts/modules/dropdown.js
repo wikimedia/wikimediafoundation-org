@@ -1,3 +1,5 @@
+import initialize from '../util/initialize';
+
 /**
  * The shared backdrop element.
  *
@@ -316,7 +318,28 @@ function setup() {
 	_instances.map( initializeDropdown );
 }
 
-export default setup;
+/**
+ * Deactivate and clean up all dropdown instances.
+ */
+function teardown() {
+	_instances.forEach( instance => {
+		const { dropdown } = instance;
+		dropdown.observer.disconnect();
+		dropdown.toggle.removeEventListener(
+			'click',
+			dropdown.handlers.toggleClick
+		);
+		delete instance.dropdown;
+	} );
+
+	if ( _backdrop ) {
+		_backdrop.removeEventListener( 'click', handleBackdropClick );
+		_backdrop.dataset.dropdownBackdrop = 'inactive';
+		_backdrop.dataset.activeDropdowns = '';
+	}
+}
+
+export default initialize( setup, teardown );
 export {
 	_backdrop as backdrop,
 	_instances as instances,
