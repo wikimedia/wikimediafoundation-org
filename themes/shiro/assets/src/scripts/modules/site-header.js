@@ -113,9 +113,11 @@ function handleLanguagePickerVisibleChange( record ) {
 function initializeSiteHeader() {
 	if ( _primaryNav ) {
 		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
+		const headerContent = _primaryNav.querySelector( '.header-content' );
+		const translationBar = _primaryNav.querySelector( '.translation-bar' );
 		const skip = [
-			...getFocusable( _primaryNav.querySelector( '.header-content' ) ),
-			...getFocusable( _primaryNav.querySelector( '.translation-bar' ) ),
+			...( translationBar ? getFocusable( translationBar ) : [] ),
+			...( headerContent ? getFocusable( headerContent ) : [] ),
 		];
 		_primaryNav.dropdown.focusable = calculateFocusableElements(
 			getFocusable( _primaryNav ),
