@@ -255,17 +255,39 @@ function buildHandleKeydown( dropdown ) {
 }
 
 /**
- * Return all focusable elements in dropdown wrapper.
+ * Return all focusable elements a DOM element.
  *
- * @param {Element} dropdown The wrapper for a dropdown
- * @returns {Array} All potentially focusable elements in the dropdown
+ * @param {Element} element A DOM element
+ * @returns {Array} All potentially focusable elements in the element
  */
-function getFocusable( dropdown ) {
+function getFocusable( element ) {
 	return Array.from(
-		dropdown.querySelectorAll(
+		element.querySelectorAll(
 			'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
 		)
 	);
+}
+
+/**
+ * Build an object containing the DOM elements needed for tab trapping.
+ *
+ * This calculates the "allowed" items for tab navigation, as well as
+ * determining the first and last items in the resulting list. Use this
+ * function when setting or changing dropdown.focusable.
+ *
+ * @param {Element[]} all Every focusable element available
+ * @param {Element[]} [skip=[]] The elements (if any) to skip
+ * @returns {{last, allowed, skip, first}} Compiled object with DOM element lists
+ */
+function calculateFocusableElements( all, skip = [] ) {
+	const allowed = all.filter( el => ! skip.includes( el ) );
+	return {
+		first: allowed[ 0 ],
+		last: allowed[ allowed.length - 1 ],
+		all,
+		allowed,
+		skip,
+	};
 }
 
 /**
@@ -279,22 +301,20 @@ function initializeDropdown( element ) {
 	const content = element.querySelector( dropdownContent );
 	const toggle = element.querySelector( dropdownToggle );
 	const observer = observeMutations( element );
-	const focusable = getFocusable( element );
-
-	// Toggle should always be first focusable item
-	if ( focusable[ 0 ] !== toggle ) {
-		focusable.unshift( toggle );
-	}
+	/**
+	 * By default the dropdown skips nothing. If you want to skip some elements
+	 * that show up inside the wrapper, you'll need to manually add them to
+	 * dropdown.focusable at runtime.
+	 *
+	 * @type {{last, allowed, skip, first}}
+	 */
+	const focusable = calculateFocusableElements( getFocusable( element ) );
 
 	element.dropdown = {
 		content,
 		toggle,
 		observer,
-		focusable: {
-			first: focusable[ 0 ],
-			last: focusable[ focusable.length - 1 ],
-			all: focusable,
-		},
+		focusable,
 		handlers: {
 			backdropChange: handleBackdropChange,
 			toggleableChange: handleToggleableChange,
@@ -347,4 +367,6 @@ export {
 	handleVisibleChange,
 	handleToggleableChange,
 	handleBackdropChange,
+	getFocusable,
+	calculateFocusableElements,
 };
