@@ -63,13 +63,12 @@ function handleIntersection( entries ) {
  * to close one another (for the other half,
  * see handleLanguagePickerVisibleChange()).
  *
- * @param {MutationRecord} record The record to handle
+ * @param {HTMLElement} dropdown A dropdown wrapper
  */
-function handlePrimaryNavVisibleChange( record ) {
-	handleVisibleChange( record );
-	const el = record.target;
-	const menuIsVisible = el.dataset.visible === 'yes';
-	const toggleIsVisible = el.dropdown.toggle.offsetParent != null;
+function handlePrimaryNavVisibleChange( dropdown ) {
+	handleVisibleChange( dropdown );
+	const menuIsVisible = dropdown.dataset.visible === 'yes';
+	const toggleIsVisible = dropdown.dropdown.toggle.offsetParent != null;
 
 	if ( menuIsVisible && toggleIsVisible ) {
 		document.body.classList.add( 'disable-body-scrolling' );
@@ -89,13 +88,12 @@ function handlePrimaryNavVisibleChange( record ) {
  * nav to close one another (for the other half,
  * see handlePrimaryNavVisibleChange()).
  *
- * @param {MutationRecord} record The record to handle
+ * @param {HTMLElement} dropdown A dropdown wrapper
  */
-function handleLanguagePickerVisibleChange( record ) {
-	handleVisibleChange( record );
+function handleLanguagePickerVisibleChange( dropdown ) {
+	handleVisibleChange( dropdown );
 	if ( _primaryNav ) {
-		const el = record.target;
-		const menuIsVisible = el.dataset.visible === 'yes';
+		const menuIsVisible = dropdown.dataset.visible === 'yes';
 		const {
 			visible: navIsVisible,
 			toggleable: navIsToggleable,

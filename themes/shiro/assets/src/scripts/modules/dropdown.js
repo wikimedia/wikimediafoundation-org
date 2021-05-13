@@ -60,16 +60,16 @@ function processMutationRecord( record ) {
 
 	switch ( record.attributeName ) {
 		case 'data-visible':
-			visibleChange( record );
+			visibleChange( record.target );
 			break;
 		case 'data-backdrop':
-			backdropChange( record );
+			backdropChange( record.target );
 			break;
 		case 'data-trap':
-			trapChange( record );
+			trapChange( record.target );
 			break;
 		case 'data-toggleable':
-			toggleableChange( record );
+			toggleableChange( record.target );
 			break;
 		default:
 			break;
@@ -100,10 +100,9 @@ function observeMutations( dropdown ) {
 /**
  * Do any actions required by changes to data-visible.
  *
- * @param {MutationRecord} record Emitted by a MutationObserver
+ * @param {Node} dropdown The dropdown wrapper
  */
-function handleVisibleChange( record ) {
-	const dropdown = record.target;
+function handleVisibleChange( dropdown ) {
 	const {
 		content: contentElement,
 		toggle: toggleElement,
@@ -141,9 +140,9 @@ function handleVisibleChange( record ) {
 /**
  * Do any actions required by changes to data-backdrop.
  *
- * @param {MutationRecord} record Emitted by a MutationObserver
+ * @param {Node} dropdown The dropdown wrapper
  */
-function handleBackdropChange( record ) {
+function handleBackdropChange( dropdown ) {
 	if ( ! _backdrop ) {
 		return;
 	}
@@ -160,32 +159,30 @@ function handleBackdropChange( record ) {
 /**
  * Do any actions require by changes to data-trap.
  *
- * @param {MutationRecord} record Emitted by a MutationObserver
+ * @param {Node} dropdown The dropdown wrapper
  */
-function handleTrapChange( record ) {
-	const el = record.target;
-	if ( el.dataset.trap === 'active' ) {
-		activateTabSkip( el );
-		el.addEventListener( 'keydown', el.dropdown.handlers.keydown );
+function handleTrapChange( dropdown ) {
+	if ( dropdown.dataset.trap === 'active' ) {
+		activateTabSkip( dropdown );
+		dropdown.addEventListener( 'keydown', dropdown.dropdown.handlers.keydown );
 	} else {
-		deactivateTabSkip( el );
-		el.removeEventListener( 'keydown', el.dropdown.handlers.keydown );
+		deactivateTabSkip( dropdown );
+		dropdown.removeEventListener( 'keydown', dropdown.dropdown.handlers.keydown );
 	}
 }
 
 /**
  * Do any actions required by changes to data-toggleable.
  *
- * @param {MutationRecord} record Emitted by a MutationObserver
+ * @param {HTMLElement} dropdown Emitted by a MutationObserver
  */
-function handleToggleableChange( record ) {
-	const el = record.target;
-	if ( el.dataset.toggleable === 'no' ) {
-		el.dropdown.toggle.disabled = true;
+function handleToggleableChange( dropdown ) {
+	if ( dropdown.dataset.toggleable === 'no' ) {
+		dropdown.dropdown.toggle.disabled = true;
 		// If the dropdown can't be toggled, we should always show it
-		el.dataset.visible = 'yes';
+		dropdown.dataset.visible = 'yes';
 	} else {
-		el.dropdown.toggle.removeAttribute( 'disabled' );
+		dropdown.dropdown.toggle.removeAttribute( 'disabled' );
 	}
 }
 
