@@ -27,7 +27,7 @@ if ( ! empty( $translations ) ) : ?>
 			<?php wmf_show_icon( 'translate', 'language-switcher__icon' ); ?>
 			<span class="language-switcher__label"><?php echo $current; ?></span>
 		</button>
-		<div class="language-switcher__content" hidden>
+		<div class="language-switcher__content">
 			<ul>
 				<?php foreach ( $translations as $translation ) : ?>
 					<li class="language-switcher__language <?php echo $translation['selected'] ? 'language-switcher__language--selected' : '' ?>">
