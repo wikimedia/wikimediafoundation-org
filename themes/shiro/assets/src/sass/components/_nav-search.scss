@@ -8,6 +8,7 @@
 
 	@media ( min-width: #{$medium-landscape} ) {
 		flex: 0 0 rem( 220 );
+		align-self: flex-start;
 	}
 
 	.search-form__field {
