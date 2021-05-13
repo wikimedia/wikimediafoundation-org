@@ -10,6 +10,7 @@ $label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro' ) );
 ?>
 
 <button class="primary-nav-toggle"
+		hidden
 		aria-label="<?php echo esc_attr( $label ); ?>"
 		data-dropdown-toggle="primary-nav"
 		aria-expanded="false">

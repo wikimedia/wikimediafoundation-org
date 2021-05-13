@@ -22,7 +22,7 @@ $current       = array_reduce( $translations, function ( $carry, $item ) {
 if ( ! empty( $translations ) ) : ?>
 	<div class="language-switcher" data-dropdown="language-switcher" data-dropdown-toggle=".language-switcher__button" data-dropdown-content=".language-switcher__content"
 		 data-visible="no" data-trap="inactive" data-backdrop="inactive" data-toggleable="yes">
-		<button class="language-switcher__button" aria-expanded="false">
+		<button class="language-switcher__button" aria-expanded="false" hidden>
 			<span class="btn-label-a11y"><?php echo esc_html( $current_label ); ?> </span>
 			<?php wmf_show_icon( 'translate', 'language-switcher__icon' ); ?>
 			<span class="language-switcher__label"><?php echo $current; ?></span>

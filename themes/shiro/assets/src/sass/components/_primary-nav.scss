@@ -24,7 +24,7 @@
 		 * benefit, hence this "backwards" query.
 		 */
 		@media ( max-width: $medium-landscape ) {
-			[data-visible="yes"] & {
+			[data-dropdown-status="initialized"][data-visible="yes"] & {
 				--full-window-height: calc(var(--vh, 1vh) * 100);
 				display: block;
 				padding: 1.5rem;
@@ -55,17 +55,22 @@
 	}
 
 	&__items {
-		list-style: none;
 		display: flex;
-		flex-direction: column;
+		list-style: none;
 		align-items: start;
-		margin-top: rem( 21 );
+		flex-wrap: wrap;
 
-		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			flex-direction: row;
-			align-items: center;
-			flex-wrap: wrap;
-			margin-top: rem( -11 );
+		[data-dropdown-status="initialized"] & {
+			flex-wrap: nowrap;
+			flex-direction: column;
+			margin-top: rem(21);
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				flex-direction: row;
+				align-items: center;
+				flex-wrap: wrap;
+				margin-top: rem( -11 );
+			}
 		}
 
 		li {
