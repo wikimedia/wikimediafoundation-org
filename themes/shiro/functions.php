@@ -272,6 +272,7 @@ require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
 require get_template_directory() . '/inc/editor/blocks/share-article.php';
+require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
@@ -281,6 +282,7 @@ require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
 
 WMF\Editor\bootstrap();
+WMF\Editor\HasBlockColumn\bootstrap();
 WMF\Editor\Blocks\BlogList\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
