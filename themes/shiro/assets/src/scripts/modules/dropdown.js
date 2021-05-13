@@ -399,7 +399,7 @@ function initializeDropdown( element ) {
 		_backdrop.addEventListener( 'click', handleBackdropClick );
 	}
 
-	// Allow for styling based on the existing of this functionality
+	// Allow for styling based on the existence of this functionality
 	element.dataset.dropdownStatus = 'initialized';
 }
 
