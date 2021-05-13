@@ -101,7 +101,7 @@ function handleLanguagePickerVisibleChange( record ) {
 			toggleable: navIsToggleable,
 		} = _primaryNav.dataset;
 
-		if ( menuIsVisible && navIsVisible && navIsToggleable ) {
+		if ( menuIsVisible && navIsVisible && navIsToggleable === 'yes' ) {
 			_primaryNav.dataset.visible = 'no';
 		}
 	}
