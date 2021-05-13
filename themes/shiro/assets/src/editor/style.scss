@@ -23,4 +23,15 @@
 	.block-editor-block-list__block.wp-block-column:not(:first-child) {
 		margin-left: rem(20);
 	}
+
+	.block-editor-block-list__block {
+		// Allow for the block insertion point to show.
+		margin-bottom: rem(28);
+	}
+
+	// Make spacer blocks accurate after the global bottom margin
+	.wp-block-spacer {
+		margin-top: rem(-28);
+		margin-bottom: 0;
+	}
 }
