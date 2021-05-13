@@ -110,6 +110,8 @@ function handleLanguagePickerVisibleChange( dropdown ) {
  */
 function initializeSiteHeader() {
 	if ( _primaryNav ) {
+		// Ensure correct state on load
+		handlePrimaryNavVisibleChange( _primaryNav );
 		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
 		const headerContent = _primaryNav.querySelector( '.header-content' );
 		const translationBar = _primaryNav.querySelector( '.translation-bar' );
@@ -126,6 +128,8 @@ function initializeSiteHeader() {
 	}
 
 	if ( _languagePicker ) {
+		// Ensure correct state on load
+		handleLanguagePickerVisibleChange( _languagePicker );
 		_languagePicker.dropdown.handlers.visibleChange = handleLanguagePickerVisibleChange;
 	}
 }
