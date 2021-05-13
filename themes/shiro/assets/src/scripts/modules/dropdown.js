@@ -164,10 +164,16 @@ function handleBackdropChange( dropdown ) {
 function handleTrapChange( dropdown ) {
 	if ( dropdown.dataset.trap === 'active' ) {
 		activateTabSkip( dropdown );
-		dropdown.addEventListener( 'keydown', dropdown.dropdown.handlers.keydown );
+		dropdown.addEventListener(
+			'keydown',
+			dropdown.dropdown.handlers.keydown
+		);
 	} else {
 		deactivateTabSkip( dropdown );
-		dropdown.removeEventListener( 'keydown', dropdown.dropdown.handlers.keydown );
+		dropdown.removeEventListener(
+			'keydown',
+			dropdown.dropdown.handlers.keydown
+		);
 	}
 }
 
