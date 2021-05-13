@@ -354,6 +354,15 @@ function initializeDropdown( element ) {
 
 	const content = element.querySelector( dropdownContent );
 	const toggle = element.querySelector( dropdownToggle );
+	// Sometimes we want toggles hidden until instantiation; this keeps that from triggering IntersectionObserver logic
+	// when the dropdown initializes.
+	if (
+		element.dataset.toggleable === 'yes' &&
+		toggle &&
+		toggle.hasAttribute( 'hidden' )
+	) {
+		toggle.removeAttribute( 'hidden' );
+	}
 	const observer = observeMutations( element );
 	/**
 	 * By default the dropdown skips nothing. If you want to skip some elements
