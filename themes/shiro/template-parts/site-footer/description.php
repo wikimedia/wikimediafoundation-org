@@ -6,9 +6,7 @@
  */
 
 $logo = get_theme_mod( 'wmf_footer_logo' ) ?: wmf_get_svg_uri( 'logo-horizontal-white' );
-$text = get_theme_mod( 'wmf_footer_text',
-	__( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.',
-		'shiro' ) );
+$text = get_theme_mod( 'wmf_footer_text', \WMF\Customizer\Footer::defaults( 'wmf_footer_text' ) );
 ?>
 <div class="site-footer__description">
 	<img class="site-footer__logo" src="<?php echo esc_url( $logo ); ?>"

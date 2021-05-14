@@ -5,11 +5,6 @@
  * @package shiro
  */
 
-$projects_label   = get_theme_mod( 'wmf_projects_menu_label', __( 'Projects', 'shiro' ) );
-$affiliates_label = get_theme_mod( 'wmf_movement_affiliates_menu_label',
-	__( 'Movement Affiliates', 'shiro' ) );
-$other_label      = get_theme_mod( 'wmf_other_links_menu_label', __( 'Other', 'shiro' ) );
-
 $default_args = [
 	'menu_class' => 'site-footer__navmenu',
 	'container'  => '',
@@ -18,21 +13,21 @@ $default_args = [
 
 $menus = [
 	[
-		'label'    => $projects_label,
+		'label'    => \WMF\Customizer\Footer::defaults( 'wmf_projects_menu_label' ),
 		'location' => 'footer-projects',
 		'args'     => [
 			'theme_location' => 'footer-projects',
 		]
 	],
 	[
-		'label'    => $affiliates_label,
+		'label'    => \WMF\Customizer\Footer::defaults( 'wmf_movement_affiliates_menu_label' ),
 		'location' => 'footer-affiliates',
 		'args'     => [
 			'theme_location' => 'footer-affiliates',
 		]
 	],
 	[
-		'label'    => $other_label,
+		'label'    => \WMF\Customizer\Footer::defaults( 'wmf_other_links_menu_label' ),
 		'location' => 'footer-legal',
 		'args'     => [
 			'theme_location' => 'footer-legal',

@@ -12,6 +12,17 @@ namespace WMF\Customizer;
  * Adds new fields to create sections for the header details
  */
 class Footer extends Base {
+	public static function defaults(string $setting = '') {
+		$defaults = [
+			'wmf_footer_text' => __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'shiro' ),
+			'wmf_projects_menu_label' => __( 'Projects', 'shiro' ),
+			'wmf_movement_affiliates_menu_label' => __( 'Movement Affiliates', 'shiro' ),
+			'wmf_other_links_menu_label' => __( 'Other', 'shiro' ),
+			'wmf_footer_copyright' => __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'shiro' ),
+		];
+
+		return $defaults[ $setting ] ?? '';
+	}
 
 	/**
 	 * Add Customizer fields for header section.
@@ -39,7 +50,7 @@ class Footer extends Base {
 		$control_id = 'wmf_footer_text';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge.', 'shiro' ),
+				'default' => $this::defaults( 'wmf_footer_text' ),
 			)
 		);
 		$this->customize->add_control(
@@ -54,7 +65,7 @@ class Footer extends Base {
 		$control_id = 'wmf_projects_menu_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Projects', 'shiro' ),
+				'default' => $this::defaults( 'projects_menu_label' ),
 			)
 		);
 		$this->customize->add_control(
@@ -69,7 +80,7 @@ class Footer extends Base {
 		$control_id = 'wmf_movement_affiliates_menu_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Movement Affiliates', 'shiro' ),
+				'default' => $this::defaults( 'wmf_movement_affiliates_menu_label' ),
 			)
 		);
 		$this->customize->add_control(
@@ -84,7 +95,7 @@ class Footer extends Base {
 		$control_id = 'wmf_other_links_menu_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Other', 'shiro' ),
+				'default' => $this::defaults( 'wmf_other_links_menu_label' ),
 			)
 		);
 		$this->customize->add_control(
@@ -99,7 +110,7 @@ class Footer extends Base {
 		$control_id = 'wmf_footer_copyright';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'This work is licensed under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> unported license. Some images under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>.', 'shiro' ),
+				'default' => $this::defaults( 'wmf_footer_copyright' ),
 			)
 		);
 		$this->customize->add_control(
