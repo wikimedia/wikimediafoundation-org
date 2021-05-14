@@ -1,19 +1,14 @@
-/* global shiroEditorVariables */
-
 import {
 	RichText,
 	useBlockProps,
 	InnerBlocks,
 } from '@wordpress/block-editor';
-import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import SvgSprite from "../../components/svg-sprite";
 
 import CallToActionPicker from '../../components/cta';
+import SvgSprite from '../../components/svg-sprite';
 
 import './style.scss';
-
-const iconUrl = shiroEditorVariables.themeUrl + '/assets/dist/icons.svg#contact';
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/buttons', {}, [
