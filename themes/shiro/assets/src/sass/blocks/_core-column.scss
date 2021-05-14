@@ -1,6 +1,9 @@
 .wp-block-column {
-	> .wp-block-group:only-child {
-		height: 100%;
+	> .wp-block-group,
+	> .contact {
+		&:only-child {
+			height: 100%;
+		}
 	}
 
 	@media (max-width: #{ ($core-gutenberg-break-small - 1) }) {
