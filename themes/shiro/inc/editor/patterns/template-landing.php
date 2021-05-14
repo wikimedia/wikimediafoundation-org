@@ -5,9 +5,19 @@
 
 namespace WMF\Editor\Patterns\TemplateLanding;
 
+use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
+
 const NAME = 'shiro/template-landing';
 
-const PATTERN = <<<CONTENT
+/**
+ * Get the pattern content.
+ *
+ * @return string
+ */
+function pattern() {
+	$tweet_columns = tweet_columns_pattern();
+
+	return <<<CONTENT
 <!-- wp:shiro/landing-page-hero {"className":"is-style-yellow50"} -->
 <div class="wp-block-shiro-landing-page-hero hero is-style-yellow50"><header class="hero__header"><div class="hero__text-column"><small class="hero__kicker"></small><h1 class="hero__title"></h1></div><figure class="hero__image-container image-filter-inherit"><img alt="" class="hero__image"/></figure></header><div class="hero__intro"><p></p></div></div>
 <!-- /wp:shiro/landing-page-hero -->
@@ -34,55 +44,7 @@ const PATTERN = <<<CONTENT
 <div class="wp-block-shiro-spotlight spotlight alignfull is-style-red90"><div class="spotlight__inner"><div class="spotlight__content"><h2 class="spotlight__heading is-style-h1"></h2><p class="spotlight__text"></p></div><figure class="spotlight__image-wrapper image-filter-inherit"></figure></div></div>
 <!-- /wp:shiro/spotlight -->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90","className":"has-border-radius has-radius-big"} -->
-<div class="wp-block-group has-border-radius has-radius-big has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
-<p class="is-style-h1"></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shiro/tweet-this {"tweetText":"","tweetUrl":""} -->
-<a href="https://twitter.com/intent/tweet?text=" class="tweet-this wp-block-shiro-button is-style-as-link has-icon has-icon-social-twitter-blue">Tweet this</a>
-<!-- /wp:shiro/tweet-this --></div></div>
-<!-- /wp:group --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90","className":"has-border-radius has-radius-big"} -->
-<div class="wp-block-group has-border-radius has-radius-big has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
-<p class="is-style-h1"></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shiro/tweet-this {"tweetText":"","tweetUrl":""} -->
-<a href="https://twitter.com/intent/tweet?text=" class="tweet-this wp-block-shiro-button is-style-as-link has-icon has-icon-social-twitter-blue">Tweet this</a>
-<!-- /wp:shiro/tweet-this --></div></div>
-<!-- /wp:group --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blue90","className":"has-border-radius has-radius-big"} -->
-<div class="wp-block-group has-border-radius has-radius-big has-blue-90-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:paragraph {"className":"is-style-h1"} -->
-<p class="is-style-h1"></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shiro/tweet-this {"tweetText":"","tweetUrl":""} -->
-<a href="https://twitter.com/intent/tweet?text=" class="tweet-this wp-block-shiro-button is-style-as-link has-icon has-icon-social-twitter-blue">Tweet this</a>
-<!-- /wp:shiro/tweet-this --></div></div>
-<!-- /wp:group --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+$tweet_columns
 
 <!-- wp:shiro/double-heading /-->
 
@@ -140,3 +102,4 @@ const PATTERN = <<<CONTENT
 <p></p>
 <!-- /wp:paragraph -->
 CONTENT;
+}

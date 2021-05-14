@@ -65,6 +65,6 @@ function register_pattern() {
 	register_block_pattern( TemplateLanding\NAME, [
 		'title' => __( 'Landing page template', 'shiro' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
-		'content' => TemplateLanding\PATTERN,
+		'content' => TemplateLanding\pattern(),
 	] );
 }
