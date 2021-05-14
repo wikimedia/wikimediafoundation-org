@@ -1,9 +1,8 @@
 .wp-block-column {
-	> .wp-block-group,
-	> .contact {
-		&:only-child {
-			height: 100%;
-		}
+	> .contact:only-child,
+	> .wp-block-group:only-child,
+	> .wp-block-group:only-child .wp-block-group__inner-container {
+		height: 100%;
 	}
 
 	@media (max-width: #{ ($core-gutenberg-break-small - 1) }) {
@@ -37,4 +36,30 @@
  */
 .wp-block-columns {
 	margin-bottom: 1.75em;
+}
+
+// New columns style for aligning the buttons to the bottom of the columns.
+.wp-block-columns.is-style-align-buttons-bottom {
+	.wp-block-column,
+	.wp-block-group__inner-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.wp-block-buttons,
+	.tweet-this,
+	.wp-block-shiro-button {
+		&:last-child {
+			margin-top: auto;
+		}
+	}
+
+	#{$headings} {
+		.page.has-blocks &.wp-block,
+		.single.has-blocks &.wp-block {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
 }
