@@ -8,7 +8,8 @@
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import SvgSprite from "../../components/svg-sprite";
+
+import SvgSprite from '../../components/svg-sprite';
 
 export const name = 'shiro/share-article';
 
