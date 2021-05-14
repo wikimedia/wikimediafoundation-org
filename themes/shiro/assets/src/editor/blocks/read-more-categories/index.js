@@ -5,8 +5,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
-import { ToggleControl, PanelBody } from '@wordpress/components';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -114,32 +113,6 @@ export const settings = {
 			</div>
 		);
 	},
-
-	/*
-	<div class="read-more-categories">
-		<span class="read-more-categories__text">
-			<?php echo esc_html( $attributes['readMoreText'] ?? '' ); ?>
-		</span>
-		<span class="read-more-categories__links">
-			<?php $i = 0; ?>
-			<?php foreach ( $terms as $term_id => $term_title ) : ?>
-				<?php
-					$term_link = get_term_link( $term_id );
-					if ( is_wp_error( $term_link ) ) {
-						continue;
-					}
-
-					$is_last = ++$i === count( $terms );
-				?>
-				<a href="<?php echo esc_attr( $term_link ); ?>"><?php echo esc_html( $term_title ); ?></a><?php
-					if ( ! $is_last ) {
-						echo ',';
-					}
-				?>
-			<?php endforeach; ?>
-		</span>
-	</div>
-	 */
 
 	/**
 	 * Save the share article block, it's a dynamic block.
