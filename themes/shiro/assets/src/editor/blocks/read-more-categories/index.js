@@ -38,6 +38,21 @@ const useTerms = slug => {
 	return terms.filter( Boolean );
 };
 
+/**
+ * Render terms as links with a separator.
+ */
+const renderTerms = terms => {
+	return terms
+		.map( term => ( <a href={ term.link }>{ term.name }</a> ) )
+		.reduce( ( previous, current ) => {
+			if ( previous === null ) {
+				return current;
+			}
+
+			return [ previous, ', ', current ];
+		}, null );
+};
+
 export const settings = {
 	title: __( 'Read more categories', 'shiro' ),
 
@@ -93,16 +108,7 @@ export const settings = {
 					{ /* Whitespace to mimic frontend */ }
 					{ ' ' }
 					<span className="read-more-categories__links">
-						{ terms.map( ( term, i ) => {
-							const lastTerm = i === terms.length - 1;
-
-							return (
-								<>
-									<a href={ term.link }>{ term.name }</a>
-									{ ! lastTerm && ', ' }
-								</>
-							);
-						} ) }
+						{ renderTerms( terms ) }
 					</span>
 				</>
 			</div>
