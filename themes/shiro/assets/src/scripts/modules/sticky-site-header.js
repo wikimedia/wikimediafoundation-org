@@ -1,10 +1,10 @@
 import initialize from '../util/initialize';
+
 /**
  * This module applies a class to the site header when it is not at the top
  * of the viewport, allowing us to adjust styling and CSS behavior when it is
  * at the top/not at the top.
  */
-
 const siteHeaderSelector = 'site-header';
 const pinnedClass = `${siteHeaderSelector}--pinned`;
 
