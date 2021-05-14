@@ -79,11 +79,9 @@ $modules = array(
 	$has_connect ? false : 'connect',
 );
 
-foreach ( $modules as $module ) {
-	if ( ! $module ) {
-		continue;
-	}
+$modules = array_filter( $modules );
 
+foreach ( $modules as $module ) {
 	get_template_part( 'template-parts/page/page', $module );
 }
 get_footer();
