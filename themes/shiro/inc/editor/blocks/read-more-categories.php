@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side registration for the shiro/article block.
+ * Server-side registration for the shiro/read-more-categories block.
  */
 
 namespace WMF\Editor\Blocks\ReadMoreCategories;
@@ -34,16 +34,13 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
+	$categories = get_the_terms( get_the_ID(), 'category' );
+	$tags = get_the_terms( get_the_ID(), 'post_tag' );
+	$terms = array_merge( $categories, $tags );
 
-	$terms = wp_get_object_terms(
-		get_the_ID(),
-		array( 'post_tag', 'category' ),
-		array( 'fields' => 'id=>name' )
-	);
-
-	if ( empty( $terms ) || is_wp_error( $terms ) ) {
-		return '';
-	}
+	usort( $terms, function( $a, $b ) {
+		return strcmp( $a->name, $b->name );
+	} );
 
 	ob_start();
 	?>
@@ -54,16 +51,16 @@ function render_block( $attributes ) {
 		</span>
 		<span class="read-more-categories__links">
 			<?php $i = 0; ?>
-			<?php foreach ( $terms as $term_id => $term_title ) : ?>
+			<?php foreach ( $terms as $term ) : ?>
 				<?php
-					$term_link = get_term_link( $term_id );
+					$term_link = get_term_link( $term->term_id );
 					if ( is_wp_error( $term_link ) ) {
 						continue;
 					}
 
 					$is_last = ++$i === count( $terms );
 				?>
-				<a href="<?php echo esc_attr( $term_link ); ?>"><?php echo esc_html( $term_title ); ?></a><?php
+				<a href="<?php echo esc_attr( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a><?php
 					if ( ! $is_last ) {
 						echo ',';
 					}

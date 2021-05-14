@@ -2,6 +2,8 @@
  * Block for showing categories the current article is in.
  */
 
+import { sortBy } from 'lodash';
+
 /**
  * WordPress dependencies
  */
@@ -41,7 +43,7 @@ const useTerms = slug => {
  * Render terms as links with a separator.
  */
 const renderTerms = terms => {
-	return terms
+	return sortBy( terms, 'name' )
 		.map( term => ( <a href={ term.link }>{ term.name }</a> ) )
 		.reduce( ( previous, current ) => {
 			if ( previous === null ) {
