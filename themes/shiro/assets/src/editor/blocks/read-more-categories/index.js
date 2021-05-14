@@ -64,7 +64,7 @@ export const settings = {
 	icon: 'category',
 
 	description: __(
-		'A block that shows a text and the categories of the current article',
+		'A block with a customizable label and links to the current post\'s categories',
 		'shiro'
 	),
 
