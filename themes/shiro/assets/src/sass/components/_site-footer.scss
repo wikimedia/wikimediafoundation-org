@@ -31,7 +31,6 @@
 	&__description {
 
 		@include has-font-size("small");
-
 		order: 10;
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
