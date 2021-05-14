@@ -7,6 +7,7 @@ import {
 } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import SvgSprite from "../../components/svg-sprite";
 
 import CallToActionPicker from '../../components/cta';
 
@@ -100,9 +101,7 @@ export const name = 'shiro/contact',
 			} = attributes;
 
 			return ( <div { ...blockProps }>
-				<svg className="i icon icon-mail">
-					<use xlinkHref={ iconUrl } />
-				</svg>
+				<SvgSprite className="contact__icon" svg="contact" />
 				<RichText
 					className="contact__title"
 					keepPlaceholderOnFocus
@@ -155,11 +154,7 @@ export const name = 'shiro/contact',
 			} = attributes;
 
 			return ( <div { ...blockProps }>
-				<svg className="i icon icon-mail">
-					<RawHTML>
-						{ '<use xlink:href="' + iconUrl + '" />' }
-					</RawHTML>
-				</svg>
+				<SvgSprite className="contact__icon" svg="contact" />
 				<RichText.Content
 					className="contact__title"
 					tagName="h3"
