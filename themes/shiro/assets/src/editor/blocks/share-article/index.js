@@ -8,6 +8,7 @@
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import SvgSprite from "../../components/svg-sprite";
 
 export const name = 'shiro/share-article';
 
@@ -58,15 +59,11 @@ export const settings = {
 				) }
 				<div className="share-article">
 					{ enableTwitter && ( <div className="share-article__link">
-						<svg>
-							<use xlinkHref="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#social-twitter" />
-						</svg>
+						<SvgSprite svg="social-twitter" />
 					</div> ) }
 
 					{ enableFacebook && ( <div className="share-article__link">
-						<svg>
-							<use xlinkHref="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#social-facebook" />
-						</svg>
+						<SvgSprite svg="social-facebook" />
 					</div> ) }
 				</div>
 				<InspectorControls>
