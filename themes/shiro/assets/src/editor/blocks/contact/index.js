@@ -51,7 +51,7 @@ const BLOCKS_TEMPLATE = [
 export const name = 'shiro/contact',
 	settings = {
 		apiVersion: 2,
-		// icon: '',
+		icon: 'admin-comments',
 		title: __( 'Contact', 'shiro' ),
 		category: 'wikimedia',
 		attributes: {
