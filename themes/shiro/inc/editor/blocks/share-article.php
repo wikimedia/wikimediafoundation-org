@@ -1,6 +1,6 @@
 <?php
 /**
- * Server-side registration for the shiro/article block.
+ * Server-side registration for the shiro/share-article block.
  */
 
 namespace WMF\Editor\Blocks\ShareArticle;

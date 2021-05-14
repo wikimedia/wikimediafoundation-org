@@ -78,7 +78,8 @@ export const settings = {
 	example: {},
 
 	/**
-	 * Edit component used to manage featured image and page intro.
+	 * Edit component used to show categories and tags belonging to the current
+	 * article
 	 */
 	edit: function ReadMoreCategories( { attributes, setAttributes } ) {
 		const {
