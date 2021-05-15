@@ -28,11 +28,10 @@ function handleScroll() {
 
 /**
  * Run any tasks necessary to start up this module.
- *
- * @todo It would be nice if we could somehow avoid running this on *every* event while maintaining a smooth experience.
  */
 function setup() {
-	window.addEventListener( 'scroll', handleScroll );
+	const throttle = require('lodash/throttle');
+	window.addEventListener( 'scroll', throttle( handleScroll, 100, { trailing: true } ) );
 }
 
 /**
@@ -49,5 +48,6 @@ function teardown() {
 export default initialize( setup, teardown );
 
 export {
-	teardown, setup,
+	teardown,
+	setup,
 };
