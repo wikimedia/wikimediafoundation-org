@@ -1,9 +1,9 @@
 import initialize from '../util/initialize';
 
 import {
-	handleVisibleChange,
-	getFocusable,
 	calculateFocusableElements,
+	getFocusableInside,
+	handleVisibleChange,
 } from './dropdown';
 
 const _primaryNav = document.querySelector( '[data-dropdown="primary-nav"]' );
@@ -116,13 +116,20 @@ function initializeSiteHeader() {
 		const headerContent = _primaryNav.querySelector( '.header-content' );
 		const translationBar = _primaryNav.querySelector( '.translation-bar' );
 		const skip = [
-			...( translationBar ? getFocusable( translationBar ) : [] ),
-			...( headerContent ? getFocusable( headerContent ) : [] ),
+			...( translationBar ? getFocusableInside( translationBar ) : [] ),
+			...( headerContent ? getFocusableInside( headerContent ) : [] ),
 		];
-		_primaryNav.dropdown.focusable = calculateFocusableElements(
-			getFocusable( _primaryNav ),
-			skip
-		);
+		/**
+		 * Get focusable elements for the primary navigation.
+		 *
+		 * @returns {{last, allowed, skip, first}} The necessary focusable collections
+		 */
+		_primaryNav.dropdown.getFocusable = () => {
+			return calculateFocusableElements(
+				getFocusableInside( _primaryNav ),
+				skip
+			);
+		};
 		_primaryNav.observer = createObserver();
 		_primaryNav.observer.observe( _primaryNav.dropdown.toggle );
 	}

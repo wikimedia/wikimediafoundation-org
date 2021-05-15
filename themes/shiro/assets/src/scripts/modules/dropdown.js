@@ -230,7 +230,7 @@ function buildHandleToggleClick( dropdown ) {
 function buildHandleKeydown( dropdown ) {
 	return e => {
 		const { toggle } = dropdown.dropdown;
-		const { first, last } = dropdown.dropdown.focusable;
+		const { first, last } = dropdown.dropdown.getFocusable();
 		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 		let isEscPressed = e.key === 'Escape' || e.keyCode === 27;
 
@@ -332,7 +332,7 @@ function resetSkipElement( element ) {
  * @param {HTMLElement} dropdown A dropdown wrapper
  */
 function activateTabSkip( dropdown ) {
-	const { skip } = dropdown.dropdown.focusable;
+	const { skip } = dropdown.dropdown.getFocusable();
 	if ( skip.length > 0 ) {
 		skip.forEach( setSkipElement );
 	}
@@ -344,7 +344,7 @@ function activateTabSkip( dropdown ) {
  * @param {HTMLElement} dropdown A dropdown wrapper
  */
 function deactivateTabSkip( dropdown ) {
-	const { skip } = dropdown.dropdown.focusable;
+	const { skip } = dropdown.dropdown.getFocusable();
 	if ( skip.length > 0 ) {
 		skip.forEach( resetSkipElement );
 	}
@@ -377,13 +377,14 @@ function initializeDropdown( element ) {
 	 *
 	 * @type {{last, allowed, skip, first}}
 	 */
-	const focusable = calculateFocusableElements( getFocusable( element ) );
+	const getFocusable = () =>
+		calculateFocusableElements( getFocusableInside( element ) );
 
 	element.dropdown = {
 		content,
 		toggle,
 		observer,
-		focusable,
+		getFocusable,
 		handlers: {
 			backdropChange: handleBackdropChange,
 			toggleableChange: handleToggleableChange,
