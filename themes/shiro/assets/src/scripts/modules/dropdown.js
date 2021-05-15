@@ -274,7 +274,7 @@ function buildHandleKeydown( dropdown ) {
 function getFocusable( element ) {
 	return Array.from(
 		element.querySelectorAll(
-			'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+			'a:not([disabled]), button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details:not([disabled]), [tabindex]:not([tabindex="-1"]:not([disabled]))'
 		)
 	);
 }
