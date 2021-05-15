@@ -257,7 +257,7 @@ function buildHandleKeydown( dropdown ) {
 		} else {
 			// if tab key is pressed
 			if ( document.activeElement === last ) {
-				// if focused has reached to last focusable element then focus first focusable element after pressing tab
+				// if focus has reached to last focusable element then focus first focusable element after pressing tab
 				first.focus(); // add focus for the first focusable element
 				e.preventDefault();
 			}
@@ -370,6 +370,7 @@ function initializeDropdown( element ) {
 		toggle.removeAttribute( 'hidden' );
 	}
 	const observer = observeMutations( element );
+
 	/**
 	 * By default the dropdown skips nothing. If you want to skip some elements
 	 * that show up inside the wrapper, you'll need to manually add them to
