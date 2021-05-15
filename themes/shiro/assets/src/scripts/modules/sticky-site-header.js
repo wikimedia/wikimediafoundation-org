@@ -6,14 +6,14 @@ import initialize from '../util/initialize';
  * at the top/not at the top.
  */
 const siteHeaderSelector = 'site-header';
-const pinnedClass = `${siteHeaderSelector}--pinned`;
+const pinnedClass = `${ siteHeaderSelector }--pinned`;
 
 /**
  * This is set outside of any method to 'cache' its value.
  *
  * @type {Element}
  */
-const _siteHeaderBar = document.querySelector( `.${siteHeaderSelector}` );
+const _siteHeaderBar = document.querySelector( `.${ siteHeaderSelector }` );
 
 /**
  * Handles everything this module needs to do when a scroll event happens.
@@ -30,8 +30,11 @@ function handleScroll() {
  * Run any tasks necessary to start up this module.
  */
 function setup() {
-	const throttle = require('lodash/throttle');
-	window.addEventListener( 'scroll', throttle( handleScroll, 100, { trailing: true } ) );
+	const throttle = require( 'lodash/throttle' );
+	window.addEventListener(
+		'scroll',
+		throttle( handleScroll, 100, { trailing: true } )
+	);
 }
 
 /**
