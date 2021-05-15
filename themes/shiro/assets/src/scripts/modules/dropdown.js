@@ -271,7 +271,7 @@ function buildHandleKeydown( dropdown ) {
  * @param {Element} element A DOM element
  * @returns {Array} All potentially focusable elements in the element
  */
-function getFocusable( element ) {
+function getFocusableInside( element ) {
 	return Array.from(
 		element.querySelectorAll(
 			'a:not([disabled]), button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details:not([disabled]), [tabindex]:not([tabindex="-1"]:not([disabled]))'
@@ -439,6 +439,6 @@ export {
 	handleVisibleChange,
 	handleToggleableChange,
 	handleBackdropChange,
-	getFocusable,
+	getFocusableInside,
 	calculateFocusableElements,
 };
