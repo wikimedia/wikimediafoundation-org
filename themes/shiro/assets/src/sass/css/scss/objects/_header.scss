@@ -449,6 +449,10 @@ $header-bp-mw: 1049px;
 		}
 	}
 
+	.h4.eyebrow + .ungrid {
+		margin-top: 0 !important;
+	}
+
 	&.header-pink .ungrid {
 		background: #fbe9f1;
 
