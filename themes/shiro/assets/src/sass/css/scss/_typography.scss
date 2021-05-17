@@ -115,16 +115,16 @@ p {
 
 ul,
 ol {
-  li {
-    @include font-size(20, 16);
-    // list-style-type: disc;
-    margin-left: 2rem;
+	margin: 0.8rem 0;
+	padding: 0 0 0 1.8rem;
 
-    margin-bottom: 2rem;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+	li {
+		margin-top: 0.4rem;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
 }
 
 // .blockquote-container wrapped around blockquote via JS
