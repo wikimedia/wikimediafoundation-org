@@ -307,6 +307,12 @@ $header-bp-mw: 1049px;
 		width: 100%;
 	}
 
+	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {
+		border-bottom: 0 none;
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
+
 	.eyebrow {
 		margin-bottom: 1rem;
 
