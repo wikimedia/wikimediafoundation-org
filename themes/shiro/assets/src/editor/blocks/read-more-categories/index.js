@@ -44,7 +44,7 @@ const useTerms = slug => {
  */
 const renderTerms = terms => {
 	return sortBy( terms, 'name' )
-		.map( term => ( <a href={ term.link }>{ term.name }</a> ) )
+		.map( term => ( <a key={ `${term.taxonomy}_${term.id}` } href={ term.link }>{ term.name }</a> ) )
 		.reduce( ( previous, current ) => {
 			if ( previous === null ) {
 				return current;
