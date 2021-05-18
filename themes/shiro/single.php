@@ -54,10 +54,6 @@ while ( have_posts() ) {
 				] );
 			}
 
-			if ( ! $has_social_share && ! $has_read_more_categories ) { ?>
-				<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
-			<?php }
-
 			if ( ! $has_read_more_categories ) {
 				echo \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] );
 			}
