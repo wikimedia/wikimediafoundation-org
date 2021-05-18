@@ -18,7 +18,8 @@
 		> h2,
 		> h3,
 		> h4,
-		> ul,
+		> ol li,
+		> ul li,
 		> p,
 		> cite {
 			@include article-font;
