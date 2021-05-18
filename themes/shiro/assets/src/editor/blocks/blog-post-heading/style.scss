@@ -56,7 +56,7 @@
 
 	.article-title {
 		max-width: 640px;
-		margin: 60px auto !important;
+		margin: rem(60) auto !important;
 	}
 
 	&__intro p {
