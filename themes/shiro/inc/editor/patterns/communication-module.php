@@ -11,6 +11,7 @@ function pattern(): string {
 	$themeUri = get_stylesheet_directory_uri();
 
 	return <<<CONTENT
+<!-- wp:shiro/double-heading {"primaryHeading":"Stay up-to-date on our work.","secondaryHeadings":[{"text":"Connect","lang":"en","switchRtl":false},{"text":"Échanger","switchRtl":false,"lang":"fr"},{"text":"اتصل","switchRtl":true,"lang":"ar"},{"text":"連接","switchRtl":false,"lang":"zh"},{"text":"Связь","switchRtl":false,"lang":"ru"},{"text":"Conecta","switchRtl":false,"lang":"es"},{"text":"Verbindung","switchRtl":false,"lang":"de"}]} /-->
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:shiro/mailchimp-subscribe -->
