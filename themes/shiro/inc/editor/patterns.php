@@ -62,6 +62,12 @@ function register_pattern() {
 		'content' => BlogList\PATTERN,
 	] );
 
+	register_block_pattern( CommunicationModule\NAME, [
+		'title' => __( 'Communication module', 'shiro' ),
+		'categories' => [ CATEGORY_NAME ],
+		'content' => CommunicationModule\pattern(),
+	] );
+
 	register_block_pattern( TemplateLanding\NAME, [
 		'title' => __( 'Landing page template', 'shiro' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
