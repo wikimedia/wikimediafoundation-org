@@ -221,9 +221,8 @@ article {
 }
 
 .article-title {
-
-	margin: 45px auto;
-	width: 40rem;
+	margin: rem(45) auto;
+	max-width: rem(640);
 
 	@include marginBottom(30, 60, $medium-bp);
 
