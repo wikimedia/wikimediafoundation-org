@@ -6,6 +6,7 @@
 namespace WMF\Editor\Patterns\TemplateLanding;
 
 use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
+use function WMF\Editor\Patterns\CommunicationModule\pattern as communication_module_pattern;
 
 const NAME = 'shiro/template-landing';
 
@@ -16,6 +17,7 @@ const NAME = 'shiro/template-landing';
  */
 function pattern() {
 	$tweet_columns = tweet_columns_pattern();
+	$communications_module = communication_module_pattern();
 
 	return <<<CONTENT
 <!-- wp:shiro/landing-page-hero {"className":"is-style-yellow50"} -->
@@ -46,27 +48,7 @@ function pattern() {
 
 $tweet_columns
 
-<!-- wp:shiro/double-heading /-->
-
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:shiro/mailchimp-subscribe -->
-<div class="wp-block-shiro-mailchimp-subscribe mailchimp-subscribe"><svg class="i icon icon-mail"><use xlink:href="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#email" /></svg><!-- wp:heading {"level":3} -->
-<h3>Get email updates</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Subscribe to news about ongoing projects and initiatives</p>
-<!-- /wp:paragraph --><div class="mailchimp-subscribe__input-container"><div class="mailchimp-subscribe__column-input"><!-- input_field --></div><div class="mailchimp-subscribe__column-button"><button class="wp-block-shiro-button" type="submit">Subscribe</button></div></div><p class="mailchimp-subscribe__description has-base-30-color has-text-color has-small-font-size">This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy.</p></div>
-<!-- /wp:shiro/mailchimp-subscribe --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:paragraph -->
-<p>[Contact block]</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+$communications_module
 
 <!-- wp:group {"align":"full","backgroundColor":"base80"} -->
 <div class="wp-block-group alignfull has-base-80-background-color has-background"><div class="wp-block-group__inner-container"><!-- wp:shiro/double-heading /-->
