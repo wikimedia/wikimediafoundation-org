@@ -55,6 +55,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
+		'shiro/toc',
 		'shiro/tweet-this',
 		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
