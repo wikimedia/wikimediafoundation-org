@@ -1,7 +1,8 @@
 import { useBlockProps } from '@wordpress/block-editor';
-import { select, subscribe } from '@wordpress/data';
-import { cleanForSlug } from '@wordpress/editor';
+import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+
+import getHeadingBlocks from './getHeadingBlocks';
 
 export const name = 'shiro/toc',
 	settings = {
@@ -31,6 +32,13 @@ export const name = 'shiro/toc',
 				className: 'table-of-contents toc',
 			} );
 
+			const [ ...topLevelBlocks ] = useSelect( select =>
+				select( 'core/block-editor' ).getBlocks()
+			);
+
+			const headingBlocks = getHeadingBlocks( topLevelBlocks );
+			console.log( headingBlocks );
+
 			return <div { ...blockProps }></div>;
 		},
 
@@ -45,98 +53,3 @@ export const name = 'shiro/toc',
 			return <div { ...blockProps }></div>;
 		},
 	};
-
-subscribe( () => {
-	const { getBlocks } = select( 'core/block-editor' );
-	const [ ...topLevelBlocks ] = getBlocks();
-
-	// Return early if nothing exists (content not inititalized yet).
-	if ( ! topLevelBlocks || topLevelBlocks.length === 0 ) {
-		return;
-	}
-
-	/**
-	 * Process an array of blocks to look for ToC block.
-	 *
-	 * This is only meant to be used inside of a column block.
-	 *
-	 * @param {Array} blocks Blocks to process.
-	 */
-	const getTableOfContentsBlock = blocks => {
-		let tocBlocks = [];
-		// Filter for column blocks.
-		// TODO: we probably want to filter this by a style or something as well.
-		blocks
-			.filter( block => block.name === 'core/columns' )
-			.forEach( block =>
-				// Look in the first inner column.
-				block.innerBlocks[ 0 ].innerBlocks
-					.filter( block => block.name === name )
-					.forEach( block => tocBlocks.push( block ) )
-			);
-
-		return tocBlocks;
-	};
-
-	const currentBlockInstances = getTableOfContentsBlock( topLevelBlocks );
-
-	// Return early if we don't have this block.
-	if ( currentBlockInstances.length === 0 ) {
-		return;
-	}
-
-	/**
-	 * Process an array of blocks to look for nested blocks.
-	 *
-	 * This is only meant to be used inside of a column block,
-	 * to find H2s in the second column.
-	 *
-	 * @param {Array} blocks Blocks to process.
-	 */
-	const getNestedBlocks = blocks => {
-		let nestedBlocks = [];
-		// Filter for column blocks.
-		// TODO: we probably want to filter this by a style or something as well.
-		blocks
-			.filter( block => block.name === 'core/columns' )
-			.forEach( block =>
-				// Handle second inner column.
-				block.innerBlocks[ 1 ].innerBlocks.forEach( block => {
-					// Add the column's inner blocks to nestedBlocks.
-					nestedBlocks.push( block );
-				} )
-			);
-
-		return nestedBlocks;
-	};
-
-	/**
-	 * Process an array of blocks to look for heading blocks.
-	 *
-	 * @param {Array} blocks Blocks to process.
-	 */
-	const getHeadingBlocks = blocks => {
-		let headingBlocks = [];
-		// Filter for H2 heading blocks.
-		blocks
-			.filter(
-				block =>
-					block.name === 'core/heading' &&
-					block.attributes.level === 2
-			)
-			.forEach( block => {
-				if ( block.attributes.anchor === undefined ) {
-					block.attributes.anchor = cleanForSlug(
-						block.attributes.content
-					);
-				}
-				headingBlocks.push( block );
-			} );
-
-		return headingBlocks;
-	};
-
-	const nestedBlocks = getNestedBlocks( topLevelBlocks );
-	const headingBlocks = getHeadingBlocks( nestedBlocks );
-	console.log( headingBlocks );
-} );
