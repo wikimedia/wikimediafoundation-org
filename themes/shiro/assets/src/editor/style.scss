@@ -28,14 +28,14 @@
 		// Allow for the block insertion point to show.
 		margin-bottom: rem(40);
 
-		// no-margin blocks should display margin when selected, so that the
+		// no-default-margin blocks should display margin when selected, so that the
 		// inserter will be visible.
-		&.no-margin:not(.is-selected) {
+		&.no-default-margin:not(.is-selected) {
 			margin-bottom: 0;
 		}
 
-		// Reset the margin for spacers below no-margin blocks
-		&.no-margin + .wp-block-spacer {
+		// Reset the margin for spacers below no-default-margin blocks
+		&.no-default-margin + .wp-block-spacer {
 			margin-top: 0;
 		}
 	}
