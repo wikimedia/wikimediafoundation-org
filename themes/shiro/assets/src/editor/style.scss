@@ -26,12 +26,23 @@
 
 	.block-editor-block-list__block {
 		// Allow for the block insertion point to show.
-		margin-bottom: rem(28);
+		margin-bottom: rem(40);
+
+		// no-margin blocks should display margin when selected, so that the
+		// inserter will be visible.
+		&.no-margin:not(.is-selected) {
+			margin-bottom: 0;
+		}
+
+		// Reset the margin for spacers below no-margin blocks
+		&.no-margin + .wp-block-spacer {
+			margin-top: 0;
+		}
 	}
 
 	// Make spacer blocks accurate after the global bottom margin
 	.wp-block-spacer {
-		margin-top: rem(-28);
+		margin-top: rem(-40);
 		margin-bottom: 0;
 	}
 }

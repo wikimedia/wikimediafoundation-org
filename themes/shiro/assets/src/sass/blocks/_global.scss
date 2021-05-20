@@ -1,0 +1,4 @@
+// Removes the default block margin on custom blocks
+[class*="wp-block-shiro-"].no-margin {
+	margin-bottom: 0;
+}
