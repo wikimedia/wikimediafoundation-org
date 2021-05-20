@@ -3,6 +3,7 @@ import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+import HeadingLinks from './HeadingLinks';
 import { getHeadingBlocks, setHeadingAnchors } from './tocHelpers';
 
 export const name = 'shiro/toc',
@@ -20,7 +21,12 @@ export const name = 'shiro/toc',
 			multiple: false,
 			reusable: false,
 		},
-		attributes: {},
+		attributes: {
+			headingBlocks: {
+				type: 'array',
+				default: [],
+			},
+		},
 
 		/**
 		 * Render edit of the table of contents block.
@@ -37,18 +43,24 @@ export const name = 'shiro/toc',
 				select( 'core/block-editor' ).getBlocks()
 			);
 
-			const headingBlocks = getHeadingBlocks( topLevelBlocks );
-
+			// Only update things when there's a change.
 			useEffect( () => {
 				let debouncer = setTimeout( () => {
+					const headingBlocks = getHeadingBlocks( topLevelBlocks );
+
 					setHeadingAnchors( headingBlocks );
+					setAttributes( { headingBlocks } );
 				}, 1000 );
 				return () => {
 					clearTimeout( debouncer );
 				};
-			}, [ headingBlocks ] );
+			}, [ topLevelBlocks, setAttributes ] );
 
-			return <div { ...blockProps }></div>;
+			return (
+				<ul { ...blockProps }>
+					<HeadingLinks blocks={ attributes.headingBlocks } />
+				</ul>
+			);
 		},
 
 		/**
@@ -59,6 +71,10 @@ export const name = 'shiro/toc',
 				className: 'table-of-contents toc',
 			} );
 
-			return <div { ...blockProps }></div>;
+			return (
+				<ul { ...blockProps }>
+					<HeadingLinks blocks={ attributes.headingBlocks } />
+				</ul>
+			);
 		},
 	};

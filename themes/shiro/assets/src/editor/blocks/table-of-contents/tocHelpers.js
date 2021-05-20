@@ -1,5 +1,4 @@
 import { cleanForSlug } from '@wordpress/editor';
-import { escapeHTML } from '@wordpress/escape-html';
 
 /**
  * Process an array of blocks to look for nested blocks.
