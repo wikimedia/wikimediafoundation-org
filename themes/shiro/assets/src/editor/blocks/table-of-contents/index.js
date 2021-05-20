@@ -1,8 +1,9 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import getHeadingBlocks from './getHeadingBlocks';
+import { getHeadingBlocks, setHeadingAnchors } from './tocHelpers';
 
 export const name = 'shiro/toc',
 	settings = {
@@ -37,7 +38,15 @@ export const name = 'shiro/toc',
 			);
 
 			const headingBlocks = getHeadingBlocks( topLevelBlocks );
-			console.log( headingBlocks );
+
+			useEffect( () => {
+				let debouncer = setTimeout( () => {
+					setHeadingAnchors( headingBlocks );
+				}, 1000 );
+				return () => {
+					clearTimeout( debouncer );
+				};
+			}, [ headingBlocks ] );
 
 			return <div { ...blockProps }></div>;
 		},
