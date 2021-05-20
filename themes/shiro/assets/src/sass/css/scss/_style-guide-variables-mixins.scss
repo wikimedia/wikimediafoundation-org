@@ -184,3 +184,7 @@
 		color: $wmui-color-blue50;
 	}
 }
+
+@mixin global-block-styles() {
+	margin-bottom: rem(40);
+}
