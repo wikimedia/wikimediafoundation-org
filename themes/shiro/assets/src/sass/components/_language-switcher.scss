@@ -108,6 +108,10 @@
 					margin-bottom: rem(14);
 				}
 
+				[data-dropdown-status="uninitialized"] & {
+					margin-bottom: 0;
+				}
+
 				a {
 
 					/** Necessary to override some pre-existing styles */
@@ -128,6 +132,7 @@
 		&--selected {
 			--language-picker-item-border-color: #{$wmui-color-blue50};
 		}
+
 
 		a {
 			display: block;
@@ -151,5 +156,14 @@
 			display: block;
 			margin-top: rem(4);
 		}
+	}
+}
+
+// The issue here is IE's lack of support for custom properties, but this seems
+// much simpler than a convoluted @supports query when the vast majority of
+// browsers will support them.
+@include target-ie() {
+	.language-switcher__language--selected .language-switcher__language-name::after {
+		border-bottom: 3px solid $wmui-color-blue50;
 	}
 }

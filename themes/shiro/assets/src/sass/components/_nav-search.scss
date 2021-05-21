@@ -11,6 +11,10 @@
 		flex: 0 0 rem(220);
 	}
 
+	[data-dropdown-status="uninitialized"] & {
+		margin-top: 0.5rem;
+	}
+
 	.search-form__field {
 
 		/**

@@ -189,3 +189,9 @@
 		color: $wmui-color-blue50;
 	}
 }
+
+@mixin target-ie {
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		@content;
+	}
+}

@@ -10,12 +10,22 @@
 	&__drawer {
 		width: 100%;
 
+
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
 			align-items: start;
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
 			width: 100%;
+		}
+
+		[data-dropdown-status="uninitialized"] & {
+			display: flex;
+			flex-direction: column-reverse;
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				flex-direction: row-reverse;
+			}
 		}
 
 		/**
