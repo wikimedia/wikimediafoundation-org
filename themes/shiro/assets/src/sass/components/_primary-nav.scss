@@ -23,8 +23,9 @@
 		 * the mobile styles on desktop would be overly-complicated for no real
 		 * benefit, hence this "backwards" query.
 		 */
-		@media ( max-width: $medium-landscape ) {
-			[data-dropdown-status="initialized"][data-visible="yes"] & {
+		[data-dropdown-status="initialized"][data-visible="yes"] & {
+
+			@media ( max-width: $medium-landscape ) {
 				--full-window-height: calc(var(--vh, 1vh) * 100);
 				background: $color-white;
 				color: #fff;
@@ -37,18 +38,18 @@
 				top: $primary-nav-mobile-height;
 				width: 100%;
 				z-index: 3000;
+			}
 
-				.admin-bar & {
+			.admin-bar & {
 
-					@media (min-width: 600px) {
-						max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
-						top: $primary-nav-mobile-height + 46px;
-					}
+				@media (min-width: 600px) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+					top: $primary-nav-mobile-height + 46px;
+				}
 
-					@media (min-width: 784px) {
-						max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 32px));
-						top: $primary-nav-mobile-height + 32px;
-					}
+				@media (min-width: 784px) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 32px));
+					top: $primary-nav-mobile-height + 32px;
 				}
 			}
 		}
