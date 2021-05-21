@@ -9,14 +9,14 @@
 		$border-color-base,
 	);
 
-	order: 10;
-	width: rem(40);
-	height: rem(34);
-	padding: 0;
-	margin-right: rem(17);
-	display: inline-flex;
-	justify-content: center;
 	align-items: center;
+	display: inline-flex;
+	height: rem(34);
+	justify-content: center;
+	margin-right: rem(17);
+	order: 10;
+	padding: 0;
+	width: rem(40);
 
 	@media screen and (min-width: #{$primary-nav-breakpoint}) {
 		display: none;
@@ -30,10 +30,10 @@
 	}
 
 	&__icon {
-		width: rem(20);
+		display: none;
 		height: rem(20);
 		margin: 0;
-		display: none;
+		width: rem(20);
 
 		[aria-expanded="true"] &--opened,
 		[aria-expanded="false"] &--closed {

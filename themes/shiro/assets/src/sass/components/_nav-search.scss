@@ -1,14 +1,14 @@
 .nav-search {
-	border: 1px solid #a2a9b1;
-	box-sizing: border-box;
-	border-radius: 2px;
 	background: #fff;
+	border: 1px solid #a2a9b1;
+	border-radius: 2px;
+	box-sizing: border-box;
 	margin-bottom: 0;
 	width: 100%;
 
 	@media ( min-width: #{$medium-landscape} ) {
-		flex: 0 0 rem( 220 );
 		align-self: flex-start;
+		flex: 0 0 rem(220);
 	}
 
 	.search-form__field {

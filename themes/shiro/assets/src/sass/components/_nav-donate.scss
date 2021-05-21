@@ -1,6 +1,6 @@
 .nav-donate {
-	order: 40;
 	margin-left: rem(6);
+	order: 40;
 
 	@media (min-width: #{$primary-nav-breakpoint}) {
 		margin-left: rem(8);
@@ -15,8 +15,8 @@
 			$color-secondary--focus,
 			$color-base--inverted,
 		);
-		display: flex;
 		align-items: center;
+		display: flex;
 		min-height: rem(34);
 	}
 
@@ -27,9 +27,9 @@
 		 * that cannot yet be removed.
 		 */
 		&.icon {
-			width: rem(14);
 			height: rem(14);
 			margin: 0;
+			width: rem(14);
 		}
 
 		&--lock {

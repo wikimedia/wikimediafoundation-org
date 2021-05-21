@@ -1,20 +1,20 @@
 .primary-nav {
-	margin-top: rem( 66 );
+	border-top: 1px solid $wmui-color-base80;
 	display: flex;
 	justify-content: space-between;
-	border-top: 1px solid $wmui-color-base80;
+	margin-top: rem(66);
 	padding: 0;
-	padding-top: rem( 12 );
+	padding-top: rem(12);
 	width: 100%;
 
 	&__drawer {
 		width: 100%;
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			align-items: start;
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
-			align-items: start;
 			width: 100%;
 		}
 
@@ -26,28 +26,28 @@
 		@media ( max-width: $medium-landscape ) {
 			[data-dropdown-status="initialized"][data-visible="yes"] & {
 				--full-window-height: calc(var(--vh, 1vh) * 100);
+				background: $color-white;
+				color: #fff;
 				display: block;
+				left: 0;
+				max-height: calc(var(--full-window-height, 100vh) - #{$primary-nav-mobile-height});
+				overflow: auto;
 				padding: 1.5rem;
 				position: fixed;
-				width: 100%;
-				background: $color-white;
-				left: 0;
-				color: #fff;
-				z-index: 3000;
 				top: $primary-nav-mobile-height;
-				overflow: auto;
-				max-height: calc(var(--full-window-height, 100vh) - #{$primary-nav-mobile-height});
+				width: 100%;
+				z-index: 3000;
 
 				.admin-bar & {
 
 					@media (min-width: 600px) {
-						top: $primary-nav-mobile-height + 46px;
 						max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+						top: $primary-nav-mobile-height + 46px;
 					}
 
 					@media (min-width: 784px) {
-						top: $primary-nav-mobile-height + 32px;
 						max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 32px));
+						top: $primary-nav-mobile-height + 32px;
 					}
 				}
 			}
@@ -55,32 +55,32 @@
 	}
 
 	&__items {
-		display: flex;
-		list-style: none;
 		align-items: start;
+		display: flex;
 		flex-wrap: wrap;
+		list-style: none;
 
 		[data-dropdown-status="initialized"] & {
-			flex-wrap: nowrap;
 			flex-direction: column;
+			flex-wrap: nowrap;
 			margin-top: rem(21);
 
 			@media ( min-width: #{$primary-nav-breakpoint} ) {
-				flex-direction: row;
 				align-items: center;
+				flex-direction: row;
 				flex-wrap: wrap;
-				margin-top: rem( -11 );
+				margin-top: rem(-11);
 			}
 		}
 
 		li {
 			display: inline-block;
 			margin: 0;
-			margin-bottom: rem( 11 );
+			margin-bottom: rem(11);
 
 			@media ( min-width: #{$primary-nav-breakpoint} ) {
 				margin-bottom: 0;
-				margin-top: rem( 11 );
+				margin-top: rem(11);
 			}
 
 			&.current-menu-item.current-menu-item,
@@ -105,18 +105,18 @@
 				justify-content: center;
 
 				span {
-					padding: rem( 6 ) rem( 2 );
 					display: inline-block;
+					padding: rem(6) rem(2);
 				}
 
 				&::after {
+					border: 0;
 					content: "";
 					display: block;
-					margin-top: rem( 12 );
+					height: 3px;
+					margin-top: rem(12);
 					position: relative;
 					z-index: 10;
-					height: 3px;
-					border: 0;
 
 					@media ( min-width: #{$primary-nav-breakpoint} ) {
 						margin-bottom: 0;
@@ -160,7 +160,7 @@ body.disable-body-scrolling {
 .admin-bar .site-header:not(.site-header--pinned) + .header-inner .primary-nav__drawer {
 
 	@media (max-width: 599px) {
-		top: $primary-nav-mobile-height + 46px;
 		max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+		top: $primary-nav-mobile-height + 46px;
 	}
 }
