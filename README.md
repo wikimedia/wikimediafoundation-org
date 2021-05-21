@@ -14,3 +14,14 @@ The process for updating the mirror is documented by GitHub: https://help.github
 
 Command to run from private repository:
   git push --mirror https://github.com/wikimedia/wikimediafoundation-org.git
+
+## Updating Localization
+
+There are several composer scripts here that make use of `wp i18n` to help manage localization files. Run `composer run -l` to see a list of available scripts.
+
+**⚠️ You must have WP-CLI installed for these scripts to work.**
+
+There are two namespaces to help simplify translation:
+
+- `shiro` - These are "frontend" strings--ones that are likely to be seen by visitors to the site.
+- `shiro-admin` - These are "backend" strings--ones that will only be seen by editors and administrators.
