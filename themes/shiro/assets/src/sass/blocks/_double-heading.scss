@@ -1,4 +1,7 @@
 .double-heading {
+
+	@include global-block-styles;
+
 	&__primary {
 		line-height: 1.5;
 		color: $wmui-color-base0;

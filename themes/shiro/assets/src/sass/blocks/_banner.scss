@@ -1,4 +1,6 @@
 .banner {
+
+	@include global-block-styles;
 	display: flex;
 	flex-direction: column-reverse;
 	width: 100%;

@@ -1,4 +1,7 @@
 .wp-block-shiro-stairs {
+
+	@include global-block-styles;
+
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;

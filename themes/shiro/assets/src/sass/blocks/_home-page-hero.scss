@@ -11,6 +11,8 @@
 }
 
 .hero-home {
+	@include global-block-styles;
+
 	&__link {
 		display: block;
 	}

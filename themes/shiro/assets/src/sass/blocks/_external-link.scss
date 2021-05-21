@@ -1,4 +1,11 @@
 .external-link {
+
+	@include global-block-styles;
+
+	&:only-child {
+		margin-bottom: 0;
+	}
+
 	&__heading {
 
 		@include h5;
