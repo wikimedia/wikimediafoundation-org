@@ -50,7 +50,7 @@ function wmf_add_taxonomies() {
 			'labels'  => $profile_type_labels,
 			'rewrite' => array(
 				'with_front' => false,
-				'slug'       => __( 'role', 'shiro' ),
+				'slug'       => __( 'role', 'shiro-admin' ),
 			),
 		)
 	);
@@ -87,7 +87,7 @@ function wmf_add_taxonomies() {
 			'labels'  => $story_type_labels,
 			'rewrite' => array(
 				'with_front' => false,
-				'slug'       => __( 'stories', 'shiro' ),
+				'slug'       => __( 'stories', 'shiro-admin' ),
 			),
 		)
 	);
