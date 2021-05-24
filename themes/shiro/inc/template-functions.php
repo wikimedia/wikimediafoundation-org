@@ -696,6 +696,20 @@ function wmf_get_page_stories() {
 }
 
 /**
+ * Get the uri for an SVG in the theme, by name.
+ *
+ * @param string $name
+ *
+ * @return string
+ */
+function wmf_get_svg_uri( string $name ): string
+{
+	$name = str_replace( '.svg', '', $name);
+	$uri = get_stylesheet_directory_uri() . '/assets/src/svg/' . $name . '.svg';
+	return esc_url($uri);
+}
+
+/**
  * Echo & wrap a piece of text with an href if the possible URL is set.
  *
  * @param string $text The text to wrap
