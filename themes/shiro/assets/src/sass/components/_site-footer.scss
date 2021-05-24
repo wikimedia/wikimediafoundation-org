@@ -21,7 +21,7 @@
 		margin-bottom: rem(20);
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
-			margin-top: rem(64);
+			margin-top: rem(44);
 			margin-bottom: rem(54);
 			flex-direction: row;
 			flex-wrap: wrap;
@@ -108,7 +108,7 @@
 		margin-top: rem(30);
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
-			margin-top: rem(48);
+			margin-top: rem(40);
 			width: 100%;
 			display: flex;
 		}
@@ -134,7 +134,7 @@
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
 			margin-right: rem(16);
-			flex: 1 1 25%;
+			flex: 1 1 24%;
 
 			&:last-child {
 				margin-right: 0;
@@ -149,6 +149,10 @@
 	&__navmenu {
 		.site-footer__navigation-section--footer-projects & {
 			columns: 2;
+
+			@media (min-width: #{$width-breakpoint-desktop}) {
+				columns: 3;
+			}
 		}
 
 		li {
@@ -167,6 +171,7 @@
 		padding-bottom: rem(8);
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-top: rem(40);
 			width: 100%;
 		}
 	}
