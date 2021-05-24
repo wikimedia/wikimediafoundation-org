@@ -38,7 +38,7 @@ class Connect extends Base {
 		$control_id = 'wmf_connect_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Connect', 'shiro' ),
+				'default' => __( 'Connect', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -52,7 +52,7 @@ class Connect extends Base {
 		$control_id = 'wmf_connect_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Stay up-to-date on our work.', 'shiro' ),
+				'default' => __( 'Stay up-to-date on our work.', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -76,7 +76,7 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Subscribe to our newsletter', 'shiro' ),
+				'default' => __( 'Subscribe to our newsletter', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -123,7 +123,7 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_placeholder';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Email address', 'shiro' ),
+				'default' => __( 'Email address', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -137,7 +137,7 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_button';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Subscribe', 'shiro' ),
+				'default' => __( 'Subscribe', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(

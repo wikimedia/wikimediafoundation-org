@@ -28,7 +28,7 @@ class Page extends Base {
 		$control_id = 'wmf_pagination_newer';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Newer', 'shiro' ),
+				'default' => __( 'Newer', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -43,7 +43,7 @@ class Page extends Base {
 		$control_id = 'wmf_pagination_older';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Older', 'shiro' ),
+				'default' => __( 'Older', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -58,7 +58,7 @@ class Page extends Base {
 		$control_id = 'wmf_downloads_header';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Downloads', 'shiro' ),
+				'default' => __( 'Downloads', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(

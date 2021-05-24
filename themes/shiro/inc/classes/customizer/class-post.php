@@ -30,7 +30,7 @@ class Post extends Base {
 		$control_id = 'wmf_related_posts_title';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Related', 'shiro' ),
+				'default' => __( 'Related', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -45,7 +45,7 @@ class Post extends Base {
 		$control_id = 'wmf_related_posts_description';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Read further in the pursuit of knowledge', 'shiro' ),
+				'default' => __( 'Read further in the pursuit of knowledge', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
