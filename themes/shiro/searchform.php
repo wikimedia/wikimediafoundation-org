@@ -5,8 +5,8 @@
  * @package shiro
  */
 
-$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro' ) );
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Search', 'shiro' ) );
+$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro-admin' ) );
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Search', 'shiro-admin' ) );
 ?>
 <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
 	<label class="search-form__label">

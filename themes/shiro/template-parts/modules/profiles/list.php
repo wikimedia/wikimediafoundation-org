@@ -19,7 +19,7 @@ $description  = ! empty( $template_data['description'] ) ? $template_data['descr
 $button_label = ! empty( $template_data['button_label'] ) ? $template_data['button_label'] : '';
 $button_link  = ! empty( $template_data['button_link'] ) ? $template_data['button_link'] : '';
 
-$pre_heading            = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro' ) );
+$pre_heading            = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro-admin' ) );
 $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 ?>
 <div class="w-100p mod-margin-bottom">
