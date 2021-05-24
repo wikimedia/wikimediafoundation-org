@@ -223,7 +223,7 @@ class General extends Base {
         $control_id = 'wmf_search_results_copy';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Search results for %s', 'shiro' ),
+				'default' => __( /** translators: Current search term */ 'Search results for %s', 'shiro' ),
 			)
 		);
 		$this->customize->add_control(
