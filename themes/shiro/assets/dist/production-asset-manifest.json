@@ -1,5 +1,5 @@
 {
-  "shiro.js": "./shiro-61920885b1b8b50131fc.js",
+  "shiro.js": "./shiro-393d3ed073f150b62c7f.js",
   "editor.css": "./editor-f2f6832f5df191a77f78.css",
   "editor.js": "./editor-f2f6832f5df191a77f78.js",
   "editor.rtl.css": "./editor-f2f6832f5df191a77f78.rtl.css",
@@ -97,8 +97,6 @@
   "images/staff-profile-pattern.jpg": "images/staff-profile-pattern.jpg",
   "images/wikimedia-commons-logo.svg": "images/wikimedia-commons-logo.svg",
   "images/wikipedia-logo.png": "images/wikipedia-logo.png",
-  "micromodal.min.js": "micromodal.min.js",
-  "mm-polyfill.min.js": "mm-polyfill.min.js",
   "stickyfill.min.js": "stickyfill.min.js",
   "svg4everybody.min.js": "svg4everybody.min.js"
 }
