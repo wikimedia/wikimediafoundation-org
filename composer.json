@@ -61,7 +61,7 @@
     "make-themes-json": "wp i18n make-json languages/themes --no-purge"
   },
   "scripts-descriptions": {
-    "make-shir-pot": "Generate all .pot files for both shiro domains",
+    "make-shiro-pot": "Generate all .pot files for both shiro domains",
     "make-shiro-frontend-pot": "Generate .pot files for the 'shiro' domain",
     "make-shiro-admin-pot": "Generate .pot files for the 'shiro-admin' domain",
     "make-themes-mo": "Generate .mo files for all .po files in languages/themes",

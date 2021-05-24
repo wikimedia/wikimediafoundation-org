@@ -19,6 +19,8 @@ Command to run from private repository:
 
 There are several composer scripts here that make use of `wp i18n` to help manage localization files. Run `composer run -l` to see a list of available scripts.
 
+Once you know which script you'd like to run, the pattern is `composer [script name]` e.g. `composer make-shiro-frontend-pot`.
+
 **⚠️ You must have WP-CLI installed for these scripts to work.**
 
 There are two namespaces to help simplify translation:
