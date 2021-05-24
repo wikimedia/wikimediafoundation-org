@@ -8,9 +8,6 @@ module.exports = ( api ) => {
 			[ 'transform-react-jsx', {
 				pragma: 'wp.element.createElement',
 			} ],
-			[ "@wordpress/babel-plugin-makepot", {
-				"output": "languages/shiro-js.pot"
-			} ]
 		],
 	};
 };
