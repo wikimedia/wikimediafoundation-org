@@ -113,16 +113,36 @@ p {
 	@extend p;
 }
 
-ul,
-ol {
-	margin: 0.8rem 0;
-	padding: 0 0 0 1.8rem;
+@include article-main {
+	ul,
+	ol {
+		margin: 0.8rem 0;
+		padding: 0 0 0 1.8rem;
 
-	li {
-		margin-top: 0.4rem;
+		li {
 
-		&:first-child {
-			margin-top: 0;
+			@include has-font-size("default");
+			line-height: 175%;
+		}
+	}
+
+	ul {
+		li {
+			list-style-type: disc;
+		}
+	}
+
+	ol {
+		li {
+			list-style-type: decimal;
+
+			li {
+				list-style-type: lower-alpha;
+
+				li {
+					list-style-type: lower-roman;
+				}
+			}
 		}
 	}
 }
