@@ -158,7 +158,7 @@
 @mixin style-guide-dropdown-toggle() {
 
 	@include style-guide-dropdown-base();
-	@include style-guide-dropdown-caret-blue();
+	@include style-guide-dropdown-caret-black();
 
 	&:hover {
 		background-color: $wmui-color-base100;
@@ -166,8 +166,8 @@
 
 	&:active,
 	&:focus {
-		outline: none;
 		border-color: $wmui-color-blue50;
+		@include style-guide-dropdown-caret-blue();
 	}
 }
 
@@ -182,5 +182,11 @@
 
 		@include style-guide-dropdown-caret-blue();
 		color: $wmui-color-blue50;
+	}
+}
+
+@mixin target-ie {
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		@content;
 	}
 }

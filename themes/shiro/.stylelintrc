@@ -1,5 +1,8 @@
 {
 	"extends": "stylelint-config-wordpress/scss",
+	"plugins": [
+		"stylelint-order"
+	],
 	"rules": {
 		"max-nesting-depth": 4,
 		"function-url-quotes": null,
@@ -9,6 +12,11 @@
 		"declaration-property-unit-whitelist": {
 			"line-height": ["px", "em", "rem"]
 		},
-		"max-empty-lines": null
+		"max-empty-lines": null,
+		"order/order": [
+			"custom-properties",
+			"declarations"
+		],
+		"order/properties-alphabetical-order": true
 	}
 }
