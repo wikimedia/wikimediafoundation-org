@@ -13,9 +13,6 @@ const icons = [
 	'edit-rtl',
 	'email',
 	'globe',
-	'header',
-	'header-orig',
-	'header-wp20',
 	'heart-pink',
 	'language',
 	'lock',
@@ -30,16 +27,19 @@ const icons = [
 	'download',
 	'downTriangle',
 	'image',
-	'logo-horizontal',
 	'mail',
 	'menu',
 	'open',
 	'search',
 	'social-facebook',
+	'social-facebook-blue',
 	'social-instagram',
+	'social-instagram-blue',
 	'social-pinterest',
 	'social-twitter',
 	'social-twitter-blue',
+	'social-linkedin',
+	'social-linkedin-blue',
 	'social-youtube',
 	'translate',
 	'trending',
@@ -107,8 +107,8 @@ function replaceActiveIcon( className, activeIcon, newIcon ) {
 export default function IconSelector( { attributes, setAttributes } ) {
 	const { className } = attributes;
 	const options = icons.map( icon => ( {
-		label: icon,
-		value: icon || __( 'No icon', 'shiro' ),
+		label: icon || __( 'No icon', 'shiro' ),
+		value: icon,
 	} ) );
 	const activeIcon = getActiveIcon( icons, className );
 

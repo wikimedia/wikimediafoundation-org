@@ -1,28 +1,39 @@
 // Definitions of editor styles registered as theme supports.
 
-// Color definitions: slug, background-color, text-color
+// Color definitions: slug, background-color, text-color, link-color.
 $color-palette:
-	base-0    $wmui-color-base0    $wmui-color-base100,
-	base-10   $wmui-color-base10   $wmui-color-base100,
-	base-20   $wmui-color-base20   $wmui-color-base100,
-	base-30   $wmui-color-base30   $wmui-color-base0,
-	base-50   $wmui-color-base50   $wmui-color-base0,
-	base-70   $wmui-color-base70   $wmui-color-base0,
-	base-80   $wmui-color-base80   $wmui-color-base0,
-	base-90   $wmui-color-base90   $wmui-color-base0,
-	base-100  $wmui-color-base100  $wmui-color-base0,
-	blue-50   $wmui-color-blue50   $wmui-color-base100,
-	blue-90   $wmui-color-blue90   $wmui-color-base0,
-	red-50    $wmui-color-red50    $wmui-color-base100,
-	red-90    $wmui-color-red90    $wmui-color-base0,
-	yellow-50 $wmui-color-yellow50 $wmui-color-base0,
-	yellow-90 $wmui-color-yellow90 $wmui-color-base0;
+	base-0    $wmui-color-base0    $wmui-color-base100 $wmui-color-accent50,
+	base-10   $wmui-color-base10   $wmui-color-base100 $wmui-color-accent50,
+	base-20   $wmui-color-base20   $wmui-color-base100 $wmui-color-blue90,
+	base-30   $wmui-color-base30   $wmui-color-base0   $wmui-color-base10,
+	base-50   $wmui-color-base50   $wmui-color-base0   $wmui-color-blue50,
+	base-70   $wmui-color-base70   $wmui-color-base0   $wmui-color-blue50,
+	base-80   $wmui-color-base80   $wmui-color-base0   $wmui-color-blue50,
+	base-90   $wmui-color-base90   $wmui-color-base0   $wmui-color-blue50,
+	base-100  $wmui-color-base100  $wmui-color-base10  $wmui-color-blue50,
+	blue-50   $wmui-color-blue50   $wmui-color-base100 $wmui-color-blue90,
+	blue-90   $wmui-color-blue90   $wmui-color-base0   $wmui-color-blue50,
+	red-50    $wmui-color-red50    $wmui-color-base100 $wmui-color-accent90,
+	red-90    $wmui-color-red90    $wmui-color-base0   $wmui-color-blue50,
+	yellow-50 $wmui-color-yellow50 $wmui-color-base0   $wmui-color-blue50,
+	yellow-90 $wmui-color-yellow90 $wmui-color-base0   $wmui-color-blue50;
 
-@each $color, $background-color, $text-color in $color-palette {
+:root {
+	--background-color: #{$wmui-color-base100};
+	--text-color: #{$wmui-color-base10};
+	--link-color: #{$wmui-color-blue50};
+}
+
+@each $color, $background-color, $text-color, $link-color in $color-palette {
 
 	.has-#{$color}-background-color {
+		--background-color: #{$background-color};
+		--text-color: #{$text-color};
+		--link-color: #{$link-color};
 		background-color: $background-color;
+		background-color: var(--background-color);
 		color: $text-color;
+		color: var(--text-color);
 	}
 }
 
@@ -66,7 +77,7 @@ $color-palette:
 	@include h5;
 }
 @mixin h-margins {
-	margin: 0 auto 0.5em;
+	margin: 0 0 0.5em;
 }
 
 // Define base styles for headings, etc within text content.
@@ -145,20 +156,33 @@ $color-palette:
 
 .wysiwyg .alignfull {
 
-	@media ( min-width: $medium-landscape ) {
-		.page.has-blocks &,
-		.single.has-blocks & {
+	.page.has-blocks &,
+	.single.has-blocks & {
 
-			@include alignfull();
-		}
+		@include alignfull();
+	}
 
-		.single-post.has-blocks & {
+	.single-story & {
 
-			@include alignfull( $content-column-post );
-		}
+		/**
+		 * alignfull does not behave in any kind of rational way on stories,
+		 * so we want to effectively disable it.
+		 * Eventually stories may receive more attention, at which point we
+		 * will probably want to return to this styling.
+		 */
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
 
-		.single-story & {
-			margin-right: -50vw;
+	.single-post.has-blocks & {
+		margin-left: rem(-20);
+		margin-right: rem(-20);
+		min-width: 100%;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			margin-left: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
+			margin-right: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
 		}
 	}
+
 }

@@ -32,44 +32,50 @@ while ( have_posts() ) {
 			'inner_image' => get_post_thumbnail_id(),
 		)
 	);
+
+	$has_read_more_categories = has_block( 'shiro/read-more-categories' );
+	$has_social_share         = has_block( 'shiro/share-article' );
 	?>
 
 	<?php if ( ! empty( $intro ) ) : ?>
-	<div class="article-title mw-784">
-		<h3 class="h3"><?php echo wp_kses( $intro, $allowed_tags ); ?></h3>
+	<div class="article-title">
+		<?php echo wp_kses( $intro, $allowed_tags ); ?>
 	</div>
 	<?php endif; ?>
 
 	<article class="mw-784 wysiwyg">
-		<?php get_template_part( 'template-parts/header/social-aside' ); ?>
 		<?php the_content(); ?>
-	</article>
-
-	<div class="article-footer mw-980 mod-margin-bottom">
-		<?php get_template_part( 'template-parts/post-categories' ); ?>
 
 		<?php
-		get_template_part(
-			'template-parts/modules/social/share',
-			'horizontal',
-			array(
-				'services' => get_post_meta( get_the_ID(), 'share_links', true ),
-			)
-		);
+			if ( ! $has_social_share ) {
+				echo \WMF\Editor\Blocks\ShareArticle\render_block( [
+					'enableTwitter'  => true,
+					'enableFacebook' => true,
+				] );
+			}
+
+			if ( ! $has_read_more_categories ) {
+				echo \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] );
+			}
 		?>
-	</div>
+	</article>
 
 	<?php
 }
+
+$has_blog_list = has_block( 'shiro/blog-list' );
+$has_connect   = has_block( 'shiro/mailchimp-subscribe' ) || has_block( 'shiro/contact' );
 
 $modules = array(
 	'profile',
 	'offsite-links',
 	'cta',
-	'related-posts',
+	$has_blog_list ? false : 'related-posts',
 	'support',
-	'connect',
+	$has_connect ? false : 'connect',
 );
+
+$modules = array_filter( $modules );
 
 foreach ( $modules as $module ) {
 	get_template_part( 'template-parts/page/page', $module );

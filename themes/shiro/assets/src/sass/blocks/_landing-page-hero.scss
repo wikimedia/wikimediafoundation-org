@@ -1,9 +1,4 @@
 .hero {
-	// Default style is the "light" (Base90) style.
-	--background-color: #{$wmui-color-base90};
-	--text-color: #{$wmui-color-base0};
-	--accent-color: #{$wmui-color-base0};
-
 	&__header {
 
 		@include alignfull-padded;
@@ -14,8 +9,9 @@
 		padding: rem(28) rem(20);
 	}
 
-	&__image {
+	&__image-container {
 		display: none;
+		position: relative;
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
@@ -25,7 +21,7 @@
 		}
 
 		&__text-column,
-		&__image {
+		&__image-container {
 			width: 50%;
 		}
 
@@ -44,7 +40,8 @@
 			}
 		}
 
-		&__image {
+		&__image,
+		&__image-container {
 			display: block;
 		}
 	}

@@ -1,5 +1,7 @@
 .wp-block-column {
-	> .wp-block-group:only-child {
+	> .contact:only-child,
+	> .wp-block-group:only-child,
+	> .wp-block-group:only-child .wp-block-group__inner-container {
 		height: 100%;
 	}
 
@@ -23,6 +25,41 @@
 	@media (min-width: $core-gutenberg-break-medium) {
 		&:not(:first-child) {
 			margin-left: $wm-column-gutter;
+		}
+	}
+}
+
+/**
+ * This is a core style that is for some reason over-riden in the editor,
+ * making the editor and front-end not match. Redefining it here provides
+ * enough specificity for the rule to apply correctly.
+ */
+.wp-block-columns {
+	margin-bottom: 1.75em;
+}
+
+// New columns style for aligning the buttons to the bottom of the columns.
+.wp-block-columns.is-style-align-buttons-bottom {
+	.wp-block-column,
+	.wp-block-group__inner-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	.wp-block-buttons,
+	.tweet-this,
+	.wp-block-shiro-button {
+		&:last-child {
+			margin-top: auto;
+		}
+	}
+
+	#{$headings} {
+		.page.has-blocks &.wp-block,
+		.single.has-blocks &.wp-block {
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 }

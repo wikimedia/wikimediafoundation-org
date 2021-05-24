@@ -1,43 +1,3 @@
-$background-color-framed--focus: $wmui-color-base100;
-// $background-color-framed--active doesn't correspond to the shown color on https://design.wikimedia.org/style-guide/components/buttons.html.
-$background-color-framed--active-alternative: $wmui-color-base80;
-
-@mixin style-guide-button-reset() {
-	border: none;
-	display: inline-block;
-	font-weight: bold;
-	border-radius: $border-radius-base;
-	cursor: pointer;
-	padding: rem(8) rem(20);
-}
-
-@mixin style-guide-button(
-	$color,
-	$color-hover,
-	$color-active,
-	$color-focus,
-	$color-text,
-) {
-	@include style-guide-button-reset;
-	background: $color;
-	color: $color-text;
-	transition: $transition-duration-base background;
-
-	&:hover {
-		background: $color-hover;
-	}
-
-	&:active {
-		background: $color-active;
-	}
-
-	&:focus {
-		background: $color-focus;
-		outline: 2px solid $color-focus;
-		outline-offset: 1px;
-	}
-}
-
 @mixin button-icon(
 	$icon-name,
 	$icon-path,
@@ -69,27 +29,24 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		$color-secondary--active,
 		$color-secondary--focus,
 		$color-base--inverted,
-	)
+	);
 }
 
 @mixin button-tertiary() {
 	@include style-guide-button(
-		$background-color-framed,
-		$background-color-framed--hover,
-		$background-color-framed--active-alternative,
-		$background-color-framed--focus,
+		$color-tertiary,
+		$color-tertiary--hover,
+		$color-tertiary--active,
+		$color-tertiary--focus,
 		$color-primary,
+		$border-color-base,
 	);
 
-	border: 1px solid $border-color-base;
-
-	&:active {
-		border-color: $border-color-base--active;
-	}
-
+	&:hover,
+	&:active,
 	&:focus {
-		outline: 2px solid $border-color-base--focus;
-		outline-offset: -2px;
+		border-color: $color-primary;
+		outline: none;
 	}
 }
 
@@ -120,12 +77,38 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 			}
 		}
 
+		&.is-style-as-link {
+			#{ $inner-selector } {
+				background: none;
+				color: $color-primary;
+				@include has-font-size("default");
+				padding: 0;
+				box-shadow: none;
+
+				&:hover {
+					color: $color-primary--hover;
+				}
+
+				&:active {
+					outline: none;
+				}
+
+				&:focus {
+					outline-offset: 0;
+					outline: 1px dotted currentColor;
+					color: $color-primary--focus;
+				}
+			}
+		}
+
 		&.has-icon {
 			#{ $inner-selector }:before {
 				content: '';
 				display: inline-block;
 				background-image: url('./assets/src/svg/lock-white.svg');
 				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
 				margin-right: 0.5em;
 				height: 1em;
 				width: 1em;
@@ -169,10 +152,14 @@ $background-color-framed--active-alternative: $wmui-color-base80;
 		@include button-icon('open', 'individual/open', $inner-selector);
 		@include button-icon('search', 'individual/search', $inner-selector);
 		@include button-icon('social-facebook', 'individual/social-facebook', $inner-selector);
+		@include button-icon('social-facebook-blue', 'individual/social-facebook-blue', $inner-selector);
 		@include button-icon('social-instagram', 'individual/social-instagram', $inner-selector);
+		@include button-icon('social-instagram-blue', 'individual/social-instagram-blue', $inner-selector);
 		@include button-icon('social-pinterest', 'individual/social-pinterest', $inner-selector);
 		@include button-icon('social-twitter', 'individual/social-twitter', $inner-selector);
 		@include button-icon('social-twitter-blue', 'individual/social-twitter-blue', $inner-selector);
+		@include button-icon('social-linkedin', 'individual/social-linkedin', $inner-selector);
+		@include button-icon('social-linkedin-blue', 'individual/social-linkedin-blue', $inner-selector);
 		@include button-icon('social-youtube', 'individual/social-youtube', $inner-selector);
 		@include button-icon('translate', 'individual/translate', $inner-selector);
 		@include button-icon('trending', 'individual/trending', $inner-selector);

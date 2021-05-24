@@ -3,10 +3,6 @@
 	flex-direction: column-reverse;
 	width: 100%;
 
-	// Default style is the "light" (Base90) style.
-	--background-color: #{$wmui-color-base90};
-	--text-color: #{$wmui-color-base0};
-
 	@include block-style-background-color;
 	@include block-style-text-color;
 
@@ -51,8 +47,15 @@
 
 		@include button-primary;
 
+		/**
+		 * Tertiary buttons have a border, so this "dummy" border is added
+		 * to make all buttons the same height.
+		 */
+		border: 1px solid transparent;
+
 		.is-style-blue50 &,
 		.is-style-red50 & {
+
 			@include button-tertiary;
 		}
 	}

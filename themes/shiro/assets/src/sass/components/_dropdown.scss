@@ -1,0 +1,30 @@
+[data-dropdown] {
+	position: relative;
+	z-index: 2001;
+}
+
+[data-dropdown-content] {
+	&[hidden] {
+		// For browsers that don't understand hidden
+		display: none;
+	}
+}
+
+[data-dropdown-backdrop] {
+	position: fixed;
+	display: block;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1999;
+	opacity: 0;
+	background: #000;
+	pointer-events: none;
+	transition: 300ms opacity;
+}
+
+[data-dropdown-backdrop="active"] {
+	pointer-events: auto;
+	opacity: 0.6;
+}

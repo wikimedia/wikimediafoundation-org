@@ -9,11 +9,11 @@ body {
 }
 
 .wp-block.block-editor-default-block-appender {
-	max-width: rem(strip-px($content-column + 2 * $block-padding));
+	max-width: $content-column-padded-rem;
 }
 
 .block-editor-block-list__layout > .wp-block {
-	max-width: rem(strip-px($content-column + 2 * $block-padding));
+	max-width: $content-column-padded-rem;
 
 	.has-background,
 	&.has-background {
@@ -21,18 +21,18 @@ body {
 	}
 
 	&.has-background {
-		max-width: rem(strip-px($content-column));
+		max-width: $content-column-rem;
 	}
 
 	.single-post & {
-		max-width: rem(strip-px($content-column-post + 2 * $block-padding));
+		max-width: $content-column-post-padded-rem;
 
 		&.has-background {
-			max-width: rem(strip-px($content-column-post));
+			max-width: $content-column-post-rem;
 		}
 
 		&[data-align="wide"] {
-			max-width: rem(strip-px($content-column  + 2 * $block-padding));
+			max-width: $content-column-padded-rem;
 
 			.has-background {
 				padding: 1.25em 2.375em;
@@ -44,17 +44,18 @@ body {
 	.single & {
 		&[data-align="full"] {
 			max-width: unset;
+			padding: 0;
 		}
 	}
 }
 
 .wp-block-group__inner-container > .wp-block {
-	max-width: none;
+	max-width: $content-column-rem;
 }
 
 .edit-post-visual-editor__post-title-wrapper .editor-post-title {
 	width: 2000px;
-	max-width: rem(strip-px($content-column + 2 * $block-padding));
+	max-width: $content-column-padded-rem;
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, 20, 0, 40);
 	margin-bottom: 1rem;
@@ -79,5 +80,17 @@ body {
 	.single-post & {
 		border-bottom: none;
 		font-weight: 700;
+	}
+}
+
+.page.has-blocks,
+.single.has-blocks {
+	@include wysiwyg {
+		#{$headings} {
+			&.wp-block {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
 	}
 }

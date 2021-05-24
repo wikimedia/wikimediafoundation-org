@@ -154,17 +154,6 @@
     }
 }
 
-
-// Spacing
-@mixin padding($topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop) {
-
-	padding: rem($topBottomMobile) rem($leftRightMobile);
-
-	@media (min-width: $medium-bp) {
-		padding: rem($topBottomDesktop) rem($leftRightDesktop);
-	}
-}
-
 @mixin paddingTopBottom($topBottomMobile, $topBottomDesktop) {
 	padding-top: rem($topBottomMobile);
 	padding-bottom: rem($topBottomMobile);
