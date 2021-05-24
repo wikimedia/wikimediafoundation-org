@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-21T21:02:40+00:00\n"
+"POT-Creation-Date: 2021-05-24T22:12:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: shiro-admin\n"
@@ -59,8 +59,50 @@ msgstr ""
 msgid "Sidebar"
 msgstr ""
 
+#: functions.php:359
+msgid "404 Error"
+msgstr ""
+
+#. translators: 1. search query
+#: functions.php:371
+#: search.php:13
+msgid "Search results for %s"
+msgstr ""
+
+#: header.php:14
+#: inc/classes/customizer/class-header.php:67
+msgid "Languages"
+msgstr ""
+
+#: header.php:19
+#: inc/classes/customizer/class-header.php:134
+msgid "Donate"
+msgstr ""
+
+#: header.php:21
+msgid "Toggle menu"
+msgstr ""
+
+#: header.php:22
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:23
+msgid "Skip to navigation"
+msgstr ""
+
+#: header.php:24
+msgid "Select language"
+msgstr ""
+
+#: header.php:25
+msgid "Current language:"
+msgstr ""
+
 #: inc/classes/customizer/class-connect.php:23
+#: inc/classes/customizer/class-connect.php:41
 #: inc/fields/connect.php:50
+#: template-parts/modules/general/connect.php:12
 msgid "Connect"
 msgstr ""
 
@@ -70,6 +112,11 @@ msgstr ""
 
 #: inc/classes/customizer/class-connect.php:46
 msgid "Pre Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:55
+#: template-parts/modules/general/connect.php:13
+msgid "Stay up-to-date on our work."
 msgstr ""
 
 #: inc/classes/customizer/class-connect.php:60
@@ -86,6 +133,11 @@ msgstr ""
 
 #: inc/classes/customizer/class-connect.php:70
 msgid "Subscribe Box"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:79
+#: template-parts/modules/general/connect.php:18
+msgid "Subscribe to our newsletter"
 msgstr ""
 
 #: inc/classes/customizer/class-connect.php:97
@@ -109,8 +161,18 @@ msgstr ""
 msgid "Subscribe form additional fields"
 msgstr ""
 
+#: inc/classes/customizer/class-connect.php:126
+#: template-parts/modules/general/connect.php:20
+msgid "Email address"
+msgstr ""
+
 #: inc/classes/customizer/class-connect.php:131
 msgid "Email Placeholder"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:140
+#: template-parts/modules/general/connect.php:21
+msgid "Subscribe"
 msgstr ""
 
 #: inc/classes/customizer/class-connect.php:145
@@ -143,51 +205,51 @@ msgstr ""
 msgid "If this is empty, the Link value will be used automatically."
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:23
+#: inc/classes/customizer/class-footer.php:47
 msgid "Footer"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:33
+#: inc/classes/customizer/class-footer.php:57
 msgid "Footer Logo"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:47
+#: inc/classes/customizer/class-footer.php:71
 msgid "Footer Text"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:48
+#: inc/classes/customizer/class-footer.php:72
 msgid "This changes the large text to the right of the footer logo. This can be set in each translation to localize the button."
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:62
+#: inc/classes/customizer/class-footer.php:86
 msgid "Projects Menu Label"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:63
+#: inc/classes/customizer/class-footer.php:87
 msgid "Label above the 3 column projects menu. This can be set in each translation to localize the button."
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:77
+#: inc/classes/customizer/class-footer.php:101
 msgid "Movement Affilaites Menu Label"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:78
+#: inc/classes/customizer/class-footer.php:102
 msgid "Label above the 1 column movement affiliates menu. This can be set in each translation to localize the button."
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:92
+#: inc/classes/customizer/class-footer.php:116
 msgid "Other Links Menu Label"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:93
+#: inc/classes/customizer/class-footer.php:117
 msgid "Label above the 1 column other links menu. This can be set in each translation to localize the button."
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:107
+#: inc/classes/customizer/class-footer.php:131
 msgid "Copyright"
 msgstr ""
 
-#: inc/classes/customizer/class-footer.php:108
+#: inc/classes/customizer/class-footer.php:132
 msgid "The copyright statement at the bottom of the page. This can be set in each translation to localize the button."
 msgstr ""
 
@@ -235,6 +297,7 @@ msgstr ""
 #: inc/classes/customizer/class-general.php:94
 #: inc/fields/home.php:74
 #: inc/fields/projects.php:52
+#: template-parts/modules/projects/projects.php:18
 msgid "Projects"
 msgstr ""
 
@@ -361,10 +424,6 @@ msgstr ""
 msgid "URL will be applied as inline style background image"
 msgstr ""
 
-#: inc/classes/customizer/class-header.php:67
-msgid "Languages"
-msgstr ""
-
 #: inc/classes/customizer/class-header.php:72
 msgid "Languages Translations Copy"
 msgstr ""
@@ -395,10 +454,6 @@ msgstr ""
 
 #: inc/classes/customizer/class-header.php:125
 msgid "Aria label for link"
-msgstr ""
-
-#: inc/classes/customizer/class-header.php:134
-msgid "Donate"
 msgstr ""
 
 #: inc/classes/customizer/class-header.php:143
@@ -464,6 +519,8 @@ msgstr ""
 
 #: inc/classes/customizer/class-header.php:231
 #: inc/classes/customizer/class-header.php:240
+#: searchform.php:8
+#: searchform.php:9
 msgid "Search"
 msgstr ""
 
@@ -575,6 +632,10 @@ msgstr ""
 msgid "Page Settings"
 msgstr ""
 
+#: inc/classes/customizer/class-page.php:31
+msgid "Newer"
+msgstr ""
+
 #: inc/classes/customizer/class-page.php:36
 msgid "Newer Posts Copy"
 msgstr ""
@@ -583,12 +644,23 @@ msgstr ""
 msgid "This displays in pagination sections in a link for newer posts."
 msgstr ""
 
+#: inc/classes/customizer/class-page.php:46
+msgid "Older"
+msgstr ""
+
 #: inc/classes/customizer/class-page.php:51
 msgid "Older Posts Copy"
 msgstr ""
 
 #: inc/classes/customizer/class-page.php:52
 msgid "This displays in pagination sections in a link for older posts."
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:61
+#: inc/fields/default.php:44
+#: inc/post-types/download.php:15
+#: inc/post-types/download.php:39
+msgid "Downloads"
 msgstr ""
 
 #: inc/classes/customizer/class-page.php:66
@@ -603,12 +675,20 @@ msgstr ""
 msgid "Post Settings"
 msgstr ""
 
+#: inc/classes/customizer/class-post.php:33
+msgid "Related"
+msgstr ""
+
 #: inc/classes/customizer/class-post.php:38
 msgid "Related Posts Section Title"
 msgstr ""
 
 #: inc/classes/customizer/class-post.php:39
 msgid "This displays at the bottom of each single post."
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:48
+msgid "Read further in the pursuit of knowledge"
 msgstr ""
 
 #: inc/classes/customizer/class-post.php:53
@@ -657,6 +737,7 @@ msgstr ""
 #: inc/fields/profiles.php:40
 #: inc/post-types/profile.php:17
 #: inc/post-types/profile.php:41
+#: template-parts/modules/profiles/list.php:22
 msgid "Profiles"
 msgstr ""
 
@@ -672,6 +753,7 @@ msgstr ""
 #: inc/fields/stories.php:40
 #: inc/post-types/story.php:17
 #: inc/post-types/story.php:41
+#: template-parts/modules/stories/list.php:29
 msgid "Stories"
 msgstr ""
 
@@ -688,6 +770,7 @@ msgid "Profiles List Page Button Link"
 msgstr ""
 
 #: inc/classes/customizer/class-profile.php:125
+#: single-profile.php:21
 msgid "Other members of "
 msgstr ""
 
@@ -793,115 +876,123 @@ msgstr ""
 msgid "No translations in progress for this content."
 msgstr ""
 
-#: inc/editor.php:98
+#: inc/editor/intro.php:32
+msgid "Intro field, displayed before post content in single views"
+msgstr ""
+
+#: inc/editor/intro.php:82
+msgid "Page Intro"
+msgstr ""
+
+#: inc/editor/namespace.php:105
 msgid "Small"
 msgstr ""
 
-#: inc/editor.php:98
+#: inc/editor/namespace.php:105
 msgid "S"
 msgstr ""
 
-#: inc/editor.php:99
+#: inc/editor/namespace.php:106
 msgid "Medium"
 msgstr ""
 
-#: inc/editor.php:99
+#: inc/editor/namespace.php:106
 msgid "M"
 msgstr ""
 
-#: inc/editor.php:100
+#: inc/editor/namespace.php:107
 msgid "Large"
 msgstr ""
 
-#: inc/editor.php:100
+#: inc/editor/namespace.php:107
 msgid "L"
 msgstr ""
 
-#: inc/editor.php:101
+#: inc/editor/namespace.php:108
 msgid "X-Large"
 msgstr ""
 
-#: inc/editor.php:101
+#: inc/editor/namespace.php:108
 msgid "XL"
 msgstr ""
 
-#: inc/editor.php:102
+#: inc/editor/namespace.php:109
 msgid "Jumbo"
 msgstr ""
 
-#: inc/editor.php:102
+#: inc/editor/namespace.php:109
 msgid "J"
 msgstr ""
 
-#: inc/editor.php:110
+#: inc/editor/namespace.php:117
 msgid "Base 0"
 msgstr ""
 
-#: inc/editor.php:111
+#: inc/editor/namespace.php:118
 msgid "Base 10"
 msgstr ""
 
-#: inc/editor.php:112
+#: inc/editor/namespace.php:119
 msgid "Base 20"
 msgstr ""
 
-#: inc/editor.php:113
+#: inc/editor/namespace.php:120
 msgid "Base 30"
 msgstr ""
 
-#: inc/editor.php:114
+#: inc/editor/namespace.php:121
 msgid "Base 50"
 msgstr ""
 
-#: inc/editor.php:115
+#: inc/editor/namespace.php:122
 msgid "Base 70"
 msgstr ""
 
-#: inc/editor.php:116
+#: inc/editor/namespace.php:123
 msgid "Base 80"
 msgstr ""
 
-#: inc/editor.php:117
+#: inc/editor/namespace.php:124
 msgid "Base 90"
 msgstr ""
 
-#: inc/editor.php:118
+#: inc/editor/namespace.php:125
 msgid "Base 100"
 msgstr ""
 
-#: inc/editor.php:119
+#: inc/editor/namespace.php:126
 msgid "Blue 50"
 msgstr ""
 
-#: inc/editor.php:120
+#: inc/editor/namespace.php:127
 msgid "Blue 90"
 msgstr ""
 
-#: inc/editor.php:121
+#: inc/editor/namespace.php:128
 msgid "Red 50"
 msgstr ""
 
-#: inc/editor.php:122
+#: inc/editor/namespace.php:129
 msgid "Red 90"
 msgstr ""
 
-#: inc/editor.php:123
+#: inc/editor/namespace.php:130
 msgid "Yellow 50"
 msgstr ""
 
-#: inc/editor.php:124
+#: inc/editor/namespace.php:131
 msgid "Yellow 90"
 msgstr ""
 
-#: inc/editor.php:187
+#: inc/editor/namespace.php:233
 msgid "Wikimedia"
 msgstr ""
 
-#: inc/editor/patterns.php:17
+#: inc/editor/patterns.php:22
 msgid "Wikimedia columns"
 msgstr ""
 
-#: inc/editor/patterns.php:91
+#: inc/editor/patterns.php:32
 msgid "Tweet this columns"
 msgstr ""
 
@@ -915,11 +1006,13 @@ msgstr ""
 
 #: inc/fields/common.php:16
 #: inc/fields/landing.php:27
+#: template-parts/modules/social/follow-horizontal.php:17
 msgid "Twitter"
 msgstr ""
 
 #: inc/fields/common.php:17
 #: inc/fields/landing.php:28
+#: template-parts/modules/social/follow-horizontal.php:16
 msgid "Facebook"
 msgstr ""
 
@@ -1157,12 +1250,6 @@ msgstr ""
 msgid "Download Link"
 msgstr ""
 
-#: inc/fields/default.php:44
-#: inc/post-types/download.php:15
-#: inc/post-types/download.php:39
-msgid "Downloads"
-msgstr ""
-
 #: inc/fields/header.php:15
 msgid "Background"
 msgstr ""
@@ -1245,14 +1332,6 @@ msgstr ""
 #: inc/fields/home.php:66
 #: inc/fields/projects.php:44
 msgid "Project Description"
-msgstr ""
-
-#: inc/fields/intro.php:31
-msgid "Intro field, displayed before post content in single views"
-msgstr ""
-
-#: inc/fields/intro.php:82
-msgid "Page Intro"
 msgstr ""
 
 #: inc/fields/landing.php:21
@@ -2012,6 +2091,10 @@ msgstr ""
 msgid "&larr; Back to Roles"
 msgstr ""
 
+#: inc/taxonomies.php:53
+msgid "role"
+msgstr ""
+
 #: inc/taxonomies.php:61
 #: inc/taxonomies.php:78
 msgid "Types"
@@ -2096,6 +2179,10 @@ msgstr ""
 msgid "&larr; Back to Types"
 msgstr ""
 
+#: inc/taxonomies.php:90
+msgid "stories"
+msgstr ""
+
 #: inc/template-redirect.php:91
 msgid "This page is using the \"Redirect Page\" page template."
 msgstr ""
@@ -2114,6 +2201,10 @@ msgstr ""
 
 #: inc/template-stories.php:44
 msgid "Selected stories from the \"stories\" module below will be displayed in place of the normal Report Section \"list\" module"
+msgstr ""
+
+#: inc/template-translations.php:280
+msgid "This content has not yet been translated into the current language."
 msgstr ""
 
 #. Template Name of the theme
@@ -2150,4 +2241,76 @@ msgstr ""
 
 #. Template Name of the theme
 msgid "Stories Page"
+msgstr ""
+
+#: template-parts/modules/general/connect.php:19
+msgid "Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data."
+msgstr ""
+
+#: template-parts/modules/general/connect.php:24
+msgid "Say hello"
+msgstr ""
+
+#: template-parts/modules/general/connect.php:25
+msgid "How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box."
+msgstr ""
+
+#: template-parts/modules/general/connect.php:26
+#: template-parts/modules/general/connect.php:27
+msgid "email@domain.url"
+msgstr ""
+
+#: template-parts/modules/images/credits.php:14
+msgid "Photo credits"
+msgstr ""
+
+#: template-parts/modules/links/off-site-links.php:14
+msgid "ELSEWHERE IN WIKIMEDIA"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:10
+#: template-parts/modules/social/follow-vertical.php:10
+msgid "Follow"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:19
+msgid "Instagram"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:20
+msgid "Wikimedia Blog"
+msgstr ""
+
+#: template-parts/modules/social/page.php:14
+msgid "Tweet"
+msgstr ""
+
+#: template-parts/modules/social/page.php:15
+#: template-parts/modules/social/share-horizontal.php:14
+#: template-parts/modules/social/share-vertical.php:10
+msgid "Share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:17
+msgid "Share article"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:25
+msgid "A Twitter and a Facebook button to share an article."
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:59
+msgid "(No social share will be shown)"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:71
+msgid "Social settings"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:74
+msgid "Enable Twitter share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:79
+msgid "Enable Facebook share"
 msgstr ""
