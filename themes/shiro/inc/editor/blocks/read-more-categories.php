@@ -34,8 +34,8 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$categories = get_the_terms( get_the_ID(), 'category' ) ?: [];
-	$tags = get_the_terms( get_the_ID(), 'post_tag' ) ?: [];
+	$categories = get_the_terms( get_the_ID(), 'category' );
+	$tags = get_the_terms( get_the_ID(), 'post_tag' );
 	$terms = array_merge( $categories, $tags );
 
 	usort( $terms, function( $a, $b ) {
