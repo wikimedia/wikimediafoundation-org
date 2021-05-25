@@ -68,6 +68,12 @@ function register_pattern() {
 		'content' => CommunicationModule\pattern(),
 	] );
 
+	register_block_pattern( TemplateDefault\NAME, [
+		'title' => __( 'Default Template', 'shiro-admin' ),
+		'categories' => [ TEMPLATE_CATEGORY_NAME ],
+		'content' => TemplateDefault\pattern(),
+	] );
+
 	register_block_pattern( TemplateLanding\NAME, [
 		'title' => __( 'Landing page template', 'shiro-admin' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
