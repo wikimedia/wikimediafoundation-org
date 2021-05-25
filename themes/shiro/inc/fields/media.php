@@ -17,25 +17,25 @@ function wmf_add_media_custom_fields( $attachment_fields, $post ) {
 
 	$attachment_fields['credit_author'] = array(
 		'value' => ! empty( $credit_info['author'] ) ? esc_html( $credit_info['author'] ) : '',
-		'label' => __( 'Author', 'shiro' ),
+		'label' => __( 'Author', 'shiro-admin' ),
 	);
 
 	$attachment_fields['credit_license'] = array(
 		'value' => ! empty( $credit_info['license'] ) ? esc_html( $credit_info['license'] ) : '',
-		'label' => __( 'License', 'shiro' ),
-		'helps' => __( 'Should use standard formatting (example: CC BY-SA 4.0)', 'shiro' ),
+		'label' => __( 'License', 'shiro-admin' ),
+		'helps' => __( 'Should use standard formatting (example: CC BY-SA 4.0)', 'shiro-admin' ),
 	);
 
 	$attachment_fields['credit_url'] = array(
 		'value' => ! empty( $credit_info['url'] ) ? esc_url( $credit_info['url'] ) : '',
-		'label' => __( 'Photo credit URL', 'shiro' ),
-		'helps' => __( 'URL to original photo page - preferably on Wikimedia Commons', 'shiro' ),
+		'label' => __( 'Photo credit URL', 'shiro-admin' ),
+		'helps' => __( 'URL to original photo page - preferably on Wikimedia Commons', 'shiro-admin' ),
 	);
 
 	$attachment_fields['credit_license_url'] = array(
 		'value' => ! empty( $credit_info['license_url'] ) ? esc_url( $credit_info['license_url'] ) : '',
-		'label' => __( 'License URL', 'shiro' ),
-		'helps' => __( 'License URL only necessary if not using a standard site media license (CC BY (2.0, 2.5, 3.0, 4.0), CC SA, CC BY-SA (2.0, 3.0, 4.0), CC0 1.0, GFDL-1.2, and Public domain)', 'shiro' ),
+		'label' => __( 'License URL', 'shiro-admin' ),
+		'helps' => __( 'License URL only necessary if not using a standard site media license (CC BY (2.0, 2.5, 3.0, 4.0), CC SA, CC BY-SA (2.0, 3.0, 4.0), CC0 1.0, GFDL-1.2, and Public domain)', 'shiro-admin' ),
 	);
 
 	return $attachment_fields;

@@ -1,0 +1,1125 @@
+# Copyright (C) 2021 Wikimedia Foundation Design
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shiro 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/shiro\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-05-25T23:07:41+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: shiro\n"
+
+#. Theme Name of the theme
+msgid "Shiro"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://github.com/wikimedia/wikimediafoundation-org"
+msgstr ""
+
+#. Description of the theme
+msgid "Wikimedia Foundation website theme, forked from the Reaktiv theme"
+msgstr ""
+
+#. Author of the theme
+msgid "Wikimedia Foundation Design"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://design.wikimedia.org/"
+msgstr ""
+
+#: 404.php:13
+#: inc/classes/customizer/class-general.php:291
+msgid "404 Error"
+msgstr ""
+
+#: 404.php:14
+#: inc/classes/customizer/class-general.php:305
+msgid "Imagine a world in which there is a page here"
+msgstr ""
+
+#: 404.php:17
+msgid "Search"
+msgstr ""
+
+#: 404.php:18
+#: 404.php:20
+msgid "What are you looking for?"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:35
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:51
+#: comments.php:74
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:54
+#: comments.php:77
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:55
+#: comments.php:78
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:92
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:34
+msgid "Close"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:28
+msgid "The Wikimedia Foundation, Inc is a nonprofit charitable organization dedicated to encouraging the growth, development and distribution of free, multilingual content, and to providing the full content of these wiki-based projects to the public free of charge."
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:30
+msgid "Projects"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:31
+msgid "Movement Affiliates"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:32
+msgid "Other"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:33
+msgid "This work is licensed under a <a href=\"https://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0</a> unported license. Some images under <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC BY-SA</a>."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:63
+msgid "This content has not yet been translated into the current language."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:109
+msgid "ELSEWHERE IN WIKIMEDIA"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:124
+#: template-parts/page/page-related-posts.php:9
+#: template-parts/page/page-related.php:9
+msgid "Related"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:139
+#: inc/shortcodes/wp20.php:449
+msgid "Photo credits"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:240
+#: template-parts/content-none.php:10
+msgid "Nothing Found"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:255
+#: template-parts/content-none.php:11
+msgid "Sorry, but no results were found. Perhaps searching can help."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:332
+msgid "Or try a search instead"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:361
+msgid "Toggle search copy"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:362
+msgid "This changes the labels exposed only to assistive technology. This can be set in each translation to localize the label."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:371
+msgid "Search Wikimedia Foundation site"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:376
+msgid "Search input label for assistive technology"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:385
+#: template-parts/site-header/toggle.php:9
+msgid "Toggle menu"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:390
+msgid "Toggle menu label"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:399
+msgid "Skip to content"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:404
+msgid "Skip to content label"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:413
+msgid "Skip to navigation"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:418
+msgid "Skip to navigation label"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:427
+msgid "Select language"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:432
+msgid "Select language label"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:441
+#: template-parts/site-header/language-switcher.php:10
+msgid "Current language:"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:446
+msgid "Current language label"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:456
+msgid "Blackout Modal"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:470
+msgid "Blackout Modal Enabled"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:491
+msgid "Blackout Modal Content"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:505
+msgid "Blackout Modal Cookie"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:506
+msgid "Useful when changing the content of the modal, adjusting this would allow you to display the modal to users that have dismissed it previously."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:516
+msgid "Wikipedia 20 content"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:526
+msgid "English Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:527
+msgid "Used e.g. to say \"One human just edited English Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:537
+msgid "Arabic Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:538
+msgid "Used e.g. to say \"One human just edited Arabic Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:548
+msgid "Spanish Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:549
+msgid "Used e.g. to say \"One human just edited Spanish Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:559
+msgid "German Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:560
+msgid "Used e.g. to say \"One human just edited German Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:570
+msgid "French Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:571
+msgid "Used e.g. to say \"One human just edited French Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:581
+msgid "Russian Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:582
+msgid "Used e.g. to say \"One human just edited Russian Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:592
+msgid "Chinese Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:593
+msgid "Used e.g. to say \"One human just edited Chinese Wikipedia.\""
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:601
+#: inc/shortcodes/wp20.php:456
+msgid "views"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:605
+msgid "Wikipedia article views"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:606
+msgid "\"views\" - used to show stats about Wikipedia articles"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:616
+msgid "Wikipedia article edits"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:617
+msgid "\"edits\" - used to show stats about Wikipedia articles"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:627
+#: inc/shortcodes/wp20.php:450
+msgid "Most viewed articles"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:628
+msgid "\"Most viewed articles\" - used to show stats about Wikipedia articles"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:638
+msgid "Most edited articles"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:639
+msgid "\"Most edited articles\" - used to show stats about Wikipedia articles"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:649
+#: inc/shortcodes/wp20.php:453
+msgid "or"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:650
+msgid "\"or\" - used to show stats about Wikipedia articles by edits or views"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:660
+#: inc/shortcodes/wp20.php:452
+msgid "in"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:661
+msgid "\"in\" - used to show stats about Wikipedia articles per year"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:671
+msgid "No data message"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:672
+msgid "\"There is not data for the options you selected. Please change the options above.\""
+msgstr ""
+
+#: inc/classes/customizer/class-identity.php:24
+msgid "Site Logo"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:23
+msgid "Social"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:31
+#: inc/shortcodes/autotweets.php:66
+#: template-parts/modules/fact/multiple.php:10
+#: assets/src/editor/blocks/tweet-this/index.js:18
+msgid "Tweet this"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:36
+msgid "Tweet this copy"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:37
+msgid "Copy used for \"Tweet this\" label beneath facts."
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:46
+#: assets/src/editor/blocks/contact/index.js:81
+msgid "Follow"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:51
+msgid "Follow Text"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:52
+msgid "This is used above follow links in multiple modules."
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:61
+msgid "Share"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:66
+msgid "Share Text"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:67
+msgid "This is used above share links in multiple modules."
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:81
+msgid "Twitter @"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:91
+msgid "Twitter URI"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:100
+msgid "Facebook"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:105
+msgid "Facebook Label"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:115
+msgid "Facebook URI"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:124
+msgid "Instagram"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:129
+msgid "Instagram Label"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:139
+msgid "Instagram URI"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:148
+msgid "Wikimedia Blog"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:153
+msgid "Blog Label"
+msgstr ""
+
+#: inc/classes/customizer/class-social.php:162
+msgid "Blog URI"
+msgstr ""
+
+#: inc/editor/blocks/mailchimp-subscribe.php:30
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:45
+msgid "Email address"
+msgstr ""
+
+#: inc/editor/blocks/read-more-categories.php:50
+#: template-parts/modules/cards/card-horizontal.php:83
+#: template-parts/modules/cards/card-vertical.php:77
+#: template-parts/modules/featured/post-card.php:36
+#: template-parts/modules/stories/excerpt.php:34
+msgid "Read more"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:26
+#: inc/editor/has-blocks-column.php:70
+msgid "Has blocks"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:41
+msgid "Yes"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:41
+msgid "No"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:63
+msgid "Filter by whether the page has blocks"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:67
+msgid "All"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:73
+msgid "Doesn't have blocks"
+msgstr ""
+
+#: inc/post-types/download.php:49
+msgid "download"
+msgstr ""
+
+#: inc/post-types/profile.php:8
+msgid "Profiles"
+msgstr ""
+
+#: inc/post-types/profile.php:51
+msgid "profile"
+msgstr ""
+
+#: inc/post-types/story.php:8
+msgid "Stories"
+msgstr ""
+
+#: inc/post-types/story.php:51
+msgid "story"
+msgstr ""
+
+#: inc/shortcodes/wp20.php:451
+msgid "most edited articles"
+msgstr ""
+
+#: inc/shortcodes/wp20.php:454
+msgid "There is not data for the options you selected. Please change the options above."
+msgstr ""
+
+#: inc/shortcodes/wp20.php:457
+msgid "edits"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:18
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:21
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:25
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:28
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: inc/template-tags.php:38
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:166
+msgid "By "
+msgstr ""
+
+#. Template Name of the theme
+msgid "Data Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Freeform"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "List Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Redirect Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Section"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Stories Page"
+msgstr ""
+
+#: sidebar-report.php:31
+msgid "Toggle Menu"
+msgstr ""
+
+#: sidebar-search.php:36
+msgid "Sort By"
+msgstr ""
+
+#. translators: 1. post title
+#: single-profile.php:104
+msgid "Posts by %s"
+msgstr ""
+
+#. translators: %s represents the page title.
+#: single-story.php:26
+msgid "%s stories"
+msgstr ""
+
+#: template-parts/header/header-content.php:21
+#: assets/src/editor/blocks/core-button/index.js:62
+msgid "Donate now"
+msgstr ""
+
+#: template-parts/header/header-content.php:35
+msgid "Languages"
+msgstr ""
+
+#: template-parts/header/story-single.php:11
+msgid "Transparency Report"
+msgstr ""
+
+#: template-parts/modules/featured/posts.php:12
+msgid "NEWS"
+msgstr ""
+
+#: template-parts/modules/projects/project.php:15
+msgid "Logo image."
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:41
+msgid "Connect with us on Facebook"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:50
+msgid "Connect with us on Twitter"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:59
+msgid "Connect with us on Instagram"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:68
+msgid "Read our blog"
+msgstr ""
+
+#: template-parts/page/page-related-posts.php:10
+msgid "Read further in the pursuit of knowledge"
+msgstr ""
+
+#: template-parts/pagination.php:8
+msgid "Newer"
+msgstr ""
+
+#: template-parts/pagination.php:9
+msgid "Older"
+msgstr ""
+
+#. translators: %s: Title of Author
+#: template-parts/profiles/related-posts.php:16
+msgid "Recent posts by %s"
+msgstr ""
+
+#: template-parts/sidebar/downloads.php:9
+msgid "Downloads"
+msgstr ""
+
+#: template-parts/site-header/donate.php:12
+msgid "Donate"
+msgstr ""
+
+#: assets/src/editor/blocks/banner/index.js:22
+msgid "Banner"
+msgstr ""
+
+#: assets/src/editor/blocks/banner/index.js:30
+msgid "Banner with an image and call to action."
+msgstr ""
+
+#: assets/src/editor/blocks/banner/index.js:142
+msgid "Heading for banner"
+msgstr ""
+
+#: assets/src/editor/blocks/banner/index.js:150
+msgid "Enter the message for this banner."
+msgstr ""
+
+#: assets/src/editor/blocks/blog-list/index.js:21
+msgid "Blog list"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-list/index.js:29
+msgid "Dynamic list of recent posts"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-post-heading/index.js:49
+msgid "Post Heading controls"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-post-heading/index.js:55
+msgid "Editor controls for selecting featured image and post intro."
+msgstr ""
+
+#: assets/src/editor/blocks/blog-post-heading/index.js:107
+msgid "No featured image selected"
+msgstr ""
+
+#: assets/src/editor/blocks/blog-post-heading/index.js:119
+msgid "Add a post intro"
+msgstr ""
+
+#: assets/src/editor/blocks/card/index.js:25
+msgid "Card"
+msgstr ""
+
+#: assets/src/editor/blocks/card/index.js:29
+msgid "Card creates a call to action with an image, heading and paragraph."
+msgstr ""
+
+#: assets/src/editor/blocks/card/index.js:117
+msgid "Heading of the card"
+msgstr ""
+
+#: assets/src/editor/blocks/card/index.js:125
+msgid "Body of the card"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:50
+#: assets/src/editor/blocks/contact/index.js:69
+msgid "Contact"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:57
+msgid "Contact a human"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:63
+msgid "Questions about the Wikimedia Foundation or our projects? Get in touch with our team."
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:103
+msgid "Write contact title"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:111
+msgid "Write contact description"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:126
+msgid "Write social links title"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:110
+msgid "No icon"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:125
+msgid "Icons"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:127
+msgid "A custom icon can be used by inserting an inline image"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:128
+msgid "Icon"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:54
+msgid "Call to Action"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:60
+msgid "Pink donate button"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:80
+msgid "Primary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:85
+msgid "Secondary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:89
+msgid "Tertiary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:93
+msgid "As link"
+msgstr ""
+
+#: assets/src/editor/blocks/core-columns/index.js:8
+msgid "Align Buttons Bottom"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:8
+msgid "No border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:9
+msgid "Small border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:10
+msgid "Big border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:83
+msgid "Wikimedia group settings"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:85
+msgid "This will only have an effect when a background color has been chosen for this group."
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:86
+msgid "Border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-heading/index.js:43
+msgid "Mimic h1"
+msgstr ""
+
+#: assets/src/editor/blocks/core-heading/index.js:47
+msgid "Mimic h2"
+msgstr ""
+
+#: assets/src/editor/blocks/core-heading/index.js:51
+msgid "Mimic h3"
+msgstr ""
+
+#: assets/src/editor/blocks/core-heading/index.js:55
+msgid "Mimic h4"
+msgstr ""
+
+#: assets/src/editor/blocks/core-heading/index.js:59
+msgid "Mimic h5"
+msgstr ""
+
+#: assets/src/editor/blocks/core-heading/index.js:63
+msgid "Mimic h6"
+msgstr ""
+
+#: assets/src/editor/blocks/core-quote/index.js:7
+msgid "Default"
+msgstr ""
+
+#: assets/src/editor/blocks/core-quote/index.js:12
+msgid "Pullquote"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:62
+msgid "Double heading"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:128
+msgid "One of these variants will be shown randomly when visiting the site:"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:139
+#: assets/src/editor/blocks/double-heading/index.js:166
+msgid "Write secondary heading"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:148
+msgid "Write translated secondary heading"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:172
+msgid "[One of the available translated headings]"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:179
+msgid "Write primary heading"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:189
+msgid "Hide translated headings"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:190
+msgid "Show translated headings"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:193
+#: assets/src/editor/blocks/home-page-hero/edit.js:155
+msgid "Heading settings"
+msgstr ""
+
+#: assets/src/editor/blocks/double-heading/index.js:195
+msgid "Language"
+msgstr ""
+
+#: assets/src/editor/blocks/external-link/index.js:63
+msgid "Link heading"
+msgstr ""
+
+#: assets/src/editor/blocks/external-link/index.js:75
+msgid "Enter a description of this link"
+msgstr ""
+
+#: assets/src/editor/blocks/external-link/index.js:130
+msgid "External Link"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:75
+msgid "⚠️ Scrolling images are expected to be 4237px high and 454px wide (or multiples of those values). Using a different resolution will result in strange behavior."
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:98
+msgid "Add a heading"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:111
+msgid "Hide rotating headings"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:112
+msgid "Show rotating headings"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:127
+msgid "Add a rotating heading"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:138
+#: assets/src/editor/components/image-filter/index.js:52
+msgid "Image settings"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:141
+msgid "Enable animation"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:145
+msgid "Link settings"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:148
+msgid "Link"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/edit.js:157
+msgid "Language code"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/index.js:26
+msgid "Home hero"
+msgstr ""
+
+#: assets/src/editor/blocks/home-page-hero/index.js:32
+msgid "A moving hero for the homepage"
+msgstr ""
+
+#: assets/src/editor/blocks/inline-languages/index.js:18
+msgid "Inline Languages"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:27
+msgid "Landing page hero"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:33
+msgid "A hero image and text to be used on \"subsite\" landing pages"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:40
+msgid "Our Work"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:41
+msgid "We help everyone share in the sum of all knowledge"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:42
+msgid "We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains."
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:122
+msgid "Kicker"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:130
+msgid "Title for the page"
+msgstr ""
+
+#: assets/src/editor/blocks/landing-page-hero/index.js:168
+msgid "Introductory paragraph - some information about this page to guide the reader."
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:11
+msgid "Get email updates"
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:14
+msgid "Subscribe to news about ongoing projects and initiatives"
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:26
+msgid "Mailchimp subscription form"
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:34
+msgid "This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy."
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:40
+msgid "Subscribe"
+msgstr ""
+
+#: assets/src/editor/blocks/spotlight/index.js:22
+msgid "Spotlight"
+msgstr ""
+
+#: assets/src/editor/blocks/spotlight/index.js:30
+msgid "Spotlight with an image and call to action."
+msgstr ""
+
+#: assets/src/editor/blocks/spotlight/index.js:140
+msgid "Heading for spotlight"
+msgstr ""
+
+#: assets/src/editor/blocks/spotlight/index.js:148
+msgid "Enter the message for this spotlight."
+msgstr ""
+
+#: assets/src/editor/blocks/stair/index.js:16
+msgid "Stair"
+msgstr ""
+
+#: assets/src/editor/blocks/stair/index.js:101
+msgid "Write heading"
+msgstr ""
+
+#: assets/src/editor/blocks/stair/index.js:118
+msgid "Start writing your stair contents"
+msgstr ""
+
+#: assets/src/editor/blocks/stairs/index.js:20
+msgid "Stairs"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:54
+msgid "Write tweet this text"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:60
+msgid "Tweet settings"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:62
+msgid "When clicking the link, this text will be inside the composed tweet"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:63
+msgid "Tweet text"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:70
+msgid "Tweet URL"
+msgstr ""
+
+#: assets/src/editor/components/cta/index.js:73
+msgid "Call to action"
+msgstr ""
+
+#: assets/src/editor/components/cta/index.js:80
+msgid "Warning"
+msgstr ""
+
+#: assets/src/editor/components/cta/index.js:82
+msgid "Add a URL to this CTA"
+msgstr ""
+
+#: assets/src/editor/components/image-filter/index.js:10
+msgid "No filter"
+msgstr ""
+
+#: assets/src/editor/components/image-filter/index.js:14
+msgid "Inherit from block style"
+msgstr ""
+
+#: assets/src/editor/components/image-filter/index.js:18
+msgid "Blue"
+msgstr ""
+
+#: assets/src/editor/components/image-filter/index.js:22
+msgid "Red"
+msgstr ""
+
+#: assets/src/editor/components/image-filter/index.js:26
+msgid "Yellow"
+msgstr ""
+
+#: assets/src/editor/components/image-filter/index.js:54
+msgid "Image filter color"
+msgstr ""
+
+#: assets/src/editor/components/image-picker/index.js:125
+msgid "Replace image"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:15
+msgid "Light"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:23
+msgid "Gray"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:27
+msgid "Dark"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:31
+msgid "Blue - Faded"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:35
+msgid "Blue - Vibrant"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:39
+msgid "Red - Faded"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:43
+msgid "Red - Vibrant"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:47
+msgid "Yellow - Faded"
+msgstr ""
+
+#: assets/src/editor/helpers/block-styles.js:51
+msgid "Yellow - Vibrant"
+msgstr ""
+
+#: assets/src/editor/plugins/page-migration-flow/index.js:42
+msgid "Proceed with caution: converting to the block editor will remove any legacy elements populated by custom fields. To complete the conversion to the block editor, change the page template to the default template and create blocks for any legacy content that you'd like to migrate. Not ready to convert this page? Delete any blocks that aren't \"Classic blocks\" and make your changes within the existing classic block."
+msgstr ""

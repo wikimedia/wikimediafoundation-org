@@ -15,7 +15,7 @@ if (
 }
 
 
-$title                  = get_theme_mod( 'wmf_projects_pre_heading', __( 'Projects', 'shiro' ) );
+$title                  = get_theme_mod( 'wmf_projects_pre_heading', __( 'Projects', 'shiro-admin' ) );
 $rand_translation_title = wmf_get_random_translation( 'wmf_projects_pre_heading' );
 
 $project_class = '_map';

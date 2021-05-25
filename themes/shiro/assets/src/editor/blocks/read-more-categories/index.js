@@ -55,7 +55,7 @@ const renderTerms = terms => {
 };
 
 export const settings = {
-	title: __( 'Read more categories', 'shiro' ),
+	title: __( 'Read more categories', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -65,13 +65,13 @@ export const settings = {
 
 	description: __(
 		'A block with a customizable label and links to the current post\'s categories',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {
 		readMoreText: {
 			type: 'string',
-			default: __( 'Read more', 'shiro' ),
+			default: __( 'Read more', 'shiro-admin' ),
 		},
 	},
 
@@ -102,7 +102,7 @@ export const settings = {
 						allowedFormats={ [] }
 						className="read-more-categories__text"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Write read more text', 'shiro' ) }
+						placeholder={ __( 'Write read more text', 'shiro-admin' ) }
 						tagName="span"
 						value={ readMoreText }
 						onChange={ readMoreText => setAttributes( { readMoreText } ) }

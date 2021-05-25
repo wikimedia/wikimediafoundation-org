@@ -18,25 +18,25 @@ function wmf_list_fields() {
 			'name'           => 'list',
 			'limit'          => 0,
 			'sortable'       => true,
-			'add_more_label' => __( 'Add A List Section', 'shiro' ),
+			'add_more_label' => __( 'Add A List Section', 'shiro-admin' ),
 			'extra_elements' => 1,
 			'children'       => array(
-				'title'       => new Fieldmanager_TextField( __( 'Section Title', 'shiro' ) ),
-				'description' => new Fieldmanager_RichTextArea( __( 'Section Description', 'shiro' ) ),
+				'title'       => new Fieldmanager_TextField( __( 'Section Title', 'shiro-admin' ) ),
+				'description' => new Fieldmanager_RichTextArea( __( 'Section Description', 'shiro-admin' ) ),
 				'links'       => new Fieldmanager_Group(
 					array(
-						'label'          => __( 'List of Links', 'shiro' ),
+						'label'          => __( 'List of Links', 'shiro-admin' ),
 						'limit'          => 0,
 						'sortable'       => true,
 						'extra_elements' => 0,
-						'add_more_label' => __( 'Add A List Item', 'shiro' ),
+						'add_more_label' => __( 'Add A List Item', 'shiro-admin' ),
 						'children'       => array(
-							'title'       => new Fieldmanager_TextField( __( 'List Item Title', 'shiro' ) ),
-							'image'       => new Fieldmanager_Media( __( 'Featured Image', 'shiro' ) ),
-							'subhead'     => new Fieldmanager_Textarea( __( 'List Item Subheading', 'shiro' ) ),
-							'description' => new Fieldmanager_RichTextArea( __( 'List Item Description', 'shiro' ) ),
-							'link'        => new Fieldmanager_Link( __( 'List Item Link', 'shiro' ) ),
-							'offsite'     => new Fieldmanager_Checkbox( __( 'Show Off Site Link Icon', 'shiro' ) ),
+							'title'       => new Fieldmanager_TextField( __( 'List Item Title', 'shiro-admin' ) ),
+							'image'       => new Fieldmanager_Media( __( 'Featured Image', 'shiro-admin' ) ),
+							'subhead'     => new Fieldmanager_Textarea( __( 'List Item Subheading', 'shiro-admin' ) ),
+							'description' => new Fieldmanager_RichTextArea( __( 'List Item Description', 'shiro-admin' ) ),
+							'link'        => new Fieldmanager_Link( __( 'List Item Link', 'shiro-admin' ) ),
+							'offsite'     => new Fieldmanager_Checkbox( __( 'Show Off Site Link Icon', 'shiro-admin' ) ),
 						),
 					)
 				),
@@ -44,6 +44,6 @@ function wmf_list_fields() {
 		)
 	);
 
-	$list->add_meta_box( __( 'List', 'shiro' ), 'page' );
+	$list->add_meta_box( __( 'List', 'shiro-admin' ), 'page' );
 }
 add_action( 'fm_post_page', 'wmf_list_fields' );
