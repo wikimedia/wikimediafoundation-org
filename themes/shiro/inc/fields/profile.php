@@ -11,43 +11,43 @@
 function wmf_profile_fields() {
 	$last_name = new Fieldmanager_Textfield(
 		array(
-			'label'       => __( 'Last Name', 'shiro' ),
-			'description' => __( 'This field is required to enable correct sorting via last name.', 'shiro' ),
+			'label'       => __( 'Last Name', 'shiro-admin' ),
+			'description' => __( 'This field is required to enable correct sorting via last name.', 'shiro-admin' ),
 			'name'        => 'last_name',
 		)
 	);
 
-	$last_name->add_meta_box( __( 'Sorting', 'shiro' ), 'profile', 'normal', 'high' );
+	$last_name->add_meta_box( __( 'Sorting', 'shiro-admin' ), 'profile', 'normal', 'high' );
 
 	$contact_links = new Fieldmanager_Group(
 		array(
-			'label'          => __( 'Contact Link', 'shiro' ),
+			'label'          => __( 'Contact Link', 'shiro-admin' ),
 			'name'           => 'contact_links',
-			'add_more_label' => __( 'Add Contact Link', 'shiro' ),
+			'add_more_label' => __( 'Add Contact Link', 'shiro-admin' ),
 			'sortable'       => true,
 			'limit'          => 0,
 			'children'       => array(
-				'title' => new Fieldmanager_Textfield( __( 'Link Title', 'shiro' ) ),
-				'link'  => new Fieldmanager_Link( __( 'Link', 'shiro' ) ),
+				'title' => new Fieldmanager_Textfield( __( 'Link Title', 'shiro-admin' ) ),
+				'link'  => new Fieldmanager_Link( __( 'Link', 'shiro-admin' ) ),
 			),
 		)
 	);
 
-	$contact_links->add_meta_box( __( 'List of Contact Links', 'shiro' ), 'profile' );
+	$contact_links->add_meta_box( __( 'List of Contact Links', 'shiro-admin' ), 'profile' );
 
 	$info = new Fieldmanager_Group(
 		array(
 			'name'           => 'profile_info',
-			'label'          => __( 'Profile Info', 'shiro' ),
+			'label'          => __( 'Profile Info', 'shiro-admin' ),
 			'serialize_data' => false,
 			'add_to_prefix'  => false,
 			'children'       => array(
-				'profile_role'     => new Fieldmanager_Textfield( __( 'Role', 'shiro' ) ),
-				'profile_featured' => new Fieldmanager_Checkbox( __( 'Featured?', 'shiro' ) ),
+				'profile_role'     => new Fieldmanager_Textfield( __( 'Role', 'shiro-admin' ) ),
+				'profile_featured' => new Fieldmanager_Checkbox( __( 'Featured?', 'shiro-admin' ) ),
 			),
 		)
 	);
-	$info->add_meta_box( __( 'Profile Info', 'shiro' ), 'profile' );
+	$info->add_meta_box( __( 'Profile Info', 'shiro-admin' ), 'profile' );
 
 	$user = new Fieldmanager_Autocomplete(
 		array(
@@ -61,7 +61,7 @@ function wmf_profile_fields() {
 			),
 		)
 	);
-	$user->add_meta_box( __( 'Connected User', 'shiro' ), 'profile' );
+	$user->add_meta_box( __( 'Connected User', 'shiro-admin' ), 'profile' );
 }
 add_action( 'fm_post_profile', 'wmf_profile_fields' );
 
@@ -96,10 +96,10 @@ function wmf_role_fields() {
 	$button = new Fieldmanager_Group(
 		array(
 			'name'     => 'role_button',
-			'label'    => __( 'Button', 'shiro' ),
+			'label'    => __( 'Button', 'shiro-admin' ),
 			'children' => array(
-				'text' => new Fieldmanager_Textfield( __( 'Button Text', 'shiro' ) ),
-				'link' => new Fieldmanager_Link( __( 'Button Link', 'shiro' ) ),
+				'text' => new Fieldmanager_Textfield( __( 'Button Text', 'shiro-admin' ) ),
+				'link' => new Fieldmanager_Link( __( 'Button Link', 'shiro-admin' ) ),
 			),
 		)
 	);

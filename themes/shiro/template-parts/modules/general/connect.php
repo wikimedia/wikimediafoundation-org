@@ -9,22 +9,22 @@ $template_args = $args;
 
 $defaults = array(
 	// Headings.
-	'pre_heading'                 => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'shiro' ) ),
-	'heading'                     => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'shiro' ) ),
+	'pre_heading'                 => get_theme_mod( 'wmf_connect_pre_heading', __( 'Connect', 'shiro-admin' ) ),
+	'heading'                     => get_theme_mod( 'wmf_connect_heading', __( 'Stay up-to-date on our work.', 'shiro-admin' ) ),
 
 	// Subscribe box.
 	'subscribe_action'            => get_theme_mod( 'wmf_subscribe_action', 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56' ),
 	'subscribe_additional_fields' => get_theme_mod( 'wmf_subscribe_additional_fields', '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">' ),
-	'subscribe_heading'           => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'shiro' ) ),
-	'subscribe_content'           => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'shiro' ) ),
-	'subscribe_placeholder'       => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'shiro' ) ),
-	'subscribe_button'            => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'shiro' ) ),
+	'subscribe_heading'           => get_theme_mod( 'wmf_subscribe_heading', __( 'Subscribe to our newsletter', 'shiro-admin' ) ),
+	'subscribe_content'           => get_theme_mod( 'wmf_subscribe_content', __( 'Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data.', 'shiro-admin' ) ),
+	'subscribe_placeholder'       => get_theme_mod( 'wmf_subscribe_placeholder', __( 'Email address', 'shiro-admin' ) ),
+	'subscribe_button'            => get_theme_mod( 'wmf_subscribe_button', __( 'Subscribe', 'shiro-admin' ) ),
 
 	// Contact box.
-	'contact_heading'             => get_theme_mod( 'wmf_contact_heading', __( 'Say hello', 'shiro' ) ),
-	'contact_content'             => get_theme_mod( 'wmf_contact_content', __( 'How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box.', 'shiro' ) ),
-	'contact_link'                => get_theme_mod( 'wmf_contact_link', __( 'email@domain.url', 'shiro' ) ),
-	'contact_link_text'           => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'shiro' ) ),
+	'contact_heading'             => get_theme_mod( 'wmf_contact_heading', __( 'Say hello', 'shiro-admin' ) ),
+	'contact_content'             => get_theme_mod( 'wmf_contact_content', __( 'How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box.', 'shiro-admin' ) ),
+	'contact_link'                => get_theme_mod( 'wmf_contact_link', __( 'email@domain.url', 'shiro-admin' ) ),
+	'contact_link_text'           => get_theme_mod( 'wmf_contact_link_text', __( 'email@domain.url', 'shiro-admin' ) ),
 );
 
 $rand_translation_title = wmf_get_random_translation( 'wmf_connect_pre_heading' );

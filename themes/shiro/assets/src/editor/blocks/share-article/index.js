@@ -14,7 +14,7 @@ import SvgSprite from '../../components/svg-sprite';
 export const name = 'shiro/share-article';
 
 export const settings = {
-	title: __( 'Share article', 'shiro' ),
+	title: __( 'Share article', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -24,7 +24,7 @@ export const settings = {
 
 	description: __(
 		'A Twitter and a Facebook button to share an article.',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {
@@ -56,7 +56,7 @@ export const settings = {
 		return (
 			<div { ...blockProps } >
 				{ ( ! enableTwitter && ! enableFacebook ) && (
-					<small>{ __( '(No social share will be shown)', 'shiro' ) }</small>
+					<small>{ __( '(No social share will be shown)', 'shiro-admin' ) }</small>
 				) }
 				<div className="share-article">
 					{ enableTwitter && ( <div className="share-article__link">
@@ -68,15 +68,15 @@ export const settings = {
 					</div> ) }
 				</div>
 				<InspectorControls>
-					<PanelBody initialOpen title={ __( 'Social settings', 'shiro' ) }>
+					<PanelBody initialOpen title={ __( 'Social settings', 'shiro-admin' ) }>
 						<ToggleControl
 							checked={ enableTwitter }
-							label={ __( 'Enable Twitter share', 'shiro' ) }
+							label={ __( 'Enable Twitter share', 'shiro-admin' ) }
 							onChange={ enableTwitter => setAttributes( { enableTwitter } ) }
 						/>
 						<ToggleControl
 							checked={ enableFacebook }
-							label={ __( 'Enable Facebook share', 'shiro' ) }
+							label={ __( 'Enable Facebook share', 'shiro-admin' ) }
 							onChange={ enableFacebook => setAttributes( { enableFacebook } ) }
 						/>
 					</PanelBody>

@@ -55,7 +55,7 @@ class Edit_Posts {
 
 		if ( is_object_in_taxonomy( $post_type, $tax ) ) {
 			$dropdown_options = array(
-				'show_option_all' => __( 'All Translation Statuses', 'shiro' ),
+				'show_option_all' => __( 'All Translation Statuses', 'shiro-admin' ),
 				'hide_empty'      => 0,
 				'hierarchical'    => 1,
 				'show_count'      => 0,
@@ -66,7 +66,7 @@ class Edit_Posts {
 				'value_field'     => 'slug',
 			);
 
-			echo '<label class="screen-reader-text" for="' . esc_attr( $tax ) . '">' . esc_html__( 'Filter by translation status.', 'shiro' ) . '</label>';
+			echo '<label class="screen-reader-text" for="' . esc_attr( $tax ) . '">' . esc_html__( 'Filter by translation status.', 'shiro-admin' ) . '</label>';
 			wp_dropdown_categories( $dropdown_options );
 		}
 	}

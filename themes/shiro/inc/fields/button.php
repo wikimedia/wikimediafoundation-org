@@ -17,11 +17,11 @@ function wmf_button_fields() {
 		array(
 			'name'     => 'intro_button',
 			'children' => array(
-				'title' => new Fieldmanager_TextField( __( 'Title', 'shiro' ) ),
-				'link'  => new Fieldmanager_Link( __( 'Link', 'shiro' ) ),
+				'title' => new Fieldmanager_TextField( __( 'Title', 'shiro-admin' ) ),
+				'link'  => new Fieldmanager_Link( __( 'Link', 'shiro-admin' ) ),
 			),
 		)
 	);
-	$button->add_meta_box( __( 'Intro Button', 'shiro' ), array( 'page' ) );
+	$button->add_meta_box( __( 'Intro Button', 'shiro-admin' ), array( 'page' ) );
 }
 add_action( 'fm_post_page', 'wmf_button_fields', 5 );

@@ -15,14 +15,6 @@
  * as indicating support for post thumbnails.
  */
 function wmf_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on shiro, use a find and replace
-	 * to change 'shiro' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'shiro', get_template_directory() . '/languages' );
-
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
@@ -51,11 +43,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header'            => esc_html__( 'Header', 'shiro' ),
-			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro' ),
-			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro' ),
-			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro' ),
-			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro' ),
+			'header'            => esc_html__( 'Header', 'shiro-admin' ),
+			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro-admin' ),
+			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro-admin' ),
+			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro-admin' ),
+			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro-admin' ),
 		)
 	);
 
@@ -105,7 +97,7 @@ add_action( 'after_setup_theme', 'wmf_setup' );
 function wmf_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'shiro' ),
+			'name'          => esc_html__( 'Sidebar', 'shiro-admin' ),
 			'id'            => 'sidebar-1',
 			'description'   => '',
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -365,7 +357,7 @@ Stories_Customisations\init();
 // 404 page
 function theme_slug_filter_wp_404title( $title_parts ) {
     if ( is_404() ) {
-        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro' ) );
+        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) );
     }
 
     return $title_parts;
@@ -377,7 +369,7 @@ add_filter( 'document_title_parts', 'theme_slug_filter_wp_404title' );
 // Search page
 function theme_slug_filter_wp_searchtitle( $title_parts ) {
     if ( is_search() ) {
-        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro' ) ), 'shiro' ), get_search_query() );
+        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro-admin' ) ), 'shiro' ), get_search_query() );
    }
 
     return $title_parts;
