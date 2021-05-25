@@ -65,13 +65,14 @@ while ( have_posts() ) {
 
 $has_blog_list = has_block( 'shiro/blog-list' );
 $has_connect   = has_block( 'shiro/mailchimp-subscribe' ) || has_block( 'shiro/contact' );
+$has_spotlight = has_block( 'shiro/spotlight' );
 
 $modules = array(
 	'profile',
 	'offsite-links',
 	'cta',
 	$has_blog_list ? false : 'related-posts',
-	'support',
+	$has_spotlight ? false : 'support',
 	$has_connect ? false : 'connect',
 );
 
