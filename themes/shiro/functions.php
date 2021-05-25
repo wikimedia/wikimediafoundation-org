@@ -129,11 +129,9 @@ function wmf_scripts() {
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
 		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
 	}
-	wp_register_script( 'mm-polyfill', get_stylesheet_directory_uri() . '/assets/dist/mm-polyfill.min.js', array(), '0.0.1', true );
-	wp_register_script( 'micromodal', get_stylesheet_directory_uri() . '/assets/dist/micromodal.min.js', array(), '0.0.1', true );
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody', 'mm-polyfill', 'micromodal' ), $script_version, true );
+	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
 		\WMF\Assets\get_manifest_path(),
 		'shiro.js',
@@ -270,16 +268,19 @@ require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
+require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
+require get_template_directory() . '/inc/editor/blocks/share-article.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
 require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
-require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
+require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/communication-module.php';
 require get_template_directory() . '/inc/editor/patterns/template-default.php';
+require get_template_directory() . '/inc/editor/patterns/template-landing.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
@@ -288,6 +289,8 @@ WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
+WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
+WMF\Editor\Blocks\ShareArticle\bootstrap();
 WMF\Editor\Patterns\bootstrap();
 
 /**

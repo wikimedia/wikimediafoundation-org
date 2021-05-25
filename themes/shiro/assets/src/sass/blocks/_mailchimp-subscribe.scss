@@ -9,6 +9,14 @@
 		margin-left: 0;
 	}
 
+	.wp-block-column > &__form:only-child {
+		@media (min-width: #{$core-gutenberg-break-medium}) {
+			height: 100%;
+			display: flex;
+			align-items: stretch;
+		}
+	}
+
 	&__input-container {
 		display: flex;
 		margin-bottom: 1rem;
