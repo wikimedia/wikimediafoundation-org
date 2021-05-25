@@ -1,9 +1,7 @@
 .wp-block-column {
 	> .contact:only-child,
 	> .wp-block-group:only-child,
-	> .wp-block-group:only-child .wp-block-group__inner-container,
-	> form[action*=subscribe]:only-child,
-	> form[action*=subscribe]:only-child > .mailchimp-subscribe {
+	> .wp-block-group:only-child .wp-block-group__inner-container {
 		height: 100%;
 	}
 
