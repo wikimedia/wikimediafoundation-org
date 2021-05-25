@@ -278,6 +278,7 @@ require get_template_directory() . '/inc/editor/patterns/card-columns.php';
 require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
 require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
+require get_template_directory() . '/inc/editor/patterns/communication-module.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
