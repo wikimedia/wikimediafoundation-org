@@ -1,3 +1,5 @@
+@import "~sass-lib/editor-includes";
+
 // stylelint-disable declaration-property-unit-blacklist
 .wp-block[data-type="shiro/blog-post-heading"] {
 	max-width: unset !important;
@@ -54,12 +56,12 @@
 		}
 	}
 
-	.article-title {
-		max-width: 640px;
-		margin: 45px auto 60px;
+	.editor-styles-wrapper & .article-title {
+		margin: rem(80) auto rem(60);
 	}
 
 	&__intro p {
-		font: lighter 1.3rem/1.4 sans-serif !important;
+		font-size: 1.5rem !important;
+		line-height: 1.5 !important;
 	}
 }

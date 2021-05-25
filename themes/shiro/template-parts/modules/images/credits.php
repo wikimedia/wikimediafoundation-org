@@ -11,7 +11,7 @@ if ( empty( $image_ids ) ) {
 	return;
 }
 
-$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro' ) );
+$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-admin' ) );
 
 ?>
 

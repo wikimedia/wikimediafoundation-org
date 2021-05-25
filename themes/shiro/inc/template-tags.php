@@ -118,7 +118,7 @@ function wmf_show_icon( $name, $classes = '' ) {
  *
  * @return string
  */
-function wmf_get_share_url( $service, $args ) {
+function wmf_get_share_url( $service, $args = [] ) {
 	$default = array(
 		'uri'     => get_permalink(),
 		'message' => '',

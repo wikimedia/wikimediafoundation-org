@@ -1,7 +1,8 @@
 .nav-logo {
-	display: flex;
 	align-items: center;
+	display: flex;
 	height: 62px;
+	order: 20;
 
 	&__image {
 		max-height: 24px;

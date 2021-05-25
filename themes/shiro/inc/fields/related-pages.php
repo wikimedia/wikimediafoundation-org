@@ -17,11 +17,11 @@ function wmf_related_pages() {
 		array(
 			'name'     => 'related_pages',
 			'children' => array(
-				'title' => new Fieldmanager_TextField( __( 'Headline', 'shiro' ) ),
+				'title' => new Fieldmanager_TextField( __( 'Headline', 'shiro-admin' ) ),
 				'links' => new Fieldmanager_Checkboxes(
 					array(
-						'label'       => __( 'List of Posts to pull from', 'shiro' ),
-						'description' => __( 'Select as many as are applicable. Three posts will be selected from this list for display.', 'shiro' ),
+						'label'       => __( 'List of Posts to pull from', 'shiro-admin' ),
+						'description' => __( 'Select as many as are applicable. Three posts will be selected from this list for display.', 'shiro-admin' ),
 						'options'     => wmf_get_pages_options(),
 					)
 				),
@@ -29,6 +29,6 @@ function wmf_related_pages() {
 		)
 	);
 
-	$related_pages->add_meta_box( __( 'Related Pages', 'shiro' ), 'page' );
+	$related_pages->add_meta_box( __( 'Related Pages', 'shiro-admin' ), 'page' );
 }
 add_action( 'fm_post_page', 'wmf_related_pages' );

@@ -11,7 +11,7 @@ if ( empty( $template_args['links'] ) || ! is_array( $template_args['links'] ) )
 	return;
 }
 
-$pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'shiro' ) );
+$pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'shiro-admin' ) );
 $heading     = empty( $template_args['heading'] ) ? '' : $template_args['heading'];
 $split       = empty( $template_args['split'] ) ? false : $template_args['split'];
 

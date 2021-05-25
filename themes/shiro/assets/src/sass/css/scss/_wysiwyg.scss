@@ -14,17 +14,18 @@
 .single-post {
 
 	@include wysiwyg {
-		h1,
-		h2,
-		h3,
-		h4,
-		li,
-		p,
-		cite {
+		> h1,
+		> h2,
+		> h3,
+		> h4,
+		> ol li,
+		> ul li,
+		> p,
+		> cite {
 			@include article-font;
 		}
 
-		h3 {
+		> h3 {
 			font-family: sans-serif;
 			font-size: 1.3rem;
 			font-weight: bolder;

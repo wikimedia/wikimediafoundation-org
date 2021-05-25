@@ -11,7 +11,7 @@ $share_args = wp_parse_args(
 );
 
 $services   = $share_args['services'] ?: array( 'facebook', 'twitter' );
-$share_text = $share_args['title'] ?? get_theme_mod( 'wmf_social_share_text', __( 'Share', 'shiro' ) );
+$share_text = $share_args['title'] ?? get_theme_mod( 'wmf_social_share_text', __( 'Share', 'shiro-admin' ) );
 
 ?>
 

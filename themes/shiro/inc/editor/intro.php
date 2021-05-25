@@ -29,7 +29,7 @@ function register_meta_fields() {
 
 	$meta_args = [
 		'type'         => 'string',
-		'description'  => __( 'Intro field, displayed before post content in single views', 'shiro' ),
+		'description'  => __( 'Intro field, displayed before post content in single views', 'shiro-admin' ),
 		'single'       => true,
 		'show_in_rest' => true,
 	];
@@ -79,5 +79,5 @@ function wmf_intro_fields() {
 			'name' => 'page_intro',
 		)
 	);
-	$intro->add_meta_box( __( 'Page Intro', 'shiro' ), array( 'post', 'page' ) );
+	$intro->add_meta_box( __( 'Page Intro', 'shiro-admin' ), array( 'post', 'page' ) );
 }

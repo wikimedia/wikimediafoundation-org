@@ -15,14 +15,6 @@
  * as indicating support for post thumbnails.
  */
 function wmf_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on shiro, use a find and replace
-	 * to change 'shiro' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'shiro', get_template_directory() . '/languages' );
-
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
@@ -51,11 +43,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header'            => esc_html__( 'Header', 'shiro' ),
-			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro' ),
-			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro' ),
-			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro' ),
-			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro' ),
+			'header'            => esc_html__( 'Header', 'shiro-admin' ),
+			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro-admin' ),
+			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro-admin' ),
+			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro-admin' ),
+			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro-admin' ),
 		)
 	);
 
@@ -105,7 +97,7 @@ add_action( 'after_setup_theme', 'wmf_setup' );
 function wmf_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'shiro' ),
+			'name'          => esc_html__( 'Sidebar', 'shiro-admin' ),
 			'id'            => 'sidebar-1',
 			'description'   => '',
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -129,11 +121,9 @@ function wmf_scripts() {
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
 		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
 	}
-	wp_register_script( 'mm-polyfill', get_stylesheet_directory_uri() . '/assets/dist/mm-polyfill.min.js', array(), '0.0.1', true );
-	wp_register_script( 'micromodal', get_stylesheet_directory_uri() . '/assets/dist/micromodal.min.js', array(), '0.0.1', true );
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody', 'mm-polyfill', 'micromodal' ), $script_version, true );
+	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
 		\WMF\Assets\get_manifest_path(),
 		'shiro.js',
@@ -270,14 +260,19 @@ require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
+require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
+require get_template_directory() . '/inc/editor/blocks/share-article.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
 require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
-require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/link-columns.php';
+require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
+require get_template_directory() . '/inc/editor/patterns/communication-module.php';
+require get_template_directory() . '/inc/editor/patterns/template-default.php';
+require get_template_directory() . '/inc/editor/patterns/template-landing.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
@@ -286,6 +281,8 @@ WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
+WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
+WMF\Editor\Blocks\ShareArticle\bootstrap();
 WMF\Editor\Patterns\bootstrap();
 
 /**
@@ -360,7 +357,7 @@ Stories_Customisations\init();
 // 404 page
 function theme_slug_filter_wp_404title( $title_parts ) {
     if ( is_404() ) {
-        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro' ) );
+        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) );
     }
 
     return $title_parts;
@@ -372,7 +369,7 @@ add_filter( 'document_title_parts', 'theme_slug_filter_wp_404title' );
 // Search page
 function theme_slug_filter_wp_searchtitle( $title_parts ) {
     if ( is_search() ) {
-        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro' ) ), 'shiro' ), get_search_query() );
+        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro-admin' ) ), 'shiro' ), get_search_query() );
    }
 
     return $title_parts;
