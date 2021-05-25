@@ -64,8 +64,14 @@ function register_pattern() {
 
 	register_block_pattern( CommunicationModule\NAME, [
 		'title' => __( 'Communication module', 'shiro' ),
-		'categories' => [ CATEGORY_NAME ],
+		'categories' => [ MAIN_CATEGORY_NAME ],
 		'content' => CommunicationModule\pattern(),
+	] );
+
+	register_block_pattern( TemplateDefault\NAME, [
+		'title' => __( 'Default Template', 'shiro' ),
+		'categories' => [ TEMPLATE_CATEGORY_NAME ],
+		'content' => TemplateDefault\pattern(),
 	] );
 
 	register_block_pattern( TemplateLanding\NAME, [
