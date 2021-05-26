@@ -63,7 +63,7 @@ class Connect extends Base {
 		$choices = [ 0 => 'No CTA' ] + $selectable_blocks;
 		$this->customize->add_control(
 			$control_id, [
-				'label'       => __( 'Connect' ),
+				'label'       => __( 'Connect', 'shiro-admin' ),
 				'type'        => 'select',
 				'choices'     => $choices,
 				'section'     => $section_id,
