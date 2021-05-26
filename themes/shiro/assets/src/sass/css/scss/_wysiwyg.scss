@@ -11,7 +11,9 @@
 	}
 }
 
-.single-post {
+.single-post,
+.single-page,
+.page {
 
 	@include wysiwyg {
 		> h1,
