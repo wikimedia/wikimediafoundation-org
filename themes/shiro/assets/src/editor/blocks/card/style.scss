@@ -9,6 +9,8 @@
 		// height: 100% doesn't work in the editor, because of the block appender
 		&:only-child {
 			height: unset;
+			// We want this applied so that we still have access to the inserter
+			margin-bottom: rem(40);
 		}
 
 		&:hover {
