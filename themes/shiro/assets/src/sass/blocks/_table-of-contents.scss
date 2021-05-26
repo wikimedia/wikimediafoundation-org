@@ -1,0 +1,23 @@
+// Table of contents block styles
+@include wysiwyg {
+	.toc {
+		margin: 0;
+		padding: 0;
+
+		&__item {
+			font-size: rem(14);
+			list-style: none;
+		}
+
+		a {
+			color: $wmui-color-base0;
+			display: block;
+			padding: rem(10) rem(15);
+
+			&:hover,
+			&:focus {
+				background-color: $wmui-color-blue90;
+			}
+		}
+	}
+}
