@@ -445,3 +445,19 @@ function wmf_filter_nav_menu_items( $args, $item, $depth ) {
 	return $args;
 }
 add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
+
+/**
+ * Add reusable blocks link to admin menu.
+ */
+function link_reusable_blocks_url() {
+	add_menu_page(
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		'manage_options',
+		'edit.php?post_type=wp_block', '',
+		'dashicons-editor-table',
+		22
+	);
+}
+
+add_action( 'admin_menu', 'link_reusable_blocks_url' );
