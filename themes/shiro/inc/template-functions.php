@@ -726,3 +726,52 @@ function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
 	</a>
 	<?php
 }
+
+/**
+ * Determine if a given block exists in a post, include in reusable blocks.
+ *
+ * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
+ *
+ * @param                  $block_name
+ * @param int|WP_Post|null $post
+ *
+ * @return bool
+ */
+function wmf_enhanced_has_block( $block_name, $post = null ): bool {
+	if ( has_block( $block_name, $post ) ) {
+		return true;
+	}
+
+	if ( has_block( 'core/block', $post ) ) {
+		$content = get_post_field( 'post_content', $post );
+		$blocks  = parse_blocks( $content );
+
+		return wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $post );
+	}
+
+	return false;
+}
+
+/**
+ * Recursively search for a block within innerblocks.
+ *
+ * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
+ *
+ * @param                  $blocks
+ * @param                  $block_name
+ * @param int|WP_Post|null $post
+ *
+ * @return bool
+ */
+function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $post = null ): bool {
+	foreach ( $blocks as $block ) {
+		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+			wmf_search_reusable_blocks_within_innerblocks( $block['innerBlocks'], $block_name, $post );
+		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block( $block_name,
+				$block['attrs']['ref'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
