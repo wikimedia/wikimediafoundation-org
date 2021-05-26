@@ -8,9 +8,7 @@
  */
 
 $current_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro' ) );
-$translations  = array_filter( wmf_get_translations(), function ( $translation ) {
-	return $translation['uri'] !== '';
-} );
+$translations  = $args['translations'] ?? [];
 $current       = array_reduce( $translations, function ( $carry, $item ) {
 	if ( is_string( $carry ) ) {
 		return $carry;
