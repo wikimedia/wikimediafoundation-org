@@ -47,14 +47,22 @@ export const name = 'shiro/toc',
 			useEffect( () => {
 				let debouncer = setTimeout( () => {
 					const headingBlocks = getHeadingBlocks( topLevelBlocks );
+					const headingBlocksFromAttributes =
+						attributes.headingBlocks;
 
-					setHeadingAnchors( headingBlocks );
-					setAttributes( { headingBlocks } );
+					if (
+						JSON.stringify( headingBlocks ) !==
+						JSON.stringify( headingBlocksFromAttributes )
+					) {
+						setHeadingAnchors( headingBlocks ).then( blocks => {
+							setAttributes( { headingBlocks: blocks } );
+						} );
+					}
 				}, 1000 );
 				return () => {
 					clearTimeout( debouncer );
 				};
-			}, [ topLevelBlocks, setAttributes ] );
+			}, [ topLevelBlocks, attributes, setAttributes ] );
 
 			return (
 				<ul { ...blockProps }>

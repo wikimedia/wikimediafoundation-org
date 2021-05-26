@@ -52,7 +52,7 @@ export const getHeadingBlocks = blocks => {
  *
  * @param {Array} blocks Blocks to process.
  */
-export const setHeadingAnchors = blocks => {
+export const setHeadingAnchors = async blocks => {
 	blocks.forEach( ( block, index ) => {
 		const originalContent =
 			block.originalContent !== undefined
@@ -84,7 +84,8 @@ export const setHeadingAnchors = blocks => {
 			headingAnchor === '' ||
 			headingAnchor.includes( cleanForSlug( originalContent ) ) ||
 			headingAnchor.includes( cleanForSlug( updatedContent ) ) ||
-			headingAnchor.includes( cleanForSlug( previousContent ) )
+			( previousContent !== undefined &&
+				headingAnchor.includes( cleanForSlug( previousContent ) ) )
 		) {
 			// Create a code to prepend (to try to ensure we always have a unique id).
 			const indexPrepender = 'a' + ( index + 1 ) + '-';
@@ -97,4 +98,6 @@ export const setHeadingAnchors = blocks => {
 				indexPrepender + cleanForSlug( updatedContent );
 		}
 	} );
+
+	return blocks;
 };
