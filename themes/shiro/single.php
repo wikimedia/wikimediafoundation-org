@@ -33,8 +33,8 @@ while ( have_posts() ) {
 		)
 	);
 
-	$has_read_more_categories = has_block( 'shiro/read-more-categories' );
-	$has_social_share         = has_block( 'shiro/share-article' );
+	$has_read_more_categories = wmf_enhanced_has_block( 'shiro/read-more-categories' );
+	$has_social_share         = wmf_enhanced_has_block( 'shiro/share-article' );
 	?>
 
 	<?php if ( ! empty( $intro ) ) : ?>
@@ -63,9 +63,9 @@ while ( have_posts() ) {
 	<?php
 }
 
-$has_blog_list = has_block( 'shiro/blog-list' );
-$has_connect   = has_block( 'shiro/mailchimp-subscribe' ) || has_block( 'shiro/contact' );
-$has_spotlight = has_block( 'shiro/spotlight' );
+$has_blog_list = wmf_enhanced_has_block( 'shiro/blog-list' );
+$has_connect   = wmf_enhanced_has_block( 'shiro/mailchimp-subscribe' ) || wmf_enhanced_has_block( 'shiro/contact' );
+$has_spotlight = wmf_enhanced_has_block( 'shiro/spotlight' );
 
 $modules = array(
 	'profile',
