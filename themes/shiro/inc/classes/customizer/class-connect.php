@@ -12,6 +12,27 @@ namespace WMF\Customizer;
  * Adds new fields to create sections for the contact details
  */
 class Connect extends Base {
+	/**
+	 * Get the default text for a field defined for the Contact customizer.
+	 *
+	 * These are defined here because the Customizer values are not saved, and
+	 * are needed in get_theme_mod() calls in templates. This allows for a
+	 * centralized location for this values and reduces duplication.
+	 *
+	 * @param string $setting
+	 *
+	 * @return string
+	 */
+	public static function defaults( string $setting = '' ): string {
+		$defaults = [
+			'wmf_subscribe_action'            => __( 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56',
+				'shiro-admin' ),
+			'wmf_subscribe_additional_fields' => __( '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">',
+				'shiro-admin' ),
+		];
+
+		return $defaults[ $setting ] ?? '';
+	}
 
 	/**
 	 * Add Customizer fields for header section.
@@ -51,6 +72,30 @@ class Connect extends Base {
 					: sprintf( __( '<strong>There are no viable reusable blocks!</strong> This reusable block must include at least one of the the Connect or the Mailchimp Subscribe blocks. Please <a href="%s">create one</a>.',
 						'shiro-admin' ), admin_url( 'edit.php?post_type=wp_block' ) ),
 			]
+		);
+
+		$control_id = 'wmf_subscribe_action';
+		$this->customize->add_setting( $control_id, [
+			'default' => $this::defaults( 'wmf_subscribe_action' )
+		] );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Subscribe form action URL', 'shiro-admin' ),
+				'section' => $section_id,
+				'type'    => 'text',
+			)
+		);
+
+		$control_id = 'wmf_subscribe_additional_fields';
+		$this->customize->add_setting( $control_id, [
+			'default' => $this::defaults( 'wmf_subscribe_additional_fields' )
+		] );
+		$this->customize->add_control(
+			$control_id, array(
+				'label'   => __( 'Subscribe form additional fields', 'shiro-admin' ),
+				'section' => $section_id,
+				'type'    => 'textarea',
+			)
 		);
 	}
 
