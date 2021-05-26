@@ -5,7 +5,7 @@
 	background: $background-color-framed;
 	border: 1px solid $border-color-framed;
 	border-radius: $border-radius-big;
-	padding: 1.5rem;
+	padding: rem(25);
 
 	&:only-child {
 		margin-bottom: 0;
@@ -14,6 +14,14 @@
 	.icon {
 		width: 20px;
 		margin-left: 0;
+	}
+
+	.wp-block-column > &__form:only-child {
+		@media (min-width: #{$core-gutenberg-break-medium}) {
+			height: 100%;
+			display: flex;
+			align-items: stretch;
+		}
 	}
 
 	&__input-container {

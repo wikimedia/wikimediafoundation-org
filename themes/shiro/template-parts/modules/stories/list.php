@@ -26,7 +26,7 @@ $description  = ! empty( $template_data['description'] ) ? $template_data['descr
 $button_label = ! empty( $template_data['button_label'] ) ? $template_data['button_label'] : '';
 $button_link  = ! empty( $template_data['button_link'] ) ? $template_data['button_link'] : '';
 
-$pre_heading            = get_theme_mod( 'wmf_stories_label', __( 'Stories', 'shiro' ) );
+$pre_heading            = get_theme_mod( 'wmf_stories_label', __( 'Stories', 'shiro-admin' ) );
 $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 ?>
 <div class="w-100p mod-margin-bottom stories">

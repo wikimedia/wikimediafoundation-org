@@ -10,7 +10,7 @@ get_header(); ?>
 
 <?php
 
-$wmf_results_copy = get_theme_mod( 'wmf_search_results_copy', /* translators: 1. search query */ __( 'Search results for %s', 'shiro' ) );
+$wmf_results_copy = get_theme_mod( 'wmf_search_results_copy', /* translators: 1. search query */ __( 'Search results for %s', 'shiro-admin' ) );
 
 $template_args = array(
 	/* translators: Query that is currently being searched */
