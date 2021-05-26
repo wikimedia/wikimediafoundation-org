@@ -1,0 +1,2345 @@
+# Copyright (C) 2021 Wikimedia Foundation Design
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shiro 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/shiro\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-05-25T23:07:42+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: shiro-admin\n"
+
+#. Theme Name of the theme
+msgid "Shiro"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://github.com/wikimedia/wikimediafoundation-org"
+msgstr ""
+
+#. Description of the theme
+msgid "Wikimedia Foundation website theme, forked from the Reaktiv theme"
+msgstr ""
+
+#. Author of the theme
+msgid "Wikimedia Foundation Design"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://design.wikimedia.org/"
+msgstr ""
+
+#: functions.php:46
+#: inc/classes/customizer/class-header.php:24
+msgid "Header"
+msgstr ""
+
+#: functions.php:47
+msgid "Footer Under Text"
+msgstr ""
+
+#: functions.php:48
+msgid "Footer Projects"
+msgstr ""
+
+#: functions.php:49
+msgid "Footer Movement Affiliates"
+msgstr ""
+
+#: functions.php:50
+msgid "Footer Legal"
+msgstr ""
+
+#: functions.php:100
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:360
+msgid "404 Error"
+msgstr ""
+
+#. translators: 1. search query
+#: functions.php:372
+#: search.php:13
+msgid "Search results for %s"
+msgstr ""
+
+#: header.php:14
+#: inc/classes/customizer/class-header.php:67
+msgid "Languages"
+msgstr ""
+
+#: header.php:19
+#: inc/classes/customizer/class-header.php:134
+msgid "Donate"
+msgstr ""
+
+#: header.php:21
+msgid "Toggle menu"
+msgstr ""
+
+#: header.php:22
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:23
+msgid "Skip to navigation"
+msgstr ""
+
+#: header.php:24
+msgid "Select language"
+msgstr ""
+
+#: header.php:25
+msgid "Current language:"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:23
+#: inc/classes/customizer/class-connect.php:41
+#: inc/fields/connect.php:50
+#: template-parts/modules/general/connect.php:12
+msgid "Connect"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:32
+msgid "Main Headings"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:46
+msgid "Pre Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:55
+#: template-parts/modules/general/connect.php:13
+msgid "Stay up-to-date on our work."
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:60
+#: inc/classes/customizer/class-connect.php:84
+#: inc/classes/customizer/class-connect.php:165
+#: inc/classes/customizer/class-general.php:177
+#: inc/fields/home.php:28
+#: inc/fields/landing.php:91
+#: inc/fields/links.php:27
+#: inc/fields/listing.php:20
+#: inc/fields/listing.php:27
+msgid "Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:70
+msgid "Subscribe Box"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:79
+#: template-parts/modules/general/connect.php:18
+msgid "Subscribe to our newsletter"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:97
+#: inc/classes/customizer/class-connect.php:178
+#: inc/classes/customizer/class-general.php:187
+#: inc/classes/customizer/class-general.php:323
+#: inc/fields/home.php:29
+#: inc/fields/landing.php:53
+#: inc/fields/landing.php:92
+#: inc/fields/links.php:31
+#: inc/fields/listing.php:28
+#: inc/fields/page-cta.php:18
+msgid "Content"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:107
+msgid "Subscribe form action URL"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:117
+msgid "Subscribe form additional fields"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:126
+#: template-parts/modules/general/connect.php:20
+msgid "Email address"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:131
+msgid "Email Placeholder"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:140
+#: template-parts/modules/general/connect.php:21
+msgid "Subscribe"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:145
+#: inc/fields/profile.php:101
+msgid "Button Text"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:155
+msgid "Contact Box"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:188
+#: inc/fields/button.php:21
+#: inc/fields/profile.php:31
+msgid "Link"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:189
+msgid "This can be a URI or email address."
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:199
+#: inc/fields/home.php:31
+#: inc/fields/landing.php:55
+#: inc/fields/landing.php:62
+msgid "Link Text"
+msgstr ""
+
+#: inc/classes/customizer/class-connect.php:200
+msgid "If this is empty, the Link value will be used automatically."
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:47
+msgid "Footer"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:57
+msgid "Footer Logo"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:71
+msgid "Footer Text"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:72
+msgid "This changes the large text to the right of the footer logo. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:86
+msgid "Projects Menu Label"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:87
+msgid "Label above the 3 column projects menu. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:101
+msgid "Movement Affilaites Menu Label"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:102
+msgid "Label above the 1 column movement affiliates menu. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:116
+msgid "Other Links Menu Label"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:117
+msgid "Label above the 1 column other links menu. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:131
+msgid "Copyright"
+msgstr ""
+
+#: inc/classes/customizer/class-footer.php:132
+msgid "The copyright statement at the bottom of the page. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:23
+#: inc/classes/customizer/class-header.php:58
+msgid "General"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:32
+msgid "RTL Support"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:42
+msgid "Enable RTL"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:43
+msgid "If checked, this will cause the front end of site to shift from left to right to right to left display."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:53
+msgid "Labels & Headings"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:68
+msgid "Incomplete Translation Notice"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:69
+msgid "Shows in the header if the content has not been marked as having a complete translation."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:79
+msgid "NEWS"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:84
+msgid "Featured Post Pre Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:85
+msgid "Shows above featured posts module in landing page and the home page."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:94
+#: inc/fields/home.php:74
+#: inc/fields/projects.php:52
+#: template-parts/modules/projects/projects.php:18
+msgid "Projects"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:99
+msgid "Projects Pre Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:100
+msgid "Shows above projects module in landing page and the home page."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:114
+msgid "Off Site Links Pre Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:115
+msgid "Shows above off site links module throughout the site."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:129
+msgid "Related Pages Pre Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:130
+msgid "Shows above related pages module throughout the site."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:144
+msgid "Photo Credits Heading"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:145
+msgid "Shows above photo credits module throughout the site."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:155
+#: inc/fields/support.php:19
+msgid "Support Module"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:166
+#: inc/fields/header.php:27
+#: inc/fields/landing.php:51
+#: inc/fields/page-cta.php:16
+msgid "Image"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:167
+msgid "Image should be 16:9 aspect ratio with min width of 1200px for best appearance. The image will automatically crop to that size if larger."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:197
+msgid "CTA Link URI"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:207
+msgid "CTA Link Text"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:217
+msgid "Search Page"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:231
+msgid "Search results message"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:245
+msgid "No Results Title"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:246
+msgid "This displays on archive and search pages when there are no results found."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:260
+msgid "No Results Description"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:270
+msgid "404 Page"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:281
+#: inc/fields/home.php:27
+#: inc/fields/home.php:63
+#: inc/fields/projects.php:41
+msgid "Background Image"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:282
+msgid "Displayed in header."
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:296
+msgid "Header message"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:310
+msgid "Header title"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:337
+msgid "Text above search bar"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:347
+msgid "ARIA Support"
+msgstr ""
+
+#: inc/classes/customizer/class-general.php:356
+msgid "Toggle search"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:34
+msgid "Alternative header image"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:48
+msgid "URL to alternative header image"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:49
+msgid "URL will be applied as inline style background image"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:72
+msgid "Languages Translations Copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:73
+msgid "This changes the languages label copy found in the translation bar at the top of the page."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:82
+msgid "MENU"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:87
+msgid "Menu button copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:88
+msgid "This changes the button copy for mobile devices. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:97
+msgid "Header link"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:111
+msgid "Link, clickable on whole header image"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:125
+msgid "Aria label for link"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:143
+msgid "Donate Now"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:148
+msgid "Navigation donate button Copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:149
+msgid "This changes the donate copy. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:158
+#: inc/classes/customizer/class-header.php:187
+msgid "#"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:163
+msgid "Navigation donate button URI"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:172
+msgid "Donate now"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:177
+msgid "Homepage donate button copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:178
+msgid "This changes the homepage donate button copy. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:192
+msgid "Homepage bonate button URI"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:201
+msgid "Protect and sustain Wikipedia"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:206
+msgid "Homepage bonate button intro"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:207
+msgid "This changes the homepage donate button intro copy."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:216
+msgid "SECURE DONATIONS"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:221
+msgid "Homepage bonate button secure copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:222
+msgid "This changes the homepage donate button secure notice copy."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:231
+#: inc/classes/customizer/class-header.php:240
+#: searchform.php:8
+#: searchform.php:9
+msgid "Search"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:245
+msgid "Search Button Copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:246
+msgid "This changes the search button copy. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:255
+msgid "What are you looking for?"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:260
+msgid "Search Placeholder Copy"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:261
+msgid "This changes the search placeholder copy. This can be set in each translation to localize the button."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:270
+msgid "esc"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:275
+msgid "Label for escape button in search popup"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:284
+msgid "Vision"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:293
+msgid "Imagine a world in which every single human being can freely share in the sum of all knowledge."
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:298
+msgid "Vision language 1"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:312
+msgid "Vision language 1 - CSS class"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:326
+msgid "Vision language 1 - language code"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:340
+msgid "Vision language 2"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:354
+msgid "Vision language 2 - CSS class"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:368
+msgid "Vision language 2 - language code"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:382
+msgid "Vision language 3"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:396
+msgid "Vision language 3 - CSS class"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:410
+msgid "Vision language 3 - language code"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:424
+msgid "Vision language 4"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:438
+msgid "Vision language 4 - CSS class"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:452
+msgid "Vision language 4 - language code"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:466
+msgid "Vision language 5"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:480
+msgid "Vision language 5 - CSS class"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:494
+msgid "Vision language 5 - language code"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:503
+msgid "Emergency message"
+msgstr ""
+
+#: inc/classes/customizer/class-header.php:517
+msgid "Emergency message for display on homepage"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:23
+msgid "Page Settings"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:31
+msgid "Newer"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:36
+msgid "Newer Posts Copy"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:37
+msgid "This displays in pagination sections in a link for newer posts."
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:46
+msgid "Older"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:51
+msgid "Older Posts Copy"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:52
+msgid "This displays in pagination sections in a link for older posts."
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:61
+#: inc/fields/default.php:44
+#: inc/post-types/download.php:15
+#: inc/post-types/download.php:39
+msgid "Downloads"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:66
+msgid "Downloads Section Header"
+msgstr ""
+
+#: inc/classes/customizer/class-page.php:67
+msgid "This displays in the sidebar before the downloads list."
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:25
+msgid "Post Settings"
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:33
+msgid "Related"
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:38
+msgid "Related Posts Section Title"
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:39
+msgid "This displays at the bottom of each single post."
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:48
+msgid "Read further in the pursuit of knowledge"
+msgstr ""
+
+#: inc/classes/customizer/class-post.php:53
+msgid "Related Posts Section Description"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:25
+msgid "Profile Pages"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:34
+msgid "Profiles Parent Page"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:35
+msgid "This changes the parent link at the top of individual profile pages like Staff & Contractors."
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:46
+msgid "Community Profiles Parent Page"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:47
+msgid "This changes the parent link at the top of the Wikimedia Community profile."
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:57
+#: taxonomy-role.php:32
+msgid "The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today."
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:62
+msgid "Profiles List Page Text"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:71
+#: taxonomy-role.php:33
+msgid "We're Hiring"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:76
+msgid "Profiles List Page Button Label"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:85
+#: inc/fields/profiles.php:40
+#: inc/post-types/profile.php:17
+#: inc/post-types/profile.php:41
+#: template-parts/modules/profiles/list.php:22
+msgid "Profiles"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:90
+msgid "Label for profiles"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:91
+msgid "This is the label used to describe the profiles post type."
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:100
+#: inc/fields/stories.php:40
+#: inc/post-types/story.php:17
+#: inc/post-types/story.php:41
+#: template-parts/modules/stories/list.php:29
+msgid "Stories"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:105
+msgid "Label for stories"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:106
+msgid "This is the label used to describe the stories post type."
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:116
+msgid "Profiles List Page Button Link"
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:125
+#: single-profile.php:21
+msgid "Other members of "
+msgstr ""
+
+#: inc/classes/customizer/class-profile.php:130
+msgid "Related Profiles default headline"
+msgstr ""
+
+#: inc/classes/roles/class-translator.php:26
+msgid "Translator"
+msgstr ""
+
+#: inc/classes/translations/class-edit-posts.php:58
+msgid "All Translation Statuses"
+msgstr ""
+
+#: inc/classes/translations/class-edit-posts.php:69
+msgid "Filter by translation status."
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:96
+msgid "Needs Translation (new)"
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:97
+msgid "Needs Translation (update)"
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:98
+msgid "In Progress"
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:99
+msgid "Complete"
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:153
+msgid "Translate post"
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:163
+msgid "Translation Status: "
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:170
+msgid "Translation in progress"
+msgstr ""
+
+#: inc/classes/translations/class-flow.php:177
+msgid "Translation completed"
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:197
+msgid "Not set"
+msgstr ""
+
+#. Translators: The placeholder is for the selected value.
+#: inc/classes/translations/class-metaboxes.php:204
+msgid "Selected value is: %s"
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:217
+msgid "Image not selected"
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:217
+msgid "Selected image is:"
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:245
+msgctxt "placeholder for empty translation textarea"
+msgid "No content yet."
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:258
+msgid "Is not checked"
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:258
+msgid "Is checked"
+msgstr ""
+
+#: inc/classes/translations/class-metaboxes.php:295
+msgid "Checked option is:"
+msgid_plural "Checked options are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/classes/translations/class-metaboxes.php:318
+msgid "Group"
+msgstr ""
+
+#: inc/classes/translations/class-notice.php:122
+#: inc/classes/translations/class-notice.php:162
+msgid "There is a translation in progress for this content."
+msgstr ""
+
+#: inc/classes/translations/class-notice.php:136
+#: inc/taxonomies.php:101
+msgid "Translation Status"
+msgstr ""
+
+#: inc/classes/translations/class-notice.php:167
+msgid "No translations in progress for this content."
+msgstr ""
+
+#: inc/editor/intro.php:32
+msgid "Intro field, displayed before post content in single views"
+msgstr ""
+
+#: inc/editor/intro.php:82
+msgid "Page Intro"
+msgstr ""
+
+#: inc/editor/namespace.php:105
+msgid "Small"
+msgstr ""
+
+#: inc/editor/namespace.php:105
+msgid "S"
+msgstr ""
+
+#: inc/editor/namespace.php:106
+msgid "Medium"
+msgstr ""
+
+#: inc/editor/namespace.php:106
+msgid "M"
+msgstr ""
+
+#: inc/editor/namespace.php:107
+msgid "Large"
+msgstr ""
+
+#: inc/editor/namespace.php:107
+msgid "L"
+msgstr ""
+
+#: inc/editor/namespace.php:108
+msgid "X-Large"
+msgstr ""
+
+#: inc/editor/namespace.php:108
+msgid "XL"
+msgstr ""
+
+#: inc/editor/namespace.php:109
+msgid "Jumbo"
+msgstr ""
+
+#: inc/editor/namespace.php:109
+msgid "J"
+msgstr ""
+
+#: inc/editor/namespace.php:117
+msgid "Base 0"
+msgstr ""
+
+#: inc/editor/namespace.php:118
+msgid "Base 10"
+msgstr ""
+
+#: inc/editor/namespace.php:119
+msgid "Base 20"
+msgstr ""
+
+#: inc/editor/namespace.php:120
+msgid "Base 30"
+msgstr ""
+
+#: inc/editor/namespace.php:121
+msgid "Base 50"
+msgstr ""
+
+#: inc/editor/namespace.php:122
+msgid "Base 70"
+msgstr ""
+
+#: inc/editor/namespace.php:123
+msgid "Base 80"
+msgstr ""
+
+#: inc/editor/namespace.php:124
+msgid "Base 90"
+msgstr ""
+
+#: inc/editor/namespace.php:125
+msgid "Base 100"
+msgstr ""
+
+#: inc/editor/namespace.php:126
+msgid "Blue 50"
+msgstr ""
+
+#: inc/editor/namespace.php:127
+msgid "Blue 90"
+msgstr ""
+
+#: inc/editor/namespace.php:128
+msgid "Red 50"
+msgstr ""
+
+#: inc/editor/namespace.php:129
+msgid "Red 90"
+msgstr ""
+
+#: inc/editor/namespace.php:130
+msgid "Yellow 50"
+msgstr ""
+
+#: inc/editor/namespace.php:131
+msgid "Yellow 90"
+msgstr ""
+
+#: inc/editor/namespace.php:233
+#: inc/editor/patterns.php:28
+msgid "Wikimedia"
+msgstr ""
+
+#: inc/editor/patterns.php:32
+msgid "Wikimedia templates"
+msgstr ""
+
+#: inc/editor/patterns.php:36
+msgid "Numbered fact columns"
+msgstr ""
+
+#: inc/editor/patterns.php:42
+msgid "Tweet this columns"
+msgstr ""
+
+#: inc/editor/patterns.php:48
+msgid "External link columns"
+msgstr ""
+
+#: inc/editor/patterns.php:54
+msgid "Cards"
+msgstr ""
+
+#: inc/editor/patterns.php:60
+msgid "Blog list section"
+msgstr ""
+
+#: inc/editor/patterns.php:66
+msgid "Communication module"
+msgstr ""
+
+#: inc/editor/patterns.php:72
+msgid "Default Template"
+msgstr ""
+
+#: inc/editor/patterns.php:78
+msgid "Landing page template"
+msgstr ""
+
+#: inc/fields/button.php:20
+msgid "Title"
+msgstr ""
+
+#: inc/fields/button.php:25
+msgid "Intro Button"
+msgstr ""
+
+#: inc/fields/common.php:16
+#: inc/fields/landing.php:27
+#: template-parts/modules/social/follow-horizontal.php:17
+msgid "Twitter"
+msgstr ""
+
+#: inc/fields/common.php:17
+#: inc/fields/landing.php:28
+#: template-parts/modules/social/follow-horizontal.php:16
+msgid "Facebook"
+msgstr ""
+
+#: inc/fields/common.php:23
+msgid "Share This Post On:"
+msgstr ""
+
+#: inc/fields/connect.php:19
+msgid "Hide Connect Module"
+msgstr ""
+
+#: inc/fields/connect.php:22
+msgid "Section Pre Heading"
+msgstr ""
+
+#: inc/fields/connect.php:23
+#: inc/fields/home.php:42
+#: inc/fields/landing.php:20
+#: inc/fields/landing.php:44
+#: inc/fields/links.php:20
+#: inc/fields/page-cta.php:17
+#: inc/fields/projects.php:20
+msgid "Section Heading"
+msgstr ""
+
+#: inc/fields/connect.php:26
+msgid "Subscribe Heading"
+msgstr ""
+
+#: inc/fields/connect.php:27
+msgid "Subscribe Content"
+msgstr ""
+
+#: inc/fields/connect.php:28
+msgid "Email Input Placeholder"
+msgstr ""
+
+#: inc/fields/connect.php:29
+msgid "Subscribe Button Text"
+msgstr ""
+
+#: inc/fields/connect.php:32
+msgid "Contact Heading"
+msgstr ""
+
+#: inc/fields/connect.php:33
+msgid "Contact Content"
+msgstr ""
+
+#: inc/fields/connect.php:34
+#: inc/fields/profile.php:24
+msgid "Contact Link"
+msgstr ""
+
+#: inc/fields/connect.php:35
+msgid "Contact Link Text"
+msgstr ""
+
+#: inc/fields/connect.php:37
+msgid "Follow Text"
+msgstr ""
+
+#: inc/fields/connect.php:38
+msgid "Facebook URL"
+msgstr ""
+
+#: inc/fields/connect.php:39
+msgid "Facebook Label"
+msgstr ""
+
+#: inc/fields/connect.php:40
+msgid "Twitter URL"
+msgstr ""
+
+#: inc/fields/connect.php:41
+msgid "Twitter ID"
+msgstr ""
+
+#: inc/fields/connect.php:42
+msgid "Instagram URL"
+msgstr ""
+
+#: inc/fields/connect.php:43
+msgid "Instagram Label"
+msgstr ""
+
+#: inc/fields/connect.php:44
+msgid "Blog URI"
+msgstr ""
+
+#: inc/fields/connect.php:45
+msgid "Blog Label"
+msgstr ""
+
+#: inc/fields/datapage.php:20
+msgid "Main image"
+msgstr ""
+
+#: inc/fields/datapage.php:21
+#: inc/fields/datapage.php:44
+#: inc/fields/datapage.php:96
+msgid "Explanation"
+msgstr ""
+
+#: inc/fields/datapage.php:24
+#: inc/fields/datapage.php:49
+#: inc/fields/datapage.php:74
+msgid "Add Stat"
+msgstr ""
+
+#: inc/fields/datapage.php:28
+#: inc/fields/datapage.php:53
+#: inc/fields/datapage.php:103
+msgid "Icon"
+msgstr ""
+
+#: inc/fields/datapage.php:29
+#: inc/fields/datapage.php:54
+#: inc/fields/datapage.php:78
+msgid "Stat heading"
+msgstr ""
+
+#: inc/fields/datapage.php:30
+#: inc/fields/datapage.php:55
+#: inc/fields/datapage.php:79
+#: inc/fields/profiles.php:23
+#: inc/fields/stories.php:23
+msgid "Description"
+msgstr ""
+
+#: inc/fields/datapage.php:34
+#: inc/fields/datapage.php:59
+#: inc/fields/datapage.php:83
+#: inc/fields/datapage.php:113
+msgid "Updated date note"
+msgstr ""
+
+#: inc/fields/datapage.php:38
+msgid "Featured Stats"
+msgstr ""
+
+#: inc/fields/datapage.php:45
+#: inc/fields/datapage.php:107
+msgid "Data (JSON)"
+msgstr ""
+
+#: inc/fields/datapage.php:46
+msgid "Time format for tooltip – day (default) or month"
+msgstr ""
+
+#: inc/fields/datapage.php:63
+msgid "Stats graph"
+msgstr ""
+
+#: inc/fields/datapage.php:69
+#: inc/fields/datapage.php:93
+msgid "Section subheadline"
+msgstr ""
+
+#: inc/fields/datapage.php:70
+#: inc/fields/datapage.php:94
+msgid "Section headline"
+msgstr ""
+
+#: inc/fields/datapage.php:71
+#: inc/fields/header.php:44
+msgid "Subtitle"
+msgstr ""
+
+#: inc/fields/datapage.php:87
+msgid "Stats plain"
+msgstr ""
+
+#: inc/fields/datapage.php:95
+msgid "Subtitle (optional)"
+msgstr ""
+
+#: inc/fields/datapage.php:99
+msgid "Add Icon"
+msgstr ""
+
+#: inc/fields/datapage.php:108
+msgid "Labels from above (e.g. [\"Languages\", \"Editors\", \"Articles\", \"Pageviews\", \"Native\"])"
+msgstr ""
+
+#: inc/fields/datapage.php:109
+msgid "Instruction for users to filter view"
+msgstr ""
+
+#: inc/fields/datapage.php:110
+msgid "Max radius (Feature 1/circles)"
+msgstr ""
+
+#: inc/fields/datapage.php:111
+msgid "Max height (Feature 2/rectangles)"
+msgstr ""
+
+#: inc/fields/datapage.php:112
+msgid "Value for 1 unit (Feature 3/ellipses)"
+msgstr ""
+
+#: inc/fields/datapage.php:117
+msgid "Stats profiles"
+msgstr ""
+
+#: inc/fields/default.php:20
+msgid "Fact Callout"
+msgstr ""
+
+#: inc/fields/default.php:21
+msgid "Fact Caption"
+msgstr ""
+
+#: inc/fields/default.php:25
+msgid "Sidebar Fact"
+msgstr ""
+
+#: inc/fields/default.php:30
+msgid "If a file is uploaded, it will be used for a download. Otherwise, an external link can be used"
+msgstr ""
+
+#: inc/fields/default.php:32
+msgid "Add Another Download"
+msgstr ""
+
+#: inc/fields/default.php:34
+msgid "Download Title"
+msgstr ""
+
+#: inc/fields/default.php:37
+msgid "Download File"
+msgstr ""
+
+#: inc/fields/default.php:40
+msgid "Download Link"
+msgstr ""
+
+#: inc/fields/header.php:15
+msgid "Background"
+msgstr ""
+
+#: inc/fields/header.php:19
+#: inc/fields/page-cta.php:23
+msgid "Color"
+msgstr ""
+
+#: inc/fields/header.php:21
+msgid "Default"
+msgstr ""
+
+#: inc/fields/header.php:22
+msgid "Pink"
+msgstr ""
+
+#: inc/fields/header.php:23
+#: inc/fields/page-cta.php:26
+msgid "Blue"
+msgstr ""
+
+#: inc/fields/header.php:32
+msgid "Header Options"
+msgstr ""
+
+#: inc/fields/home.php:23
+msgid "Add Block"
+msgstr ""
+
+#: inc/fields/home.php:30
+#: inc/fields/landing.php:54
+#: inc/fields/landing.php:61
+msgid "Link URI"
+msgstr ""
+
+#: inc/fields/home.php:35
+msgid "Focus Blocks"
+msgstr ""
+
+#: inc/fields/home.php:41
+msgid "Section Pre-Heading"
+msgstr ""
+
+#: inc/fields/home.php:45
+#: inc/fields/projects.php:23
+msgid "Section Content"
+msgstr ""
+
+#: inc/fields/home.php:54
+#: inc/fields/projects.php:32
+msgid "Section Link URI"
+msgstr ""
+
+#: inc/fields/home.php:55
+#: inc/fields/projects.php:33
+msgid "Section Link Text"
+msgstr ""
+
+#: inc/fields/home.php:58
+#: inc/fields/projects.php:36
+msgid "Add Project"
+msgstr ""
+
+#: inc/fields/home.php:62
+#: inc/fields/projects.php:40
+msgid "Project URI"
+msgstr ""
+
+#: inc/fields/home.php:64
+#: inc/fields/projects.php:42
+msgid "Project Icon"
+msgstr ""
+
+#: inc/fields/home.php:65
+#: inc/fields/projects.php:43
+msgid "Project Name"
+msgstr ""
+
+#: inc/fields/home.php:66
+#: inc/fields/projects.php:44
+msgid "Project Description"
+msgstr ""
+
+#: inc/fields/landing.php:21
+#: inc/fields/page-cta.php:19
+msgid "Share URI"
+msgstr ""
+
+#: inc/fields/landing.php:22
+#: inc/fields/page-cta.php:20
+msgid "Message"
+msgstr ""
+
+#: inc/fields/landing.php:25
+msgid "Services"
+msgstr ""
+
+#: inc/fields/landing.php:35
+msgid "Social Share"
+msgstr ""
+
+#: inc/fields/landing.php:43
+#: inc/fields/profiles.php:21
+#: inc/fields/stories.php:21
+msgid "Section Pre-heading"
+msgstr ""
+
+#: inc/fields/landing.php:47
+msgid "Add Framing Copy"
+msgstr ""
+
+#: inc/fields/landing.php:52
+msgid "Copy Heading"
+msgstr ""
+
+#: inc/fields/landing.php:58
+#: inc/fields/links.php:23
+msgid "Add Link"
+msgstr ""
+
+#: inc/fields/landing.php:72
+msgid "Framing Copy"
+msgstr ""
+
+#: inc/fields/landing.php:81
+msgid "Background Image*"
+msgstr ""
+
+#: inc/fields/landing.php:82
+msgid "*This is a required element for the facts to show properly."
+msgstr ""
+
+#: inc/fields/landing.php:87
+msgid "Add Fact"
+msgstr ""
+
+#: inc/fields/landing.php:99
+msgid "Facts"
+msgstr ""
+
+#: inc/fields/landing.php:106
+msgid "Featured Post Subtitle"
+msgstr ""
+
+#: inc/fields/landing.php:115
+msgid "Sidebar Menu Label"
+msgstr ""
+
+#: inc/fields/links.php:28
+msgid "URI"
+msgstr ""
+
+#: inc/fields/links.php:47
+msgid "Off Site Links"
+msgstr ""
+
+#: inc/fields/list.php:21
+msgid "Add A List Section"
+msgstr ""
+
+#: inc/fields/list.php:24
+msgid "Section Title"
+msgstr ""
+
+#: inc/fields/list.php:25
+msgid "Section Description"
+msgstr ""
+
+#: inc/fields/list.php:28
+msgid "List of Links"
+msgstr ""
+
+#: inc/fields/list.php:32
+msgid "Add A List Item"
+msgstr ""
+
+#: inc/fields/list.php:34
+msgid "List Item Title"
+msgstr ""
+
+#: inc/fields/list.php:35
+msgid "Featured Image"
+msgstr ""
+
+#: inc/fields/list.php:36
+msgid "List Item Subheading"
+msgstr ""
+
+#: inc/fields/list.php:37
+msgid "List Item Description"
+msgstr ""
+
+#: inc/fields/list.php:38
+msgid "List Item Link"
+msgstr ""
+
+#: inc/fields/list.php:39
+msgid "Show Off Site Link Icon"
+msgstr ""
+
+#: inc/fields/list.php:47
+msgid "List"
+msgstr ""
+
+#: inc/fields/listing.php:23
+msgid "Add Listing"
+msgstr ""
+
+#: inc/fields/listing.php:29
+msgid "CTA URI"
+msgstr ""
+
+#: inc/fields/listing.php:30
+msgid "CTA Text"
+msgstr ""
+
+#: inc/fields/listing.php:37
+msgid "Employment Listings"
+msgstr ""
+
+#: inc/fields/media.php:20
+msgid "Author"
+msgstr ""
+
+#: inc/fields/media.php:25
+msgid "License"
+msgstr ""
+
+#: inc/fields/media.php:26
+msgid "Should use standard formatting (example: CC BY-SA 4.0)"
+msgstr ""
+
+#: inc/fields/media.php:31
+msgid "Photo credit URL"
+msgstr ""
+
+#: inc/fields/media.php:32
+msgid "URL to original photo page - preferably on Wikimedia Commons"
+msgstr ""
+
+#: inc/fields/media.php:37
+msgid "License URL"
+msgstr ""
+
+#: inc/fields/media.php:38
+msgid "License URL only necessary if not using a standard site media license (CC BY (2.0, 2.5, 3.0, 4.0), CC SA, CC BY-SA (2.0, 3.0, 4.0), CC0 1.0, GFDL-1.2, and Public domain)"
+msgstr ""
+
+#: inc/fields/page-cta.php:27
+msgid "Green"
+msgstr ""
+
+#: inc/fields/page-cta.php:34
+msgid "Page CTA"
+msgstr ""
+
+#: inc/fields/post.php:13
+msgid "Home Page"
+msgstr ""
+
+#: inc/fields/post.php:22
+msgid "Featured On:"
+msgstr ""
+
+#: inc/fields/post.php:28
+msgid "Profile Headline"
+msgstr ""
+
+#: inc/fields/post.php:29
+msgid "Profile Teaser"
+msgstr ""
+
+#: inc/fields/post.php:30
+#: inc/fields/profile.php:30
+msgid "Link Title"
+msgstr ""
+
+#: inc/fields/post.php:42
+msgid "Featured Profile"
+msgstr ""
+
+#: inc/fields/posts-page.php:23
+msgid "Featured Post"
+msgstr ""
+
+#: inc/fields/posts-page.php:31
+msgid "Category Filter List"
+msgstr ""
+
+#: inc/fields/profile.php:14
+msgid "Last Name"
+msgstr ""
+
+#: inc/fields/profile.php:15
+msgid "This field is required to enable correct sorting via last name."
+msgstr ""
+
+#: inc/fields/profile.php:20
+msgid "Sorting"
+msgstr ""
+
+#: inc/fields/profile.php:26
+msgid "Add Contact Link"
+msgstr ""
+
+#: inc/fields/profile.php:36
+msgid "List of Contact Links"
+msgstr ""
+
+#: inc/fields/profile.php:41
+#: inc/fields/profile.php:50
+msgid "Profile Info"
+msgstr ""
+
+#: inc/fields/profile.php:45
+msgid "Role"
+msgstr ""
+
+#: inc/fields/profile.php:46
+msgid "Featured?"
+msgstr ""
+
+#: inc/fields/profile.php:64
+msgid "Connected User"
+msgstr ""
+
+#: inc/fields/profile.php:99
+msgid "Button"
+msgstr ""
+
+#: inc/fields/profile.php:102
+#: inc/fields/profiles.php:25
+#: inc/fields/stories.php:25
+msgid "Button Link"
+msgstr ""
+
+#: inc/fields/profiles.php:22
+#: inc/fields/related-pages.php:20
+#: inc/fields/stories.php:22
+msgid "Headline"
+msgstr ""
+
+#: inc/fields/profiles.php:24
+#: inc/fields/stories.php:24
+msgid "Button Label"
+msgstr ""
+
+#: inc/fields/profiles.php:32
+msgid "List of Profiles to pull from"
+msgstr ""
+
+#: inc/fields/profiles.php:33
+msgid "Select as many as are applicable. 3 profiles will be selected from this list each time the page loads."
+msgstr ""
+
+#: inc/fields/related-pages.php:23
+msgid "List of Posts to pull from"
+msgstr ""
+
+#: inc/fields/related-pages.php:24
+msgid "Select as many as are applicable. Three posts will be selected from this list for display."
+msgstr ""
+
+#: inc/fields/related-pages.php:32
+msgid "Related Pages"
+msgstr ""
+
+#: inc/fields/stories.php:32
+msgid "List of Stories to pull from"
+msgstr ""
+
+#: inc/fields/stories.php:33
+msgid "Select as many as are applicable. 3 stories will be selected from this list each time the page loads."
+msgstr ""
+
+#: inc/fields/support.php:15
+msgid "Hide Support Module"
+msgstr ""
+
+#: inc/fields/support.php:16
+msgid "If enabled, the support module will not be shown with this content."
+msgstr ""
+
+#: inc/post-types/download.php:16
+msgid "Download"
+msgstr ""
+
+#: inc/post-types/download.php:17
+msgid "All Downloads"
+msgstr ""
+
+#: inc/post-types/download.php:18
+msgid "Download Archives"
+msgstr ""
+
+#: inc/post-types/download.php:19
+msgid "Download Attributes"
+msgstr ""
+
+#: inc/post-types/download.php:20
+msgid "Insert into Download"
+msgstr ""
+
+#: inc/post-types/download.php:21
+msgid "Uploaded to this Download"
+msgstr ""
+
+#: inc/post-types/download.php:22
+msgctxt "Download"
+msgid "Featured Image"
+msgstr ""
+
+#: inc/post-types/download.php:23
+msgctxt "Download"
+msgid "Set featured image"
+msgstr ""
+
+#: inc/post-types/download.php:24
+msgctxt "Download"
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/post-types/download.php:25
+msgctxt "Download"
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/post-types/download.php:26
+msgid "Filter Downloads list"
+msgstr ""
+
+#: inc/post-types/download.php:27
+msgid "Downloads list navigation"
+msgstr ""
+
+#: inc/post-types/download.php:28
+msgid "Downloads list"
+msgstr ""
+
+#: inc/post-types/download.php:29
+msgid "New Download"
+msgstr ""
+
+#: inc/post-types/download.php:30
+#: inc/post-types/profile.php:32
+#: inc/post-types/story.php:32
+msgid "Add New"
+msgstr ""
+
+#: inc/post-types/download.php:31
+msgid "Add New Download"
+msgstr ""
+
+#: inc/post-types/download.php:32
+msgid "Edit Download"
+msgstr ""
+
+#: inc/post-types/download.php:33
+msgid "View Download"
+msgstr ""
+
+#: inc/post-types/download.php:34
+msgid "View Downloads"
+msgstr ""
+
+#: inc/post-types/download.php:35
+msgid "Search Downloads"
+msgstr ""
+
+#: inc/post-types/download.php:36
+msgid "No Downloads found"
+msgstr ""
+
+#: inc/post-types/download.php:37
+msgid "No Downloads found in trash"
+msgstr ""
+
+#: inc/post-types/download.php:38
+msgid "Parent Download:"
+msgstr ""
+
+#: inc/post-types/profile.php:18
+msgid "Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:19
+msgid "All Profiles"
+msgstr ""
+
+#: inc/post-types/profile.php:20
+msgid "Profile Archives"
+msgstr ""
+
+#: inc/post-types/profile.php:21
+msgid "Profile Attributes"
+msgstr ""
+
+#: inc/post-types/profile.php:22
+msgid "Insert into Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:23
+msgid "Uploaded to this Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:24
+msgctxt "profile"
+msgid "Featured Image"
+msgstr ""
+
+#: inc/post-types/profile.php:25
+msgctxt "profile"
+msgid "Set featured image"
+msgstr ""
+
+#: inc/post-types/profile.php:26
+msgctxt "profile"
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/post-types/profile.php:27
+msgctxt "profile"
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/post-types/profile.php:28
+msgid "Filter Profiles list"
+msgstr ""
+
+#: inc/post-types/profile.php:29
+msgid "Profiles list navigation"
+msgstr ""
+
+#: inc/post-types/profile.php:30
+msgid "Profiles list"
+msgstr ""
+
+#: inc/post-types/profile.php:31
+msgid "New Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:33
+msgid "Add New Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:34
+msgid "Edit Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:35
+msgid "View Profile"
+msgstr ""
+
+#: inc/post-types/profile.php:36
+msgid "View Profiles"
+msgstr ""
+
+#: inc/post-types/profile.php:37
+msgid "Search Profiles"
+msgstr ""
+
+#: inc/post-types/profile.php:38
+msgid "No Profiles found"
+msgstr ""
+
+#: inc/post-types/profile.php:39
+msgid "No Profiles found in trash"
+msgstr ""
+
+#: inc/post-types/profile.php:40
+msgid "Parent Profile:"
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/profile.php:76
+msgid "Profile updated. <a target=\"_blank\" href=\"%s\">View Profile</a>"
+msgstr ""
+
+#: inc/post-types/profile.php:77
+#: inc/post-types/story.php:77
+msgid "Custom field updated."
+msgstr ""
+
+#: inc/post-types/profile.php:78
+#: inc/post-types/story.php:78
+msgid "Custom field deleted."
+msgstr ""
+
+#: inc/post-types/profile.php:79
+msgid "Profile updated."
+msgstr ""
+
+#. translators: %s: date and time of the revision
+#: inc/post-types/profile.php:81
+msgid "Profile restored to revision from %s"
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/profile.php:83
+msgid "Profile published. <a href=\"%s\">View Profile</a>"
+msgstr ""
+
+#: inc/post-types/profile.php:84
+msgid "Profile saved."
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/profile.php:86
+msgid "Profile submitted. <a target=\"_blank\" href=\"%s\">Preview Profile</a>"
+msgstr ""
+
+#. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
+#: inc/post-types/profile.php:89
+msgid "Profile scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Profile</a>"
+msgstr ""
+
+#: inc/post-types/profile.php:90
+#: inc/post-types/story.php:90
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/profile.php:93
+msgid "Profile draft updated. <a target=\"_blank\" href=\"%s\">Preview Profile</a>"
+msgstr ""
+
+#: inc/post-types/story.php:18
+msgid "Story"
+msgstr ""
+
+#: inc/post-types/story.php:19
+msgid "All Stories"
+msgstr ""
+
+#: inc/post-types/story.php:20
+msgid "Story Archives"
+msgstr ""
+
+#: inc/post-types/story.php:21
+msgid "Story Attributes"
+msgstr ""
+
+#: inc/post-types/story.php:22
+msgid "Insert into Story"
+msgstr ""
+
+#: inc/post-types/story.php:23
+msgid "Uploaded to this Story"
+msgstr ""
+
+#: inc/post-types/story.php:24
+msgctxt "story"
+msgid "Featured Image"
+msgstr ""
+
+#: inc/post-types/story.php:25
+msgctxt "story"
+msgid "Set featured image"
+msgstr ""
+
+#: inc/post-types/story.php:26
+msgctxt "story"
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/post-types/story.php:27
+msgctxt "story"
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/post-types/story.php:28
+msgid "Filter Stories list"
+msgstr ""
+
+#: inc/post-types/story.php:29
+msgid "Stories list navigation"
+msgstr ""
+
+#: inc/post-types/story.php:30
+msgid "Stories list"
+msgstr ""
+
+#: inc/post-types/story.php:31
+msgid "New Story"
+msgstr ""
+
+#: inc/post-types/story.php:33
+msgid "Add New Story"
+msgstr ""
+
+#: inc/post-types/story.php:34
+msgid "Edit Story"
+msgstr ""
+
+#: inc/post-types/story.php:35
+msgid "View Story"
+msgstr ""
+
+#: inc/post-types/story.php:36
+msgid "View Stories"
+msgstr ""
+
+#: inc/post-types/story.php:37
+msgid "Search Stories"
+msgstr ""
+
+#: inc/post-types/story.php:38
+msgid "No Stories found"
+msgstr ""
+
+#: inc/post-types/story.php:39
+msgid "No Stories found in trash"
+msgstr ""
+
+#: inc/post-types/story.php:40
+msgid "Parent Story:"
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/story.php:76
+msgid "Story updated. <a target=\"_blank\" href=\"%s\">View Story</a>"
+msgstr ""
+
+#: inc/post-types/story.php:79
+msgid "Story updated."
+msgstr ""
+
+#. translators: %s: date and time of the revision
+#: inc/post-types/story.php:81
+msgid "Story restored to revision from %s"
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/story.php:83
+msgid "Story published. <a href=\"%s\">View Story</a>"
+msgstr ""
+
+#: inc/post-types/story.php:84
+msgid "Story saved."
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/story.php:86
+msgid "Story submitted. <a target=\"_blank\" href=\"%s\">Preview Story</a>"
+msgstr ""
+
+#. translators: 1: Publish box date format, see https://secure.php.net/date 2: Post permalink
+#: inc/post-types/story.php:89
+msgid "Story scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Story</a>"
+msgstr ""
+
+#. translators: %s: post permalink
+#: inc/post-types/story.php:93
+msgid "Story draft updated. <a target=\"_blank\" href=\"%s\">Preview Story</a>"
+msgstr ""
+
+#: inc/taxonomies.php:24
+#: inc/taxonomies.php:41
+msgid "Roles"
+msgstr ""
+
+#: inc/taxonomies.php:25
+msgctxt "taxonomy general name"
+msgid "Role"
+msgstr ""
+
+#: inc/taxonomies.php:26
+msgid "Search Roles"
+msgstr ""
+
+#: inc/taxonomies.php:27
+msgid "Popular Roles"
+msgstr ""
+
+#: inc/taxonomies.php:28
+msgid "All Roles"
+msgstr ""
+
+#: inc/taxonomies.php:29
+msgid "Parent Role"
+msgstr ""
+
+#: inc/taxonomies.php:30
+msgid "Parent Role:"
+msgstr ""
+
+#: inc/taxonomies.php:31
+msgid "Edit Role"
+msgstr ""
+
+#: inc/taxonomies.php:32
+msgid "Update Role"
+msgstr ""
+
+#: inc/taxonomies.php:33
+msgid "View Role"
+msgstr ""
+
+#: inc/taxonomies.php:34
+#: inc/taxonomies.php:35
+msgid "New Role"
+msgstr ""
+
+#: inc/taxonomies.php:36
+msgid "Separate Roles with commas"
+msgstr ""
+
+#: inc/taxonomies.php:37
+msgid "Add or remove Roles"
+msgstr ""
+
+#: inc/taxonomies.php:38
+msgid "Choose from the most used Roles"
+msgstr ""
+
+#: inc/taxonomies.php:39
+msgid "No Roles found."
+msgstr ""
+
+#: inc/taxonomies.php:40
+msgid "No Roles"
+msgstr ""
+
+#: inc/taxonomies.php:42
+msgid "Roles list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:43
+msgid "Roles list"
+msgstr ""
+
+#: inc/taxonomies.php:44
+msgctxt "profile-type"
+msgid "Most Used"
+msgstr ""
+
+#: inc/taxonomies.php:45
+msgid "&larr; Back to Roles"
+msgstr ""
+
+#: inc/taxonomies.php:53
+msgid "role"
+msgstr ""
+
+#: inc/taxonomies.php:61
+#: inc/taxonomies.php:78
+msgid "Types"
+msgstr ""
+
+#: inc/taxonomies.php:62
+msgctxt "taxonomy general name"
+msgid "Type"
+msgstr ""
+
+#: inc/taxonomies.php:63
+msgid "Search Types"
+msgstr ""
+
+#: inc/taxonomies.php:64
+msgid "Popular Types"
+msgstr ""
+
+#: inc/taxonomies.php:65
+msgid "All Types"
+msgstr ""
+
+#: inc/taxonomies.php:66
+msgid "Parent Type"
+msgstr ""
+
+#: inc/taxonomies.php:67
+msgid "Parent Type:"
+msgstr ""
+
+#: inc/taxonomies.php:68
+msgid "Edit Type"
+msgstr ""
+
+#: inc/taxonomies.php:69
+msgid "Update Type"
+msgstr ""
+
+#: inc/taxonomies.php:70
+msgid "View Type"
+msgstr ""
+
+#: inc/taxonomies.php:71
+#: inc/taxonomies.php:72
+msgid "New Type"
+msgstr ""
+
+#: inc/taxonomies.php:73
+msgid "Separate Types with commas"
+msgstr ""
+
+#: inc/taxonomies.php:74
+msgid "Add or remove Types"
+msgstr ""
+
+#: inc/taxonomies.php:75
+msgid "Choose from the most used Types"
+msgstr ""
+
+#: inc/taxonomies.php:76
+msgid "No Types found."
+msgstr ""
+
+#: inc/taxonomies.php:77
+msgid "No Types"
+msgstr ""
+
+#: inc/taxonomies.php:79
+msgid "Types list navigation"
+msgstr ""
+
+#: inc/taxonomies.php:80
+msgid "Types list"
+msgstr ""
+
+#: inc/taxonomies.php:81
+msgctxt "story-type"
+msgid "Most Used"
+msgstr ""
+
+#: inc/taxonomies.php:82
+msgid "&larr; Back to Types"
+msgstr ""
+
+#: inc/taxonomies.php:90
+msgid "stories"
+msgstr ""
+
+#: inc/template-redirect.php:91
+msgid "This page is using the \"Redirect Page\" page template."
+msgstr ""
+
+#: inc/template-redirect.php:92
+msgid "It will redirect to the newest child page which declares this page as its parent."
+msgstr ""
+
+#: inc/template-redirect.php:93
+msgid "Change the template if you wish to edit this page directly."
+msgstr ""
+
+#: inc/template-stories.php:43
+msgid "This page is using the \"Stories Page\" page template."
+msgstr ""
+
+#: inc/template-stories.php:44
+msgid "Selected stories from the \"stories\" module below will be displayed in place of the normal Report Section \"list\" module"
+msgstr ""
+
+#: inc/template-translations.php:280
+msgid "This content has not yet been translated into the current language."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Data Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Freeform"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "List Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Redirect Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Section"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Stories Page"
+msgstr ""
+
+#: template-parts/modules/general/connect.php:19
+msgid "Here is a brief description of the content and frequency for this newsletter. Also a promise not to spam or share personal data."
+msgstr ""
+
+#: template-parts/modules/general/connect.php:24
+msgid "Say hello"
+msgstr ""
+
+#: template-parts/modules/general/connect.php:25
+msgid "How to get in touch with the team connected to this content. Whether it’s a site to visit, contact person, etc. Rich text box."
+msgstr ""
+
+#: template-parts/modules/general/connect.php:26
+#: template-parts/modules/general/connect.php:27
+msgid "email@domain.url"
+msgstr ""
+
+#: template-parts/modules/images/credits.php:14
+msgid "Photo credits"
+msgstr ""
+
+#: template-parts/modules/links/off-site-links.php:14
+msgid "ELSEWHERE IN WIKIMEDIA"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:10
+#: template-parts/modules/social/follow-vertical.php:10
+msgid "Follow"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:19
+msgid "Instagram"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:20
+msgid "Wikimedia Blog"
+msgstr ""
+
+#: template-parts/modules/social/page.php:14
+msgid "Tweet"
+msgstr ""
+
+#: template-parts/modules/social/page.php:15
+#: template-parts/modules/social/share-horizontal.php:14
+#: template-parts/modules/social/share-vertical.php:10
+msgid "Share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:17
+msgid "Share article"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:25
+msgid "A Twitter and a Facebook button to share an article."
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:59
+msgid "(No social share will be shown)"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:71
+msgid "Social settings"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:74
+msgid "Enable Twitter share"
+msgstr ""
+
+#: assets/src/editor/blocks/share-article/index.js:79
+msgid "Enable Facebook share"
+msgstr ""

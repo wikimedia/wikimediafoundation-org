@@ -17,10 +17,10 @@ function wmf_project_fields() {
 		array(
 			'name'     => 'projects_module',
 			'children' => array(
-				'heading'   => new Fieldmanager_Textfield( __( 'Section Heading', 'shiro' ) ),
+				'heading'   => new Fieldmanager_Textfield( __( 'Section Heading', 'shiro-admin' ) ),
 				'content'   => new Fieldmanager_RichTextArea(
 					array(
-						'label'           => __( 'Section Content', 'shiro' ),
+						'label'           => __( 'Section Content', 'shiro-admin' ),
 						'buttons_1'       => array( 'bold', 'italic', 'strikethrough', 'underline' ),
 						'buttons_2'       => array(),
 						'editor_settings' => array(
@@ -29,19 +29,19 @@ function wmf_project_fields() {
 						),
 					)
 				),
-				'link_uri'  => new Fieldmanager_Link( __( 'Section Link URI', 'shiro' ) ),
-				'link_text' => new Fieldmanager_Textfield( __( 'Section Link Text', 'shiro' ) ),
+				'link_uri'  => new Fieldmanager_Link( __( 'Section Link URI', 'shiro-admin' ) ),
+				'link_text' => new Fieldmanager_Textfield( __( 'Section Link Text', 'shiro-admin' ) ),
 				'projects'  => new Fieldmanager_Group(
 					array(
-						'add_more_label' => __( 'Add Project', 'shiro' ),
+						'add_more_label' => __( 'Add Project', 'shiro-admin' ),
 						'sortable'       => true,
 						'limit'          => 2,
 						'children'       => array(
-							'link_uri' => new Fieldmanager_Link( __( 'Project URI', 'shiro' ) ),
-							'bg_image' => new Fieldmanager_Media( __( 'Background Image', 'shiro' ) ),
-							'image'    => new Fieldmanager_Media( __( 'Project Icon', 'shiro' ) ),
-							'heading'  => new Fieldmanager_Textfield( __( 'Project Name', 'shiro' ) ),
-							'content'  => new Fieldmanager_TextArea( __( 'Project Description', 'shiro' ) ),
+							'link_uri' => new Fieldmanager_Link( __( 'Project URI', 'shiro-admin' ) ),
+							'bg_image' => new Fieldmanager_Media( __( 'Background Image', 'shiro-admin' ) ),
+							'image'    => new Fieldmanager_Media( __( 'Project Icon', 'shiro-admin' ) ),
+							'heading'  => new Fieldmanager_Textfield( __( 'Project Name', 'shiro-admin' ) ),
+							'content'  => new Fieldmanager_TextArea( __( 'Project Description', 'shiro-admin' ) ),
 						),
 					)
 				),
@@ -49,6 +49,6 @@ function wmf_project_fields() {
 			),
 		)
 	);
-	$projects->add_meta_box( __( 'Projects', 'shiro' ), array( 'page' ) );
+	$projects->add_meta_box( __( 'Projects', 'shiro-admin' ), array( 'page' ) );
 }
 add_action( 'fm_post_page', 'wmf_project_fields' );

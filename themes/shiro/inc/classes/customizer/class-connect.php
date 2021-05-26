@@ -20,7 +20,7 @@ class Connect extends Base {
 		$panel_id = 'wmf_connect';
 		$this->customize->add_panel(
 			$panel_id, array(
-				'title'    => __( 'Connect', 'shiro' ),
+				'title'    => __( 'Connect', 'shiro-admin' ),
 				'priority' => 70,
 			)
 		);
@@ -29,7 +29,7 @@ class Connect extends Base {
 		$section_id = 'wmf_contact_headings';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Main Headings', 'shiro' ),
+				'title'    => __( 'Main Headings', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
@@ -38,12 +38,12 @@ class Connect extends Base {
 		$control_id = 'wmf_connect_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Connect', 'shiro' ),
+				'default' => __( 'Connect', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Pre Heading', 'shiro' ),
+				'label'   => __( 'Pre Heading', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -52,12 +52,12 @@ class Connect extends Base {
 		$control_id = 'wmf_connect_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Stay up-to-date on our work.', 'shiro' ),
+				'default' => __( 'Stay up-to-date on our work.', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Heading', 'shiro' ),
+				'label'   => __( 'Heading', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -67,7 +67,7 @@ class Connect extends Base {
 		$section_id = 'wmf_contact_subscribe';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Subscribe Box', 'shiro' ),
+				'title'    => __( 'Subscribe Box', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
@@ -76,12 +76,12 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Subscribe to our newsletter', 'shiro' ),
+				'default' => __( 'Subscribe to our newsletter', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Heading', 'shiro' ),
+				'label'   => __( 'Heading', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -94,7 +94,7 @@ class Connect extends Base {
 				$this->customize,
 				$control_id,
 				array(
-					'label'   => __( 'Content', 'shiro' ),
+					'label'   => __( 'Content', 'shiro-admin' ),
 					'section' => $section_id,
 				)
 			)
@@ -104,7 +104,7 @@ class Connect extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Subscribe form action URL', 'shiro' ),
+				'label'   => __( 'Subscribe form action URL', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -114,7 +114,7 @@ class Connect extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Subscribe form additional fields', 'shiro' ),
+				'label'   => __( 'Subscribe form additional fields', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'textarea',
 			)
@@ -123,12 +123,12 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_placeholder';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Email address', 'shiro' ),
+				'default' => __( 'Email address', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Email Placeholder', 'shiro' ),
+				'label'   => __( 'Email Placeholder', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -137,12 +137,12 @@ class Connect extends Base {
 		$control_id = 'wmf_subscribe_button';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Subscribe', 'shiro' ),
+				'default' => __( 'Subscribe', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Button Text', 'shiro' ),
+				'label'   => __( 'Button Text', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -152,7 +152,7 @@ class Connect extends Base {
 		$section_id = 'wmf_contact_contact';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Contact Box', 'shiro' ),
+				'title'    => __( 'Contact Box', 'shiro-admin' ),
 				'priority' => 70,
 				'panel'    => $panel_id,
 			)
@@ -162,7 +162,7 @@ class Connect extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Heading', 'shiro' ),
+				'label'   => __( 'Heading', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -175,7 +175,7 @@ class Connect extends Base {
 				$this->customize,
 				$control_id,
 				array(
-					'label'   => __( 'Content', 'shiro' ),
+					'label'   => __( 'Content', 'shiro-admin' ),
 					'section' => $section_id,
 				)
 			)
@@ -185,8 +185,8 @@ class Connect extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Link', 'shiro' ),
-				'description' => __( 'This can be a URI or email address.', 'shiro' ),
+				'label'       => __( 'Link', 'shiro-admin' ),
+				'description' => __( 'This can be a URI or email address.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -196,8 +196,8 @@ class Connect extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Link Text', 'shiro' ),
-				'description' => __( 'If this is empty, the Link value will be used automatically.', 'shiro' ),
+				'label'       => __( 'Link Text', 'shiro-admin' ),
+				'description' => __( 'If this is empty, the Link value will be used automatically.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)

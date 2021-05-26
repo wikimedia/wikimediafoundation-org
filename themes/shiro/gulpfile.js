@@ -21,7 +21,6 @@ var paths = {
 	jsFiles: 'assets/src/js/**/*.js',
 	dataVisJsFiles: 'assets/src/datavisjs/*.js',
 	shortCodeJsFiles: 'assets/src/shortcodejs/*.js',
-	phpFiles: [ '*.php', 'inc/**/*.php', 'template-parts/**/*.php' ],
 	svgFiles: 'assets/src/svg/individual/*.svg'
 }
 
@@ -104,28 +103,10 @@ gulp.task('shortCodeScripts', function() {
     .pipe( gulp.dest( 'assets/dist' ) )
 });
 
-gulp.task( 'pot', gulp.series(function() {
-	if ( typeof themeConfig === 'undefined' ) {
-		return;
-	}
-
-	var text_domain;
-	if ( typeof themeConfig.rename === 'object' ) {
-		text_domain = themeConfig.rename.text_domain;
-	}
-
-	if ( typeof themeConfig.rename === 'string' ) {
-		text_domain = themeConfig.rename;
-	}
-
-	return gulp.src( paths.phpFiles )
-			   .pipe( wppot( { domain: text_domain } ) )
-			   .pipe( gulp.dest( 'languages/' + text_domain + '.pot' ) );
-} ) );
-
 gulp.task( 'styles', gulp.series( [ 'sass', 'sassEditor', 'rtl', 'rtlEditor' ] ) );
 gulp.task( 'scripts', gulp.series( [ 'concat', 'concat2', 'shortCodeScripts' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
+
 gulp.task( 'default', gulp.series('build', (done) => {
 
   gulp.watch( paths.sassFiles, gulp.series('styles') );
