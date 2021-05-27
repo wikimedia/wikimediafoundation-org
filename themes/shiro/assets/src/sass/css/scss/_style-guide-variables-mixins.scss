@@ -76,6 +76,16 @@
 	}
 }
 
+@mixin style-guide-list-reset() {
+	margin: 0;
+	padding: 0;
+
+	li {
+		font-size: inherit;
+		line-height: inherit;
+	}
+}
+
 @mixin style-guide-button-reset() {
 	border: none;
 	display: inline-block;

@@ -93,6 +93,10 @@
 	background-color: $bg-color;
 	color: $color;
 
+	a {
+		color: inherit;
+	}
+
 	// Button tag reset.  Also given to button tag in gobal.scss
 	@include button-reset();
 

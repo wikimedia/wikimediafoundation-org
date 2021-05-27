@@ -66,6 +66,8 @@
 	}
 
 	&__items {
+
+		@include style-guide-list-reset;
 		align-items: start;
 		display: flex;
 		flex-wrap: wrap;

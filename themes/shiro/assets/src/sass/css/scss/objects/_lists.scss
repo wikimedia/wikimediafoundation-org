@@ -1,5 +1,6 @@
 .link-list {
 	@include font-size(13, 13);
+	@include style-guide-list-reset;
 
 	&.inline-block {
 
@@ -61,9 +62,14 @@
 	}
 }
 
-.list-inline li {
-	display: inline;
-	text-decoration: none;
+.list-inline {
+
+	@include style-guide-list-reset;
+
+	li {
+		display: inline;
+		text-decoration: none;
+	}
 }
 
 

@@ -126,6 +126,8 @@
 	}
 
 	.social-list {
+
+		@include style-guide-list-reset;
 		display: flex;
 		flex-wrap: wrap;
 

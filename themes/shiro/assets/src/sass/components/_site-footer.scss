@@ -12,6 +12,10 @@
 		margin: 0;
 	}
 
+	a {
+		color: inherit;
+	}
+
 	&__inner {
 		width: $content-column;
 		max-width: 100%;
@@ -64,6 +68,8 @@
 		}
 
 		&__items {
+
+			@include style-guide-list-reset;
 			display: flex;
 			justify-content: flex-start;
 			flex-wrap: wrap;
@@ -153,6 +159,10 @@
 			@media (min-width: #{$width-breakpoint-desktop}) {
 				columns: 3;
 			}
+		}
+
+		ul {
+			@include style-guide-list-reset;
 		}
 
 		li {

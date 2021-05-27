@@ -120,6 +120,7 @@
 
     // Mobile menu collapsing.
     .report-nav {
+        @include style-guide-list-reset;
         position: relative;
     }
     .report-nav > .toc__item {
