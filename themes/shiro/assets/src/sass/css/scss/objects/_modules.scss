@@ -184,10 +184,28 @@
     }
 }
 
+
+// List template content + sidebar
+.list-template {
+	margin-top: 7rem;
+
+	@media (min-width: $medium-bp) {
+		.w-32p ul {
+			margin-bottom: 7rem;
+			margin-right: rem(20);
+		}
+	}
+}
+
+
 // Page Intro
 .page-intro {
 	margin-top: 2rem;
 	margin-left: 0;
+
+	.list-template & {
+		margin: 0;
+	}
 
 	h2 {
 		margin: 0;

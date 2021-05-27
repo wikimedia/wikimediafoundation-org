@@ -1,23 +1,36 @@
 // Table of contents block styles
-@include wysiwyg {
-	.toc {
-		margin: 0;
-		padding: 0;
+.toc {
 
-		&__item {
-			font-size: rem(14);
-			list-style: none;
+	@include style-guide-list-reset;
+	top: rem(100);
+
+	.admin-bar & {
+		top: rem(132);
+	}
+
+	@media (min-width: $medium-bp) {
+		position: sticky;
+	}
+
+	&__item {
+		list-style: none;
+	}
+
+	&__link {
+		color: $wmui-color-base0;
+		display: block;
+		font-size: rem(14);
+		padding: rem(12) rem(15);
+
+		&:hover,
+		&:focus {
+			background-color: $wmui-color-blue90;
 		}
 
-		a {
-			color: $wmui-color-base0;
-			display: block;
-			padding: rem(10) rem(15);
-
-			&:hover,
-			&:focus {
-				background-color: $wmui-color-blue90;
-			}
+		&.-active {
+			background-color: $wmui-color-blue50;
+			color: $wmui-color-base100;
+			font-weight: 700;
 		}
 	}
 }

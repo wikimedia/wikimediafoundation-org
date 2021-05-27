@@ -27,7 +27,7 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium">
+<div class="mw-980 mod-margin-bottom flex flex-medium list-template">
 	<div class="module-mu w-32p">
 		<?php get_sidebar( 'list' ); ?>
 	</div>
