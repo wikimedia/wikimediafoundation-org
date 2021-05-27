@@ -91,14 +91,14 @@
 
 }
 
-.toc-link-item {
+.toc__item {
 	list-style-type: none;
 	margin-left: 0;
 	margin-bottom: 0;
 	font-weight: 600;
 }
 
-.toc-link {
+.toc__link {
 	@include font-size(16, 14);
 	display: block;
 	margin-bottom: 15px;

@@ -7,7 +7,7 @@
 const HeadingLinks = ( { blocks } ) => {
 	const headingLinkList = blocks.map( ( block, i ) => (
 		<li key={ i } className="toc__item">
-			<a href={ '#' + block.attributes.anchor }>
+			<a className="toc__link" href={ '#' + block.attributes.anchor }>
 				{ block.attributes.content }
 			</a>
 		</li>

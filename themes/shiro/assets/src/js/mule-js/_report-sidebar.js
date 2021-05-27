@@ -7,7 +7,7 @@
 	// Visually match height of mobile toggle to the visible or top <li> item.
 	function updateToggleHeight() {
 		var isOpen = reportNav.classList.contains( 'menu--expanded' ),
-			heightItemSelector = isOpen ? '.toc-link-item > a' : '.toc-link-item.active > a',
+			heightItemSelector = isOpen ? '.toc__item > a' : '.toc__item.active > a',
 			heightItem = reportNav.querySelector( heightItemSelector ),
 			clientRect = heightItem && heightItem.getBoundingClientRect();
 

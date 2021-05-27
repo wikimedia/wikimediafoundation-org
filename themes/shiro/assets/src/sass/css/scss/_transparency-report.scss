@@ -54,7 +54,7 @@
             padding-right: rem(16);
         }
     }
-    .toc-link-item {
+    .toc__item {
         a {
             font-size: rem(14);
             line-height: 1.4;
@@ -87,7 +87,7 @@
         .toc {
             padding: rem(2) 0 0 0;
 
-            .toc-link-item {
+            .toc__item {
                 display: flex;
                 flex-direction: row;
                 align-items: flex-start;
@@ -122,7 +122,7 @@
     .report-nav {
         position: relative;
     }
-    .report-nav > .toc-link-item {
+    .report-nav > .toc__item {
         @media (max-width: ( $medium-bp - 1)) { display: none; }
         &.active {
             @media (max-width: ( $medium-bp - 1)) {
@@ -133,7 +133,7 @@
             }
         }
     }
-    .report-nav.menu--expanded > .toc-link-item {
+    .report-nav.menu--expanded > .toc__item {
         @media (max-width: ( $medium-bp - 1)) {
             display: list-item;
             &:first-of-type a {
@@ -467,7 +467,7 @@
 }
 
 .toc.header-pink {
-  .toc-link-item {
+  .toc__item {
     &.active > a {
       background: #fbe9f1;
     }

@@ -21,8 +21,8 @@ if ( empty( $template_args ) ) {
 			continue;
 		}
 		?>
-		<li class="toc-link-item">
-			<a class="toc-link niceScroll" href="#section-<?php echo esc_attr( $i + 1 ); ?>">
+		<li class="toc__item">
+			<a class="toc__link niceScroll" href="#section-<?php echo esc_attr( $i + 1 ); ?>">
 				<?php echo esc_html( $list_section['title'] ); ?>
 			</a>
 		</li>

@@ -36,10 +36,10 @@ if ( $bg_color ) {
 			if ( empty( $report_section['title'] ) ) {
 				continue;
 			}
-			$li_classes = $report_section['active'] ? 'toc-link-item active' : 'toc-link-item';
+			$li_classes = $report_section['active'] ? 'toc__item active' : 'toc__item';
 			?>
 			<li class="<?php echo esc_attr( $li_classes ); ?>">
-				<a class="toc-link" href="<?php echo esc_url( $report_section['url'] ); ?>">
+				<a class="toc__link" href="<?php echo esc_url( $report_section['url'] ); ?>">
 					<?php echo wp_kses_post( $report_section['title'] ); ?>
 				</a>
 				<?php

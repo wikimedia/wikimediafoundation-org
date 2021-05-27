@@ -6,7 +6,7 @@
     if ( $toc.length > 1 ) {
       $toc = $toc.last();
     }
-    $links   = $toc.find('.toc-link');
+    $links   = $toc.find('.toc__link');
     headings = [];
 
     // Stick the table of contents in its container
