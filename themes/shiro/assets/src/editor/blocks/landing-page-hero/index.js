@@ -24,7 +24,7 @@ export const styles = blockStyles;
 export const settings = {
 	apiVersion: 2,
 
-	title: __( 'Landing page hero', 'shiro' ),
+	title: __( 'Landing page hero', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -32,14 +32,14 @@ export const settings = {
 
 	description: __(
 		'A hero image and text to be used on "subsite" landing pages',
-		'shiro'
+		'shiro-admin'
 	),
 
 	example: {
 		attributes: {
-			kicker: __( 'Our Work', 'shiro' ),
-			title: __( 'We help everyone share in the sum of all knowledge', 'shiro' ),
-			pageIntro: __( 'We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains.', 'shiro' ),
+			kicker: __( 'Our Work', 'shiro-admin' ),
+			title: __( 'We help everyone share in the sum of all knowledge', 'shiro-admin' ),
+			pageIntro: __( 'We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains.', 'shiro-admin' ),
 			imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
 			buttonText: 'Learn More',
 			buttonLink: 'https://wikimediafoundation.org/',
@@ -119,7 +119,7 @@ export const settings = {
 						<RichText
 							className="hero__kicker"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Kicker', 'shiro' ) }
+							placeholder={ __( 'Kicker', 'shiro-admin' ) }
 							tagName="small"
 							value={ kicker }
 							onChange={ kicker => setAttributes( { kicker } ) }
@@ -127,7 +127,7 @@ export const settings = {
 						<RichText
 							className="hero__title"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Title for the page', 'shiro' ) }
+							placeholder={ __( 'Title for the page', 'shiro-admin' ) }
 							tagName="h1"
 							value={ title }
 							onChange={ title => setAttributes( { title } ) }
@@ -165,7 +165,7 @@ export const settings = {
 					className="hero__intro"
 					keepPlaceholderOnFocus
 					multiline="p"
-					placeholder={ __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro' ) }
+					placeholder={ __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ) }
 					tagName="div"
 					value={ pageIntro }
 					onChange={ pageIntro => setAttributes( { pageIntro } ) }

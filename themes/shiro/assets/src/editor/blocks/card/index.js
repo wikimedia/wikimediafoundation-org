@@ -22,13 +22,13 @@ export const name = 'shiro/card';
 export const settings = {
 	apiVersion: 2,
 
-	title: __( 'Card', 'shiro' ),
+	title: __( 'Card', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
 	description: __(
 		'Card creates a call to action with an image, heading and paragraph.',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {
@@ -114,7 +114,7 @@ export const settings = {
 					<RichText
 						className="content-card__heading is-style-h3"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Heading of the card', 'shiro' ) }
+						placeholder={ __( 'Heading of the card', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
 						onChange={ heading => setAttributes( { heading } ) }
@@ -122,7 +122,7 @@ export const settings = {
 					<RichText
 						className="content-card__body has-small-font-size"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Body of the card', 'shiro' ) }
+						placeholder={ __( 'Body of the card', 'shiro-admin' ) }
 						tagName="p"
 						value={ body }
 						onChange={ body => setAttributes( { body } ) }

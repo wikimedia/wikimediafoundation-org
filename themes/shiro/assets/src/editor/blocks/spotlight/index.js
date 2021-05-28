@@ -19,7 +19,7 @@ export const name = 'shiro/spotlight',
 	styles = sharedStyles;
 
 export const settings = {
-	title: __( 'Spotlight', 'shiro' ),
+	title: __( 'Spotlight', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -29,7 +29,7 @@ export const settings = {
 
 	description: __(
 		'Spotlight with an image and call to action.',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {
@@ -137,7 +137,7 @@ export const settings = {
 							allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							className="spotlight__heading is-style-h1"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Heading for spotlight', 'shiro' ) }
+							placeholder={ __( 'Heading for spotlight', 'shiro-admin' ) }
 							tagName="h2"
 							value={ heading }
 							onChange={ heading => setAttributes( { heading } ) }
@@ -145,7 +145,7 @@ export const settings = {
 						<RichText
 							allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							className="spotlight__text"
-							placeholder={ __( 'Enter the message for this spotlight.', 'shiro' ) }
+							placeholder={ __( 'Enter the message for this spotlight.', 'shiro-admin' ) }
 							tagName="p"
 							value={ text }
 							onChange={ text => setAttributes( { text } ) }

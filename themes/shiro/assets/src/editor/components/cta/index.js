@@ -70,16 +70,16 @@ const CtaWithFocusOutside = withFocusOutside(
 									className
 								)
 							}
-							placeholder={ __( 'Call to action', 'shiro' ) }
+							placeholder={ __( 'Call to action', 'shiro-admin' ) }
 							tagName="div"
 							value={ text }
 							onChange={ onChangeText }
 							onFocus={ () => this.setState( { showButtons: true } ) }
 						/>
 						{ ! url && <div className={ 'call-to-action__warning' }>
-							<span aria-label={ __( 'Warning', 'shiro' ) } role={ 'img' }>⚠️</span>
+							<span aria-label={ __( 'Warning', 'shiro-admin' ) } role={ 'img' }>⚠️</span>
 						&nbsp;
-							<span>{ __( 'Add a URL to this CTA', 'shiro' ) }</span>
+							<span>{ __( 'Add a URL to this CTA', 'shiro-admin' ) }</span>
 						</div> }
 					</div>
 				</>

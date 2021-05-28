@@ -23,7 +23,7 @@ export const name = 'shiro/home-page-hero';
 export const settings = {
 	apiVersion: 2,
 
-	title: __( 'Home hero', 'shiro' ),
+	title: __( 'Home hero', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -31,7 +31,7 @@ export const settings = {
 
 	description: __(
 		'A moving hero for the homepage',
-		'shiro'
+		'shiro-admin'
 	),
 
 	supports: {
