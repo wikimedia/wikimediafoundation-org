@@ -11,9 +11,11 @@ if ( is_numeric( $reusable_block_id )
      && $reusable_block_id > 0
      && get_post_type( $reusable_block_id ) === 'wp_block' ) {
 	$block = get_post( $reusable_block_id );
-	if ( is_a( $block, \WP_Post::class ) ) {
-		echo wp_kses_post( apply_filters( 'the_content', $block->post_content ) );
-	}
+	if ( is_a( $block, \WP_Post::class ) ) { ?>
+		<div class="mw-980">
+			<?php echo wp_kses_post( apply_filters( 'the_content', $block->post_content ) ); ?>
+		</div>
+	<?php }
 } else {
 	// When the updates to how this section works are rolled out, the ability
 	// to edit the data originally stored here will be lost. This will use that
