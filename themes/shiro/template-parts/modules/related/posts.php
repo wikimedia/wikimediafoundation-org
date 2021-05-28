@@ -13,10 +13,10 @@ if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 	return;
 }
 
-$title            = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
-$description      = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
-$connected_user   = get_post_meta( get_the_ID(), 'connected_user', true );
-$authorlink       = wmf_get_author_link( $connected_user );
+$title                  = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
+$description            = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
+$connected_user         = get_post_meta( get_the_ID(), 'connected_user', true );
+$authorlink             = wmf_get_author_link( $connected_user );
 $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' );
 
 ?>
@@ -41,7 +41,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 		</h2>
 	</div>
 
-	<?php foreach ($template_data['posts'] as $post) {
+	<?php foreach ( $template_data['posts'] as $post ) {
 		echo BlogPost\render_block( [ 'post_id' => $post->ID ] );
 	} ?>
 </div>
