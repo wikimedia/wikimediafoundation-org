@@ -36,4 +36,18 @@
 		margin-top: 0;
 		margin-bottom: rem(40);
 	}
+
+	.single-post .block-editor-block-list__layout>.wp-block.is-reusable {
+		max-width: none;
+	}
+
+	// Core adds these values to alignfull items, but they aren't applied to
+	// alignfull items inside of reusable blocks, so we re-apply them. They're
+	// using px instead of rem to a) exactly match core values b) avoid a
+	// complicated-to-read definition necessary to get negative values with our
+	// sass function.
+	.is-reusable [data-align="full"] {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
 }
