@@ -240,11 +240,15 @@ function buildHandleKeydown( dropdown ) {
 
 		if ( isEscPressed ) {
 			dropdown.dataset.visible = 'no';
-			/**
-			 * If we don't return focus to the toggle, then our focused element
-			 * is inside of a hidden element, which seems...bad.
-			 */
-			toggle.focus();
+			if ( toggle ) {
+				/**
+				 * If we don't return focus to the toggle, then our focused element
+				 * is inside of a hidden element, which seems...bad. If the toggle
+				 * doesn't exist, then the developer will need to handle this action
+				 * another way.
+				 */
+				toggle.focus();
+			}
 			return;
 		}
 
@@ -396,7 +400,12 @@ function initializeDropdown( element ) {
 		},
 	};
 
-	toggle.addEventListener( 'click', element.dropdown.handlers.toggleClick );
+	if ( toggle ) {
+		toggle.addEventListener(
+			'click',
+			element.dropdown.handlers.toggleClick
+		);
+	}
 	if ( _backdrop ) {
 		_backdrop.addEventListener( 'click', handleBackdropClick );
 	}
