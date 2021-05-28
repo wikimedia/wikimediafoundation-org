@@ -5,7 +5,11 @@
 
 // Make spacer blocks accurate after the global bottom margin
 .wp-block-spacer {
-	margin-top: rem(-40);
 	margin-bottom: 0;
+	margin-top: rem(-40);
+
+	.no-default-margin + & {
+		margin-top: 0;
+	}
 }
 

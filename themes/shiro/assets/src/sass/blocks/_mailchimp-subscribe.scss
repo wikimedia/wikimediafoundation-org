@@ -1,14 +1,11 @@
 .mailchimp-subscribe {
-
-	@include global-block-styles;
-
 	background: $background-color-framed;
 	border: 1px solid $border-color-framed;
 	border-radius: $border-radius-big;
 	padding: rem(25);
 
-	&:only-child {
-		margin-bottom: 0;
+	&__form:not(:only-child) {
+		@include global-block-styles;
 	}
 
 	.icon {
