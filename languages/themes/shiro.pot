@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-25T23:07:41+00:00\n"
+"POT-Creation-Date: 2021-05-28T18:51:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: shiro\n"
@@ -35,12 +35,12 @@ msgid "https://design.wikimedia.org/"
 msgstr ""
 
 #: 404.php:13
-#: inc/classes/customizer/class-general.php:291
+#: inc/classes/customizer/class-general.php:265
 msgid "404 Error"
 msgstr ""
 
 #: 404.php:14
-#: inc/classes/customizer/class-general.php:305
+#: inc/classes/customizer/class-general.php:279
 msgid "Imagine a world in which there is a page here"
 msgstr ""
 
@@ -128,219 +128,219 @@ msgstr ""
 msgid "Photo credits"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:240
+#: inc/classes/customizer/class-general.php:214
 #: template-parts/content-none.php:10
 msgid "Nothing Found"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:255
+#: inc/classes/customizer/class-general.php:229
 #: template-parts/content-none.php:11
 msgid "Sorry, but no results were found. Perhaps searching can help."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:332
+#: inc/classes/customizer/class-general.php:306
 msgid "Or try a search instead"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:361
+#: inc/classes/customizer/class-general.php:335
 msgid "Toggle search copy"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:362
+#: inc/classes/customizer/class-general.php:336
 msgid "This changes the labels exposed only to assistive technology. This can be set in each translation to localize the label."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:371
+#: inc/classes/customizer/class-general.php:345
 msgid "Search Wikimedia Foundation site"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:376
+#: inc/classes/customizer/class-general.php:350
 msgid "Search input label for assistive technology"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:385
+#: inc/classes/customizer/class-general.php:359
 #: template-parts/site-header/toggle.php:9
 msgid "Toggle menu"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:390
+#: inc/classes/customizer/class-general.php:364
 msgid "Toggle menu label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:399
+#: inc/classes/customizer/class-general.php:373
 msgid "Skip to content"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:404
+#: inc/classes/customizer/class-general.php:378
 msgid "Skip to content label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:413
+#: inc/classes/customizer/class-general.php:387
 msgid "Skip to navigation"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:418
+#: inc/classes/customizer/class-general.php:392
 msgid "Skip to navigation label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:427
+#: inc/classes/customizer/class-general.php:401
 msgid "Select language"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:432
+#: inc/classes/customizer/class-general.php:406
 msgid "Select language label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:441
+#: inc/classes/customizer/class-general.php:415
 #: template-parts/site-header/language-switcher.php:10
 msgid "Current language:"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:446
+#: inc/classes/customizer/class-general.php:420
 msgid "Current language label"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:456
+#: inc/classes/customizer/class-general.php:430
 msgid "Blackout Modal"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:470
+#: inc/classes/customizer/class-general.php:444
 msgid "Blackout Modal Enabled"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:491
+#: inc/classes/customizer/class-general.php:465
 msgid "Blackout Modal Content"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:505
+#: inc/classes/customizer/class-general.php:479
 msgid "Blackout Modal Cookie"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:506
+#: inc/classes/customizer/class-general.php:480
 msgid "Useful when changing the content of the modal, adjusting this would allow you to display the modal to users that have dismissed it previously."
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:516
+#: inc/classes/customizer/class-general.php:490
 msgid "Wikipedia 20 content"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:526
+#: inc/classes/customizer/class-general.php:500
 msgid "English Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:527
+#: inc/classes/customizer/class-general.php:501
 msgid "Used e.g. to say \"One human just edited English Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:537
+#: inc/classes/customizer/class-general.php:511
 msgid "Arabic Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:538
+#: inc/classes/customizer/class-general.php:512
 msgid "Used e.g. to say \"One human just edited Arabic Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:548
+#: inc/classes/customizer/class-general.php:522
 msgid "Spanish Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:549
+#: inc/classes/customizer/class-general.php:523
 msgid "Used e.g. to say \"One human just edited Spanish Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:559
+#: inc/classes/customizer/class-general.php:533
 msgid "German Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:560
+#: inc/classes/customizer/class-general.php:534
 msgid "Used e.g. to say \"One human just edited German Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:570
+#: inc/classes/customizer/class-general.php:544
 msgid "French Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:571
+#: inc/classes/customizer/class-general.php:545
 msgid "Used e.g. to say \"One human just edited French Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:581
+#: inc/classes/customizer/class-general.php:555
 msgid "Russian Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:582
+#: inc/classes/customizer/class-general.php:556
 msgid "Used e.g. to say \"One human just edited Russian Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:592
+#: inc/classes/customizer/class-general.php:566
 msgid "Chinese Wikipedia"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:593
+#: inc/classes/customizer/class-general.php:567
 msgid "Used e.g. to say \"One human just edited Chinese Wikipedia.\""
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:601
+#: inc/classes/customizer/class-general.php:575
 #: inc/shortcodes/wp20.php:456
 msgid "views"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:605
+#: inc/classes/customizer/class-general.php:579
 msgid "Wikipedia article views"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:606
+#: inc/classes/customizer/class-general.php:580
 msgid "\"views\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:616
+#: inc/classes/customizer/class-general.php:590
 msgid "Wikipedia article edits"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:617
+#: inc/classes/customizer/class-general.php:591
 msgid "\"edits\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:627
+#: inc/classes/customizer/class-general.php:601
 #: inc/shortcodes/wp20.php:450
 msgid "Most viewed articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:628
+#: inc/classes/customizer/class-general.php:602
 msgid "\"Most viewed articles\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:638
+#: inc/classes/customizer/class-general.php:612
 msgid "Most edited articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:639
+#: inc/classes/customizer/class-general.php:613
 msgid "\"Most edited articles\" - used to show stats about Wikipedia articles"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:649
+#: inc/classes/customizer/class-general.php:623
 #: inc/shortcodes/wp20.php:453
 msgid "or"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:650
+#: inc/classes/customizer/class-general.php:624
 msgid "\"or\" - used to show stats about Wikipedia articles by edits or views"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:660
+#: inc/classes/customizer/class-general.php:634
 #: inc/shortcodes/wp20.php:452
 msgid "in"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:661
+#: inc/classes/customizer/class-general.php:635
 msgid "\"in\" - used to show stats about Wikipedia articles per year"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:671
+#: inc/classes/customizer/class-general.php:645
 msgid "No data message"
 msgstr ""
 
-#: inc/classes/customizer/class-general.php:672
+#: inc/classes/customizer/class-general.php:646
 msgid "\"There is not data for the options you selected. Please change the options above.\""
 msgstr ""
 
@@ -436,7 +436,7 @@ msgstr ""
 msgid "Blog URI"
 msgstr ""
 
-#: inc/editor/blocks/mailchimp-subscribe.php:30
+#: inc/editor/blocks/mailchimp-subscribe.php:33
 #: assets/src/editor/blocks/mailchimp-subscribe/index.js:45
 msgid "Email address"
 msgstr ""
