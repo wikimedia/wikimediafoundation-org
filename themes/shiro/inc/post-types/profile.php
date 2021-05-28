@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$wmf_profiles_name      = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro' ) );
+$wmf_profiles_name      = get_theme_mod( 'wmf_profiles_label', __( 'Profiles', 'shiro-admin' ) );
 
 /**
  * Registers the `profile` post type.

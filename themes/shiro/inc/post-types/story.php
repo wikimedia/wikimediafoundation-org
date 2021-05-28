@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$wmf_stories_name      = get_theme_mod( 'wmf_stories_label', __( 'Stories', 'shiro' ) );
+$wmf_stories_name      = get_theme_mod( 'wmf_stories_label', __( 'Stories', 'shiro-admin' ) );
 
 /**
  * Registers the `story` post type.
