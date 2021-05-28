@@ -9,7 +9,7 @@ import { getHeadingBlocks, setHeadingAnchors } from './tocHelpers';
 export const name = 'shiro/toc',
 	settings = {
 		apiVersion: 2,
-		title: __( 'Table of Contents', 'shiro' ),
+		title: __( 'Table of Contents', 'shiro-admin' ),
 		category: 'wikimedia',
 		icon: 'menu-alt2',
 		description: __(
@@ -65,9 +65,30 @@ export const name = 'shiro/toc',
 			}, [ topLevelBlocks, attributes, setAttributes ] );
 
 			return (
-				<ul { ...blockProps }>
-					<HeadingLinks blocks={ attributes.headingBlocks } />
-				</ul>
+				<nav
+					className="toc-nav"
+					data-backdrop="inactive"
+					data-dropdown="toc-nav"
+					data-dropdown-content=".toc"
+					data-dropdown-status="uninitialized"
+					data-dropdown-toggle=".toc__button"
+					data-toggleable="yes"
+					data-trap="inactive"
+					data-visible="false"
+				>
+					<button
+						aria-expanded="false"
+						className="toc__button"
+						hidden
+					>
+						<span class="btn-label-a11y">
+							{ __( 'Table of Contents', 'shiro' ) }
+						</span>
+					</button>
+					<ul { ...blockProps }>
+						<HeadingLinks blocks={ attributes.headingBlocks } />
+					</ul>
+				</nav>
 			);
 		},
 
@@ -80,9 +101,30 @@ export const name = 'shiro/toc',
 			} );
 
 			return (
-				<ul { ...blockProps }>
-					<HeadingLinks blocks={ attributes.headingBlocks } />
-				</ul>
+				<nav
+					className="toc-nav"
+					data-backdrop="inactive"
+					data-dropdown="toc-nav"
+					data-dropdown-content=".toc"
+					data-dropdown-status="uninitialized"
+					data-dropdown-toggle=".toc__button"
+					data-toggleable="yes"
+					data-trap="inactive"
+					data-visible="false"
+				>
+					<button
+						aria-expanded="false"
+						className="toc__button"
+						hidden
+					>
+						<span class="btn-label-a11y">
+							{ __( 'Table of Contents', 'shiro' ) }
+						</span>
+					</button>
+					<ul { ...blockProps }>
+						<HeadingLinks blocks={ attributes.headingBlocks } />
+					</ul>
+				</nav>
 			);
 		},
 	};
