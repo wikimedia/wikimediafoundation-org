@@ -9,6 +9,20 @@
 	flex-direction: column;
 	padding: rem(20) 0;
 
+	// Blog posts have too small a width to properly display blog lists, so
+	// they need special handling
+	article.mw-784 & {
+		@media (min-width: #{$width-breakpoint-tablet}) {
+			margin-left: calc((100vw - 640px - var(--scrollbar) - 40px) / -2);
+			margin-right: calc((100vw - 640px - var(--scrollbar) - 40px) / -2);
+		}
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-left: rem((980 - 640) / -2);
+			margin-right: rem((980 - 640) / -2);
+		}
+	}
+
 	&__image {
 
 		@include hover-box-shadow;
