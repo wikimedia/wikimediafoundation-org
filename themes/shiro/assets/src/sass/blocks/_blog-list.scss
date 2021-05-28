@@ -110,6 +110,7 @@
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		flex-direction: row-reverse;
 		align-items: stretch;
+		justify-content: flex-end;
 		padding: rem(40) 0;
 
 		&__title {
