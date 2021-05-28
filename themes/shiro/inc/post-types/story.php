@@ -48,7 +48,7 @@ function wmf_story_init() {
 			'has_archive'       => false,
 			'rewrite'           => array(
 				'with_front' => false,
-				'slug'       => __( 'story', 'shiro' ),
+				'slug'       => __( 'story', 'shiro-admin' ),
 			),
 			'query_var'         => true,
 			'menu_icon'         => 'dashicons-groups',
