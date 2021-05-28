@@ -1,7 +1,4 @@
-// Removes the default block margin on custom blocks
-.no-default-margin {
-	margin-bottom: 0;
-}
+// This is imported *before* the block styles, allowing them to override it
 
 // Make spacer blocks accurate after the global bottom margin
 .wp-block-spacer {
