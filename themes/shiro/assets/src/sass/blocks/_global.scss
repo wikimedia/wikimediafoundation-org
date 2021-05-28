@@ -1,0 +1,11 @@
+// Removes the default block margin on custom blocks
+.no-default-margin {
+	margin-bottom: 0;
+}
+
+// Make spacer blocks accurate after the global bottom margin
+.wp-block-spacer {
+	margin-top: rem(-40);
+	margin-bottom: 0;
+}
+

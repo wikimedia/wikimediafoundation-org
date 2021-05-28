@@ -1,3 +1,4 @@
+@import "./global"; // XXX: this is out of alphabetical order so later items can easily override it
 @import "./button"; // XXX: this is out of alphabetical order because it defines mixins used elsewhere.
 @import "./banner";
 @import "./blog-list";
@@ -7,6 +8,7 @@
 @import "./core-group";
 @import "./core-image";
 @import "./core-list";
+@import "./core-paragraph";
 @import "./core-quote";
 @import "./double-heading";
 @import "./external-link";

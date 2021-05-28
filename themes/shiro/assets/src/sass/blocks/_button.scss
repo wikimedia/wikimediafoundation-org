@@ -178,3 +178,8 @@
 
 @include button-wrapper( '.wp-block-shiro-button', '&' );
 @include button-wrapper( '.wp-block-button', '.wp-block-button__link' );
+
+.wp-block-buttons {
+
+	@include global-block-styles;
+}

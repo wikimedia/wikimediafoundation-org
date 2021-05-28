@@ -4,4 +4,10 @@
 		line-height: 175%;
 		font-size: 14px;
 	}
+
+	&:only-child {
+		// Make sure the inserter is visible in the editor
+		margin-bottom: rem(40);
+	}
+
 }
