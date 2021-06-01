@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint assets/src",
-    "build": "run-s build:webpack build:gulp",
+    "build": "run-s build:gulp build:webpack",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
     "build:gulp": "gulp build",
     "pot": "run-s pot:frontend pot:admin",
     "pot:admin": "wp-pot --src '**/*.php' --dest-file languages/shiro-admin.pot --domain shiro-admin",
     "pot:frontend": "wp-pot --src '**/*.php' --dest-file languages/shiro.pot --domain shiro",
-    "start": "run-p start:webpack start:gulp",
+    "start": "run-s build dev",
+    "dev": "run-p start:gulp start:webpack",
     "start:webpack": "webpack-dev-server --config=.config/webpack.config.dev.js",
     "start:gulp": "gulp",
     "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/css/scss/_style-guide-variables.scss && rm wikimedia-ui-base.less"

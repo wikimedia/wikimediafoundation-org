@@ -103,7 +103,7 @@ ExternalLinkWithFocusOutside.Content = ( { url, heading, text } ) => {
 					className="external-link__link"
 					href={ url }>
 					<span className="external-link__heading-text">{ heading }</span>
-					<SvgSprite
+					<SvgSprite.Content
 						className="external-link__icon"
 						svg="open" />
 				</a>

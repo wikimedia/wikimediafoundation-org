@@ -19,10 +19,7 @@ import PropTypes from 'prop-types';
  * @param {string}   props.className Optional class, added to the <svg> element.
  */
 function SvgSprite( props ) {
-	const {
-		svg,
-		className,
-	} = props;
+	const { svg, className } = props;
 
 	const { themeUrl } = shiroEditorVariables;
 
@@ -33,16 +30,15 @@ function SvgSprite( props ) {
 		return null;
 	}
 
-	const svgPath = `${themeUrl}/assets/dist/icons.svg#${svg}`;
+	const manifest = require( '../../../../dist/rev-manifest.json' );
+	const spriteFile = manifest[ 'icons.svg' ];
+
+	const svgPath = `${ themeUrl }/assets/dist/${ spriteFile }#${ svg }`;
 
 	return (
 		<svg
-			className={
-				classNames(
-					{ [`icon-${svg}`]: svg },
-					className
-				)
-			}>
+			className={ classNames( { [ `icon-${ svg }` ]: svg }, className ) }
+		>
 			<use href={ svgPath }></use>
 		</svg>
 	);
@@ -51,6 +47,35 @@ function SvgSprite( props ) {
 SvgSprite.propTypes = {
 	svg: PropTypes.string.isRequired,
 	className: PropTypes.string,
+};
+
+/**
+ * When saved this should store the path in a data attribute to be lazy-loaded.
+ *
+ * @param {object} props Collection of props
+ * @param {string} props.svg The name of the icon
+ * @param {string} props.className Any classes
+ */
+SvgSprite.Content = ( { svg, className } ) => {
+	const { themeUrl } = shiroEditorVariables;
+
+	// This will ultimately be embedded in an SVG and cause a server request,
+	// so let's do some due diligence to make sure it doesn't contain
+	// something untoward.
+	if ( ! /^[\w|\-|.|\s]*$/gm.test( svg ) ) {
+		return null;
+	}
+
+	const svgPath = `${ themeUrl }/assets/dist/[sprite-filename]#${ svg }`;
+
+	return (
+		<svg
+			className={ classNames( { [ `icon-${ svg }` ]: svg }, className ) }
+			data-sprite-path={ svgPath }
+		>
+			<use></use>
+		</svg>
+	);
 };
 
 export default SvgSprite;
