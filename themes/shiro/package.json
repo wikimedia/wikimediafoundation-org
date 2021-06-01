@@ -12,8 +12,7 @@
     "pot": "run-s pot:frontend pot:admin",
     "pot:admin": "wp-pot --src '**/*.php' --dest-file languages/shiro-admin.pot --domain shiro-admin",
     "pot:frontend": "wp-pot --src '**/*.php' --dest-file languages/shiro.pot --domain shiro",
-    "start": "run-s build dev",
-    "dev": "run-p start:gulp start:webpack",
+    "start": "run-p start:webpack start:gulp",
     "start:webpack": "webpack-dev-server --config=.config/webpack.config.dev.js",
     "start:gulp": "gulp",
     "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/css/scss/_style-guide-variables.scss && rm wikimedia-ui-base.less"
@@ -31,6 +30,7 @@
   "devDependencies": {
     "@humanmade/eslint-config": "^1.1.3",
     "@humanmade/webpack-helpers": "^0.11.0",
+    "@svgr/webpack": "^5.5.0",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "block-editor-hmr": "^0.6.3",
