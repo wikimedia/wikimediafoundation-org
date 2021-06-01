@@ -30,9 +30,15 @@
 		align-items: start;
 		justify-content: start;
 		margin-top: rem(20);
+
+		p {
+			padding-bottom: rem(26);
+		}
 	}
 
 	&__text {
+
+		@include has-font-size('default');
 		flex-grow: 1;
 	}
 
@@ -84,9 +90,6 @@
 			width: 50%;
 			margin: 0 rem(30) 0 rem(50);
 
-			p {
-				padding-bottom: rem(26);
-			}
 		}
 
 		&__image-wrapper {
