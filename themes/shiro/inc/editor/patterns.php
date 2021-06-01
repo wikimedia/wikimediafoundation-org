@@ -47,7 +47,7 @@ function register_pattern() {
 	register_block_pattern( LinkColumns\NAME, [
 		'title' => __( 'External link columns', 'shiro-admin' ),
 		'categories' => [ MAIN_CATEGORY_NAME ],
-		'content' => LinkColumns\pattern(),
+		'content' => LinkColumns\PATTERN,
 	] );
 
 	register_block_pattern( CardColumns\NAME, [
@@ -65,7 +65,7 @@ function register_pattern() {
 	register_block_pattern( CommunicationModule\NAME, [
 		'title' => __( 'Communication module', 'shiro-admin' ),
 		'categories' => [ MAIN_CATEGORY_NAME ],
-		'content' => CommunicationModule\pattern(),
+		'content' => CommunicationModule\PATTERN,
 	] );
 
 	register_block_pattern( TemplateDefault\NAME, [
