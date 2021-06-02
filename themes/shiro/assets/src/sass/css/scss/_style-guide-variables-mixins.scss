@@ -185,6 +185,10 @@
 	}
 }
 
+@mixin global-block-styles() {
+	margin-bottom: rem(40);
+}
+
 @mixin target-ie {
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 		@content;

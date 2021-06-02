@@ -1,6 +1,10 @@
 .wp-block-group {
 	&.has-background {
 		padding: rem(20);
+
+		&:not(:only-child) {
+			@include global-block-styles;
+		}
 	}
 
 	&.alignfull {

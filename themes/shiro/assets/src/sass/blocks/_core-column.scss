@@ -32,10 +32,11 @@
 /**
  * This is a core style that is for some reason over-riden in the editor,
  * making the editor and front-end not match. Redefining it here provides
- * enough specificity for the rule to apply correctly.
+ * enough specificity for the rule to apply correctly. We're also making
+ * it match our default margins.
  */
 .wp-block-columns {
-	margin-bottom: 1.75em;
+	@include global-block-styles;
 }
 
 // New columns style for aligning the buttons to the bottom of the columns.
