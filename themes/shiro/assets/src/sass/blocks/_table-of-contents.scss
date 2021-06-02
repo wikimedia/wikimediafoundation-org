@@ -24,7 +24,7 @@
 			color: $wmui-color-base0;
 			display: block;
 			left: 0;
-			max-height: calc(var(--full-window-height, 100vh) - var(--dropdown-bottom) - 20px);
+			max-height: calc(var(--full-window-height, 100vh) - 130px);
 			overflow: auto;
 			position: absolute;
 			top: 100%;
@@ -82,7 +82,7 @@
 			background-color: $wmui-color-blue90;
 		}
 
-		&.-active {
+		&--active {
 			background-color: $wmui-color-blue50;
 			color: $wmui-color-base100;
 			font-weight: 700;

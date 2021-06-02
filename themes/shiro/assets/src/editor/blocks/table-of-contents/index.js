@@ -87,6 +87,9 @@ export const name = 'shiro/toc',
 						<span class="btn-label-a11y">
 							{ __( 'Navigate within this page.', 'shiro' ) }
 						</span>
+						<span className="btn-label-active-item">
+							{ attributes.headingBlocks[ 0 ].attributes.content }
+						</span>
 					</button>
 					<ul { ...blockProps }>
 						<HeadingLinks blocks={ attributes.headingBlocks } />
@@ -125,6 +128,9 @@ export const name = 'shiro/toc',
 					>
 						<span class="btn-label-a11y">
 							{ __( 'Navigate within this page.', 'shiro' ) }
+						</span>
+						<span className="btn-label-active-item">
+							{ attributes.headingBlocks[ 0 ].attributes.content }
 						</span>
 					</button>
 					<ul { ...blockProps }>

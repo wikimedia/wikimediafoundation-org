@@ -3,6 +3,9 @@ import initialize from '../util/initialize';
 import { handleVisibleChange } from './dropdown';
 
 const _tocNav = document.querySelector( '[data-dropdown="toc-nav"]' );
+const headerHeight = document
+	.getElementsByClassName( 'site-header' )[ 0 ]
+	.getBoundingClientRect()[ 'height' ];
 
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe
@@ -17,7 +20,7 @@ function createObserver() {
  * The TOC nav behaves differently on "mobile" and "desktop"--it uses
  * the dropdown hide/show functionality on mobile, but not on desktop. Here,
  * we change change the appropriate states so that the menu behaves correctly,
- * using the visibility of the toggle button to tell us which viewport we're
+ * using the visibility of the hidden title to tell us which viewport we're
  * on. By using IntersectionObserver, we don't have to fire the logic once
  * on load and again when the viewport size changes--all of that is handled for
  * us by the browser.
@@ -57,25 +60,76 @@ function handleTocNavVisibleChange( dropdown ) {
 	handleVisibleChange( dropdown );
 	const menuIsVisible = dropdown.dataset.visible === 'yes';
 	const toggleIsVisible = dropdown.dropdown.toggle.offsetParent != null;
-	const togglePosition = dropdown.offsetTop;
-	const headerHeight = document
-		.getElementsByClassName( 'site-header' )[ 0 ]
-		.getBoundingClientRect()[ 'height' ];
 
 	if ( menuIsVisible && toggleIsVisible ) {
-		window.scrollTo( {
-			top: togglePosition - headerHeight,
-			left: 0,
-			behavior: 'smooth',
-		} );
-		dropdown.style.setProperty(
-			'--dropdown-bottom',
-			dropdown.getBoundingClientRect()[ 'bottom' ] + 'px'
-		);
+		scrollHelper( dropdown );
 		document.body.classList.add( 'disable-body-scrolling' );
 	} else {
 		document.body.classList.remove( 'disable-body-scrolling' );
 	}
+}
+
+/**
+ * Process active link item
+ *
+ * @param {HTMLElement} item Active link item to process.
+ */
+function processActiveLink( item ) {
+	// Remove existing acitve classes
+	_tocNav
+		.querySelectorAll( '.toc__link' )
+		.forEach( link => link.classList.remove( 'toc__link--active' ) );
+	// Add the active class.
+	item.classList.add( 'toc__link--active' );
+
+	// Scroll to the right position
+	const activeContentItem = getActiveContent( item );
+	if ( activeContentItem ) {
+		scrollHelper( activeContentItem );
+	}
+}
+
+/**
+ * Get the active TOC content based on the acitve link
+ *
+ * @param {HTMLElement} item Active link item to process.
+ *
+ * @returns {HTMLElement} the active content element.
+ */
+function getActiveContent( item ) {
+	const activeTocLink = item.getAttribute( 'href' );
+	const activeContentItem = document.querySelector(
+		`h2[id="${ activeTocLink.replace( '#', '' ) }"]`
+	);
+
+	return activeContentItem;
+}
+
+/**
+ * Handle scrolling to the right position
+ *
+ * @param {HTMLElement} item Element we want to scroll to.
+ */
+function scrollHelper( item ) {
+	const scrollPosition = item.offsetTop - headerHeight;
+	window.scrollTo( {
+		top: scrollPosition,
+		left: 0,
+		behavior: 'smooth',
+	} );
+}
+
+/**
+ * Handle clicks on the TOC links.
+ *
+ * @param {Event} event Click event on a TOC link.
+ */
+function handleTocLinkClick( event ) {
+	// Close the menu
+	_tocNav.dataset.visible = 'no';
+
+	// Process the active link.
+	processActiveLink( event.target );
 }
 
 /**
@@ -87,8 +141,24 @@ function initializeTocNav() {
 		handleTocNavVisibleChange( _tocNav );
 		_tocNav.dropdown.handlers.visibleChange = handleTocNavVisibleChange;
 
+		// Observe the intersection of the title with the page
 		_tocNav.observer = createObserver();
 		_tocNav.observer.observe( _tocNav.querySelector( '.toc__title' ) );
+
+		// Add event listeners to the links
+		_tocNav.querySelectorAll( '.toc__link' ).forEach( link => {
+			link.addEventListener( 'click', handleTocLinkClick );
+		} );
+
+		if ( location.hash ) {
+			// Process the active link.
+			const activeTocItem = _tocNav.querySelector(
+				`a[href="${ location.hash }"]`
+			);
+			if ( activeTocItem ) {
+				processActiveLink( activeTocItem );
+			}
+		}
 	}
 }
 
