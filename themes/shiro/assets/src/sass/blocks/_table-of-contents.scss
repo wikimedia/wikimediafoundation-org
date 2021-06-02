@@ -1,6 +1,5 @@
 // Table of contents block styles
 .toc {
-
 	@include style-guide-list-reset;
 	top: rem(100);
 
@@ -8,8 +7,53 @@
 		top: rem(132);
 	}
 
-	@media (min-width: $medium-bp) {
+	&[hidden] {
+		display: none;
+	}
+
+	@media ( min-width: #{$core-gutenberg-break-medium} ) {
+		display: block;
 		position: sticky;
+	}
+
+	// Mobile specific styles for when the menu is open.
+	[data-dropdown-status="initialized"][data-visible="yes"] & {
+		@media ( max-width: #{$core-gutenberg-break-medium} ) {
+			--full-window-height: calc(var(--vh, 1vh) * 100);
+			background: $wmui-color-base90;
+			color: $wmui-color-base0;
+			display: block;
+			left: 0;
+			max-height: calc(var(--full-window-height, 100vh) - var(--dropdown-bottom) - 20px);
+			overflow: auto;
+			position: absolute;
+			top: 100%;
+			width: 100%;
+			z-index: 3000;
+		}
+	}
+
+	&-nav {
+		position: relative;
+	}
+
+	&__button {
+		@include style-guide-dropdown-toggle();
+
+		&:focus,
+		&[aria-expanded=true] {
+			@include style-guide-dropdown-caret-blue();
+			border-color: currentColor;
+			color: $wmui-color-blue50;
+		}
+
+		&[hidden] {
+			display: none;
+		}
+
+		@media ( min-width: #{$core-gutenberg-break-medium} ) {
+			display: none;
+		}
 	}
 
 	&__item {

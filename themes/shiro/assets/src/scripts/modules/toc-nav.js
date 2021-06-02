@@ -57,8 +57,21 @@ function handleTocNavVisibleChange( dropdown ) {
 	handleVisibleChange( dropdown );
 	const menuIsVisible = dropdown.dataset.visible === 'yes';
 	const toggleIsVisible = dropdown.dropdown.toggle.offsetParent != null;
+	const togglePosition = dropdown.offsetTop;
+	const headerHeight = document
+		.getElementsByClassName( 'site-header' )[ 0 ]
+		.getBoundingClientRect()[ 'height' ];
 
 	if ( menuIsVisible && toggleIsVisible ) {
+		window.scrollTo( {
+			top: togglePosition - headerHeight,
+			left: 0,
+			behavior: 'smooth',
+		} );
+		dropdown.style.setProperty(
+			'--dropdown-bottom',
+			dropdown.getBoundingClientRect()[ 'bottom' ] + 'px'
+		);
 		document.body.classList.add( 'disable-body-scrolling' );
 	} else {
 		document.body.classList.remove( 'disable-body-scrolling' );
