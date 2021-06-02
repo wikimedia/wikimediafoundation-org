@@ -76,13 +76,16 @@ export const name = 'shiro/toc',
 					data-trap="inactive"
 					data-visible="false"
 				>
+					<h2 className="toc__title screen-reader-text">
+						{ __( 'Table of Contents', 'shiro' ) }
+					</h2>
 					<button
 						aria-expanded="false"
 						className="toc__button"
 						hidden
 					>
 						<span class="btn-label-a11y">
-							{ __( 'Table of Contents', 'shiro' ) }
+							{ __( 'Navigate within this page.', 'shiro' ) }
 						</span>
 					</button>
 					<ul { ...blockProps }>
@@ -112,13 +115,16 @@ export const name = 'shiro/toc',
 					data-trap="inactive"
 					data-visible="false"
 				>
+					<h2 className="toc__title screen-reader-text">
+						{ __( 'Table of Contents', 'shiro' ) }
+					</h2>
 					<button
 						aria-expanded="false"
 						className="toc__button"
 						hidden
 					>
 						<span class="btn-label-a11y">
-							{ __( 'Table of Contents', 'shiro' ) }
+							{ __( 'Navigate within this page.', 'shiro' ) }
 						</span>
 					</button>
 					<ul { ...blockProps }>

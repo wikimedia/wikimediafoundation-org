@@ -37,6 +37,17 @@
 		position: relative;
 	}
 
+	&__title {
+		clip-path: none; // Override screen-reader-text
+		left: 0;
+		position: fixed !important; // Override screen-reader-text
+		top: 0;
+
+		@media ( min-width: #{$core-gutenberg-break-medium} ) {
+			left: -999em;
+		}
+	}
+
 	&__button {
 		@include style-guide-dropdown-toggle();
 

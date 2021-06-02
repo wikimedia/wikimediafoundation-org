@@ -88,7 +88,7 @@ function initializeTocNav() {
 		_tocNav.dropdown.handlers.visibleChange = handleTocNavVisibleChange;
 
 		_tocNav.observer = createObserver();
-		_tocNav.observer.observe( _tocNav.dropdown.toggle );
+		_tocNav.observer.observe( _tocNav.querySelector( '.toc__title' ) );
 	}
 }
 
