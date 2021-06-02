@@ -1,4 +1,7 @@
 .hero {
+
+	@include global-block-styles;
+
 	&__header {
 
 		@include alignfull-padded;

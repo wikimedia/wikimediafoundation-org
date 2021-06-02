@@ -23,4 +23,17 @@
 	.block-editor-block-list__block.wp-block-column:not(:first-child) {
 		margin-left: rem(20);
 	}
+
+	.block-editor-block-list__block {
+		// Allow for the block insertion point to show.
+		margin-bottom: rem(40);
+	}
+
+	// This overrides the styles set on the frontend that allow spacers to set "true"
+	// distances by cancelling out margins. In the editor we don't want this, because
+	// we wouldn't be able to use the inserter.
+	.wp-block-spacer.wp-block-spacer {
+		margin-top: 0;
+		margin-bottom: rem(40);
+	}
 }

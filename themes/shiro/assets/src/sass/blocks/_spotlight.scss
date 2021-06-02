@@ -1,4 +1,7 @@
 .spotlight {
+
+	@include global-block-styles;
+
 	display: flex;
 	min-width: 100%;
 
