@@ -6,7 +6,7 @@
  * @package shiro
  */
 
-$label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro' ) );
+$label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro-admin' ) );
 ?>
 
 <button class="primary-nav-toggle"

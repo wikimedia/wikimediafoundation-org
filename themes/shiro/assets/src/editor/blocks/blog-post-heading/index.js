@@ -46,7 +46,7 @@ const openFeaturedImageSelector = () => {
 export const name = 'shiro/blog-post-heading';
 
 export const settings = {
-	title: __( 'Post Heading controls', 'shiro' ),
+	title: __( 'Post Heading controls', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -54,7 +54,7 @@ export const settings = {
 
 	description: __(
 		'Editor controls for selecting featured image and post intro.',
-		'shiro'
+		'shiro-admin'
 	),
 
 	supports: {
@@ -104,7 +104,7 @@ export const settings = {
 				>
 					{ featuredImageUrl ?
 						<img alt="" className="post-heading__image" src={ featuredImageUrl } /> :
-						<div className="post-heading__image--empty">{ __( 'No featured image selected', 'shiro' ) }</div> }
+						<div className="post-heading__image--empty">{ __( 'No featured image selected', 'shiro-admin' ) }</div> }
 					<button className="post-heading__click-overlay" onClick={ openFeaturedImageSelector }>
 						<span className="dashicon-wrapper">
 							<Icon icon="edit-large" />
@@ -116,7 +116,7 @@ export const settings = {
 						className="post-heading__intro"
 						keepPlaceholderOnFocus
 						multiline="p"
-						placeholder={ __( 'Add a post intro', 'shiro' ) }
+						placeholder={ __( 'Add a post intro', 'shiro-admin' ) }
 						tagName="div"
 						value={ attributes.postIntro }
 						onChange={ postIntro => setAttributes( { postIntro } ) }

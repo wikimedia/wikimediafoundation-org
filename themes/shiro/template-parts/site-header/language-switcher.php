@@ -7,7 +7,7 @@
  * @package shiro
  */
 
-$current_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro' ) );
+$current_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
 $translations  = $args['translations'] ?? [];
 $current       = array_reduce( $translations, function ( $carry, $item ) {
 	if ( is_string( $carry ) ) {
