@@ -10,6 +10,11 @@ import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 
+/**
+ * Internal dependencies
+ */
+import './style.scss';
+
 const { PostControl } = hm.controls;
 
 export const name = 'shiro/profile';
@@ -34,7 +39,7 @@ export const settings = {
 	 */
 	edit: function EditProfileBlock( { attributes, setAttributes } ) {
 		const { profile_id } = attributes;
-		const blockProps = useBlockProps( { className: 'profile' } );
+		const blockProps = useBlockProps( { className: 'profile-block' } );
 
 		return (
 			<div { ...blockProps }>
