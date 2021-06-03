@@ -7,23 +7,23 @@ import { __ } from '@wordpress/i18n';
 
 const options = [
 	{
-		label: __( 'No filter', 'shiro' ),
+		label: __( 'No filter', 'shiro-admin' ),
 		value: '',
 	},
 	{
-		label: __( 'Inherit from block style', 'shiro' ),
+		label: __( 'Inherit from block style', 'shiro-admin' ),
 		value: 'inherit',
 	},
 	{
-		label: __( 'Blue', 'shiro' ),
+		label: __( 'Blue', 'shiro-admin' ),
 		value: 'blue',
 	},
 	{
-		label: __( 'Red', 'shiro' ),
+		label: __( 'Red', 'shiro-admin' ),
 		value: 'red',
 	},
 	{
-		label: __( 'Yellow', 'shiro' ),
+		label: __( 'Yellow', 'shiro-admin' ),
 		value: 'yellow',
 	},
 ];
@@ -49,9 +49,9 @@ function ImageFilter( props ) {
 				{ props.children }
 			</figure>
 			<InspectorControls>
-				<PanelBody title={ __( 'Image settings', 'shiro' ) }>
+				<PanelBody title={ __( 'Image settings', 'shiro-admin' ) }>
 					<SelectControl
-						label={ __( 'Image filter color', 'shiro' ) }
+						label={ __( 'Image filter color', 'shiro-admin' ) }
 						options={ options }
 						value={ activeFilter }
 						onChange={ newFilter => onChange( 'image-filter-' + newFilter ) }

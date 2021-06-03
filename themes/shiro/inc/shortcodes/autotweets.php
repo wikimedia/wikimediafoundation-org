@@ -63,7 +63,7 @@ function wmf_autotweet_callback( $atts = [], $content = '' ) {
 	$auto_tweet_width = 3 === (int)$atts['count'] ? 'w-32p' : 'w-48p';
 	$index++;
 
-	$share_text    = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro' ) );
+	$share_text    = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
 	$args = array(
 		'uri' => $atts['uri']  . '&hashtags=' . $atts['hashtag'],
 		'message' => $atts['empty'] === '0' ? wp_strip_all_tags( $content ) : '',
