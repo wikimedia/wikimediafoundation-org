@@ -7,8 +7,8 @@
  * @package shiro
  */
 
-$header      = get_theme_mod( 'wmf_no_results_title', __( 'Nothing Found', 'shiro' ) );
-$description = get_theme_mod( 'wmf_no_results_description', __( 'Sorry, but no results were found. Perhaps searching can help.', 'shiro' ) );
+$header      = get_theme_mod( 'wmf_no_results_title', __( 'Nothing Found', 'shiro-admin' ) );
+$description = get_theme_mod( 'wmf_no_results_description', __( 'Sorry, but no results were found. Perhaps searching can help.', 'shiro-admin' ) );
 ?>
 
 <div class="w-100p news-list-container news-card-list mod-margin-bottom">

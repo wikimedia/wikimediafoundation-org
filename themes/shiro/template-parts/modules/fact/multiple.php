@@ -7,7 +7,7 @@
 
 $template_args = $args;
 
-$wmf_tweet_this = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro' ) );
+$wmf_tweet_this = get_theme_mod( 'wmf_tweet_this_copy', __( 'Tweet this', 'shiro-admin' ) );
 
 if ( empty( $template_args['image'] ) && empty( $template_args['facts'] ) ) {
 	return;

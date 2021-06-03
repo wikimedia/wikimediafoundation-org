@@ -60,7 +60,7 @@ class General extends Base {
 			$control_id = 'wmf_incomplete_translation';
 			$this->customize->add_setting(
 				$control_id, array(
-					'default' => __( 'This content has not yet been translated into the current language.', 'shiro' ),
+					'default' => __( 'This content has not yet been translated into the current language.', 'shiro-admin' ),
 				)
 			);
 			$this->customize->add_control(
@@ -106,7 +106,7 @@ class General extends Base {
 		$control_id = 'wmf_off_site_links_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'ELSEWHERE IN WIKIMEDIA', 'shiro' ),
+				'default' => __( 'ELSEWHERE IN WIKIMEDIA', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -121,7 +121,7 @@ class General extends Base {
 		$control_id = 'wmf_related_pages_pre_heading';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Related', 'shiro' ),
+				'default' => __( 'Related', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -136,7 +136,7 @@ class General extends Base {
 		$control_id = 'wmf_image_credit_header';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Photo credits', 'shiro' ),
+				'default' => __( 'Photo credits', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -197,7 +197,7 @@ class General extends Base {
         $control_id = 'wmf_search_results_copy';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( /** translators: Current search term */ 'Search results for %s', 'shiro' ),
+				'default' => __( /** translators: Current search term */ 'Search results for %s', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -211,7 +211,7 @@ class General extends Base {
         $control_id = 'wmf_no_results_title';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Nothing Found', 'shiro' ),
+				'default' => __( 'Nothing Found', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -226,7 +226,7 @@ class General extends Base {
 		$control_id = 'wmf_no_results_description';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Sorry, but no results were found. Perhaps searching can help.', 'shiro' ),
+				'default' => __( 'Sorry, but no results were found. Perhaps searching can help.', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -262,7 +262,7 @@ class General extends Base {
 		$control_id = 'wmf_404_message';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( '404 Error', 'shiro' ),
+				'default' => __( '404 Error', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -276,7 +276,7 @@ class General extends Base {
 		$control_id = 'wmf_404_title';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Imagine a world in which there is a page here', 'shiro' ),
+				'default' => __( 'Imagine a world in which there is a page here', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -303,7 +303,7 @@ class General extends Base {
 		$control_id = 'wmf_404_search_text';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Or try a search instead', 'shiro' ),
+				'default' => __( 'Or try a search instead', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
@@ -332,8 +332,8 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Toggle search copy', 'shiro' ),
-				'description' => __( 'This changes the labels exposed only to assistive technology. This can be set in each translation to localize the label.', 'shiro' ),
+				'label'       => __( 'Toggle search copy', 'shiro-admin' ),
+				'description' => __( 'This changes the labels exposed only to assistive technology. This can be set in each translation to localize the label.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -342,12 +342,12 @@ class General extends Base {
 		$control_id = 'wmf_search_aria_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Search Wikimedia Foundation site', 'shiro' ),
+				'default' => __( 'Search Wikimedia Foundation site', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Search input label for assistive technology', 'shiro' ),
+				'label'       => __( 'Search input label for assistive technology', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -356,12 +356,12 @@ class General extends Base {
 		$control_id = 'wmf_toggle_menu_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Toggle menu', 'shiro' ),
+				'default' => __( 'Toggle menu', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Toggle menu label', 'shiro' ),
+				'label'       => __( 'Toggle menu label', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -370,12 +370,12 @@ class General extends Base {
 		$control_id = 'wmf_skip2_content_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Skip to content', 'shiro' ),
+				'default' => __( 'Skip to content', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Skip to content label', 'shiro' ),
+				'label'       => __( 'Skip to content label', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -384,12 +384,12 @@ class General extends Base {
 		$control_id = 'wmf_skip2_navigation_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Skip to navigation', 'shiro' ),
+				'default' => __( 'Skip to navigation', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Skip to navigation label', 'shiro' ),
+				'label'       => __( 'Skip to navigation label', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -398,12 +398,12 @@ class General extends Base {
 		$control_id = 'wmf_select_language_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Select language', 'shiro' ),
+				'default' => __( 'Select language', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Select language label', 'shiro' ),
+				'label'       => __( 'Select language label', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -412,12 +412,12 @@ class General extends Base {
 		$control_id = 'wmf_current_language_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Current language:', 'shiro' ),
+				'default' => __( 'Current language:', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Current language label', 'shiro' ),
+				'label'       => __( 'Current language label', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -427,7 +427,7 @@ class General extends Base {
 		$section_id = 'wmf_general_blackout_modal';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Blackout Modal', 'shiro' ),
+				'title'    => __( 'Blackout Modal', 'shiro-admin' ),
 				'priority' => 80,
 				'panel'    => $panel_id,
 			)
@@ -441,7 +441,7 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Blackout Modal Enabled', 'shiro' ),
+				'label'       => __( 'Blackout Modal Enabled', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'checkbox',
 			)
@@ -462,7 +462,7 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Blackout Modal Content', 'shiro' ),
+				'label'       => __( 'Blackout Modal Content', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'textarea',
 			)
@@ -476,8 +476,8 @@ class General extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Blackout Modal Cookie', 'shiro' ),
-				'description' => __( 'Useful when changing the content of the modal, adjusting this would allow you to display the modal to users that have dismissed it previously.', 'shiro' ),
+				'label'       => __( 'Blackout Modal Cookie', 'shiro-admin' ),
+				'description' => __( 'Useful when changing the content of the modal, adjusting this would allow you to display the modal to users that have dismissed it previously.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -487,7 +487,7 @@ class General extends Base {
 		$section_id = 'wmf_general_wikipedia20_modal';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Wikipedia 20 content', 'shiro' ),
+				'title'    => __( 'Wikipedia 20 content', 'shiro-admin' ),
 				'priority' => 80,
 				'panel'    => $panel_id,
 			)
@@ -497,8 +497,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'English Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited English Wikipedia."', 'shiro' ),
+				'label'       => __( 'English Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited English Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -508,8 +508,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Arabic Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited Arabic Wikipedia."', 'shiro' ),
+				'label'       => __( 'Arabic Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited Arabic Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -519,8 +519,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Spanish Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited Spanish Wikipedia."', 'shiro' ),
+				'label'       => __( 'Spanish Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited Spanish Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -530,8 +530,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'German Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited German Wikipedia."', 'shiro' ),
+				'label'       => __( 'German Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited German Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -541,8 +541,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'French Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited French Wikipedia."', 'shiro' ),
+				'label'       => __( 'French Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited French Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -552,8 +552,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Russian Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited Russian Wikipedia."', 'shiro' ),
+				'label'       => __( 'Russian Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited Russian Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -563,8 +563,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Chinese Wikipedia', 'shiro' ),
-				'description' => __( 'Used e.g. to say "One human just edited Chinese Wikipedia."', 'shiro' ),
+				'label'       => __( 'Chinese Wikipedia', 'shiro-admin' ),
+				'description' => __( 'Used e.g. to say "One human just edited Chinese Wikipedia."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -572,12 +572,12 @@ class General extends Base {
 
 		$control_id = 'wikipedia_article_views';
 		$this->customize->add_setting( $control_id, array(
-				'default' => __('views', 'shiro'),
+				'default' => __('views', 'shiro-admin'),
 			) );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Wikipedia article views', 'shiro' ),
-				'description' => __( '"views" - used to show stats about Wikipedia articles', 'shiro' ),
+				'label'       => __( 'Wikipedia article views', 'shiro-admin' ),
+				'description' => __( '"views" - used to show stats about Wikipedia articles', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -587,8 +587,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Wikipedia article edits', 'shiro' ),
-				'description' => __( '"edits" - used to show stats about Wikipedia articles', 'shiro' ),
+				'label'       => __( 'Wikipedia article edits', 'shiro-admin' ),
+				'description' => __( '"edits" - used to show stats about Wikipedia articles', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -598,8 +598,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Most viewed articles', 'shiro' ),
-				'description' => __( '"Most viewed articles" - used to show stats about Wikipedia articles', 'shiro' ),
+				'label'       => __( 'Most viewed articles', 'shiro-admin' ),
+				'description' => __( '"Most viewed articles" - used to show stats about Wikipedia articles', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -609,8 +609,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Most edited articles', 'shiro' ),
-				'description' => __( '"Most edited articles" - used to show stats about Wikipedia articles', 'shiro' ),
+				'label'       => __( 'Most edited articles', 'shiro-admin' ),
+				'description' => __( '"Most edited articles" - used to show stats about Wikipedia articles', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -620,8 +620,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'or', 'shiro' ),
-				'description' => __( '"or" - used to show stats about Wikipedia articles by edits or views', 'shiro' ),
+				'label'       => __( 'or', 'shiro-admin' ),
+				'description' => __( '"or" - used to show stats about Wikipedia articles by edits or views', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -631,8 +631,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'in', 'shiro' ),
-				'description' => __( '"in" - used to show stats about Wikipedia articles per year', 'shiro' ),
+				'label'       => __( 'in', 'shiro-admin' ),
+				'description' => __( '"in" - used to show stats about Wikipedia articles per year', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -642,8 +642,8 @@ class General extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'No data message', 'shiro' ),
-				'description' => __( '"There is not data for the options you selected. Please change the options above."', 'shiro' ),
+				'label'       => __( 'No data message', 'shiro-admin' ),
+				'description' => __( '"There is not data for the options you selected. Please change the options above."', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)

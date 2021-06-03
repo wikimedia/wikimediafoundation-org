@@ -1,19 +1,17 @@
 .mailchimp-subscribe {
-
-	@include global-block-styles;
-
 	background: $background-color-framed;
 	border: 1px solid $border-color-framed;
 	border-radius: $border-radius-big;
-	padding: rem(25);
 	font-family: $font-family-sans;
+	padding: rem(25);
+
+
+	&__form:not(:only-child) {
+		@include global-block-styles;
+  }
 
 	& > p:not(.mailchimp-subscribe__description) {
 		@include has-font-size('default');
-	}
-
-	&:only-child {
-		margin-bottom: 0;
 	}
 
 	.icon {
@@ -56,9 +54,9 @@
 	}
 
 	&__description {
-		color: $wmui-color-base30;
-
 		@include has-font-size('small');
+
+		color: $wmui-color-base30;
 	}
 
 	// Override too specific selector

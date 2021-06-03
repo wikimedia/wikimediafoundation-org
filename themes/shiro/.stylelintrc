@@ -9,6 +9,7 @@
 		"selector-attribute-quotes": null,
 		"max-line-length": null,
 		"rule-empty-line-before": null,
+		"at-rule-empty-line-before": null,
 		"declaration-property-unit-whitelist": {
 			"line-height": ["px", "em", "rem"]
 		},
