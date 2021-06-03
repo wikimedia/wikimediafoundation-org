@@ -8,6 +8,7 @@
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import ServerSideRender from '@wordpress/server-side-render';
 
 const { PostControl } = hm.controls;
 
@@ -23,7 +24,7 @@ export const settings = {
 		'shiro-admin'
 	),
 	attributes: {
-		profileId: {
+		profile_id: {
 			type: 'integer',
 			default: 0,
 		},
@@ -32,12 +33,15 @@ export const settings = {
 	 * Edit the profile block.
 	 */
 	edit: function EditProfileBlock( { attributes, setAttributes } ) {
-		const { profileId } = attributes;
+		const { profile_id } = attributes;
 		const blockProps = useBlockProps( { className: 'profile' } );
 
 		return (
 			<div { ...blockProps }>
-				{ profileId }
+				<ServerSideRender
+					attributes={ attributes }
+					block={ name }
+				/>
 				<InspectorControls>
 					<PanelBody title={ __( 'Sorting and filtering' ) }>
 						<PostControl
@@ -48,12 +52,15 @@ export const settings = {
 								maxPosts: 1,
 								termFilters: [ 'role' ],
 							} }
-							value={ [ profileId ] }
+							// This expects an array, so we have to store a
+							// 1-item-long array
+							value={ [ profile_id ] }
 							onChange={ record => {
-								// This assumes we'll only ever have one item
+								// This assumes we'll only ever have one item,
+								// which should be guaranteed by maxPosts: 1
 								const ID = record[ 0 ]?.id;
 								if ( ID ) {
-									setAttributes( { profileId: ID } );
+									setAttributes( { profile_id: ID } );
 								}
 							} }
 						/>

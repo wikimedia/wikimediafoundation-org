@@ -262,6 +262,7 @@ require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
 require get_template_directory() . '/inc/editor/blocks/share-article.php';
+require get_template_directory() . '/inc/editor/blocks/profile.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
@@ -283,6 +284,7 @@ WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
 WMF\Editor\Blocks\ShareArticle\bootstrap();
+WMF\Editor\Blocks\Profile\bootstrap();
 WMF\Editor\Patterns\bootstrap();
 
 /**
