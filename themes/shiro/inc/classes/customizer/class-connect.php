@@ -25,10 +25,8 @@ class Connect extends Base {
 	 */
 	public static function defaults( string $setting = '' ): string {
 		$defaults = [
-			'wmf_subscribe_action'            => __( 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56',
-				'shiro-admin' ),
-			'wmf_subscribe_additional_fields' => __( '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">',
-				'shiro-admin' ),
+			'wmf_subscribe_action'            => 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56',
+			'wmf_subscribe_additional_fields' => '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">',
 		];
 
 		return $defaults[ $setting ] ?? '';
