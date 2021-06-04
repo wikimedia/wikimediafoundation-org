@@ -7,6 +7,7 @@
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
+import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 
@@ -45,16 +46,23 @@ export const settings = {
 		 * No profile selected message
 		 */
 		const noProfile = () => (
-			<div class="profile profile--empty">No profile selected!</div>
+			<div className="profile profile--empty">No profile selected!</div>
+		);
+
+		const MemoizedServerSideRender = useCallback(
+			() => (
+				<ServerSideRender
+					attributes={ { profile_id } }
+					block={ name }
+					EmptyResponsePlaceholder={ noProfile }
+				/>
+			),
+			[ profile_id ]
 		);
 
 		return (
 			<div { ...blockProps }>
-				<ServerSideRender
-					attributes={ attributes }
-					block={ name }
-					EmptyResponsePlaceholder={ noProfile }
-				/>
+				<MemoizedServerSideRender />
 				<InspectorControls>
 					<PanelBody title={ __( 'Individual Profile' ) }>
 						<PostControl
