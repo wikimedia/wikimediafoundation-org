@@ -96,7 +96,7 @@
 			}
 
 			li {
-				font-size: rem(16);
+				font-size: rem(14);
 				font-weight: 500;
 				line-height: 175%;
 				list-style: none;
@@ -104,7 +104,6 @@
 				margin-bottom: rem(19);
 
 				@media ( min-width: #{$width-breakpoint-tablet} ) {
-					font-size: rem(14);
 					margin-bottom: rem(14);
 				}
 
