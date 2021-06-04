@@ -23,7 +23,7 @@ export const settings = {
 	title: __( 'Profile', 'shiro-admin' ),
 	category: 'wikimedia',
 	apiVersion: 2,
-	icon: 'person',
+	icon: 'admin-users',
 	description: __(
 		'Show the photo, name and description of a person',
 		'shiro-admin'
@@ -41,17 +41,27 @@ export const settings = {
 		const { profile_id } = attributes;
 		const blockProps = useBlockProps( { className: 'profile-block' } );
 
+		/**
+		 * No profile selected message
+		 */
+		const noProfile = () => (
+			<div class="profile profile--empty">No profile selected!</div>
+		);
+
 		return (
 			<div { ...blockProps }>
 				<ServerSideRender
 					attributes={ attributes }
 					block={ name }
+					EmptyResponsePlaceholder={ noProfile }
 				/>
 				<InspectorControls>
-					<PanelBody title={ __( 'Sorting and filtering' ) }>
+					<PanelBody title={ __( 'Individual Profile' ) }>
 						<PostControl
-							btnText={ __( 'Select Page' ) }
-							label={ __( 'Linked Page.' ) }
+							btnText={ __( 'Select Profile' ) }
+							label={ __(
+								'Choose the person to appear in the block.'
+							) }
 							postSelectProps={ {
 								postType: 'profile',
 								maxPosts: 1,

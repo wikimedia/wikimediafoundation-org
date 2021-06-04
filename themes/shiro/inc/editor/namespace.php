@@ -64,6 +64,7 @@ function filter_blocks( $allowed_blocks ) {
 		'shiro/inline-languages',
 		'shiro/external-link',
 		'shiro/profile',
+		'shiro/profile-list',
 
 		// Core blocks
 		'core/paragraph',
