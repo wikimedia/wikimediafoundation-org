@@ -85,6 +85,11 @@ function processActiveLink( item, hash = false, heightOffset = 0 ) {
 	// Add the active class to the current item.
 	item.classList.add( 'toc__link--active' );
 
+	// Update the toggle button text with the active link text.
+	_tocNav.dropdown.toggle.querySelector(
+		'.btn-label-active-item'
+	).textContent = item.textContent;
+
 	// Scroll to the right position.
 	const activeContentItem = getActiveContent( item );
 	if ( activeContentItem ) {
