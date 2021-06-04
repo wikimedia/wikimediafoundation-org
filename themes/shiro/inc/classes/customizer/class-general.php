@@ -164,12 +164,14 @@ class General extends Base {
 			'post_type' => 'wp_block',
 			'numberposts' => 50,
 		]);
+
 		$selectable_blocks = [];
 		foreach ($resuable_blocks as $block) {
 			if ( has_block( 'shiro/spotlight', $block->ID ) ) {
 				$selectable_blocks[$block->ID] = $block->post_title;
 			}
 		}
+
 		// We're using `+` instead of `array_merge` because array_merge rewrites numeric IDs
 		$choices = [ 0 => 'No CTA' ] + $selectable_blocks;
 		$this->customize->add_control(
