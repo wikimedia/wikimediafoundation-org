@@ -4,13 +4,9 @@ body {
 }
 
 .block-editor-block-list__layout.is-root-container > .wp-block:not(.is-reusable),
-.is-reusable .block-editor-block-list__layout > .wp-block:not(.is-reusable) {
+.is-reusable > .block-library-block__reusable-block-container > .block-editor-block-list__layout > .wp-block:not(.is-reusable):not([data-align="full"]) {
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include padding(0, strip-px($block-padding / 2), 0, strip-px($block-padding));
-}
-
-.is-reusable .has-background .block-editor-block-list__layout > .wp-block:not(.is-reusable) {
-	padding: 0;
 }
 
 .wp-block.block-editor-default-block-appender {
