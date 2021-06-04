@@ -84,7 +84,7 @@ export const name = 'shiro/toc',
 						className="toc__button"
 						hidden
 					>
-						<span class="btn-label-a11y">
+						<span className="btn-label-a11y">
 							{ __( 'Navigate within this page.', 'shiro' ) }
 						</span>
 						<span className="btn-label-active-item">
@@ -126,7 +126,7 @@ export const name = 'shiro/toc',
 						className="toc__button"
 						hidden
 					>
-						<span class="btn-label-a11y">
+						<span className="btn-label-a11y">
 							{ __( 'Navigate within this page.', 'shiro' ) }
 						</span>
 						<span className="btn-label-active-item">
