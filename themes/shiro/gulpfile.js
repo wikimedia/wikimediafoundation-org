@@ -3,7 +3,6 @@ var sass         = require( 'gulp-sass' );
 var rtlcss       = require( 'gulp-rtlcss' );
 var footer       = require('gulp-footer');
 var rename       = require( 'gulp-rename' );
-var autoprefixer  = require( 'gulp-autoprefixer' );
 var sourcemaps   = require( 'gulp-sourcemaps' );
 var rev          = require('gulp-rev');
 
@@ -11,8 +10,6 @@ var concat       = require( 'gulp-concat' );
 var uglify       = require( 'gulp-uglify' );
 
 var svgsprite    = require( 'gulp-svg-sprite' );
-var wppot        = require( 'gulp-wp-pot' );
-var themeConfig   = require( './package.json' ).themeConfig;
 
 var paths = {
 	sassSrc: 'assets/src/sass/style.scss',
