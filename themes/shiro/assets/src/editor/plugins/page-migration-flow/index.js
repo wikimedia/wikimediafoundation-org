@@ -39,7 +39,7 @@ export const settings = {
 			if ( pageTemplate !== PAGE_TEMPLATE_DEFAULT && hasNonClassicBlocks ) {
 				dispatch( 'core/notices' ).createNotice(
 					'error',
-					__( 'Proceed with caution: converting to the block editor will remove any legacy elements populated by custom fields. To complete the conversion to the block editor, change the page template to the default template and create blocks for any legacy content that you\'d like to migrate. Not ready to convert this page? Delete any blocks that aren\'t "Classic blocks" and make your changes within the existing classic block.', 'shiro' ),
+					__( 'Proceed with caution: converting to the block editor will remove any legacy elements populated by custom fields. To complete the conversion to the block editor, change the page template to the default template and create blocks for any legacy content that you\'d like to migrate. Not ready to convert this page? Delete any blocks that aren\'t "Classic blocks" and make your changes within the existing classic block.', 'shiro-admin' ),
 					{
 						id: NOTICE_NAME,
 						isDismissible: false,

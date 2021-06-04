@@ -60,7 +60,7 @@ const ExternalLinkWithFocusOutside = withFocusOutside(
 						<RichText
 							allowedFormats={ [ ] }
 							className="external-link__link"
-							placeholder={ __( 'Link heading', 'shiro' ) }
+							placeholder={ __( 'Link heading', 'shiro-admin' ) }
 							tagName="span"
 							value={ heading }
 							onChange={ setHeading }
@@ -71,7 +71,7 @@ const ExternalLinkWithFocusOutside = withFocusOutside(
 					</p>
 					<RichText
 						className="external-link__text"
-						placeholder={ __( 'Enter a description of this link', 'shiro' ) }
+						placeholder={ __( 'Enter a description of this link', 'shiro-admin' ) }
 						tagName="p"
 						value={ text }
 						onChange={ setText }
@@ -125,7 +125,7 @@ export const
 	name = 'shiro/external-link',
 	settings = {
 		apiVersion: 2,
-		title: __( 'External Link', 'shiro' ),
+		title: __( 'External Link', 'shiro-admin' ),
 		icon: 'external',
 		attributes: {
 			url: {

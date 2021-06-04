@@ -21,7 +21,7 @@ export const
 
 		icon: 'email',
 
-		title: __( 'Mailchimp subscription form', 'shiro' ),
+		title: __( 'Mailchimp subscription form', 'shiro-admin' ),
 
 		category: 'wikimedia',
 

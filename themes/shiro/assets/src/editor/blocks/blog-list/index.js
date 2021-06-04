@@ -18,7 +18,7 @@ import './style.scss';
 export const name = 'shiro/blog-list';
 
 export const settings = {
-	title: __( 'Blog list', 'shiro' ),
+	title: __( 'Blog list', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -28,7 +28,7 @@ export const settings = {
 
 	description: __(
 		'Dynamic list of recent posts',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {

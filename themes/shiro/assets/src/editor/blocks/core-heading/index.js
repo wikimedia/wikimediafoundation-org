@@ -40,27 +40,27 @@ export const filters = [
 export const mimicHeadingStyles = [
 	{
 		name: 'h1',
-		label: __( 'Mimic h1', 'shiro' ),
+		label: __( 'Mimic h1', 'shiro-admin' ),
 	},
 	{
 		name: 'h2',
-		label: __( 'Mimic h2', 'shiro' ),
+		label: __( 'Mimic h2', 'shiro-admin' ),
 	},
 	{
 		name: 'h3',
-		label: __( 'Mimic h3', 'shiro' ),
+		label: __( 'Mimic h3', 'shiro-admin' ),
 	},
 	{
 		name: 'h4',
-		label: __( 'Mimic h4', 'shiro' ),
+		label: __( 'Mimic h4', 'shiro-admin' ),
 	},
 	{
 		name: 'h5',
-		label: __( 'Mimic h5', 'shiro' ),
+		label: __( 'Mimic h5', 'shiro-admin' ),
 	},
 	{
 		name: 'h6',
-		label: __( 'Mimic h6', 'shiro' ),
+		label: __( 'Mimic h6', 'shiro-admin' ),
 	},
 ];
 

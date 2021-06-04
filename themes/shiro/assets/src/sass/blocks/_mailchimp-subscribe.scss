@@ -5,6 +5,11 @@
 	font-family: $font-family-sans;
 	padding: rem(25);
 
+
+	&__form:not(:only-child) {
+		@include global-block-styles;
+  }
+
 	& > p:not(.mailchimp-subscribe__description) {
 		@include has-font-size('default');
 	}
