@@ -13,8 +13,8 @@
 	// they need special handling if inserted directly into the editor.
 	article.mw-784 > & {
 		@media (min-width: #{$width-breakpoint-tablet}) {
-			margin-left: calc((100vw - 640px - var(--scrollbar) - 40px) / -2);
-			margin-right: calc((100vw - 640px - var(--scrollbar) - 40px) / -2);
+			margin-left: calc((100vw - 640px - var(--scrollbar) - 80px) / -2);
+			margin-right: calc((100vw - 640px - var(--scrollbar) - 80px) / -2);
 		}
 
 		@media (min-width: #{$width-breakpoint-desktop}) {
