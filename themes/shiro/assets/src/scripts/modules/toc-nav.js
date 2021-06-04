@@ -70,22 +70,25 @@ function handleTocNavVisibleChange( dropdown ) {
 }
 
 /**
- * Process active link item
+ * Process active link item.
  *
  * @param {HTMLElement} item Active link item to process.
+ * @param {string} hash Hash to set after scroll.
+ * @param {number} heightOffset Height offset for scroll function.
  */
-function processActiveLink( item ) {
-	// Remove existing acitve classes
+function processActiveLink( item, hash = false, heightOffset = 0 ) {
+	// Remove existing active classes.
 	_tocNav
 		.querySelectorAll( '.toc__link' )
 		.forEach( link => link.classList.remove( 'toc__link--active' ) );
-	// Add the active class.
+
+	// Add the active class to the current item.
 	item.classList.add( 'toc__link--active' );
 
-	// Scroll to the right position
+	// Scroll to the right position.
 	const activeContentItem = getActiveContent( item );
 	if ( activeContentItem ) {
-		scrollHelper( activeContentItem );
+		scrollHelper( activeContentItem, hash, heightOffset );
 	}
 }
 
@@ -109,14 +112,36 @@ function getActiveContent( item ) {
  * Handle scrolling to the right position
  *
  * @param {HTMLElement} item Element we want to scroll to.
+ * @param {string} hash Hash to set after scroll.
+ * @param {number} heightOffset Height offset for scroll function.
  */
-function scrollHelper( item ) {
-	const scrollPosition = item.offsetTop - headerHeight;
+function scrollHelper( item, hash = false, heightOffset = 0 ) {
+	let scrollTimeout;
+	const windowScrollY = window.scrollY;
+	const itemScrollTop = item.getBoundingClientRect()[ 'top' ];
+	const scrollPosition =
+		windowScrollY + itemScrollTop + heightOffset - headerHeight - 20;
+
 	window.scrollTo( {
 		top: scrollPosition,
 		left: 0,
 		behavior: 'smooth',
 	} );
+
+	/**
+	 * Listen for when the page finishes scrolling.
+	 */
+	function scrollListener() {
+		clearTimeout( scrollTimeout );
+		scrollTimeout = setTimeout( function () {
+			history.replaceState( null, null, hash );
+			removeEventListener( 'scroll', scrollListener );
+		}, 100 );
+	}
+
+	if ( hash ) {
+		addEventListener( 'scroll', scrollListener );
+	}
 }
 
 /**
@@ -125,11 +150,26 @@ function scrollHelper( item ) {
  * @param {Event} event Click event on a TOC link.
  */
 function handleTocLinkClick( event ) {
-	// Close the menu
-	_tocNav.dataset.visible = 'no';
+	/*
+	 * Prevent default so that the page doesn't
+	 * scroll to the wrong place.
+	 */
+	event.preventDefault();
+
+	// Get the new hash for this item.
+	const item = event.target;
+	const hash = item.getAttribute( 'href' );
 
 	// Process the active link.
-	processActiveLink( event.target );
+	processActiveLink( item, hash );
+
+	// Close the menu if we're on mobile.
+	if (
+		_tocNav.dataset.toggleable === 'yes' &&
+		_tocNav.dataset.visible === 'yes'
+	) {
+		_tocNav.dataset.visible = 'no';
+	}
 }
 
 /**
@@ -151,12 +191,29 @@ function initializeTocNav() {
 		} );
 
 		if ( location.hash ) {
+			const hash = location.hash;
+			const navHeight = document
+				.getElementsByClassName( 'primary-nav__drawer' )[ 0 ]
+				.getBoundingClientRect()[ 'height' ];
+			let heightOffset = 0;
+
+			// If we're on desktop and the nav hasn't loaded yet, adjust the numbers.
+			if ( window.innerWidth > 781 && navHeight === 0 ) {
+				heightOffset = 44;
+			}
+
+			/*
+			 * Temporarily blank the hash so that the page doesn't
+			 * scroll to the wrong place on load.
+			 */
+			location.hash = '';
+
 			// Process the active link.
 			const activeTocItem = _tocNav.querySelector(
-				`a[href="${ location.hash }"]`
+				`a[href="${ hash }"]`
 			);
 			if ( activeTocItem ) {
-				processActiveLink( activeTocItem );
+				processActiveLink( activeTocItem, hash, heightOffset );
 			}
 		}
 	}
