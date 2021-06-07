@@ -23,9 +23,7 @@
 	}
 
 	a:focus {
-		border-radius: rem(2);
-		box-shadow: 0 0 0 2px $wmui-color-focus-ring-hex;
-		outline: none;
+		@include focus-ring($hex: true, $inset: false);
 	}
 
 	&__inner {
