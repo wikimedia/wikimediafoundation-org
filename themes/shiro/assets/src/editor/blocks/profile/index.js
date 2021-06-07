@@ -64,7 +64,7 @@ export const settings = {
 			<div { ...blockProps }>
 				<MemoizedServerSideRender />
 				<InspectorControls>
-					<PanelBody title={ __( 'Individual Profile' ) }>
+					<PanelBody initialOpen title={ __( 'Individual Profile' ) }>
 						<PostControl
 							btnText={ __( 'Select Profile' ) }
 							label={ __(

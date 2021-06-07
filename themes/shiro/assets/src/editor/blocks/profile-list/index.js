@@ -63,7 +63,7 @@ export const settings = {
 			<div { ...blockProps }>
 				<MemoizedServerSideRender />
 				<InspectorControls>
-					<PanelBody title={ __( 'Profiles' ) }>
+					<PanelBody initialOpen title={ __( 'Profiles' ) }>
 						<PostControl
 							btnText={ __( 'Select Profiles' ) }
 							label={ __(
