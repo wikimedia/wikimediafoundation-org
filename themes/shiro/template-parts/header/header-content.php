@@ -18,7 +18,7 @@ $allowed_tags         = wp_kses_allowed_html( 'post' );
 $allowed_tags['time'] = true;
 $button = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
 $extra_height_class = empty($button['title']) ? '' : 'ungrid-extra-height';
-$wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro' ) );
+$wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro-admin' ) );
 $wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
 $wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
 $wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
@@ -32,7 +32,7 @@ $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['i
 $bg_opts          = wmf_get_background_image();
 $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 
-$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
+$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = wmf_get_translations();
 
 $single_title = '';

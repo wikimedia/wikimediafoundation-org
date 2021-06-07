@@ -1,3 +1,4 @@
+@import "./global-early"; // XXX: this is out of alphabetical order so later items can easily override it
 @import "./button"; // XXX: this is out of alphabetical order because it defines mixins used elsewhere.
 @import "./banner";
 @import "./blog-list";
@@ -7,6 +8,7 @@
 @import "./core-group";
 @import "./core-image";
 @import "./core-list";
+@import "./core-paragraph";
 @import "./core-quote";
 @import "./double-heading";
 @import "./external-link";
@@ -20,3 +22,4 @@
 @import "./stair";
 @import "./stairs";
 @import "./table-of-contents";
+@import "./global-late"; // XXX: This is out of alphabetical order so that it will override as needed

@@ -1,5 +1,7 @@
 .read-more-categories {
+
 	@include has-font-size("default");
+	@include global-block-styles;
 
 	&__text {
 		font-weight: 700;

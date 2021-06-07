@@ -1,4 +1,6 @@
 .share-article {
+
+	@include global-block-styles;
 	display: flex;
 
 	&__link {
@@ -33,5 +35,8 @@
 
 	.header-main & {
 		margin-top: rem(16);
+
+		// Don't apply default margin in header
+		margin-bottom: 0;
 	}
 }

@@ -15,7 +15,7 @@ export const
 	name = 'shiro/inline-languages',
 	settings = {
 		apiVersion: 2,
-		title: __( 'Inline Languages', 'shiro' ),
+		title: __( 'Inline Languages', 'shiro-admin' ),
 		icon: 'translation',
 		supports: {
 			align: [ 'center', 'full' ],

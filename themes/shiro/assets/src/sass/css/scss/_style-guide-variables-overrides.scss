@@ -17,6 +17,10 @@ $wmui-color-image-filter-blue: rgba(213, 203, 255, .85);
 $wmui-color-image-filter-red: rgba(255,186,223, .85);
 $wmui-color-image-filter-yellow: rgba(255, 254, 168, .85);
 
+$wmui-color-focus-ring: rgba(#007dfa, 0.6);
+// Match the focus ring color for the footer (and meet contrast requirement).
+$wmui-color-focus-ring-hex: scale-color(#007dfa, $lightness: 40%);
+
 // Updated branded colors for primary buttons.
 $color-primary:         $wmui-color-blue50;
 $color-primary--hover:  #3200be;

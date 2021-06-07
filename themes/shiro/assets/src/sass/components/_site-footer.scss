@@ -14,6 +14,18 @@
 
 	a {
 		color: inherit;
+		margin: rem(-1);
+		padding: rem(1);
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	a:focus {
+		border-radius: rem(2);
+		box-shadow: 0 0 0 2px $wmui-color-focus-ring-hex;
+		outline: none;
 	}
 
 	&__inner {

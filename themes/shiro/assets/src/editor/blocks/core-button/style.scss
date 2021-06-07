@@ -15,4 +15,9 @@
 .editor-styles-wrapper {
 	@include button-wrapper('.wp-block-shiro-button', '&');
 	@include button-wrapper('.wp-block-button', '.wp-block-button__link');
+
+	// This gets the default bottom-margin, but we need to reset it to something normal
+	.wp-block-button {
+		margin-bottom: 0.5em;
+	}
 }

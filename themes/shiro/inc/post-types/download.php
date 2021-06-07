@@ -46,7 +46,7 @@ function wmf_download_init() {
 			'has_archive'       => false,
 			'rewrite'           => array(
 				'with_front' => false,
-				'slug'       => __( 'download', 'shiro' ),
+				'slug'       => __( 'download', 'shiro-admin' ),
 			),
 			'query_var'         => true,
 			'menu_icon'         => 'dashicons-groups',
