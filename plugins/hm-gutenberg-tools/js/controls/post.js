@@ -29,7 +29,7 @@ const PostControl = ( {
 				{ ...postSelectProps }
 				value={ value }
 				onSelect={ posts => onChange( posts ) }
-			><div>hello</div></PostSelectButton>
+			>{ btnText }</PostSelectButton>
 
 			{ value.length > 0 && (
 				<CurrentSelection
