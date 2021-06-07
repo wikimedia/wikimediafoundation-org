@@ -44,7 +44,7 @@ export const settings = {
 		 */
 		const noProfiles = () => (
 			<div className="profile-list profile-list--empty">
-				No profiles selected!
+				<div className="profile-list--empty__message">Please select profile(s) to display from the block settings in the sidebar.</div>
 			</div>
 		);
 

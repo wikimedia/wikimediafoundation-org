@@ -46,7 +46,9 @@ export const settings = {
 		 * No profile selected message
 		 */
 		const noProfile = () => (
-			<div className="profile profile--empty">No profile selected!</div>
+			<div className="profile profile--empty">
+				Please select a profile to display from the block settings in the sidebar.
+			</div>
 		);
 
 		const MemoizedServerSideRender = useCallback(
