@@ -9,8 +9,6 @@
     "build": "run-s build:gulp build:webpack",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
     "build:gulp": "gulp build",
-    "pot": "run-s pot:frontend pot:admin",
-    "pot:admin": "wp-pot --src '**/*.php' --dest-file languages/shiro-admin.pot --domain shiro-admin",
     "start": "run-p start:webpack start:gulp",
     "start:webpack": "webpack-dev-server --config=.config/webpack.config.dev.js",
     "start:gulp": "gulp",
