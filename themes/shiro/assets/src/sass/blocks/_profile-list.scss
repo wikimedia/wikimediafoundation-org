@@ -1,4 +1,6 @@
 .profile-list {
+	@include global-block-styles;
+
 	display: flex;
 	flex-direction: column;
 
