@@ -7,8 +7,11 @@
 	max-width: 100%;
 	padding: rem(22);
 	transition: box-shadow 250ms ease;
-	width: rem(314);
 	will-change: box-shadow;
+
+	@media (min-width: rem(394)) {
+		width: rem(314);
+	}
 
 	&:hover {
 		box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
@@ -32,15 +35,6 @@
 
 	&__title {
 		@include has-font-size("small");
-	}
-
-	// Handle display on individual profile page
-	.people > & {
-		margin-right: 1.25rem;
-
-		&:last-child {
-			margin-right: 0;
-		}
 	}
 
 	// Handle use in columns

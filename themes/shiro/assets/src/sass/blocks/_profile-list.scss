@@ -1,13 +1,22 @@
 .profile-list {
-	display: grid;
-	grid-gap: 1.25rem;
+	display: flex;
+	flex-direction: column;
 
 	@media (min-width: #{$medium-bp}) {
-		grid-template-columns: repeat(2, 1fr);
+		flex-direction: row;
 	}
 
-	@media (min-width: #{$medium-landscape}) {
-		grid-template-columns: repeat(3, 1fr);
+	@supports (display: grid) {
+		display: grid;
+		grid-gap: 1.25rem;
+
+		@media (min-width: #{$medium-bp}) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (min-width: #{$medium-landscape}) {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
 
 	.profile {
