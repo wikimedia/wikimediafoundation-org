@@ -3,9 +3,6 @@ import initialize from '../util/initialize';
 import { handleVisibleChange } from './dropdown';
 
 const _tocNav = document.querySelector( '[data-dropdown="toc-nav"]' );
-const headerHeight = document
-	.getElementsByClassName( 'site-header' )[ 0 ]
-	.getBoundingClientRect()[ 'height' ];
 
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe
@@ -124,6 +121,9 @@ function scrollHelper( item, hash = false, heightOffset = 0 ) {
 	let scrollTimeout;
 	const windowScrollY = window.scrollY;
 	const itemScrollTop = item.getBoundingClientRect()[ 'top' ];
+	const headerHeight = document
+		.getElementsByClassName( 'site-header' )[ 0 ]
+		.getBoundingClientRect()[ 'height' ];
 	const scrollPosition =
 		windowScrollY + itemScrollTop + heightOffset - headerHeight - 20;
 
