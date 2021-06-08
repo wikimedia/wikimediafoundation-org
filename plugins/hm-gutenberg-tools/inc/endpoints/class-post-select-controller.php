@@ -154,6 +154,7 @@ class Post_Select_Controller extends WP_REST_Controller {
 			'status' => $post->post_status,
 			'link' => get_permalink( $post->ID ),
 			'author' => absint( $post->post_author ),
+			'thumbnail' => $post->_thumbnail_id,
 		];
 
 		// For drafts, `post_date_gmt` may not be set, indicating that the
