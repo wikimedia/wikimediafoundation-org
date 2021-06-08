@@ -2,9 +2,10 @@ const { helpers, externals, plugins, presets } = require( '@humanmade/webpack-he
 const { filePath } = helpers;
 const { copy, clean, manifest, miniCssExtract } = plugins;
 const WebpackRTLPlugin = require( 'webpack-rtl-plugin' );
+const { addSvgr } = require('./shared');
 
 module.exports = [
-	presets.production( {
+	addSvgr(presets.production( {
 		name: 'editor',
 		externals,
 		entry: {
@@ -36,7 +37,7 @@ module.exports = [
 				"sass-lib": filePath('assets/src/sass/css/scss/')
 			}
 		}
-	} ),
+	} )),
 	presets.production({
 		name: 'theme',
 		entry: {

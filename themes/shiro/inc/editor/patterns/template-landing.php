@@ -6,7 +6,7 @@
 namespace WMF\Editor\Patterns\TemplateLanding;
 
 use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
-use function WMF\Editor\Patterns\CommunicationModule\pattern as communication_module_pattern;
+use WMF\Editor\Patterns\CommunicationModule;
 
 const NAME = 'shiro/template-landing';
 
@@ -15,9 +15,9 @@ const NAME = 'shiro/template-landing';
  *
  * @return string
  */
-function pattern() {
+function pattern(): string {
 	$tweet_columns = tweet_columns_pattern();
-	$communications_module = communication_module_pattern();
+	$communications_module = CommunicationModule\PATTERN;
 
 	return <<<CONTENT
 <!-- wp:shiro/landing-page-hero {"className":"is-style-yellow50"} -->
