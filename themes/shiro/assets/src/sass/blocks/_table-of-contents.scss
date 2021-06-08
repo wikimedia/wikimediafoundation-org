@@ -1,11 +1,6 @@
 // Table of contents block styles
 .toc {
 	@include style-guide-list-reset;
-	top: rem(100);
-
-	.admin-bar & {
-		top: rem(132);
-	}
 
 	&[hidden] {
 		display: none;
@@ -13,7 +8,16 @@
 
 	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		display: block;
+	}
+
+	@media ( min-width: #{$core-gutenberg-break-small} ) and ( min-height: 800px ) {
+		@include global-block-styles;
 		position: sticky;
+		top: rem(100);
+
+		.admin-bar & {
+			top: rem(132);
+		}
 	}
 
 	// Mobile specific styles for when the menu is open.
@@ -34,7 +38,12 @@
 	}
 
 	&-nav {
+		height: 100%;
 		position: relative;
+
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
+			margin-bottom: rem(20);
+		}
 	}
 
 	&__title {
