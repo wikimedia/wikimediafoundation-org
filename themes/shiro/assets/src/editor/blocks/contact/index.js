@@ -5,8 +5,8 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import ContactIcon from '../../../svg/individual/contact.svg';
 import CallToActionPicker from '../../components/cta';
-import SvgSprite from '../../components/svg-sprite';
 
 import './style.scss';
 
@@ -96,7 +96,7 @@ export const name = 'shiro/contact',
 			} = attributes;
 
 			return ( <div { ...blockProps }>
-				<SvgSprite className="contact__icon" svg="contact" />
+				<ContactIcon className="contact__icon" />
 				<RichText
 					className="contact__title"
 					keepPlaceholderOnFocus
@@ -149,7 +149,7 @@ export const name = 'shiro/contact',
 			} = attributes;
 
 			return ( <div { ...blockProps }>
-				<SvgSprite className="contact__icon" svg="contact" />
+				<ContactIcon className="contact__icon" />
 				<RichText.Content
 					className="contact__title"
 					tagName="h3"
