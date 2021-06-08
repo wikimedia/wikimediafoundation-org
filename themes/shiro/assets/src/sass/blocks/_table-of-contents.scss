@@ -11,14 +11,14 @@
 		display: none;
 	}
 
-	@media ( min-width: #{$core-gutenberg-break-medium} ) {
+	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		display: block;
 		position: sticky;
 	}
 
 	// Mobile specific styles for when the menu is open.
 	[data-dropdown-status="initialized"][data-visible="yes"] & {
-		@media ( max-width: #{$core-gutenberg-break-medium} ) {
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
 			--full-window-height: calc(var(--vh, 1vh) * 100);
 			background: $wmui-color-base90;
 			color: $wmui-color-base0;
@@ -43,7 +43,7 @@
 		position: fixed !important; // Override screen-reader-text
 		top: 0;
 
-		@media ( min-width: #{$core-gutenberg-break-medium} ) {
+		@media ( min-width: #{$core-gutenberg-break-small} ) {
 			left: -999em;
 		}
 	}
@@ -88,7 +88,7 @@
 			display: none;
 		}
 
-		@media ( min-width: #{$core-gutenberg-break-medium} ) {
+		@media ( min-width: #{$core-gutenberg-break-small} ) {
 			display: none;
 		}
 	}
@@ -104,7 +104,7 @@
 		padding: rem(10) rem(27) rem(14) rem(18);
 		text-decoration: none;
 
-		@media ( min-width: #{$core-gutenberg-break-medium} ) {
+		@media ( min-width: #{$core-gutenberg-break-small} ) {
 			font-size: rem(14);
 			padding: rem(9) rem(15);
 		}
@@ -125,7 +125,7 @@
 			@include focus-ring(true, true);
 		}
 
-		@media ( max-width: #{$core-gutenberg-break-medium} ) {
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
 			.toc__item:first-child & {
 				align-items: center;
 				display: flex;

@@ -203,7 +203,7 @@ function initializeTocNav() {
 			let heightOffset = 0;
 
 			// If we're on desktop and the nav hasn't loaded yet, adjust the numbers.
-			if ( window.innerWidth > 781 && navHeight === 0 ) {
+			if ( window.innerWidth > 1024 && navHeight === 0 ) {
 				heightOffset = 44;
 			}
 
