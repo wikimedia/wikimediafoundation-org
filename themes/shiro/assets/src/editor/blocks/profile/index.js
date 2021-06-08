@@ -7,7 +7,7 @@
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody } from '@wordpress/components';
-import { useCallback } from '@wordpress/element';
+import { useCallback, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
 
@@ -41,6 +41,11 @@ export const settings = {
 	edit: function EditProfileBlock( { attributes, setAttributes } ) {
 		const { profile_id } = attributes;
 		const blockProps = useBlockProps( { className: 'profile-block' } );
+
+		// Open the sidebar when we insert this block
+		useEffect( () => {
+			wp.data.dispatch( 'core/edit-post' ).openGeneralSidebar( 'edit-post/block' );
+		}, [] );
 
 		/**
 		 * No profile selected message
