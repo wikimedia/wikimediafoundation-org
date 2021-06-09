@@ -28,7 +28,7 @@ while ( have_posts() ) :
 	}
 	?>
 <div class="mw-980 mod-margin-bottom flex flex-medium list-template">
-	<div class="module-mu w-32p">
+	<div class="w-32p">
 		<?php get_sidebar( 'list' ); ?>
 	</div>
 

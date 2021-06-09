@@ -36,6 +36,9 @@ function processEntry( entry ) {
 		_tocNav.dataset.visible = 'no';
 		_tocNav.dataset.toggleable = 'yes';
 	}
+
+	// Wait for the nav to get height, then check whether it should be sticky.
+	setTimeout( determineStickiness, 10 );
 }
 
 /**
@@ -74,6 +77,10 @@ function handleTocNavVisibleChange( dropdown ) {
  * @param {number} heightOffset Height offset for scroll function.
  */
 function processActiveLink( item, hash = false, heightOffset = 0 ) {
+	const parentList = item.closest( '.toc__nested' );
+	const parentItem = parentList ? parentList.previousElementSibling : false;
+	let toggleText = parentItem ? parentItem.innerText : item.innerText;
+
 	// Remove existing active classes.
 	_tocNav
 		.querySelectorAll( '.toc__link' )
@@ -85,7 +92,7 @@ function processActiveLink( item, hash = false, heightOffset = 0 ) {
 	// Update the toggle button text with the active link text.
 	_tocNav.dropdown.toggle.querySelector(
 		'.btn-label-active-item'
-	).textContent = item.textContent;
+	).textContent = toggleText;
 
 	// Scroll to the right position.
 	const activeContentItem = getActiveContent( item );
@@ -178,6 +185,26 @@ function handleTocLinkClick( event ) {
 }
 
 /**
+ * Determine whether the nav should be sticky.
+ */
+function determineStickiness() {
+	const toc = _tocNav.dropdown.content;
+	const tocNavHeight = toc.getBoundingClientRect()[ 'height' ];
+	const marginAroundToc = parseInt(
+		getComputedStyle( toc ).getPropertyValue( '--margin-around-toc' )
+	);
+
+	if (
+		_tocNav.dataset.visible === 'yes' &&
+		tocNavHeight + marginAroundToc < window.innerHeight
+	) {
+		_tocNav.dataset.sticky = 'yes';
+	} else {
+		_tocNav.dataset.sticky = 'no';
+	}
+}
+
+/**
  * Set up the TOC navigation.
  */
 function initializeTocNav() {
@@ -191,7 +218,7 @@ function initializeTocNav() {
 		_tocNav.observer.observe( _tocNav.querySelector( '.toc__title' ) );
 
 		// Add event listeners to the links
-		_tocNav.querySelectorAll( '.toc__link' ).forEach( link => {
+		_tocNav.querySelectorAll( '.toc__link[href^="#"]' ).forEach( link => {
 			link.addEventListener( 'click', handleTocLinkClick );
 		} );
 

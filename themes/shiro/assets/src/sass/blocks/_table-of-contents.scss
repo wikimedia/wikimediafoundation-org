@@ -1,5 +1,7 @@
 // Table of contents block styles
 .toc {
+	--full-window-height: calc(var(--vh, 1vh) * 100);
+	--margin-around-toc: 172;
 	@include style-guide-list-reset;
 
 	&[hidden] {
@@ -8,10 +10,13 @@
 
 	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		display: block;
+		@include global-block-styles;
 	}
 
-	@media ( min-width: #{$core-gutenberg-break-small} ) and ( min-height: 800px ) {
-		@include global-block-styles;
+	// Set max-heights so that the menu can scroll if needed.
+	[data-sticky="yes"] > & {
+		max-height: calc(var(--full-window-height, 100vh) - (var(--margin-around-toc) * 1px));
+		overflow: auto;
 		position: sticky;
 		top: rem(100);
 
@@ -21,14 +26,13 @@
 	}
 
 	// Mobile specific styles for when the menu is open.
-	[data-dropdown-status="initialized"][data-visible="yes"] & {
+	[data-dropdown-status="initialized"][data-visible="yes"] > & {
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
-			--full-window-height: calc(var(--vh, 1vh) * 100);
 			background: $wmui-color-base90;
 			color: $wmui-color-base0;
 			display: block;
 			left: 0;
-			max-height: calc(var(--full-window-height, 100vh) - 130px);
+			max-height: calc(var(--full-window-height, 100vh) - 102px);
 			overflow: auto;
 			position: absolute;
 			top: 0;
@@ -38,8 +42,11 @@
 	}
 
 	&-nav {
-		height: 100%;
 		position: relative;
+
+		&[data-sticky="yes"] {
+			height: 100%;
+		}
 
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
 			margin-bottom: rem(20);
@@ -134,7 +141,9 @@
 		}
 
 		&--active,
-		&--active:hover {
+		&--active:hover,
+		&--active-page,
+		&--active-page:hover {
 			background-color: $wmui-color-blue50;
 			color: $wmui-color-base100;
 			font-weight: 700;
@@ -167,6 +176,25 @@
 					@include style-guide-dropdown-caret-white();
 				}
 			}
+		}
+	}
+
+	// Nested lists
+	&__nested {
+		@include style-guide-list-reset;
+
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
+			display: none;
+		}
+	}
+
+	&__nested &__link {
+		padding-left: rem(44);
+
+		&--active,
+		&--active:hover {
+			background-color: inherit;
+			color: $wmui-color-base0;
 		}
 	}
 }

@@ -41,9 +41,9 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/page/page', 'stats-profiles' );
 	?>
 
-	<div class="mw-980 mod-margin-bottom_sm flex flex-medium">
+	<div class="mw-980 mod-margin-bottom_sm flex flex-medium data-template">
 
-		<div class="module-mu w-32p">
+		<div class="w-32p">
 			<?php get_sidebar( 'list' ); ?>
 		</div>
 

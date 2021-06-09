@@ -29,8 +29,8 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium">
-	<div class="module-mu w-32p">
+<div class="mw-980 mod-margin-bottom flex flex-medium report-template">
+	<div class="w-32p">
 		<?php get_sidebar( 'list' ); ?>
 	</div>
 
