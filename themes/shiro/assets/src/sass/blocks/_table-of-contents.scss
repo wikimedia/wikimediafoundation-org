@@ -67,26 +67,36 @@
 		font-weight: 700;
 		justify-content: flex-start;
 		line-height: 1.75;
-		padding: rem(10) rem(27) rem(14) rem(18);
+		padding: rem(10) 0 rem(14) rem(18);
 		text-align: left;
 		text-transform: none;
 		width: 100%;
 
 		&::after {
 			@include style-guide-dropdown-caret-white();
+			align-self: stretch;
 			background-position: center;
 			background-repeat: no-repeat;
-			background-size: contain;
+			background-size: rem(16);
 			content: "";
 			display: block;
-			height: rem(16);
-			margin-left: rem(25);
+			margin: rem(-10) 0 rem(-14);
+			padding: rem(10) rem(25) rem(14);
+			position: relative;
 			width: rem(16);
+			z-index: 3001;
 		}
 
-		&:focus,
-		&[aria-expanded=true] {
+		&:hover {
 			background-color: $wmui-color-blue50;
+		}
+
+		&:focus {
+			@include focus-ring(true, true);
+		}
+
+		&[aria-expanded=true]::after {
+			background: none;
 		}
 
 		.btn-label-active-item {
