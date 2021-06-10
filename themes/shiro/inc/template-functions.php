@@ -741,13 +741,13 @@ function wmf_get_gulp_asset_uri( string $name ): string {
  * @param string $possible_url The URL to put in the href of the link.
  */
 function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
-	if ( empty( $possible_url ) ) {
+	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
-	}
-
+	else :
 	?>
 	<a href="<?php echo esc_attr( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 		<?php echo esc_html( $text ); ?>
 	</a>
 	<?php
+	endif;
 }
