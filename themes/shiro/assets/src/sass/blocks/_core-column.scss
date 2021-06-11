@@ -52,6 +52,7 @@
 	.tweet-this,
 	.wp-block-shiro-button {
 		&:last-child {
+			align-self: flex-start;
 			margin-top: auto;
 		}
 	}

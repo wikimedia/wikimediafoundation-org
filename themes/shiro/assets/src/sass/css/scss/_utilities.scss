@@ -142,49 +142,22 @@ footer.bg-black {
 }
 
 .btn {
-
 	// Colors
-	&.btn-blue {
-		@include button($color-blue, $color-blue, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-		&:hover {
-			box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-		}
+	&.btn-blue,
+	.btn-blue & {
+		@include button-primary();
 	}
 
 	&.btn-white {
-		@include button($color-white, $color-white, $color-blue, $color-blue, 11px 1.5rem, .6rem 1rem);
-		&:hover {
-			box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-		}
-		font-size: 20px;
+		@include button-tertiary();
 	}
 
-	&.btn-pink {
-		@include button($color-pink, $color-pink, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-		&:hover {
-			box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-		}
+	&.btn-pink,
+	.btn-pink & {
+		@include button-secondary();
 	}
 }
 
-// Control button color from module parent container - like for CTAs
-.btn-blue {
-	.btn {
-		@include button($color-blue, $color-blue, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-		&:hover {
-			box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-		}
-	}
-}
-
-.btn-pink {
-	.btn {
-		@include button($color-pink, $color-pink, $color-white, $color-white, .8rem 1.5rem, .6rem 1rem);
-		&:hover {
-			box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.21);
-		}
-	}
-}
 
 .fade-20 {
 	transition: opacity 200ms ease;

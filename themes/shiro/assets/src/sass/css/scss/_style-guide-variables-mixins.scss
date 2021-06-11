@@ -28,14 +28,14 @@
  * @returns value Expression evaluating to a linear-gradient setting the specified color.
  */
 @mixin active-color( $color, $percent: 3% ) {
+	color: $color;
 
 	@supports (background-clip: text) or (-webkit-background-clip: text) {
 		background: linear-gradient(#{$color} #{$percent * -100}, #000 #{(100 - $percent) * 100});
 		-webkit-background-clip: text;
 		background-clip: text;
+		color: transparent;
 	}
-
-	color: $color;
 }
 
 @mixin hover-box-shadow {
@@ -53,20 +53,40 @@
 	$inset: false
 ) {
 	border-radius: rem(2);
-	@if $inset and $hex {
-		box-shadow: inset 0 0 0 2px $wmui-color-focus-ring-hex;
-	} @else if $hex {
-		box-shadow: 0 0 0 2px $wmui-color-focus-ring-hex;
-	} @else if $inset {
-		box-shadow: inset 0 0 0 2px $wmui-color-focus-ring;
-	} @else {
-		box-shadow: 0 0 0 2px $wmui-color-focus-ring;
-	}
+	box-shadow: if($inset, inset, #{""}) 0 0 0 2px if($hex, $wmui-color-focus-ring-hex, $wmui-color-focus-ring);
+	// @if $inset and $hex {
+	// 	box-shadow: inset 0 0 0 2px $wmui-color-focus-ring-hex;
+	// } @else if $hex {
+	// 	box-shadow: 0 0 0 2px $wmui-color-focus-ring-hex;
+	// } @else if $inset {
+	// 	box-shadow: inset 0 0 0 2px $wmui-color-focus-ring;
+	// } @else {
+	// 	box-shadow: 0 0 0 2px $wmui-color-focus-ring;
+	// }
 	outline: none;
 }
 
 @mixin style-guide-arrow-content {
 	content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
+}
+
+@mixin style-guide-arrow {
+	display: inline-flex;
+	position: relative;
+
+	&::after {
+		@include style-guide-arrow-content;
+		color: currentColor;
+		margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
+		transition: 300ms ease-in transform;
+	}
+
+	&:hover {
+		text-decoration: none;
+		&::after {
+			transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+		}
+	}
 }
 
 @mixin style-guide-arrow-link {
@@ -95,52 +115,127 @@
 
 @mixin style-guide-button-reset() {
 	border: none;
-	display: inline-block;
-	font-weight: bold;
 	border-radius: $border-radius-base;
 	cursor: pointer;
+	display: inline-block;
+	font-weight: 700;
 	padding: rem(6) rem(12);
 	@include font-size(14, 16);
 	@include line-height(20, 22);
 }
 
+@mixin style-guide-button-icon-hover() {
+	@supports (filter: brightness(0.7) hue-rotate(6deg)) {
+		color: $color-primary;
+		filter: brightness(0.7) hue-rotate(6deg);
+	}
+}
+
 @mixin style-guide-button(
 	$color,
 	$color-hover,
-	$color-active,
-	$color-focus,
 	$color-text,
 	$border-color: transparent,
 ) {
 	@include style-guide-button-reset;
-	background: $color;
+	background-color: $color;
+	border: 1px solid $border-color; // Buttons with and without borders take up the same space
 	color: $color-text;
 	transition: $transition-duration-base background;
 
-	/** So that buttons with and without borders take up the same space */
-	border: 1px solid $border-color;
-
 	&:hover {
-		background: $color-hover;
+		background-color: $color-hover;
 		box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.15);
 	}
 
-	&:active,
 	&:focus {
+		@include focus-ring($hex: false, $inset: false);
+		background-color: $color-hover;
+		border-color: $color-base--inverted;
+
+		.site-footer & {
+			@include focus-ring($hex: true, $inset: false);
+		}
+	}
+
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: $background-color-filled--disabled;
 		box-shadow: none;
+		cursor: text;
+	}
+}
+
+@mixin button-primary() {
+	@include style-guide-button(
+		$color-primary,
+		$color-primary--hover,
+		$color-base--inverted,
+	);
+}
+
+@mixin button-secondary() {
+	@include style-guide-button(
+		$color-secondary,
+		$color-secondary--hover,
+		$color-base--inverted,
+	);
+}
+
+@mixin button-tertiary() {
+	@include style-guide-button(
+		$color-tertiary,
+		$color-tertiary--hover,
+		$color-primary,
+	);
+	background: linear-gradient(to top, $color-tertiary, $color-tertiary), $color-primary;
+	background-clip: padding-box, border-box;
+
+	&:hover,
+	&:focus {
+		background: linear-gradient(to top, $color-tertiary--hover, $color-tertiary--hover), $color-primary--hover;
+		background-clip: padding-box, border-box;
+		border-color: transparent;
+		color: $color-primary--hover;
 	}
 
-	&:active {
-		background: $color-active;
-		outline: 1px solid $color-active;
-		outline-offset: 1px;
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: $color-tertiary;
+		border-color: $background-color-filled--disabled;
+		color: $background-color-filled--disabled;
+	}
+}
+
+@mixin button-link() {
+	@include style-guide-button(
+		transparent,
+		transparent,
+		$color-primary,
+	);
+	@include has-font-size("default");
+	margin: 0 rem(-1);
+	padding: 0 rem(1);
+
+	&:hover {
+		box-shadow: none;
+		color: $color-primary--hover;
 	}
 
 	&:focus {
-		background: $color-focus;
-		outline: 1px solid $color-focus;
-		outline-offset: 1px;
+		border-color: transparent;
 	}
+
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: transparent;
+		color: $background-color-filled--disabled;
+	}
+}
+
+@mixin button-link-arrow() {
+	@include button-link();
+	@include style-guide-arrow();
 }
 
 @mixin style-guide-dropdown-caret-blue() {

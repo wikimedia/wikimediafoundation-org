@@ -15,7 +15,9 @@
 	}
 
 	&__call-to-action {
-		@include style-guide-arrow-link;
+		@include button-link-arrow;
+		margin-bottom: rem(8);
+		margin-top: rem(8);
 	}
 
 	.wp-block-buttons {
