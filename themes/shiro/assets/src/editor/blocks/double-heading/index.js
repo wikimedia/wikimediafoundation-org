@@ -59,7 +59,7 @@ export const
 	settings = {
 		apiVersion: 2,
 		icon: 'heading',
-		title: __( 'Double heading', 'shiro' ),
+		title: __( 'Double heading', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {
 			primaryHeading: {
@@ -125,7 +125,7 @@ export const
 					{ isExpanded && (
 						<>
 							<small>
-								{ __( 'One of these variants will be shown randomly when visiting the site:', 'shiro' ) }
+								{ __( 'One of these variants will be shown randomly when visiting the site:', 'shiro-admin' ) }
 							</small>
 							{ headings.map( ( heading, headingIndex ) => {
 								if ( heading.lang === siteLanguage ) {
@@ -136,7 +136,7 @@ export const
 									<div key={ headingIndex } className="double-heading__secondary is-style-h5">
 										<RichText
 											keepPlaceholderOnFocus
-											placeholder={ __( 'Write secondary heading', 'shiro' ) }
+											placeholder={ __( 'Write secondary heading', 'shiro-admin' ) }
 											tagName="span"
 											value={ siteLanguageHeading.text }
 											onChange={ partial( setHeadingAttribute, 'text', siteLanguageIndex ) }
@@ -145,7 +145,7 @@ export const
 										&nbsp;—&nbsp;
 										<RichText
 											keepPlaceholderOnFocus
-											placeholder={ __( 'Write translated secondary heading', 'shiro' ) }
+											placeholder={ __( 'Write translated secondary heading', 'shiro-admin' ) }
 											tagName="span"
 											value={ heading.text }
 											onChange={ partial( setHeadingAttribute, 'text', headingIndex ) }
@@ -163,20 +163,20 @@ export const
 							<RichText
 								className=""
 								keepPlaceholderOnFocus
-								placeholder={ __( 'Write secondary heading', 'shiro' ) }
+								placeholder={ __( 'Write secondary heading', 'shiro-admin' ) }
 								tagName="span"
 								value={ siteLanguageHeading.text }
 								onChange={ partial( setHeadingAttribute, 'text', siteLanguageIndex ) }
 							/>
 							{ headings.length > 2 && ( <>
-								&nbsp;— { __( '[One of the available translated headings]', 'shiro' ) }
+								&nbsp;— { __( '[One of the available translated headings]', 'shiro-admin' ) }
 							</> ) }
 						</div>
 					) }
 					<RichText
 						className="double-heading__primary is-style-h3"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Write primary heading', 'shiro' ) }
+						placeholder={ __( 'Write primary heading', 'shiro-admin' ) }
 						value={ primaryHeading }
 						onChange={ primaryHeading => setAttributes( { primaryHeading } ) }
 					/>
@@ -186,13 +186,13 @@ export const
 						onClick={ () => setIsExpanded( ! isExpanded ) }
 					>
 						{ isExpanded ?
-							__( 'Hide translated headings', 'shiro' ) :
-							__( 'Show translated headings', 'shiro' ) }
+							__( 'Hide translated headings', 'shiro-admin' ) :
+							__( 'Show translated headings', 'shiro-admin' ) }
 					</Button> }
 					{ activeHeading !== null && ( <InspectorControls>
-						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
+						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro-admin' ) }>
 							<SelectControl
-								label={ __( 'Language', 'shiro' ) }
+								label={ __( 'Language', 'shiro-admin' ) }
 								options={ [
 									{
 										label: '',

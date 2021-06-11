@@ -19,7 +19,7 @@ export const name = 'shiro/banner',
 	styles = sharedStyles;
 
 export const settings = {
-	title: __( 'Banner', 'shiro' ),
+	title: __( 'Banner', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -29,7 +29,7 @@ export const settings = {
 
 	description: __(
 		'Banner with an image and call to action.',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {
@@ -139,7 +139,7 @@ export const settings = {
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="banner__heading is-style-h4"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Heading for banner', 'shiro' ) }
+						placeholder={ __( 'Heading for banner', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
 						onChange={ heading => setAttributes( { heading } ) }
@@ -147,7 +147,7 @@ export const settings = {
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
 						className="banner__text"
-						placeholder={ __( 'Enter the message for this banner.', 'shiro' ) }
+						placeholder={ __( 'Enter the message for this banner.', 'shiro-admin' ) }
 						tagName="p"
 						value={ text }
 						onChange={ text => setAttributes( { text } ) }

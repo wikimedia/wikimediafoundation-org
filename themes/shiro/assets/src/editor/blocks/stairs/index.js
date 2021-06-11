@@ -17,7 +17,7 @@ export const
 	name = 'shiro/stairs',
 	settings = {
 		apiVersion: 2,
-		title: __( 'Stairs', 'shiro' ),
+		title: __( 'Stairs', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {},
 

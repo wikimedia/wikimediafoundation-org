@@ -5,8 +5,8 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import ContactIcon from '../../../svg/individual/contact.svg';
 import CallToActionPicker from '../../components/cta';
-import SvgSprite from '../../components/svg-sprite';
 
 import './style.scss';
 
@@ -47,7 +47,7 @@ export const name = 'shiro/contact',
 	settings = {
 		apiVersion: 2,
 		icon: 'admin-comments',
-		title: __( 'Contact', 'shiro' ),
+		title: __( 'Contact', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {
 			title: {
@@ -96,11 +96,11 @@ export const name = 'shiro/contact',
 			} = attributes;
 
 			return ( <div { ...blockProps }>
-				<SvgSprite className="contact__icon" svg="contact" />
+				<ContactIcon className="contact__icon" />
 				<RichText
 					className="contact__title"
 					keepPlaceholderOnFocus
-					placeholder={ __( 'Write contact title', 'shiro' ) }
+					placeholder={ __( 'Write contact title', 'shiro-admin' ) }
 					tagName="h3"
 					value={ title }
 					onChange={ title => setAttributes( { title } ) }
@@ -108,7 +108,7 @@ export const name = 'shiro/contact',
 				<RichText
 					className="contact__description"
 					keepPlaceholderOnFocus
-					placeholder={ __( 'Write contact description', 'shiro' ) }
+					placeholder={ __( 'Write contact description', 'shiro-admin' ) }
 					tagName="div"
 					value={ description }
 					onChange={ description => setAttributes( { description } ) }
@@ -123,7 +123,7 @@ export const name = 'shiro/contact',
 				<RichText
 					className="contact__social-title"
 					keepPlaceholderOnFocus
-					placeholder={ __( 'Write social links title', 'shiro' ) }
+					placeholder={ __( 'Write social links title', 'shiro-admin' ) }
 					tagName="h4"
 					value={ socialTitle }
 					onChange={ socialTitle => setAttributes( { socialTitle } ) }
@@ -149,7 +149,7 @@ export const name = 'shiro/contact',
 			} = attributes;
 
 			return ( <div { ...blockProps }>
-				<SvgSprite className="contact__icon" svg="contact" />
+				<ContactIcon className="contact__icon" />
 				<RichText.Content
 					className="contact__title"
 					tagName="h3"

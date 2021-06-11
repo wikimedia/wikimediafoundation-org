@@ -72,7 +72,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 						className="hero-home__image"
 						id={ imageId }
 						labels={ {
-							instructions: __( '⚠️ Scrolling images are expected to be 4237px high and 454px wide (or multiples of those values). Using a different resolution will result in strange behavior.', 'shiro' ),
+							instructions: __( '⚠️ Scrolling images are expected to be 4237px high and 454px wide (or multiples of those values). Using a different resolution will result in strange behavior.', 'shiro-admin' ),
 						} }
 						src={ imageUrl }
 						onChange={
@@ -95,7 +95,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 							allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 							className="hero-home__heading"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Add a heading', 'shiro' ) }
+							placeholder={ __( 'Add a heading', 'shiro-admin' ) }
 							tagName="div"
 							value={ headings[0]?.text || '' }
 							onChange={ partial( setHeadingAttribute, 'text', 0 ) }
@@ -108,8 +108,8 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 						onClick={ () => setShowRotatingHeadings( ! showRotatingHeadings ) }
 					>
 						{ showRotatingHeadings ?
-							__( 'Hide rotating headings', 'shiro' ) :
-							__( 'Show rotating headings', 'shiro' ) }
+							__( 'Hide rotating headings', 'shiro-admin' ) :
+							__( 'Show rotating headings', 'shiro-admin' ) }
 					</Button> ) }
 					{ showRotatingHeadings && rotatingHeadings.map( ( heading, headingIndex ) => {
 						// Account for the non-rotating heading.
@@ -124,7 +124,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 									allowedFormats={ [ 'core/italic', 'core/link', 'core/subscript', 'core/superscript' ] }
 									className="hero-home__heading"
 									keepPlaceholderOnFocus
-									placeholder={ __( 'Add a rotating heading', 'shiro' ) }
+									placeholder={ __( 'Add a rotating heading', 'shiro-admin' ) }
 									tagName="div"
 									value={ heading.text }
 									onChange={ partial( setHeadingAttribute, 'text', headingIndex ) }
@@ -135,26 +135,26 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 					} ) }
 				</div> ) }
 				<InspectorControls>
-					<PanelBody initialOpen title={ __( 'Image settings', 'shiro' ) }>
+					<PanelBody initialOpen title={ __( 'Image settings', 'shiro-admin' ) }>
 						<ToggleControl
 							checked={ enableAnimation }
-							label={ __( 'Enable animation', 'shiro' ) }
+							label={ __( 'Enable animation', 'shiro-admin' ) }
 							onChange={ enableAnimation => setAttributes( { enableAnimation } ) }
 						/>
 					</PanelBody>
-					<PanelBody initialOpen title={ __( 'Link settings', 'shiro' ) }>
+					<PanelBody initialOpen title={ __( 'Link settings', 'shiro-admin' ) }>
 						<URLInput
 							isFullWidth
-							label={ __( 'Link', 'shiro' ) }
+							label={ __( 'Link', 'shiro-admin' ) }
 							value={ linkUrl }
 							onChange={ linkUrl => setAttributes( { linkUrl } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>
 				{ activeHeading !== null && ( <InspectorControls>
-					<PanelBody initialOpen title={ __( 'Heading settings', 'shiro' ) }>
+					<PanelBody initialOpen title={ __( 'Heading settings', 'shiro-admin' ) }>
 						<TextControl
-							label={ __( 'Language code', 'shiro' ) }
+							label={ __( 'Language code', 'shiro-admin' ) }
 							value={ headings[ activeHeading ].lang || '' }
 							onChange={ partial( setHeadingAttribute, 'lang', activeHeading ) }
 						/>

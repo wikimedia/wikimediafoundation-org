@@ -122,7 +122,7 @@ function ImagePicker( props ) {
 						allowedTypes={ [ 'image' ] }
 						mediaId={ id }
 						mediaURL={ src }
-						name={ __( 'Replace image', 'shiro' ) }
+						name={ __( 'Replace image', 'shiro-admin' ) }
 						onError={ onUploadError }
 						onSelect={ onSelect }
 					/>

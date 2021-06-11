@@ -103,9 +103,10 @@ add_action( 'save_post', 'wmf_category_transient_flusher' );
  * @param  string $classes Classes to add to icon.
  */
 function wmf_show_icon( $name, $classes = '' ) {
+	$sprite_path = wmf_get_gulp_asset_uri('icons.svg');
 	?>
 	<svg class="i icon icon-<?php echo esc_attr( $name ); ?> <?php echo esc_attr( $classes ); ?>">
-		<use xlink:href="<?php echo esc_url( get_template_directory_uri() . '/assets/dist/icons.svg#' . $name ); ?>"></use>
+		<use xlink:href="<?php echo esc_url( $sprite_path . '#' . $name ); ?>"></use>
 	</svg>
 	<?php
 }
@@ -224,9 +225,9 @@ add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
 /**
  * Filter JetPack devicepx script.
  */
-function remove_devicepx() { 
-wp_dequeue_script( 'devicepx' ); 
-} 
+function remove_devicepx() {
+wp_dequeue_script( 'devicepx' );
+}
 add_action( 'wp_enqueue_scripts', 'remove_devicepx' );
 
 /**

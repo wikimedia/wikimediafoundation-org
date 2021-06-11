@@ -5,6 +5,9 @@
  * @package shiro
  */
 
+use function Asset_Loader\Manifest\get_active_manifest;
+use function Asset_Loader\Manifest\load_asset_manifest;
+
 /**
  * Adds custom classes to the array of body classes.
  *
@@ -707,6 +710,28 @@ function wmf_get_svg_uri( string $name ): string
 	$name = str_replace( '.svg', '', $name);
 	$uri = get_stylesheet_directory_uri() . '/assets/src/svg/' . $name . '.svg';
 	return esc_url($uri);
+}
+
+/**
+ * Returns a probable path for an asset processed by gulp.
+ *
+ * Some gulp assets are versioned, and used a different versioning system than
+ * asset processed by webpack. This function takes that into account, and
+ * will return a hashed asset if one exists.
+ *
+ * @param string $name
+ *
+ * @return string
+ */
+function wmf_get_gulp_asset_uri( string $name ): string {
+	$dist_path = get_stylesheet_directory_uri() . '/assets/dist/';
+	$manifest  = load_asset_manifest( get_active_manifest( [
+			get_stylesheet_directory() . '/assets/dist/rev-manifest.json',
+		] ) ) ?? [];
+
+	$resolved_name = $manifest[ $name ] ?? $name;
+
+	return $dist_path . $resolved_name;
 }
 
 /**

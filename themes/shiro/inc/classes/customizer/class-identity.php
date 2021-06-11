@@ -21,7 +21,7 @@ class Identity extends Base {
 		] );
 
 		$this->customize->add_control( new \WP_Customize_Image_Control( $this->customize, 'wmf_shiro_logo', [
-			'label'       => __( 'Site Logo', 'shiro' ),
+			'label'       => __( 'Site Logo', 'shiro-admin' ),
 			'description' => __( 'Set the logo that appears in the site header. <strong>SVGs strongly encouraged.</strong>' ),
 			'settings'    => 'wmf_site_logo',
 			'section'     => $section_id,

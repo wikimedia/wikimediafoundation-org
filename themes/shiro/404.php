@@ -10,14 +10,14 @@
 get_header();
 
 $template_args = array(
-	'h2_title' => get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro' ) ),
-	'h1_title' => get_theme_mod( 'wmf_404_title', __( 'Imagine a world in which there is a page here', 'shiro' ) ),
+	'h2_title' => get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) ),
+	'h1_title' => get_theme_mod( 'wmf_404_title', __( 'Imagine a world in which there is a page here', 'shiro-admin' ) ),
 );
 
-$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro' ) );
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'shiro' ) );
+$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro-admin' ) );
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'shiro-admin' ) );
 $wmf_404_copy           = get_theme_mod( 'wmf_404_copy' );
-$wmf_404_search_text    = get_theme_mod( 'wmf_404_search_text', __( 'What are you looking for?', 'shiro' ) );
+$wmf_404_search_text    = get_theme_mod( 'wmf_404_search_text', __( 'What are you looking for?', 'shiro-admin' ) );
 
 get_template_part( 'template-parts/header/page', '404', $template_args );
 

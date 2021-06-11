@@ -1,10 +1,10 @@
-/* global shiroEditorVariables */
-
 import { InnerBlocks, useBlockProps, RichText } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
+
+import EmailIcon from '../../../svg/individual/email.svg';
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/heading', {
@@ -14,8 +14,6 @@ const BLOCKS_TEMPLATE = [
 	[ 'core/paragraph', { content: __( 'Subscribe to news about ongoing projects and initiatives', 'shiro' ) } ],
 ];
 
-const iconUrl = shiroEditorVariables.themeUrl + '/assets/dist/icons.svg#email';
-
 export const
 	name = 'shiro/mailchimp-subscribe',
 	settings = {
@@ -23,7 +21,7 @@ export const
 
 		icon: 'email',
 
-		title: __( 'Mailchimp subscription form', 'shiro' ),
+		title: __( 'Mailchimp subscription form', 'shiro-admin' ),
 
 		category: 'wikimedia',
 
@@ -56,9 +54,7 @@ export const
 			return (
 				<>
 					<div { ...blockProps }>
-						<svg className="i icon icon-mail">
-							<use xlinkHref={ iconUrl } />
-						</svg>
+						<EmailIcon className="i icon icon-mail" />
 						<InnerBlocks
 							template={ BLOCKS_TEMPLATE }
 							templateLock={ false } />
@@ -102,11 +98,7 @@ export const
 
 			return (
 				<div { ...blockProps }>
-					<svg className="i icon icon-mail">
-						<RawHTML>
-							{ '<use xlink:href="' + iconUrl + '" />' }
-						</RawHTML>
-					</svg>
+					<EmailIcon className="i icon icon-mail" />
 					<InnerBlocks.Content />
 					<div className="mailchimp-subscribe__input-container">
 						<div
