@@ -8,11 +8,18 @@
 	font-family: $font-family-sans;
 	max-width: 100%;
 	padding: rem(22);
+	position: relative;
 	transition: box-shadow 250ms ease;
 	will-change: box-shadow;
 
 	@media (min-width: rem(394)) {
 		width: rem(314);
+	}
+
+	@supports #{"\selector(*:focus-within)"} {
+		&:focus-within {
+			@include focus-ring($hex: true, $inset: false);
+		}
 	}
 
 	&:hover {
@@ -37,6 +44,24 @@
 
 	&__title {
 		@include has-font-size("small");
+	}
+
+	&__link {
+		@supports #{"\selector(*:focus-within)"} {
+			&:focus {
+				outline: none;
+			}
+		}
+
+		&::after {
+			bottom: 0;
+			content: '';
+			display: block;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
 	}
 
 	// Handle use in columns
