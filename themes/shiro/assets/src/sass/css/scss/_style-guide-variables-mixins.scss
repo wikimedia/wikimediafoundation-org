@@ -48,6 +48,23 @@
 	}
 }
 
+@mixin focus-ring(
+	$hex: false,
+	$inset: false
+) {
+	border-radius: rem(2);
+	@if $inset and $hex {
+		box-shadow: inset 0 0 0 2px $wmui-color-focus-ring-hex;
+	} @else if $hex {
+		box-shadow: 0 0 0 2px $wmui-color-focus-ring-hex;
+	} @else if $inset {
+		box-shadow: inset 0 0 0 2px $wmui-color-focus-ring;
+	} @else {
+		box-shadow: 0 0 0 2px $wmui-color-focus-ring;
+	}
+	outline: none;
+}
+
 @mixin style-guide-arrow-content {
 	content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
 }
