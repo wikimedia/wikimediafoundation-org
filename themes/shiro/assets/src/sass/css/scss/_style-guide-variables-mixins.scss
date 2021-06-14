@@ -67,48 +67,44 @@
 }
 
 @mixin style-guide-arrow-content {
-	content: ' →' #{"/*rtl:'← '*/;"}; // stylelint-disable-line string-quotes
+	content: " →" #{"/*rtl:'← '*/;"};
 }
 
-@mixin style-guide-arrow {
+@mixin style-guide-arrow-content-back {
+	content: "← " #{"/*rtl:'→ '*/;"};
+}
+
+@mixin style-guide-arrow($back: false) {
 	display: inline-flex;
 	position: relative;
 
-	&::after {
-		@include style-guide-arrow-content;
-		color: currentColor;
-		margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
-		transition: 300ms ease-in transform;
-	}
-
-	&:hover {
-		text-decoration: none;
+	@if $back {
+		&::before {
+			@include style-guide-arrow-content-back;
+			color: currentColor;
+			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
+			transition: 300ms ease-in transform;
+		}
+	} @else {
 		&::after {
-			transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+			@include style-guide-arrow-content;
+			color: currentColor;
+			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
+			transition: 300ms ease-in transform;
 		}
 	}
-}
-
-@mixin style-guide-arrow-link {
-
-	@include has-font-size( "default" );
-	@include style-guide-link;
-	display: inline-flex;
-	font-weight: 700;
-	position: relative;
-
-	&::after {
-		@include style-guide-arrow-content;
-		color: $wmui-color-accent50;
-		color: var(--link-color);
-		margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
-		transition: 300ms ease-in transform;
-	}
 
 	&:hover {
 		text-decoration: none;
-		&::after {
-			transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+
+		@if $back {
+			&::before {
+				transform: translateX(rem(-5)); /*rtl: transform: translateX(rem(5));*/
+			}
+		} @else {
+			&::after {
+				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+			}
 		}
 	}
 }
@@ -233,9 +229,9 @@
 	}
 }
 
-@mixin button-link-arrow() {
+@mixin button-link-arrow($back: false) {
 	@include button-link();
-	@include style-guide-arrow();
+	@include style-guide-arrow($back);
 }
 
 @mixin style-guide-dropdown-caret-blue() {
