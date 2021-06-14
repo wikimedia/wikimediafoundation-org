@@ -54,15 +54,6 @@
 ) {
 	border-radius: rem(2);
 	box-shadow: if($inset, inset, #{""}) 0 0 0 2px if($hex, $wmui-color-focus-ring-hex, $wmui-color-focus-ring);
-	// @if $inset and $hex {
-	// 	box-shadow: inset 0 0 0 2px $wmui-color-focus-ring-hex;
-	// } @else if $hex {
-	// 	box-shadow: 0 0 0 2px $wmui-color-focus-ring-hex;
-	// } @else if $inset {
-	// 	box-shadow: inset 0 0 0 2px $wmui-color-focus-ring;
-	// } @else {
-	// 	box-shadow: 0 0 0 2px $wmui-color-focus-ring;
-	// }
 	outline: none;
 }
 
