@@ -20,12 +20,10 @@
 	}
 
 	&__title {
-
-		@include h-margins;
-
 		// Additional specificity necessary to override base h3 styles
+		.single.has-blocks .wysiwyg &,
 		.page.has-blocks .wysiwyg & {
-
+			@include h-margins;
 			@include h4;
 			margin-bottom: rem(16);
 		}
