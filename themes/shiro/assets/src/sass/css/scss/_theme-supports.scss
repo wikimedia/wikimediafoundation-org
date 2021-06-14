@@ -154,6 +154,14 @@ $color-palette:
 	}
 }
 
+// Allow certain this to have align-wide only in a "blog post" context
+.mw-784 .is-style-align-wide-blog {
+	@media ( min-width: $medium-landscape ) {
+		margin-left: ( ( $content-column-post - $content-column ) / 2 );
+		margin-right: ( ( $content-column-post - $content-column ) / 2 );
+	}
+}
+
 .wysiwyg .alignfull {
 
 	.page.has-blocks &,
