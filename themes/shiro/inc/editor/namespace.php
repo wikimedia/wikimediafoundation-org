@@ -61,6 +61,8 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
 		'shiro/external-link',
+		'shiro/profile',
+		'shiro/profile-list',
 
 		// Core blocks
 		'core/paragraph',
