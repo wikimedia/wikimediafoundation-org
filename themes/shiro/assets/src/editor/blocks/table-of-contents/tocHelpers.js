@@ -32,17 +32,11 @@ const getNestedBlocks = blocks => {
  */
 export const getHeadingBlocks = blocks => {
 	const nestedBlocks = getNestedBlocks( blocks );
-	let headingBlocks = [];
 
 	// Filter for H2 heading blocks.
-	nestedBlocks
-		.filter(
-			block =>
-				block.name === 'core/heading' && block.attributes.level === 2
-		)
-		.forEach( block => {
-			headingBlocks.push( block );
-		} );
+	const headingBlocks = nestedBlocks.filter(
+		block => block.name === 'core/heading' && block.attributes.level === 2
+	);
 
 	return headingBlocks;
 };

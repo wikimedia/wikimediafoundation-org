@@ -80,6 +80,11 @@ function processActiveLink( item, hash = false, heightOffset = 0 ) {
 	const parentList = item.closest( '.toc__nested' );
 	const parentItem = parentList ? parentList.previousElementSibling : false;
 	let toggleText = parentItem ? parentItem.innerText : item.innerText;
+	toggleText =
+		toggleText.length > 0
+			? toggleText
+			: _tocNav.dropdown.toggle.querySelector( '.btn-label-a11y' )
+				.innerText;
 
 	// Remove existing active classes.
 	_tocNav

@@ -6,6 +6,8 @@ import { __ } from '@wordpress/i18n';
 import HeadingLinks from './HeadingLinks';
 import { getHeadingBlocks, setHeadingAnchors } from './tocHelpers';
 
+import './style.scss';
+
 export const name = 'shiro/toc',
 	settings = {
 		apiVersion: 2,
@@ -14,7 +16,7 @@ export const name = 'shiro/toc',
 		icon: 'menu-alt2',
 		description: __(
 			'A table of contents menu for the sidebar on list template pages.',
-			'shiro'
+			'shiro-admin'
 		),
 		supports: {
 			inserter: true,
@@ -65,37 +67,23 @@ export const name = 'shiro/toc',
 			}, [ topLevelBlocks, attributes, setAttributes ] );
 
 			return (
-				<nav
-					className="toc-nav"
-					data-backdrop="inactive"
-					data-dropdown="toc-nav"
-					data-dropdown-content=".toc"
-					data-dropdown-status="uninitialized"
-					data-dropdown-toggle=".toc__button"
-					data-sticky="false"
-					data-toggleable="yes"
-					data-trap="inactive"
-					data-visible="false"
-				>
-					<h2 className="toc__title screen-reader-text">
-						{ __( 'Table of Contents', 'shiro' ) }
-					</h2>
-					<button
-						aria-expanded="false"
-						className="toc__button"
-						hidden
-					>
-						<span className="btn-label-a11y">
-							{ __( 'Navigate within this page.', 'shiro' ) }
-						</span>
-						<span className="btn-label-active-item">
-							{ attributes.headingBlocks[ 0 ].attributes.content }
-						</span>
-					</button>
-					<ul { ...blockProps }>
-						<HeadingLinks blocks={ attributes.headingBlocks } />
-					</ul>
-				</nav>
+				<>
+					{ attributes.headingBlocks.length > 0 ? (
+						<nav className="toc-nav">
+							<ul { ...blockProps }>
+								<HeadingLinks
+									blocks={ attributes.headingBlocks }
+									edit
+								/>
+							</ul>
+						</nav>
+					) : (
+						<p className="toc__description">
+							Links will appear here when you've added some h2
+							blocks in the other column.
+						</p>
+					) }
+				</>
 			);
 		},
 
@@ -108,37 +96,49 @@ export const name = 'shiro/toc',
 			} );
 
 			return (
-				<nav
-					className="toc-nav"
-					data-backdrop="inactive"
-					data-dropdown="toc-nav"
-					data-dropdown-content=".toc"
-					data-dropdown-status="uninitialized"
-					data-dropdown-toggle=".toc__button"
-					data-sticky="false"
-					data-toggleable="yes"
-					data-trap="inactive"
-					data-visible="false"
-				>
-					<h2 className="toc__title screen-reader-text">
-						{ __( 'Table of Contents', 'shiro' ) }
-					</h2>
-					<button
-						aria-expanded="false"
-						className="toc__button"
-						hidden
-					>
-						<span className="btn-label-a11y">
-							{ __( 'Navigate within this page.', 'shiro' ) }
-						</span>
-						<span className="btn-label-active-item">
-							{ attributes.headingBlocks[ 0 ].attributes.content }
-						</span>
-					</button>
-					<ul { ...blockProps }>
-						<HeadingLinks blocks={ attributes.headingBlocks } />
-					</ul>
-				</nav>
+				<>
+					{ attributes.headingBlocks.length > 0 && (
+						<nav
+							className="toc-nav"
+							data-backdrop="inactive"
+							data-dropdown="toc-nav"
+							data-dropdown-content=".toc"
+							data-dropdown-status="uninitialized"
+							data-dropdown-toggle=".toc__button"
+							data-sticky="false"
+							data-toggleable="yes"
+							data-trap="inactive"
+							data-visible="false"
+						>
+							<h2 className="toc__title screen-reader-text">
+								{ __( 'Table of Contents', 'shiro' ) }
+							</h2>
+							<button
+								aria-expanded="false"
+								className="toc__button"
+								hidden
+							>
+								<span className="btn-label-a11y">
+									{ __(
+										'Navigate within this page.',
+										'shiro'
+									) }
+								</span>
+								<span className="btn-label-active-item">
+									{ attributes.headingBlocks[ 0 ].attributes
+										.content ||
+										__( 'Toggle menu', 'shiro' ) }
+								</span>
+							</button>
+							<ul { ...blockProps }>
+								<HeadingLinks
+									blocks={ attributes.headingBlocks }
+									edit={ false }
+								/>
+							</ul>
+						</nav>
+					) }
+				</>
 			);
 		},
 	};

@@ -3,13 +3,18 @@
  *
  * @param {object} props Props
  * @param {Array} props.blocks Blocks to process.
+ * @param {boolean} props.edit Are we in the editor?
  */
-const HeadingLinks = ( { blocks } ) => {
+const HeadingLinks = ( { blocks, edit } ) => {
 	const headingLinkList = blocks.map( ( block, i ) => (
 		<li key={ i } className="toc__item">
-			<a className="toc__link" href={ '#' + block.attributes.anchor }>
-				{ block.attributes.content }
-			</a>
+			{ edit ? (
+				<span className="toc__link">{ block.attributes.content }</span>
+			) : (
+				<a className="toc__link" href={ '#' + block.attributes.anchor }>
+					{ block.attributes.content }
+				</a>
+			) }
 		</li>
 	) );
 
