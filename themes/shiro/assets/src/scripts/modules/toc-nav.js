@@ -25,16 +25,21 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
-	if ( ! entry.isIntersecting ) {
+      const {
+		isIntersecting,
+		target,
+	} = entry;
+	const nav = target.parentElement;
+	if ( ! isIntersecting ) {
 		// We're on the desktop
-		_tocNav.dataset.visible = 'yes';
-		_tocNav.dataset.toggleable = 'no';
-		_tocNav.dataset.backdrop = 'inactive';
-		_tocNav.dataset.trap = 'inactive';
+		nav.dataset.visible = 'yes';
+		nav.dataset.toggleable = 'no';
+		nav.dataset.backdrop = 'inactive';
+		nav.dataset.trap = 'inactive';
 	} else {
 		// We're on mobile
-		_tocNav.dataset.visible = 'no';
-		_tocNav.dataset.toggleable = 'yes';
+		nav.dataset.visible = 'no';
+		nav.dataset.toggleable = 'yes';
 	}
 
 	// Wait for the nav to get height, then check whether it should be sticky.
