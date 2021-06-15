@@ -8,7 +8,8 @@
 		"jQuery": false,
 		"wp": false,
 		"shiro": false,
-		"MutationObserverInit": true
+		"MutationObserverInit": true,
+		"hm": false,
 	},
 	"rules": {},
 	"overrides": [
