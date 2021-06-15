@@ -54,7 +54,7 @@
 	// Groups inside of reusable blocks that have align values still get their
 	// width limited by default. This removes that limitation, allowing them to
 	// expand to the correct width of the wrapping group.
-	.is-reusable [data-align] .wp-block-group__inner-container > .wp-block {
+	[data-align] > .wp-block-group > .wp-block-group__inner-container > .wp-block {
 		max-width: none;
 	}
 }
