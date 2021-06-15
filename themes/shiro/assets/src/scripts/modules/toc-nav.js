@@ -25,10 +25,7 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
-      const {
-		isIntersecting,
-		target,
-	} = entry;
+	const { isIntersecting, target } = entry;
 	const nav = target.parentElement;
 	if ( ! isIntersecting ) {
 		// We're on the desktop
