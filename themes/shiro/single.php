@@ -91,10 +91,8 @@ $modules = array(
 	$has_connect ? false : 'connect',
 );
 
-$modules = array_filter( $modules ); ?>
-<div class="wysiwyg">
-	<?php foreach ( $modules as $module ) {
-		get_template_part( 'template-parts/page/page', $module );
-	} ?>
-</div>
-<?php get_footer() ?>
+$modules = array_filter( $modules );
+foreach ( $modules as $module ) {
+	get_template_part( 'template-parts/page/page', $module );
+}
+get_footer() ?>

@@ -12,8 +12,10 @@ if ( is_numeric( $reusable_block_id )
      && get_post_type( $reusable_block_id ) === 'wp_block' ) {
 	$block = get_post( $reusable_block_id );
 	if ( is_a( $block, \WP_Post::class ) ) { ?>
-		<div class="mw-980">
-			<?php echo wp_kses_post( apply_filters( 'the_content', $block->post_content ) ); ?>
+		<div class="block-area">
+			<div class="wysiwyg mw-980">
+				<?php echo wp_kses_post( apply_filters( 'the_content', $block->post_content ) ); ?>
+			</div>
 		</div>
 	<?php }
 } else {

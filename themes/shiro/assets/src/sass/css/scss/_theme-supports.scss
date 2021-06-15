@@ -82,7 +82,8 @@ $color-palette:
 
 // Define base styles for headings, etc within text content.
 .page.has-blocks,
-.single.has-blocks {
+.single.has-blocks,
+.block-area.block-area {
 
 	@include wysiwyg {
 
@@ -165,7 +166,8 @@ $color-palette:
 .wysiwyg .alignfull {
 
 	.page.has-blocks &,
-	.single.has-blocks & {
+	.single.has-blocks &,
+	.block-area.block-area & {
 
 		@include alignfull();
 	}

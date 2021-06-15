@@ -285,7 +285,8 @@ $content-wrapper: ".wysiwyg" !default;
 @mixin has-blocks-wrap {
 	@include wysiwyg-wrap {
 		.page.has-blocks &,
-		.single.has-blocks & {
+		.single.has-blocks &,
+		.block-area.block-area & {
 			@content;
 		}
 	}

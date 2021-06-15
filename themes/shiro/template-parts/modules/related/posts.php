@@ -21,27 +21,29 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 
 ?>
 
-<div class="mw-980">
-	<?php /** This uses the structure & styles of the double heading, but can't
-	 * use render_blocks() directly because the double-heading block
-	 * structures its data very differently.
-	 */ ?>
-	<div class="double-heading">
-		<?php if ( ! empty( $title ) ) : ?>
-			<p class="double-heading__secondary is-style-h5">
-				<span><?php echo esc_html( $title ) ?></span>
-			</p>
-		<?php endif; ?>
-		<h2 class="double-heading__primary is-style-h3">
-			<?php echo esc_html( $description ) ?>
-			<?php if ( ! empty( $authorlink ) ) : ?>
-				<span class="authorlink"><a
-							href="/news/author/<?php echo esc_attr( $authorlink ); ?>">View all</a></span>
+<div class="block-area">
+	<div class="wysiwyg mw-980">
+		<?php /** This uses the structure & styles of the double heading, but can't
+		 * use render_blocks() directly because the double-heading block
+		 * structures its data very differently.
+		 */ ?>
+		<div class="double-heading">
+			<?php if ( ! empty( $title ) ) : ?>
+				<p class="double-heading__secondary is-style-h5">
+					<span><?php echo esc_html( $title ) ?></span>
+				</p>
 			<?php endif; ?>
-		</h2>
-	</div>
+			<h2 class="double-heading__primary is-style-h3">
+				<?php echo esc_html( $description ) ?>
+				<?php if ( ! empty( $authorlink ) ) : ?>
+					<span class="authorlink"><a
+								href="/news/author/<?php echo esc_attr( $authorlink ); ?>">View all</a></span>
+				<?php endif; ?>
+			</h2>
+		</div>
 
-	<?php foreach ( $template_data['posts'] as $post ) {
-		echo BlogPost\render_block( [ 'post_id' => $post->ID ] );
-	} ?>
+		<?php foreach ( $template_data['posts'] as $post ) {
+			echo BlogPost\render_block( [ 'post_id' => $post->ID ] );
+		} ?>
+	</div>
 </div>

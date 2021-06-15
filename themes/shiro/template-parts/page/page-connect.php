@@ -22,8 +22,10 @@ if ( $no_custom_connect
 	if ( is_a( $block, \WP_Post::class ) ) { ?>
 		<?php /** Since we're not in the "content" area, these blocks need
 		 * a wrapper with a set width or they look real strange. */ ?>
-		<div class="mw-980">
-			<?php echo apply_filters( 'the_content', $block->post_content ) ?>
+		<div class="block-area">
+			<div class="wysiwyg mw-980">
+				<?php echo apply_filters( 'the_content', $block->post_content ) ?>
+			</div>
 		</div>
 	<?php }
 } else {
