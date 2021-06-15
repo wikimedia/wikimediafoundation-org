@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('themes/shiro/package-lock.json') }}
+          key: npm-${{ hashFiles('themes/shiro/package-lock.json', 'plugins/hm-gutenberg-tools/package-lock.json') }}
           restore-keys: npm-
 
       - name: Install dependencies
