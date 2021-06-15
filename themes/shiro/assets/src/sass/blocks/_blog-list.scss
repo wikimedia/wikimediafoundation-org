@@ -22,7 +22,8 @@
 	&__title {
 		// Additional specificity necessary to override base h3 styles
 		.single.has-blocks .wysiwyg &,
-		.page.has-blocks .wysiwyg & {
+		.page.has-blocks .wysiwyg &,
+		.block-area.block-area & {
 			@include h-margins;
 			@include h4;
 			margin-bottom: rem(16);
