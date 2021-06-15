@@ -7,8 +7,4 @@ export const name = 'core/columns',
 			name: 'align-buttons-bottom',
 			label: __( 'Align Buttons Bottom', 'shiro' ),
 		},
-		{
-			name: 'align-wide-blog',
-			label: __( 'Wide alignment on blog post' ),
-		},
 	];

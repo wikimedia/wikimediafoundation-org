@@ -145,21 +145,13 @@ $color-palette:
 }
 
 // Negative margins for wide and full align blocks.
-.wysiwyg .alignwide {
+.wysiwyg.mw-784 .alignwide {
 
 	@media ( min-width: $medium-landscape ) {
 		.single-post & {
 			margin-left: ( ( $content-column-post - $content-column ) / 2 );
 			margin-right: ( ( $content-column-post - $content-column ) / 2 );
 		}
-	}
-}
-
-// Allow certain this to have align-wide only in a "blog post" context
-.mw-784 .is-style-align-wide-blog {
-	@media ( min-width: $medium-landscape ) {
-		margin-left: ( ( $content-column-post - $content-column ) / 2 );
-		margin-right: ( ( $content-column-post - $content-column ) / 2 );
 	}
 }
 
