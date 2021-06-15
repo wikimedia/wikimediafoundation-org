@@ -25,7 +25,7 @@ jobs:
           restore-keys: npm-
 
       - name: Install dependencies
-        run: (cd themes/shiro && npm ci)
+        run: (npm --prefix themes/shiro ci && npm --prefix plugins/hm-gutenberg-tools ci)
 
       - name: Lint
-        run: (cd themes/shiro && npm run lint)
+        run: (npm --prefix themes/shiro lint && npm --prefix plugins/hm-gutenberg-tools lint)
