@@ -28,4 +28,4 @@ jobs:
         run: (npm --prefix themes/shiro ci && npm --prefix plugins/hm-gutenberg-tools ci)
 
       - name: Lint
-        run: (npm --prefix themes/shiro lint && npm --prefix plugins/hm-gutenberg-tools lint)
+        run: (npm --prefix themes/shiro run lint && npm --prefix plugins/hm-gutenberg-tools run lint)
