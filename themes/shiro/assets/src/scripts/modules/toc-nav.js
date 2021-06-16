@@ -3,16 +3,29 @@ import initialize from '../util/initialize';
 import { handleVisibleChange } from './dropdown';
 
 const _tocNav = document.querySelector( '[data-dropdown="toc-nav"]' );
+const _tocNavTitle = _tocNav.querySelector( '.toc__title' );
+const _tocNavUl = _tocNav.querySelector( '.toc' );
+const _contentColumn = _tocNav
+	.closest( '.toc__section' )
+	.querySelector( '.toc__content' );
 
 /**
- * @returns {IntersectionObserver} A configured observer, ready to observe
+ * @returns {IntersectionObserver} A configured observer, ready to observe.
+ *
+ * @param {object} options The options to use with the observer.
  */
-function createObserver() {
-	return new IntersectionObserver( handleIntersection );
+function createObserver(
+	options = {
+		root: null,
+		rootMargin: '0px',
+		threshold: 0,
+	}
+) {
+	return new IntersectionObserver( handleIntersection, options );
 }
 
 /**
- * Manipulate TOC nav to have the viewport-correct behavior.
+ * Manage various intersections of content with the viewport.
  *
  * The TOC nav behaves differently on "mobile" and "desktop"--it uses
  * the dropdown hide/show functionality on mobile, but not on desktop. Here,
@@ -25,22 +38,50 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
-	const { isIntersecting, target } = entry;
-	const nav = target.parentElement;
-	if ( ! isIntersecting ) {
-		// We're on the desktop
-		nav.dataset.visible = 'yes';
-		nav.dataset.toggleable = 'no';
-		nav.dataset.backdrop = 'inactive';
-		nav.dataset.trap = 'inactive';
-	} else {
-		// We're on mobile
-		nav.dataset.visible = 'no';
-		nav.dataset.toggleable = 'yes';
-	}
+	const { intersectionRatio, isIntersecting, target } = entry;
 
-	// Wait for the nav to get height, then check whether it should be sticky.
-	setTimeout( determineStickiness, 10 );
+	// Handle the entry based on the target.
+	if ( target === _tocNavUl ) {
+		const nav = target.parentElement;
+		if (
+			isIntersecting &&
+			intersectionRatio === 1 &&
+			nav.dataset.toggleable === 'no'
+		) {
+			nav.dataset.sticky = 'yes';
+		}
+	} else if ( target === _tocNavTitle ) {
+		const nav = target.parentElement;
+		if ( ! isIntersecting ) {
+			// We're on the desktop
+			nav.dataset.visible = 'yes';
+			nav.dataset.toggleable = 'no';
+			nav.dataset.backdrop = 'inactive';
+			nav.dataset.trap = 'inactive';
+		} else {
+			// We're on mobile
+			nav.dataset.visible = 'no';
+			nav.dataset.toggleable = 'yes';
+			nav.dataset.sticky = 'no';
+		}
+	} else if ( target.tagName === 'H2' && target.id !== undefined ) {
+		if ( isIntersecting ) {
+			target.dataset[ 'visible' ] = 'yes';
+		} else {
+			target.dataset[ 'visible' ] = 'no';
+		}
+
+		if ( _tocNav.dataset.observeScroll === 'yes' ) {
+			const firstH2 = _contentColumn.querySelector(
+				'h2[data-visible="yes"]'
+			);
+			const activeLink = firstH2 ? getActiveLink( firstH2 ) : null;
+			if ( activeLink ) {
+				// Process the active link.
+				processActiveLink( activeLink );
+			}
+		}
+	}
 }
 
 /**
@@ -76,9 +117,15 @@ function handleTocNavVisibleChange( dropdown ) {
  *
  * @param {HTMLElement} item Active link item to process.
  * @param {string} hash Hash to set after scroll.
+ * @param {boolean} scroll Whether to scroll the content.
  * @param {number} heightOffset Height offset for scroll function.
  */
-function processActiveLink( item, hash = false, heightOffset = 0 ) {
+function processActiveLink(
+	item,
+	hash = item.getAttribute( 'href' ),
+	scroll = false,
+	heightOffset = 0
+) {
 	const parentList = item.closest( '.toc__nested' );
 	const parentItem = parentList ? parentList.previousElementSibling : false;
 	let toggleText = parentItem ? parentItem.innerText : item.innerText;
@@ -103,13 +150,15 @@ function processActiveLink( item, hash = false, heightOffset = 0 ) {
 
 	// Scroll to the right position.
 	const activeContentItem = getActiveContent( item );
-	if ( activeContentItem ) {
+	if ( activeContentItem && scroll ) {
 		scrollHelper( activeContentItem, hash, heightOffset );
+	} else {
+		history.replaceState( null, null, hash );
 	}
 }
 
 /**
- * Get the active TOC content based on the acitve link
+ * Get the active TOC content based on the active link.
  *
  * @param {HTMLElement} item Active link item to process.
  *
@@ -125,7 +174,23 @@ function getActiveContent( item ) {
 }
 
 /**
- * Handle scrolling to the right position
+ * Get the active TOC link based on the active content.
+ *
+ * @param {HTMLElement} item Active content item to process.
+ *
+ * @returns {HTMLElement} the active link element.
+ */
+function getActiveLink( item ) {
+	const activeContentId = item.id;
+	const activeLinkItem = document.querySelector(
+		`.toc a.toc__link[href="#${ activeContentId }"]`
+	);
+
+	return activeLinkItem;
+}
+
+/**
+ * Handle scrolling to the right position.
  *
  * @param {HTMLElement} item Element we want to scroll to.
  * @param {string} hash Hash to set after scroll.
@@ -141,11 +206,14 @@ function scrollHelper( item, hash = false, heightOffset = 0 ) {
 	const scrollPosition =
 		windowScrollY + itemScrollTop + heightOffset - headerHeight - 20;
 
+	// Disable the setting of active links on scroll.
+	_tocNav.dataset[ 'observeScroll' ] = 'no';
 	window.scrollTo( {
 		top: scrollPosition,
 		left: 0,
 		behavior: 'smooth',
 	} );
+	addEventListener( 'scroll', scrollListener );
 
 	/**
 	 * Listen for when the page finishes scrolling.
@@ -153,13 +221,12 @@ function scrollHelper( item, hash = false, heightOffset = 0 ) {
 	function scrollListener() {
 		clearTimeout( scrollTimeout );
 		scrollTimeout = setTimeout( function () {
-			history.replaceState( null, null, hash );
+			if ( hash ) {
+				history.replaceState( null, null, hash );
+			}
+			_tocNav.dataset[ 'observeScroll' ] = 'yes';
 			removeEventListener( 'scroll', scrollListener );
 		}, 100 );
-	}
-
-	if ( hash ) {
-		addEventListener( 'scroll', scrollListener );
 	}
 }
 
@@ -180,7 +247,7 @@ function handleTocLinkClick( event ) {
 	const hash = item.getAttribute( 'href' );
 
 	// Process the active link.
-	processActiveLink( item, hash );
+	processActiveLink( item, hash, true );
 
 	// Close the menu if we're on mobile.
 	if (
@@ -192,43 +259,37 @@ function handleTocLinkClick( event ) {
 }
 
 /**
- * Determine whether the nav should be sticky.
- */
-function determineStickiness() {
-	const toc = _tocNav.dropdown.content;
-	const tocNavHeight = toc.getBoundingClientRect()[ 'height' ];
-	const marginAroundToc = parseInt(
-		getComputedStyle( toc ).getPropertyValue( '--margin-around-toc' )
-	);
-
-	if (
-		_tocNav.dataset.visible === 'yes' &&
-		tocNavHeight + marginAroundToc < window.innerHeight
-	) {
-		_tocNav.dataset.sticky = 'yes';
-	} else {
-		_tocNav.dataset.sticky = 'no';
-	}
-}
-
-/**
  * Set up the TOC navigation.
  */
 function initializeTocNav() {
 	if ( _tocNav ) {
-		// Ensure correct state on load
+		// Ensure correct state on load.
 		handleTocNavVisibleChange( _tocNav );
 		_tocNav.dropdown.handlers.visibleChange = handleTocNavVisibleChange;
 
-		// Observe the intersection of the title with the page
-		_tocNav.observer = createObserver();
-		_tocNav.observer.observe( _tocNav.querySelector( '.toc__title' ) );
+		// Observe the intersection of the title with the page.
+		_tocNav.observer = createObserver( {
+			root: null,
+			rootMargin: '0px',
+			threshold: [ 0, 0.25, 0.5, 0.75, 1 ],
+		} );
+		_tocNav.observer.observe( _tocNavTitle );
+		_tocNav.observer.observe( _tocNavUl );
 
-		// Add event listeners to the links
+		// Add event listeners to the links.
 		_tocNav.querySelectorAll( '.toc__link[href^="#"]' ).forEach( link => {
 			link.addEventListener( 'click', handleTocLinkClick );
 		} );
 
+		// Add observers to the h2s.
+		if ( _contentColumn ) {
+			_contentColumn.observer = createObserver();
+			_contentColumn.querySelectorAll( 'h2[id]' ).forEach( _h2 => {
+				_contentColumn.observer.observe( _h2 );
+			} );
+		}
+
+		// Handle hash on initial load.
 		if ( location.hash ) {
 			const hash = location.hash;
 			const navHeight = document
@@ -252,20 +313,33 @@ function initializeTocNav() {
 				`a[href="${ hash }"]`
 			);
 			if ( activeTocItem ) {
-				processActiveLink( activeTocItem, hash, heightOffset );
+				processActiveLink( activeTocItem, hash, true, heightOffset );
 			}
+		} else {
+			/**
+			 * When the page is finished loading, start observing the h2 intersections.
+			 *
+			 * @param {Event} event Window load event.
+			 */
+			window.onload = event => {
+				_tocNav.dataset[ 'observeScroll' ] = 'yes';
+			};
 		}
 	}
 }
 
 /**
- * Tear down the TOC navigation.
+ * Tear down the TOC navigation and h2 observers.
  */
 function teardownTocNav() {
 	if ( _tocNav && _tocNav.observer ) {
 		_tocNav.observer.disconnect();
 	}
 	_tocNav.dropdown.handlers.visibleChange = handleVisibleChange;
+
+	if ( _contentColumn && _contentColumn.observer ) {
+		_contentColumn.observer.disconnect();
+	}
 }
 
 /**
