@@ -142,7 +142,7 @@
 			// stylelint-disable selector-class-pattern
 			.blog-post__image-link {
 				flex-basis: 77.5%;
-				margin-right: -322px;
+				margin-right: rem(-322);
 			}
 
 			.blog-post__content {
