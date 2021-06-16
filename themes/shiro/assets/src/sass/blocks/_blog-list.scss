@@ -33,11 +33,11 @@
 	}
 
 	&__title {
-		@include h-margins;
-
 		// Additional specificity necessary to override base h3 styles
-		.page.has-blocks .wysiwyg & {
-
+		.single.has-blocks .wysiwyg &,
+		.page.has-blocks .wysiwyg &,
+		.block-area.block-area & {
+			@include h-margins;
 			@include h4;
 			margin-bottom: rem(16);
 		}
@@ -117,6 +117,7 @@
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 		align-items: stretch;
 		flex-direction: row-reverse;
+		justify-content: flex-end;
 		padding: rem(40) 0;
 
 		&__title {
