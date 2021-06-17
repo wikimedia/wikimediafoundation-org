@@ -78,9 +78,11 @@ export const name = 'shiro/toc',
 							</ul>
 						</nav>
 					) : (
-						<p className="toc__description">
-							Links will appear here when you've added some h2
-							blocks in the other column.
+						<p { ...blockProps }>
+							{ __(
+								'Links will appear here when you\'ve added some h2 blocks in the other column.',
+								'shiro-admin'
+							) }
 						</p>
 					) }
 				</>
