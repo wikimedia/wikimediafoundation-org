@@ -12,19 +12,15 @@ $template_args = get_post_meta( get_the_ID(), 'connect', true );
 // Determine if this is using a legacy customization to the connect text
 $no_custom_connect = empty( array_filter( $template_args ) );
 
-$reusable_block_id = get_theme_mod( 'wmf_connect_reusable_block' );
+$reusable_block = wmf_get_reusable_block_module( 'connect' );
 
-if ( $no_custom_connect
-     && is_numeric( $reusable_block_id )
-     && $reusable_block_id > 0
-     && get_post_type( $reusable_block_id ) === 'wp_block' ) {
-	$block = get_post( $reusable_block_id );
-	if ( is_a( $block, \WP_Post::class ) ) { ?>
+if ( $no_custom_connect && $reusable_block ) {
+	if ( is_a( $reusable_block, \WP_Post::class ) ) { ?>
 		<?php /** Since we're not in the "content" area, these blocks need
 		 * a wrapper with a set width or they look real strange. */ ?>
 		<div class="block-area">
 			<div class="wysiwyg mw-980">
-				<?php echo apply_filters( 'the_content', $block->post_content ) ?>
+				<?php echo apply_filters( 'the_content', $reusable_block->post_content ) ?>
 			</div>
 		</div>
 	<?php }
