@@ -79,4 +79,10 @@ function register_pattern() {
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
 		'content' => TemplateLanding\pattern(),
 	] );
+
+	register_block_pattern( TemplateLanding\NAME, [
+		'title' => __( 'List page template', 'shiro-admin' ),
+		'categories' => [ TEMPLATE_CATEGORY_NAME ],
+		'content' => TemplateList\pattern(),
+	] );
 }
