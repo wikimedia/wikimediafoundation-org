@@ -75,47 +75,6 @@
 }
 
 
-// Buttons
-@mixin button-reset() {
-	display: inline-block;
-	font-weight: bold;
-	border-radius: 5px;
-	cursor: pointer;
-	padding: 1rem 1.5rem;
-}
-
-@mixin buttonNoStyles {
-	border: none;
-	background: none;
-}
-
-@mixin button($bg-color, $bg-color-hover, $color, $color-hover, $padding, $mobile-padding) {
-	background-color: $bg-color;
-	color: $color;
-
-	// Button tag reset.  Also given to button tag in gobal.scss
-	@include button-reset();
-
-	padding: $mobile-padding;
-	transition: $transition;
-    border: none;
-    outline: none;
-
-	&:hover {
-		background-color: $bg-color-hover;
-		color: $color-hover;
-	}
-
-	&:focus {
-		outline: 1px dotted $bg-color-hover;
-	}
-
-	@media (min-width: $large-bp) {
-		padding: $padding;
-	}
-}
-
-
 // Flexbox
 @mixin flexbox($mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction) {
 	display: flex;

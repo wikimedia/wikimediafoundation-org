@@ -17,25 +17,19 @@ $wmui-color-image-filter-blue: rgba(213, 203, 255, .85);
 $wmui-color-image-filter-red: rgba(255,186,223, .85);
 $wmui-color-image-filter-yellow: rgba(255, 254, 168, .85);
 
-$wmui-color-focus-ring: rgba(#007dfa, 0.6);
+$wmui-color-focus-ring: rgba(#007dfa, 0.8);
 // Match the focus ring color for the footer (and meet contrast requirement).
 $wmui-color-focus-ring-hex: scale-color(#007dfa, $lightness: 40%);
 
 // Updated branded colors for primary buttons.
 $color-primary:         $wmui-color-blue50;
 $color-primary--hover:  #3200be;
-$color-primary--active: $color-primary;
-$color-primary--focus:  $color-primary--hover;
 
 $color-secondary:         $wmui-color-red50;
 $color-secondary--hover:  #a00040;
-$color-secondary--active: $color-secondary;
-$color-secondary--focus:  $color-secondary--hover;
 
-$color-tertiary:         $wmui-color-base90;
-$color-tertiary--hover:  $wmui-color-base100;
-$color-tertiary--active: $wmui-color-base100;
-$color-tertiary--focus:  $wmui-color-base100;
+$color-tertiary:         $wmui-color-base100;
+$color-tertiary--hover:  $color-tertiary;
 
 // The style-guide doesn't contain variables for the border color of framed
 // elements
