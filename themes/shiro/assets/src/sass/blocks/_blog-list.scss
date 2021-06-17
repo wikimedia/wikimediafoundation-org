@@ -25,7 +25,6 @@
 	}
 
 	&__image {
-
 		@include hover-box-shadow;
 	}
 
@@ -44,7 +43,6 @@
 		}
 
 		a {
-
 			@include style-guide-link;
 
 			// The link around the heading should display in same color as text.
@@ -63,7 +61,6 @@
 	}
 
 	&__category-link {
-
 		@include has-font-size( "small" );
 		background-color: $wmui-color-blue90;
 		border-radius: rem(4);
@@ -84,7 +81,6 @@
 	}
 
 	&__excerpt p {
-
 		@include has-font-size( "default" );
 		color: $wmui-color-base0;
 		color: var(--text-color);
@@ -93,7 +89,6 @@
 	}
 
 	&__meta {
-
 		@include has-font-size( "small" );
 		color: $wmui-color-base0;
 		color: var(--text-color);
@@ -105,14 +100,12 @@
 		display: block;
 
 		a {
-
 			@include style-guide-link;
 		}
 	}
 
 	&__read-more {
-
-		@include style-guide-arrow-link;
+		@include button-link-arrow;
 	}
 
 	@media not screen and ( min-width: #{$width-breakpoint-tablet} ) {
@@ -122,8 +115,8 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
-		flex-direction: row-reverse;
 		align-items: stretch;
+		flex-direction: row-reverse;
 		justify-content: flex-end;
 		padding: rem(40) 0;
 
@@ -149,8 +142,8 @@
 
 			// stylelint-disable selector-class-pattern
 			.blog-post__image-link {
-				margin-right: -322px;
 				flex-basis: 77.5%;
+				margin-right: rem(-322);
 			}
 
 			.blog-post__content {

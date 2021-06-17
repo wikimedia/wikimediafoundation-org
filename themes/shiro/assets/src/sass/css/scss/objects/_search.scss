@@ -169,9 +169,4 @@
     width: 0px;
     padding-left: 3rem;
   }
-
-  button {
-    @include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-
-  }
 }
