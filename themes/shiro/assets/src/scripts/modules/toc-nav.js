@@ -3,10 +3,10 @@ import initialize from '../util/initialize';
 import { handleVisibleChange } from './dropdown';
 
 const _tocNav = document.querySelector( '[data-dropdown="toc-nav"]' );
-const _tocNavTitle = _tocNav.querySelector( '.toc__title' );
-const _tocNavUl = _tocNav.querySelector( '.toc' );
+const _tocNavTitle = _tocNav?.querySelector( '.toc__title' );
+const _tocNavUl = _tocNav?.querySelector( '.toc' );
 const _contentColumn = _tocNav
-	.closest( '.toc__section' )
+	?.closest( '.toc__section' )
 	?.querySelector( '.toc__content' );
 
 /**
@@ -64,18 +64,39 @@ function processEntry( entry ) {
 			nav.dataset.toggleable = 'yes';
 			nav.dataset.sticky = 'no';
 		}
-	} else if ( target.tagName === 'H2' && target.id !== undefined ) {
-		if ( isIntersecting ) {
+	} else if ( [ 'H2', 'P', 'LI' ].includes( target.tagName ) ) {
+		if (
+			isIntersecting &&
+			intersectionRatio === 1 &&
+			target.tagName === 'H2'
+		) {
 			target.dataset[ 'visible' ] = 'yes';
-		} else {
+		} else if ( target.tagName === 'H2' ) {
 			target.dataset[ 'visible' ] = 'no';
 		}
 
 		if ( _tocNav.dataset.observeScroll === 'yes' ) {
-			const firstH2 = _contentColumn.querySelector(
-				'h2[data-visible="yes"]'
+			const allH2s = Object.values(
+				_contentColumn.querySelectorAll( 'h2[id]' )
 			);
-			const activeLink = firstH2 ? getActiveLink( firstH2 ) : null;
+			const firstH2 = allH2s.filter(
+				h2 => h2.dataset.visible === 'yes'
+			)[ 0 ];
+
+			if ( ! firstH2 ) {
+				return;
+			}
+
+			const firstH2Index = allH2s.indexOf( firstH2 );
+			const firstH2Top = firstH2.getBoundingClientRect()[ 'top' ];
+			const windowHeight = window.innerHeight;
+
+			const activeH2 =
+				windowHeight / 3 > firstH2Top
+					? firstH2
+					: allH2s[ firstH2Index - 1 ];
+			const activeLink = activeH2 ? getActiveLink( activeH2 ) : null;
+
 			if ( activeLink ) {
 				// Process the active link.
 				processActiveLink( activeLink );
@@ -288,8 +309,8 @@ function initializeTocNav() {
 				rootMargin: '-62px 0px 0px 0px',
 				threshold: 1,
 			} );
-			_contentColumn.querySelectorAll( 'h2[id]' ).forEach( _h2 => {
-				_contentColumn.observer.observe( _h2 );
+			_contentColumn.querySelectorAll( 'h2, p, li' ).forEach( _el => {
+				_contentColumn.observer.observe( _el );
 			} );
 		}
 
