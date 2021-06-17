@@ -270,7 +270,7 @@ function initializeTocNav() {
 		// Observe the intersection of the title with the page.
 		_tocNav.observer = createObserver( {
 			root: null,
-			rootMargin: '0px',
+			rootMargin: '-62px 0px 0px 0px',
 			threshold: [ 0, 0.25, 0.5, 0.75, 1 ],
 		} );
 		_tocNav.observer.observe( _tocNavTitle );
@@ -283,7 +283,11 @@ function initializeTocNav() {
 
 		// Add observers to the h2s.
 		if ( _contentColumn ) {
-			_contentColumn.observer = createObserver();
+			_contentColumn.observer = createObserver( {
+				root: null,
+				rootMargin: '-62px 0px 0px 0px',
+				threshold: 1,
+			} );
 			_contentColumn.querySelectorAll( 'h2[id]' ).forEach( _h2 => {
 				_contentColumn.observer.observe( _h2 );
 			} );
