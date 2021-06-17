@@ -261,6 +261,8 @@ require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
 require get_template_directory() . '/inc/editor/blocks/share-article.php';
+require get_template_directory() . '/inc/editor/blocks/profile.php';
+require get_template_directory() . '/inc/editor/blocks/profile-list.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
@@ -282,6 +284,8 @@ WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
 WMF\Editor\Blocks\ShareArticle\bootstrap();
+WMF\Editor\Blocks\Profile\bootstrap();
+WMF\Editor\Blocks\ProfileList\bootstrap();
 WMF\Editor\Patterns\bootstrap();
 
 /**
@@ -444,3 +448,19 @@ function wmf_filter_nav_menu_items( $args, $item, $depth ) {
 	return $args;
 }
 add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
+
+/**
+ * Add reusable blocks link to admin menu.
+ */
+function link_reusable_blocks_url() {
+	add_menu_page(
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		'manage_options',
+		'edit.php?post_type=wp_block', '',
+		'dashicons-editor-table',
+		22
+	);
+}
+
+add_action( 'admin_menu', 'link_reusable_blocks_url' );

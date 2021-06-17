@@ -2,6 +2,7 @@
 node_modules
 vendor
 !plugins/multilingualpress/vendor
+!plugins/hm-gutenberg-tools/vendor
 
 # Uploads directory
 uploads

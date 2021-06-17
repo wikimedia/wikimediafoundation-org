@@ -48,6 +48,7 @@ function wmf_add_taxonomies() {
 	$profile_type_args = wp_parse_args(
 		$default_args, array(
 			'labels'  => $profile_type_labels,
+			'show_in_rest' => true,
 			'rewrite' => array(
 				'with_front' => false,
 				'slug'       => __( 'role', 'shiro-admin' ),

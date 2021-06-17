@@ -33,9 +33,9 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_profiles_label' );
 		<?php endif; ?>
 	</div>
 
-	<div class="mw-980 std-mod people-container mod-margin-bottom_xs">
+	<div class="mw-980 std-mod mod-margin-bottom_xs">
 
-		<div class="people slider-on-mobile flex flex-medium">
+		<div class="profile-list">
 		<?php
 		foreach ( $profile_list as $profile_id ) {
 			$team_name = '';

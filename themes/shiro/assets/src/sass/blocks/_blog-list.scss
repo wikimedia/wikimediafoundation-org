@@ -10,8 +10,21 @@
 	flex-direction: column;
 	padding: rem(20) 0;
 
-	&__image {
+	// Blog posts have too small a width to properly display blog lists, so
+	// they need special handling if inserted directly into the editor.
+	article.mw-784 > & {
+		@media (min-width: #{$width-breakpoint-tablet}) {
+			margin-left: calc((100vw - 640px - var(--scrollbar) - 80px) / -2);
+			margin-right: calc((100vw - 640px - var(--scrollbar) - 80px) / -2);
+		}
 
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-left: rem((980 - 640) / -2);
+			margin-right: rem((980 - 640) / -2);
+		}
+	}
+
+	&__image {
 		@include hover-box-shadow;
 	}
 
@@ -20,18 +33,16 @@
 	}
 
 	&__title {
-
-		@include h-margins;
-
 		// Additional specificity necessary to override base h3 styles
-		.page.has-blocks .wysiwyg & {
-
+		.single.has-blocks .wysiwyg &,
+		.page.has-blocks .wysiwyg &,
+		.block-area.block-area & {
+			@include h-margins;
 			@include h4;
 			margin-bottom: rem(16);
 		}
 
 		a {
-
 			@include style-guide-link;
 
 			// The link around the heading should display in same color as text.
@@ -50,7 +61,6 @@
 	}
 
 	&__category-link {
-
 		@include has-font-size( "small" );
 		background-color: $wmui-color-blue90;
 		border-radius: rem(4);
@@ -71,7 +81,6 @@
 	}
 
 	&__excerpt p {
-
 		@include has-font-size( "default" );
 		color: $wmui-color-base0;
 		color: var(--text-color);
@@ -80,7 +89,6 @@
 	}
 
 	&__meta {
-
 		@include has-font-size( "small" );
 		color: $wmui-color-base0;
 		color: var(--text-color);
@@ -92,14 +100,12 @@
 		display: block;
 
 		a {
-
 			@include style-guide-link;
 		}
 	}
 
 	&__read-more {
-
-		@include style-guide-arrow-link;
+		@include button-link-arrow;
 	}
 
 	@media not screen and ( min-width: #{$width-breakpoint-tablet} ) {
@@ -109,8 +115,9 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
-		flex-direction: row-reverse;
 		align-items: stretch;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
 		padding: rem(40) 0;
 
 		&__title {
@@ -135,8 +142,8 @@
 
 			// stylelint-disable selector-class-pattern
 			.blog-post__image-link {
-				margin-right: -322px;
 				flex-basis: 77.5%;
+				margin-right: rem(-322);
 			}
 
 			.blog-post__content {

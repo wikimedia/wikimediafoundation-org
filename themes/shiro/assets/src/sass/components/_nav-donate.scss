@@ -7,14 +7,7 @@
 	}
 
 	&__link {
-
-		@include style-guide-button(
-			$color-secondary,
-			$color-secondary--hover,
-			$color-secondary--active,
-			$color-secondary--focus,
-			$color-base--inverted,
-		);
+		@include button-secondary();
 		align-items: center;
 		display: flex;
 		min-height: rem(34);

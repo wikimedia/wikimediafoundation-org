@@ -17,10 +17,10 @@
 
 	&__body {
 		background: $background-color-base;
-		margin-left: 18px;
-		margin-top: -41px;
 		font-family: $font-family-serif;
-		padding: 1em 1.25em;
+		margin-left: rem(18);
+		margin-top: rem(-41);
+		padding: rem(18) rem(22);
 
 		// These make sure the paragraph is rendered over the image & editor media placeholder.
 		display: inline-block;
@@ -36,10 +36,7 @@
 	}
 
 	&__read-more {
-		display: inline-block;
-		@include style-guide-arrow-link;
-		margin-left: 18px;
-		padding: 0 1.25em;
-		margin-bottom: 1rem;
+		@include button-link-arrow;
+		margin: 0 rem(21) 0 rem(39);
 	}
 }

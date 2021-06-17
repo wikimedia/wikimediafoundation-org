@@ -37,6 +37,8 @@ function render_block( $attributes ) {
 	$site_language = wmf_get_translations()[0];
 	$translated_headings = [];
 	$site_language_heading = null;
+	$customClass = $attributes['className'] ?? false;
+	$className = $customClass ? "double-heading $customClass" : "double-heading";
 
 	foreach ( $attributes['secondaryHeadings'] as $heading ) {
 		if ( $site_language['shortname'] === ( $heading['lang'] ?? '' ) ) {
@@ -60,7 +62,7 @@ function render_block( $attributes ) {
 
 	ob_start()
 	?>
-		<div class="double-heading">
+		<div class="<?php echo $className ?>">
 			<?php if ( ! empty( $site_language_heading ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
 					<span><?php echo esc_html( $site_language_heading['text'] ) ?></span>

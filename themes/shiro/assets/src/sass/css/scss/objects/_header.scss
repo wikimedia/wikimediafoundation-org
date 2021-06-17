@@ -302,11 +302,7 @@ $header-bp-mw: 1049px;
 		margin-bottom: 1rem;
 
 		a.back-arrow-link {
-			@include font-size(16, 14);
-		}
-
-		a.back-arrow-link::before {
-			content: '← ' #{"/*rtl:'→ '*/;"};
+			@include button-link-arrow(true);
 		}
 
 		&.h1 {

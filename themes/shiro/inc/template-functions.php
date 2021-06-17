@@ -5,6 +5,9 @@
  * @package shiro
  */
 
+use function Asset_Loader\Manifest\get_active_manifest;
+use function Asset_Loader\Manifest\load_asset_manifest;
+
 /**
  * Adds custom classes to the array of body classes.
  *
@@ -710,19 +713,90 @@ function wmf_get_svg_uri( string $name ): string
 }
 
 /**
+ * Returns a probable path for an asset processed by gulp.
+ *
+ * Some gulp assets are versioned, and used a different versioning system than
+ * asset processed by webpack. This function takes that into account, and
+ * will return a hashed asset if one exists.
+ *
+ * @param string $name
+ *
+ * @return string
+ */
+function wmf_get_gulp_asset_uri( string $name ): string {
+	$dist_path = get_stylesheet_directory_uri() . '/assets/dist/';
+	$manifest  = load_asset_manifest( get_active_manifest( [
+			get_stylesheet_directory() . '/assets/dist/rev-manifest.json',
+		] ) ) ?? [];
+
+	$resolved_name = $manifest[ $name ] ?? $name;
+
+	return $dist_path . $resolved_name;
+}
+
+/**
  * Echo & wrap a piece of text with an href if the possible URL is set.
  *
  * @param string $text The text to wrap
  * @param string $possible_url The URL to put in the href of the link.
  */
 function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
-	if ( empty( $possible_url ) ) {
+	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
-	}
-
+	else :
 	?>
 	<a href="<?php echo esc_attr( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 		<?php echo esc_html( $text ); ?>
 	</a>
 	<?php
+	endif;
+}
+
+/**
+ * Determine if a given block exists in a post, include in reusable blocks.
+ *
+ * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
+ *
+ * @param                  $block_name
+ * @param int|WP_Post|null $post
+ *
+ * @return bool
+ */
+function wmf_enhanced_has_block( $block_name, $post = null ): bool {
+	if ( has_block( $block_name, $post ) ) {
+		return true;
+	}
+
+	if ( has_block( 'core/block', $post ) ) {
+		$content = get_post_field( 'post_content', $post );
+		$blocks  = parse_blocks( $content );
+
+		return wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $post );
+	}
+
+	return false;
+}
+
+/**
+ * Recursively search for a block within innerblocks.
+ *
+ * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
+ *
+ * @param                  $blocks
+ * @param                  $block_name
+ * @param int|WP_Post|null $post
+ *
+ * @return bool
+ */
+function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $post = null ): bool {
+	foreach ( $blocks as $block ) {
+		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+			wmf_search_reusable_blocks_within_innerblocks( $block['innerBlocks'], $block_name, $post );
+		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block( $block_name,
+				$block['attrs']['ref'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
 }
