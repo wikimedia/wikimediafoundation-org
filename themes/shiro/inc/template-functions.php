@@ -30,7 +30,7 @@ add_filter( 'body_class', 'wmf_body_classes' );
  * @return string Container classes to add.
  */
 function wmf_get_header_container_class() {
-	if ( is_front_page() ) {
+	if ( is_front_page() && !has_blocks() ) {
 		$class = 'header-home';
 	} else {
 		$class = 'header-default';
