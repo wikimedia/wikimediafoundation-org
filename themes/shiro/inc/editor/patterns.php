@@ -80,7 +80,7 @@ function register_pattern() {
 		'content' => TemplateLanding\pattern(),
 	] );
 
-	register_block_pattern( TemplateLanding\NAME, [
+	register_block_pattern( TemplateList\NAME, [
 		'title' => __( 'List page template', 'shiro-admin' ),
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
 		'content' => TemplateList\pattern(),
