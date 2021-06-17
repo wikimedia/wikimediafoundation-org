@@ -5,16 +5,13 @@
  * @package shiro
  */
 
-$reusable_block_id = get_theme_mod( 'wmf_support_reusable_block' );
+$reusable_block = wmf_get_reusable_block_module( 'support' );
 
-if ( is_numeric( $reusable_block_id )
-     && $reusable_block_id > 0
-     && get_post_type( $reusable_block_id ) === 'wp_block' ) {
-	$block = get_post( $reusable_block_id );
-	if ( is_a( $block, \WP_Post::class ) ) { ?>
+if ( $reusable_block ) {
+	if ( is_a( $reusable_block, \WP_Post::class ) ) { ?>
 		<div class="block-area">
 			<div class="wysiwyg mw-980">
-				<?php echo wp_kses_post( apply_filters( 'the_content', $block->post_content ) ); ?>
+				<?php echo wp_kses_post( apply_filters( 'the_content', $reusable_block->post_content ) ); ?>
 			</div>
 		</div>
 	<?php }
