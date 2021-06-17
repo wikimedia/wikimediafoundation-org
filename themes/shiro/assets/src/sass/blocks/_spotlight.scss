@@ -14,6 +14,7 @@
 		display: flex;
 		flex-direction: column-reverse;
 		margin: rem(20);
+		position: relative;
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
 			flex-direction: row-reverse;
@@ -81,6 +82,28 @@
 		.is-style-red50 & {
 
 			@include button-tertiary;
+		}
+
+		/**
+		 * Use this to make the image a "clickable link" in an accessible way.
+		 */
+		&::after {
+			content: "";
+			display: block;
+			left: 0;
+			padding-bottom: 56.6%;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 10;
+
+			@media ( min-width: #{$width-breakpoint-tablet} ) {
+				height: 100%;
+				padding-bottom: 0;
+
+				/** 2.5rem is a magical number; I don't know where it comes from, but it works */
+				width: calc(50% - 2.5rem);
+			}
 		}
 	}
 
