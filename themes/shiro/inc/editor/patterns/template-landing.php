@@ -6,7 +6,7 @@
 namespace WMF\Editor\Patterns\TemplateLanding;
 
 use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
-use WMF\Editor\Patterns\CommunicationModule;
+use WMF\Editor\Patterns\LinkColumns as LinkColumns;
 
 const NAME = 'shiro/template-landing';
 
@@ -17,6 +17,7 @@ const NAME = 'shiro/template-landing';
  */
 function pattern(): string {
 	$tweet_columns = tweet_columns_pattern();
+	$external_links = LinkColumns\PATTERN;
 	$communications_module = wmf_get_reusable_block_module_insert( 'connect' );
 
 	return <<<CONTENT
@@ -58,30 +59,7 @@ $communications_module
 
 <!-- wp:shiro/double-heading /-->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:shiro/external-link -->
-<div class="wp-block-shiro-external-link external-link"><p class="external-link__heading"><a class="external-link__link"><span class="external-link__heading-text"></span><svg class="icon-open external-link__icon"><use href="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#open"></use></svg></a></p><p class="external-link__text"></p></div>
-<!-- /wp:shiro/external-link -->
+$external_links
 
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:shiro/external-link -->
-<div class="wp-block-shiro-external-link external-link"><p class="external-link__heading"><a class="external-link__link"><span class="external-link__heading-text"></span><svg class="icon-open external-link__icon"><use href="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#open"></use></svg></a></p><p class="external-link__text"></p></div>
-<!-- /wp:shiro/external-link -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
 CONTENT;
 }
