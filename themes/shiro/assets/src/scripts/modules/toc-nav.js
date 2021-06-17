@@ -7,7 +7,7 @@ const _tocNavTitle = _tocNav.querySelector( '.toc__title' );
 const _tocNavUl = _tocNav.querySelector( '.toc' );
 const _contentColumn = _tocNav
 	.closest( '.toc__section' )
-	.querySelector( '.toc__content' );
+	?.querySelector( '.toc__content' );
 
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe.
