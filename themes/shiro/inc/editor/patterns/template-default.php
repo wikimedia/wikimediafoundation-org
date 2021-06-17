@@ -8,7 +8,7 @@ namespace WMF\Editor\Patterns\TemplateDefault;
 const NAME = 'shiro/template-default';
 
 function pattern(): string {
-	$communicationModule = \WMF\Editor\Patterns\CommunicationModule\PATTERN;
+	$communicationModule = wmf_get_reusable_block_module_insert( 'connect' );
 
 	return <<<CONTENT
 <!-- wp:shiro/spotlight {"className":"is-style-red90"} -->

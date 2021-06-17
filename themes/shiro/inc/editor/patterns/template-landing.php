@@ -17,7 +17,7 @@ const NAME = 'shiro/template-landing';
  */
 function pattern(): string {
 	$tweet_columns = tweet_columns_pattern();
-	$communications_module = CommunicationModule\PATTERN;
+	$communications_module = wmf_get_reusable_block_module_insert( 'connect' );
 
 	return <<<CONTENT
 <!-- wp:shiro/landing-page-hero {"className":"is-style-yellow50"} -->
