@@ -71,7 +71,7 @@ function processEntry( entry ) {
 	} else if ( [ 'H2', 'P', 'LI' ].includes( target.tagName ) ) {
 		if (
 			isIntersecting &&
-			intersectionRatio === 1 &&
+			intersectionRatio >= 0.5 &&
 			target.tagName === 'H2'
 		) {
 			target.dataset[ 'visible' ] = 'yes';
@@ -96,7 +96,7 @@ function processEntry( entry ) {
 			const windowHeight = window.innerHeight;
 
 			const activeH2 =
-				windowHeight / 3 > firstH2Top
+				windowHeight / 4 > firstH2Top
 					? firstH2
 					: allH2s[ firstH2Index - 1 ];
 			const activeLink = activeH2 ? getActiveLink( activeH2 ) : null;
@@ -297,7 +297,7 @@ function initializeTocNav() {
 			_contentColumn.observer = createObserver( {
 				root: null,
 				rootMargin: '-62px 0px 0px 0px',
-				threshold: 1,
+				threshold: [ 0, 0.25, 0.5, 0.75, 1 ],
 			} );
 			_contentColumn.querySelectorAll( 'h2, p, li' ).forEach( _el => {
 				_contentColumn.observer.observe( _el );
