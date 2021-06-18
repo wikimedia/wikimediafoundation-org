@@ -127,9 +127,10 @@ export const name = 'shiro/toc',
 									) }
 								</span>
 								<span className="btn-label-active-item">
-									{ attributes.headingBlocks[ 0 ].attributes
-										.content ||
-										__( 'Toggle menu', 'shiro' ) }
+									{ attributes.headingBlocks[ 0 ].attributes.content.replace(
+										/(<([^>]+)>)/gi,
+										''
+									) || __( 'Toggle menu', 'shiro' ) }
 								</span>
 							</button>
 							<ul { ...blockProps }>

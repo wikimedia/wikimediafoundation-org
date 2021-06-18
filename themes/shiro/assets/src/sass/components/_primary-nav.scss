@@ -53,13 +53,13 @@
 			.admin-bar & {
 
 				@media (min-width: 600px) {
-					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
-					top: $primary-nav-mobile-height + 46px;
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + $admin-bar-mobile-height));
+					top: $primary-nav-mobile-height + $admin-bar-mobile-height;
 				}
 
 				@media (min-width: 784px) {
-					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 32px));
-					top: $primary-nav-mobile-height + 32px;
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + $admin-bar-desktop-height));
+					top: $primary-nav-mobile-height + $admin-bar-desktop-height;
 				}
 			}
 		}

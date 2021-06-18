@@ -52,7 +52,10 @@ export const setHeadingAnchors = async blocks => {
 			block.originalContent !== undefined
 				? block.originalContent.replace( /(<([^>]+)>)/gi, '' )
 				: undefined;
-		const updatedContent = block.attributes.content;
+		const updatedContent = block.attributes.content.replace(
+			/(<([^>]+)>)/gi,
+			''
+		);
 		const previousContent = block.attributes.previousContent;
 		const headingAnchor = block.attributes.anchor;
 

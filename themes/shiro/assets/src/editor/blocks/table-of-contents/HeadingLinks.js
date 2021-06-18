@@ -8,21 +8,30 @@ import { __ } from '@wordpress/i18n';
  * @param {boolean} props.edit Are we in the editor?
  */
 const HeadingLinks = ( { blocks, edit } ) => {
-	const headingLinkList = blocks.map( ( block, i ) => (
-		<li key={ i } className="toc__item">
-			{ edit ? (
-				<span className="toc__link">
-					{ block.attributes.content.length > 0
-						? block.attributes.content
-						: __( 'H2 with no text content.', 'shiro-admin' ) }
-				</span>
-			) : (
-				<a className="toc__link" href={ '#' + block.attributes.anchor }>
-					{ block.attributes.content }
-				</a>
-			) }
-		</li>
-	) );
+	const headingLinkList = blocks.map( ( block, i ) => {
+		const textContent = block.attributes.content.replace(
+			/(<([^>]+)>)/gi,
+			''
+		);
+		return (
+			<li key={ i } className="toc__item">
+				{ edit ? (
+					<span className="toc__link">
+						{ textContent.length > 0
+							? textContent
+							: __( 'H2 with no text content.', 'shiro-admin' ) }
+					</span>
+				) : (
+					<a
+						className="toc__link"
+						href={ '#' + block.attributes.anchor }
+					>
+						{ textContent }
+					</a>
+				) }
+			</li>
+		);
+	} );
 
 	return headingLinkList;
 };
