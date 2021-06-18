@@ -57,6 +57,7 @@ function processEntry( entry ) {
 			// We're on the desktop
 			nav.dataset.visible = 'yes';
 			nav.dataset.toggleable = 'no';
+			nav.dataset.sticky = 'yes';
 			nav.dataset.backdrop = 'inactive';
 			nav.dataset.trap = 'inactive';
 		} else {
