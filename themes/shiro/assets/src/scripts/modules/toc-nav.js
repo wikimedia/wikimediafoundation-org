@@ -8,19 +8,16 @@ const _tocNavUl = _tocNav?.querySelector( '.toc' );
 const _contentColumn = _tocNav
 	?.closest( '.toc__section' )
 	?.querySelector( '.toc__content' );
+const headerHeight = document
+	.getElementsByClassName( 'site-header' )[ 0 ]
+	.getBoundingClientRect()[ 'height' ];
 
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe.
  *
  * @param {object} options The options to use with the observer.
  */
-function createObserver(
-	options = {
-		root: null,
-		rootMargin: '0px',
-		threshold: 0,
-	}
-) {
+function createObserver( options ) {
 	return new IntersectionObserver( handleIntersection, options );
 }
 
@@ -74,9 +71,9 @@ function processEntry( entry ) {
 			intersectionRatio >= 0.5 &&
 			target.tagName === 'H2'
 		) {
-			target.dataset[ 'visible' ] = 'yes';
+			target.dataset.visible = 'yes';
 		} else if ( target.tagName === 'H2' ) {
-			target.dataset[ 'visible' ] = 'no';
+			target.dataset.visible = 'no';
 		}
 
 		if ( _tocNav.dataset.observeScroll === 'yes' ) {
@@ -222,7 +219,7 @@ function scrollHelper( item, hash = false ) {
 	let scrollTimeout;
 
 	// Disable the setting of active links on scroll.
-	_tocNav.dataset[ 'observeScroll' ] = 'no';
+	_tocNav.dataset.observeScroll = 'no';
 	if ( hash ) {
 		history.replaceState( null, null, hash );
 	}
@@ -235,7 +232,7 @@ function scrollHelper( item, hash = false ) {
 	function scrollListener() {
 		clearTimeout( scrollTimeout );
 		scrollTimeout = setTimeout( function () {
-			_tocNav.dataset[ 'observeScroll' ] = 'yes';
+			_tocNav.dataset.observeScroll = 'yes';
 			removeEventListener( 'scroll', scrollListener );
 		}, 100 );
 	}
@@ -281,7 +278,7 @@ function initializeTocNav() {
 		// Observe the intersection of the title with the page.
 		_tocNav.observer = createObserver( {
 			root: null,
-			rootMargin: '-62px 0px 0px 0px',
+			rootMargin: headerHeight + 'px 0px 0px 0px',
 			threshold: [ 0, 0.25, 0.5, 0.75, 1 ],
 		} );
 		_tocNav.observer.observe( _tocNavTitle );
@@ -296,7 +293,7 @@ function initializeTocNav() {
 		if ( _contentColumn ) {
 			_contentColumn.observer = createObserver( {
 				root: null,
-				rootMargin: '-62px 0px 0px 0px',
+				rootMargin: headerHeight + 'px 0px 0px 0px',
 				threshold: [ 0, 0.25, 0.5, 0.75, 1 ],
 			} );
 			_contentColumn.querySelectorAll( 'h2, p, li' ).forEach( _el => {
@@ -317,7 +314,9 @@ function initializeTocNav() {
 			}
 
 			// Turn on sticky nav so that it can do it's own detections.
-			_tocNav.dataset[ 'sticky' ] = 'yes';
+			if ( _tocNav.dataset.toggleable === 'no' ) {
+				_tocNav.dataset.sticky = 'yes';
+			}
 		}
 
 		/**
@@ -326,7 +325,7 @@ function initializeTocNav() {
 		 * @param {Event} event Window load event.
 		 */
 		window.onload = event => {
-			_tocNav.dataset[ 'observeScroll' ] = 'yes';
+			_tocNav.dataset.observeScroll = 'yes';
 		};
 	}
 }
