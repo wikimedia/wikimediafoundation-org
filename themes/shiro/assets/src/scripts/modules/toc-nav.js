@@ -9,7 +9,7 @@ const _contentColumn = _tocNav
 	?.closest( '.toc__section' )
 	?.querySelector( '.toc__content' );
 const headerHeight = document
-	.getElementsByClassName( 'site-header' )[ 0 ]
+	.querySelector( '.site-header' )
 	.getBoundingClientRect()[ 'height' ];
 
 /**
