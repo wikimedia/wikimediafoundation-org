@@ -31,11 +31,11 @@
 		}
 
 		@media screen and (min-width: $admin-bar-breakpoint-sm) {
-			top: 46px;
+			top: $admin-bar-mobile-height;
 		}
 
 		@media screen and (min-width: $admin-bar-breakpoint-lg) {
-			top: 32px;
+			top: $admin-bar-desktop-height;
 		}
 	}
 

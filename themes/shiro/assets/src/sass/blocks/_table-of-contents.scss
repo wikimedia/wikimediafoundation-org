@@ -15,8 +15,6 @@
 
 	// Set max-heights so that the menu can scroll if needed.
 	[data-sticky="yes"] > & {
-		max-height: calc(var(--full-window-height, 100vh) - (var(--margin-around-toc) * 1px));
-		overflow: auto;
 		position: sticky;
 		top: rem(100);
 
@@ -195,6 +193,27 @@
 		&--active:hover {
 			background-color: inherit;
 			color: $wmui-color-base0;
+		}
+	}
+
+	&__content h2[id] {
+		--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + 20px);
+
+		cursor: text;
+		margin-top: calc(var(--toc-h2-padding-top) * -1);
+		padding-top: var(--toc-h2-padding-top);
+		pointer-events: none;
+
+		.admin-bar & {
+			--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + #{$admin-bar-mobile-height} + 20px);
+
+			@media screen and (min-width: $admin-bar-breakpoint-lg) {
+				--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + #{$admin-bar-desktop-height} + 20px);
+			}
+		}
+
+		a {
+			pointer-events: initial;
 		}
 	}
 }

@@ -43,12 +43,16 @@ function processEntry( entry ) {
 	// Handle the entry based on the target.
 	if ( target === _tocNavUl ) {
 		const nav = target.parentElement;
+
 		if (
 			isIntersecting &&
 			intersectionRatio === 1 &&
 			nav.dataset.toggleable === 'no'
 		) {
 			nav.dataset.sticky = 'yes';
+		}
+		if ( entry.rootBounds.height < entry.boundingClientRect.height ) {
+			nav.dataset.sticky = 'no';
 		}
 	} else if ( target === _tocNavTitle ) {
 		const nav = target.parentElement;
@@ -139,13 +143,11 @@ function handleTocNavVisibleChange( dropdown ) {
  * @param {HTMLElement} item Active link item to process.
  * @param {string} hash Hash to set after scroll.
  * @param {boolean} scroll Whether to scroll the content.
- * @param {number} heightOffset Height offset for scroll function.
  */
 function processActiveLink(
 	item,
 	hash = item.getAttribute( 'href' ),
-	scroll = false,
-	heightOffset = 0
+	scroll = false
 ) {
 	const parentList = item.closest( '.toc__nested' );
 	const parentItem = parentList ? parentList.previousElementSibling : false;
@@ -172,7 +174,7 @@ function processActiveLink(
 	// Scroll to the right position.
 	const activeContentItem = getActiveContent( item );
 	if ( activeContentItem && scroll ) {
-		scrollHelper( activeContentItem, hash, heightOffset );
+		scrollHelper( activeContentItem, hash );
 	} else {
 		history.replaceState( null, null, hash );
 	}
@@ -215,25 +217,16 @@ function getActiveLink( item ) {
  *
  * @param {HTMLElement} item Element we want to scroll to.
  * @param {string} hash Hash to set after scroll.
- * @param {number} heightOffset Height offset for scroll function.
  */
-function scrollHelper( item, hash = false, heightOffset = 0 ) {
+function scrollHelper( item, hash = false ) {
 	let scrollTimeout;
-	const windowScrollY = window.scrollY;
-	const itemScrollTop = item.getBoundingClientRect()[ 'top' ];
-	const headerHeight = document
-		.getElementsByClassName( 'site-header' )[ 0 ]
-		.getBoundingClientRect()[ 'height' ];
-	const scrollPosition =
-		windowScrollY + itemScrollTop + heightOffset - headerHeight - 20;
 
 	// Disable the setting of active links on scroll.
 	_tocNav.dataset[ 'observeScroll' ] = 'no';
-	window.scrollTo( {
-		top: scrollPosition,
-		left: 0,
-		behavior: 'smooth',
-	} );
+	if ( hash ) {
+		history.replaceState( null, null, hash );
+	}
+	item.scrollIntoView( { behavior: 'smooth' } );
 	addEventListener( 'scroll', scrollListener );
 
 	/**
@@ -242,9 +235,6 @@ function scrollHelper( item, hash = false, heightOffset = 0 ) {
 	function scrollListener() {
 		clearTimeout( scrollTimeout );
 		scrollTimeout = setTimeout( function () {
-			if ( hash ) {
-				history.replaceState( null, null, hash );
-			}
 			_tocNav.dataset[ 'observeScroll' ] = 'yes';
 			removeEventListener( 'scroll', scrollListener );
 		}, 100 );
@@ -317,39 +307,27 @@ function initializeTocNav() {
 		// Handle hash on initial load.
 		if ( location.hash ) {
 			const hash = location.hash;
-			const navHeight = document
-				.getElementsByClassName( 'primary-nav__drawer' )[ 0 ]
-				.getBoundingClientRect()[ 'height' ];
-			let heightOffset = 0;
-
-			// If we're on desktop and the nav hasn't loaded yet, adjust the numbers.
-			if ( window.innerWidth > 1024 && navHeight === 0 ) {
-				heightOffset = 44;
-			}
-
-			/*
-			 * Temporarily blank the hash so that the page doesn't
-			 * scroll to the wrong place on load.
-			 */
-			location.hash = '';
 
 			// Process the active link.
 			const activeTocItem = _tocNav.querySelector(
 				`a[href="${ hash }"]`
 			);
 			if ( activeTocItem ) {
-				processActiveLink( activeTocItem, hash, true, heightOffset );
+				processActiveLink( activeTocItem, hash );
 			}
-		} else {
-			/**
-			 * When the page is finished loading, start observing the h2 intersections.
-			 *
-			 * @param {Event} event Window load event.
-			 */
-			window.onload = event => {
-				_tocNav.dataset[ 'observeScroll' ] = 'yes';
-			};
+
+			// Turn on sticky nav so that it can do it's own detections.
+			_tocNav.dataset[ 'sticky' ] = 'yes';
 		}
+
+		/**
+		 * When the page is finished loading, start observing the h2 intersections.
+		 *
+		 * @param {Event} event Window load event.
+		 */
+		window.onload = event => {
+			_tocNav.dataset[ 'observeScroll' ] = 'yes';
+		};
 	}
 }
 
