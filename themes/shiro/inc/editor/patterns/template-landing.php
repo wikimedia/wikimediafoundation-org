@@ -6,7 +6,7 @@
 namespace WMF\Editor\Patterns\TemplateLanding;
 
 use function WMF\Editor\Patterns\TweetColumns\pattern as tweet_columns_pattern;
-use function WMF\Editor\Patterns\CommunicationModule\pattern as communication_module_pattern;
+use WMF\Editor\Patterns\LinkColumns as LinkColumns;
 
 const NAME = 'shiro/template-landing';
 
@@ -15,9 +15,11 @@ const NAME = 'shiro/template-landing';
  *
  * @return string
  */
-function pattern() {
-	$tweet_columns = tweet_columns_pattern();
-	$communications_module = communication_module_pattern();
+function pattern(): string {
+	$tweet_columns         = tweet_columns_pattern();
+	$external_links        = LinkColumns\PATTERN;
+	$support_module        = wmf_get_reusable_block_module_insert( 'support' );
+	$communications_module = wmf_get_reusable_block_module_insert( 'connect' );
 
 	return <<<CONTENT
 <!-- wp:shiro/landing-page-hero {"className":"is-style-yellow50"} -->
@@ -42,9 +44,7 @@ function pattern() {
 <!-- /wp:shiro/stair --></div>
 <!-- /wp:shiro/stairs -->
 
-<!-- wp:shiro/spotlight {"className":"is-style-red90"} -->
-<div class="wp-block-shiro-spotlight spotlight alignfull is-style-red90"><div class="spotlight__inner"><div class="spotlight__content"><h2 class="spotlight__heading is-style-h1"></h2><p class="spotlight__text"></p></div><figure class="spotlight__image-wrapper image-filter-inherit"></figure></div></div>
-<!-- /wp:shiro/spotlight -->
+$support_module
 
 $tweet_columns
 
@@ -58,30 +58,7 @@ $communications_module
 
 <!-- wp:shiro/double-heading /-->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:shiro/external-link -->
-<div class="wp-block-shiro-external-link external-link"><p class="external-link__heading"><a class="external-link__link"><span class="external-link__heading-text"></span><svg class="icon-open external-link__icon"><use href="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#open"></use></svg></a></p><p class="external-link__text"></p></div>
-<!-- /wp:shiro/external-link -->
+$external_links
 
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:shiro/external-link -->
-<div class="wp-block-shiro-external-link external-link"><p class="external-link__heading"><a class="external-link__link"><span class="external-link__heading-text"></span><svg class="icon-open external-link__icon"><use href="http://wikimediafoundation.test/wp-content/themes/shiro/assets/dist/icons.svg#open"></use></svg></a></p><p class="external-link__text"></p></div>
-<!-- /wp:shiro/external-link -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
 CONTENT;
 }

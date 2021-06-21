@@ -41,13 +41,13 @@ while ( have_posts() ) {
 	get_template_part( 'template-parts/page/page', 'stats-profiles' );
 	?>
 
-	<div class="mw-980 mod-margin-bottom_sm flex flex-medium data-template">
+	<div class="mw-980 mod-margin-bottom_sm flex flex-medium data-template toc__section">
 
-		<div class="w-32p">
+		<div class="w-32p toc__sidebar">
 			<?php get_sidebar( 'list' ); ?>
 		</div>
 
-		<div class="w-68p">
+		<div class="w-68p toc__content">
 			<div class="list-container">
 				<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 			</div>

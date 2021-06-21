@@ -1,7 +1,6 @@
 // Table of contents block styles
 .toc {
 	--full-window-height: calc(var(--vh, 1vh) * 100);
-	--margin-around-toc: 172;
 	@include style-guide-list-reset;
 
 	&[hidden] {
@@ -15,8 +14,6 @@
 
 	// Set max-heights so that the menu can scroll if needed.
 	[data-sticky="yes"] > & {
-		max-height: calc(var(--full-window-height, 100vh) - (var(--margin-around-toc) * 1px));
-		overflow: auto;
 		position: sticky;
 		top: rem(100);
 
@@ -35,13 +32,16 @@
 			max-height: calc(var(--full-window-height, 100vh) - 102px);
 			overflow: auto;
 			position: absolute;
-			top: 0;
+			top: var(--toc-h2-padding-top);
 			width: 100%;
 			z-index: 3000;
 		}
 	}
 
 	&-nav {
+		margin-top: calc(var(--toc-h2-padding-top) * -1);
+		padding-top: var(--toc-h2-padding-top);
+		pointer-events: none;
 		position: relative;
 
 		&[data-sticky="yes"] {
@@ -51,13 +51,18 @@
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
 			margin-bottom: rem(20);
 		}
+
+		a,
+		button {
+			pointer-events: initial;
+		}
 	}
 
 	&__title {
 		clip-path: none; // Override screen-reader-text
 		left: 0;
 		position: fixed !important; // Override screen-reader-text
-		top: 0;
+		top: var(--toc-h2-padding-top);
 
 		@media ( min-width: #{$core-gutenberg-break-small} ) {
 			left: -999em;
@@ -195,6 +200,31 @@
 		&--active:hover {
 			background-color: inherit;
 			color: $wmui-color-base0;
+		}
+	}
+
+	&__section {
+		--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + 20px);
+
+		.admin-bar & {
+			@media screen and (min-width: $admin-bar-breakpoint-sm) {
+				--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + #{$admin-bar-mobile-height} + 20px);
+			}
+
+			@media screen and (min-width: $admin-bar-breakpoint-lg) {
+				--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + #{$admin-bar-desktop-height} + 20px);
+			}
+		}
+	}
+
+	&__content h2[id] {
+		cursor: text;
+		margin-top: calc(var(--toc-h2-padding-top) * -1);
+		padding-top: var(--toc-h2-padding-top);
+		pointer-events: none;
+
+		a {
+			pointer-events: initial;
 		}
 	}
 }

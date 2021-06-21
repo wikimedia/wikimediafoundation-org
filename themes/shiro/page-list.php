@@ -27,12 +27,12 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium list-template">
-	<div class="w-32p">
+<div class="mw-980 mod-margin-bottom flex flex-medium list-template toc__section">
+	<div class="w-32p toc__sidebar">
 		<?php get_sidebar( 'list' ); ?>
 	</div>
 
-	<div class="w-68p">
+	<div class="w-68p toc__content">
 		<div class="page-intro mod-margin-bottom wysiwyg">
 			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
 		</div>

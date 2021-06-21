@@ -6,14 +6,12 @@ import { cleanForSlug } from '@wordpress/editor';
  * @param {Array} blocks Blocks to process.
  */
 export const getHeadingBlocks = blocks => {
-	let headingBlocks = [];
-
 	// Save some work
 	if ( blocks.length < 1 ) {
 		return [];
 	}
 
-	blocks
+	const headingBlocks = blocks
 		.filter( block => block.name === 'core/column' )
 		// Columns with a ToC can't contain valid headers for anchoring
 		.filter( block => {
@@ -21,7 +19,9 @@ export const getHeadingBlocks = blocks => {
 				return false;
 			}
 
-			return ! block.innerBlocks.find( block => block.name === 'shiro/toc' );
+			return ! block.innerBlocks.find(
+				block => block.name === 'shiro/toc'
+			);
 		} )
 		.map( block => block.innerBlocks || [] )
 		.flat()
@@ -29,10 +29,7 @@ export const getHeadingBlocks = blocks => {
 		.filter(
 			block =>
 				block.name === 'core/heading' && block.attributes.level === 2
-		)
-		.forEach( block => {
-			headingBlocks.push( block );
-		} );
+		);
 
 	return headingBlocks;
 };
@@ -48,7 +45,10 @@ export const setHeadingAnchors = async blocks => {
 			block.originalContent !== undefined
 				? block.originalContent.replace( /(<([^>]+)>)/gi, '' )
 				: undefined;
-		const updatedContent = block.attributes.content;
+		const updatedContent = block.attributes.content.replace(
+			/(<([^>]+)>)/gi,
+			''
+		);
 		const previousContent = block.attributes.previousContent;
 		const headingAnchor = block.attributes.anchor;
 

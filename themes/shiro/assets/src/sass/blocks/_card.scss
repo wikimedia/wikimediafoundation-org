@@ -1,30 +1,33 @@
 .content-card {
-
 	@include global-block-styles;
 
 	border: 1px solid $wmui-color-base80;
 	border-radius: 4px;
-	position: relative;
-	transition: 0.3s box-shadow;
 	display: flex;
 	flex-direction: column-reverse;
 	overflow: hidden;
+	position: relative;
+	transition: 0.3s box-shadow;
 
 	&:only-child {
 		height: 100%;
 		margin-bottom: 0;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus-within {
 		box-shadow: 0 0 20px 5px rgba($color-base--active, 0.15);
 	}
 
+	&:hover &__call-to-action::after {
+		transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+	}
+
 	&__contents {
-		// 28 extra to make room for the absolutely positioned call to action
-		padding: rem(20);
 		display: flex;
-		flex-direction: column;
 		flex: 1;
+		flex-direction: column;
+		padding: rem(20);
 	}
 
 	&__body {
@@ -32,22 +35,18 @@
 	}
 
 	&__call-to-action {
-		@include font-size(18, 18);
-
-		color: $color-blue;
-		font-weight: bold;
-
-		&::after {
-			content: ' →' #{"/*rtl:'← '*/;"};
-		}
+		@include button-link-arrow;
+		align-self: flex-start;
+		position: static;
 
 		&::before {
-			content: '';
-			position: absolute;
+			bottom: 0;
+			content: "";
+			display: block;
 			left: 0;
+			position: absolute;
 			right: 0;
 			top: 0;
-			bottom: 0;
 		}
 	}
 }

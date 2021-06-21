@@ -80,9 +80,16 @@ $color-palette:
 	margin: 0 0 0.5em;
 }
 
+h2 {
+	@include article-font;
+	@include h2;
+	@include h-margins;
+}
+
 // Define base styles for headings, etc within text content.
 .page.has-blocks,
-.single.has-blocks {
+.single.has-blocks,
+.block-area.block-area {
 
 	@include wysiwyg {
 
@@ -105,7 +112,6 @@ $color-palette:
 		// stylelint-enable at-rule-empty-line-before
 
 		h1,
-		h2,
 		h3,
 		h4,
 		h5,
@@ -144,7 +150,7 @@ $color-palette:
 }
 
 // Negative margins for wide and full align blocks.
-.wysiwyg .alignwide {
+.wysiwyg.mw-784 .alignwide {
 
 	@media ( min-width: $medium-landscape ) {
 		.single-post & {
@@ -157,7 +163,8 @@ $color-palette:
 .wysiwyg .alignfull {
 
 	.page.has-blocks &,
-	.single.has-blocks & {
+	.single.has-blocks &,
+	.block-area.block-area & {
 
 		@include alignfull();
 	}
