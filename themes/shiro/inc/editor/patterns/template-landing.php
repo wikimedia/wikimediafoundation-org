@@ -16,8 +16,9 @@ const NAME = 'shiro/template-landing';
  * @return string
  */
 function pattern(): string {
-	$tweet_columns = tweet_columns_pattern();
-	$external_links = LinkColumns\PATTERN;
+	$tweet_columns         = tweet_columns_pattern();
+	$external_links        = LinkColumns\PATTERN;
+	$support_module        = wmf_get_reusable_block_module_insert( 'support' );
 	$communications_module = wmf_get_reusable_block_module_insert( 'connect' );
 
 	return <<<CONTENT
@@ -43,9 +44,7 @@ function pattern(): string {
 <!-- /wp:shiro/stair --></div>
 <!-- /wp:shiro/stairs -->
 
-<!-- wp:shiro/spotlight {"className":"is-style-red90"} -->
-<div class="wp-block-shiro-spotlight spotlight alignfull is-style-red90"><div class="spotlight__inner"><div class="spotlight__content"><h2 class="spotlight__heading is-style-h1"></h2><p class="spotlight__text"></p></div><figure class="spotlight__image-wrapper image-filter-inherit"></figure></div></div>
-<!-- /wp:shiro/spotlight -->
+$support_module
 
 $tweet_columns
 
