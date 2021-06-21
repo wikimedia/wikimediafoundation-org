@@ -274,6 +274,7 @@ require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/communication-module.php';
 require get_template_directory() . '/inc/editor/patterns/template-default.php';
 require get_template_directory() . '/inc/editor/patterns/template-landing.php';
+require get_template_directory() . '/inc/editor/patterns/template-list.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
