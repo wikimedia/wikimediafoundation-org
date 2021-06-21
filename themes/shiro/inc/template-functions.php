@@ -800,3 +800,65 @@ function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $p
 
 	return false;
 }
+
+/**
+ * Get an arbitrary reusable block module.
+ *
+ * Returns the id of the reusable block if found; 0 otherwise.
+ *
+ * @param string $module
+ *
+ * @return int
+ */
+function wmf_get_reusable_block_module_id( string $module ): int {
+	$available_blocks = [
+		'connect' => 'wmf_connect_reusable_block',
+		'support' => 'wmf_support_reusable_block',
+	];
+
+	if ( ! isset( $available_blocks[ $module ] ) ) {
+		return 0;
+	}
+
+	$id = get_theme_mod( $available_blocks[ $module ] );
+
+	$valid = is_numeric( $id )
+	         && $id > 0
+	         && get_post_type( $id ) === 'wp_block';
+
+	return $valid ? (int) $id : 0;
+}
+
+/**
+ * Get the WP_Post object for a reusable block module.
+ *
+ * Returns null if none found.
+ *
+ * @param string $module
+ *
+ * @return null|WP_Post
+ */
+function wmf_get_reusable_block_module( string $module ) {
+	$id = wmf_get_reusable_block_module_id( $module );
+
+	return $id > 0 ? get_post( $id ) : null;
+}
+
+/**
+ * Returns the "comment" necessary to insert a reusable block, for the module requested.
+ *
+ * Returns an empty string if block does not exist or cannot be found.
+ *
+ * @param string $module
+ *
+ * @return string
+ */
+function wmf_get_reusable_block_module_insert( string $module ): string {
+	$id = wmf_get_reusable_block_module_id( $module );
+
+	if ( $id < 1 ) {
+		return '';
+	}
+
+	return sprintf( '<!-- wp:block {"ref":%d} /-->', $id );
+}
