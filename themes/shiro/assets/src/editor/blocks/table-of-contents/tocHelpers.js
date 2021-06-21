@@ -1,42 +1,35 @@
 import { cleanForSlug } from '@wordpress/editor';
 
 /**
- * Process an array of blocks to look for nested blocks.
- *
- * This is only meant to be used inside of a column block,
- * to find H2s in the second column.
- *
- * @param {Array} blocks Blocks to process.
- */
-const getNestedBlocks = blocks => {
-	let nestedBlocks = [];
-	// Filter for column blocks.
-	// TODO: we probably want to filter this by a style or something as well.
-	blocks
-		.filter( block => block.name === 'core/columns' )
-		.forEach( block =>
-			// Handle second inner column.
-			block.innerBlocks[ 1 ].innerBlocks.forEach( block => {
-				// Add the column's inner blocks to nestedBlocks.
-				nestedBlocks.push( block );
-			} )
-		);
-
-	return nestedBlocks;
-};
-
-/**
  * Process an array of blocks to look for heading blocks.
  *
  * @param {Array} blocks Blocks to process.
  */
 export const getHeadingBlocks = blocks => {
-	const nestedBlocks = getNestedBlocks( blocks );
+	// Save some work
+	if ( blocks.length < 1 ) {
+		return [];
+	}
 
-	// Filter for H2 heading blocks.
-	const headingBlocks = nestedBlocks.filter(
-		block => block.name === 'core/heading' && block.attributes.level === 2
-	);
+	const headingBlocks = blocks
+		.filter( block => block.name === 'core/column' )
+		// Columns with a ToC can't contain valid headers for anchoring
+		.filter( block => {
+			if ( ! block.innerBlocks ) {
+				return false;
+			}
+
+			return ! block.innerBlocks.find(
+				block => block.name === 'shiro/toc'
+			);
+		} )
+		.map( block => block.innerBlocks || [] )
+		.flat()
+		// Filter for H2 heading blocks.
+		.filter(
+			block =>
+				block.name === 'core/heading' && block.attributes.level === 2
+		);
 
 	return headingBlocks;
 };

@@ -36,19 +36,51 @@ export const name = 'shiro/toc',
 		edit: function EditTableOfContentsBlock( {
 			attributes,
 			setAttributes,
+			clientId,
 		} ) {
 			const blockProps = useBlockProps( {
 				className: 'table-of-contents toc',
 			} );
 
-			const [ ...topLevelBlocks ] = useSelect( select =>
-				select( 'core/block-editor' ).getBlocks()
-			);
+			/**
+			 * This will look for the `core/columns` block containing this ToC
+			 * and its adjacent content. It does this by climbing up the block
+			 * tree from where it finds itself, so you may get odd results
+			 * if it isn't inside of a `core/columns` block.
+			 */
+			const potentialHeadingsContainer = useSelect( select => {
+				const parents = select( 'core/block-editor' ).getBlockParents(
+					clientId
+				);
+
+				if ( parents.length > 0 ) {
+					const wrappingColumns = parents
+						.reverse()
+						.find(
+							id =>
+								select( 'core/block-editor' ).getBlockName(
+									id
+								) === 'core/columns'
+						);
+
+					if ( wrappingColumns ) {
+						const { innerBlocks } = select(
+							'core/block-editor'
+						).getBlock( wrappingColumns );
+						return innerBlocks;
+					}
+				}
+
+				// Send back a sensible "fail" value.
+				return [];
+			} );
 
 			// Only update things when there's a change.
 			useEffect( () => {
 				let debouncer = setTimeout( () => {
-					const headingBlocks = getHeadingBlocks( topLevelBlocks );
+					const headingBlocks = getHeadingBlocks(
+						potentialHeadingsContainer
+					);
 					const headingBlocksFromAttributes =
 						attributes.headingBlocks;
 
@@ -64,7 +96,7 @@ export const name = 'shiro/toc',
 				return () => {
 					clearTimeout( debouncer );
 				};
-			}, [ topLevelBlocks, attributes, setAttributes ] );
+			}, [ potentialHeadingsContainer, attributes, setAttributes ] );
 
 			return (
 				<>
