@@ -393,6 +393,13 @@ $header-bp-mw: 1049px;
 		margin-top: -2rem;
 		max-height: 24rem;
 
+		.page-template-page-data &,
+		.page-template-page-report & {
+			@media ( max-width: #{$core-gutenberg-break-small} ) {
+				max-height: none;
+			}
+		}
+
 		&.ungrid-extra-height {
 			max-height: 28rem;
 		}
@@ -572,10 +579,9 @@ $header-bp-mw: 1049px;
         }
     }
 }
-.page-id-61705 {
-    .toc {
-        display: none;
-    }
+
+.page-template-page-data #content {
+	margin-top: 0 !important;
 }
 
 .blog {

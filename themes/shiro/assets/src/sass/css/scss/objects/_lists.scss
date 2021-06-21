@@ -1,5 +1,6 @@
 .link-list {
 	@include font-size(13, 13);
+	@include style-guide-list-reset;
 
 	&.inline-block {
 
@@ -61,59 +62,13 @@
 	}
 }
 
-.list-inline li {
-	display: inline;
-	text-decoration: none;
-}
+.list-inline {
 
+	@include style-guide-list-reset;
 
-// This is for the ridealong nav on the static lists
-.toc {
-	top: 75px;
-	bottom: 0;
-	padding-right: 20px;
-
-	.admin-bar & {
-		top: 107px;
-	}
-
-	// Terrible hack to make sure fixed width stays relative to parent
-	@media (min-width: $medium-bp) {
-		position: sticky;
-		&.fixedsticky-on {
-			width: 320px;
-		}
-
-		// Less terrible hack to make sure TOC can't intersect with footer
-		padding-top: 40px;
-		padding-bottom: 120px;
-	}
-
-}
-
-.toc-link-item {
-	list-style-type: none;
-	margin-left: 0;
-	margin-bottom: 0;
-	font-weight: 600;
-}
-
-.toc-link {
-	@include font-size(16, 14);
-	display: block;
-	margin-bottom: 15px;
-	color: $color-blue;
-	padding-left: 18px;
-	width: 100%;
-
-	&.-active {
-		color: #000;
-
-		&::before {
-			content: "\2022";
-			position: absolute;
-			left: 0;
-		}
+	li {
+		display: inline;
+		text-decoration: none;
 	}
 }
 

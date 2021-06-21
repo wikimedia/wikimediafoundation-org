@@ -1,13 +1,13 @@
-@include wysiwyg {
-	p a,
-	li a {
-		//$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
-		//@include linkHighlight($link-highlight-color, #000, 4, 4, 24, 30, $medium-bp);
-		color: $color-blue;
+a {
+	color: $color-blue;
+
+	&:hover {
+		text-decoration: underline;
 	}
 
-	p a:hover {
-		text-decoration: underline;
+	// TODO: This is not valid html, we should really fix all of these.
+	div, ul, p, #{$headings} {
+		color: $wmui-color-base10;
 	}
 }
 
@@ -17,7 +17,6 @@
 
 	@include wysiwyg {
 		> h1,
-		> h2,
 		> h3,
 		> h4,
 		> ol li,
@@ -41,7 +40,6 @@
 
 	@include wysiwyg {
 		h1,
-		h2,
 		h3,
 		h4,
 		li {

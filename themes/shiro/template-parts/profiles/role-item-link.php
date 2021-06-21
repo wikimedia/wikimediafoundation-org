@@ -18,8 +18,8 @@ if ( empty( $name ) ) {
 	return;
 }
 ?>
-<li class="toc-link-item">
-	<a class="toc-link niceScroll" href="#section-<?php echo absint( $term_id ); ?>">
+<li class="toc__item">
+	<a class="toc__link niceScroll" href="#section-<?php echo absint( $term_id ); ?>">
 		<span>
 			<?php echo esc_html( $name ); ?>
 		</span>
