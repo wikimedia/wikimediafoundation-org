@@ -290,6 +290,10 @@ $header-bp-mw: 1049px;
 		z-index: 2;
 		margin-top: 75px;
 		width: 100%;
+
+		.home & {
+			margin-top: rem(30);
+		}
 	}
 
 	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {
