@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 const BLOCKS_TEMPLATE = [
@@ -82,13 +82,23 @@ export const name = 'shiro/toc-columns',
 		 * Render edit of the table of contents column block.
 		 */
 		edit: function EditTocColumnsBlock() {
-			return <InnerBlocks template={ BLOCKS_TEMPLATE } />;
+			const blockProps = useBlockProps();
+			return (
+				<div { ...blockProps }>
+					<InnerBlocks template={ BLOCKS_TEMPLATE } />
+				</div>
+			);
 		},
 
 		/**
 		 * Render the save of the table of contents column block.
 		 */
 		save: function SaveTocColumnsBlock() {
-			return <InnerBlocks.Content />;
+			const blockProps = useBlockProps.save();
+			return (
+				<div { ...blockProps }>
+					<InnerBlocks.Content />
+				</div>
+			);
 		},
 	};
