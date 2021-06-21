@@ -95,8 +95,11 @@
 				height: 100%;
 				padding-bottom: 0;
 
-				/** 2.5rem is a magical number; I don't know where it comes from, but it works */
-				width: calc(50% - 2.5rem);
+				/**
+				 * 40px is half of the left/right margin on the content column,
+				 * which is subtracted from the overall width before it's split in half.
+				 */
+				width: calc(50% - #{rem(40)});
 			}
 		}
 	}
