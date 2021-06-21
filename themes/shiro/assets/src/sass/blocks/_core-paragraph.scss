@@ -1,5 +1,9 @@
 @include wysiwyg {
 	p {
 		margin-bottom: rem(40);
+
+		&.no-default-margin {
+			margin-bottom: 0;
+		}
 	}
 }
