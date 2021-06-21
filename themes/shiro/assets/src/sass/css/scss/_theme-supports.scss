@@ -80,6 +80,12 @@ $color-palette:
 	margin: 0 0 0.5em;
 }
 
+h2 {
+	@include article-font;
+	@include h2;
+	@include h-margins;
+}
+
 // Define base styles for headings, etc within text content.
 .page.has-blocks,
 .single.has-blocks,
@@ -106,7 +112,6 @@ $color-palette:
 		// stylelint-enable at-rule-empty-line-before
 
 		h1,
-		h2,
 		h3,
 		h4,
 		h5,

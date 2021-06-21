@@ -126,6 +126,8 @@
 	}
 
 	.social-list {
+
+		@include style-guide-list-reset;
 		display: flex;
 		flex-wrap: wrap;
 
@@ -182,10 +184,15 @@
     }
 }
 
+
 // Page Intro
 .page-intro {
 	margin-top: 2rem;
 	margin-left: 0;
+
+	.list-template & {
+		margin: 0;
+	}
 
 	h2 {
 		margin: 0;
