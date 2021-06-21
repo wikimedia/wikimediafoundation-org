@@ -14,15 +14,11 @@ export const name = 'shiro/toc',
 		title: __( 'Table of Contents', 'shiro-admin' ),
 		category: 'wikimedia',
 		icon: 'menu-alt2',
+		parent: [ 'shiro/toc-columns' ],
 		description: __(
 			'A table of contents menu for the sidebar on list template pages.',
 			'shiro-admin'
 		),
-		supports: {
-			inserter: true,
-			multiple: false,
-			reusable: false,
-		},
 		attributes: {
 			headingBlocks: {
 				type: 'array',
