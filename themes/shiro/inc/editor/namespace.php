@@ -58,6 +58,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/stairs',
 		'shiro/stair',
 		'shiro/toc',
+		'shiro/toc-columns',
 		'shiro/tweet-this',
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',

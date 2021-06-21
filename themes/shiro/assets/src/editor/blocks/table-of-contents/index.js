@@ -19,7 +19,7 @@ export const name = 'shiro/toc',
 			'shiro-admin'
 		),
 		supports: {
-			inserter: true,
+			inserter: false,
 			multiple: false,
 			reusable: false,
 		},
