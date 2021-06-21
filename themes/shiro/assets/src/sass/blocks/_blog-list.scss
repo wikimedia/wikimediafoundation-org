@@ -33,6 +33,7 @@
 	}
 
 	&__title {
+		&, // Yes, we also want this selector to target...this selector
 		// Additional specificity necessary to override base h3 styles
 		.single.has-blocks .wysiwyg &,
 		.page.has-blocks .wysiwyg &,
