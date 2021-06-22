@@ -62,7 +62,7 @@ function render_block( $attributes ) {
 
 	ob_start()
 	?>
-		<div class="<?php echo $className ?>">
+		<div class="<?php echo esc_attr( $className ) ?>">
 			<?php if ( ! empty( $site_language_heading ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
 					<span><?php echo esc_html( $site_language_heading['text'] ) ?></span>
