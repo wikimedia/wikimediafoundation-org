@@ -27,17 +27,17 @@ while ( have_posts() ) :
 
 	if ( has_post_thumbnail() ) {
 		$template_args['image'] = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-		wmf_get_template_part( 'template-parts/header/page-image', $template_args );
+		get_template_part( 'template-parts/header/page-image', null, $template_args );
 	} else {
-		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+		get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium">
-	<div class="module-mu w-32p">
+<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
+	<div class="w-32p toc__sidebar">
 		<?php get_sidebar( 'report' ); ?>
 	</div>
 
-	<div class="w-68p report-content">
+	<div class="w-68p report-content toc__content">
 		<h2 class="report-section-title">
 			<?php echo wp_kses( $template_args['h2_title'], array( 'span' => array( 'class' ) ) ); ?>
 		</h2>

@@ -27,8 +27,9 @@ while ( have_posts() ) :
 		}
 	}
 
-	wmf_get_template_part(
-		'template-parts/header/story-single',
+	get_template_part(
+		'template-parts/header/story',
+		'single',
 		array(
 			'back_to_link'  => $parent_link,
 			'back_to_label' => $parent_name,
@@ -43,8 +44,9 @@ while ( have_posts() ) :
 		<div class="flex flex-medium flex-space-between mar-bottom_lg">
 			<div class="w-48p">
 				<?php
-				wmf_get_template_part(
-					'template-parts/thumbnail-framed',
+				get_template_part(
+					'template-parts/thumbnail',
+					'framed',
 					array(
 						'inner_image'     => get_post_thumbnail_id( get_the_ID() ),
 						'container_class' => '',

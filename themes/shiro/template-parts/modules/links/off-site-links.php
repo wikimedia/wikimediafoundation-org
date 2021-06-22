@@ -5,13 +5,13 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['links'] ) || ! is_array( $template_args['links'] ) ) {
 	return;
 }
 
-$pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'shiro' ) );
+$pre_heading = get_theme_mod( 'wmf_off_site_links_pre_heading', __( 'ELSEWHERE IN WIKIMEDIA', 'shiro-admin' ) );
 $heading     = empty( $template_args['heading'] ) ? '' : $template_args['heading'];
 $split       = empty( $template_args['split'] ) ? false : $template_args['split'];
 
@@ -35,7 +35,7 @@ $title_class = $split ? 'small' : '';
 			<?php
 			foreach ( $template_args['links'] as $link ) {
 				$link['split'] = $split;
-				wmf_get_template_part( 'template-parts/modules/links/off-site-link', $link );
+				get_template_part( 'template-parts/modules/links/off-site-link', null, $link );
 			}
 			?>
 		</div>

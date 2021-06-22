@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$page_header_data = wmf_get_template_data();
+$page_header_data = $args;
 
 $h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
 $h4_title             = ! empty( $page_header_data['h4_title'] ) ? $page_header_data['h4_title'] : '';
@@ -18,7 +18,7 @@ $allowed_tags         = wp_kses_allowed_html( 'post' );
 $allowed_tags['time'] = true;
 $button = ! empty( get_post_meta( get_the_ID(), 'intro_button', true ) ) ? get_post_meta( get_the_ID(), 'intro_button', true ) : '';
 $extra_height_class = empty($button['title']) ? '' : 'ungrid-extra-height';
-$wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro' ) );
+$wmf_homedonate_button = get_theme_mod( 'wmf_homedonate_button', __( 'Donate now', 'shiro-admin' ) );
 $wmf_homedonate_uri    = get_theme_mod( 'wmf_homedonate_uri', '#' );
 $wmf_homedonate_intro    = get_theme_mod( 'wmf_homedonate_intro', 'Protect and sustain Wikipedia' );
 $wmf_homedonate_secure    = get_theme_mod( 'wmf_homedonate_secure', 'SECURE DONATIONS' );
@@ -32,7 +32,7 @@ $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['i
 $bg_opts          = wmf_get_background_image();
 $bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
 
-$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
+$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = wmf_get_translations();
 
 $single_title = '';
@@ -68,9 +68,9 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 				<a href="<?php echo esc_url($wmf_header_link_href) ?>" aria-label="<?php echo esc_attr($wmf_header_link_aria_label) ?>">
 			<?php endif; ?>
 					<div class="header-animation">
-						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) : 
-							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $wmf_alt_header_image_url . '")'); 
-							endif; 
+						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) :
+							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $wmf_alt_header_image_url . '")');
+							endif;
 						?>">
 
 						</div>
@@ -128,7 +128,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 									<?php echo esc_html( $h2_title ); ?>
 								</h2>
 								<h1><?php echo wp_kses_post( $title ); ?></h1>
-								<?php wmf_get_template_part( 'template-parts/modules/intro/button', $button ); ?>
+								<?php get_template_part( 'template-parts/modules/intro/button', null, $button ); ?>
 							</div>
 							<div class="page-intro-text module-mu w-50p" >
 								<div class="bg-img" style="background-image: url(<?php echo esc_url( $image ); ?>);">

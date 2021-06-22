@@ -1,0 +1,41 @@
+/**
+ * These styles are intentionally kept extremely minimal: They add only the
+ * rules necessary for the most basic functionality of the dropdown. Any more
+ * "presentational" rules should be defined elsewhere
+ * (i.e. _language-switcher.scss, _primary-nav.scss, etc).
+ */
+
+[data-dropdown] {
+	position: relative;
+}
+
+[data-dropdown-content] {
+	&[hidden] {
+		// For browsers that don't understand hidden
+		display: none;
+	}
+}
+
+[data-dropdown-backdrop] {
+	background: #000;
+	bottom: 0;
+	display: block;
+	left: 0;
+	opacity: 0;
+	pointer-events: none;
+	position: fixed;
+	right: 0;
+	top: 0;
+	transition: 300ms opacity;
+	z-index: 1999;
+}
+
+[data-dropdown-backdrop="active"] {
+	opacity: 0.6;
+	pointer-events: auto;
+}
+
+[data-dropdown-toggle][disabled] {
+	opacity: 0.5;
+	pointer-events: none;
+}

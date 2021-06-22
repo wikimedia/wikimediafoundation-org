@@ -5,9 +5,9 @@
  * @package shiro
  */
 
-$template_data = wmf_get_template_data();
+$template_data = $args;
 $services      = ! empty( $template_data['services'] ) ? $template_data['services'] : array( 'facebook', 'twitter' );
-$share_text    = isset( $template_data['title'] ) ? $template_data['title'] : get_theme_mod( 'social_share_text', __( 'Share', 'shiro' ) );
+$share_text    = isset( $template_data['title'] ) ? $template_data['title'] : get_theme_mod( 'social_share_text', __( 'Share', 'shiro-admin' ) );
 
 $args = wp_parse_args(
 	$template_data,

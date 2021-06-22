@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if (
 	( empty( $template_args['projects'] ) || ! is_array( $template_args['projects'] ) ) ||
@@ -15,7 +15,7 @@ if (
 }
 
 
-$title                  = get_theme_mod( 'wmf_projects_pre_heading', __( 'Projects', 'shiro' ) );
+$title                  = get_theme_mod( 'wmf_projects_pre_heading', __( 'Projects', 'shiro-admin' ) );
 $rand_translation_title = wmf_get_random_translation( 'wmf_projects_pre_heading' );
 
 $project_class = '_map';
@@ -55,7 +55,7 @@ $project_class = '_map';
 			<?php
 			foreach ( $template_args['projects'] as $project ) {
 				$project['class'] = $project_class;
-				wmf_get_template_part( 'template-parts/modules/projects/project', $project );
+				get_template_part( 'template-parts/modules/projects/project', null, $project );
 				$project_class = '_teal';
 			}
 			?>

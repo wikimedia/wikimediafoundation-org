@@ -40,8 +40,8 @@ function wmf_stories_template_admin_notice() {
 	?>
 	<div class="notice">
 		<p>
-			<?php esc_html_e( 'This page is using the "Stories Page" page template.', 'shiro' ); ?>
-			<?php esc_html_e( 'Selected stories from the "stories" module below will be displayed in place of the normal Report Section "list" module', 'shiro' ); ?>
+			<?php esc_html_e( 'This page is using the "Stories Page" page template.', 'shiro-admin' ); ?>
+			<?php esc_html_e( 'Selected stories from the "stories" module below will be displayed in place of the normal Report Section "list" module', 'shiro-admin' ); ?>
 		</p>
 	</div>
 	<?php

@@ -1,0 +1,42 @@
+.stair {
+	position: relative;
+	margin-bottom: 50px;
+	margin-left: unset;
+
+	@media (min-width: $medium-bp) {
+		flex: 0 1 calc( 50% - 20px );
+	}
+
+	&__heading {
+		line-height: 1.5 !important;
+	}
+
+	&__image {
+		width: 320px;
+	}
+
+	&__body {
+		background: $background-color-base;
+		font-family: $font-family-serif;
+		margin-left: rem(18);
+		margin-top: rem(-41);
+		padding: rem(18) rem(22);
+
+		// These make sure the paragraph is rendered over the image & editor media placeholder.
+		display: inline-block;
+		position: relative;
+		width: 100%;
+
+		@extend .has-default-font-size;
+
+		// Override more general styles.
+		@include article-main-wrap {
+			margin-bottom: 0;
+		}
+	}
+
+	&__read-more {
+		@include button-link-arrow;
+		margin: 0 rem(21) 0 rem(39);
+	}
+}

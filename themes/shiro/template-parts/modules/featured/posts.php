@@ -5,11 +5,11 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 $context  = empty( $template_args['context'] ) ? '' : $template_args['context'];
 $subtitle = empty( $template_args['subtitle'] ) ? '' : $template_args['subtitle'];
-$title    = get_theme_mod( 'wmf_featured_post_pre_heading', __( 'NEWS', 'shiro' ) );
+$title    = get_theme_mod( 'wmf_featured_post_pre_heading', __( 'NEWS', 'shiro-admin' ) );
 
 $rand_translation_title = wmf_get_random_translation( 'wmf_featured_post_pre_heading' );
 

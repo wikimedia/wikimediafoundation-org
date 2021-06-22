@@ -111,21 +111,6 @@ $header-bp-mw: 1049px;
 				min-height: auto;
 			}
 		}
-
-
-		&--news {
-			min-height: auto;
-			padding-bottom: rem(5);
-
-			@media (min-width: $medium-bp) {
-				padding-bottom: rem(300);
-			}
-
-			// TODO: Take header height and header-inner height to auto.
-			.header-inner {
-				min-height: auto;
-			}
-		}
 	}
 
 
@@ -305,6 +290,16 @@ $header-bp-mw: 1049px;
 		z-index: 2;
 		margin-top: 75px;
 		width: 100%;
+
+		.home & {
+			margin-top: rem(30);
+		}
+	}
+
+	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {
+		border-bottom: 0 none;
+		font-size: 1.5rem;
+		font-weight: 700;
 	}
 
 	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {
@@ -317,11 +312,7 @@ $header-bp-mw: 1049px;
 		margin-bottom: 1rem;
 
 		a.back-arrow-link {
-			@include font-size(16, 14);
-		}
-
-		a.back-arrow-link::before {
-			content: '← ' #{"/*rtl:'→ '*/;"};
+			@include button-link-arrow(true);
 		}
 
 		&.h1 {
@@ -411,6 +402,13 @@ $header-bp-mw: 1049px;
 		margin-right: -50vw;
 		margin-top: -2rem;
 		max-height: 24rem;
+
+		.page-template-page-data &,
+		.page-template-page-report & {
+			@media ( max-width: #{$core-gutenberg-break-small} ) {
+				max-height: none;
+			}
+		}
 
 		&.ungrid-extra-height {
 			max-height: 28rem;
@@ -591,10 +589,9 @@ $header-bp-mw: 1049px;
         }
     }
 }
-.page-id-61705 {
-    .toc {
-        display: none;
-    }
+
+.page-template-page-data #content {
+	margin-top: 0 !important;
 }
 
 .blog {

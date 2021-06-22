@@ -5,9 +5,9 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
-$follow_text = ! empty( $template_args['follow_text'] ) ? $template_args['follow_text'] : get_theme_mod( 'wmf_social_follow_text', __( 'Follow', 'shiro' ) );
+$follow_text = ! empty( $template_args['follow_text'] ) ? $template_args['follow_text'] : get_theme_mod( 'wmf_social_follow_text', __( 'Follow', 'shiro-admin' ) );
 $facebook    = ! empty( $template_args['facebook_url'] ) ? $template_args['facebook_url'] : get_theme_mod( 'wmf_facebook_url' );
 $twitter     = ! empty( $template_args['twitter_url'] ) ? $template_args['twitter_url'] : get_theme_mod( 'wmf_twitter_url' );
 $instagram   = ! empty( $template_args['instagram_url'] ) ? $template_args['instagram_url'] : get_theme_mod( 'wmf_instagram_url' );

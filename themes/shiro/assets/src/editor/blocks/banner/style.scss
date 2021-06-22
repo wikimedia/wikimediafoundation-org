@@ -1,0 +1,29 @@
+.banner {
+
+	/**
+	 * This (and the following .banner__conent rule) are a hack to prevent this
+	 * block from appearing "too wide." The slightly gross specificity here is
+	 * to override styles for the frontend that can't be changed.
+	 */
+	.editor-styles-wrapper &.wp-block {
+		background-color: transparent;
+	}
+
+	&__content {
+		background-color: var(--background-color);
+	}
+
+	&__content {
+		> *:last-child {
+			margin-top: auto;
+		}
+	}
+
+	&__cta {
+		// This is the simplest way to override the frontend styles without
+		// convoluted selectors. This style is necessary so that the width of
+		// the "button" is independent of the width of the CTA URL warning
+		// text.
+		display: inline-flex !important;
+	}
+}

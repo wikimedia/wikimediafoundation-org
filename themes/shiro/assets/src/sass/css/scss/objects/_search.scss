@@ -1,20 +1,3 @@
-.search-overlay {
-  display: none;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background: rgba($color-periwinkle,0.95);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 3000;
-
-  &.is-open {
-    display: block;
-  }
-}
-
 .search-container {
   width: 550px;
   margin: 140px auto;
@@ -128,64 +111,6 @@
   align-items: center;
 }
 
-// When search is open.
-.nav-container.search-open {
-
-  .search-toggle {
-    z-index: 0;
-  }
-  .search-bar-container {
-    z-index: 3000;
-    @media (min-width: 1024px) {
-      height: 43px;
-      top: 25px;
-      right: 160px;
-      width: 60%;
-    }
-
-    @keyframes expandInput {
-      0% {
-        width: 0;
-      }
-      100% {
-        width: 60%;
-      }
-    }
-
-    input {
-      width: 100%;
-      opacity: 1;
-
-
-      &::-webkit-input-placeholder {
-        color: $color-blue;
-      }
-      &::-moz-placeholder { /* Firefox 19+ */
-        color: $color-blue;
-      }
-      &:-ms-input-placeholder { /* IE 10+ */
-        color: $color-blue;
-      }
-      &:-moz-placeholder { /* Firefox 18- */
-        color: $color-blue;
-      }
-    }
-
-    .i {
-      display: block;
-      z-index: 9;
-    }
-
-    button {
-      border: none;
-
-      @media (max-width: $medium-landscape) {
-        padding: 0.7rem 1rem;
-      }
-    }
-  }
-}
-
 .search-container {
   @media (min-width: 1024px) {
     position: relative;
@@ -204,30 +129,6 @@
     .search-submit {
       opacity: 1;
     }
-  }
-}
-
-.search-toggle {
-  @include buttonNoStyles();
-  display: flex;
-  position: relative;
-  z-index: 99;
-  color: $color-black;
-  align-items: center;
-  // $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-  @include padding(5, 3, 5, 3);
-  margin-left: 1rem;
-  transition: 0.4s all;
-  &:hover {
-    background: $color-periwinkle;
-  }
-
-  &:active {
-    background-color: #ccc2fe;
-  }
-  @media (max-width: $medium-landscape) {
-    margin-top: .5rem;
-    display: none;
   }
 }
 
@@ -268,80 +169,4 @@
     width: 0px;
     padding-left: 3rem;
   }
-
-  button {
-    @include button($color-pink, $color-purple, $color-white, $color-white, 11px 1.5rem, .6rem 1rem);
-
-  }
-}
-
-.search-label {
-  color: $color-blue;
-  display: none;
-  transition: 0.3s all;
-
-  &:hover {
-    color: $color-turquoise;
-  }
-
-  @media (max-width: 1024px) {
-    display: none;
-  }
-
-  .i {
-    fill: $color-light-turquoise;
-  }
-}
-
-.search-toggle {
-  color: $color-blue;
-}
-
-@keyframes mmfadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes mmfadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes mmslideIn {
-  from { transform: translateY(15%); }
-  to { transform: translateY(0); }
-}
-
-@keyframes mmslideOut {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10%); }
-}
-
-.micromodal-slide {
-  display: none;
-}
-
-.micromodal-slide.is-open {
-  display: block;
-}
-
-.micromodal-slide[aria-hidden="false"] .search-inner {
-  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="false"] .search-container {
-  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .search-inner {
-  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .search-container {
-  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
-}
-
-.micromodal-slide .search-container,
-.micromodal-slide .search-inner {
-  will-change: transform;
 }

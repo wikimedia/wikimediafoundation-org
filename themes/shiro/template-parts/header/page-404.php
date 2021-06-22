@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$page_header_data = wmf_get_template_data();
+$page_header_data = $args;
 $title = $page_header_data["h2_title"];
 $sub_title = $page_header_data["h1_title"];
 

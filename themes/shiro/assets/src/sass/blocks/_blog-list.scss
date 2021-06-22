@@ -1,0 +1,157 @@
+.blog-list {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	width: rem(980);
+}
+
+.blog-post {
+	display: flex;
+	flex-direction: column;
+	padding: rem(20) 0;
+
+	// Blog posts have too small a width to properly display blog lists, so
+	// they need special handling if inserted directly into the editor.
+	article.mw-784 > & {
+		@media (min-width: #{$width-breakpoint-tablet}) {
+			margin-left: calc((100vw - 640px - var(--scrollbar) - 80px) / -2);
+			margin-right: calc((100vw - 640px - var(--scrollbar) - 80px) / -2);
+		}
+
+		@media (min-width: #{$width-breakpoint-desktop}) {
+			margin-left: rem((980 - 640) / -2);
+			margin-right: rem((980 - 640) / -2);
+		}
+	}
+
+	&__image {
+		@include hover-box-shadow;
+	}
+
+	&__content {
+		padding: rem(16) 0 0 0;
+	}
+
+	&__title {
+		&, // Yes, we also want this selector to target...this selector
+		// Additional specificity necessary to override base h3 styles
+		.single.has-blocks .wysiwyg &,
+		.page.has-blocks .wysiwyg &,
+		.block-area.block-area & {
+			@include h-margins;
+			@include h4;
+			margin-bottom: rem(16);
+		}
+
+		a {
+			@include style-guide-link;
+
+			// The link around the heading should display in same color as text.
+			color: var(--text-color);
+
+			// Use a lighter underline weight since heading is large + bold.
+			&:hover {
+				text-decoration-thickness: 0.5px;
+				text-underline-offset: 2px;
+			}
+		}
+	}
+
+	&__categories {
+		margin-bottom: rem(6);
+	}
+
+	&__category-link {
+		@include has-font-size( "small" );
+		background-color: $wmui-color-blue90;
+		border-radius: rem(4);
+		color: $color-primary;
+		display: inline-block;
+		font-weight: 700;
+		margin: 0 10px 10px 0;
+		padding: 0 $padding-horizontal-base;
+
+		&:hover {
+			background-color: $wmui-color-blue50;
+			color: $wmui-color-base100;
+			// The alternative is to *significantly* increase the complexity,
+			// making this much less readable, hence the !important.
+			// When old styles are removed, we may be able to revisit this.
+			text-decoration: none !important;
+		}
+	}
+
+	&__excerpt p {
+		@include has-font-size( "default" );
+		color: $wmui-color-base0;
+		color: var(--text-color);
+		font-family: $font-family-serif;
+		margin: 0 0 rem(10);
+	}
+
+	&__meta {
+		@include has-font-size( "small" );
+		color: $wmui-color-base0;
+		color: var(--text-color);
+		margin-bottom: rem(20);
+	}
+
+	&__published,
+	&__authors {
+		display: block;
+
+		a {
+			@include style-guide-link;
+		}
+	}
+
+	&__read-more {
+		@include button-link-arrow;
+	}
+
+	@media not screen and ( min-width: #{$width-breakpoint-tablet} ) {
+		&:first-of-type {
+			padding-top: 0;
+		}
+	}
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		align-items: stretch;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		padding: rem(40) 0;
+
+		&__title {
+			// Additional specificity necessary to override base h3 styles
+			.page.has-blocks .wysiwyg & {
+				font-size: rem(20);
+			}
+		}
+
+		&__image-link,
+		&__content {
+			flex-basis: 50%;
+		}
+
+		&__content {
+			margin-right: rem(20);
+			padding: 0;
+		}
+
+		&--featured {
+			flex-direction: row;
+
+			// stylelint-disable selector-class-pattern
+			.blog-post__image-link {
+				flex-basis: 77.5%;
+				margin-right: rem(-322);
+			}
+
+			.blog-post__content {
+				background: $wmui-color-base100;
+				margin: rem(64) 0;
+				padding: rem(20);
+			}
+		}
+	}
+}

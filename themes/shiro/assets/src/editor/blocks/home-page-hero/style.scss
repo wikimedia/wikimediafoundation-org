@@ -1,0 +1,51 @@
+.editor-styles-wrapper.editor-styles-wrapper {
+	.hero-home {
+		&__header {
+			height: unset;
+			min-height: 454px;
+			overflow: visible;
+		}
+
+		&__image-wrapper {
+			z-index: unset;
+
+			&--no-image {
+				position: relative;
+				width: unset;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+
+				.image-picker__placeholder {
+					width: 400px;
+					margin: 0 auto;
+				}
+			}
+		}
+
+		&__heading-wrapper {
+			z-index: 1;
+			position: relative;
+			padding-top: 4rem;
+		}
+
+		&__heading {
+			font-weight: 700;
+		}
+
+		&__toggle-rotating-headings {
+			display: block;
+		}
+
+		&__heading-color {
+			&:not(:first-child) {
+				margin-top: 1rem;
+			}
+
+			&:first-child {
+				margin-top: 0;
+				margin-bottom: 1rem;
+			}
+		}
+	}
+}

@@ -20,7 +20,7 @@ class Social extends Base {
 		$section_id = 'wmf_social';
 		$this->customize->add_section(
 			$section_id, array(
-				'title'    => __( 'Social', 'shiro' ),
+				'title'    => __( 'Social', 'shiro-admin' ),
 				'priority' => 70,
 			)
 		);
@@ -28,13 +28,13 @@ class Social extends Base {
 		$control_id = 'wmf_tweet_this_copy';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Tweet this', 'shiro' ),
+				'default' => __( 'Tweet this', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Tweet this copy', 'shiro' ),
-				'description' => __( 'Copy used for "Tweet this" label beneath facts.', 'shiro' ),
+				'label'       => __( 'Tweet this copy', 'shiro-admin' ),
+				'description' => __( 'Copy used for "Tweet this" label beneath facts.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -43,13 +43,13 @@ class Social extends Base {
 		$control_id = 'wmf_social_follow_text';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Follow', 'shiro' ),
+				'default' => __( 'Follow', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Follow Text', 'shiro' ),
-				'description' => __( 'This is used above follow links in multiple modules.', 'shiro' ),
+				'label'       => __( 'Follow Text', 'shiro-admin' ),
+				'description' => __( 'This is used above follow links in multiple modules.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -58,13 +58,13 @@ class Social extends Base {
 		$control_id = 'wmf_social_share_text';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Share', 'shiro' ),
+				'default' => __( 'Share', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'       => __( 'Share Text', 'shiro' ),
-				'description' => __( 'This is used above share links in multiple modules.', 'shiro' ),
+				'label'       => __( 'Share Text', 'shiro-admin' ),
+				'description' => __( 'This is used above share links in multiple modules.', 'shiro-admin' ),
 				'section'     => $section_id,
 				'type'        => 'text',
 			)
@@ -78,7 +78,7 @@ class Social extends Base {
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Twitter @', 'shiro' ),
+				'label'   => __( 'Twitter @', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -88,7 +88,7 @@ class Social extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Twitter URI', 'shiro' ),
+				'label'   => __( 'Twitter URI', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -97,12 +97,12 @@ class Social extends Base {
 		$control_id = 'wmf_facebook_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Facebook', 'shiro' ),
+				'default' => __( 'Facebook', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Facebook Label', 'shiro' ),
+				'label'   => __( 'Facebook Label', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -112,7 +112,7 @@ class Social extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Facebook URI', 'shiro' ),
+				'label'   => __( 'Facebook URI', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -121,12 +121,12 @@ class Social extends Base {
 		$control_id = 'wmf_instagram_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Instagram', 'shiro' ),
+				'default' => __( 'Instagram', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Instagram Label', 'shiro' ),
+				'label'   => __( 'Instagram Label', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -136,7 +136,7 @@ class Social extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Instagram URI', 'shiro' ),
+				'label'   => __( 'Instagram URI', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -145,12 +145,12 @@ class Social extends Base {
 		$control_id = 'wmf_blog_label';
 		$this->customize->add_setting(
 			$control_id, array(
-				'default' => __( 'Wikimedia Blog', 'shiro' ),
+				'default' => __( 'Wikimedia Blog', 'shiro-admin' ),
 			)
 		);
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Blog Label', 'shiro' ),
+				'label'   => __( 'Blog Label', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)
@@ -159,7 +159,7 @@ class Social extends Base {
 		$this->customize->add_setting( $control_id );
 		$this->customize->add_control(
 			$control_id, array(
-				'label'   => __( 'Blog URI', 'shiro' ),
+				'label'   => __( 'Blog URI', 'shiro-admin' ),
 				'section' => $section_id,
 				'type'    => 'text',
 			)

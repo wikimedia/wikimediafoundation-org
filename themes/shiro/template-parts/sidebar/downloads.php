@@ -5,8 +5,8 @@
  * @package shiro
  */
 
-$downloads       = wmf_get_template_data();
-$downloads_title = get_theme_mod( 'wmf_downloads_header', __( 'Downloads', 'shiro' ) );
+$downloads       = $args;
+$downloads_title = get_theme_mod( 'wmf_downloads_header', __( 'Downloads', 'shiro-admin' ) );
 
 if ( empty( $downloads ) ) {
 	return;
