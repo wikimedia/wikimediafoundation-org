@@ -160,10 +160,12 @@ class General extends Base {
 
 		$control_id = 'wmf_support_reusable_block';
 		$this->customize->add_setting($control_id);
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_posts_get_posts
 		$resuable_blocks = get_posts([
 			'post_type' => 'wp_block',
 			'numberposts' => 50,
 		]);
+		// phpcs:enable
 
 		$selectable_blocks = [];
 		foreach ($resuable_blocks as $block) {

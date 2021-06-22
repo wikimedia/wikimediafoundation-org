@@ -20,7 +20,11 @@ if ( $no_custom_connect && $reusable_block ) {
 		 * a wrapper with a set width or they look real strange. */ ?>
 		<div class="block-area">
 			<div class="wysiwyg mw-980">
-				<?php echo apply_filters( 'the_content', $reusable_block->post_content ) ?>
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo apply_filters( 'the_content', $reusable_block->post_content );
+				// phpcs:enable
+				?>
 			</div>
 		</div>
 	<?php }

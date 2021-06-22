@@ -11,7 +11,11 @@ if ( $reusable_block ) {
 	if ( is_a( $reusable_block, \WP_Post::class ) ) { ?>
 		<div class="block-area">
 			<div class="wysiwyg mw-980">
-				<?php echo wp_kses_post( apply_filters( 'the_content', $reusable_block->post_content ) ); ?>
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo apply_filters( 'the_content', $reusable_block->post_content );
+				// phpcs:enable
+				?>
 			</div>
 		</div>
 	<?php }

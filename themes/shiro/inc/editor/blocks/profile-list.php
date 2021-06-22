@@ -53,7 +53,7 @@ function render_block( $attributes ) {
 	echo '<div class="profile-list">';
 
 	foreach ($profile_ids as $id) {
-		echo Profile\render_block(['profile_id' => $id]);
+		echo wp_kses_post( Profile\render_block(['profile_id' => $id]) );
 	}
 
 	echo '</div>';

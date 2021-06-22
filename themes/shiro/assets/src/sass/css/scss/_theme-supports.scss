@@ -81,8 +81,6 @@ $color-palette:
 }
 
 h2 {
-	@include article-font;
-	@include h2;
 	@include h-margins;
 }
 

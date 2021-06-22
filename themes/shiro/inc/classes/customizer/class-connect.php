@@ -46,10 +46,12 @@ class Connect extends Base {
 
 		$control_id = 'wmf_connect_reusable_block';
 		$this->customize->add_setting( $control_id );
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_posts_get_posts
 		$reusable_blocks   = get_posts( [
 			'post_type'   => 'wp_block',
 			'numberposts' => 50,
 		] );
+		// phpcs:enable
 
 		$selectable_blocks = [];
 		foreach ( $reusable_blocks as $block ) {

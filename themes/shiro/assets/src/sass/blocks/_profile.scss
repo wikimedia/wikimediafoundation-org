@@ -47,6 +47,8 @@
 	}
 
 	&__link {
+		color: inherit;
+
 		@supports #{"\selector(*:focus-within)"} {
 			&:focus {
 				outline: none;

@@ -63,14 +63,14 @@ while ( have_posts() ) {
 
 		<?php
 		if ( ! $has_social_share ) {
-			echo \WMF\Editor\Blocks\ShareArticle\render_block( [
+			echo wp_kses_post( \WMF\Editor\Blocks\ShareArticle\render_block( [
 				'enableTwitter'  => true,
 				'enableFacebook' => true,
-			] );
+			] ) );
 		}
 
 		if ( ! $has_read_more_categories ) {
-			echo \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] );
+			echo wp_kses_post( \WMF\Editor\Blocks\ReadMoreCategories\render_block( [] ) );
 		}
 		?>
 	</article>
