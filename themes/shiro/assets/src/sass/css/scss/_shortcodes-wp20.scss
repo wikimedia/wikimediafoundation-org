@@ -5,13 +5,15 @@
 	p, .p, li {
 		font-size: 1.125rem;
 		line-height: 1.5;
-		margin-bottom: 1.125rem;
 		> a {
 			font-size: inherit;
 		}
 	}
 	span.p {
 		margin-bottom: 0;
+	}
+	li {
+		margin-bottom: 1.125rem;
 	}
 }
 
