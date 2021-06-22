@@ -166,6 +166,7 @@ function wmf_get_translations( $strict = true, $content_id = 0, $type = '' ) {
 			'shortname'  => $translation->language()->isoCode(),
 			'uri'        => $translation->remoteUrl(),
 			'content_id' => $translation->remoteContentId(),
+			'is_rtl'     => $translation->language()->isRtl(),
 		);
 
 		// Default English is now presented as "English (United States)", convert it to just "English".
@@ -276,7 +277,7 @@ function wmf_translation_alert() {
 		return; // This has been marked as translation complete, no alert to show.
 	}
 
-	$alert = get_theme_mod( 'wmf_incomplete_translation', __( 'This content has not yet been translated into the current language.', 'shiro' ) );
+	$alert = get_theme_mod( 'wmf_incomplete_translation', __( 'This content has not yet been translated into the current language.', 'shiro-admin' ) );
 
 	printf( '<div class="alert alert-warning" role="alert">%s</div>', esc_html( $alert ) );
 }

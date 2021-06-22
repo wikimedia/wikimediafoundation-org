@@ -45,18 +45,7 @@ function wmf_ajax_search() {
 	if ( $search_query->have_posts() ) {
 		while ( $search_query->have_posts() ) :
 			$search_query->the_post();
-			wmf_get_template_part(
-				'template-parts/modules/cards/card-horizontal', array(
-					'link'       => get_the_permalink(),
-					'image_id'   => get_post_thumbnail_id(),
-					'title'      => get_the_title(),
-					'authors'    => wmf_byline(),
-					'date'       => get_the_date(),
-					'excerpt'    => get_the_excerpt(),
-					'categories' => get_the_category(),
-					'sidebar'    => true,
-				)
-			);
+			echo \WMF\Editor\Blocks\BlogPost\render_block( [ 'post_id' => get_the_ID() ] );
 		endwhile;
 	} else {
 		get_template_part( 'template-parts/content', 'none' );

@@ -88,9 +88,9 @@ function wmf_redirect_template_warning_notice() {
 	?>
 	<div class="notice notice-warning">
 		<p>
-			<?php esc_html_e( 'This page is using the "Redirect Page" page template.', 'shiro' ); ?>
-			<?php esc_html_e( 'It will redirect to the newest child page which declares this page as its parent.', 'shiro' ); ?>
-			<?php esc_html_e( 'Change the template if you wish to edit this page directly.', 'shiro' ); ?>
+			<?php esc_html_e( 'This page is using the "Redirect Page" page template.', 'shiro-admin' ); ?>
+			<?php esc_html_e( 'It will redirect to the newest child page which declares this page as its parent.', 'shiro-admin' ); ?>
+			<?php esc_html_e( 'Change the template if you wish to edit this page directly.', 'shiro-admin' ); ?>
 		</p>
 	</div>
 	<?php

@@ -1,32 +1,4 @@
-// Fonts/Typography
-@mixin font-size($desktop, $mobile) {
-	// Mobile
-	font-size: rem($mobile);
-
-	// Tablet (halfway between desktop and mobile size
-	@media (min-width: $medium-bp) and (max-width: 1280px) {
-		font-size: rem($desktop - (($desktop - $mobile) / 2));
-	}
-
-	// Desktop
-	@media (min-width: 1281px) {
-		font-size: rem($desktop);
-	}
-}
-@mixin line-height($desktop, $mobile) {
-	// Mobile
-	line-height: rem($mobile);
-
-	// Tablet (halfway between desktop and mobile size
-	@media (min-width: $medium-bp) and (max-width: 1280px) {
-		line-height: rem($desktop - (($desktop - $mobile) / 2));
-	}
-
-	// Desktop
-	@media (min-width: 1281px) {
-		line-height: rem($desktop);
-	}
-}
+@import 'mixins-gutenberg';
 
 @mixin category() {
 	text-transform: uppercase;
@@ -103,47 +75,6 @@
 }
 
 
-// Buttons
-@mixin button-reset() {
-	display: inline-block;
-	font-weight: bold;
-	border-radius: 5px;
-	cursor: pointer;
-	padding: 1rem 1.5rem;
-}
-
-@mixin buttonNoStyles {
-	border: none;
-	background: none;
-}
-
-@mixin button($bg-color, $bg-color-hover, $color, $color-hover, $padding, $mobile-padding) {
-	background-color: $bg-color;
-	color: $color;
-
-	// Button tag reset.  Also given to button tag in gobal.scss
-	@include button-reset();
-
-	padding: $mobile-padding;
-	transition: $transition;
-    border: none;
-    outline: none;
-
-	&:hover {
-		background-color: $bg-color-hover;
-		color: $color-hover;
-	}
-
-	&:focus {
-		outline: 1px dotted $bg-color-hover;
-	}
-
-	@media (min-width: $large-bp) {
-		padding: $padding;
-	}
-}
-
-
 // Flexbox
 @mixin flexbox($mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction) {
 	display: flex;
@@ -180,17 +111,6 @@
         width: 100%;
         padding-top: ($height / $width) * 100%;
     }
-}
-
-
-// Spacing
-@mixin padding($topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop) {
-
-	padding: rem($topBottomMobile) rem($leftRightMobile);
-
-	@media (min-width: $medium-bp) {
-		padding: rem($topBottomDesktop) rem($leftRightDesktop);
-	}
 }
 
 @mixin paddingTopBottom($topBottomMobile, $topBottomDesktop) {
@@ -303,4 +223,30 @@
 	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 37%,rgba(58,37,255,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom, rgba(0,0,0,0) 37%,rgba(58,37,255,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a63a25ff',GradientType=0 ); /* IE6-9 */
+}
+
+$content-wrapper: ".wysiwyg" !default;
+// The `.wysiwyg` class is used to style post content. This mixin provides a
+// way of replacing the wrapper class name used, so that the block editor can be
+// styled in the same way as frontend templates.
+@mixin wysiwyg {
+	#{$content-wrapper} {
+		@content;
+	}
+}
+
+@mixin wysiwyg-wrap {
+	#{$content-wrapper} & {
+		@content;
+	}
+}
+
+@mixin has-blocks-wrap {
+	@include wysiwyg-wrap {
+		.page.has-blocks &,
+		.single.has-blocks &,
+		.block-area.block-area & {
+			@content;
+		}
+	}
 }

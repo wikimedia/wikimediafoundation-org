@@ -22,7 +22,20 @@ jQuery(document).ready(function($) {
 
   // Blockquotes
   // Since these blockquotes need to be display:inline for the quotation marks to function as designed, we can't add margin to it. This will wrap WordPress blockquotes in a container div to handle positioning and spacing.
-  $('article blockquote').wrap( "<div class='blockquote-container'></div>");
+  // This whole logic can be removed once all content has been migrated to the block editor.
+  $('article blockquote').each( function() {
+    var blockquote = $( this );
+
+    // If this blockquote is a block or is contained in a block, don't apply this.
+    if (
+      blockquote.hasClass( 'wp-block-quote' ) ||
+      blockquote.closest( '.wp-block-pullquote' ).length > 0
+    ) {
+      return;
+    }
+
+    blockquote.wrap( "<div class='blockquote-container'></div>")
+  } );
 
   // Photo credits hover effect
   // Based on:
@@ -102,16 +115,5 @@ jQuery(document).ready(function($) {
       $('#content').css('margin-top', contentBottom - ungridTop + 50 + eyebrow);
     }
   }
-
-  // Pinning nav on scrollTop
-  /* eslint-disable */
-  jQuery(window).on('scroll', function () {
-    if ( jQuery(this).scrollTop() > 0 ) {
-      jQuery('.top-nav').addClass('pinned');
-    } else {
-      jQuery('.top-nav').removeClass('pinned');
-    }
-  })
-  /* eslint-enable */
 
 });

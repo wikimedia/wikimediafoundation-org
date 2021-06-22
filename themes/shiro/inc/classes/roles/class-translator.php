@@ -23,7 +23,7 @@ class Translator extends Base {
 	 */
 	public function set_role_data() {
 		$this->role_data = array(
-			'name'        => __( 'Translator', 'shiro' ),
+			'name'        => __( 'Translator', 'shiro-admin' ),
 			'clone'       => 'editor',
 			'remove_caps' => array(
 				'create_posts',

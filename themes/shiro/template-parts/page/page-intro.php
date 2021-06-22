@@ -13,4 +13,4 @@ $template_args = array(
 	'intro'  => $intro,
 	'button' => get_post_meta( get_the_ID(), 'intro_button', true ),
 );
-wmf_get_template_part( 'template-parts/modules/intro/page', $template_args );
+get_template_part( 'template-parts/modules/intro/page', null, $template_args );

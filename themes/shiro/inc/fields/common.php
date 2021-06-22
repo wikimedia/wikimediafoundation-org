@@ -13,14 +13,14 @@ function wmf_intro_field() {
 		array(
 			'name'          => 'share_links',
 			'options'       => array(
-				'twitter'  => __( 'Twitter', 'shiro' ),
-				'facebook' => __( 'Facebook', 'shiro' ),
+				'twitter'  => __( 'Twitter', 'shiro-admin' ),
+				'facebook' => __( 'Facebook', 'shiro-admin' ),
 			),
 			'default_value' => array( 'twitter', 'facebook' ),
 		)
 	);
 
-	$social->add_meta_box( __( 'Share This Post On:', 'shiro' ), array( 'post', 'page' ) );
+	$social->add_meta_box( __( 'Share This Post On:', 'shiro-admin' ), array( 'post', 'page' ) );
 }
 add_action( 'fm_post_page', 'wmf_intro_field' );
 add_action( 'fm_post_post', 'wmf_intro_field' );

@@ -1,0 +1,179 @@
+.primary-nav {
+	border-top: 1px solid $wmui-color-base80;
+	display: flex;
+	justify-content: space-between;
+	margin-top: rem(66);
+	padding: 0;
+	padding-top: rem(12);
+	width: 100%;
+
+	&__drawer {
+		width: 100%;
+
+
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			align-items: start;
+			display: flex;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			width: 100%;
+		}
+
+		[data-dropdown-status="uninitialized"] & {
+			display: flex;
+			flex-direction: column-reverse;
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				flex-direction: row-reverse;
+			}
+		}
+
+		/**
+		 * "mobile-first" is generally preferable, but in this case "unsetting"
+		 * the mobile styles on desktop would be overly-complicated for no real
+		 * benefit, hence this "backwards" query.
+		 */
+		[data-dropdown-status="initialized"][data-visible="yes"] & {
+
+			@media ( max-width: $medium-landscape ) {
+				--full-window-height: calc(var(--vh, 1vh) * 100);
+				background: $color-white;
+				color: #fff;
+				display: block;
+				left: 0;
+				max-height: calc(var(--full-window-height, 100vh) - #{$primary-nav-mobile-height});
+				overflow: auto;
+				padding: 1.5rem;
+				position: fixed;
+				top: $primary-nav-mobile-height;
+				width: 100%;
+				z-index: 3000;
+			}
+
+			.admin-bar & {
+
+				@media (min-width: 600px) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + $admin-bar-mobile-height));
+					top: $primary-nav-mobile-height + $admin-bar-mobile-height;
+				}
+
+				@media (min-width: 784px) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + $admin-bar-desktop-height));
+					top: $primary-nav-mobile-height + $admin-bar-desktop-height;
+				}
+			}
+		}
+	}
+
+	&__items {
+
+		@include style-guide-list-reset;
+		align-items: start;
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+
+		[data-dropdown-status="initialized"] & {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			margin-top: rem(21);
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				align-items: center;
+				flex-direction: row;
+				flex-wrap: wrap;
+				margin-top: rem(-11);
+			}
+		}
+
+		li {
+			display: inline-block;
+			margin: 0;
+			margin-bottom: rem(11);
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				margin-bottom: 0;
+				margin-top: rem(11);
+			}
+
+			&.current-menu-item.current-menu-item,
+			&.current-page-ancestor.current-page-ancestor {
+				a {
+					color: $wmui-color-blue50;
+
+					span {
+						border: 0;
+					}
+
+					&::after {
+						background-color: $wmui-color-blue50;
+					}
+
+				}
+			}
+
+			a {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+
+				span {
+					display: inline-block;
+					padding: rem(6) rem(2);
+				}
+
+				&::after {
+					border: 0;
+					content: "";
+					display: block;
+					height: 3px;
+					margin-top: rem(12);
+					position: relative;
+					z-index: 10;
+
+					@media ( min-width: #{$primary-nav-breakpoint} ) {
+						margin-bottom: 0;
+					}
+				}
+
+				&:hover {
+					span {
+						background-color: $wmui-color-blue90;
+						color: $wmui-color-blue50;
+					}
+				}
+			}
+		}
+	}
+}
+
+/**
+ * This prevents users from inadvertently scrolling the site when the nav is open.
+ */
+body.disable-body-scrolling {
+	overflow-y: hidden;
+
+	@media (min-width: $primary-nav-breakpoint) {
+		overflow-y: auto;
+
+		& [data-dropdown-backdrop][data-active-dropdowns="primary-nav"] {
+			display: none;
+		}
+	}
+}
+
+/**
+ * This handles a somewhat complex condition:
+ * - The admin bar is present
+ * - The viewport is < 600px wide
+ * - The user has not scrolled down
+ * In *only* this condition, the primary nav drawer needs a little tweak or
+ * will be positioned too far down the screen.
+ */
+.admin-bar .site-header:not(.site-header--pinned) + .header-inner .primary-nav__drawer {
+
+	@media (max-width: 599px) {
+		max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+		top: $primary-nav-mobile-height + 46px;
+	}
+}

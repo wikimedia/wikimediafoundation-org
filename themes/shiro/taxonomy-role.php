@@ -29,8 +29,8 @@ if ( ! empty( $profile_parent_page ) ) {
 $display_intro = get_term_meta( $current_term_id, 'display_intro', true );
 
 if ( ! empty( $display_intro ) ) {
-	$description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'shiro' ) );
-	$button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'shiro' ) );
+	$description  = get_theme_mod( 'wmf_profile_archive_text', __( 'The Wikimedia Foundation is part of a broad global network of individuals, organizations, chapters, clubs and communities who together work to create the most powerful examples of volunteer collaboration and open content sharing in the world today.', 'shiro-admin' ) );
+	$button_label = get_theme_mod( 'wmf_profile_archive_button', __( 'We\'re Hiring', 'shiro-admin' ) );
 	$button_link  = get_theme_mod( 'wmf_profile_archive_button_link', '#' );
 }
 
@@ -45,8 +45,9 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 		'h4_title' => $h4_title,
 	);
 
-	wmf_get_template_part(
+	get_template_part(
 		'template-parts/header/page-noimage',
+		null,
 		$header_args
 	);
 
@@ -71,11 +72,11 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 </div>
 
 <div class="mw-980 mod-margin-bottom flex flex-medium">
-	<?php wmf_get_template_part( 'template-parts/profiles/role-sidebar', $post_list ); ?>
+	<?php get_template_part( 'template-parts/profiles/role-sidebar', null, $post_list ); ?>
 
 	<div class="w-68p">
 		<div class="mod-margin-bottom">
-			<?php wmf_get_template_part( 'template-parts/profiles/role-list', $post_list ); ?>
+			<?php get_template_part( 'template-parts/profiles/role-list', null, $post_list ); ?>
 		</div>
 
 	</div>

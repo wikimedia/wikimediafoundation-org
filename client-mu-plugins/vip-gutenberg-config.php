@@ -1,4 +1,6 @@
 <?php
 
-/* VIP: Disable Gutenberg editor */
-add_filter( 'use_block_editor_for_post', '__return_false' );
+// If Gutenberg RAMP plugin still exists, don't bypass the block editor.
+if ( function_exists( 'gutenberg_ramp_load_gutenberg' ) ) {
+	gutenberg_ramp_load_gutenberg();
+}

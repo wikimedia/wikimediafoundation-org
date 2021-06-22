@@ -24,17 +24,17 @@ while ( have_posts() ) :
 
 	if ( has_post_thumbnail() ) {
 		$template_args['image'] = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-		wmf_get_template_part( 'template-parts/header/page-image', $template_args );
+		get_template_part( 'template-parts/header/page', 'image', $template_args );
 	} else {
-		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium">
-	<div class="module-mu w-32p">
+<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
+	<div class="w-32p toc__sidebar">
 		<?php get_sidebar( 'list' ); ?>
 	</div>
 
-	<div class="w-68p">
+	<div class="w-68p toc__content">
 		<div class="page-intro mod-margin-bottom wysiwyg">
             <?php if ( ! has_post_thumbnail() ) : ?>
 			<?php get_template_part( 'template-parts/page/page', 'intro' ); ?>
@@ -43,7 +43,7 @@ while ( have_posts() ) :
 		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
-        
+
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>
 </div>

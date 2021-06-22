@@ -1,0 +1,97 @@
+// Some styles on the Wikimedia Foundation website diverge from those defined
+// in the Wikimedia Base UI Style Guide, which are imported into this build in
+// the _style-guide-variables.scss file. Local overrides are defined here,
+// which can override baseUI definitions.
+
+// Overrides to Base UI color definitions.
+$wmui-color-blue50:   #3a25ff;
+$wmui-color-blue90:   #eeeaff;
+
+$wmui-color-red50:    #d40356;
+$wmui-color-red90:    #fbe9f1;
+
+$wmui-color-yellow50: #fffd33;
+$wmui-color-yellow90: #fffec2;
+
+$wmui-color-image-filter-blue: rgba(213, 203, 255, .85);
+$wmui-color-image-filter-red: rgba(255,186,223, .85);
+$wmui-color-image-filter-yellow: rgba(255, 254, 168, .85);
+
+$wmui-color-focus-ring: rgba(#007dfa, 0.8);
+// Match the focus ring color for the footer (and meet contrast requirement).
+$wmui-color-focus-ring-hex: scale-color(#007dfa, $lightness: 40%);
+
+// Updated branded colors for primary buttons.
+$color-primary:         $wmui-color-blue50;
+$color-primary--hover:  #3200be;
+
+$color-secondary:         $wmui-color-red50;
+$color-secondary--hover:  #a00040;
+
+$color-tertiary:         $wmui-color-base100;
+$color-tertiary--hover:  $color-tertiary;
+
+// The style-guide doesn't contain variables for the border color of framed
+// elements
+$border-color-framed: $wmui-color-base80;
+
+// Border radius for bigger elements
+$border-radius-big: 4px;
+
+// Grid
+$xlarge-bp: 1400px;
+$large-bp: 1200px;
+$medium-bp: 768px;
+$medium-landscape: 1023px;
+$small-bp: 500px;
+
+// Breakpoints are different than in Base UI. Tablet breakpoint excludes any
+// device smaller than an iPad, and the desktop breakpoint is based off the
+// 980px content column + 40px padding on either side.
+$width-breakpoint-tablet: 768px;
+$width-breakpoint-desktop: 1060px;
+
+// Gutenberg uses different breakpoints for columns. To adjust based on these,
+// define those breakpoints here.
+$core-gutenberg-break-medium: 782px;
+$core-gutenberg-break-small: 600px;
+$wm-column-gutter: 20px;
+
+// Content widths
+$content-column: 980px;
+$content-column-rem: px-to-rem($content-column);
+$content-column-post: 640px;
+$content-column-post-rem: px-to-rem($content-column-post);
+
+// Default left/right padding for blocks in the editor.
+$block-padding: 40px;
+
+// Padded content widths
+$content-column-padded: $content-column + 2 * $block-padding;
+$content-column-padded-rem: px-to-rem($content-column-padded);
+$content-column-post-padded: $content-column-post + 2 * $block-padding;
+$content-column-post-padded-rem: px-to-rem($content-column-post-padded);
+
+// Box shadows for elements larger than those specified in the style guide.
+$box-shadow-card-element: 0 5px 20px 0 rgba(0, 0, 0, .15);
+
+/**
+ * This is necessary to prevent a 1px "wide" breakpoint overlap
+ * where both the menu toggle button and the "desktop" menu are
+ * visible at the same time.
+ */
+$primary-nav-breakpoint: $medium-landscape + 1px;
+
+/**
+ * WordPress admin bar breakpoints
+ */
+$admin-bar-breakpoint-sm: 601px;
+$admin-bar-breakpoint-lg: 784px;
+
+$half-scrollbar-width: calc(var(--scrollbar, 0px) / 2);
+
+// The height of the primary nav on mobile.
+// This is a magic number!
+$primary-nav-mobile-height: 62px;
+$admin-bar-mobile-height: 46px;
+$admin-bar-desktop-height: 32px;

@@ -1,0 +1,11 @@
+.wp-block-shiro-blog-list {
+	// This overrides the editor's width limit, and allows the blog list's
+	// natural width to be active without it overflowing. !important is not
+	// ideal, but it's *very* unlikely this would need to be overridden and
+	// this simplifies what would otherwise be a very long selector.
+	max-width: 100% !important;
+
+	.blog-post a {
+		pointer-events: none;
+	}
+}

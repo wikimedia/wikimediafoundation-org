@@ -15,14 +15,6 @@
  * as indicating support for post thumbnails.
  */
 function wmf_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on shiro, use a find and replace
-	 * to change 'shiro' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'shiro', get_template_directory() . '/languages' );
-
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
@@ -51,11 +43,11 @@ function wmf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'header'            => esc_html__( 'Header', 'shiro' ),
-			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro' ),
-			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro' ),
-			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro' ),
-			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro' ),
+			'header'            => esc_html__( 'Header', 'shiro-admin' ),
+			'footer-under-text' => esc_html__( 'Footer Under Text', 'shiro-admin' ),
+			'footer-projects'   => esc_html__( 'Footer Projects', 'shiro-admin' ),
+			'footer-affiliates' => esc_html__( 'Footer Movement Affiliates', 'shiro-admin' ),
+			'footer-legal'      => esc_html__( 'Footer Legal', 'shiro-admin' ),
 		)
 	);
 
@@ -93,6 +85,7 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_large', '1200', '675', true );
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
+
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -104,7 +97,7 @@ add_action( 'after_setup_theme', 'wmf_setup' );
 function wmf_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'shiro' ),
+			'name'          => esc_html__( 'Sidebar', 'shiro-admin' ),
 			'id'            => 'sidebar-1',
 			'description'   => '',
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -120,16 +113,24 @@ add_action( 'widgets_init', 'wmf_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wmf_scripts() {
-	wp_enqueue_style( 'shiro-style', get_stylesheet_uri(), array(), '1.0' );
+	$style_version = md5_file( get_theme_file_path( 'style.css' ) );
+	$script_version = md5_file( get_theme_file_path( 'assets/dist/scripts.min.js' ) );
+
+	wp_enqueue_style( 'shiro-style', get_stylesheet_uri(), array(), $style_version );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
-		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), '1.0' );
+		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
 	}
-	wp_register_script( 'mm-polyfill', get_stylesheet_directory_uri() . '/assets/dist/mm-polyfill.min.js', array(), '0.0.1', true );
-	wp_register_script( 'micromodal', get_stylesheet_directory_uri() . '/assets/dist/micromodal.min.js', array(), '0.0.1', true );
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody', 'mm-polyfill', 'micromodal' ), '0.0.2', true );
+	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
+	Asset_Loader\enqueue_asset(
+		\WMF\Assets\get_manifest_path(),
+		'shiro.js',
+		[
+			'dependencies' => [],
+			'handle' => 'shiro-modern',
+		]
+	);
 
 	wp_localize_script(
 		'shiro-script', 'shiro', array(
@@ -223,6 +224,13 @@ function wmf_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'wmf_admin_scripts' );
 
 /**
+ * Functions for enqueuing assets.
+ *
+ * Loading this early so we'll have access to it when enqueuing
+ */
+require_once __DIR__ . '/inc/assets.php';
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -241,6 +249,45 @@ require get_template_directory() . '/inc/template-translations.php';
  * Ajax related functions
  */
 require get_template_directory() . '/inc/ajax.php';
+
+/**
+ * Block editor functionality.
+ */
+require get_template_directory() . '/inc/editor/namespace.php';
+require get_template_directory() . '/inc/editor/blocks/blog-list.php';
+require get_template_directory() . '/inc/editor/blocks/blog-post.php';
+require get_template_directory() . '/inc/editor/blocks/double-heading.php';
+require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
+require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
+require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
+require get_template_directory() . '/inc/editor/blocks/share-article.php';
+require get_template_directory() . '/inc/editor/blocks/profile.php';
+require get_template_directory() . '/inc/editor/blocks/profile-list.php';
+require get_template_directory() . '/inc/editor/has-blocks-column.php';
+require get_template_directory() . '/inc/editor/intro.php';
+require get_template_directory() . '/inc/editor/patterns.php';
+require get_template_directory() . '/inc/editor/patterns/blog-list.php';
+require get_template_directory() . '/inc/editor/patterns/card-columns.php';
+require get_template_directory() . '/inc/editor/patterns/fact-columns.php';
+require get_template_directory() . '/inc/editor/patterns/link-columns.php';
+require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
+require get_template_directory() . '/inc/editor/patterns/communication-module.php';
+require get_template_directory() . '/inc/editor/patterns/template-default.php';
+require get_template_directory() . '/inc/editor/patterns/template-landing.php';
+require get_template_directory() . '/inc/editor/patterns/template-list.php';
+
+WMF\Editor\bootstrap();
+WMF\Editor\HasBlockColumn\bootstrap();
+WMF\Editor\Blocks\BlogList\bootstrap();
+WMF\Editor\Blocks\BlogPost\bootstrap();
+WMF\Editor\Blocks\InlineLanguages\bootstrap();
+WMF\Editor\Blocks\DoubleHeading\bootstrap();
+WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
+WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
+WMF\Editor\Blocks\ShareArticle\bootstrap();
+WMF\Editor\Blocks\Profile\bootstrap();
+WMF\Editor\Blocks\ProfileList\bootstrap();
+WMF\Editor\Patterns\bootstrap();
 
 /**
  * Adjustments to queries.
@@ -272,17 +319,13 @@ require get_template_directory() . '/inc/taxonomies.php';
  */
 require get_template_directory() . '/inc/post-types/profile.php';
 require get_template_directory() . '/inc/post-types/story.php';
+require get_template_directory() . '/inc/post-types/post.php';
 
 /**
  * Logic for Custom Page Templates.
  */
 require get_template_directory() . '/inc/template-redirect.php';
 require get_template_directory() . '/inc/template-stories.php';
-
-/**
- * Add Template Data Helper.
- */
-require get_template_directory() . '/inc/classes/class-wmf-template-data.php';
 
 /**
  * Add Cache related functions.
@@ -318,7 +361,7 @@ Stories_Customisations\init();
 // 404 page
 function theme_slug_filter_wp_404title( $title_parts ) {
     if ( is_404() ) {
-        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro' ) );
+        $title_parts['title'] = get_theme_mod( 'wmf_404_message', __( '404 Error', 'shiro-admin' ) );
     }
 
     return $title_parts;
@@ -330,7 +373,7 @@ add_filter( 'document_title_parts', 'theme_slug_filter_wp_404title' );
 // Search page
 function theme_slug_filter_wp_searchtitle( $title_parts ) {
     if ( is_search() ) {
-        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro' ) ), 'shiro' ), get_search_query() );
+        $title_parts['title'] = sprintf( __( get_theme_mod( 'wmf_search_results_copy', __( 'Search results for %s', 'shiro-admin' ) ), 'shiro' ), get_search_query() );
    }
 
     return $title_parts;
@@ -362,6 +405,7 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'viewBox' => true,
 				'width'   => true,
 				'height'  => true,
+				'class'   => true,
 			],
 			'rect' => [
 				'fill'   => true,
@@ -370,6 +414,16 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'x'      => true,
 				'y'      => true,
 			],
+			'use' => [
+				'xlink:href' => true,
+				'href'       => true,
+			],
+			'h1' => array_merge(
+				$context['h1'],
+				[
+					'lang'  => true,
+				]
+			),
 		]
 	);
 }
@@ -395,3 +449,19 @@ function wmf_filter_nav_menu_items( $args, $item, $depth ) {
 	return $args;
 }
 add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
+
+/**
+ * Add reusable blocks link to admin menu.
+ */
+function link_reusable_blocks_url() {
+	add_menu_page(
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		'manage_options',
+		'edit.php?post_type=wp_block', '',
+		'dashicons-editor-table',
+		22
+	);
+}
+
+add_action( 'admin_menu', 'link_reusable_blocks_url' );

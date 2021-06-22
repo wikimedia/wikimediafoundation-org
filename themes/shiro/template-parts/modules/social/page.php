@@ -5,14 +5,14 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['heading'] ) && empty( $template_args['services'] ) ) {
 	return;
 }
 
-$tweet_text = get_theme_mod( 'social_tweet_text', __( 'Tweet', 'shiro' ) );
-$share_text = get_theme_mod( 'social_share_text', __( 'Share', 'shiro' ) );
+$tweet_text = get_theme_mod( 'social_tweet_text', __( 'Tweet', 'shiro-admin' ) );
+$share_text = get_theme_mod( 'social_share_text', __( 'Share', 'shiro-admin' ) );
 ?>
 
 <div class="mw-1360 mod-margin-bottom ">

@@ -1,0 +1,81 @@
+@keyframes hero-home-animation {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(calc((4237px * -1) + 100vw));
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.hero-home {
+	@include global-block-styles;
+
+	&__link {
+		display: block;
+	}
+
+	&__header {
+		width: 100vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-left: -50vw;
+		margin-right: -50vw;
+		padding: 0;
+		height: 454px;
+		overflow: hidden;
+	}
+
+	&__image-wrapper {
+		position: absolute;
+		height: 454px;
+		width: 4237px;
+		z-index: -1;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: hero-home-animation 300s linear infinite;
+		}
+
+		&--disable-animation {
+			animation-play-state: paused;
+		}
+	}
+
+	&__heading-wrapper {
+		max-width: $content-column-padded-rem;
+		margin: 0 auto;
+		@include padding(0, 20, 0, strip-px($block-padding));
+	}
+
+	&__heading-color {
+		max-width: 454px;
+		margin-top: 4rem;
+	}
+
+	&__heading {
+		transition: opacity 750ms ease;
+		padding: 1rem;
+
+		@include has-blocks-wrap {
+			@include font-size(24, 24);
+			line-height: 1.5;
+		}
+
+		&--transparent {
+			opacity: 0;
+		}
+
+		&--hidden {
+			display: none;
+		}
+
+		&--has-link {
+			&:after {
+				@include style-guide-arrow-content;
+			}
+		}
+	}
+}

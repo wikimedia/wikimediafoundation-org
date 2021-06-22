@@ -7,6 +7,19 @@
  * @package shiro
  */
 
+/**
+ * This loads the blocks template if the front page is using blocks.
+ * This is necessary as a conditional so that the "old" home page can exist
+ * after the initial deploy of these changes. Once the home page has been moved
+ * over to blocks, `front-page.php` can be deleted, and the front page will
+ * just use the default page template.
+ */
+if ( has_blocks() ) {
+	get_template_part( 'page-block-editor' );
+	exit;
+}
+
+
 get_header();
 while ( have_posts() ) {
 	the_post();
@@ -22,9 +35,9 @@ while ( have_posts() ) {
 
 	if ( has_post_thumbnail() ) {
 		$template_args['image'] = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-		wmf_get_template_part( 'template-parts/header/page-image', $template_args );
+		get_template_part( 'template-parts/header/page', 'image', $template_args );
 	} else {
-		wmf_get_template_part( 'template-parts/header/page-noimage', $template_args );
+		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 	}
 
 	?>

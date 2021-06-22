@@ -1,16 +1,8 @@
-# Debug plugins
-plugins/log-deprecated-notices
-plugins/monster-widget
-plugins/query-monitor
-plugins/user-switching
-
+# Dependencies, except those from included plugins
 node_modules
-*.sass-cache*
 vendor
-!plugins/safe-svg/lib/vendor
-!plugins/wp-seo/vendor
-!plugins/mlp2to3/vendor
 !plugins/multilingualpress/vendor
+!plugins/hm-gutenberg-tools/vendor
 
 # Uploads directory
 uploads
@@ -44,5 +36,8 @@ db.php
 /languages/continents-cities-ar.mo
 /languages/continents-cities-ar.po
 .DS_Store
+
+# Meta and workflow-related info
+.github
 
 backstop_data

@@ -11,20 +11,19 @@
 
 use WMF\Images\Credits;
 
-$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro' ) );
+$wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = array_filter( wmf_get_translations(), function ( $translation ) {
 	return $translation['uri'] !== '';
 } );
 
-$wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate', 'shiro' ) );
+$wmf_donate_button = get_theme_mod( 'wmf_donate_now_copy', __( 'Donate', 'shiro-admin' ) );
 $wmf_donate_uri    = get_theme_mod( 'wmf_donate_now_uri', 'https://donate.wikimedia.org/?utm_medium=wmfSite&utm_campaign=comms' );
-$wmf_toggle_menu_label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro' ) );
-$wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip to content', 'shiro' ) );
-$wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro' ) );
-$wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro' ) );
-$wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro' ) );
+$wmf_toggle_menu_label = get_theme_mod( 'wmf_toggle_menu_label', __( 'Toggle menu', 'shiro-admin' ) );
+$wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip to content', 'shiro-admin' ) );
+$wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro-admin' ) );
+$wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro-admin' ) );
+$wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
 
-$page_id = get_queried_object_id();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -36,81 +35,14 @@ $page_id = get_queried_object_id();
 </head>
 
 <body <?php body_class(); ?>>
+	<div data-dropdown-backdrop></div>
 	<a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( $wmf_skip2_content_label ); ?></a>
 <div class="mobile-cover"></div>
 <div id="page" class="site">
-	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>">
-		<div class="top-nav">
-			<div class="site-main-nav flex flex-medium flex-align-center mw-980">
-				<div class="logo-container logo-container_lg">
-					<?php get_template_part( 'template-parts/header/logo' ); ?>
-				</div>
-				<div class="logo-container logo-container_sm">
-					<button class="mobile-nav-toggle bold" aria-label="<?php echo esc_attr( $wmf_toggle_menu_label ); ?>">
-						<span class="btn-label-a11y"><?php echo esc_html( $wmf_toggle_menu_label ); ?></span>
-						<?php wmf_show_icon( 'menu', 'material' ); ?>
-						<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/close.svg" alt="" class="icon-close">
-					</button>
-					<?php get_template_part( 'template-parts/header/logo' ); ?>
-				</div>
-				<div class="top-nav-buttons">
-					<?php if ( ! empty( $wmf_translations ) ) : ?>
-						<?php
-							// Find which is the current language and display that.
-							$selected = array_filter($wmf_translations, function ($lang) {
-								return $lang['selected'];
-							});
-							if ( strpos($selected[0]['name'],'English' ) === 0 ) {
-							     $lang_code = "en";
-							} else {
-								$lang_code = explode('/',$selected[0]['uri'])[3];
-							}
-						?>
-						<div class="language-dropdown" role="navigation">
-							<button aria-label="<?php echo esc_attr( $wmf_select_language_label ); ?>" aria-haspopup="listbox" aria-expanded="false">
-								<span class="btn-label-a11y"><?php echo esc_html( $wmf_current_language_label ); ?> </span>
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/language.svg" alt="" class="language-icon">
-								<span><?php echo esc_html($lang_code); ?></span>
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/down.svg" alt="" class="down-indicator">
-							</button>
-
-							<div class="language-list">
-								<ul role="listbox" id="lang-list" tabindex="-1">
-									<?php foreach ( $wmf_translations as $wmf_index => $wmf_translation ) : ?>
-										<li>
-											<?php if ( $wmf_translation['selected'] ) : ?>
-												<a class="selected" href="<?php echo esc_url( $wmf_translation['uri'] ); ?>"><?php echo esc_html( $wmf_translation['name'] ); ?></a>
-											<?php else : ?>
-												<span lang="<?php echo esc_attr( $wmf_translation['shortname'] ); ?>">
-													<a href="<?php echo esc_url( $wmf_translation['uri'] ); ?>">
-														<?php echo esc_html( $wmf_translation['name'] ); ?>
-													</a>
-												</span>
-											<?php endif; ?>
-										</li>
-									<?php endforeach ?>
-								</ul>
-							</div>
-						</div>
-					<?php endif; ?>
-					<div class="donate-btn">
-						<div class="donate-btn--desktop">
-							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>">
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock-pink.svg" alt="" class="secure">
-								<?php echo esc_html( $wmf_donate_button );?>
-							</a>
-						</div>
-						<div class="donate-btn--mobile">
-							<a href="<?php echo esc_url( $wmf_donate_uri ); ?>&utm_source=<?php echo esc_attr( $page_id ); ?>">
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/heart-pink.svg" alt="<?php echo esc_attr( $wmf_donate_button ); ?>">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<header class="<?php echo esc_attr( wmf_get_header_container_class() ); ?>" data-dropdown="primary-nav" data-dropdown-content=".primary-nav__drawer" data-dropdown-toggle=".primary-nav-toggle" data-dropdown-status="uninitialized" data-toggleable="yes" data-trap="inactive" data-backdrop="inactive" data-visible="false">
+		<?php get_template_part('template-parts/site-header/wrapper' ); ?>
 		<div class="header-inner mw-980">
-			<?php get_template_part( 'template-parts/header/navigation' ); ?>
+			<?php get_template_part( 'template-parts/site-navigation/wrapper' ); ?>
 			<?php wmf_translation_alert(); ?>
 
 <?php

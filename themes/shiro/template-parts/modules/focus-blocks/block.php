@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$template_args = wmf_get_template_data();
+$template_args = $args;
 
 if ( empty( $template_args['image'] ) && empty( $template_args['heading'] ) && empty( $template_args['content'] ) && empty( $template_args['link_uri'] ) ) {
 	return;
@@ -44,5 +44,5 @@ $class = empty( $template_args['class'] ) ? 'img-right-content-left' : $template
 
 				</div>
 			</div>
-	
+
 </a>

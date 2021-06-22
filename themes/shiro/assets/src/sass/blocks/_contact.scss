@@ -1,0 +1,42 @@
+.contact {
+	border: 1px solid $border-color-framed;
+	padding: rem(25);
+	border-radius: $border-radius-big;
+
+	&__icon {
+		height: rem(20);
+		width: rem(20);
+		margin-left: 0;
+		margin-bottom: rem(12);
+	}
+
+	&__description {
+		@include has-font-size("default");
+	}
+
+	&__call-to-action {
+		@include button-link-arrow;
+		margin-bottom: rem(8);
+		margin-top: rem(8);
+	}
+
+	.wp-block-buttons {
+		display: grid;
+		grid-template-columns: minmax(auto, rem(167)) auto;
+	}
+
+	.wp-block-button{
+		margin-right: 0;
+	}
+
+	@include has-blocks-wrap {
+		&__title {
+			margin-bottom: rem(8);
+		}
+
+		&__social-title {
+			@include has-font-size("default");
+			margin: rem(22) 0 0;
+		}
+	}
+}

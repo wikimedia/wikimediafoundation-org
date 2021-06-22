@@ -1,0 +1,81 @@
+.mailchimp-subscribe {
+	background: $background-color-framed;
+	border: 1px solid $border-color-framed;
+	border-radius: $border-radius-big;
+	font-family: $font-family-sans;
+	padding: rem(25);
+
+
+	&__form:not(:only-child) {
+		@include global-block-styles;
+  }
+
+	& > p:not(.mailchimp-subscribe__description) {
+		@include has-font-size('default');
+	}
+
+	.icon {
+		width: 20px;
+		margin-left: 0;
+	}
+
+	.wp-block-column > &__form:only-child {
+		@media (min-width: #{$core-gutenberg-break-medium}) {
+			height: 100%;
+			display: flex;
+			align-items: stretch;
+		}
+	}
+
+	&__input-container {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		flex-wrap: wrap;
+	}
+
+	&__column-input {
+		width: 100%;
+	}
+
+	&__column-button {
+		margin-top: 8px;
+	}
+
+	&__input-field {
+		// This padding guarantees the same size as a button. 6 (padding) - 1 (border) = 5.
+		padding: rem( 5 ) rem( 8 );
+		@include font-size(14, 16);
+		@include line-height(20, 22);
+
+		background: $background-color-base;
+		border: 1px solid $border-color-base;
+		border-radius: $border-radius-base;
+	}
+
+	&__description {
+		@include has-font-size('small');
+
+		color: $wmui-color-base30;
+	}
+
+	// Override too specific selector
+	.has-small-font-size {
+		@extend .has-small-font-size;
+	}
+
+	@media (min-width: #{ ($width-breakpoint-desktop) }) {
+		&__input-container {
+			flex-wrap: nowrap;
+		}
+
+		&__column-input {
+			flex: 1;
+		}
+
+		&__column-button {
+			margin-top: 0;
+			margin-left: 8px;
+		}
+	}
+}

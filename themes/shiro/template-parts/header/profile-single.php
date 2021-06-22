@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$profile_header_data = wmf_get_template_data();
+$profile_header_data = $args;
 
 $back_to_link = ! empty( $profile_header_data['back_to_link'] ) ? $profile_header_data['back_to_link'] : '';
 $staff_name   = ! empty( $profile_header_data['back_to_label'] ) ? $profile_header_data['back_to_label'] : '';

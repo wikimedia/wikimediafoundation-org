@@ -1,16 +1,17 @@
 body {
 	font-family: $sans;
 	font-size:100%;
-	background:#fff;
-	color: #000;
+	background: $wmui-color-base100;
+	color: $wmui-color-base10;
+	overflow-x: hidden;
 }
 
 hr {
-	border-top: 1px solid #000;
+	border-top: 1px solid $wmui-color-base10;
 }
 
 button {
-	@include button-reset();
+	@include style-guide-button-reset();
 }
 
 
@@ -23,20 +24,27 @@ a, button {
 
 // TODO Fix globally - currently only applied to COVID-19 page
 .page-id-62496 {
-	p {
-		margin-bottom: 1em;
+	#content,
+	.toc-nav::before {
+		content: "";
+		display: block;
+		padding-top: 2em;
 	}
+
 	.mod-margin-bottom {
 		margin-bottom: 3em;
 	}
-	li {
-		@include font-size(15, 13);
-		margin-bottom: 1em;
-	}
-	ul {
-		margin-bottom: 1em;
-	}
-	#content {
-		margin-top: 2em;
+
+	@include wysiwyg {
+		p {
+			margin-bottom: 1em;
+		}
+		li {
+			@include font-size(15, 13);
+			margin-bottom: 1em;
+		}
+		ul {
+			margin-bottom: 1em;
+		}
 	}
 }

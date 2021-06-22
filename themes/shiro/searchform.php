@@ -5,13 +5,19 @@
  * @package shiro
  */
 
-$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro' ) );
-$wmf_search_toggle      = get_theme_mod( 'wmf_search_toggle', __( 'Toggle search', 'shiro' ) );
-$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'What are you looking for?', 'shiro' ) );
+$wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro-admin' ) );
+$wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Search', 'shiro-admin' ) );
 ?>
-
-<button class="search-toggle" aria-label="<?php echo esc_attr( $wmf_search_toggle ); ?>" data-micromodal-trigger="search-modal">
-	<span class="btn-label-a11y"><?php echo esc_html( $wmf_search_toggle ); ?></span>
-	<?php wmf_show_icon( 'search', 'material' ); ?>
-	<span class="search-label uppercase bold"><?php echo esc_html( $wmf_search_button ); ?></span>
-</button>
+<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+	<label class="search-form__label">
+		<span class="screen-reader-text"><?php echo _x( 'Search for:', 'label' ) ?></span>
+		<input type="search" class="search-form__field"
+			   placeholder="<?php echo esc_attr_x( $wmf_search_placeholder, 'placeholder' ) ?>"
+			   value="<?php echo get_search_query() ?>" name="s"
+			   title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
+	</label>
+	<button type="submit" class="search-form__button">
+		<span class="screen-reader-text"><?php echo esc_html( $wmf_search_button ) ?></span>
+		<?php wmf_show_icon( 'search', 'search-form__icon' ); ?>
+	</button>
+</form>
