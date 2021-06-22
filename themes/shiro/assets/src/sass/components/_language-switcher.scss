@@ -89,6 +89,7 @@
 		}
 
 		ul {
+			@include style-guide-list-reset;
 			display: flex;
 
 			[data-dropdown-status="initialized"] & {
