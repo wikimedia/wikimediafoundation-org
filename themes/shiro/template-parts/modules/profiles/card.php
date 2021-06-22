@@ -7,6 +7,7 @@
 
 $template_data = $args;
 
+// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $link     = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 $title    = ! empty( $template_data['title'] ) ? $template_data
 ['title'] : '';
@@ -19,11 +20,12 @@ $img_id   = ! empty( $template_data['img_id'] ) ? $template_data
 $image_el = wp_get_attachment_image( $img_id, 'image_4x3_small', null, [
 	'class' => 'profile__image',
 ] );
+// phpcs:enable
 
 ?>
 
 <div class="profile">
-	<?php echo $image_el ?>
+	<?php echo wp_kses_post( $image_el ); ?>
 
 	<div class="profile__content">
 		<?php if ( ! empty( $title ) ) : ?>

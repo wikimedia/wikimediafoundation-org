@@ -13,11 +13,13 @@ if ( empty( $template_data ) || empty( $template_data['posts'] ) ) {
 	return;
 }
 
+// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 $title                  = ! empty( $template_data['title'] ) ? $template_data['title'] : '';
 $description            = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
 $connected_user         = get_post_meta( get_the_ID(), 'connected_user', true );
 $authorlink             = wmf_get_author_link( $connected_user );
 $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' );
+// phpcs:enable
 
 ?>
 
@@ -42,8 +44,12 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 			</h2>
 		</div>
 
-		<?php foreach ( $template_data['posts'] as $post ) {
-			echo BlogPost\render_block( [ 'post_id' => $post->ID ] );
-		} ?>
+		<?php
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		foreach ( $template_data['posts'] as $post ) {
+			echo wp_kses_post( BlogPost\render_block( [ 'post_id' => $post->ID ] ) );
+		}
+		// phpcs:enable
+		?>
 	</div>
 </div>

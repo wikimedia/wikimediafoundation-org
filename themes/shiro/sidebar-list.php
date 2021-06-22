@@ -7,8 +7,10 @@
  * @package shiro
  */
 
+// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 $nested        = $args['nested'] || false;
 $template_args = get_post_meta( get_the_ID(), 'list', true );
+// phpcs:enable
 
 if ( empty( $template_args ) ) {
 	return;
