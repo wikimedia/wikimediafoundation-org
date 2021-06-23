@@ -8,7 +8,7 @@
 $wmf_search_button      = get_theme_mod( 'wmf_search_button_copy', __( 'Search', 'shiro-admin' ) );
 $wmf_search_placeholder = get_theme_mod( 'wmf_search_placeholder_copy', __( 'Search', 'shiro-admin' ) );
 ?>
-<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<label class="search-form__label">
 		<span class="screen-reader-text"><?php echo _x( 'Search for:', 'label' ) ?></span>
 		<input type="search" class="search-form__field"
