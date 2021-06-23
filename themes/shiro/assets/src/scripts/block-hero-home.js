@@ -17,6 +17,8 @@ let currentHeading = headings[0];
 let previousHeading = headings[0];
 let timeout = null;
 
+const targetLink = document.querySelector( '.hero-home__link' );
+
 /**
  * Setup variables for fading in and out.
  *
@@ -28,6 +30,10 @@ function cycleHeading() {
 
 	currentHeading = headings[ currentHeadingIndex ];
 	previousHeading = headings[ previousHeadingIndex ];
+
+	if ( targetLink ) {
+		targetLink.setAttribute( 'aria-labeledby', currentHeading.id );
+	}
 
 	fadeOutPreviousHeading();
 }
