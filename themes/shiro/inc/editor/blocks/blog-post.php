@@ -47,6 +47,7 @@ function render_block( $attributes ) {
 		return '';
 	}
 
+	// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	global $post;
 	$backed_up_global_post = $post;
 
@@ -71,6 +72,7 @@ function render_block( $attributes ) {
 	);
 
 	$post = $backed_up_global_post;
+	// phpcs:enable
 	wp_reset_postdata();
 	return ob_get_clean();
 }
