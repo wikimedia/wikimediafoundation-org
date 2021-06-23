@@ -450,6 +450,9 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
     .story-content .story-location {
     	margin-bottom: 0;
     }
+	.story-content .story-since {
+    	margin-top: 0;
+    }
     blockquote {
     	margin: 1rem 0 0 0;
 		border-left: 0.25rem solid $wmui-color-base0;
