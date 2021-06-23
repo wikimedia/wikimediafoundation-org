@@ -54,6 +54,10 @@ function render_block( $attributes ) {
 		'p'         => (int) $id,
 	] );
 
+	if ( ! $post_query->have_posts() ) {
+		return '';
+	}
+
 	ob_start();
 
 	while ( $post_query->have_posts() ) : $post_query->the_post();
@@ -74,6 +78,8 @@ function render_block( $attributes ) {
 		);
 
 	endwhile;
+
+	wp_reset_postdata();
 
 	return ob_get_clean();
 }
