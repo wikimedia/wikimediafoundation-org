@@ -23,12 +23,12 @@ function register_block() {
 		[
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'attributes' => [
-				'post_id' => [
+			'attributes'      => [
+				'post_id'     => [
 					'type' => 'integer',
 				],
 				'is_featured' => [
-					'type' => 'boolean',
+					'type'    => 'boolean',
 					'default' => false,
 				],
 			],
@@ -40,6 +40,7 @@ function register_block() {
  * Render this block, given its attributes.
  *
  * @param [] $attributes Block attributes.
+ *
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
