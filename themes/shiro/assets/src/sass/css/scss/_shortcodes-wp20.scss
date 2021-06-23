@@ -101,17 +101,26 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 
 $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 
-.wp20 h1,
-.wp20 h2 {
-	font-family: $wp20_font;
-	font-weight: normal;
-	line-height: 1.1;
-	@include marginBottom(32, 40, $medium-bp);
-}
+.wp20 {
+	&,
+	.wysiwyg {
+		h1,
+		h2 {
+			font-family: $wp20_font;
+			font-weight: 400;
+			line-height: 1.1;
+		}
 
-.wp20 h2 {
-	@include font-size(44, 24);
-	@include marginBottom(16, 28, $medium-bp);
+		h1 {
+			@include font-size(64, 30);
+			@include marginBottom(32, 40, $medium-bp);
+		}
+
+		h2 {
+			@include font-size(44, 24);
+			@include marginBottom(16, 28, $medium-bp);
+		}
+	}
 }
 
 .wp20.story-carousel-container .index,
@@ -765,6 +774,7 @@ $row-gutter-big: 0.625vw;
 			flex-direction: column;
 		}
 		@include padding(0, 0, 0, 32);
+		>h2,
 		> p {
 			margin-bottom: 0;
 		}
