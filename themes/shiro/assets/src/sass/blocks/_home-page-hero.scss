@@ -13,19 +13,13 @@
 .hero-home {
 	@include global-block-styles;
 
-	&:focus-within,
-	&:hover {
-		h2::before {
-			border: 4px solid rgba(0, 125, 250, 0.6);
-			border-radius: 2px;
-			bottom: -4px;
-			content: "";
-			left: -4px;
-			position: absolute;
-			right: -4px;
-			text-decoration: underline;
-			top: -4px;
-		}
+	&:focus-within h2,
+	&:hover &__heading--has-link {
+		text-decoration: underline;
+	}
+
+	&:focus-within h2 {
+		@include focus-ring($hex: false, $inset: false, $width: 4px);
 	}
 
 	&__header {
@@ -73,6 +67,7 @@
 
 		@include has-blocks-wrap {
 			@include font-size(24, 24);
+			font-weight: 700;
 			line-height: 1.5;
 		}
 
@@ -85,8 +80,13 @@
 		}
 
 		&--has-link {
-			&:after {
+			&::after {
 				@include style-guide-arrow-content;
+			}
+			&.rtl-switch {
+				&::after {
+					@include style-guide-arrow-content-back;
+				}
 			}
 		}
 	}

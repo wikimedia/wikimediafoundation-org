@@ -12,9 +12,10 @@ const CYCLE_TIME = 5000;
 const OPACITY_TRANSITION_TIME = 750;
 const BROWSER_PAINT_WAIT = 20;
 const headings = document.querySelectorAll( '.hero-home__heading' );
-let currentHeadingIndex = 0, previousHeadingIndex = 0;
-let currentHeading = headings[0];
-let previousHeading = headings[0];
+let currentHeadingIndex = 0,
+	previousHeadingIndex = 0;
+let currentHeading = headings[ 0 ];
+let previousHeading = headings[ 0 ];
 let timeout = null;
 
 const targetLink = document.querySelector( '.hero-home__link' );
@@ -25,17 +26,22 @@ const targetLink = document.querySelector( '.hero-home__link' );
  * @returns {void}
  */
 function cycleHeading() {
-	previousHeadingIndex = currentHeadingIndex;
-	currentHeadingIndex = ++currentHeadingIndex % headings.length;
+	if ( ! targetLink || targetLink !== document.activeElement ) {
+		previousHeadingIndex = currentHeadingIndex;
+		currentHeadingIndex = ++currentHeadingIndex % headings.length;
 
-	currentHeading = headings[ currentHeadingIndex ];
-	previousHeading = headings[ previousHeadingIndex ];
+		currentHeading = headings[ currentHeadingIndex ];
+		previousHeading = headings[ previousHeadingIndex ];
 
-	if ( targetLink ) {
-		targetLink.setAttribute( 'aria-labeledby', currentHeading.id );
+		if ( targetLink ) {
+			targetLink.setAttribute( 'aria-labeledby', currentHeading.id );
+		}
+
+		fadeOutPreviousHeading();
+	} else {
+		// Setup the next cycle
+		timeout = setTimeout( cycleHeading, CYCLE_TIME );
 	}
-
-	fadeOutPreviousHeading();
 }
 
 /**
