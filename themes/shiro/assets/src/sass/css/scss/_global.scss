@@ -36,9 +36,6 @@ a, button {
 	}
 
 	@include wysiwyg {
-		p {
-			margin-bottom: 1em;
-		}
 		li {
 			@include font-size(15, 13);
 			margin-bottom: 1em;
