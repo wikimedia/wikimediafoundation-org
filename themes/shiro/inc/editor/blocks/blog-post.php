@@ -60,7 +60,8 @@ function render_block( $attributes ) {
 
 	ob_start();
 
-	while ( $post_query->have_posts() ) : $post_query->the_post();
+	while ( $post_query->have_posts() ) {
+		$post_query->the_post();
 
 		get_template_part(
 			'template-parts/modules/cards/card',
@@ -76,8 +77,7 @@ function render_block( $attributes ) {
 				'class'      => 'blog-post' . ( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ),
 			]
 		);
-
-	endwhile;
+	}
 
 	wp_reset_postdata();
 
