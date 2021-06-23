@@ -60,7 +60,7 @@ function render_block( $attributes ) {
 
 					$is_last = ++$i === count( $terms );
 				?>
-				<a href="<?php echo esc_attr( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a><?php
+				<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $term->name ); ?></a><?php
 					if ( ! $is_last ) {
 						echo ',';
 					}
