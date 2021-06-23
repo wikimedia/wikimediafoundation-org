@@ -31,12 +31,12 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	$post = get_post( $featured_post_id );
 	if ( ! empty( $post ) ) {
 		$featured_post_id = (int) $post->ID;
-		echo WMF\Editor\Blocks\BlogPost\render_block(
+		echo wp_kses_post( WMF\Editor\Blocks\BlogPost\render_block(
 			[
 				'post_id' => $featured_post_id,
 				'is_featured' => true,
 			]
-		);
+		) );
 	}
 	?>
 
@@ -51,9 +51,9 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				continue;
 			}
 
-			echo WMF\Editor\Blocks\BlogPost\render_block(
+			echo wp_kses_post( WMF\Editor\Blocks\BlogPost\render_block(
 				[ 'post_id' => $post->ID ]
-			);
+			) );
 		endwhile;
 
 	else :
