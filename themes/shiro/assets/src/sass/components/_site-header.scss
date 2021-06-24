@@ -1,5 +1,6 @@
 .site-header {
 	background: #fff;
+	min-height: rem(62); // Prevent content shift during loading
 	position: fixed;
 	top: 0;
 	transition: top 250ms ease;
