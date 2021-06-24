@@ -11,7 +11,10 @@ import { Button, PanelBody, SelectControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import { ensureEmptyHeading, prepareHeadings } from '../../helpers/repeating-headings';
+import {
+	ensureEmptyHeading,
+	prepareHeadings,
+} from '../../helpers/repeating-headings';
 
 const { languages, siteLanguage } = shiroEditorVariables;
 
@@ -46,7 +49,7 @@ function ensureSiteLanguageHeading( headings ) {
 		siteLanguageIndex = headings.length - 1;
 	}
 
-	const siteLanguageHeading = headings[siteLanguageIndex];
+	const siteLanguageHeading = headings[ siteLanguageIndex ];
 
 	return {
 		siteLanguageIndex,
@@ -54,8 +57,7 @@ function ensureSiteLanguageHeading( headings ) {
 	};
 }
 
-export const
-	name = 'shiro/double-heading',
+export const name = 'shiro/double-heading',
 	settings = {
 		apiVersion: 2,
 		icon: 'heading',
@@ -85,7 +87,10 @@ export const
 
 			// Make sure the current site language always has a heading. This
 			// prevents focus from shifting when the user starts typing.
-			const { siteLanguageIndex, siteLanguageHeading } = ensureSiteLanguageHeading( headings );
+			const {
+				siteLanguageIndex,
+				siteLanguageHeading,
+			} = ensureSiteLanguageHeading( headings );
 
 			headings = ensureEmptyHeading( headings );
 
@@ -97,7 +102,11 @@ export const
 			 * @param {*} newValue The new value for the attribute
 			 * @returns {void}
 			 */
-			const setHeadingAttribute = ( attribute, headingToUpdate, newValue ) => {
+			const setHeadingAttribute = (
+				attribute,
+				headingToUpdate,
+				newValue
+			) => {
 				setAttributes( {
 					secondaryHeadings: headings.map( ( heading, i ) => {
 						if ( headingToUpdate === i ) {
@@ -112,10 +121,15 @@ export const
 				} );
 
 				if ( attribute === 'lang' ) {
-					const switchRtl = isRtl( newValue ) !== isRtl( siteLanguage );
+					const switchRtl =
+						isRtl( newValue ) !== isRtl( siteLanguage );
 
 					if ( switchRtl !== headings[ headingToUpdate ].switchRtl ) {
-						setHeadingAttribute( 'switchRtl', headingToUpdate, switchRtl );
+						setHeadingAttribute(
+							'switchRtl',
+							headingToUpdate,
+							switchRtl
+						);
 					}
 				}
 			};
@@ -125,7 +139,10 @@ export const
 					{ isExpanded && (
 						<>
 							<small>
-								{ __( 'One of these variants will be shown randomly when visiting the site:', 'shiro-admin' ) }
+								{ __(
+									'One of these variants will be shown randomly when visiting the site:',
+									'shiro-admin'
+								) }
 							</small>
 							{ headings.map( ( heading, headingIndex ) => {
 								if ( heading.lang === siteLanguage ) {
@@ -133,25 +150,44 @@ export const
 								}
 
 								return (
-									<div key={ headingIndex } className="double-heading__secondary is-style-h5">
+									<div
+										key={ headingIndex }
+										className="double-heading__secondary is-style-h5"
+									>
 										<RichText
-											allowedFormats={ [ ] }
+											allowedFormats={ [] }
 											keepPlaceholderOnFocus
-											placeholder={ __( 'Write secondary heading', 'shiro-admin' ) }
+											placeholder={ __(
+												'Write secondary heading',
+												'shiro-admin'
+											) }
 											tagName="span"
 											value={ siteLanguageHeading.text }
-											onChange={ partial( setHeadingAttribute, 'text', siteLanguageIndex ) }
-											onFocus={ () => setActiveHeading( null ) }
+											onChange={ partial(
+												setHeadingAttribute,
+												'text',
+												siteLanguageIndex
+											) }
+											onFocus={ () =>
+												setActiveHeading( null ) }
 										/>
 										&nbsp;—&nbsp;
 										<RichText
-											allowedFormats={ [ ] }
+											allowedFormats={ [] }
 											keepPlaceholderOnFocus
-											placeholder={ __( 'Write translated secondary heading', 'shiro-admin' ) }
+											placeholder={ __(
+												'Write translated secondary heading',
+												'shiro-admin'
+											) }
 											tagName="span"
 											value={ heading.text }
-											onChange={ partial( setHeadingAttribute, 'text', headingIndex ) }
-											onFocus={ () => setActiveHeading( headingIndex ) }
+											onChange={ partial(
+												setHeadingAttribute,
+												'text',
+												headingIndex
+											) }
+											onFocus={ () =>
+												setActiveHeading( headingIndex ) }
 										/>
 									</div>
 								);
@@ -159,63 +195,104 @@ export const
 						</>
 					) }
 					{ ! isExpanded && (
-						<div
-							className="double-heading__secondary is-style-h5"
-						>
+						<div className="double-heading__secondary is-style-h5">
 							<RichText
-								allowedFormats={ [ ] }
+								allowedFormats={ [] }
 								className=""
 								keepPlaceholderOnFocus
-								placeholder={ __( 'Write secondary heading', 'shiro-admin' ) }
+								placeholder={ __(
+									'Write secondary heading',
+									'shiro-admin'
+								) }
 								tagName="span"
 								value={ siteLanguageHeading.text }
-								onChange={ partial( setHeadingAttribute, 'text', siteLanguageIndex ) }
+								onChange={ partial(
+									setHeadingAttribute,
+									'text',
+									siteLanguageIndex
+								) }
 							/>
-							{ headings.length > 2 && ( <>
-								&nbsp;— { __( '[One of the available translated headings]', 'shiro-admin' ) }
-							</> ) }
+							{ headings.length > 2 && (
+								<>
+									&nbsp;—{ ' ' }
+									{ __(
+										'[One of the available translated headings]',
+										'shiro-admin'
+									) }
+								</>
+							) }
 						</div>
 					) }
 					<RichText
-						allowedFormats={ [ ] }
+						allowedFormats={ [] }
 						className="double-heading__primary is-style-h3"
 						keepPlaceholderOnFocus
-						placeholder={ __( 'Write primary heading', 'shiro-admin' ) }
+						placeholder={ __(
+							'Write primary heading',
+							'shiro-admin'
+						) }
 						value={ primaryHeading }
-						onChange={ primaryHeading => setAttributes( { primaryHeading } ) }
+						onChange={ primaryHeading =>
+							setAttributes( { primaryHeading } ) }
 					/>
-					{ headings.length > 1 && <Button
-						className="hero-home__toggle-translated-headings"
-						isPrimary
-						onClick={ () => setIsExpanded( ! isExpanded ) }
-					>
-						{ isExpanded ?
-							__( 'Hide translated headings', 'shiro-admin' ) :
-							__( 'Show translated headings', 'shiro-admin' ) }
-					</Button> }
-					{ activeHeading !== null && ( <InspectorControls>
-						<PanelBody initialOpen title={ __( 'Heading settings', 'shiro-admin' ) }>
-							<SelectControl
-								label={ __( 'Language', 'shiro-admin' ) }
-								options={ [
-									{
-										label: '',
-										value: '',
-									},
-									...languages
-										.filter( language => language.shortname !== siteLanguage )
-										.map( language => {
-											return {
-												label: language.name,
-												value: language.shortname,
-											};
-										} ),
-								] }
-								value={ headings[ activeHeading ].lang || '' }
-								onChange={ partial( setHeadingAttribute, 'lang', activeHeading ) }
-							/>
-						</PanelBody>
-					</InspectorControls> ) }
+					{ headings.length > 1 && (
+						<Button
+							className="hero-home__toggle-translated-headings"
+							isPrimary
+							onClick={ () => setIsExpanded( ! isExpanded ) }
+						>
+							{ isExpanded
+								? __(
+									'Hide translated headings',
+									'shiro-admin'
+								  )
+								: __(
+									'Show translated headings',
+									'shiro-admin'
+								  ) }
+						</Button>
+					) }
+					{ activeHeading !== null && (
+						<InspectorControls>
+							<PanelBody
+								initialOpen
+								title={ __(
+									'Heading settings',
+									'shiro-admin'
+								) }
+							>
+								<SelectControl
+									label={ __( 'Language', 'shiro-admin' ) }
+									options={ [
+										{
+											label: '',
+											value: '',
+										},
+										...languages
+											.filter(
+												language =>
+													language.shortname !==
+													siteLanguage
+											)
+											.map( language => {
+												return {
+													label: language.name,
+													value: language.shortname,
+												};
+											} ),
+									] }
+									value={
+										headings[ activeHeading ].lang || ''
+									}
+									onChange={ partial(
+										setHeadingAttribute,
+										'lang',
+										activeHeading
+									) }
+								/>
+							</PanelBody>
+						</InspectorControls>
+					) }
 				</div>
 			);
 		},
