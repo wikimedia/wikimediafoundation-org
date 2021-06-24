@@ -78,6 +78,10 @@
 			@include button-tertiary;
 		}
 
+		.is-style-donate-red90 & {
+			@include donate-red90-button;
+		}
+
 		/**
 		 * Use this to make the image a "clickable link" in an accessible way.
 		 */
