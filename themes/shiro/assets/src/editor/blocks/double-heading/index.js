@@ -135,6 +135,7 @@ export const
 								return (
 									<div key={ headingIndex } className="double-heading__secondary is-style-h5">
 										<RichText
+											allowedFormats={ [ ] }
 											keepPlaceholderOnFocus
 											placeholder={ __( 'Write secondary heading', 'shiro-admin' ) }
 											tagName="span"
@@ -144,6 +145,7 @@ export const
 										/>
 										&nbsp;—&nbsp;
 										<RichText
+											allowedFormats={ [ ] }
 											keepPlaceholderOnFocus
 											placeholder={ __( 'Write translated secondary heading', 'shiro-admin' ) }
 											tagName="span"
@@ -161,6 +163,7 @@ export const
 							className="double-heading__secondary is-style-h5"
 						>
 							<RichText
+								allowedFormats={ [ ] }
 								className=""
 								keepPlaceholderOnFocus
 								placeholder={ __( 'Write secondary heading', 'shiro-admin' ) }
@@ -174,6 +177,7 @@ export const
 						</div>
 					) }
 					<RichText
+						allowedFormats={ [ ] }
 						className="double-heading__primary is-style-h3"
 						keepPlaceholderOnFocus
 						placeholder={ __( 'Write primary heading', 'shiro-admin' ) }
