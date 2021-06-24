@@ -3,15 +3,23 @@
 	position: relative;
 
 	&__button {
-
 		@include style-guide-dropdown-toggle();
 
-		&:focus,
+		&:focus-visible,
 		&[aria-expanded=true] {
-			border-color: currentColor;
-			color: $wmui-color-blue50;
+			@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
 
-			@include style-guide-dropdown-caret-blue();
+			@media screen and (min-width: #{$primary-nav-breakpoint}) {
+				@include style-guide-dropdown-caret-blue();
+				border-color: currentColor;
+				color: $wmui-color-blue50;
+			}
+		}
+
+		&[aria-expanded=true]:not(:focus-visible) {
+			@media screen and (min-width: #{$primary-nav-breakpoint}) {
+				box-shadow: none;
+			}
 		}
 
 		&[hidden] {
@@ -143,6 +151,10 @@
 			&:hover {
 				background-color: $wmui-color-blue90;
 			}
+
+			&:focus {
+				@include focus-ring;
+			}
 		}
 
 	}
@@ -154,7 +166,6 @@
 			border-bottom: 3px solid var(--language-picker-item-border-color);
 			content: "";
 			display: block;
-			margin-top: rem(4);
 		}
 	}
 }

@@ -99,10 +99,6 @@
 			z-index: 3001;
 		}
 
-		&:hover {
-			background-color: $wmui-color-blue50;
-		}
-
 		&:focus {
 			@include focus-ring(true, true);
 		}
