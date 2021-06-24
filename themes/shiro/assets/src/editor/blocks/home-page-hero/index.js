@@ -122,14 +122,6 @@ export const settings = {
 		const headingColorClassName = getColorClassName( 'background-color', headingColor );
 		const hasLink = ! ! linkUrl;
 
-		/**
-		 * Replace spaces with dashes, for HTML ids.
-		 *
-		 * @param string
-		 * @return {string}
-		 */
-		const makeId = string => string.replace(/\s/g, '-' ).toLocaleLowerCase();
-
 		return (
 			<div { ...blockProps } >
 				<header className="hero-home__header">
@@ -163,14 +155,13 @@ export const settings = {
 											'hero-home__heading--has-link': hasLink,
 											'rtl-switch': heading.switchRtl || false,
 										} ) }
-										id={ makeId( heading.text ) }
 										lang={ heading.lang }
 										tagName="h2"
 										value={ heading.text }
 									/>
 								);
 							} ) }
-							{ hasLink ? ( <a className="hero-home__link" href={ linkUrl } aria-labeledby={ makeId( headings[0].text ) }></a> ) : '' }
+							{ hasLink ? ( <a className="hero-home__link" href={ linkUrl }><span className="screen-reader-text">{ headings[0]?.text || 'Home hero heading link' }</span></a> ) : '' }
 						</div>
 					</div>
 				</header>

@@ -34,7 +34,8 @@ function cycleHeading() {
 		previousHeading = headings[ previousHeadingIndex ];
 
 		if ( targetLink ) {
-			targetLink.setAttribute( 'aria-labeledby', currentHeading.id );
+			const targetLinkScreenReaderText = targetLink.querySelector( '.screen-reader-text' );
+			targetLinkScreenReaderText.innerHTML = currentHeading.innerHTML;
 		}
 
 		fadeOutPreviousHeading();
