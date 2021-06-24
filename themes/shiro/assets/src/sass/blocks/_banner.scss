@@ -60,6 +60,10 @@
 
 			@include button-tertiary;
 		}
+
+		.is-style-donate-red90 & {
+			@include donate-red90-button;
+		}
 	}
 
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
