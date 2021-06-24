@@ -160,8 +160,16 @@ function add_theme_supports() {
  * @return false|array|\WP_Post|null
  */
 function get_admin_post() {
+	// 1. We can't verify a nonce because we didn't create this request.
+	// 2. A core sanitization function isn't used, but the value is carefully checked.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$post_id            = $_GET['post'] ?? false;
-	return get_post( $post_id );
+
+	if ( is_numeric( $post_id ) && (int) $post_id > 0 ) {
+		return get_post( $post_id );
+	}
+
+	return false;
 }
 
 /**
