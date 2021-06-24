@@ -33,7 +33,7 @@ function render_block( $block_attributes, $content ) {
 		__( 'Email address', 'shiro' ) :
 		$block_attributes['inputPlaceholder'];
 
-	$form_start = '<form action="' . esc_attr( $action ) . '" method="POST" class="mailchimp-subscribe__form">';
+	$form_start = '<form action="' . esc_url( $action ) . '" method="POST" class="mailchimp-subscribe__form">';
 	$form_end   = '</form>';
 	$input_field = '<input' .
 	               ' class="mailchimp-subscribe__input-field"' .
