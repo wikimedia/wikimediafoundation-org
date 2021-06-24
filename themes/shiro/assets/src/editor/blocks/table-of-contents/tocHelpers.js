@@ -1,4 +1,10 @@
-import { cleanForSlug } from '@wordpress/editor';
+/**
+ * Replace spaces with dashes, for HTML ids.
+ *
+ * @param {string} string Text that needs to made into an id.
+ * @returns {string} The new id for use.
+ */
+const makeId = string => string.replace( /\s/g, '-' ).toLocaleLowerCase();
 
 /**
  * Process an array of blocks to look for heading blocks.
@@ -72,10 +78,10 @@ export const setHeadingAnchors = async blocks => {
 		if (
 			headingAnchor === undefined ||
 			headingAnchor === '' ||
-			headingAnchor.includes( cleanForSlug( originalContent ) ) ||
-			headingAnchor.includes( cleanForSlug( updatedContent ) ) ||
+			headingAnchor.includes( makeId( originalContent ) ) ||
+			headingAnchor.includes( makeId( updatedContent ) ) ||
 			( previousContent !== undefined &&
-				headingAnchor.includes( cleanForSlug( previousContent ) ) )
+				headingAnchor.includes( makeId( previousContent ) ) )
 		) {
 			// Create a code to prepend (to try to ensure we always have a unique id).
 			const indexPrepender = 'a' + ( index + 1 ) + '-';
@@ -84,8 +90,7 @@ export const setHeadingAnchors = async blocks => {
 			block.attributes.previousContent = updatedContent;
 
 			// Generate an anchor for the h2.
-			block.attributes.anchor =
-				indexPrepender + cleanForSlug( updatedContent );
+			block.attributes.anchor = indexPrepender + makeId( updatedContent );
 		}
 	} );
 
