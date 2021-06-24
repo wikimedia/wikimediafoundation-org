@@ -167,14 +167,16 @@ function filter_on_has_blocks( $query ) {
  */
 function where_has_blocks( string $where, WP_Query $query ) {
 	if ( $query->get('has_blocks', false ) ) {
-		$comparison = $query->get('has_blocks', 'no' ) === 'yes' ? 'LIKE' : 'NOT LIKE';
-
 		global $wpdb;
-		$where .= $wpdb->prepare( <<<QUERY
-			AND `post_content` $comparison '%%%s%%%'
-QUERY,
-			'<!-- wp:'
-		);
+		if ( $query->get('has_blocks', 'no' ) === 'yes' ) {
+			$where .= $wpdb->prepare( "AND `post_content` LIKE '%%%s%%%'",
+				'<!-- wp:'
+			);
+		} else {
+			$where .= $wpdb->prepare( "AND `post_content` NOT LIKE '%%%s%%%'",
+				'<!-- wp:'
+			);
+		}
 	}
 
 	return $where;
