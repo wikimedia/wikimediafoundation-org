@@ -16,6 +16,11 @@
     }
   }
 
+  h2 {
+    @include font-size(24, 21);
+    font-weight: 700;
+  }
+
   .icon {
     margin: 0;
     width: 20px;
