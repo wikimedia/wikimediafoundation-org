@@ -5,7 +5,7 @@
 	&__button {
 		@include style-guide-dropdown-toggle();
 
-		&:focus-visible,
+		&:focus,
 		&[aria-expanded=true] {
 			@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
 
@@ -13,12 +13,10 @@
 				@include style-guide-dropdown-caret-blue();
 				border-color: currentColor;
 				color: $wmui-color-blue50;
-			}
-		}
 
-		&[aria-expanded=true]:not(:focus-visible) {
-			@media screen and (min-width: #{$primary-nav-breakpoint}) {
-				box-shadow: none;
+				&:not(:focus-visible) {
+					box-shadow: none;
+				}
 			}
 		}
 
