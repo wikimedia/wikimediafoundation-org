@@ -403,6 +403,11 @@ a.hover-img-zoom {
 		}
 	}
 
+	h2 {
+		@include font-size(24, 21);
+		font-weight: 700;
+	}
+
 	.h4 {
 		@include marginBottom(8, 16, $medium-bp);
 	}
