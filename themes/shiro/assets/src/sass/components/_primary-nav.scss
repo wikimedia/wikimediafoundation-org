@@ -8,7 +8,7 @@
 
 	width: 100%;
 	@media ( min-width: #{$primary-nav-breakpoint} ) {
-		min-height: rem(57); // Prevent content shift when loading
+		min-height: rem(56); // Prevent content shift when loading
 	}
 
 	&__drawer {
