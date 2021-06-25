@@ -1,17 +1,46 @@
+$wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
+
 // styles for Wikipedia 20 shortcodes
 
 // FIX for future, font-sizes used .page-template-page-report-landing, .page-template-page-report-section as guide
 .page-template-page-freeform .freeform-content {
+
+	h2 {
+		@include font-size(22, 18);
+		font-weight: 700;
+	}
+
+	.wp20 {
+		h1,
+		h2 {
+			font-family: $wp20_font;
+			font-weight: 400;
+			line-height: 1.1;
+		}
+
+		h1 {
+			@include font-size(64, 30);
+			@include marginBottom(32, 40, $medium-bp);
+		}
+
+		h2 {
+			@include font-size(44, 24);
+			@include marginBottom(16, 28, $medium-bp);
+		}
+	}
+
 	p, .p, li {
 		font-size: 1.125rem;
 		line-height: 1.5;
-		margin-bottom: 1.125rem;
 		> a {
 			font-size: inherit;
 		}
 	}
 	span.p {
 		margin-bottom: 0;
+	}
+	li {
+		margin-bottom: 1.125rem;
 	}
 }
 
@@ -97,21 +126,6 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	}
 }
 
-$wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
-
-.wp20 h1,
-.wp20 h2 {
-	font-family: $wp20_font;
-	font-weight: normal;
-	line-height: 1.1;
-	@include marginBottom(32, 40, $medium-bp);
-}
-
-.wp20 h2 {
-	@include font-size(44, 24);
-	@include marginBottom(16, 28, $medium-bp);
-}
-
 .wp20.story-carousel-container .index,
 .section .wp20.intro p {
 	font-family: $wp20_font;
@@ -123,6 +137,9 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 
 .section ul {
 	list-style: none;
+	margin: 0;
+	padding: 0;
+
 	li {
 		margin-left: 0;
 	}
@@ -448,6 +465,9 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
     .story-content .story-location {
     	margin-bottom: 0;
     }
+	.story-content .story-since {
+    	margin-top: 0;
+    }
     blockquote {
     	margin: 1rem 0 0 0;
 		border-left: 0.25rem solid $wmui-color-base0;
@@ -760,6 +780,7 @@ $row-gutter-big: 0.625vw;
 			flex-direction: column;
 		}
 		@include padding(0, 0, 0, 32);
+		>h2,
 		> p {
 			margin-bottom: 0;
 		}

@@ -50,10 +50,11 @@
 
 @mixin focus-ring(
 	$hex: false,
-	$inset: false
+	$inset: false,
+	$width: 2px
 ) {
 	border-radius: rem(2);
-	box-shadow: if($inset, inset, #{""}) 0 0 0 2px if($hex, $wmui-color-focus-ring-hex, $wmui-color-focus-ring);
+	box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, $wmui-color-focus-ring-hex, $wmui-color-focus-ring);
 	outline: none;
 }
 
@@ -305,5 +306,12 @@
 @mixin target-ie {
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 		@content;
+	}
+}
+
+@mixin donate-red90-button {
+	@include button-secondary;
+	&::before {
+		@include button-icon-rules;
 	}
 }

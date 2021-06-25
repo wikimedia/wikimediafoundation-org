@@ -59,6 +59,7 @@ function render_block( $attributes ) {
 
 	$random_key         = array_rand( $translated_headings );
 	$translated_heading = $translated_headings[ $random_key ];
+	$primary_heading    = $attributes[ 'primaryHeading'] ?? null;
 
 	ob_start()
 	?>
@@ -77,9 +78,11 @@ function render_block( $attributes ) {
 					<?php endif; ?>
 				</p>
 			<?php endif; ?>
-			<h2 class="double-heading__primary is-style-h3">
-				<?php echo esc_html( $attributes['primaryHeading'] ) ?>
-			</h2>
+			<?php if ( $primary_heading ) : ?>
+				<h2 class="double-heading__primary is-style-h3">
+					<?php echo esc_html( $primary_heading ) ?>
+				</h2>
+			<?php endif; ?>
 		</div>
 	<?php
 	return ob_get_clean();

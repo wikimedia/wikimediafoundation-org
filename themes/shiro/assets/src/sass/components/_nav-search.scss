@@ -12,7 +12,9 @@
 	}
 
 	[data-dropdown-status="uninitialized"] & {
-		margin-top: 0.5rem;
+		@include target-ie {
+			margin-top: 0.5rem;
+		}
 	}
 
 	.search-form__field {
