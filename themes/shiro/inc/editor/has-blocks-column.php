@@ -7,6 +7,9 @@ namespace WMF\Editor\HasBlockColumn;
 
 use WP_Query;
 
+const HAS_BLOCKS_NONCE_ACTION = 'shiro_has_blocks_filter_action';
+const HAS_BLOCKS_NONCE_FIELD = 'shiro_has_blocks_filter_nonce';
+
 /**
  * Bootstrap all hooks related to the has-block column.
  */
@@ -55,13 +58,17 @@ function add_has_blocks_filter( $post_type ) {
 		return;
 	}
 
-	$current_filter = $_GET['shiro_has_blocks_filter'] ?? '';
+	$current_filter = '';
+	if ( isset($_GET['shiro_has_blocks_filter']) && check_admin_referer( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ) {
+		$current_filter = sanitize_key ( $_GET['shiro_has_blocks_filter'] );
+	}
 
 	?>
 		<label for="shiro_has_blocks_filter">
 			<span class="screen-reader-text">
 				<?php esc_html_e( 'Filter by whether the page has blocks', 'shiro' ); ?>
 			</span>
+			<?php wp_nonce_field( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ?>
 			<select id="shiro_has_blocks_filter" name="shiro_has_blocks_filter">
 				<option value=""<?php selected( '', $current_filter ); ?>>
 					<?php esc_html_e( 'All', 'shiro' ); ?>
@@ -111,7 +118,10 @@ function posts_per_page( $post_type ) {
  * @return WP_Query The potentially altered query.
  */
 function filter_on_has_blocks( $query ) {
-	$current_filter = $_GET['shiro_has_blocks_filter'] ?? '';
+	$current_filter = '';
+	if ( isset($_GET['shiro_has_blocks_filter']) && check_admin_referer( HAS_BLOCKS_NONCE_ACTION, HAS_BLOCKS_NONCE_FIELD ) ) {
+		$current_filter = sanitize_key( $_GET['shiro_has_blocks_filter'] );
+	}
 
 	if ( $current_filter === '' ) {
 		return $query;
@@ -157,14 +167,16 @@ function filter_on_has_blocks( $query ) {
  */
 function where_has_blocks( string $where, WP_Query $query ) {
 	if ( $query->get('has_blocks', false ) ) {
-		$comparison = $query->get('has_blocks', 'no' ) === 'yes' ? 'LIKE' : 'NOT LIKE';
-
 		global $wpdb;
-		$where .= $wpdb->prepare( <<<QUERY
-			AND `post_content` $comparison '%%%s%%%'
-QUERY,
-			'<!-- wp:'
-		);
+		if ( $query->get('has_blocks', 'no' ) === 'yes' ) {
+			$where .= $wpdb->prepare( "AND `post_content` LIKE '%%%s%%%'",
+				'<!-- wp:'
+			);
+		} else {
+			$where .= $wpdb->prepare( "AND `post_content` NOT LIKE '%%%s%%%'",
+				'<!-- wp:'
+			);
+		}
 	}
 
 	return $where;

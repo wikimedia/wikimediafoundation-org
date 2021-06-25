@@ -5,6 +5,8 @@
 
 namespace WMF\Editor\Patterns\TweetColumns;
 
+use function WMF\Editor\get_admin_post;
+
 const NAME = 'shiro/tweet-columns';
 
 /**
@@ -17,7 +19,7 @@ const NAME = 'shiro/tweet-columns';
  * @return string
  */
 function pattern() {
-	$post_id = $_GET['post'] ?? false;
+	$post_id = get_admin_post() ?? false;
 	$permalink = $post_id ? get_permalink( $post_id ) : get_home_url();
 	$permalink_encoded = urlencode( $permalink );
 
