@@ -86,12 +86,19 @@ p {
 	}
 }
 
-.single-profile {
+.tax-role,
+.single-profile,
+.single-story {
+	h2 {
+		@include font-size(22, 18);
+		font-weight: 700;
+	}
+}
 
+.single-profile {
 	@include article-main {
 		p {
 			font-size: 1.1rem;
-			font-weight: 500;
 		}
 	}
 }
