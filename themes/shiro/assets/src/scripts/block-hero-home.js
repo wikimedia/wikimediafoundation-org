@@ -35,7 +35,9 @@ function cycleHeading() {
 
 		if ( targetLink ) {
 			const targetLinkScreenReaderText = targetLink.querySelector( '.screen-reader-text' );
-			targetLinkScreenReaderText.innerHTML = currentHeading.innerHTML;
+			if ( targetLinkScreenReaderText ) {
+				targetLinkScreenReaderText.textContent = currentHeading.textContent;
+			}
 		}
 
 		fadeOutPreviousHeading();
