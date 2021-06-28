@@ -15,16 +15,22 @@ a {
 .single-page,
 .page {
 
+	.toc__content {
+		&,
+		#{$headings},
+		p {
+			@include article-font;
+		}
+	}
+
 	@include wysiwyg {
 		> h1,
 		> h2,
-		.toc__content h2,
 		> h3,
 		> h4,
 		> ol li,
 		> ul li,
 		> p,
-		.toc__content p,
 		> cite {
 			@include article-font;
 		}
