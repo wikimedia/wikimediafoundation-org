@@ -88,7 +88,8 @@ h2 {
 // Define base styles for headings, etc within text content.
 .page.has-blocks,
 .single.has-blocks,
-.block-area.block-area {
+.block-area.block-area,
+.toc__content {
 
 	@include wysiwyg {
 
