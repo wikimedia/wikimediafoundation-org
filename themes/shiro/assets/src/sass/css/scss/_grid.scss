@@ -131,14 +131,6 @@
 	}
 }
 
-.data-template {
-	@media ( min-width: #{$core-gutenberg-break-small} ) {
-		.w-32p > nav {
-			margin-top: 2rem;
-		}
-	}
-}
-
 
 // Flex containers
 .flex {

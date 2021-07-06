@@ -23,12 +23,12 @@ function register_block() {
 		[
 			'apiVersion'      => 2,
 			'render_callback' => __NAMESPACE__ . '\\render_block',
-			'attributes' => [
-				'post_id' => [
+			'attributes'      => [
+				'post_id'     => [
 					'type' => 'integer',
 				],
 				'is_featured' => [
-					'type' => 'boolean',
+					'type'    => 'boolean',
 					'default' => false,
 				],
 			],
@@ -40,37 +40,46 @@ function register_block() {
  * Render this block, given its attributes.
  *
  * @param [] $attributes Block attributes.
+ *
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	if ( empty( $attributes['post_id'] ) ) {
+	$id = $attributes['post_id'] ?? null;
+	if ( ! is_numeric( $id ) ) {
 		return '';
 	}
 
-	global $post;
-	$backed_up_global_post = $post;
+	$post_query = new \WP_Query( [
+		'post_type' => 'post',
+		'p'         => (int) $id,
+	] );
 
-	$post = get_post( $attributes['post_id'] );
-	setup_postdata( $post );
+	if ( ! $post_query->have_posts() ) {
+		return '';
+	}
 
 	ob_start();
 
-	get_template_part(
-		'template-parts/modules/cards/card',
-		'horizontal',
-		[
-			'link'       => get_the_permalink(),
-			'image_id'   => get_post_thumbnail_id(),
-			'title'      => get_the_title(),
-			'authors'    => wmf_byline(),
-			'date'       => get_the_date(),
-			'excerpt'    => get_the_excerpt(),
-			'categories' => get_the_category(),
-			'class'      => 'blog-post' . ( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ),
-		]
-	);
+	while ( $post_query->have_posts() ) {
+		$post_query->the_post();
 
-	$post = $backed_up_global_post;
+		get_template_part(
+			'template-parts/modules/cards/card',
+			'horizontal',
+			[
+				'link'       => get_the_permalink(),
+				'image_id'   => get_post_thumbnail_id(),
+				'title'      => get_the_title(),
+				'authors'    => wmf_byline(),
+				'date'       => get_the_date(),
+				'excerpt'    => get_the_excerpt(),
+				'categories' => get_the_category(),
+				'class'      => 'blog-post' . ( ! empty( $attributes['is_featured'] ) ? ' blog-post--featured' : '' ),
+			]
+		);
+	}
+
 	wp_reset_postdata();
+
 	return ob_get_clean();
 }

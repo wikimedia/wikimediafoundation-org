@@ -50,6 +50,10 @@ const styles = [
 		name: 'yellow50',
 		label: __( 'Yellow - Vibrant', 'shiro-admin' ),
 	},
+	{
+		name: 'donate-red90',
+		label: __( 'Donate', 'shiro-admin' ),
+	},
 ];
 
 /**

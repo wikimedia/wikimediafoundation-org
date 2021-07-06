@@ -403,6 +403,11 @@ a.hover-img-zoom {
 		}
 	}
 
+	h2 {
+		@include font-size(24, 21);
+		font-weight: 700;
+	}
+
 	.h4 {
 		@include marginBottom(8, 16, $medium-bp);
 	}
@@ -789,11 +794,6 @@ a.hover-img-zoom {
 		display: inline-block;
 		color: $wmui-color-base20;
 	}
-}
-
-// lists without page-intro
-.list-container {
-	margin-top: 2rem;
 }
 
 .module-404 {
