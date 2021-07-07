@@ -1,38 +1,67 @@
-.staff-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+// Profile role sections
+.role {
+	&__section {
+		border-top: 1px solid $wmui-color-base70;
+		margin-bottom: rem(40);
+		padding-top: rem(14);
+	}
 
-.staff-list-item {
-  margin-right: 2%;
+	&__heading {
+		// Override overspecific styles.
+		.toc__content .wysiwyg & {
+			font-size: rem(24);
+			font-weight: 700;
+			margin-bottom: rem(40);
+		}
 
-  h4 {
-    font-size: 1rem;
-    margin-top: 8px;
-  }
+		+ p {
+			@include article-font;
+		}
+	}
 
-  h4 + span {
-    font-size: 0.75rem;
-  }
+	&__staff-list {
+		@include style-guide-list-reset;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		list-style: none;
+		margin-bottom: rem(30);
 
-  .staff-photo {
-    margin-top: 25px;
-    height: 150px;
-    width: 150px;
-    border-radius: 5px;
-    background: #d8d8d8;
-    background-position: center center;
-    background-size: cover;
-  }
+		&__item {
+			margin-right: 2%;
 
+			@media (max-width: 767px) {
+				width: 46%;
+			}
 
-  @media (max-width: 767px) {
-    width: 46%;
-  }
+			@media (min-width: 768px) {
+				width: 23%;
+			}
+		}
 
-  @media (min-width: 768px) {
-    width: 23%;
-  }
+		&__item__photo {
+			background: #d8d8d8;
+			background-position: center center;
+			background-size: cover;
+			border-radius: 5px;
+			height: rem(150);
+			margin-bottom: rem(12);
+			width: rem(150);
+		}
 
+		h4 {
+			// Override overspecific styles.
+			.toc__content .wysiwyg & {
+				@include has-font-size("default");
+			}
+		}
+
+		p {
+			@include has-font-size("small");
+		}
+	}
+
+	&__read-more {
+		margin-bottom: rem(40);
+	}
 }
