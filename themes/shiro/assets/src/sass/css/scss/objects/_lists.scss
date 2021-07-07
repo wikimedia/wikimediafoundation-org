@@ -86,16 +86,16 @@
 }
 
 .static-list-heading {
-	margin-top: 2rem;
-	margin-bottom: 1.5rem;
-	position: relative;
-	pointer-events: none;
-	padding-bottom: 0.5rem;
-	border-bottom: 2px solid $color-black;
-	@media (max-width: 767px) {
-		margin-top: 10px;
-		margin-bottom: 10px;
-		pointer-events: all;
+	.toc__content .wysiwyg & {
+		font-size: rem(24);
+		font-weight: 700;
+	}
+
+	&::before {
+		border-top: 1px solid $wmui-color-base70;
+		content: "";
+		display: block;
+		padding-top: rem(12);
 	}
 }
 

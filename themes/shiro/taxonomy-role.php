@@ -53,17 +53,17 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 
 	?>
 
-<div class="mw-980 mod-margin-bottom_xs">
+<div class="mw-980 mod-margin-bottom_sm">
 	<?php if ( ! empty( $display_intro ) ) : ?>
 	<div class="page-intro wysiwyg taxonomy-role">
 		<?php if ( ! empty( $description ) ) : ?>
-		<p class="h2">
+		<p>
 			<?php echo esc_html( $description ); ?>
 		</p>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $button_label ) ) : ?>
-			<a href="<?php echo esc_url( isset( $button_link ) ? $button_link : '#' ); ?>" class="btn btn-pink search-btn">
+			<a href="<?php echo esc_url( isset( $button_link ) ? $button_link : '#' ); ?>" class="btn btn-blue">
 				<?php echo esc_html( $button_label ); ?>
 			</a>
 		<?php endif; ?>
@@ -79,10 +79,7 @@ $post_list = wmf_get_posts_by_child_roles( $current_term_id );
 	<?php endif; ?>
 
 	<div class="w-68p toc__content">
-		<div class="mod-margin-bottom">
-			<?php get_template_part( 'template-parts/profiles/role-list', null, $post_list ); ?>
-		</div>
-
+		<?php get_template_part( 'template-parts/profiles/role-list', null, $post_list ); ?>
 	</div>
 </div>
 

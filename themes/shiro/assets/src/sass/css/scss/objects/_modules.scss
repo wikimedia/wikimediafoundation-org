@@ -209,6 +209,11 @@
 		}
 	}
 
+	p {
+		@include has-font-size( large );
+		font-family: $font-family-serif;
+		line-height: 1.5;
+	}
 }
 
 
