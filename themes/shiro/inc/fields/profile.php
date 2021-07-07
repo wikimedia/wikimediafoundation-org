@@ -96,15 +96,18 @@ function wmf_role_fields() {
 	$button = new Fieldmanager_Group(
 		array(
 			'name'     => 'role_button',
-			'label'    => __( 'Button', 'shiro-admin' ),
+			'label'    => __( 'Role read more link', 'shiro-admin' ),
 			'children' => array(
-				'text' => new Fieldmanager_Textfield( __( 'Button Text', 'shiro-admin' ) ),
-				'link' => new Fieldmanager_Link( __( 'Button Link', 'shiro-admin' ) ),
+				'link_to_archive' => new Fieldmanager_Checkbox(
+					__( 'Link to archive?', 'shiro-admin' )
+				),
+				'text' => new Fieldmanager_Textfield( __( 'Link text override', 'shiro-admin' ) ),
+				'link' => new Fieldmanager_Link( __( 'Link URL override', 'shiro-admin' ) ),
 			),
 		)
 	);
 
-	$button->add_term_meta_box( '', 'role' );
+	$button->add_term_meta_box( 'Output Read More Link?', 'role' );
 }
 add_action( 'fm_term_role', 'wmf_role_fields' );
 
