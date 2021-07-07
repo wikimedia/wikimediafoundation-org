@@ -110,7 +110,8 @@
 
 .list-template,
 .report-template,
-.data-template {
+.data-template,
+.role-template {
 	@media ( min-width: #{$core-gutenberg-break-small} ) and ( max-width: $medium-bp ) {
 		&.flex.flex-medium {
 			flex-direction: row;
