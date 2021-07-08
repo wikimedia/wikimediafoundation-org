@@ -21,7 +21,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$name        = ( ! $show_heading && ( is_wp_error( $term ) || empty( $term->parent ) ) ) ? '' : $name;
 	?>
 
-<section class="role__section wysiwyg">
+<section class="role__section wysiwyg <?php if ( ! empty( $name ) ) { echo esc_html( 'has-h2' ); } ?>">
 
 	<?php if ( ! empty( $name ) ) : ?>
 	<h2 class="role__heading" id="section-<?php echo absint( $term_id ); ?>">

@@ -1,9 +1,16 @@
 // Profile role sections
 .role {
 	&__section {
-		border-top: 1px solid $wmui-color-base70;
-		margin-bottom: rem(40);
-		padding-top: rem(14);
+		margin-bottom: rem(50);
+
+		&.has-h2 {
+			border-top: 1px solid $wmui-color-base70;
+			padding-top: rem(14);
+		}
+
+		> p {
+			@include article-font;
+		}
 	}
 
 	&__heading {
@@ -13,10 +20,6 @@
 			font-weight: 700;
 			margin-bottom: rem(40);
 		}
-
-		+ p {
-			@include article-font;
-		}
 	}
 
 	&__staff-list {
@@ -25,17 +28,31 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		list-style: none;
-		margin-bottom: rem(30);
+		margin-bottom: rem(20);
 
 		&__item {
-			margin-right: 2%;
+			flex-basis: 48%;
+			margin-bottom: rem(40);
+			position: relative;
+			transition: 0.3s box-shadow;
 
 			@media (max-width: 767px) {
-				width: 46%;
+				&:nth-child(odd) {
+					margin-right: 4%;
+				}
 			}
 
 			@media (min-width: 768px) {
-				width: 23%;
+				flex-basis: 23.5%;
+				margin-right: 2%;
+
+				&:nth-child(4n+4) {
+					margin-right: 0;
+				}
+			}
+
+			&:hover &__photo {
+				box-shadow: 0 0 10px 3px rgba($color-base--active, 0.15);
 			}
 		}
 
@@ -43,25 +60,55 @@
 			background: #d8d8d8;
 			background-position: center center;
 			background-size: cover;
-			border-radius: 5px;
 			height: rem(150);
-			margin-bottom: rem(12);
-			width: rem(150);
+			margin-bottom: rem(14);
+			width: 100%;
 		}
 
 		h4 {
 			// Override overspecific styles.
 			.toc__content .wysiwyg & {
 				@include has-font-size("default");
+				line-height: 1.4;
 			}
+
+			a {
+				color: inherit;
+
+				&::after {
+					bottom: 0;
+					content: "";
+					display: block;
+					left: 0;
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+
+				&:focus {
+					outline: none;
+					text-decoration: underline;
+				}
+			}
+		}
+
+		&__item:focus-within a::after {
+			@include focus-ring($hex: true, $inset: false);
+			margin: rem(-5);
 		}
 
 		p {
 			@include has-font-size("small");
+			line-height: 1.5;
+
+			// Override overspecific styles.
+			.wysiwyg & {
+				margin-bottom: 0;
+			}
 		}
 	}
 
 	&__read-more {
-		margin-bottom: rem(40);
+		margin-bottom: rem(80);
 	}
 }
