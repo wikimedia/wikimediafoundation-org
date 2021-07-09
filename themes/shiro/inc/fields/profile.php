@@ -77,6 +77,7 @@ function wmf_role_fields() {
 
 	$display_intro->add_term_meta_box( 'Display Intro?', 'role' );
 
+
 	$term_heading = new Fieldmanager_Checkbox(
 		array(
 			'name' => 'term_heading',
@@ -85,6 +86,7 @@ function wmf_role_fields() {
 
 	$term_heading->add_term_meta_box( 'Output Term Heading?', 'role' );
 
+
 	$featured_term = new Fieldmanager_Checkbox(
 		array(
 			'name' => 'featured_term',
@@ -92,6 +94,56 @@ function wmf_role_fields() {
 	);
 
 	$featured_term->add_term_meta_box( 'Featured Term?', 'role' );
+
+
+	// Get the current term ID.
+	$current_term_id = absint( $_GET['tag_ID'] ) ?? 0;
+
+	if ( $current_term_id !== 0 ) {
+		// New WP_Query for posts with this role assigned.
+		$current_term_args = array(
+			'post_type' => 'profile',
+			'tax_query' => array(
+				array(
+					'taxonomy'         => 'role',
+					'terms'            => $current_term_id,
+					'include_children' => false,
+				),
+			),
+		);
+		$current_term_query = new WP_Query( $current_term_args );
+		$current_term_posts = [];
+
+		// Create array for profile selector.
+		while ( $current_term_query->have_posts() ) {
+			$current_term_query->the_post();
+			$current_term_posts[ get_the_ID() ] = get_the_title();
+		}
+
+		// Create select box for executive profile.
+		$executive = new Fieldmanager_Select(
+			array(
+				'name'        => 'executive',
+				'options'     => wp_parse_args(
+					$current_term_posts,
+					array( 0 => 'Please select an executive for this department' )
+				),
+			)
+		);
+	
+		$executive->add_term_meta_box( 'Department Executive', 'role' );
+
+		// Create checkbox group for expert profiles.
+		$experts = new Fieldmanager_Checkboxes(
+			array(
+				'name'        => 'experts',
+				'options'     => $current_term_posts,
+			)
+		);
+	
+		$experts->add_term_meta_box( 'Department Experts', 'role' );
+	}
+
 
 	$button = new Fieldmanager_Group(
 		array(

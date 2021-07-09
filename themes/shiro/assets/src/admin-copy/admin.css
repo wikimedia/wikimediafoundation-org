@@ -7,6 +7,16 @@
     margin-top: 1em;
 }
 
+.taxonomy-role .fm-checkbox-group {
+	border-color: #8c8f94;
+	margin-top: 0;
+	padding: 5px 10px;
+}
+
+.taxonomy-role .fm-checkbox-group .fm-option {
+	margin: 10px 0;
+}
+
 .wmf-translation-seperator {
 	margin: 2rem 0 4rem
 }
