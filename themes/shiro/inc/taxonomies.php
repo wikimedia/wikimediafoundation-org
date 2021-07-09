@@ -57,44 +57,6 @@ function wmf_add_taxonomies() {
 	);
 	register_taxonomy( 'role', array( 'profile' ), $profile_type_args );
 
-	// Profiles.
-	$role_type_labels = array(
-		'name'                       => __( 'Role Levels', 'shiro-admin' ),
-		'singular_name'              => _x( 'Role Level', 'taxonomy general name', 'shiro-admin' ),
-		'search_items'               => __( 'Search Levels', 'shiro-admin' ),
-		'popular_items'              => __( 'Popular Levels', 'shiro-admin' ),
-		'all_items'                  => __( 'All Levels', 'shiro-admin' ),
-		'parent_item'                => __( 'Parent Level', 'shiro-admin' ),
-		'parent_item_colon'          => __( 'Parent Level:', 'shiro-admin' ),
-		'edit_item'                  => __( 'Edit Level', 'shiro-admin' ),
-		'update_item'                => __( 'Update Level', 'shiro-admin' ),
-		'view_item'                  => __( 'View Level', 'shiro-admin' ),
-		'add_new_item'               => __( 'New Level', 'shiro-admin' ),
-		'new_item_name'              => __( 'New Level', 'shiro-admin' ),
-		'separate_items_with_commas' => __( 'Separate Levels with commas', 'shiro-admin' ),
-		'add_or_remove_items'        => __( 'Add or remove levels', 'shiro-admin' ),
-		'choose_from_most_used'      => __( 'Choose from the most used levels', 'shiro-admin' ),
-		'not_found'                  => __( 'No levels found.', 'shiro-admin' ),
-		'no_terms'                   => __( 'No levels', 'shiro-admin' ),
-		'menu_name'                  => __( 'Role Levels', 'shiro-admin' ),
-		'items_list_navigation'      => __( 'Role levels list navigation', 'shiro-admin' ),
-		'items_list'                 => __( 'Role levels list', 'shiro-admin' ),
-		'most_used'                  => _x( 'Most Used', 'profile-type', 'shiro-admin' ),
-		'back_to_items'              => __( '&larr; Back to Levels', 'shiro-admin' ),
-	);
-
-	$role_type_args = wp_parse_args(
-		$default_args, array(
-			'labels'  => $role_type_labels,
-			'publicly_queryable' => false,
-			'rewrite' => false,
-			'show_in_nav_menus' => false,
-			'show_in_rest' => true,
-			'show_tagcloud' => false,
-		)
-	);
-	register_taxonomy( 'role-levels', array( 'profile' ), $role_type_args );
-
 	// Stories.
 	$story_type_labels = array(
 		'name'                       => __( 'Types', 'shiro-admin' ),
