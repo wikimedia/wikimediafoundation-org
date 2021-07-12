@@ -75,7 +75,7 @@ function wmf_role_fields() {
 		)
 	);
 
-	$display_intro->add_term_meta_box( 'Display Intro?', 'role' );
+	$display_intro->add_term_meta_box( __( 'Display Intro?', 'shiro-admin' ), 'role' );
 
 
 	$term_heading = new Fieldmanager_Checkbox(
@@ -84,7 +84,7 @@ function wmf_role_fields() {
 		)
 	);
 
-	$term_heading->add_term_meta_box( 'Output Term Heading?', 'role' );
+	$term_heading->add_term_meta_box( __( 'Output Term Heading?', 'shiro-admin' ), 'role' );
 
 
 	$featured_term = new Fieldmanager_Checkbox(
@@ -93,56 +93,69 @@ function wmf_role_fields() {
 		)
 	);
 
-	$featured_term->add_term_meta_box( 'Featured Term?', 'role' );
+	$featured_term->add_term_meta_box( __( 'Featured Term?', 'shiro-admin' ), 'role' );
 
 
 	// Get the current term ID.
 	$current_term_id = absint( $_GET['tag_ID'] ) ?? 0;
 
-	if ( $current_term_id !== 0 ) {
-		// New WP_Query for posts with this role assigned.
-		$current_term_args = array(
-			'post_type' => 'profile',
-			'tax_query' => array(
-				array(
-					'taxonomy'         => 'role',
-					'terms'            => $current_term_id,
-					'include_children' => false,
-				),
+	// New WP_Query for posts with this role assigned.
+	$current_term_args = array(
+		'post_type' => 'profile',
+		'tax_query' => array(
+			array(
+				'taxonomy'         => 'role',
+				'terms'            => $current_term_id,
+				'include_children' => false,
 			),
-		);
-		$current_term_query = new WP_Query( $current_term_args );
-		$current_term_posts = [];
+		),
+	);
+	$current_term_query = new WP_Query( $current_term_args );
+	$current_term_posts = [];
 
-		// Create array for profile selector.
-		while ( $current_term_query->have_posts() ) {
-			$current_term_query->the_post();
-			$current_term_posts[ get_the_ID() ] = get_the_title();
-		}
+	// Create array for profile selector.
+	while ( $current_term_query->have_posts() ) {
+		$current_term_query->the_post();
+		$current_term_posts[ get_the_ID() ] = get_the_title();
+	}
 
-		// Create select box for executive profile.
-		$executive = new Fieldmanager_Select(
+	$no_posts_args = empty ( $current_term_posts )
+		? array(
+			'attributes' => array(
+				'disabled' => 'disabled',
+			),
+			'description' => __( 'There are no profiles assigned to this role.', 'shiro-admin' ),
+		)
+		: [];
+
+	// Create select box for executive profile.
+	$executive = new Fieldmanager_Select(
+		wp_parse_args(
+			$no_posts_args,
 			array(
-				'name'        => 'executive',
-				'options'     => wp_parse_args(
-					$current_term_posts,
-					array( 0 => 'Please select an executive for this department' )
-				),
+				'name'        => 'role_executive',
+				'options'     =>
+					// Combine arrays without re-indexing.
+					array( 0 => __( 'Please select an executive for this department', 'shiro-admin' ) )
+					+ $current_term_posts,
 			)
-		);
-	
-		$executive->add_term_meta_box( 'Department Executive', 'role' );
+		)
+	);
 
-		// Create checkbox group for expert profiles.
-		$experts = new Fieldmanager_Checkboxes(
+	$executive->add_term_meta_box( __( 'Department Executive', 'shiro-admin' ), 'role' );
+
+	// Create checkbox group for expert profiles.
+	$experts = new Fieldmanager_Checkboxes(
+		wp_parse_args(
+			$no_posts_args,
 			array(
-				'name'        => 'experts',
+				'name'        => 'role_experts',
 				'options'     => $current_term_posts,
 			)
-		);
-	
-		$experts->add_term_meta_box( 'Department Experts', 'role' );
-	}
+		)
+	);
+
+	$experts->add_term_meta_box( __( 'Department Experts', 'shiro-admin' ), 'role' );
 
 
 	$button = new Fieldmanager_Group(
@@ -159,7 +172,7 @@ function wmf_role_fields() {
 		)
 	);
 
-	$button->add_term_meta_box( 'Output Read More Link?', 'role' );
+	$button->add_term_meta_box( __( 'Output Read More Link?', 'shiro-admin' ), 'role' );
 }
 add_action( 'fm_term_role', 'wmf_role_fields' );
 

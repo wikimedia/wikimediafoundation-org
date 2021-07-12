@@ -13,8 +13,17 @@
 	padding: 5px 10px;
 }
 
+.taxonomy-role .fm-checkbox-group:empty {
+	border-color: transparent;
+	padding: 0;
+}
+
 .taxonomy-role .fm-checkbox-group .fm-option {
 	margin: 10px 0;
+}
+
+.taxonomy-role .fm-item-description {
+	color: #646970;
 }
 
 .wmf-translation-seperator {
