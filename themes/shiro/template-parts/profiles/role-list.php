@@ -52,7 +52,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 	<?php endif; ?>
 
 	<?php
-	if ( ! empty( $button['link_to_archive'] ) ) :
+	if ( ! empty( $button['link_to_archive'] ) && ! is_tax( 'role', $term_id ) ) :
 		$link_text = ! empty( $button['text'] )
 			? $button['text']
 			: __(
