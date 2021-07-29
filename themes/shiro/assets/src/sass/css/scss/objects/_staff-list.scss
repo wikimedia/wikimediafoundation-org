@@ -16,8 +16,7 @@
 	&__heading {
 		// Override overspecific styles.
 		.toc__content .wysiwyg & {
-			font-size: rem(24);
-			font-weight: 700;
+			font-family: $font-family-serif;
 			margin-bottom: rem(40);
 		}
 	}
