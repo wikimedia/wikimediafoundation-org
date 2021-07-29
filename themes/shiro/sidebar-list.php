@@ -56,16 +56,15 @@ if ( empty( $template_args ) ) {
 	<ul class="toc__nested">
 <?php endif; ?>
 	<?php
-	$ids_as_index = $template_args[0] === null;
 	foreach ( $template_args as $i => $list_section ) :
 		$item_text = $list_section['title'] ?? $list_section['name'];
-		$item_link = $ids_as_index ? $i : $i + 1;
+		$item_link = $list_section['slug'] ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
 		if ( empty( $item_text ) ) {
 			continue;
 		}
 		?>
 		<li class="toc__item">
-			<a class="toc__link" href="#section-<?php echo esc_attr( $item_link ); ?>">
+			<a class="toc__link" href="<?php echo esc_attr( $item_link ); ?>">
 				<?php echo esc_html( $item_text ); ?>
 			</a>
 		</li>

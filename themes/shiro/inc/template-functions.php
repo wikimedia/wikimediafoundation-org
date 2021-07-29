@@ -188,6 +188,7 @@ function wmf_get_role_posts( $term_id ) {
 	return array(
 		'posts' => $featured_list + $post_list,
 		'name'  => $term_query->name,
+		'slug'  => $term_query->slug,
 	);
 }
 

@@ -18,13 +18,14 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$description = term_description( $term_id, 'role' );
 	$button      = get_term_meta( $term_id, 'role_button', true );
 	$term        = get_term( $term_id, 'role' );
+	$term_slug   = $term->slug;
 	$name        = ( ! $show_heading && ( is_wp_error( $term ) || empty( $term->parent ) ) ) ? '' : $name;
 	?>
 
 <section class="role__section wysiwyg <?php if ( ! empty( $name ) ) { echo esc_html( 'has-h2' ); } ?>">
 
 	<?php if ( ! empty( $name ) ) : ?>
-	<h2 class="role__heading" id="section-<?php echo absint( $term_id ); ?>">
+	<h2 class="role__heading" id="<?php echo esc_attr( $term_slug ); ?>">
 		<?php echo esc_html( $name ); ?>
 	</h2>
 	<?php endif; ?>
