@@ -71,25 +71,18 @@ add_action( 'fm_post_profile', 'wmf_profile_fields' );
 function wmf_role_fields() {
 	$display_intro = new Fieldmanager_Checkbox(
 		array(
-			'name' => 'display_intro',
+			'name'        => 'display_intro',
+			'description' => __( 'Should the archive for this role display an intro section? This uses the text from Appearance > Customize > Profile Pages > Profiles List Page Text', 'shiro-admin' ),
 		)
 	);
 
 	$display_intro->add_term_meta_box( __( 'Display Intro?', 'shiro-admin' ), 'role' );
 
 
-	$term_heading = new Fieldmanager_Checkbox(
-		array(
-			'name' => 'term_heading',
-		)
-	);
-
-	$term_heading->add_term_meta_box( __( 'Output Term Heading?', 'shiro-admin' ), 'role' );
-
-
 	$featured_term = new Fieldmanager_Checkbox(
 		array(
-			'name' => 'featured_term',
+			'name'        => 'featured_term',
+			'description' => __( 'Should this role be featured at the top of the parent archive page?', 'shiro-admin' ),
 		)
 	);
 
@@ -134,6 +127,7 @@ function wmf_role_fields() {
 			$no_posts_args,
 			array(
 				'name'        => 'role_executive',
+				'description' => __( 'Select a profile to feature as the department executive on the Staff & Contractors page.', 'shiro-admin' ),
 				'options'     =>
 					// Combine arrays without re-indexing.
 					array( 0 => __( 'Please select an executive for this department', 'shiro-admin' ) )
@@ -150,6 +144,7 @@ function wmf_role_fields() {
 			$no_posts_args,
 			array(
 				'name'        => 'role_experts',
+				'description' => __( 'Select multiple profiles to feature as the department experts on the Staff & Contractors page.', 'shiro-admin' ),
 				'options'     => $current_term_posts,
 			)
 		)
@@ -164,10 +159,13 @@ function wmf_role_fields() {
 			'label'    => __( 'Role read more link', 'shiro-admin' ),
 			'children' => array(
 				'link_to_archive' => new Fieldmanager_Checkbox(
-					__( 'Link to archive?', 'shiro-admin' )
+					array(
+						'label'       => __( 'Link to archive?', 'shiro-admin' ),
+						'description' => __( 'Select this option to display a link to this role archive on the parent archive page.', 'shiro-admin' ),
+					),
 				),
-				'text' => new Fieldmanager_Textfield( __( 'Link text override', 'shiro-admin' ) ),
-				'link' => new Fieldmanager_Link( __( 'Link URL override', 'shiro-admin' ) ),
+				'text' => new Fieldmanager_Textfield( __( 'Override link text for archive link', 'shiro-admin' ) ),
+				'link' => new Fieldmanager_Link( __( 'Override link URL for archive link', 'shiro-admin' ) ),
 			),
 		)
 	);
