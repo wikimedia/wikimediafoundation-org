@@ -38,27 +38,36 @@
 	a {
 		color: $color-blue;
 		display: inline-flex;
+	}
 
-		img {
-			height: 16px;
-			margin-right: 5px;
-		}
+	img {
+		height: 16px;
+		margin-right: 5px;
 	}
 }
 
 .profile-contacts {
-	font-size: 13px;
+	@include has-font-size("default");
 	color: $color-blue;
-	margin-bottom: 20px;
+	margin-bottom: rem(16);
 
-	img {
-		height: 16px;
-		margin-right: 6px;
-		margin-top: 1px;
+	a {
+		align-items: center;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
-	a:hover {
-		text-decoration: underline;
+	img {
+		height: rem(18);
+		margin-right: rem(6);
+		padding: 0 rem(1);
+
+		&[src*="email"] {
+			height: rem(20);
+			padding: 0;
+		}
 	}
 }
 

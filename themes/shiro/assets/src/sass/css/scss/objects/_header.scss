@@ -515,14 +515,15 @@ $header-bp-mw: 1049px;
 }
 
 .header-role {
-	border-bottom: 3px solid $wmui-color-base0;
-
 	h1 {
-		font-weight: 500;
-		margin: 0;
+		@include font-size(40, 30);
+		font-weight: 700;
+		margin-bottom: rem(40);
 	}
 
 	.post-meta {
+		@include has-font-size( large );
+		font-family: $font-family-serif;
 		margin: 0;
 	}
 

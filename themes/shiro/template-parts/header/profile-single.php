@@ -25,15 +25,13 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 
 		<h1><?php the_title(); ?></h1>
 
-		<div class="post-meta h4">
-			<span>
-				<?php
-				if ( ! empty( $role ) || ! empty( $team_name ) ) :
-					printf( '%1$s, %2$s', esc_html( $role ), esc_html( $team_name ) );
-				endif;
-				?>
-			</span>
-		</div>
+		<p class="post-meta">
+			<?php
+			if ( ! empty( $role ) || ! empty( $team_name ) ) :
+				printf( '%1$s, %2$s', esc_html( $role ), esc_html( $team_name ) );
+			endif;
+			?>
+		</p>
 	</div>
 </div>
 
