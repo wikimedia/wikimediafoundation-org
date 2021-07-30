@@ -18,11 +18,16 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$term        = get_term( $term_id, 'role' );
 	$term_slug   = $term->slug;
 	$name        = ( is_wp_error( $term ) || empty( $term->parent ) ) ? '' : $name;
+	$class       = 'role__section wysiwyg';
+
+	if ( ! empty( $name ) && ! is_tax( 'role', $term_id ) ) {
+		$class = $class . ' has-h2';
+	}
 	?>
 
-<section class="role__section wysiwyg <?php if ( ! empty( $name ) ) { echo esc_html( 'has-h2' ); } ?>">
+<section class="<?php echo esc_attr( $class ); ?>">
 
-	<?php if ( ! empty( $name ) ) : ?>
+	<?php if ( ! empty( $name ) && ! is_tax( 'role', $term_id ) ) : ?>
 	<h2 class="role__heading" id="<?php echo esc_attr( $term_slug ); ?>">
 		<?php echo esc_html( $name ); ?>
 	</h2>
