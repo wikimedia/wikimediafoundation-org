@@ -15,7 +15,7 @@ $is_list  = $post_data['list'] ?? true;
 $post_id  = $post_data['id'];
 $post     = get_post( $post_id );
 
-if ( ! $post ) {
+if ( ! is_a( $post, \WP_Post::class ) ) {
 	return;
 }
 
@@ -29,7 +29,6 @@ $post_class = 'role__staff-list__item';
 if ( $post_data['role'] ) {
 	$post_class = $post_class . ' role__staff-list__item--' . $post_data['role'];
 }
-// var_dump(wp_get_registered_image_subsizes());
 ?>
 
 <?php if ( $is_list ) : ?>

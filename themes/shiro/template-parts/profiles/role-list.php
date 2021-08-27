@@ -42,7 +42,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 	?>
 
 	<?php
-	if ( is_tax( 'role', 'staff-contractors' ) ) :
+	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executives ) && empty( $experts ) ) ) :
 		if ( ! empty( $executive ) ) {
 			get_template_part(
 				'template-parts/profiles/role',
