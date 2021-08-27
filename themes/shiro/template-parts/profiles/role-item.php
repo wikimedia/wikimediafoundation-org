@@ -29,7 +29,6 @@ $post_class = 'role__staff-list__item';
 if ( $post_data['role'] ) {
 	$post_class = $post_class . ' role__staff-list__item--' . $post_data['role'];
 }
-// var_dump(wp_get_registered_image_subsizes());
 ?>
 
 <?php if ( $is_list ) : ?>
