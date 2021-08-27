@@ -90,6 +90,18 @@
 			margin-bottom: rem(14);
 			object-fit: cover;
 			width: 100%;
+
+			@media (min-width: 380px) {
+				height: rem(200);
+			}
+
+			@media (min-width: 450px) {
+				height: rem(265);
+			}
+
+			@media (min-width: #{$core-gutenberg-break-small}) {
+				height: rem(150);
+			}
 		}
 
 		&__item--executive &__item__photo {
