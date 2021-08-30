@@ -9,7 +9,7 @@
 
 // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 $nested        = $args['nested'] ?? false;
-$template_args = get_post_meta( get_the_ID(), 'list', true );
+$template_args = is_array( $args['template_args'] ) ? $args['template_args'] : get_post_meta( get_the_ID(), 'list', true );
 // phpcs:enable
 
 if ( empty( $template_args ) ) {
@@ -57,13 +57,15 @@ if ( empty( $template_args ) ) {
 <?php endif; ?>
 	<?php
 	foreach ( $template_args as $i => $list_section ) :
-		if ( empty( $list_section['title'] ) ) {
+		$item_text = $list_section['title'] ?? $list_section['name'];
+		$item_link = $list_section['slug'] ? '#' . $list_section['slug'] : '#section-' . ( $i + 1 );
+		if ( empty( $item_text ) ) {
 			continue;
 		}
 		?>
 		<li class="toc__item">
-			<a class="toc__link" href="#section-<?php echo esc_attr( $i + 1 ); ?>">
-				<?php echo esc_html( $list_section['title'] ); ?>
+			<a class="toc__link" href="<?php echo esc_attr( $item_link ); ?>">
+				<?php echo esc_html( $item_text ); ?>
 			</a>
 		</li>
 	<?php endforeach; ?>
