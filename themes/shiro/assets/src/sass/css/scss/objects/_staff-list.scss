@@ -8,6 +8,10 @@
 			padding-top: rem(14);
 		}
 
+		.toc__content &.wysiwyg h3 {
+			margin-bottom: rem(20);
+		}
+
 		> p {
 			@include article-font;
 		}
@@ -53,6 +57,30 @@
 			&:hover &__photo {
 				box-shadow: 0 0 10px 3px rgba($color-base--active, 0.15);
 			}
+
+			&--executive {
+				flex-basis: 100%;
+
+				&,
+				&:nth-child(odd) {
+					margin-right: 0;
+				}
+
+				@media (min-width: 768px) {
+					display: grid;
+					grid-column-gap: 3%;
+					grid-template-columns: 1fr 1fr;
+					grid-template-rows: auto 1fr;
+				}
+
+				p {
+					@include font-size(18, 16);
+
+					.wysiwyg & {
+						margin-bottom: 0;
+					}
+				}
+			}
 		}
 
 		&__item__photo {
@@ -62,9 +90,27 @@
 			margin-bottom: rem(14);
 			object-fit: cover;
 			width: 100%;
+
+			@media (min-width: 380px) {
+				height: rem(200);
+			}
+
+			@media (min-width: 450px) {
+				height: rem(265);
+			}
+
+			@media (min-width: #{$core-gutenberg-break-small}) {
+				height: rem(150);
+			}
 		}
 
-		h4 {
+		&__item--executive &__item__photo {
+			grid-row: 1 / span 2;
+			height: auto;
+			min-height: rem(180);
+		}
+
+		&__item h4 {
 			// Override overspecific styles.
 			.toc__content .wysiwyg & {
 				@include has-font-size("default");
@@ -88,6 +134,12 @@
 					outline: none;
 					text-decoration: underline;
 				}
+			}
+		}
+
+		&__item--executive h4 {
+			.toc__content .wysiwyg & {
+				@include has-font-size("medium");
 			}
 		}
 
