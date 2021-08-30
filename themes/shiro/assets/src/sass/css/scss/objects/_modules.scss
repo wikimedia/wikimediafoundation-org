@@ -202,13 +202,18 @@
 	}
 
 	&.taxonomy-role {
-		margin-top: 1rem;
+		margin-top: 0;
 
 		.btn {
 			margin-top: 0;
 		}
 	}
 
+	p {
+		@include has-font-size( large );
+		font-family: $font-family-serif;
+		line-height: 1.5;
+	}
 }
 
 
