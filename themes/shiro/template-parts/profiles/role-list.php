@@ -15,6 +15,8 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$name        = ! empty( $term_data['name'] ) ? $term_data['name'] : '';
 	$description = term_description( $term_id, 'role' );
 	$button      = get_term_meta( $term_id, 'role_button', true );
+	$executive   = get_term_meta( $term_id, 'role_executive', true );
+	$experts     = get_term_meta( $term_id, 'role_experts', true );
 	$term        = get_term( $term_id, 'role' );
 	$term_slug   = $term->slug;
 	$name        = ( is_wp_error( $term ) || empty( $term->parent ) ) ? '' : $name;
@@ -39,20 +41,59 @@ foreach ( $post_list as $term_id => $term_data ) :
 	}
 	?>
 
-	<?php if ( ! empty( $term_data ) ) : ?>
-	<ul class="role__staff-list">
-		<?php
-		foreach ( $term_data['posts'] as $post_id ) {
+	<?php
+	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executives ) && empty( $experts ) ) ) :
+		if ( ! empty( $executive ) ) {
 			get_template_part(
 				'template-parts/profiles/role',
 				'item',
 				array(
-					'id' => $post_id,
+					'id'   => $executive,
+					'list' => false,
+					'role' => 'executive',
 				)
 			);
 		}
+
+		if ( ! empty( $experts ) ) :
 		?>
-	</ul>
+		<h3 class="role__staff-title__experts is-style-h4">
+			<?php echo esc_html__( 'Department experts', 'shiro' ); ?>
+		</h3>
+		<ul class="role__staff-list">
+			<?php
+			foreach ( $experts as $post_id ) {
+				get_template_part(
+					'template-parts/profiles/role',
+					'item',
+					array(
+						'id'   => $post_id,
+						'role' => 'expert',
+					)
+				);
+			}
+			?>
+		</ul>
+		<?php
+		endif;
+
+	else :
+		if ( ! empty( $term_data ) ) :
+		?>
+		<ul class="role__staff-list">
+			<?php
+			foreach ( $term_data['posts'] as $post_id ) {
+				get_template_part(
+					'template-parts/profiles/role',
+					'item',
+					array(
+						'id' => $post_id,
+					)
+				);
+			}
+			?>
+		</ul>
+		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php
