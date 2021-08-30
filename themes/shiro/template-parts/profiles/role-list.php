@@ -62,12 +62,12 @@ foreach ( $post_list as $term_id => $term_data ) :
 		</h3>
 		<ul class="role__staff-list">
 			<?php
-			foreach ( $experts as $post_id ) {
+			foreach ( $experts as $expert_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
 					'item',
 					array(
-						'id'   => $post_id,
+						'id'   => $expert_id,
 						'role' => 'expert',
 					)
 				);
@@ -82,12 +82,12 @@ foreach ( $post_list as $term_id => $term_data ) :
 		?>
 		<ul class="role__staff-list">
 			<?php
-			foreach ( $term_data['posts'] as $post_id ) {
+			foreach ( $term_data['posts'] as $term_data_post_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
 					'item',
 					array(
-						'id' => $post_id,
+						'id' => $term_data_post_id,
 					)
 				);
 			}

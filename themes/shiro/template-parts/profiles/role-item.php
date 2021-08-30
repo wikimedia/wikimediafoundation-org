@@ -11,9 +11,11 @@ if ( empty( $post_data['id'] ) ) {
 	return;
 }
 
+// phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
 $is_list  = $post_data['list'] ?? true;
 $post_id  = $post_data['id'];
 $post     = get_post( $post_id );
+// phpcs:enable
 
 if ( ! is_a( $post, \WP_Post::class ) ) {
 	return;
