@@ -22,10 +22,14 @@
 		align-items: center;
 		position: absolute;
 		z-index: 10;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		padding: 0 rem( 8 );
+		top: rem(2);
+		bottom: rem(2);
+		right: rem(2);
+		padding: 0 rem( 3 );
+
+		&:focus {
+			@include focus-ring($hex: false, $inset: true);
+		}
 	}
 
 	&__label {
@@ -42,12 +46,22 @@
 		//					padding			width of icon	padding
 		padding-right: calc( #{rem( 8 )} + #{rem( 16 )} + #{rem( 8 )} );
 		border: 0;
+
+		@media ( min-width: #{$medium-landscape} ) {
+			padding-bottom: rem( 5 );
+			padding-top: rem( 5 );
+		}
+
+		&:focus {
+			@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
+		}
 	}
 
 	& &__icon {
-		width: rem( 16 );
-		height: rem( 16 );
-		margin: 0;
 		display: block;
+		fill: $wmui-color-base30;
+		height: rem( 24 );
+		margin: 0;
+		width: rem( 24 );
 	}
 }

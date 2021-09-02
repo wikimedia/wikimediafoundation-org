@@ -30,7 +30,7 @@ add_filter( 'body_class', 'wmf_body_classes' );
  * @return string Container classes to add.
  */
 function wmf_get_header_container_class() {
-	if ( is_front_page() ) {
+	if ( is_front_page() && !has_blocks() ) {
 		$class = 'header-home';
 	} else {
 		$class = 'header-default';
@@ -188,6 +188,7 @@ function wmf_get_role_posts( $term_id ) {
 	return array(
 		'posts' => $featured_list + $post_list,
 		'name'  => $term_query->name,
+		'slug'  => $term_query->slug,
 	);
 }
 
@@ -229,12 +230,6 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 				) + $post_list;
 			} else {
 				$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
-			}
-
-			$post_list[ $parent_id ]['children'] = array();
-
-			foreach ( $children as $child_id ) {
-				$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
 			}
 		}
 	}
@@ -741,13 +736,124 @@ function wmf_get_gulp_asset_uri( string $name ): string {
  * @param string $possible_url The URL to put in the href of the link.
  */
 function wmf_shiro_echo_wrap_with_link( $text, $possible_url = '' ) {
-	if ( empty( $possible_url ) ) {
+	if ( empty( $possible_url ) ) :
 		echo esc_html( $text );
-	}
-
+	else :
 	?>
-	<a href="<?php echo esc_attr( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
+	<a href="<?php echo esc_url( $possible_url ); ?>" target="_blank" rel="noopener noreferrer">
 		<?php echo esc_html( $text ); ?>
 	</a>
 	<?php
+	endif;
+}
+
+/**
+ * Determine if a given block exists in a post, include in reusable blocks.
+ *
+ * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
+ *
+ * @param                  $block_name
+ * @param int|WP_Post|null $post
+ *
+ * @return bool
+ */
+function wmf_enhanced_has_block( $block_name, $post = null ): bool {
+	if ( has_block( $block_name, $post ) ) {
+		return true;
+	}
+
+	if ( has_block( 'core/block', $post ) ) {
+		$content = get_post_field( 'post_content', $post );
+		$blocks  = parse_blocks( $content );
+
+		return wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $post );
+	}
+
+	return false;
+}
+
+/**
+ * Recursively search for a block within innerblocks.
+ *
+ * @see https://kybernaut.cz/en/clanky/check-for-has_block-inside-reusable-blocks/
+ *
+ * @param                  $blocks
+ * @param                  $block_name
+ * @param int|WP_Post|null $post
+ *
+ * @return bool
+ */
+function wmf_search_reusable_blocks_within_innerblocks( $blocks, $block_name, $post = null ): bool {
+	foreach ( $blocks as $block ) {
+		if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+			wmf_search_reusable_blocks_within_innerblocks( $block['innerBlocks'], $block_name, $post );
+		} elseif ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) && \has_block( $block_name,
+				$block['attrs']['ref'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Get an arbitrary reusable block module.
+ *
+ * Returns the id of the reusable block if found; 0 otherwise.
+ *
+ * @param string $module
+ *
+ * @return int
+ */
+function wmf_get_reusable_block_module_id( string $module ): int {
+	$available_blocks = [
+		'connect' => 'wmf_connect_reusable_block',
+		'support' => 'wmf_support_reusable_block',
+	];
+
+	if ( ! isset( $available_blocks[ $module ] ) ) {
+		return 0;
+	}
+
+	$id = get_theme_mod( $available_blocks[ $module ] );
+
+	$valid = is_numeric( $id )
+	         && $id > 0
+	         && get_post_type( $id ) === 'wp_block';
+
+	return $valid ? (int) $id : 0;
+}
+
+/**
+ * Get the WP_Post object for a reusable block module.
+ *
+ * Returns null if none found.
+ *
+ * @param string $module
+ *
+ * @return null|WP_Post
+ */
+function wmf_get_reusable_block_module( string $module ) {
+	$id = wmf_get_reusable_block_module_id( $module );
+
+	return $id > 0 ? get_post( $id ) : null;
+}
+
+/**
+ * Returns the "comment" necessary to insert a reusable block, for the module requested.
+ *
+ * Returns an empty string if block does not exist or cannot be found.
+ *
+ * @param string $module
+ *
+ * @return string
+ */
+function wmf_get_reusable_block_module_insert( string $module ): string {
+	$id = wmf_get_reusable_block_module_id( $module );
+
+	if ( $id < 1 ) {
+		return '';
+	}
+
+	return sprintf( '<!-- wp:block {"ref":%d} /-->', $id );
 }

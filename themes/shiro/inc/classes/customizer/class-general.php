@@ -158,56 +158,34 @@ class General extends Base {
 			)
 		);
 
-		$control_id = 'wmf_support_image';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			new \WP_Customize_Media_Control(
-				$this->customize, $control_id, array(
-					'label'       => __( 'Image', 'shiro-admin' ),
-					'description' => __( 'Image should be 16:9 aspect ratio with min width of 1200px for best appearance. The image will automatically crop to that size if larger.', 'shiro-admin' ),
-					'section'     => $section_id,
-				)
-			)
-		);
+		$control_id = 'wmf_support_reusable_block';
+		$this->customize->add_setting($control_id);
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_posts_get_posts
+		$resuable_blocks = get_posts([
+			'post_type' => 'wp_block',
+			'numberposts' => 50,
+		]);
+		// phpcs:enable
 
-		$control_id = 'wmf_support_heading';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'Heading', 'shiro-admin' ),
-				'section' => $section_id,
-				'type'    => 'text',
-			)
-		);
+		$selectable_blocks = [];
+		foreach ($resuable_blocks as $block) {
+			if ( has_block( 'shiro/spotlight', $block->ID ) ) {
+				$selectable_blocks[$block->ID] = $block->post_title;
+			}
+		}
 
-		$control_id = 'wmf_support_content';
-		$this->customize->add_setting( $control_id );
+		// We're using `+` instead of `array_merge` because array_merge rewrites numeric IDs
+		$choices = [ 0 => 'No CTA' ] + $selectable_blocks;
 		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'Content', 'shiro-admin' ),
+			$control_id, [
+				'label' => __( 'Support CTA' ),
+				'type' => 'select',
+				'choices' => $choices,
 				'section' => $section_id,
-				'type'    => 'textarea',
-			)
-		);
-
-		$control_id = 'wmf_support_link_uri';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'CTA Link URI', 'shiro-admin' ),
-				'section' => $section_id,
-				'type'    => 'text',
-			)
-		);
-
-		$control_id = 'wmf_support_link_text';
-		$this->customize->add_setting( $control_id );
-		$this->customize->add_control(
-			$control_id, array(
-				'label'   => __( 'CTA Link Text', 'shiro-admin' ),
-				'section' => $section_id,
-				'type'    => 'text',
-			)
+				'description' => count( $selectable_blocks ) > 0
+					? __( 'Select a spotlight block to be shown in the "Support" area.', 'shiro-admin' )
+					: sprintf( __( '<strong>There are no spotlight blocks available!</strong> Please <a href="%s">create one</a>.', 'shiro-admin' ), admin_url( 'edit.php?post_type=wp_block' ) ),
+			]
 		);
 
 		// Search Page.

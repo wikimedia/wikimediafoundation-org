@@ -1,5 +1,17 @@
 @include wysiwyg {
 	p {
 		margin-bottom: rem(40);
+
+		+ p {
+			margin-top: rem(-20);
+		}
+
+		&.no-default-margin {
+			margin-bottom: 0;
+
+			+ p {
+				margin-top: 0;
+			}
+		}
 	}
 }

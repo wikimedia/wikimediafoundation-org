@@ -11,7 +11,7 @@ hr {
 }
 
 button {
-	@include button-reset();
+	@include style-guide-button-reset();
 }
 
 
@@ -24,20 +24,20 @@ a, button {
 
 // TODO Fix globally - currently only applied to COVID-19 page
 .page-id-62496 {
-	p {
-		margin-bottom: 1em;
+	#content,
+	.toc-nav::before {
+		content: "";
+		display: block;
+		padding-top: 2em;
 	}
+
 	.mod-margin-bottom {
 		margin-bottom: 3em;
 	}
-	li {
-		@include font-size(15, 13);
-		margin-bottom: 1em;
-	}
-	ul {
-		margin-bottom: 1em;
-	}
-	#content {
-		margin-top: 2em;
+
+	@include wysiwyg {
+		li {
+			margin-bottom: 1em;
+		}
 	}
 }

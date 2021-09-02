@@ -1,10 +1,8 @@
 .primary-nav-toggle {
 	// button-tertiary
 	@include style-guide-button(
-		$color-tertiary,
-		$color-tertiary--hover,
-		$color-tertiary--active,
-		$color-tertiary--focus,
+		$wmui-color-base90,
+		$wmui-color-base90,
 		$color-primary,
 		$border-color-base,
 	);
@@ -25,8 +23,8 @@
 	&:hover,
 	&:active,
 	&:focus {
-		border-color: $color-primary;
-		outline: none;
+		@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
+		border-color: $border-color-base;
 	}
 
 	&__icon {

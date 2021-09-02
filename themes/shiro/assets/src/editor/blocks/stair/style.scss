@@ -3,18 +3,13 @@
 
 .wp-block-shiro-stair {
 	.wp-block-shiro__image-preview {
-		width: 314px;
-		height: 192px;
+		height: rem(192);
+		width: rem(314);
 	}
 
 	.components-placeholder {
-		width: 314px;
-		height: 192px;
 		background: rgba(0, 0, 0, 0.05);
-	}
-
-	.call-to-action-wrapper .call-to-action.stair__read-more {
-		@include style-guide-arrow-link;
-		background: none;
+		height: rem(192);
+		width: rem(314);
 	}
 }

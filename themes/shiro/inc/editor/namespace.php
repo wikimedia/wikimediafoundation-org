@@ -13,7 +13,7 @@ use WMF\Assets;
  */
 function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
-	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks' );
+	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
@@ -41,28 +41,30 @@ function body_class( $body_classes ) {
  * include no blocks.
  *
  * @param bool|string[] $allowed_blocks
+ * @param \WP_Post      $post
+ *
  * @return bool|string[]
  */
-function filter_blocks( $allowed_blocks ) {
-	return [
+function filter_blocks( $allowed_blocks, \WP_Post $post ) {
+	$blocks = [
 		// Custom blocks
 		'shiro/banner',
 		'shiro/blog-list',
-		'shiro/blog-post-heading',
 		'shiro/card',
 		'shiro/contact',
 		'shiro/double-heading',
-		'shiro/home-page-hero',
-		'shiro/read-more-categories',
 		'shiro/share-article',
 		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
+		'shiro/toc',
+		'shiro/toc-columns',
 		'shiro/tweet-this',
-		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
 		'shiro/external-link',
+		'shiro/profile',
+		'shiro/profile-list',
 
 		// Core blocks
 		'core/paragraph',
@@ -87,6 +89,18 @@ function filter_blocks( $allowed_blocks ) {
 		'core/latest-posts',
 		'core/quote',
 	];
+
+	if ( $post->post_type === 'post' ) {
+		$blocks[] = 'shiro/read-more-categories';
+		$blocks[] = 'shiro/blog-post-heading';
+	}
+
+	if ( $post->post_type === 'page' ) {
+		$blocks[] = 'shiro/home-page-hero';
+		$blocks[] = 'shiro/landing-page-hero';
+	}
+
+	return $blocks;
 }
 
 /**
@@ -146,8 +160,16 @@ function add_theme_supports() {
  * @return false|array|\WP_Post|null
  */
 function get_admin_post() {
+	// 1. We can't verify a nonce because we didn't create this request.
+	// 2. A core sanitization function isn't used, but the value is carefully checked.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$post_id            = $_GET['post'] ?? false;
-	return get_post( $post_id );
+
+	if ( is_numeric( $post_id ) && (int) $post_id > 0 ) {
+		return get_post( $post_id );
+	}
+
+	return false;
 }
 
 /**

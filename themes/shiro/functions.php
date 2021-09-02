@@ -122,8 +122,7 @@ function wmf_scripts() {
 		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
 	}
 	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-stickyfill', get_stylesheet_directory_uri() . '/assets/dist/stickyfill.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-stickyfill', 'shiro-svg4everybody' ), $script_version, true );
+	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
 		\WMF\Assets\get_manifest_path(),
 		'shiro.js',
@@ -262,6 +261,8 @@ require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
 require get_template_directory() . '/inc/editor/blocks/share-article.php';
+require get_template_directory() . '/inc/editor/blocks/profile.php';
+require get_template_directory() . '/inc/editor/blocks/profile-list.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
 require get_template_directory() . '/inc/editor/patterns.php';
@@ -273,6 +274,7 @@ require get_template_directory() . '/inc/editor/patterns/tweet-columns.php';
 require get_template_directory() . '/inc/editor/patterns/communication-module.php';
 require get_template_directory() . '/inc/editor/patterns/template-default.php';
 require get_template_directory() . '/inc/editor/patterns/template-landing.php';
+require get_template_directory() . '/inc/editor/patterns/template-list.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
@@ -283,6 +285,8 @@ WMF\Editor\Blocks\DoubleHeading\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
 WMF\Editor\Blocks\ShareArticle\bootstrap();
+WMF\Editor\Blocks\Profile\bootstrap();
+WMF\Editor\Blocks\ProfileList\bootstrap();
 WMF\Editor\Patterns\bootstrap();
 
 /**
@@ -445,3 +449,19 @@ function wmf_filter_nav_menu_items( $args, $item, $depth ) {
 	return $args;
 }
 add_filter( 'nav_menu_item_args', 'wmf_filter_nav_menu_items', 10, 3 );
+
+/**
+ * Add reusable blocks link to admin menu.
+ */
+function link_reusable_blocks_url() {
+	add_menu_page(
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		esc_html__( 'Reusable Blocks', 'shiro-admin' ),
+		'manage_options',
+		'edit.php?post_type=wp_block', '',
+		'dashicons-editor-table',
+		22
+	);
+}
+
+add_action( 'admin_menu', 'link_reusable_blocks_url' );

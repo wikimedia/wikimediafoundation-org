@@ -91,6 +91,48 @@
 }
 
 
+// List template content + sidebar
+.list-template {
+	@media (min-width: $medium-bp) {
+		margin-top: 7rem;
+	}
+}
+
+// TODO: once all ToC navs have been replaced by blocks, we won't need these.
+.list-template,
+.report-template {
+	@media ( max-width: #{$core-gutenberg-break-small} ) {
+		.w-32p > nav {
+			margin-bottom: rem(40);
+		}
+	}
+}
+
+.list-template,
+.report-template,
+.data-template,
+.role-template {
+	@media ( min-width: #{$core-gutenberg-break-small} ) and ( max-width: 767px ) {
+		&.flex.flex-medium {
+			flex-direction: row;
+			flex-wrap: nowrap;
+		}
+
+		.w-32p,
+		.w-68p {
+			width: calc(50% - 1em);
+		}
+	}
+
+	@media ( min-width: #{$core-gutenberg-break-small} ) {
+		.w-32p > nav {
+			margin-right: rem(20);
+			padding-bottom: rem(62);
+		}
+	}
+}
+
+
 // Flex containers
 .flex {
 	&.flex-all {

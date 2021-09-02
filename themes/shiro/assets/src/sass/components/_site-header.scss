@@ -1,5 +1,6 @@
 .site-header {
 	background: #fff;
+	min-height: rem(62); // Prevent content shift during loading
 	position: fixed;
 	top: 0;
 	transition: top 250ms ease;
@@ -31,11 +32,11 @@
 		}
 
 		@media screen and (min-width: $admin-bar-breakpoint-sm) {
-			top: 46px;
+			top: $admin-bar-mobile-height;
 		}
 
 		@media screen and (min-width: $admin-bar-breakpoint-lg) {
-			top: 32px;
+			top: $admin-bar-desktop-height;
 		}
 	}
 

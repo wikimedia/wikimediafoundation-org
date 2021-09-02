@@ -2,6 +2,8 @@
 
 namespace WMF\Editor\Blocks\MailChimpSubscribe;
 
+use WMF\Customizer\Connect;
+
 /**
  * Bootstrap hooks for the mailchimp block
  */
@@ -15,8 +17,9 @@ function bootstrap() {
  * tags. Other than these changes, this is de facto a static block.
  */
 function render_block( $block_attributes, $content ) {
-	$action = get_theme_mod( 'wmf_subscribe_action', 'https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56' );
-	$additional_fields = get_theme_mod( 'wmf_subscribe_additional_fields', '<input type="hidden" value="2" name="group[4037]" id="mce-group[4037]-4037-1">' );
+	$action            = get_theme_mod( 'wmf_subscribe_action', Connect::defaults( 'wmf_subscribe_action' ) );
+	$additional_fields = get_theme_mod( 'wmf_subscribe_additional_fields',
+		Connect::defaults( 'wmf_subscribe_additional_fields' ) );
 	$additional_fields = kses_input_fields( $additional_fields );
 
 	/*
@@ -30,7 +33,7 @@ function render_block( $block_attributes, $content ) {
 		__( 'Email address', 'shiro' ) :
 		$block_attributes['inputPlaceholder'];
 
-	$form_start = '<form action="' . esc_attr( $action ) . '" method="POST" class="mailchimp-subscribe__form">';
+	$form_start = '<form action="' . esc_url( $action ) . '" method="POST" class="mailchimp-subscribe__form">';
 	$form_end   = '</form>';
 	$input_field = '<input' .
 	               ' class="mailchimp-subscribe__input-field"' .

@@ -1,0 +1,7 @@
+plugins/asset-loader
+plugins/co-authors-plus
+plugins/fieldmanager
+plugins/maintenance-mode
+plugins/safe-redirect-manager
+plugins/safe-svg
+themes/shiro/assets/src/fonts

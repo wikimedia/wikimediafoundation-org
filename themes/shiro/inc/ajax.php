@@ -45,7 +45,7 @@ function wmf_ajax_search() {
 	if ( $search_query->have_posts() ) {
 		while ( $search_query->have_posts() ) :
 			$search_query->the_post();
-			echo \WMF\Editor\Blocks\BlogPost\render_block( [ 'post_id' => get_the_ID() ] );
+			echo wp_kses_post( \WMF\Editor\Blocks\BlogPost\render_block( [ 'post_id' => get_the_ID() ] ) );
 		endwhile;
 	} else {
 		get_template_part( 'template-parts/content', 'none' );
