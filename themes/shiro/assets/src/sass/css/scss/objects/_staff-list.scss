@@ -131,7 +131,7 @@
 				}
 
 				&:focus {
-					outline: none;
+					@include focus-reset;
 					text-decoration: underline;
 				}
 			}

@@ -1,13 +1,13 @@
 .contact {
 	border: 1px solid $border-color-framed;
-	padding: rem(25);
 	border-radius: $border-radius-big;
+	padding: rem(25);
 
 	&__icon {
 		height: rem(20);
-		width: rem(20);
-		margin-left: 0;
 		margin-bottom: rem(12);
+		margin-left: 0;
+		width: rem(20);
 	}
 
 	&__description {
@@ -23,9 +23,10 @@
 	.wp-block-buttons {
 		display: grid;
 		grid-template-columns: minmax(auto, rem(167)) auto;
+		margin-bottom: 0;
 	}
 
-	.wp-block-button{
+	.wp-block-button {
 		margin-right: 0;
 	}
 
