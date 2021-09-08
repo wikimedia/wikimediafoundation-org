@@ -1,6 +1,6 @@
 .link-list {
 	@include font-size(13, 13);
-	@include style-guide-list-reset;
+	@include list-reset;
 
 	&.inline-block {
 
@@ -17,22 +17,6 @@
 		@media (min-width: 768px) {
 			margin-bottom: 60px;
 		}
-	}
-
-	&.hover-highlight a {
-		//$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
-		@include linkHighlight($color-turquoise, #000, 6, 6, 32, 32, $medium-bp);
-		font-weight: bold;
-		padding-bottom: 5px;
-		line-height: 1.8;
-	}
-
-	&.hover-highlight_dk a {
-		//$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
-		@include linkHighlight($color-dark-blue, #fff, 6, 6, 32, 32, $medium-bp);
-		font-weight: bold;
-		padding-bottom: 5px;
-		line-height: 1.8;
 	}
 
 	a {
@@ -73,7 +57,7 @@
 
 .list-inline {
 
-	@include style-guide-list-reset;
+	@include list-reset;
 
 	li {
 		display: inline;
