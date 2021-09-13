@@ -10,18 +10,6 @@ hr {
 	border-top: 1px solid $wmui-color-base10;
 }
 
-button {
-	@include style-guide-button-reset();
-}
-
-
-// Accessibility
-a, button {
-	&:focus {
-		@include focus-outline(dotted, currentColor);
-	}
-}
-
 // TODO Fix globally - currently only applied to COVID-19 page
 .page-id-62496 {
 	#content,
