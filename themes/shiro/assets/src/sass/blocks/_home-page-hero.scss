@@ -99,5 +99,9 @@
 		position: absolute;
 		right: 0;
 		top: 0;
+
+		&:focus {
+			@include focus-reset;
+		}
 	}
 }

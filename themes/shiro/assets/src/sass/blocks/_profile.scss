@@ -51,7 +51,7 @@
 
 		@supports #{"\selector(*:focus-within)"} {
 			&:focus {
-				outline: none;
+				@include focus-reset;
 			}
 		}
 
