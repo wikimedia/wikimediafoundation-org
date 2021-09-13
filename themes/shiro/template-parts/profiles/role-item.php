@@ -27,7 +27,7 @@ $profile_img = get_the_post_thumbnail(
 
 $profile_class = 'role__staff-list__item';
 if ( $profile_data['role'] ) {
-	$profile_class = $profile_class . ' role__staff-list__item--' . $profile_data['role'];
+	$profile_class .= ' role__staff-list__item--' . $profile_data['role'];
 }
 ?>
 
