@@ -92,7 +92,7 @@ function wmf_role_fields() {
 	// Get the current term ID.
 	// We don't need to validate this because we're only using it if it exists and providing a fallback if not.
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-	$current_term_id = absint( $_GET['tag_ID'] ) ?? 0;
+	$current_term_id = absint( $_GET['tag_ID'] ?? 0 );
 
 	// New WP_Query for posts with this role assigned.
 	$current_term_args = array(
