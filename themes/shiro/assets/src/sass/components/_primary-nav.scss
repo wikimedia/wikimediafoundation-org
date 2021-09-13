@@ -160,7 +160,7 @@
 				}
 
 				&:focus {
-					outline: none;
+					@include focus-reset;
 
 					span {
 						@include focus-ring;

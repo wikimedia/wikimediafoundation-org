@@ -69,12 +69,6 @@
 }
 
 
-// Accessibility
-@mixin focus-outline($style, $color) {
-	outline: 1px $style $color;
-}
-
-
 // Flexbox
 @mixin flexbox($mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction) {
 	display: flex;
