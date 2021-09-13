@@ -10,9 +10,9 @@ $profile_header_data = $args;
 $back_to_link = ! empty( $profile_header_data['back_to_link'] ) ? $profile_header_data['back_to_link'] : '';
 $staff_name   = ! empty( $profile_header_data['back_to_label'] ) ? $profile_header_data['back_to_label'] : '';
 $team_name    = ! empty( $profile_header_data['team_name'] ) ? $profile_header_data['team_name'] : false;
-$role         = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : false;
+$role_name    = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : false;
 $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header_data['share_links'] : '';
-$role_desc    = join(', ', array_filter( [ $role, $team_name ] ) );
+$role_desc    = join(', ', array_filter( [ $role_name, $team_name ] ) );
 
 ?>
 
