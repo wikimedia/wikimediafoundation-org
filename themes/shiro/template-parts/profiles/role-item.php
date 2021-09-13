@@ -5,7 +5,7 @@
  * @package shiro
  */
 
-$profile_data = $args;
+$profile_data = $args ?? [];
 
 if ( empty( $profile_data['id'] ) ) {
 	return;
