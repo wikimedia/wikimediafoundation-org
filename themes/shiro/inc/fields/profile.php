@@ -90,18 +90,21 @@ function wmf_role_fields() {
 
 
 	// Get the current term ID.
-	$current_term_id = absint( $_GET['tag_ID'] ) ?? 0;
+	// We don't need to validate this because we're only using it if it exists and providing a fallback if not.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+	$current_term_id = absint( $_GET['tag_ID'] ?? 0 );
 
 	// New WP_Query for posts with this role assigned.
 	$current_term_args = array(
 		'post_type' => 'profile',
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 		'tax_query' => array(
 			array(
 				'taxonomy'         => 'role',
 				'terms'            => $current_term_id,
 				'include_children' => false,
 			),
-		),
+		), // WPCS: Slow query okay.
 	);
 	$current_term_query = new WP_Query( $current_term_args );
 	$current_term_posts = [];

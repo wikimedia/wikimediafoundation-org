@@ -7,7 +7,8 @@
  * @package shiro
  */
 
-// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+// $args is data passed into the template, also we provide fallbacks in case they don't exist.
+// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 $nested        = $args['nested'] ?? false;
 $template_args = is_array( $args['template_args'] ) ? $args['template_args'] : get_post_meta( get_the_ID(), 'list', true );
 // phpcs:enable
@@ -64,7 +65,7 @@ if ( empty( $template_args ) ) {
 		}
 		?>
 		<li class="toc__item">
-			<a class="toc__link" href="<?php echo esc_attr( $item_link ); ?>">
+			<a class="toc__link" href="<?php echo esc_url( $item_link ); ?>">
 				<?php echo esc_html( $item_text ); ?>
 			</a>
 		</li>

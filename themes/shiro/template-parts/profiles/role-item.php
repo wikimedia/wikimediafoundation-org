@@ -5,52 +5,52 @@
  * @package shiro
  */
 
-$post_data = $args;
+$profile_data = $args ?? [];
 
-if ( empty( $post_data['id'] ) ) {
+if ( empty( $profile_data['id'] ) ) {
 	return;
 }
 
-$is_list  = $post_data['list'] ?? true;
-$post_id  = $post_data['id'];
-$post     = get_post( $post_id );
+$is_list  = $profile_data['list'] ?? true;
+$profile_id  = $profile_data['id'];
+$profile     = get_post( $profile_id );
 
-if ( ! is_a( $post, \WP_Post::class ) ) {
+if ( ! is_a( $profile, \WP_Post::class ) ) {
 	return;
 }
 
-$post_img = get_the_post_thumbnail(
-	$post_id,
+$profile_img = get_the_post_thumbnail(
+	$profile_id,
 	$is_list ? 'profile_thumb' : 'image_4x3_large',
 	[ 'class' => 'role__staff-list__item__photo' ]
 );
 
-$post_class = 'role__staff-list__item';
-if ( $post_data['role'] ) {
-	$post_class = $post_class . ' role__staff-list__item--' . $post_data['role'];
+$profile_class = 'role__staff-list__item';
+if ( $profile_data['role'] ) {
+	$profile_class .= ' role__staff-list__item--' . $profile_data['role'];
 }
 ?>
 
 <?php if ( $is_list ) : ?>
-	<li class="<?php echo esc_attr( $post_class ); ?>">
+	<li class="<?php echo esc_attr( $profile_class ); ?>">
 <?php else : ?>
-	<div class="<?php echo esc_attr( $post_class ); ?>">
+	<div class="<?php echo esc_attr( $profile_class ); ?>">
 <?php endif;
 
-	if ( $post_img ) :
-		echo wp_kses_post( $post_img );
+	if ( $profile_img ) :
+		echo wp_kses_post( $profile_img );
 	else :
 	?>
 		<span class="role__staff-list__item__photo"></span>
 	<?php endif; ?>
 
 	<h4>
-		<a href="<?php the_permalink( $post_id ); ?>">
-			<?php echo esc_html( $post->post_title ); ?>
+		<a href="<?php the_permalink( $profile_id ); ?>">
+			<?php echo esc_html( $profile->post_title ); ?>
 		</a>
 	</h4>
 
-	<p><?php echo esc_html( get_post_meta( $post_id, 'profile_role', true ) ); ?></p>
+	<p><?php echo esc_html( get_post_meta( $profile_id, 'profile_role', true ) ); ?></p>
 
 <?php if ( $is_list ) : ?>
 	</li>
