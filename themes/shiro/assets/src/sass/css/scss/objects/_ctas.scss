@@ -96,7 +96,7 @@ $highlight-width: 10px;
   }
 
   p:first-of-type {
-    @include marginTop(32, 32, $medium-bp);
+    @include responsive-margin-top(32, 32);
   }
   @media (max-width: $medium-bp) {
     .bg-img-container {
@@ -162,7 +162,7 @@ $highlight-width: 10px;
   }
 
   .card-content{
-    @include paddingTop(16, 32, $medium-bp);
+    @include responsive-padding-top(16, 32);
     padding-bottom: 0;
     margin-top: 0;
     right: 0;
@@ -219,7 +219,7 @@ $highlight-width: 10px;
 
 .cta-footer {
   margin-top: 5rem;
-  @include marginTop(0, 80, $medium-bp);
+  @include responsive-margin-top(0, 80);
 }
 
 .cta-description {

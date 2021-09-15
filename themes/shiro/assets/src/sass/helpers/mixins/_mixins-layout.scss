@@ -1,5 +1,5 @@
 // Flexbox
-@mixin flexbox($mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction) {
+@mixin flexbox( $mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction ) {
 	display: flex;
 	flex-direction: $mobile-direction;
 
@@ -10,7 +10,7 @@
 }
 
 // Module Sizing
-@mixin module-width($desktop-bp, $desktop-width) {
+@mixin module-width( $desktop-bp, $desktop-width ) {
 	width: 100%;
 
 	@media (min-width: $desktop-bp) {
@@ -28,80 +28,112 @@
 	top: 0;
 }
 
-@mixin aspect-ratio($width, $height) {
+@mixin aspect-ratio( $width, $height ) {
 	position: relative;
 
-    &:before{
-        display: block;
-        content: " ";
-        width: 100%;
-        padding-top: ($height / $width) * 100%;
-    }
+	&::before {
+		content: " ";
+		display: block;
+		padding-top: ($height / $width) * 100%;
+		width: 100%;
+	}
 }
 
-@mixin paddingTopBottom($topBottomMobile, $topBottomDesktop) {
-	padding-top: rem($topBottomMobile);
-	padding-bottom: rem($topBottomMobile);
+@mixin responsive-padding(
+	$top-mobile,
+	$right-mobile,
+	$bottom-mobile,
+	$left-mobile,
+	$top-desktop,
+	$right-desktop,
+	$bottom-desktop,
+	$left-desktop
+) {
+	@if $top-mobile {
+		padding-top: rem($top-mobile);
+	}
+	@if $right-mobile {
+		padding-right: rem($right-mobile);
+	}
+	@if $bottom-mobile {
+		padding-bottom: rem($bottom-mobile);
+	}
+	@if $left-mobile {
+		padding-left: rem($left-mobile);
+	}
 
 	@media (min-width: $medium-bp) {
-		padding-top: rem($topBottomDesktop);
-		padding-bottom: rem($topBottomDesktop);
+		@if $top-desktop {
+			padding-top: rem($top-desktop);
+		}
+		@if $right-desktop {
+			padding-right: rem($right-desktop);
+		}
+		@if $bottom-desktop {
+			padding-bottom: rem($bottom-desktop);
+		}
+		@if $left-desktop {
+			padding-left: rem($left-desktop);
+		}
 	}
 }
 
-@mixin paddingTop($topMobile, $topDesktop, $desktopBP) {
-	padding-top: rem($topMobile);
+@mixin responsive-padding-top( $top-mobile, $top-desktop ) {
+	@include responsive-padding(
+		$top-mobile, false, false, false,
+		$top-desktop, false, false, false
+	);
+}
 
-	@media (min-width: $desktopBP) {
-		padding-top: rem($topDesktop);
+@mixin responsive-padding-bottom( $bottom-mobile, $bottom-desktop ) {
+	@include responsive-padding(
+		false, false, $bottom-mobile, false,
+		false, false, $bottom-desktop, false
+	);
+}
+
+@mixin responsive-padding-top-bottom( $mobile, $desktop ) {
+	@include responsive-padding(
+		$mobile, false, $mobile, false,
+		$desktop, false, $desktop, false
+	);
+}
+
+@mixin responsive-padding-left-right( $mobile, $desktop ) {
+	@include responsive-padding(
+		false, $mobile, false, $mobile,
+		false, $desktop, false, $desktop
+	);
+}
+
+@mixin responsive-padding-all( $mobile, $desktop ) {
+	@include responsive-padding(
+		$mobile, $mobile, $mobile, $mobile,
+		$desktop, $desktop, $desktop, $desktop
+	);
+}
+
+@mixin responsive-margin-top($mobile, $desktop) {
+	margin-top: rem($mobile);
+
+	@media (min-width: $medium-bp) {
+		margin-top: rem($desktop);
 	}
 }
 
-@mixin paddingBottom($bottomMobile, $bottomDesktop, $desktopBP) {
-	padding-bottom: rem($bottomMobile);
+@mixin responsive-margin-bottom($mobile, $desktop) {
+	margin-bottom: rem($mobile);
 
-	@media (min-width: $desktopBP) {
-		padding-bottom: rem($bottomDesktop);
+	@media (min-width: $medium-bp) {
+		margin-bottom: rem($desktop);
 	}
 }
 
-@mixin paddingRight($rightMobile, $rightDesktop, $desktopBP) {
-	padding-right: rem($rightMobile);
+@mixin responsive-margin-right($mobile, $desktop) {
+	margin-right: rem($mobile);
 
-	@media (min-width: $desktopBP) {
-		padding-right: rem($rightDesktop);
-	}
-}
-
-@mixin paddingLeft($leftMobile, $leftDesktop, $desktopBP) {
-	padding-left: rem($leftMobile);
-
-	@media (min-width: $desktopBP) {
-		padding-left: rem($leftDesktop);
-	}
-}
-
-@mixin marginTop($topMobile, $topDesktop, $desktopBP) {
-	margin-top: rem($topMobile);
-
-	@media (min-width: $desktopBP) {
-		margin-top: rem($topDesktop);
-	}
-}
-
-@mixin marginBottom($bottomMobile, $bottomDesktop, $desktopBP) {
-	margin-bottom: rem($bottomMobile);
-
-	@media (min-width: $desktopBP) {
-		margin-bottom: rem($bottomDesktop);
-	}
-}
-
-@mixin marginRight($rightMobile, $rightDesktop, $desktopBP) {
-	margin-right: rem($rightMobile);
-
-	@media (min-width: $desktopBP) {
-		margin-right: rem($rightDesktop);
+	@media (min-width: $medium-bp) {
+		margin-right: rem($desktop);
 	}
 }
 

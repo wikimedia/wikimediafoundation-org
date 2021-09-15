@@ -12,7 +12,7 @@ $header-bp-mw: 1049px;
 
 .header-default {
 	position: relative;
-	@include marginBottom(0, 0, $medium-bp);
+	@include responsive-margin-bottom(0, 0);
 
 	@media (min-width: $header-bp) and (max-height: 930px) {
 		// TODO remove all min-heights in this stylesheet?
@@ -138,10 +138,6 @@ $header-bp-mw: 1049px;
 				.bg-img {
 					mix-blend-mode: multiply;
 				}
-			}
-
-			.logo-nav-container {
-				@include paddingBottom(48, 40, $header-bp);
 			}
 
 			.bg-img-container {
@@ -472,7 +468,7 @@ $header-bp-mw: 1049px;
 
 .header-default.header-pink {
 	position: relative;
-	@include marginBottom(0, 0, $medium-bp);
+	@include responsive-margin-bottom(0, 0);
 
 	.header-inner.nav-open {
 		background: $color-pink;

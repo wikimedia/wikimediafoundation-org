@@ -76,23 +76,23 @@
 .news-list-container {
 
   .card {
-    @include marginBottom(60, 80, $medium-bp);
+    @include responsive-margin-bottom(60, 80);
   }
 
   .card-list-container:not(.alternate-img) {
 
     .card-content {
-      @include marginRight(0, 128, $medium-bp);
+      @include responsive-margin-right(0, 128);
     }
   }
 
   .img-container {
     display: block;
-    @include marginBottom(16, 0, $medium-bp);
+    @include responsive-margin-bottom(16, 0);
   }
 
   .h3 {
-    @include marginBottom(4, 4, $medium-bp);
+    @include responsive-margin-bottom(4, 4);
     @include font-size( 20, 18 );
 
     a {
@@ -105,11 +105,11 @@
   }
 
   .h4 {
-    @include marginBottom(8, 16, $medium-bp);
+    @include responsive-margin-bottom(8, 16);
   }
 
   .post-meta {
-    @include marginBottom(16, 24, $medium-bp);
+    @include responsive-margin-bottom(16, 24);
     @include font-size( 13, 13 );
     font-weight: bold;
 
@@ -127,7 +127,7 @@
     &:nth-child(odd) {
 
       .img-container {
-        @include marginRight(0, 128, $medium-bp);
+        @include responsive-margin-right(0, 128);
       }
     }
 
@@ -138,7 +138,7 @@
 
       .card-content {
         order: 1;
-        @include marginRight(0, 128, $medium-bp);
+        @include responsive-margin-right(0, 128);
       }
     }
 
@@ -170,7 +170,7 @@
       flex-direction: column;
 
       &:not(:last-child) {
-        @include marginBottom(40, 0, $medium-bp);
+        @include responsive-margin-bottom(40, 0);
       }
 
       .img-container {

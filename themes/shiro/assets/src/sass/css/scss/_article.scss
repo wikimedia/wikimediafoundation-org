@@ -6,7 +6,7 @@ article {
 	}
 
 	& + .article-footer {
-		@include marginTop(40, 80, $medium-bp);
+		@include responsive-margin-top(40, 80);
 	}
 
 	@media (max-width: 767px) {
@@ -30,15 +30,17 @@ article {
 
 .sidebar-float {
 	float: right;
-	// @include marginTop(64, 96, $medium-bp);
-	@include marginBottom(0, 32, $medium-bp);
+	margin-right: 0;
+	@include responsive-margin-bottom(0, 32);
 
 	@media (min-width: $medium-bp) {
-		padding-left: 5rem;
 		max-width: rem(380);
+		padding-left: 5rem;
 	}
 
-	@include marginRight(0, -130, 1150px);
+	@media (min-width: 1150px) {
+		margin-right: rem(-130);
+	}
 
 	& > div:not(:last-child) {
 		// border-bottom: 1px solid $color-gray;
@@ -123,14 +125,14 @@ article {
 .article-footer {
 
 	.h5 {
-		@include marginBottom(8, 0, $medium-bp);
+		@include responsive-margin-bottom(8, 0);
 	}
 
 	.read-more {
-		@include marginBottom(16, 30, $medium-bp);
+		@include responsive-margin-bottom(16, 30);
 
 		.h5 {
-			@include marginRight(0, 16, $medium-bp);
+			@include responsive-margin-right(0, 16);
 		}
 
 		li {
@@ -155,11 +157,11 @@ article {
 	.social-share {
 
 		.h5 {
-			@include marginRight(0, 8, $medium-bp);
+			@include responsive-margin-right(0, 8);
 		}
 
 		li {
-			@include marginRight(0, 0, $medium-bp);
+			@include responsive-margin-right(0, 0);
 		}
 
 		a {
@@ -186,8 +188,8 @@ article {
 }
 
 .article-img {
-	@include marginBottom(40, 80, $medium-bp);
-	@include marginTop(40, 64, $medium-bp);
+	@include responsive-margin-bottom(40, 80);
+	@include responsive-margin-top(40, 64);
 
 	img {
 		width: 100%;
@@ -224,7 +226,7 @@ article {
 	margin: rem(45) auto;
 	max-width: rem(640);
 
-	@include marginBottom(30, 60, $medium-bp);
+	@include responsive-margin-bottom(30, 60);
 
 	@media (max-width: $medium-bp) {
 		width: 100%;

@@ -125,10 +125,6 @@ $header-bp-mw: 1023px;
         }
       }
 
-      .logo-nav-container {
-        @include paddingBottom(48, 40, $header-bp);
-      }
-
       .bg-img-container {
         width: 75%;
         right: 0;

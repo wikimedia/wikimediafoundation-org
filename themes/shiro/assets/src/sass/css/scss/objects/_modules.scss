@@ -1,7 +1,7 @@
 .module-mu {
 
 	.h3 {
-		@include marginBottom(8, 8, $medium-bp);
+		@include responsive-margin-bottom(8, 8);
 	}
 
 	h5 {
@@ -55,7 +55,7 @@
 	.wysiwyg {
 
 		& + div {
-			@include marginTop(24, 32, $medium-bp);
+			@include responsive-margin-top(24, 32);
 		}
 	}
 
@@ -400,7 +400,7 @@ a.hover-img-zoom {
 	}
 
 	.h4 {
-		@include marginBottom(8, 16, $medium-bp);
+		@include responsive-margin-bottom(8, 16);
 	}
 
 	.link-external {
@@ -419,7 +419,7 @@ a.hover-img-zoom {
 // When two white background modules are adjacent, put a border between them.
 .white-bg + .white-bg {
 	border-top: 1px solid $color-ltgray;
-	@include paddingTop(64, 112, $medium-bp);
+	@include responsive-padding-top(64, 112);
 }
 
 .data-ungrid,

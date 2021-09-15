@@ -20,12 +20,12 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 
 		h1 {
 			@include font-size(64, 30);
-			@include marginBottom(32, 40, $medium-bp);
+			@include responsive-margin-bottom(32, 40);
 		}
 
 		h2 {
 			@include font-size(44, 24);
-			@include marginBottom(16, 28, $medium-bp);
+			@include responsive-margin-bottom(16, 28);
 		}
 	}
 
@@ -132,7 +132,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 }
 
 .section > div {
-	@include marginBottom(16, 0, $medium-bp);
+	@include responsive-margin-bottom(16, 0);
 }
 
 .section ul {
@@ -153,7 +153,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	@include marginBottom(24, 32, $medium-bp);
+	@include responsive-margin-bottom(24, 32);
 	p {
 		@include font-size(24, 20)
 	}

@@ -55,7 +55,7 @@ $translation-label-width: rem(180);
 
 	ul {
 		overflow: hidden;
-		@include paddingTop(11, 17, $medium-bp);
+		@include responsive-padding-top(11, 17);
 
 		&:focus {
 			outline: none;
@@ -67,7 +67,7 @@ $translation-label-width: rem(180);
 
 	li {
 		white-space: nowrap;
-		@include paddingBottom(7, 7, $medium-bp);
+		@include responsive-padding-bottom(7, 7);
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 		margin-bottom: 0;
