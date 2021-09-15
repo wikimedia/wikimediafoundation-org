@@ -129,20 +129,6 @@ $header-bp-mw: 1023px;
         @include paddingBottom(48, 40, $header-bp);
       }
 
-      .photo-aspect-ratio {
-        @include aspect-ratio(16, 11);
-        position: relative;
-        top: -16px; bottom: rem(40); left: 0; right: 0;
-        order: 2;
-        width: 100%;
-        overflow: hidden;
-
-        @media (min-width: $header-bp) {
-          top: 0;
-          position: absolute;
-        }
-      }
-
       .bg-img-container {
         width: 75%;
         right: 0;

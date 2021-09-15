@@ -76,29 +76,6 @@ function wmf_get_header_container_class() {
 }
 
 /**
- * Get image container class based on location.
- *
- * @return string Class name.
- */
-function wmf_get_photo_class() {
-	$class = 'photo-aspect-ratio';
-
-	if ( ! is_singular( 'page' ) || is_front_page() ) {
-		return $class;
-	}
-
-	$template = basename( get_page_template() );
-
-	switch ( $template ) {
-		case 'page.php':
-			$class .= ' mw-900';
-			break;
-	}
-
-	return $class;
-}
-
-/**
  * Parse template data, get back header button class.
  *
  * @return string button classes to add.

@@ -144,20 +144,6 @@ $header-bp-mw: 1049px;
 				@include paddingBottom(48, 40, $header-bp);
 			}
 
-			.photo-aspect-ratio {
-				@include aspect-ratio(16, 11);
-				position: relative;
-				top: -16px;	bottom: rem(40); left: 0; right: 0;
-				order: 2;
-				width: 100%;
-				overflow: hidden;
-
-				@media (min-width: $header-bp) {
-					top: 0;
-					position: absolute;
-				}
-			}
-
 			.bg-img-container {
 				width: 75%;
 				right: 0;
@@ -205,34 +191,6 @@ $header-bp-mw: 1049px;
 			@media (min-width: $medium-bp) {
 				//margin-bottom: rem(100);
 			}
-
-			.photo-aspect-ratio  {
-				@include aspect-ratio(2, 1);
-				position: relative;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				order: 2;
-				width: 100%;
-				overflow: hidden;
-				bottom: rem(-75);
-
-				@media (min-width: $header-bp) {
-					position: absolute;
-					right: 0;
-					bottom: rem(-395);
-					left: 0;
-					z-index: 0;
-				}
-				.bg-img-container {
-					@include absolute-full-cover();
-					z-index: 0;
-				}
-
-			}
-
-
-
 		}
 
 	}
