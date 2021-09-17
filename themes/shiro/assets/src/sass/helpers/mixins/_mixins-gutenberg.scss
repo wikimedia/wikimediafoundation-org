@@ -1,0 +1,32 @@
+// Mixins to support block editor content.
+@mixin alignfull( $content-column: 980px ) {
+	margin-left: rem(-20);
+	margin-right: rem(-20);
+	min-width: 100%;
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		margin-left: rem(-40);
+		margin-right: rem(-40);
+	}
+
+	@media ( min-width: #{$width-breakpoint-desktop} ) {
+		margin-left: calc(#{$content-column / 2} - 50vw + #{$half-scrollbar-width});
+		margin-right: calc(#{$content-column / 2} - 50vw + #{$half-scrollbar-width});
+	}
+}
+
+@mixin alignfull-padded( $content-column: 980px ) {
+	@include alignfull( $content-column );
+	padding-left: rem(20);
+	padding-right: rem(20);
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		padding-left: rem(40);
+		padding-right: rem(40);
+	}
+
+	@media ( min-width: #{$width-breakpoint-desktop} ) {
+		padding-left: calc(50vw - #{$content-column / 2} - #{$half-scrollbar-width});
+		padding-right: calc(50vw - #{$content-column / 2} - #{$half-scrollbar-width});
+	}
+}

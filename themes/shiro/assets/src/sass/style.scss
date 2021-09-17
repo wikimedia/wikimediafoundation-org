@@ -10,12 +10,13 @@
  * Text Domain: shiro
 **/
 
-// Import fonts first.
-@import "components/fonts";
+// Import helpers first.
+@import "helpers/helpers";
 
 /* ==================
-    # Mule CSS
+    # Base Styles
   =================== */
+@import "base/base";
 @import "css/style";
 
 /* ==================
