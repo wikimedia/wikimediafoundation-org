@@ -8,6 +8,10 @@
 	}
 }
 
+/**
+  * Globally consistent bottom margin of 40px. This originated as
+  * default block spacing, but could also be used for other elements.
+  */
 @mixin global-margin-bottom() {
 	margin-bottom: rem(40);
 }
