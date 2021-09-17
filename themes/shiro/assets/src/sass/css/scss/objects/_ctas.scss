@@ -41,7 +41,7 @@ $highlight-width: 10px;
 
     .h2,
     p {
-      @include marginBottom (24, 32, $medium-bp);
+      @include responsive-margin-bottom(24, 32);
     }
 
     .h2 {
@@ -259,7 +259,7 @@ $highlight-width: 10px;
   }
 
   .h2 {
-    @include marginBottom (5, 5, $medium-bp);
+    @include responsive-margin-bottom(5, 5);
     font-size: 1.5rem;
   }
 

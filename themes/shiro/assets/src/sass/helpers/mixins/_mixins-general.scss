@@ -8,23 +8,6 @@
 	}
 }
 
-/**
-  * Globally consistent bottom margin of 40px. This originated as
-  * default block spacing, but could also be used for other elements.
-  */
-@mixin global-margin-bottom() {
-	margin-bottom: rem(40);
-}
-
-// Responsive padding
-@mixin padding($topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop) {
-	padding: rem($topBottomMobile) rem($leftRightMobile);
-
-	@media (min-width: $medium-bp) {
-		padding: rem($topBottomDesktop) rem($leftRightDesktop);
-	}
-}
-
 @mixin list-reset() {
 	margin: 0;
 	padding: 0;

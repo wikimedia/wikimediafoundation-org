@@ -779,7 +779,7 @@ $row-gutter-big: 0.625vw;
 			justify-content: space-evenly;
 			flex-direction: column;
 		}
-		@include padding(0, 0, 0, 32);
+		@include responsive-padding(0, 0, 0, 32);
 		>h2,
 		> p {
 			margin-bottom: 0;
@@ -801,7 +801,7 @@ $row-gutter-big: 0.625vw;
 		cursor: pointer;
 		font-size: 3rem;
 		user-select: none;
-		@include padding(0, 0, 16, 16);
+		@include responsive-padding(0, 0, 16, 16);
 		transform: rotate(0) #{"/*rtl:rotate(180deg)*/"};
 		transition: 1s all;
 		@media (min-width: $medium-bp) {

@@ -305,7 +305,7 @@ a.hover-img-zoom {
 		z-index: 99;
 
 		// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-		@include padding(20, 20, 20, 50);
+		@include responsive-padding(20, 20, 20, 50);
 	}
 }
 
@@ -386,11 +386,11 @@ a.hover-img-zoom {
 
 // Elsewhere module
 .elsewhere-wikimedia {
-	@include padding(0, 20, 0, 40);
+	@include responsive-padding(0, 20, 0, 40);
 
 	.mw-980 {
 		@media (max-width: $medium-bp) {
-			@include padding(0, 0, 0, 0);
+			@include responsive-padding(0, 0, 0, 0);
 		}
 	}
 
