@@ -44,12 +44,13 @@
 		}
 
 		a {
+			@include style-guide-link;
+
 			// The link around the heading should display in same color as text.
 			color: var(--text-color);
 
 			// Use a lighter underline weight since heading is large + bold.
 			&:hover {
-				color: var(--link-color);
 				text-decoration-thickness: 0.5px;
 				text-underline-offset: 2px;
 			}

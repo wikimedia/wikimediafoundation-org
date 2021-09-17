@@ -3,9 +3,14 @@
 .image-filter-yellow,
 .image-filter-red {
 	&:after {
-		@include absolute-full-cover();
-		mix-blend-mode: multiply;
 		pointer-events: none;
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		mix-blend-mode: multiply;
 	}
 }
 

@@ -23,7 +23,7 @@ module.exports = choosePort( 8080).then( port => [
 			},
 			resolve: {
 				alias: {
-					"sass-lib": filePath('assets/src/sass/')
+					"sass-lib": filePath('assets/src/sass/css/scss/')
 				}
 			}
 		})),

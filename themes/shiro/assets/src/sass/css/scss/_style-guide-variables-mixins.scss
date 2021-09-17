@@ -1,0 +1,313 @@
+@mixin style-guide-link {
+
+	color: $color-primary;
+	color: var(--link-color);
+
+	&:focus {
+
+		@include active-color(var(--link-color));
+	}
+
+	&:hover {
+		text-decoration: underline;
+
+		@include active-color(var(--link-color));
+	}
+}
+
+/**
+ * Darkens a color by 3%, using CSS linear-gradient function.
+ *
+ * This is necessary for building things like link hover styles, where the
+ * base color is defined by a CSS property on a parent block. Since the color
+ * is set to the original text color, it should fallback gracefully in browsers
+ * that don't support the `background-clip` property.
+ *
+ * @param {Color}  $color   Base color.
+ * @param {Number} $percent Degree by which to lighten the color, expected as a percent.
+ * @returns value Expression evaluating to a linear-gradient setting the specified color.
+ */
+@mixin active-color( $color, $percent: 3% ) {
+	color: $color;
+
+	@supports (background-clip: text) or (-webkit-background-clip: text) {
+		background: linear-gradient(#{$color} #{$percent * -100}, #000 #{(100 - $percent) * 100});
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+}
+
+@mixin hover-box-shadow {
+	border: 1px solid transparent;
+	transition: $transition-ease-medium border-color box-shadow;
+
+	&:hover {
+		border-color: $wmui-color-base90;
+		box-shadow: $box-shadow-card-element;
+	}
+}
+
+@mixin focus-reset {
+	border-radius: 0;
+	box-shadow: none;
+	outline: none;
+}
+
+@mixin focus-ring(
+	$hex: false,
+	$inset: false,
+	$width: 2px,
+	$transparency: 0.8
+) {
+	border-radius: rem(2);
+	box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, $wmui-color-focus-ring-hex, rgba($wmui-color-focus-ring, $transparency));
+	outline: none;
+}
+
+@mixin style-guide-arrow-content {
+	content: " →" #{"/*rtl:'← '*/;"};
+}
+
+@mixin style-guide-arrow-content-back {
+	content: "← " #{"/*rtl:'→ '*/;"};
+}
+
+@mixin style-guide-arrow($back: false) {
+	display: inline-flex;
+	position: relative;
+
+	@if $back {
+		&::before {
+			@include style-guide-arrow-content-back;
+			color: currentColor;
+			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
+			transition: 300ms ease-in transform;
+		}
+	} @else {
+		&::after {
+			@include style-guide-arrow-content;
+			color: currentColor;
+			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
+			transition: 300ms ease-in transform;
+		}
+	}
+
+	&:hover {
+		text-decoration: none;
+
+		@if $back {
+			&::before {
+				transform: translateX(rem(-5)); /*rtl: transform: translateX(rem(5));*/
+			}
+		} @else {
+			&::after {
+				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+			}
+		}
+	}
+}
+
+@mixin style-guide-list-reset() {
+	margin: 0;
+	padding: 0;
+
+	li {
+		font-size: inherit;
+		line-height: inherit;
+	}
+}
+
+@mixin style-guide-button-reset() {
+	border: none;
+	border-radius: $border-radius-base;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 700;
+	padding: rem(6) rem(12);
+	@include font-size(14, 16);
+	@include line-height(20, 22);
+}
+
+@mixin style-guide-button-icon-hover() {
+	@supports (filter: brightness(0.7) hue-rotate(6deg)) {
+		color: $color-primary;
+		filter: brightness(0.7) hue-rotate(6deg);
+	}
+}
+
+@mixin style-guide-button(
+	$color,
+	$color-hover,
+	$color-text,
+	$border-color: transparent,
+) {
+	@include style-guide-button-reset;
+	background-color: $color;
+	border: 1px solid $border-color; // Buttons with and without borders take up the same space
+	color: $color-text;
+	transition: $transition-duration-base background;
+
+	&:hover {
+		background-color: $color-hover;
+		box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.15);
+	}
+
+	&:focus {
+		@include focus-ring($hex: false, $inset: false);
+		background-color: $color-hover;
+		border-color: $color-base--inverted;
+
+		.site-footer & {
+			@include focus-ring($hex: true, $inset: false);
+		}
+	}
+
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: $background-color-filled--disabled;
+		box-shadow: none;
+		cursor: text;
+	}
+}
+
+@mixin button-primary() {
+	@include style-guide-button(
+		$color-primary,
+		$color-primary--hover,
+		$color-base--inverted,
+	);
+}
+
+@mixin button-secondary() {
+	@include style-guide-button(
+		$color-secondary,
+		$color-secondary--hover,
+		$color-base--inverted,
+	);
+}
+
+@mixin button-tertiary() {
+	@include style-guide-button(
+		$color-tertiary,
+		$color-tertiary--hover,
+		$color-primary,
+	);
+	background: linear-gradient(to top, $color-tertiary, $color-tertiary), $color-primary;
+	background-clip: padding-box, border-box;
+
+	&:hover,
+	&:focus {
+		background: linear-gradient(to top, $color-tertiary--hover, $color-tertiary--hover), $color-primary--hover;
+		background-clip: padding-box, border-box;
+		border-color: transparent;
+		color: $color-primary--hover;
+	}
+
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: $color-tertiary;
+		border-color: $background-color-filled--disabled;
+		color: $background-color-filled--disabled;
+	}
+}
+
+@mixin button-link() {
+	@include style-guide-button(
+		transparent,
+		transparent,
+		$color-primary,
+	);
+	@include has-font-size("default");
+	margin: 0 rem(-1);
+	padding: 0 rem(1);
+
+	&:hover {
+		box-shadow: none;
+		color: $color-primary--hover;
+	}
+
+	&:focus {
+		border-color: transparent;
+	}
+
+	&:disabled,
+	&:is(a):not([href]) {
+		background-color: transparent;
+		color: $background-color-filled--disabled;
+	}
+}
+
+@mixin button-link-arrow($back: false) {
+	@include button-link();
+	@include style-guide-arrow($back);
+}
+
+@mixin style-guide-dropdown-caret-blue() {
+	background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.79922 1.21083L8.87282 0.199951L4.99922 3.90555L1.2101 0.199951L0.199219 1.21083L4.99922 6.01083L9.79922 1.21083Z' fill='%233A25FF'/%3E%3C/svg%3E%0A");
+}
+
+@mixin style-guide-dropdown-caret-black() {
+	background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.79922 1.21083L8.87282 0.199951L4.99922 3.90555L1.2101 0.199951L0.199219 1.21083L4.99922 6.01083L9.79922 1.21083Z' fill='%23000000'/%3E%3C/svg%3E%0A");
+}
+
+@mixin style-guide-dropdown-caret-white() {
+	background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.79922 1.21083L8.87282 0.199951L4.99922 3.90555L1.2101 0.199951L0.199219 1.21083L4.99922 6.01083L9.79922 1.21083Z' fill='%23FFFFFF'/%3E%3C/svg%3E%0A");
+}
+
+@mixin style-guide-dropdown-base() {
+
+	@include style-guide-button-reset();
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding: rem( 6 ) rem( 30 ) rem( 6 ) rem( 10 );
+	background-color: $wmui-color-base90;
+	border: 1px solid $border-color-base;
+	box-sizing: border-box;
+	border-radius: 2px;
+	color: $wmui-color-base10;
+	font-weight: bold;
+	font-size: rem( 14 );
+	line-height: 143%;
+	background-repeat: no-repeat;
+	background-position: calc( 100% - #{rem( 12 )} ) center;
+	text-transform: uppercase;
+}
+
+@mixin style-guide-dropdown-toggle() {
+	@include style-guide-dropdown-base();
+	@include style-guide-dropdown-caret-black();
+}
+
+@mixin style-guide-dropdown-select() {
+
+	@include style-guide-button-reset();
+	@include style-guide-dropdown-base();
+	@include style-guide-dropdown-caret-black();
+
+	&:active,
+	&:focus {
+
+		@include style-guide-dropdown-caret-blue();
+		color: $wmui-color-blue50;
+	}
+}
+
+@mixin global-block-styles() {
+	margin-bottom: rem(40);
+}
+
+@mixin target-ie {
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		@content;
+	}
+}
+
+@mixin donate-red90-button {
+	@include button-secondary;
+	&::before {
+		@include button-icon-rules;
+	}
+}

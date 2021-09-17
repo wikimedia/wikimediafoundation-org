@@ -1,5 +1,5 @@
 .profile-list {
-	@include global-margin-bottom;
+	@include global-block-styles;
 
 	display: flex;
 	flex-direction: column;
