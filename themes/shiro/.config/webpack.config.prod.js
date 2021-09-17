@@ -34,7 +34,7 @@ module.exports = [
 		],
 		resolve: {
 			alias: {
-				"sass-lib": filePath('assets/src/sass/css/scss/')
+				"sass-lib": filePath('assets/src/sass/')
 			}
 		}
 	} )),

@@ -58,14 +58,6 @@
 
     &:not(:last-child) {
       margin-right: 2rem;
-
-      // &:after {
-      //   content: "\2014";
-      //   position: absolute;
-      //   right: -28px;
-      //   opacity: .5;
-      //   font-weight: 300;
-      // }
     }
   }
 
