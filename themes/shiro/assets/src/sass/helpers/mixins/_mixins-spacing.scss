@@ -1,0 +1,76 @@
+/**
+ * Sass mixin for responsive margins and paddings
+ *
+ * Example: @include responsive-spacing(margin, top bottom);
+ */
+@mixin responsive-spacing($spacingType, $mobileValues: null null null null, $desktopValues: null null null null, $singleSide: false) {
+
+	// Error handling
+	@if (($spacingType == margin) or ($spacingType == padding)) {
+
+		// Space separated list of possible side arguments.
+		$sides: top right bottom left;
+
+		// Array of responsive sizes.
+		$breakpoints: (false: $mobileValues, $medium-bp: $desktopValues);
+
+		// Run the function for each breakpoint.
+		@each $breakpoint, $spacingValues in $breakpoints {
+			$values: $spacingValues;
+
+			// Allow for setting a single side.
+			@if length($spacingValues) == 1 and $singleSide {
+				$side: index($sides, $singleSide);
+				$values: null null null null;
+				$values: set-nth($values, $side, $spacingValues);
+			}
+
+			// Convert numeric values to rems.
+			@for $i from 1 through length($values) {
+				$value: nth($values, $i);
+				$values: set-nth($values, $i, if($value != null, rem($value), null));
+			}
+
+			// Set them separate if any values are null, otherwise together.
+			@if index($values, null) != null {
+				@include bp($breakpoint) {
+					@for $i from 1 through length($sides) {
+						$side: nth($sides, $i);
+						$value: nth($values, $i);
+
+						// Only set the props that have a value.
+						@if $side and $value {
+							#{$spacingType}-#{$side}: $value;
+						}
+					}
+				}
+			} @else {
+				@include bp($breakpoint) {
+					#{$spacingType}: $values;
+				}
+			}
+		}
+	} @else {
+		@error 'Invalid spacing type. Please use "margin" or "padding"';
+	}
+}
+
+@mixin responsive-padding($mobileValues: null null null null, $desktopValues: null null null null, $singleSide: false) {
+	@include responsive-spacing(padding, $mobileValues, $desktopValues, $singleSide);
+}
+
+@mixin responsive-margin($mobileValues: null null null null, $desktopValues: null null null null, $singleSide: false) {
+	@include responsive-spacing(margin, $mobileValues, $desktopValues, $singleSide);
+}
+
+.responsive-margin {
+	@include responsive-margin(10);
+}
+
+.responsive-padding {
+	@include responsive-padding(10 20, 15 30);
+}
+
+.responsive-padding-right {
+	@include responsive-padding(10, 15, right);
+}
