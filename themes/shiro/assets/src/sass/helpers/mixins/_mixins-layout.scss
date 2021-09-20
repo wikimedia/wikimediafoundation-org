@@ -39,51 +39,6 @@
 	}
 }
 
-@mixin responsive-margin-top($mobile, $desktop) {
-	margin-top: rem($mobile);
-
-	@media (min-width: $medium-bp) {
-		margin-top: rem($desktop);
-	}
-}
-
-@mixin responsive-margin-bottom($mobile, $desktop) {
-	margin-bottom: rem($mobile);
-
-	@media (min-width: $medium-bp) {
-		margin-bottom: rem($desktop);
-	}
-}
-
-@mixin responsive-margin-right($mobile, $desktop) {
-	margin-right: rem($mobile);
-
-	@media (min-width: $medium-bp) {
-		margin-right: rem($desktop);
-	}
-}
-
-
-// Grids
-@mixin bp-large {
-	@media only screen and (min-width: $large-bp) {
-		@content;
-	}
-}
-
-@mixin bp-medium {
-	@media only screen and (min-width: $medium-bp) {
-		@content;
-	}
-}
-
-@mixin bp-small {
-	@media only screen and (min-width: $small-bp) {
-		@content;
-	}
-}
-
-
 // Non-duotone gradients
 @mixin black-gradient-vertical() {
 	@include absolute-full-cover();

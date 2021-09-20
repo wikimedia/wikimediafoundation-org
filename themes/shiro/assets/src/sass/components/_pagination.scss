@@ -4,7 +4,7 @@
 	padding: rem(32) 0;
 	margin-bottom: 7rem;
 	@include has-font-size("default");
-	@include responsive-padding(24, 20, 32, 40);
+	@include responsive-padding(24 20, 32 40);
 
 	&__inner {
 		display: flex;

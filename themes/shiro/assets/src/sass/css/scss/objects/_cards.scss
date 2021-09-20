@@ -25,7 +25,7 @@
 
   .post-meta {
     color: $color-dark-gray;
-    @include responsive-margin-bottom(16, 24);
+    @include responsive-margin(16, 24, bottom);
     @include font-size( 13, 13 );
     font-weight: bold;
 

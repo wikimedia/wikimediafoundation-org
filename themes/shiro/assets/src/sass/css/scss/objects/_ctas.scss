@@ -41,7 +41,7 @@ $highlight-width: 10px;
 
     .h2,
     p {
-      @include responsive-margin-bottom(24, 32);
+      @include responsive-margin(24, 32, bottom);
     }
 
     .h2 {
@@ -96,7 +96,7 @@ $highlight-width: 10px;
   }
 
   p:first-of-type {
-    @include responsive-margin-top(32, 32);
+    @include responsive-margin(32, 32, top);
   }
   @media (max-width: $medium-bp) {
     .bg-img-container {
@@ -162,7 +162,7 @@ $highlight-width: 10px;
   }
 
   .card-content{
-    @include responsive-padding-top(16, 32);
+    @include responsive-padding(16, 32, top);
     padding-bottom: 0;
     margin-top: 0;
     right: 0;
@@ -219,7 +219,7 @@ $highlight-width: 10px;
 
 .cta-footer {
   margin-top: 5rem;
-  @include responsive-margin-top(0, 80);
+  @include responsive-margin(0, 80, top);
 }
 
 .cta-description {
@@ -259,7 +259,7 @@ $highlight-width: 10px;
   }
 
   .h2 {
-    @include responsive-margin-bottom(5, 5);
+    @include responsive-margin(5, 5, bottom);
     font-size: 1.5rem;
   }
 

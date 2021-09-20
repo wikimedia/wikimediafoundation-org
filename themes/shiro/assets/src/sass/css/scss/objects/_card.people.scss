@@ -37,7 +37,7 @@
   .person-name {
     text-transform: none;
     color: #000;
-    @include responsive-margin-bottom(4, 8);
+    @include responsive-margin(4, 8, bottom);
     font-size: 1rem;
   }
 

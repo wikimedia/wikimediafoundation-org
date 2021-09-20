@@ -52,7 +52,7 @@
 	&__heading-wrapper {
 		max-width: $content-column-padded-rem;
 		margin: 0 auto;
-		@include responsive-padding(0, 20, 0, strip-px($block-padding));
+		@include responsive-padding(0 20, 0 strip-px($block-padding));
 	}
 
 	&__heading-color {

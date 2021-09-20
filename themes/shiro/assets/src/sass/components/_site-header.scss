@@ -42,7 +42,7 @@
 
 	&__inner {
 
-		@include responsive-padding(0, 20, 0, 40);
+		@include responsive-padding(0 20, 0 40);
 		align-items: center;
 		display: flex;
 		justify-content: space-between;

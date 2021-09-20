@@ -20,12 +20,12 @@ $wp20_font: 'Linux Libertine', 'Georgia', 'Times', serif;
 
 		h1 {
 			@include font-size(64, 30);
-			@include responsive-margin-bottom(32, 40);
+			@include responsive-margin(32, 40, bottom);
 		}
 
 		h2 {
 			@include font-size(44, 24);
-			@include responsive-margin-bottom(16, 28);
+			@include responsive-margin(16, 28, bottom);
 		}
 	}
 
@@ -132,7 +132,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 }
 
 .section > div {
-	@include responsive-margin-bottom(16, 0);
+	@include responsive-margin(16, 0, bottom);
 }
 
 .section ul {
@@ -153,7 +153,7 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	@include responsive-margin-bottom(24, 32);
+	@include responsive-margin(24, 32, bottom);
 	p {
 		@include font-size(24, 20)
 	}
@@ -779,7 +779,7 @@ $row-gutter-big: 0.625vw;
 			justify-content: space-evenly;
 			flex-direction: column;
 		}
-		@include responsive-padding(0, 0, 0, 32);
+		@include responsive-padding(0 0, 0 32);
 		>h2,
 		> p {
 			margin-bottom: 0;
@@ -801,7 +801,7 @@ $row-gutter-big: 0.625vw;
 		cursor: pointer;
 		font-size: 3rem;
 		user-select: none;
-		@include responsive-padding(0, 0, 16, 16);
+		@include responsive-padding(0 0, 16 16);
 		transform: rotate(0) #{"/*rtl:rotate(180deg)*/"};
 		transition: 1s all;
 		@media (min-width: $medium-bp) {

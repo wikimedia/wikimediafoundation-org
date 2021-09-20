@@ -1,7 +1,12 @@
 /**
  * Sass mixin for responsive margins and paddings
  *
- * Example: @include responsive-spacing(margin, top bottom);
+ * Example: @include responsive-spacing(margin, 10 20, 15, 30);
+ *
+ * There are also helper mixins below to minimize the arguments.
+ * See responsive-padding and responsive-margin.
+
+ * Single side example: @include responsive-padding(10, 15, right);
  */
 @mixin responsive-spacing($spacingType, $mobileValues: null null null null, $desktopValues: null null null null, $singleSide: false) {
 
@@ -33,6 +38,12 @@
 
 			// Set them separate if any values are null, otherwise together.
 			@if index($values, null) != null {
+
+				// If top/bottom and left/right have the same value, make sure they get set.
+				@if length($values) == 2 {
+					$values: nth($values, 1) nth($values, 2) nth($values, 1) nth($values, 2);
+				}
+
 				@include bp($breakpoint) {
 					@for $i from 1 through length($sides) {
 						$side: nth($sides, $i);
@@ -63,14 +74,10 @@
 	@include responsive-spacing(margin, $mobileValues, $desktopValues, $singleSide);
 }
 
-.responsive-margin {
-	@include responsive-margin(10);
-}
-
-.responsive-padding {
-	@include responsive-padding(10 20, 15 30);
-}
-
-.responsive-padding-right {
-	@include responsive-padding(10, 15, right);
+/**
+ * Globally consistent bottom margin of 40px. This originated as
+ * default block spacing, but could also be used for other elements.
+ */
+@mixin global-margin-bottom() {
+	margin-bottom: rem(40);
 }

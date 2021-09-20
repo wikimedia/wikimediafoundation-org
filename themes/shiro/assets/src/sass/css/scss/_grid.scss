@@ -1,34 +1,34 @@
 .mw-1360 {
 	max-width: rem(1440);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-	@include responsive-padding(0, 20, 0, 40);
+	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
 
 .mw-1360-bg {
 	max-width: rem(1360);
 	//padding: 0 rem(40);
-	@include responsive-padding(0, 20, 0, 40);
+	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
 
 .mw-1017 {
 	max-width: rem(1017);
-	@include responsive-padding(0, 20, 0, 40);
+	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
 
 .mw-980 {
 	max-width: rem(1060);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-	@include responsive-padding(0, 20, 0, 40);
+	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
 
 .mw-900 {
 	max-width: rem(940);
 	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-	@include responsive-padding(0, 20, 0, 40);
+	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
 
@@ -202,9 +202,9 @@
 }
 
 .mod-padding-vertical {
-	@include responsive-padding-top-bottom(56, 80);
+	@include responsive-padding(56 null, 80 null);
 }
 
 .mod-padding-vertical_sm {
-	@include responsive-padding-top-bottom(48, 48);
+	@include responsive-padding(48 null, 48 null);
 }
