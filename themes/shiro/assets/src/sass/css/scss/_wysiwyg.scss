@@ -1,15 +1,7 @@
 a {
-	color: $color-blue;
+	@include style-guide-link;
 	margin: rem(-1);
 	padding: rem(1);
-
-	&:hover {
-		text-decoration: underline;
-	}
-
-	&:focus {
-		@include focus-ring;
-	}
 
 	// TODO: This is not valid html, we should really fix all of these.
 	div, ul, p, #{$headings} {

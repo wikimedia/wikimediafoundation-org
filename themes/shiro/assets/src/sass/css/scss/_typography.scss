@@ -210,11 +210,6 @@ blockquote p:first-child {
 	padding-left: rem(20);
 }
 
-.category {
-	color: $color-dark-gray;
-	text-transform: uppercase;
-}
-
 article {
 
 	h2 {
@@ -240,10 +235,6 @@ article {
 	p {
 		margin-bottom: 2rem;
 	}
-}
-
-.page-intro-inline-link {
-	@include linkHighlight($color-turquoise, #000, 4, 4, 24, 30, $medium-bp);
 }
 
 .page-template-page-list main {

@@ -11,7 +11,7 @@
 }
 
 .hero-home {
-	@include global-block-styles;
+	@include global-margin-bottom;
 
 	&:focus-within h2,
 	&:hover &__heading--has-link {
@@ -92,13 +92,7 @@
 	}
 
 	&__link {
-		bottom: 0;
-		content: "";
-		display: block;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
+		@include absolute-full-cover();
 
 		&:focus {
 			@include focus-reset;
