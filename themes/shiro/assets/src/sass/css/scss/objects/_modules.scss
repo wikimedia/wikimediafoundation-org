@@ -71,6 +71,14 @@
 		display: flex;
 		flex-wrap: wrap;
 
+		li {
+			margin: 0 0.5rem 0 0;
+		}
+
+		li:last-child {
+			margin-right: 0;
+		}
+
 		li:not(:last-child) {
 			margin-bottom: 1rem;
 		}
