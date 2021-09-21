@@ -33,9 +33,13 @@
 		list-style: none;
 		margin-bottom: rem(20);
 
+		// Use li here to override list-reset.
+		li {
+			margin-bottom: rem(40);
+		}
+
 		&__item {
 			flex-basis: 48%;
-			margin-bottom: rem(40);
 			position: relative;
 			transition: 0.3s box-shadow;
 
