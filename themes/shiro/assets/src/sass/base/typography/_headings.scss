@@ -13,29 +13,16 @@ h2,
 .h2 {
 	@include responsive-margin(32, 32, bottom);
 	@include font-size(22, 18);
-
-	&.small {
-		@include font-size(22, 18);
-		@include responsive-margin(40, 56, bottom);
-	}
 }
 
 h3,
 .h3 {
 	@include font-size(15, 13);
-
-	&.small {
-		@include font-size(15, 13);
-	}
 }
 
 h4,
 .h4 {
 	@include font-size(24, 18);
-
-	&.small.small {
-		@include font-size(18, 14);
-	}
 }
 
 h5,
@@ -43,10 +30,6 @@ h5,
 	color: $color-dark-gray;
 	@include font-size(20, 16);
 	text-transform: uppercase;
-
-	&.color-black {
-		color: #000;
-	}
 }
 
 h6 {
@@ -60,48 +43,5 @@ h6 {
 	h2 {
 		@include font-size(22, 18);
 		font-weight: 700;
-	}
-}
-
-article {
-	h2 {
-		margin-bottom: 2rem;
-	}
-
-	h3 {
-		margin-bottom: 2rem;
-	}
-
-	h4 {
-		margin-bottom: 1.5rem;
-	}
-
-	h5 {
-		margin-bottom: .5rem;
-	}
-
-	h6 {
-		margin-bottom: .5rem;
-	}
-}
-
-.page-template-page-list main {
-	h2 {
-		border-bottom: 2px solid $wmui-color-base0;
-	}
-
-	.h2 {
-		margin-bottom: 0;
-	}
-}
-
-.page-template-page-list .connect-container,
-.page-template-page-list .cta {
-	h2 {
-		border-bottom: 0;
-	}
-
-	.h2 {
-		margin-bottom: 2rem;
 	}
 }
