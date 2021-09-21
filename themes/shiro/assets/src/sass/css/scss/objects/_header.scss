@@ -102,8 +102,8 @@ $header-bp-mw: 1049px;
 		}
 
 		&--short {
+			margin-bottom: rem(40);
 			min-height: auto;
-			//padding-bottom: rem(340);
 
 			// TODO: Take header height and header-inner height to auto.
 			.header-inner {
@@ -161,6 +161,11 @@ $header-bp-mw: 1049px;
 				.page-landing {
 					margin-bottom: rem(80);
 				}
+
+				.ungrid {
+					margin-bottom: rem(80);
+				}
+
 				.ungrid .page-landing {
 					margin-bottom: 0;
 				}
