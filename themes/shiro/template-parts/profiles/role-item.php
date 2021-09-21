@@ -5,6 +5,8 @@
  * @package shiro
  */
 
+// $args is data passed into the template, also we provide fallbacks in case they don't exist.
+// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 $profile_data = $args ?? [];
 
 if ( empty( $profile_data['id'] ) ) {
