@@ -3,7 +3,7 @@
 Plugin Name: Co-Authors Plus
 Plugin URI: http://wordpress.org/extend/plugins/co-authors-plus/
 Description: Allows multiple authors to be assigned to a post. This plugin is an extended version of the Co-Authors plugin developed by Weston Ruter.
-Version: 3.4.8
+Version: 3.4.91
 Author: Mohammad Jangda, Daniel Bachhuber, Automattic
 Copyright: 2008-2015 Shared and distributed between Mohammad Jangda, Daniel Bachhuber, Weston Ruter
 
@@ -32,7 +32,7 @@ Co-author - in the context of a single post, a guest author or user assigned to 
 Author - user with the role of author
 */
 
-define( 'COAUTHORS_PLUS_VERSION', '3.4.8' );
+define( 'COAUTHORS_PLUS_VERSION', '3.4.91' );
 
 require_once dirname( __FILE__ ) . '/template-tags.php';
 require_once dirname( __FILE__ ) . '/deprecated.php';
@@ -335,7 +335,7 @@ class CoAuthors_Plus {
 	public function add_coauthors_box() {
 
 		if ( $this->is_post_type_enabled() && $this->current_user_can_set_authors() ) {
-			add_meta_box( $this->coauthors_meta_box_name, apply_filters( 'coauthors_meta_box_title', __( 'Authors', 'co-authors-plus' ) ), array( $this, 'coauthors_meta_box' ), get_post_type(), apply_filters( 'coauthors_meta_box_context', 'normal' ), apply_filters( 'coauthors_meta_box_priority', 'high' ) );
+			add_meta_box( $this->coauthors_meta_box_name, apply_filters( 'coauthors_meta_box_title', __( 'Authors', 'co-authors-plus' ) ), array( $this, 'coauthors_meta_box' ), get_post_type(), apply_filters( 'coauthors_meta_box_context', 'side' ), apply_filters( 'coauthors_meta_box_priority', 'high' ) );
 		}
 	}
 
@@ -1133,6 +1133,12 @@ class CoAuthors_Plus {
 	 */
 	public function fix_author_page( $selection ) {
 
+		global $wp_query, $authordata;
+
+		if ( ! isset( $wp_query ) ) {
+			return;
+		}
+
 		if ( ! is_author() ) {
 			return;
 		}
@@ -1143,9 +1149,6 @@ class CoAuthors_Plus {
 		}
 
 		$author = $this->get_coauthor_by( 'user_nicename', $author_name );
-
-		global $wp_query, $authordata;
-
 		if ( is_object( $author ) ) {
 			$authordata = $author; //phpcs:ignore
 			$term       = $this->get_author_term( $authordata );

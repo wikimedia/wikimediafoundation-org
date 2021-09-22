@@ -1,0 +1,13 @@
+$browser-context: 16; // Default
+
+@function rem($pixels, $context: $browser-context) {
+	@return #{$pixels/$context}rem;
+}
+
+@function strip-px($value) {
+	@return $value / 1px;
+}
+
+@function px-to-rem($value, $context: $browser-context) {
+	@return rem(strip-px($value), $context);
+}

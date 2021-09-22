@@ -1,9 +1,7 @@
 a {
-	color: $color-blue;
-
-	&:hover {
-		text-decoration: underline;
-	}
+	@include style-guide-link;
+	margin: rem(-1);
+	padding: rem(1);
 
 	// TODO: This is not valid html, we should really fix all of these.
 	div, ul, p, #{$headings} {
@@ -13,6 +11,7 @@ a {
 
 .single-post,
 .single-page,
+.single-profile,
 .page {
 
 	.toc__content {
