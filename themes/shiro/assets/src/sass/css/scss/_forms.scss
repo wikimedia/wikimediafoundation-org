@@ -1,39 +1,21 @@
 @mixin form-styling {
   border: 1px solid $color-ltgray;
   border-radius: 0;
-  margin: rem(3) 0;
   padding: rem(10);
   background: none;
-
-  &:focus {
-    @include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
-  }
 }
+
 
 
 // Form elements
 input, textarea {
-  @include form-styling;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-input[type="number"],
-input[type="tel"],
-input[type="range"],
-input[type="date"],
-input[type="month"],
-input[type="week"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="color"],
-textarea {
   display: block;
   width: 100%;
+  @include form-styling;
+
+  &:focus {
+    @include focus-outline(dotted, currentColor);
+  }
 }
 
 .select-wrapper {
@@ -72,6 +54,7 @@ select {
   width: 80%;
 }
 
+
 .checkbox-row {
   margin-bottom: 10px;
   input, label {
@@ -88,15 +71,4 @@ select {
   input[type=checkbox]:checked {
     background: $color-turquoise;
   }
-}
-
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-button:not([class]) {
-  @include button-primary();
-}
-
-input[type="reset"] {
-  @include button-tertiary();
 }

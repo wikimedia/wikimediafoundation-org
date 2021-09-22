@@ -11,6 +11,8 @@ $page_header_data = $args;
 
 <div class="header-main">
 <?php get_template_part( 'template-parts/header/header', 'content', $page_header_data ); ?>
+
+<!-- <?php get_template_part( 'template-parts/header/social' ); ?> -->
 </div>
 
 <?php get_template_part( 'template-parts/header/closing-tags' ); ?>

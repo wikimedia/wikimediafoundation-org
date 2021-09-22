@@ -188,7 +188,6 @@ function wmf_get_role_posts( $term_id ) {
 	return array(
 		'posts' => $featured_list + $post_list,
 		'name'  => $term_query->name,
-		'slug'  => $term_query->slug,
 	);
 }
 
@@ -230,6 +229,12 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 				) + $post_list;
 			} else {
 				$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
+			}
+
+			$post_list[ $parent_id ]['children'] = array();
+
+			foreach ( $children as $child_id ) {
+				$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
 			}
 		}
 	}

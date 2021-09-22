@@ -5,7 +5,7 @@
 	order: 20;
 
 	&:focus {
-		@include focus-reset;
+		outline: none;
 	}
 
 	&__image {

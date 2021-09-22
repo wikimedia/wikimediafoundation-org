@@ -74,7 +74,7 @@
 
 	&__items {
 
-		@include list-reset;
+		@include style-guide-list-reset;
 		align-items: start;
 		display: flex;
 		flex-wrap: wrap;
@@ -160,7 +160,7 @@
 				}
 
 				&:focus {
-					@include focus-reset;
+					outline: none;
 
 					span {
 						@include focus-ring;

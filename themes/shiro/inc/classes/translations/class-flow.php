@@ -228,8 +228,6 @@ class Flow {
 				'off_site_links',
 				'listings',
 				'featured_profile',
-				'role_executive',
-				'role_experts',
 				'role_button',
 				'profiles',
 				'proects_module',
