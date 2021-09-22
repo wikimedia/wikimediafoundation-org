@@ -23,7 +23,7 @@ export const name = 'shiro/home-page-hero';
 export const settings = {
 	apiVersion: 2,
 
-	title: __( 'Home hero', 'shiro' ),
+	title: __( 'Home hero', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -31,7 +31,7 @@ export const settings = {
 
 	description: __(
 		'A moving hero for the homepage',
-		'shiro'
+		'shiro-admin'
 	),
 
 	supports: {
@@ -122,67 +122,49 @@ export const settings = {
 		const headingColorClassName = getColorClassName( 'background-color', headingColor );
 		const hasLink = ! ! linkUrl;
 
-		/**
-		 * Render wrapper link if it is set, otherwise simply render the children as-is.
-		 */
-		const ConditionalLink = ( { children } ) => {
-			if ( hasLink ) {
-				return (
-					<a className="hero-home__link" href={ linkUrl }>
-						{ children }
-					</a>
-				);
-			}
-
-			return ( <>
-				{ children }
-			</> );
-		};
-
 		return (
 			<div { ...blockProps } >
-				<ConditionalLink>
-					<header className="hero-home__header">
+				<header className="hero-home__header">
+					<div className={ classNames(
+						'hero-home__image-wrapper',
+						{
+							'hero-home__image-wrapper--disable-animation': ! enableAnimation,
+						}
+					) }>
+						<ImagePicker.Content
+							alt={ imageAlt }
+							className="hero-home__image"
+							id={ imageId }
+							src={ imageUrl }
+						/>
+					</div>
+					<div className="hero-home__heading-wrapper">
 						<div className={ classNames(
-							'hero-home__image-wrapper',
+							'hero-home__heading-color',
 							{
-								'hero-home__image-wrapper--disable-animation': ! enableAnimation,
+								[ headingColorClassName ]: headingColorClassName,
 							}
 						) }>
-							<ImagePicker.Content
-								alt={ imageAlt }
-								className="hero-home__image"
-								id={ imageId }
-								src={ imageUrl }
-							/>
+							{ headings.map( ( heading, index ) => {
+								return (
+									<RichText.Content
+										key={ index }
+										className={ classNames( {
+											'hero-home__heading': true,
+											'hero-home__heading--hidden': index !== 0,
+											'hero-home__heading--has-link': hasLink,
+											'rtl-switch': heading.switchRtl || false,
+										} ) }
+										lang={ heading.lang }
+										tagName="h2"
+										value={ heading.text }
+									/>
+								);
+							} ) }
+							{ hasLink ? ( <a className="hero-home__link" href={ linkUrl }><span className="screen-reader-text">{ headings[0]?.text || 'Home hero heading link' }</span></a> ) : '' }
 						</div>
-						<div className="hero-home__heading-wrapper">
-							<div className={ classNames(
-								'hero-home__heading-color',
-								{
-									[ headingColorClassName ]: headingColorClassName,
-								}
-							) }>
-								{ headings.map( ( heading, index ) => {
-									return (
-										<RichText.Content
-											key={ index }
-											className={ classNames( {
-												'hero-home__heading': true,
-												'hero-home__heading--hidden': index !== 0,
-												'hero-home__heading--has-link': hasLink,
-												'rtl-switch': heading.switchRtl || false,
-											} ) }
-											lang={ heading.lang }
-											tagName="h1"
-											value={ heading.text }
-										/>
-									);
-								} ) }
-							</div>
-						</div>
-					</header>
-				</ConditionalLink>
+					</div>
+				</header>
 			</div>
 		);
 	},

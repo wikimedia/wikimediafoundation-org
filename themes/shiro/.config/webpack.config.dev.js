@@ -1,5 +1,6 @@
 const {helpers, externals, presets} = require('@humanmade/webpack-helpers');
 const {choosePort, cleanOnExit, filePath} = helpers;
+const { addSvgr } = require('./shared');
 
 // Clean up manifests on exit.
 cleanOnExit([
@@ -7,7 +8,7 @@ cleanOnExit([
 ]);
 
 module.exports = choosePort( 8080).then( port => [
-		presets.development({
+		addSvgr(presets.development({
 			name: 'editor',
 			externals,
 			devServer: {
@@ -22,10 +23,10 @@ module.exports = choosePort( 8080).then( port => [
 			},
 			resolve: {
 				alias: {
-					"sass-lib": filePath('assets/src/sass/css/scss/')
+					"sass-lib": filePath('assets/src/sass/')
 				}
 			}
-		}),
+		})),
 		presets.development({
 			name: 'theme',
 			devServer: {

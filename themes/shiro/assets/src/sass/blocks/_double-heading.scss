@@ -1,13 +1,18 @@
 .double-heading {
+
+	&.block-editor-block-list__block {
+		@include global-margin-bottom;
+	}
+
 	&__primary {
-		line-height: 1.5;
 		color: $wmui-color-base0;
+		line-height: 1.5;
 	}
 
 	&__secondary {
 		@include has-blocks-wrap {
-			margin-bottom: rem(4);
 			color: $wmui-color-base30;
+			margin-bottom: rem(4);
 		}
 	}
 }

@@ -1,0 +1,13 @@
+@import "~sass-lib/editor/editor-includes";
+
+.editor-styles-wrapper .wp-block-column.block-editor-block-list__layout {
+	> p.toc {
+		font-size: rem(14);
+	}
+
+	&.toc__content h2 {
+		margin-top: 0;
+		padding-top: 0;
+		pointer-events: initial;
+	}
+}

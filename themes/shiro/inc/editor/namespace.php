@@ -13,7 +13,7 @@ use WMF\Assets;
  */
 function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
-	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks' );
+	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
@@ -41,25 +41,30 @@ function body_class( $body_classes ) {
  * include no blocks.
  *
  * @param bool|string[] $allowed_blocks
+ * @param \WP_Post      $post
+ *
  * @return bool|string[]
  */
-function filter_blocks( $allowed_blocks ) {
-	return [
+function filter_blocks( $allowed_blocks, \WP_Post $post ) {
+	$blocks = [
 		// Custom blocks
 		'shiro/banner',
 		'shiro/blog-list',
-		'shiro/blog-post-heading',
 		'shiro/card',
+		'shiro/contact',
 		'shiro/double-heading',
-		'shiro/home-page-hero',
+		'shiro/share-article',
 		'shiro/spotlight',
 		'shiro/stairs',
 		'shiro/stair',
+		'shiro/toc',
+		'shiro/toc-columns',
 		'shiro/tweet-this',
-		'shiro/landing-page-hero',
 		'shiro/mailchimp-subscribe',
 		'shiro/inline-languages',
 		'shiro/external-link',
+		'shiro/profile',
+		'shiro/profile-list',
 
 		// Core blocks
 		'core/paragraph',
@@ -84,6 +89,18 @@ function filter_blocks( $allowed_blocks ) {
 		'core/latest-posts',
 		'core/quote',
 	];
+
+	if ( $post->post_type === 'post' ) {
+		$blocks[] = 'shiro/read-more-categories';
+		$blocks[] = 'shiro/blog-post-heading';
+	}
+
+	if ( $post->post_type === 'page' ) {
+		$blocks[] = 'shiro/home-page-hero';
+		$blocks[] = 'shiro/landing-page-hero';
+	}
+
+	return $blocks;
 }
 
 /**
@@ -99,11 +116,11 @@ function add_theme_supports() {
 	// Define alternate font sizes selectable in the editor (the default
 	// for body copy is 18px / 1.75 on desktop; 16px / 1.75 on mobile).
 	add_theme_support( 'editor-font-sizes', [
-		[ 'name' => __( 'Small', 'shiro' ),   'shortName' => __( 'S', 'shiro' ),  'size' => 14, 'slug' => 'small'   ],
-		[ 'name' => __( 'Medium', 'shiro' ),  'shortName' => __( 'M', 'shiro' ),  'size' => 20, 'slug' => 'medium'  ],
-		[ 'name' => __( 'Large', 'shiro' ),   'shortName' => __( 'L', 'shiro' ),  'size' => 24, 'slug' => 'large'   ],
-		[ 'name' => __( 'X-Large', 'shiro' ), 'shortName' => __( 'XL', 'shiro' ), 'size' => 32, 'slug' => 'xlarge'  ],
-		[ 'name' => __( 'Jumbo', 'shiro' ),   'shortName' => __( 'J', 'shiro' ),  'size' => 40, 'slug' => 'jumbo'   ],
+		[ 'name' => __( 'Small', 'shiro-admin' ),   'shortName' => __( 'S', 'shiro-admin' ),  'size' => 14, 'slug' => 'small'   ],
+		[ 'name' => __( 'Medium', 'shiro-admin' ),  'shortName' => __( 'M', 'shiro-admin' ),  'size' => 20, 'slug' => 'medium'  ],
+		[ 'name' => __( 'Large', 'shiro-admin' ),   'shortName' => __( 'L', 'shiro-admin' ),  'size' => 24, 'slug' => 'large'   ],
+		[ 'name' => __( 'X-Large', 'shiro-admin' ), 'shortName' => __( 'XL', 'shiro-admin' ), 'size' => 32, 'slug' => 'xlarge'  ],
+		[ 'name' => __( 'Jumbo', 'shiro-admin' ),   'shortName' => __( 'J', 'shiro-admin' ),  'size' => 40, 'slug' => 'jumbo'   ],
 	] );
 
 	// Remove the ability to set custom font sizes in the editor.
@@ -111,21 +128,21 @@ function add_theme_supports() {
 
 	// Define colors selectable in the editor.
 	add_theme_support( 'editor-color-palette', [
-		[ 'name' => __( 'Base 0', 'shiro' ),    'slug' => 'base0',    'color' => '#000000' ],
-		[ 'name' => __( 'Base 10', 'shiro' ),   'slug' => 'base10',   'color' => '#202122' ],
-		[ 'name' => __( 'Base 20', 'shiro' ),   'slug' => 'base20',   'color' => '#54595d' ],
-		[ 'name' => __( 'Base 30', 'shiro' ),   'slug' => 'base30',   'color' => '#72777d' ],
-		[ 'name' => __( 'Base 50', 'shiro' ),   'slug' => 'base50',   'color' => '#a2a9b1' ],
-		[ 'name' => __( 'Base 70', 'shiro' ),   'slug' => 'base70',   'color' => '#c8ccd1' ],
-		[ 'name' => __( 'Base 80', 'shiro' ),   'slug' => 'base80',   'color' => '#eaecf0' ],
-		[ 'name' => __( 'Base 90', 'shiro' ),   'slug' => 'base90',   'color' => '#f8f9fa' ],
-		[ 'name' => __( 'Base 100', 'shiro' ),  'slug' => 'base100',  'color' => '#ffffff' ],
-		[ 'name' => __( 'Blue 50', 'shiro' ),   'slug' => 'blue50',   'color' => '#3a25ff' ],
-		[ 'name' => __( 'Blue 90', 'shiro' ),   'slug' => 'blue90',   'color' => '#eeeaff' ],
-		[ 'name' => __( 'Red 50', 'shiro' ),    'slug' => 'red50',    'color' => '#d40356' ],
-		[ 'name' => __( 'Red 90', 'shiro' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
-		[ 'name' => __( 'Yellow 50', 'shiro' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
-		[ 'name' => __( 'Yellow 90', 'shiro' ), 'slug' => 'yellow90', 'color' => '#fffec2' ],
+		[ 'name' => __( 'Base 0', 'shiro-admin' ),    'slug' => 'base0',    'color' => '#000000' ],
+		[ 'name' => __( 'Base 10', 'shiro-admin' ),   'slug' => 'base10',   'color' => '#202122' ],
+		[ 'name' => __( 'Base 20', 'shiro-admin' ),   'slug' => 'base20',   'color' => '#54595d' ],
+		[ 'name' => __( 'Base 30', 'shiro-admin' ),   'slug' => 'base30',   'color' => '#72777d' ],
+		[ 'name' => __( 'Base 50', 'shiro-admin' ),   'slug' => 'base50',   'color' => '#a2a9b1' ],
+		[ 'name' => __( 'Base 70', 'shiro-admin' ),   'slug' => 'base70',   'color' => '#c8ccd1' ],
+		[ 'name' => __( 'Base 80', 'shiro-admin' ),   'slug' => 'base80',   'color' => '#eaecf0' ],
+		[ 'name' => __( 'Base 90', 'shiro-admin' ),   'slug' => 'base90',   'color' => '#f8f9fa' ],
+		[ 'name' => __( 'Base 100', 'shiro-admin' ),  'slug' => 'base100',  'color' => '#ffffff' ],
+		[ 'name' => __( 'Blue 50', 'shiro-admin' ),   'slug' => 'blue50',   'color' => '#3a25ff' ],
+		[ 'name' => __( 'Blue 90', 'shiro-admin' ),   'slug' => 'blue90',   'color' => '#eeeaff' ],
+		[ 'name' => __( 'Red 50', 'shiro-admin' ),    'slug' => 'red50',    'color' => '#d40356' ],
+		[ 'name' => __( 'Red 90', 'shiro-admin' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
+		[ 'name' => __( 'Yellow 50', 'shiro-admin' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
+		[ 'name' => __( 'Yellow 90', 'shiro-admin' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
 	] );
 
 	// Disable custom color and gradient selection in the editor.
@@ -143,8 +160,16 @@ function add_theme_supports() {
  * @return false|array|\WP_Post|null
  */
 function get_admin_post() {
+	// 1. We can't verify a nonce because we didn't create this request.
+	// 2. A core sanitization function isn't used, but the value is carefully checked.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$post_id            = $_GET['post'] ?? false;
-	return get_post( $post_id );
+
+	if ( is_numeric( $post_id ) && (int) $post_id > 0 ) {
+		return get_post( $post_id );
+	}
+
+	return false;
 }
 
 /**
@@ -227,7 +252,7 @@ function add_block_categories( $categories ) {
 		array(
 			array(
 				'slug' => 'wikimedia',
-				'title' => __( 'Wikimedia', 'shiro' ),
+				'title' => __( 'Wikimedia', 'shiro-admin' ),
 			),
 		),
 		$categories

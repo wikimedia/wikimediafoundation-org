@@ -1,4 +1,6 @@
 .wp-block-image {
+	@include global-margin-bottom;
+
 	figcaption {
 		padding-left: rem(20);
 		padding-right: rem(20);

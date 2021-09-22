@@ -18,26 +18,26 @@ function wmf_profiles_module() {
 	$custom_fields = array(
 		'name'     => 'profiles',
 		'children' => array(
-			'pre_heading'  => new Fieldmanager_Textfield( __( 'Section Pre-heading', 'shiro' ) ),
-			'headline'     => new Fieldmanager_Textfield( __( 'Headline', 'shiro' ) ),
-			'description'  => new Fieldmanager_RichTextArea( __( 'Description', 'shiro' ) ),
-			'button_label' => new Fieldmanager_Textfield( __( 'Button Label', 'shiro' ) ),
-			'button_link'  => new Fieldmanager_Link( __( 'Button Link', 'shiro' ) ),
+			'pre_heading'  => new Fieldmanager_Textfield( __( 'Section Pre-heading', 'shiro-admin' ) ),
+			'headline'     => new Fieldmanager_Textfield( __( 'Headline', 'shiro-admin' ) ),
+			'description'  => new Fieldmanager_RichTextArea( __( 'Description', 'shiro-admin' ) ),
+			'button_label' => new Fieldmanager_Textfield( __( 'Button Label', 'shiro-admin' ) ),
+			'button_link'  => new Fieldmanager_Link( __( 'Button Link', 'shiro-admin' ) ),
 		),
 	);
 
 	if ( 'fm_post_page' === current_filter() || $is_front_page ) {
 		$custom_fields['children']['profiles_list'] = new Fieldmanager_Checkboxes(
 			array(
-				'label'       => __( 'List of Profiles to pull from', 'shiro' ),
-				'description' => __( 'Select as many as are applicable. 3 profiles will be selected from this list each time the page loads.', 'shiro' ),
+				'label'       => __( 'List of Profiles to pull from', 'shiro-admin' ),
+				'description' => __( 'Select as many as are applicable. 3 profiles will be selected from this list each time the page loads.', 'shiro-admin' ),
 				'options'     => wmf_get_profiles_options(),
 			)
 		);
 	}
 
 	$social = new Fieldmanager_Group( $custom_fields );
-	$social->add_meta_box( __( 'Profiles', 'shiro' ), array( 'page', 'profile' ) );
+	$social->add_meta_box( __( 'Profiles', 'shiro-admin' ), array( 'page', 'profile' ) );
 }
 add_action( 'fm_post_page', 'wmf_profiles_module' );
 add_action( 'fm_post_profile', 'wmf_profiles_module' );

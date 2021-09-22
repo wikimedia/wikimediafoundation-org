@@ -93,10 +93,10 @@ class Flow {
 	 */
 	public function register_translation_status_terms() {
 		$terms = array(
-			'new'      => __( 'Needs Translation (new)', 'shiro' ),
-			'update'   => __( 'Needs Translation (update)', 'shiro' ),
-			'progress' => __( 'In Progress', 'shiro' ),
-			'complete' => __( 'Complete', 'shiro' ),
+			'new'      => __( 'Needs Translation (new)', 'shiro-admin' ),
+			'update'   => __( 'Needs Translation (update)', 'shiro-admin' ),
+			'progress' => __( 'In Progress', 'shiro-admin' ),
+			'complete' => __( 'Complete', 'shiro-admin' ),
 		);
 
 		foreach ( $terms as $key => $term ) {
@@ -150,7 +150,7 @@ class Flow {
 		?>
 		<label for="translate_post_global">
 			<input type="checkbox" name="_translate_post_global" value="1" id="translate_post_global" />
-			<?php esc_html_e( 'Translate post', 'shiro' ); ?>
+			<?php esc_html_e( 'Translate post', 'shiro-admin' ); ?>
 		</label>
 		<?php
 	}
@@ -160,21 +160,21 @@ class Flow {
 	 */
 	public function in_progress_action() {
 		?>
-		<p><strong><?php esc_html_e( 'Translation Status: ', 'shiro' ); ?></strong>
+		<p><strong><?php esc_html_e( 'Translation Status: ', 'shiro-admin' ); ?></strong>
 			<?php echo esc_html( $this->translation_status() ); ?>
 		</p>
 		<p>
 			<label for="translation_in_progress">
 				<input type="checkbox" name="_translation_in_progress" value="1" id="translation_in_progress"
 					<?php checked( 1, get_post_meta( get_the_ID(), '_translation_in_progress', true ) ); ?>>
-				<?php esc_html_e( 'Translation in progress', 'shiro' ); ?>
+				<?php esc_html_e( 'Translation in progress', 'shiro-admin' ); ?>
 			</label>
 		</p>
 		<p>
 			<label for="translation_complete">
 				<input type="checkbox" name="_translation_complete" value="1" id="translation_complete"
 					<?php checked( 1, get_post_meta( get_the_ID(), '_translation_complete', true ) ); ?>>
-				<?php esc_html_e( 'Translation completed', 'shiro' ); ?>
+				<?php esc_html_e( 'Translation completed', 'shiro-admin' ); ?>
 			</label>
 		</p>
 		<?php
@@ -228,6 +228,8 @@ class Flow {
 				'off_site_links',
 				'listings',
 				'featured_profile',
+				'role_executive',
+				'role_experts',
 				'role_button',
 				'profiles',
 				'proects_module',

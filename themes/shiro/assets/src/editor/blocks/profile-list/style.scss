@@ -1,0 +1,19 @@
+@import "~sass-lib/editor/editor-includes";
+
+.profile-list-block {
+	a.profile__link {
+		pointer-events: none;
+	}
+}
+
+.profile-list {
+	&--empty {
+		background: $wmui-color-base100;
+		border: 1px solid $wmui-color-base80;
+		padding: rem(22) !important;
+
+		&__message {
+			grid-column: 2;
+		}
+	}
+}

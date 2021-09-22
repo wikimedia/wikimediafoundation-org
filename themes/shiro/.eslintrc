@@ -7,7 +7,9 @@
 		"Backbone": false,
 		"jQuery": false,
 		"wp": false,
-		"shiro": false
+		"shiro": false,
+		"MutationObserverInit": true,
+		"hm": false,
 	},
 	"rules": {},
 	"overrides": [

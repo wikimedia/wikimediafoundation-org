@@ -18,7 +18,7 @@ while ( have_posts() ) :
 
 	<?php
 	$role            = get_the_terms( get_the_ID(), 'role' );
-	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro' ) );
+	$default_heading = get_theme_mod( 'wmf_related_profiles_heading', __( 'Other members of ', 'shiro-admin' ) );
 	$team_name       = '';
 	$parent_name     = $role[0]->name;
 	$parent_link     = get_term_link( $role[0] );

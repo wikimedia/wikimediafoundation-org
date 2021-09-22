@@ -446,15 +446,15 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$atts['url_views'] = get_stylesheet_directory_uri() . $atts['path_views'];
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
-	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro' ) );
-	$most_viewed_label = get_theme_mod( 'wikipedia_article_most_viewed', __( 'Most viewed articles', 'shiro' ) );
-	$most_edited_label = get_theme_mod( 'wikipedia_article_most_edited', __( 'most edited articles', 'shiro' ) );
-	$in_label = get_theme_mod( 'wikipedia_article_in', __( 'in', 'shiro' ) );
-	$or_label = get_theme_mod( 'wikipedia_article_or', __( 'or', 'shiro' ) );
-	$no_data_label = get_theme_mod( 'wikipedia_article_no_data', __( 'There is not data for the options you selected. Please change the options above.', 'shiro' ) );
+	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-admin' ) );
+	$most_viewed_label = get_theme_mod( 'wikipedia_article_most_viewed', __( 'Most viewed articles', 'shiro-admin' ) );
+	$most_edited_label = get_theme_mod( 'wikipedia_article_most_edited', __( 'most edited articles', 'shiro-admin' ) );
+	$in_label = get_theme_mod( 'wikipedia_article_in', __( 'in', 'shiro-admin' ) );
+	$or_label = get_theme_mod( 'wikipedia_article_or', __( 'or', 'shiro-admin' ) );
+	$no_data_label = get_theme_mod( 'wikipedia_article_no_data', __( 'There is not data for the options you selected. Please change the options above.', 'shiro-admin' ) );
 	// "views" and "edits" needs to be same as the inout values below
-	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro' ) );
-	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro' ) );
+	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro-admin' ) );
+	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro-admin' ) );
 
 	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
 	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );

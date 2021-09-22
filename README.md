@@ -14,3 +14,27 @@ The process for updating the mirror is documented by GitHub: https://help.github
 
 Command to run from private repository:
   git push --mirror https://github.com/wikimedia/wikimediafoundation-org.git
+
+## Updating Localization
+
+There are several composer scripts here that make use of `wp i18n` to help manage localization files. Run `composer run -l` to see a list of available scripts.
+
+Once you know which script you'd like to run, the pattern is `composer [script name]` e.g. `composer make-shiro-frontend-pot`.
+
+**⚠️ You must have WP-CLI installed for these scripts to work.**
+
+There are two namespaces to help simplify translation:
+
+- `shiro` - These are "frontend" strings--ones that are likely to be seen by visitors to the site.
+- `shiro-admin` - These are "backend" strings--ones that will only be seen by editors and administrators.
+
+## Visual Testing
+
+This projects includes some scripts and basic configuration to use [BackstopJS](https://github.com/garris/BackstopJS) to test for visual changes.
+
+- `npm run reference` -- Generates reference files based on the current state. If you haven't run any of these scripts yet, you'll need to run this first.
+- `npm run test` -- Execute a test based on the scenarios in `backstop.config.js`. You'll need to have reference files first (i.e. by running `npm run reference`).
+- `npm run approve` -- Approves "failures" in the previous test, replacing previous reference files.
+- `npm run report` -- Opens the latest Backstop report in your browser.
+
+For more information on how to use or modify Backstop, read the documentation: https://github.com/garris/BackstopJS/blob/master/README.md

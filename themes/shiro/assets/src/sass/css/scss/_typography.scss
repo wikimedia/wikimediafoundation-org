@@ -86,12 +86,19 @@ p {
 	}
 }
 
-.single-profile {
+.tax-role,
+.single-profile,
+.single-story {
+	h2 {
+		@include font-size(22, 18);
+		font-weight: 700;
+	}
+}
 
+.single-profile {
 	@include article-main {
 		p {
 			font-size: 1.1rem;
-			font-weight: 500;
 		}
 	}
 }
@@ -103,7 +110,6 @@ p {
 			font-size: 1.125rem;
 			font-weight: 400;
 			line-height: 1.5;
-			margin-bottom: 1rem;
 		}
 	}
 }
@@ -111,20 +117,6 @@ p {
 .p {
 
 	@extend p;
-}
-
-ul,
-ol {
-  li {
-    @include font-size(20, 16);
-    // list-style-type: disc;
-    margin-left: 2rem;
-
-    margin-bottom: 2rem;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
 
 // .blockquote-container wrapped around blockquote via JS
@@ -218,11 +210,6 @@ blockquote p:first-child {
 	padding-left: rem(20);
 }
 
-.category {
-	color: $color-dark-gray;
-	text-transform: uppercase;
-}
-
 article {
 
 	h2 {
@@ -248,10 +235,6 @@ article {
 	p {
 		margin-bottom: 2rem;
 	}
-}
-
-.page-intro-inline-link {
-	@include linkHighlight($color-turquoise, #000, 4, 4, 24, 30, $medium-bp);
 }
 
 .page-template-page-list main {

@@ -1,0 +1,68 @@
+.profile {
+	@include global-margin-bottom;
+
+	background: $wmui-color-base100;
+	border: 1px solid $wmui-color-base80;
+	border-radius: rem(4);
+	display: block;
+	font-family: $font-family-sans;
+	max-width: 100%;
+	padding: rem(22);
+	position: relative;
+	transition: box-shadow 250ms ease;
+	will-change: box-shadow;
+
+	@media (min-width: rem(394)) {
+		width: rem(314);
+	}
+
+	@supports #{"\selector(*:focus-within)"} {
+		&:focus-within {
+			@include focus-ring($hex: true, $inset: false);
+		}
+	}
+
+	&:hover {
+		box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+	}
+
+	&__image {
+		border-radius: 100%;
+		display: block;
+		height: rem(164);
+		margin-bottom: rem(24);
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 100%;
+		object-fit: cover;
+		width: rem(164);
+	}
+
+	&__name {
+		@include h5;
+	}
+
+	&__title {
+		@include has-font-size("small");
+	}
+
+	&__link {
+		color: inherit;
+
+		@supports #{"\selector(*:focus-within)"} {
+			&:focus {
+				@include focus-reset;
+			}
+		}
+
+		&::after {
+			@include absolute-full-cover();
+		}
+	}
+
+	// Handle use in columns
+	.wp-block-column > &:only-child {
+		height: 100%;
+		margin-bottom: 0;
+	}
+}

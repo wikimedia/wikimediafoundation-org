@@ -19,7 +19,7 @@ export const name = 'shiro/spotlight',
 	styles = sharedStyles;
 
 export const settings = {
-	title: __( 'Spotlight', 'shiro' ),
+	title: __( 'Spotlight', 'shiro-admin' ),
 
 	category: 'wikimedia',
 
@@ -29,7 +29,7 @@ export const settings = {
 
 	description: __(
 		'Spotlight with an image and call to action.',
-		'shiro'
+		'shiro-admin'
 	),
 
 	attributes: {
@@ -91,17 +91,6 @@ export const settings = {
 	},
 
 	/**
-	 * Set alignment.
-	 *
-	 * @see https://stackoverflow.com/questions/56192925/how-do-we-add-custom-data-attributes-to-gutenburgs-editor-blocklistblock
-	 */
-	getEditWrapperProps( attributes ) {
-		return {
-			'data-align': 'full',
-		};
-	},
-
-	/**
 	 * Edit component used to manage featured image and page intro.
 	 */
 	edit: function SpotlightEdit( { attributes, setAttributes } ) {
@@ -116,7 +105,8 @@ export const settings = {
 		} = attributes;
 
 		const blockProps = useBlockProps( {
-			className: 'spotlight',
+			className: 'spotlight alignfull',
+			'data-align': 'full',
 		} );
 
 		const onImageChange = useCallback( ( { id, src, alt } ) => {
@@ -147,7 +137,7 @@ export const settings = {
 							allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							className="spotlight__heading is-style-h1"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Heading for spotlight', 'shiro' ) }
+							placeholder={ __( 'Heading for spotlight', 'shiro-admin' ) }
 							tagName="h2"
 							value={ heading }
 							onChange={ heading => setAttributes( { heading } ) }
@@ -155,7 +145,7 @@ export const settings = {
 						<RichText
 							allowedFormats={ [ 'core/bold', 'core/italic' ] }
 							className="spotlight__text"
-							placeholder={ __( 'Enter the message for this spotlight.', 'shiro' ) }
+							placeholder={ __( 'Enter the message for this spotlight.', 'shiro-admin' ) }
 							tagName="p"
 							value={ text }
 							onChange={ text => setAttributes( { text } ) }

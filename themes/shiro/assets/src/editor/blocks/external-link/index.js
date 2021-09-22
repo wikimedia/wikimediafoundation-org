@@ -22,7 +22,7 @@ import { __ } from '@wordpress/i18n';
  * Local dependencies
  */
 import './style.scss';
-import SvgSprite from '../../components/svg-sprite';
+import ExternalLinkIcon from '../../../svg/individual/open.svg';
 import URLPicker from '../../components/url-picker';
 
 const ExternalLinkWithFocusOutside = withFocusOutside(
@@ -60,19 +60,18 @@ const ExternalLinkWithFocusOutside = withFocusOutside(
 						<RichText
 							allowedFormats={ [ ] }
 							className="external-link__link"
-							placeholder={ __( 'Link heading', 'shiro' ) }
+							placeholder={ __( 'Link heading', 'shiro-admin' ) }
 							tagName="span"
 							value={ heading }
 							onChange={ setHeading }
 							onFocus={ () => this.setState( { showButtons: true } ) }
 						/>
-						<SvgSprite
-							className="external-link__icon"
-							svg="open" />
+						<ExternalLinkIcon
+							className="external-link__icon" />
 					</p>
 					<RichText
 						className="external-link__text"
-						placeholder={ __( 'Enter a description of this link', 'shiro' ) }
+						placeholder={ __( 'Enter a description of this link', 'shiro-admin' ) }
 						tagName="p"
 						value={ text }
 						onChange={ setText }
@@ -103,9 +102,8 @@ ExternalLinkWithFocusOutside.Content = ( { url, heading, text } ) => {
 					className="external-link__link"
 					href={ url }>
 					<span className="external-link__heading-text">{ heading }</span>
-					<SvgSprite
-						className="external-link__icon"
-						svg="open" />
+					<ExternalLinkIcon
+						className="external-link__icon" />
 				</a>
 			</p>
 			<RichText.Content
@@ -127,7 +125,7 @@ export const
 	name = 'shiro/external-link',
 	settings = {
 		apiVersion: 2,
-		title: __( 'External Link', 'shiro' ),
+		title: __( 'External Link', 'shiro-admin' ),
 		icon: 'external',
 		attributes: {
 			url: {

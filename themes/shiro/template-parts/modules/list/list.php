@@ -41,15 +41,16 @@ foreach ( $template_args as $i => $list_section ) {
 	</div>
 	<?php endif; ?>
 
-	<ul class="link-list">
-	<?php
-	if ( isset( $list_section['links'] ) ) :
+	
+	<?php if ( isset( $list_section['links'] ) ) : ?>
+		<ul class="link-list">
+		<?php
 		foreach ( $list_section['links'] as $link ) :
 			get_template_part( 'template-parts/modules/list/item', null, $link );
 		endforeach;
-	endif;
-	?>
-	</ul>
+		?>
+		</ul>
+	<?php endif; ?>
 </div>
 
 	<?php

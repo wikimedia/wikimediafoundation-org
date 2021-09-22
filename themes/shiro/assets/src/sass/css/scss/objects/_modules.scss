@@ -7,18 +7,6 @@
 	h5 {
 		text-transform: none;
 		color: #000; // Resetting from global h5
-
-		&.category {
-			@include category();
-		}
-	}
-
-	h4 {
-		&.category,
-		a.category {
-			@include category();
-			transition: 0.3s all;
-		}
 	}
 
 	button {
@@ -126,6 +114,8 @@
 	}
 
 	.social-list {
+
+		@include list-reset;
 		display: flex;
 		flex-wrap: wrap;
 
@@ -182,10 +172,15 @@
     }
 }
 
+
 // Page Intro
 .page-intro {
 	margin-top: 2rem;
 	margin-left: 0;
+
+	.list-template & {
+		margin: 0;
+	}
 
 	h2 {
 		margin: 0;
@@ -195,13 +190,18 @@
 	}
 
 	&.taxonomy-role {
-		margin-top: 1rem;
+		margin-top: 0;
 
 		.btn {
 			margin-top: 0;
 		}
 	}
 
+	p {
+		@include has-font-size( large );
+		font-family: $font-family-serif;
+		line-height: 1.5;
+	}
 }
 
 
@@ -315,9 +315,7 @@ a.hover-img-zoom {
 		position: relative;
 
 		&:after {
-			position: absolute;
-			content: "";
-			top: 0; bottom: 0; right: 0; left: 0;
+			@include absolute-full-cover();
 			background: rgba(0, 0, 0, 0);
 			transition: 0.3s all;
 		}
@@ -394,6 +392,11 @@ a.hover-img-zoom {
 		@media (max-width: $medium-bp) {
 			@include padding(0, 0, 0, 0);
 		}
+	}
+
+	h2 {
+		@include font-size(24, 21);
+		font-weight: 700;
 	}
 
 	.h4 {
@@ -782,11 +785,6 @@ a.hover-img-zoom {
 		display: inline-block;
 		color: $wmui-color-base20;
 	}
-}
-
-// lists without page-intro
-.list-container {
-	margin-top: 2rem;
 }
 
 .module-404 {

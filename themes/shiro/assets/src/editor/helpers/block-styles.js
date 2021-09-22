@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
 const defaultStyle = {
 	name: 'base90',
 	className: 'is-style-base90',
-	label: __( 'Light', 'shiro' ),
+	label: __( 'Light', 'shiro-admin' ),
 	isDefault: true,
 };
 
@@ -20,35 +20,39 @@ const styles = [
 	defaultStyle,
 	{
 		name: 'base70',
-		label: __( 'Gray', 'shiro' ),
+		label: __( 'Gray', 'shiro-admin' ),
 	},
 	{
 		name: 'base0',
-		label: __( 'Dark', 'shiro' ),
+		label: __( 'Dark', 'shiro-admin' ),
 	},
 	{
 		name: 'blue90',
-		label: __( 'Blue - Faded', 'shiro' ),
+		label: __( 'Blue - Faded', 'shiro-admin' ),
 	},
 	{
 		name: 'blue50',
-		label: __( 'Blue - Vibrant', 'shiro' ),
+		label: __( 'Blue - Vibrant', 'shiro-admin' ),
 	},
 	{
 		name: 'red90',
-		label: __( 'Red - Faded', 'shiro' ),
+		label: __( 'Red - Faded', 'shiro-admin' ),
 	},
 	{
 		name: 'red50',
-		label: __( 'Red - Vibrant', 'shiro' ),
+		label: __( 'Red - Vibrant', 'shiro-admin' ),
 	},
 	{
 		name: 'yellow90',
-		label: __( 'Yellow - Faded', 'shiro' ),
+		label: __( 'Yellow - Faded', 'shiro-admin' ),
 	},
 	{
 		name: 'yellow50',
-		label: __( 'Yellow - Vibrant', 'shiro' ),
+		label: __( 'Yellow - Vibrant', 'shiro-admin' ),
+	},
+	{
+		name: 'donate-red90',
+		label: __( 'Donate', 'shiro-admin' ),
 	},
 ];
 
