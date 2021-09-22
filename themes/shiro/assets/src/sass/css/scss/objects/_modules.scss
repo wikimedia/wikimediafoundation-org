@@ -7,6 +7,18 @@
 	h5 {
 		text-transform: none;
 		color: #000; // Resetting from global h5
+
+		&.category {
+			@include category();
+		}
+	}
+
+	h4 {
+		&.category,
+		a.category {
+			@include category();
+			transition: 0.3s all;
+		}
 	}
 
 	button {
@@ -115,7 +127,7 @@
 
 	.social-list {
 
-		@include list-reset;
+		@include style-guide-list-reset;
 		display: flex;
 		flex-wrap: wrap;
 
@@ -190,18 +202,13 @@
 	}
 
 	&.taxonomy-role {
-		margin-top: 0;
+		margin-top: 1rem;
 
 		.btn {
 			margin-top: 0;
 		}
 	}
 
-	p {
-		@include has-font-size( large );
-		font-family: $font-family-serif;
-		line-height: 1.5;
-	}
 }
 
 
@@ -315,7 +322,9 @@ a.hover-img-zoom {
 		position: relative;
 
 		&:after {
-			@include absolute-full-cover();
+			position: absolute;
+			content: "";
+			top: 0; bottom: 0; right: 0; left: 0;
 			background: rgba(0, 0, 0, 0);
 			transition: 0.3s all;
 		}
