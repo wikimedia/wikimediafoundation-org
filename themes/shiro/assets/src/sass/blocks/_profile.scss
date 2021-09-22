@@ -1,5 +1,5 @@
 .profile {
-	@include global-margin-bottom;
+	@include global-block-styles;
 
 	background: $wmui-color-base100;
 	border: 1px solid $wmui-color-base80;
@@ -56,7 +56,13 @@
 		}
 
 		&::after {
-			@include absolute-full-cover();
+			bottom: 0;
+			content: '';
+			display: block;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
 		}
 	}
 

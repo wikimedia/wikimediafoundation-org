@@ -1,5 +1,6 @@
 @import "style-guide-variables";
 @import "style-guide-variables-overrides";
+@import "style-guide-variables-mixins";
 
 // Colors
 $color-blue: #3A25FF;
@@ -28,6 +29,11 @@ $footer-gray: $wmui-color-base20;
 $color-periwinkle: #eeeaff;
 
 $space: 16px;
+
+
+// Fonts
+$sans: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
+
 
 // Transition
 $transition: 0.3s all;

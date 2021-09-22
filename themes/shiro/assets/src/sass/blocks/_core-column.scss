@@ -36,7 +36,7 @@
  * it match our default margins.
  */
 .wp-block-columns {
-	@include global-margin-bottom;
+	@include global-block-styles;
 }
 
 // New columns style for aligning the buttons to the bottom of the columns.
