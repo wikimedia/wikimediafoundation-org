@@ -1,6 +1,7 @@
 // Fact Module
 .fact-full-width {
-  @include responsive-padding(50 null, 100 null);
+  @include responsive-padding(50, 100, top);
+	@include responsive-padding(50, 100, bottom);
 
   .fact-inner {
     @include flexbox(column, nowrap, $medium-bp, row);
@@ -87,7 +88,8 @@
 
 .fact-container {
   position: relative;
-  @include responsive-padding(20 null, 40 null);
+  @include responsive-padding(20, 40, top);
+	@include responsive-padding(20, 40, bottom);
 
   .bg-img-container {
     width: 100%;

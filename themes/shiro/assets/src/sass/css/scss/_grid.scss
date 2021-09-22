@@ -202,9 +202,11 @@
 }
 
 .mod-padding-vertical {
-	@include responsive-padding(56 null, 80 null);
+	@include responsive-padding(56, 80, top);
+	@include responsive-padding(56, 80, bottom);
 }
 
 .mod-padding-vertical_sm {
-	@include responsive-padding(48 null, 48 null);
+	padding-bottom: rem(48);
+	padding-top: rem(48);
 }
