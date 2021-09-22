@@ -1,6 +1,5 @@
 .mw-1360 {
 	max-width: rem(1440);
-	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
@@ -20,14 +19,12 @@
 
 .mw-980 {
 	max-width: rem(1060);
-	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
 
 .mw-900 {
 	max-width: rem(940);
-	// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
 	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
 }
