@@ -93,7 +93,7 @@ select {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
-button:not([class]) {
+button:not([class]):not([id^="mce"]) {
   @include button-primary();
 }
 
