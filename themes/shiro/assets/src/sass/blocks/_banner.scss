@@ -1,6 +1,6 @@
 .banner {
 
-	@include global-margin-bottom;
+	@include global-block-styles;
 	display: flex;
 	flex-direction: column-reverse;
 	width: 100%;
@@ -28,8 +28,14 @@
 	}
 
 	&__image {
-		@include absolute-full-cover();
 		object-fit: cover;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
 	}
 
 	&__image-wrapper {

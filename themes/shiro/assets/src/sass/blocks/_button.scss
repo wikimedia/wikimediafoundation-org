@@ -68,7 +68,7 @@
 			&.is-style-as-link {
 				#{ $inner-selector }:hover,
 				#{ $inner-selector }:focus {
-					@include style-guide-filter-color($color-primary);
+					@include style-guide-button-icon-hover();
 				}
 			}
 		}
@@ -136,5 +136,5 @@
 @include button-wrapper( ".wp-block-button", ".wp-block-button__link" );
 
 .wp-block-buttons {
-	@include global-margin-bottom;
+	@include global-block-styles;
 }

@@ -1,6 +1,6 @@
 .external-link {
 
-	@include global-margin-bottom;
+	@include global-block-styles;
 
 	&:only-child {
 		margin-bottom: 0;
