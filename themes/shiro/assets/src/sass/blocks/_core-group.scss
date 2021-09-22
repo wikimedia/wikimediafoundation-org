@@ -3,7 +3,7 @@
 		padding: rem(20);
 
 		&:not(:only-child) {
-			@include global-block-styles;
+			@include global-margin-bottom;
 		}
 	}
 
