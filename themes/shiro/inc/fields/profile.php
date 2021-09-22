@@ -94,6 +94,7 @@ function wmf_role_fields() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 	$current_term_id = absint( $_GET['tag_ID'] ?? 0 );
 
+
 	// New WP_Query for posts with this role assigned.
 	$current_term_args = array(
 		'post_type' => 'profile',

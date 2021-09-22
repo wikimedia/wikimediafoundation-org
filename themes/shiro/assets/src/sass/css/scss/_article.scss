@@ -161,7 +161,7 @@ article {
 		}
 
 		li {
-			@include responsive-margin(0, 0, right);
+			margin-right: 0;
 		}
 
 		a {
