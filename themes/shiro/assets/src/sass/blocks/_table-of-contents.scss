@@ -143,8 +143,10 @@
 
 		&--active,
 		&--active:hover,
+		&--active:focus,
 		&--active-page,
-		&--active-page:hover {
+		&--active-page:hover,
+		&--active-page:focus {
 			background-color: $wmui-color-blue50;
 			color: $wmui-color-base100;
 			font-weight: 700;
