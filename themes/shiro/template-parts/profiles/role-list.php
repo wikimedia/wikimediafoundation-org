@@ -103,6 +103,12 @@ foreach ( $post_list as $term_id => $term_data ) :
 					$description = term_description( $child_term_id, 'role' );
 					?>
 
+					<?php
+					if ( empty( $child_term_data['posts'] ) ) {
+						continue;
+					}
+					?>
+
 					<?php if ( ! empty( $name ) ) : ?>
 					<h3 class="role__staff-title__nested">
 						<?php echo esc_html( $name ); ?>
