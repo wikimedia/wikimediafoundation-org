@@ -1,6 +1,6 @@
 .hero {
 
-	@include global-block-styles;
+	@include global-margin-bottom;
 
 	&__header {
 
@@ -21,6 +21,7 @@
 
 		&__header {
 			flex-flow: row nowrap;
+			align-items: flex-start;
 		}
 
 		&__text-column,

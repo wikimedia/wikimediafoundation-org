@@ -1,7 +1,7 @@
 // Table of contents block styles
 .toc {
 	--full-window-height: calc(var(--vh, 1vh) * 100);
-	@include style-guide-list-reset;
+	@include list-reset;
 
 	&[hidden] {
 		display: none;
@@ -9,7 +9,7 @@
 
 	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		display: block;
-		@include global-block-styles;
+		@include global-margin-bottom;
 	}
 
 	// Set max-heights so that the menu can scroll if needed.
@@ -143,8 +143,10 @@
 
 		&--active,
 		&--active:hover,
+		&--active:focus,
 		&--active-page,
-		&--active-page:hover {
+		&--active-page:hover,
+		&--active-page:focus {
 			background-color: $wmui-color-blue50;
 			color: $wmui-color-base100;
 			font-weight: 700;
@@ -182,7 +184,7 @@
 
 	// Nested lists
 	&__nested {
-		@include style-guide-list-reset;
+		@include list-reset;
 
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
 			display: none;
