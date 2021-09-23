@@ -17,17 +17,15 @@
 		clip: auto !important;
 		clip-path: none;
 		display: block;
-		top: rem(107);
-		left: rem(40);
-		height: auto;
-		width: auto;
-		border-radius: 2px;
-		padding: 15px 23px 14px;
-		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 		font-size: rem(14);
 		font-weight: 600;
+		height: auto;
+		left: rem(40);
 		line-height: normal;
+		padding: 15px 23px 14px;
 		text-decoration: none;
+		top: rem(107);
+		width: auto;
 		z-index: 100000; /* Above WP toolbar. */
 	}
 }

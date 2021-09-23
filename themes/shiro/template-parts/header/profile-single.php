@@ -9,9 +9,10 @@ $profile_header_data = $args;
 
 $back_to_link = ! empty( $profile_header_data['back_to_link'] ) ? $profile_header_data['back_to_link'] : '';
 $staff_name   = ! empty( $profile_header_data['back_to_label'] ) ? $profile_header_data['back_to_label'] : '';
-$team_name    = ! empty( $profile_header_data['team_name'] ) ? $profile_header_data['team_name'] : '';
-$role         = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : '';
+$team_name    = ! empty( $profile_header_data['team_name'] ) ? $profile_header_data['team_name'] : false;
+$role_name    = ! empty( $profile_header_data['role'] ) ? $profile_header_data['role'] : false;
 $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header_data['share_links'] : '';
+$role_desc    = join(', ', array_filter( [ $role_name, $team_name ] ) );
 
 ?>
 
@@ -25,15 +26,9 @@ $share_links  = ! empty( $profile_header_data['share_links'] ) ? $profile_header
 
 		<h1><?php the_title(); ?></h1>
 
-		<div class="post-meta h4">
-			<span>
-				<?php
-				if ( ! empty( $role ) || ! empty( $team_name ) ) :
-					printf( '%1$s, %2$s', esc_html( $role ), esc_html( $team_name ) );
-				endif;
-				?>
-			</span>
-		</div>
+		<p class="post-meta">
+			<?php echo esc_html( $role_desc ); ?>
+		</p>
 	</div>
 </div>
 
