@@ -80,7 +80,7 @@
 
 		&__items {
 
-			@include list-reset;
+			@include style-guide-list-reset;
 			display: flex;
 			justify-content: flex-start;
 			flex-wrap: wrap;
@@ -160,7 +160,7 @@
 		}
 
 		ul {
-			@include list-reset;
+			@include style-guide-list-reset;
 		}
 
 		li {

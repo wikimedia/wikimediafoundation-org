@@ -1,7 +1,7 @@
 // Table of contents block styles
 .toc {
 	--full-window-height: calc(var(--vh, 1vh) * 100);
-	@include list-reset;
+	@include style-guide-list-reset;
 
 	&[hidden] {
 		display: none;
@@ -9,7 +9,7 @@
 
 	@media ( min-width: #{$core-gutenberg-break-small} ) {
 		display: block;
-		@include global-margin-bottom;
+		@include global-block-styles;
 	}
 
 	// Set max-heights so that the menu can scroll if needed.
@@ -184,7 +184,7 @@
 
 	// Nested lists
 	&__nested {
-		@include list-reset;
+		@include style-guide-list-reset;
 
 		@media ( max-width: #{$core-gutenberg-break-small} ) {
 			display: none;

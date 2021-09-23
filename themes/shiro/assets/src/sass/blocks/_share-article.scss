@@ -1,6 +1,6 @@
 .share-article {
 
-	@include global-margin-bottom;
+	@include global-block-styles;
 	display: flex;
 
 	&__link {

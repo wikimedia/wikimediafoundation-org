@@ -7,7 +7,7 @@
 
 
 	&__form:not(:only-child) {
-		@include global-margin-bottom;
+		@include global-block-styles;
 	}
 
 	p {
