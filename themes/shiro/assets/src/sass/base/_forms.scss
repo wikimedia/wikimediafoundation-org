@@ -1,4 +1,4 @@
-@mixin form-styling {
+@mixin field-styling {
 	background: none;
 	border: 1px solid $color-ltgray;
 	border-radius: 0;
@@ -14,7 +14,7 @@
 // Form elements
 input,
 textarea {
-	@include form-styling;
+	@include field-styling;
 }
 
 input[type="text"],
@@ -58,12 +58,12 @@ textarea {
 select {
 	display: block;
 	width: 100%;
-	@include form-styling;
+	@include field-styling;
 }
 
 .search-input,
 .search-btn {
-	@include form-styling;
+	@include field-styling;
 	display: inline-block;
 }
 .search-input {
@@ -84,7 +84,7 @@ select {
 	}
 
 	input[type="checkbox"] {
-		@include form-styling;
+		@include field-styling;
 		appearance: inherit;
 		margin-right: 10px;
 	}
