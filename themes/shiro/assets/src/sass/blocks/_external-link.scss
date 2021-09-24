@@ -32,7 +32,7 @@
 	&__text {
 		@include has-font-size("small");
 		font-family: $font-family-sans;
-		margin-top: -#{rem( 6 )};
+		margin-top: rem( -6 );
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
 			font-size: rem( 14 );

@@ -5,7 +5,7 @@
 .page-template-page-stories {
 	.header-default .header-content {
 		@media (max-width: $medium-bp) {
-			margin-top: 30px;
+			margin-top: rem( 30 );
 		}
 	}
 	.header-default .ungrid {
@@ -45,20 +45,20 @@
 		display: block;
 		height: 0;
 		@media screen and (min-width: $medium-bp) {
-			height: 80px;
-			margin-top: -80px;
+			height: rem( 80 );
+			margin-top: rem( -80 );
 		}
 	}
 
 	&.admin-bar {
 		:target::before {
 			@media screen and (min-width: $medium-bp) {
-				height: 125px;
-				margin-top: -125px;
+				height: rem( 125 );
+				margin-top: rem( -125 );
 			}
 			@media screen and (min-width: 48em) {
-				height: 115px;
-				margin-top: -115px;
+				height: rem( 115 );
+				margin-top: rem( -115 );
 			}
 		}
 	}

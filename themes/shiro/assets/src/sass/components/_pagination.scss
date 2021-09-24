@@ -75,11 +75,11 @@
 		span {
 			align-items: center;
 			display: flex;
-			height: 40px;
+			height: rem( 40 );
 			justify-content: center;
 			text-align: center;
 			transition: 0.3s background-color, 0.3s color;
-			width: 40px;
+			width: rem( 40 );
 		}
 
 		a:hover {

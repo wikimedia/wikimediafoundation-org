@@ -23,7 +23,7 @@
 	}
 
 	&__header {
-		height: 454px;
+		height: rem( 454 );
 		left: 50%;
 		margin-left: -50vw;
 		margin-right: -50vw;
@@ -35,9 +35,9 @@
 	}
 
 	&__image-wrapper {
-		height: 454px;
+		height: rem( 454 );
 		position: absolute;
-		width: 4237px;
+		width: rem( 4237 );
 		z-index: -1;
 
 		@media (prefers-reduced-motion: no-preference) {
@@ -57,7 +57,7 @@
 
 	&__heading-color {
 		margin-top: 4rem;
-		max-width: 454px;
+		max-width: rem( 454 );
 	}
 
 	&__heading {
