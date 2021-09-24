@@ -3,8 +3,8 @@
 // Re-style the URLInput like a normal input when used in the sidebar
 .edit-post-sidebar {
 	.block-editor-url-input__input[type="text"] {
-		border-radius: 2px;
 		border: 1px solid rgb(117, 117, 117);
+		border-radius: 2px;
 
 		&:focus {
 			border-color: var(--wp-admin-theme-color);
@@ -34,8 +34,12 @@
 	// distances by cancelling out margins. In the editor we don't want this, because
 	// we wouldn't be able to use the inserter.
 	.wp-block-spacer.wp-block-spacer {
-		margin-top: 0;
 		margin-bottom: rem(40);
+		margin-top: 0;
+	}
+
+	.has-blocks .block-editor-block-list__layout>.wp-block.is-reusable {
+		max-width: none;
 	}
 
 	// Core adds these values to alignfull items, but they aren't applied to
@@ -44,24 +48,8 @@
 	// complicated-to-read definition necessary to get negative values with our
 	// sass function.
 	.is-reusable [data-align="full"] {
-		left: 50%;
 		margin-left: -10px;
 		margin-right: -10px;
-		position: relative;
-		transform: translateX(-50%);
-		width: 100vw;
-
-		.block-editor-block-list__layout {
-			margin-left: auto;
-			margin-right: auto;
-
-			.post-type-post & {
-				max-width: $content-column-post-rem;
-			}
-			.post-type-page & {
-				max-width: $content-column-rem;
-			}
-		}
 	}
 
 	// Groups inside of reusable blocks that have align values still get their
