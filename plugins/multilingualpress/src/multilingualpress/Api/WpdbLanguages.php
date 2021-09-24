@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,7 +14,6 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Api;
 
-use function Inpsyde\MultilingualPress\allDefaultLanguages;
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress\Framework\Api\Languages;
@@ -21,6 +22,8 @@ use Inpsyde\MultilingualPress\Framework\Database\Table;
 use Inpsyde\MultilingualPress\Framework\Language\Language;
 use Inpsyde\MultilingualPress\Framework\Factory\LanguageFactory;
 use Inpsyde\MultilingualPress\Framework\Language\NullLanguage;
+
+use function Inpsyde\MultilingualPress\allDefaultLanguages;
 
 /**
  * Languages API implementation using the WordPress database object.
@@ -99,13 +102,14 @@ final class WpdbLanguages implements Languages
             throw new NonexistentTable(__FUNCTION__, $this->table->name());
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $orderCol = LanguagesTable::COLUMN_ENGLISH_NAME;
         $query = "SELECT * FROM {$this->table->name()} ORDER BY {$orderCol} ASC";
         $results = $this->wpdb->get_results($query, ARRAY_A);
+        // phpcs:enable
         if (!$results || !is_array($results)) {
             return [];
         }
-
         return array_map([$this, 'languageFromData'], $results);
     }
 
@@ -129,12 +133,15 @@ final class WpdbLanguages implements Languages
         $whereFormat = rtrim(str_repeat('%s,', count($languages)), ',');
         $column = LanguagesTable::COLUMN_BCP_47_TAG;
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $query = $this->wpdb->prepare(
             "SELECT * FROM {$this->table->name()} WHERE {$column} IN ($whereFormat)",
             $languages
         );
 
         $dbLanguages = (array)$this->wpdb->get_results($query, ARRAY_A);
+        // phpcs:enable
 
         $result = [];
         $toFind = $languages;
@@ -180,6 +187,8 @@ final class WpdbLanguages implements Languages
             return new NullLanguage();
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $language = $this->wpdb->get_row(
             $this->wpdb->prepare(
                 "SELECT * FROM {$this->table->name()} WHERE {$column} = %s LIMIT 1",
@@ -187,6 +196,7 @@ final class WpdbLanguages implements Languages
             ),
             ARRAY_A
         );
+        // phpcs:enable
 
         if (!$language || !is_array($language)) {
             return new NullLanguage();
@@ -200,7 +210,8 @@ final class WpdbLanguages implements Languages
      */
     public function insertLanguage(array $languageData): int
     {
-        if (!empty($languageData[LanguagesTable::COLUMN_ID])
+        if (
+            !empty($languageData[LanguagesTable::COLUMN_ID])
             && is_numeric($languageData[LanguagesTable::COLUMN_ID])
         ) {
             $update = $this->updateLanguage(
@@ -311,8 +322,9 @@ final class WpdbLanguages implements Languages
         $whereSubject = $bcp47 ?: $locale;
 
         $query = "SELECT {$selectField} FROM {$this->table->name()} WHERE {$whereField} = %s";
-
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return (int)$this->wpdb->get_var($this->wpdb->prepare($query, $whereSubject));
+        // phpcs:enable
     }
 
     /**

@@ -12,14 +12,16 @@ use Inpsyde\MultilingualPress\Framework\Service\ServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Service\ServiceProvidersCollection;
 use IteratorIterator;
 
+//phpcs:disable WordPressVIPMinimum.Constants.ConstantString.NotCheckingConstantName
 if (!defined(__NAMESPACE__ . '\\ACTION_ADD_SERVICE_PROVIDERS')) {
     return;
 }
+//phpcs:enable
 
-return function (string $rootDir) {
+return static function (string $rootDir) {
     add_action(
         ACTION_ADD_SERVICE_PROVIDERS,
-        function (ServiceProvidersCollection $providers) use ($rootDir) {
+        static function (ServiceProvidersCollection $providers) use ($rootDir) {
             $moduleFileName = 'module.php';
             $maxDepth = 1;
             $dirs = apply_filters('multilingualpress.module_dirs', [

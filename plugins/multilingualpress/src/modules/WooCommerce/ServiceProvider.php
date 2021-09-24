@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -13,6 +15,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Module\WooCommerce;
 
 use Inpsyde\MultilingualPress\Asset\AssetFactory;
+use Inpsyde\MultilingualPress\Attachment;
 use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Core\Locations;
 use Inpsyde\MultilingualPress\Core\PostTypeRepository;
@@ -32,15 +35,14 @@ use Inpsyde\MultilingualPress\Framework\PluginProperties;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
-use Inpsyde\MultilingualPress\SiteDuplication\SiteDuplicator;
+use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product;
+use Inpsyde\MultilingualPress\TranslationUi\Post;
 use Inpsyde\MultilingualPress\Translator\PostTranslator;
 use Inpsyde\MultilingualPress\Translator\PostTypeTranslator;
 use Inpsyde\MultilingualPress\Translator\TermTranslator;
-use Inpsyde\MultilingualPress\TranslationUi\Post;
-use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product;
-use Inpsyde\MultilingualPress\Attachment;
-use function Inpsyde\MultilingualPress\isWpDebugMode;
 use wpdb;
+
+use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**
  * Class ServiceProvider
@@ -100,14 +102,14 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             PermalinkStructure::class,
-            function (): PermalinkStructure {
+            static function (): PermalinkStructure {
                 return new PermalinkStructure();
             }
         );
 
         $container->addService(
             AttributesRelationship::class,
-            function () use ($container): AttributesRelationship {
+            static function () use ($container): AttributesRelationship {
                 return new AttributesRelationship(
                     $container[TaxonomyRepository::class],
                     $container[SiteRelations::class],
@@ -118,21 +120,21 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             ArchiveProducts::class,
-            function (): ArchiveProducts {
+            static function (): ArchiveProducts {
                 return new ArchiveProducts();
             }
         );
 
         $container->addService(
             AvailableTaxonomiesAttributes::class,
-            function (): AvailableTaxonomiesAttributes {
+            static function (): AvailableTaxonomiesAttributes {
                 return new AvailableTaxonomiesAttributes();
             }
         );
 
         $container->addService(
             AttributeTermTranslateUrl::class,
-            function (Container $container): AttributeTermTranslateUrl {
+            static function (Container $container): AttributeTermTranslateUrl {
                 return new AttributeTermTranslateUrl(
                     $container[\wpdb::class],
                     $container[UrlFactory::class]
@@ -142,7 +144,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             Product\Ajax\Search::class,
-            function (Container $container): Product\Ajax\Search {
+            static function (Container $container): Product\Ajax\Search {
                 return new Product\Ajax\Search(
                     $container[Post\Ajax\ContextBuilder::class],
                     $container[wpdb::class]
@@ -172,6 +174,20 @@ class ServiceProvider implements ModuleServiceProvider
                 return new AssetFactory($locations);
             }
         );
+
+        $moduleManager = $container[ModuleManager::class];
+        if (!$moduleManager->isModuleActive(self::MODULE_ID)) {
+            $this->removeWooCommerceSupport($container);
+        }
+
+        /**
+         * This filter will remove the product attributes from settings and
+         * it should be called at this stage to work either when module is inactive or active
+         */
+        add_filter(
+            TaxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
+            [$container[AvailableTaxonomiesAttributes::class], 'removeAttributes']
+        );
     }
 
     /**
@@ -191,10 +207,6 @@ class ServiceProvider implements ModuleServiceProvider
         $this->addProductSearchHandler($container);
         $this->postTypeActions($container);
         $this->taxonomyActions($container);
-
-        add_filter(SiteDuplicator::FILTER_SITE_TABLES, function ($tables, $sourceSiteId, $wpdb) {
-            return $this->duplicateWooCommerceTablesForSite($sourceSiteId, $tables, $wpdb);
-        }, 10, 3);
     }
 
     /**
@@ -222,7 +234,7 @@ class ServiceProvider implements ModuleServiceProvider
         $attributeTaxonomies = wc_get_attribute_taxonomies();
         $attributeTaxonomies and array_walk(
             $attributeTaxonomies,
-            function (\stdClass $attribute) use ($termTranslator, $permalinkStructure) {
+            static function (\stdClass $attribute) use ($termTranslator, $permalinkStructure) {
                 $taxonomySlug = 'pa_' . sanitize_key($attribute->attribute_name);
                 $termTranslator->registerBaseStructureCallback(
                     $taxonomySlug,
@@ -296,7 +308,7 @@ class ServiceProvider implements ModuleServiceProvider
      */
     private function removeAttributeTaxonomiesFieldsFromPostMetabox()
     {
-        $removeAttributeTaxonomiesNameCallback = function (array $taxonomiesSlugs): array {
+        $removeAttributeTaxonomiesNameCallback = static function (array $taxonomiesSlugs): array {
             $attributeTaxonomies = wc_get_attribute_taxonomy_names();
             foreach ($attributeTaxonomies as $taxonomyName) {
                 unset($taxonomiesSlugs[$taxonomyName]);
@@ -315,11 +327,11 @@ class ServiceProvider implements ModuleServiceProvider
         );
         add_filter(
             Post\MetaboxFields::FILTER_TAXONOMIES_AND_TERMS_OF,
-            function ($taxonomiesSlugs) {
+            static function ($taxonomiesSlugs) {
                 $attributeTaxonomies = wc_get_attribute_taxonomy_names();
                 $taxonomiesSlugs = array_filter(
                     $taxonomiesSlugs,
-                    function (string $taxonomySlug) use ($attributeTaxonomies): bool {
+                    static function (string $taxonomySlug) use ($attributeTaxonomies): bool {
                         return !\in_array($taxonomySlug, $attributeTaxonomies, true);
                     }
                 );
@@ -396,56 +408,6 @@ class ServiceProvider implements ModuleServiceProvider
     }
 
     /**
-     * @param int $sourceSiteId
-     * @param array $tables
-     * @param \wpdb $wpdb
-     * @return array
-     */
-    private function duplicateWooCommerceTablesForSite(
-        int $sourceSiteId,
-        array $tables,
-        \wpdb $wpdb
-    ): array {
-
-        $prefix = $sourceSiteId !== 1 ? $wpdb->prefix : $wpdb->base_prefix;
-
-        $tables = array_merge($tables, [
-            "{$prefix}wc_download_log",
-            "{$prefix}wc_webhooks",
-            "{$prefix}woocommerce_api_keys",
-            "{$prefix}woocommerce_attribute_taxonomies",
-            "{$prefix}woocommerce_downloadable_product_permissions",
-            "{$prefix}woocommerce_log",
-            "{$prefix}woocommerce_order_itemmeta",
-            "{$prefix}woocommerce_order_items",
-            "{$prefix}woocommerce_payment_tokenmeta",
-            "{$prefix}woocommerce_payment_tokens",
-            "{$prefix}woocommerce_sessions",
-            "{$prefix}woocommerce_shipping_zone_locations",
-            "{$prefix}woocommerce_shipping_zone_methods",
-            "{$prefix}woocommerce_shipping_zones",
-            "{$prefix}woocommerce_tax_rate_locations",
-            "{$prefix}woocommerce_tax_rates",
-            "{$prefix}wc_tax_rate_classes",
-        ]);
-
-        global $woocommerce;
-        if (version_compare($woocommerce->version, '4.0.0', ">=")) {
-            $tables = array_merge(
-                $tables,
-                [
-                    "{$prefix}actionscheduler_actions",
-                    "{$prefix}actionscheduler_claims",
-                    "{$prefix}actionscheduler_groups",
-                    "{$prefix}actionscheduler_logs",
-                ]
-            );
-        }
-
-        return $tables;
-    }
-
-    /**
      * @param Container $container
      * @return void
      */
@@ -466,7 +428,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         add_action(
             'wp_ajax_' . Product\Ajax\Search::ACTION,
-            function () use ($search, $request) {
+            static function () use ($search, $request) {
                 $search->handle($request);
             }
         );
@@ -495,7 +457,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         add_filter(
             PostTypeRepository::FILTER_PUBLIC_POST_TYPES,
-            function ($allAvailablePostTypes) {
+            static function ($allAvailablePostTypes) {
                 unset($allAvailablePostTypes['shop_order']);
                 return $allAvailablePostTypes;
             }
@@ -509,6 +471,7 @@ class ServiceProvider implements ModuleServiceProvider
     {
         $attributeTermTranslateUrl = $container[AttributeTermTranslateUrl::class];
         $attributesRelationship = $container[AttributesRelationship::class];
+        $attributeTaxonomies = wc_get_attribute_taxonomy_names();
 
         add_filter(
             TermTranslator::FILTER_TRANSLATION,
@@ -517,24 +480,63 @@ class ServiceProvider implements ModuleServiceProvider
             4
         );
 
-        add_action('setup_theme', function () use ($attributeTermTranslateUrl) {
+        add_action('setup_theme', static function () use ($attributeTermTranslateUrl) {
             global $wp_rewrite;
             $attributeTermTranslateUrl->ensureWpRewrite($wp_rewrite);
         });
 
-        add_filter(
-            TaxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
-            [$container[AvailableTaxonomiesAttributes::class], 'removeAttributes']
-        );
-
-        add_action(
-            'edit_tag_form_pre',
-            [$attributesRelationship, 'createAttributeRelation']
-        );
+        foreach ($attributeTaxonomies as $attributeTaxonomy) {
+            add_action(
+                "{$attributeTaxonomy}_pre_edit_form",
+                [$attributesRelationship, 'createAttributeRelation'],
+                10,
+                2
+            );
+        }
 
         $attributesHookNames = ['woocommerce_attribute_added', 'woocommerce_attribute_updated'];
-        array_walk($attributesHookNames, function (string $hookName) use ($attributesRelationship) {
+        array_walk($attributesHookNames, static function (string $hookName) use ($attributesRelationship) {
             add_action($hookName, [$attributesRelationship, 'addSupportForAttribute'], 10, 2);
         });
+    }
+
+    /**
+     * Perform an actions when WooCommerce support is deactivated
+     *
+     * If Woo support is deactivated we should disable the translation metabox support for
+     * Woo entities(Products, all Woo taxonomies) and also we need to disable the
+     * Woo post type and taxonomy settings from MLP global settings
+     *
+     * @param Container $container
+     * phpcs:disable Inpsyde.CodeQuality.NestingLevel.High
+     */
+    protected function removeWooCommerceSupport(Container $container)
+    {
+        // phpcs:enable
+
+        $taxonomyRepository = $container[TaxonomyRepository::class];
+        $postTypeRepository = $container[PostTypeRepository::class];
+        $filters = [
+            $taxonomyRepository::FILTER_SUPPORTED_TAXONOMIES,
+            $taxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
+            $postTypeRepository::FILTER_SUPPORTED_POST_TYPES,
+            $postTypeRepository::FILTER_ALL_AVAILABLE_POST_TYPES,
+        ];
+        $entitiesToRemove = ['product_cat', 'product_tag', 'product'];
+        foreach ($filters as $filter) {
+            add_filter(
+                $filter,
+                static function (array $supported) use ($entitiesToRemove): array {
+                    foreach ($entitiesToRemove as $entity) {
+                        if (!key_exists($entity, $supported)) {
+                            continue;
+                        }
+                        unset($supported[$entity]);
+                    }
+
+                    return $supported;
+                }
+            );
+        }
     }
 }

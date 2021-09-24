@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,6 +17,7 @@ namespace Inpsyde\MultilingualPress\TranslationUi\Post;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Attachment\Copier;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
+
 use function Inpsyde\MultilingualPress\resolve;
 
 class PostRelationSaveHelper
@@ -188,12 +191,12 @@ class PostRelationSaveHelper
         if (!$valuesToSync || !is_array($valuesToSync)) {
             return;
         }
-
         $remotePostId = $context->remotePostId();
         foreach ($valuesToSync as $key => $values) {
             if (!is_string($key) || !$key) {
                 continue;
             }
+
             delete_post_meta($remotePostId, $key);
             foreach ((array)$values as $value) {
                 update_post_meta($remotePostId, $key, $value);
@@ -270,15 +273,23 @@ class PostRelationSaveHelper
         $originalSiteId = $this->maybeSwitchSite($sourceSiteId);
         $sourceTaxData = MetaboxFields::taxonomiesAndTermsOf($sourcePost);
         $sourceTerms = wp_get_object_terms($sourcePost->ID, array_keys($sourceTaxData));
+
         $this->maybeRestoreSite($originalSiteId);
 
         $originalSiteId = $this->maybeSwitchSite($remoteSiteId);
 
         $remoteTaxData = MetaboxFields::taxonomiesAndTermsOf($remotePost);
-        $toRemoveTaxonomies = array_keys(array_diff_key($remoteTaxData, $sourceTaxData));
+        $remoteTerms = wp_get_object_terms($remotePost->ID, array_keys($remoteTaxData));
 
+        $toRemoveTaxonomies = array_keys(array_diff_key($remoteTaxData, $sourceTaxData));
         foreach ($toRemoveTaxonomies as $toRemoveTaxonomy) {
             $remove = wp_set_object_terms($remotePost->ID, [], $toRemoveTaxonomy, false);
+            is_wp_error($remove) and $errors++;
+        }
+
+        $toRemoveTerms = array_diff_key($remoteTerms, $sourceTerms);
+        foreach ($toRemoveTerms as $toRemoveTerm) {
+            $remove = wp_set_object_terms($remotePost->ID, [], $toRemoveTerm->taxonomy, false);
             is_wp_error($remove) and $errors++;
         }
 

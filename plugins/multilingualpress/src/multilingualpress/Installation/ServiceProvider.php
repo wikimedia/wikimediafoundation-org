@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -76,7 +78,7 @@ final class ServiceProvider implements IntegrationServiceProvider
     {
         $container->addService(
             InstallationChecker::class,
-            function (Container $container): InstallationChecker {
+            static function (Container $container): InstallationChecker {
                 return new InstallationChecker(
                     $container[SystemChecker::class],
                     $container[PluginProperties::class]
@@ -86,7 +88,7 @@ final class ServiceProvider implements IntegrationServiceProvider
 
         $container->addService(
             SystemChecker::class,
-            function (Container $container): SystemChecker {
+            static function (Container $container): SystemChecker {
                 return new SystemChecker(
                     $container[PluginProperties::class],
                     $container[SiteRelationsChecker::class],
@@ -97,7 +99,7 @@ final class ServiceProvider implements IntegrationServiceProvider
 
         $container->addService(
             SiteRelationsChecker::class,
-            function (Container $container): SiteRelationsChecker {
+            static function (Container $container): SiteRelationsChecker {
                 return new SiteRelationsChecker($container[SiteRelations::class]);
             }
         );
@@ -112,28 +114,28 @@ final class ServiceProvider implements IntegrationServiceProvider
     {
         $container->addService(
             Installer::class,
-            function (Container $container): Installer {
+            static function (Container $container): Installer {
                 return new Installer($container[TableInstaller::class]);
             }
         );
 
         $container->addService(
             Updater::class,
-            function (Container $container): Updater {
+            static function (Container $container): Updater {
                 return new Updater($container[PluginProperties::class]);
             }
         );
 
         $container->share(
             NetworkPluginDeactivator::class,
-            function (): NetworkPluginDeactivator {
+            static function (): NetworkPluginDeactivator {
                 return new NetworkPluginDeactivator();
             }
         );
 
         $container->share(
             Uninstaller::class,
-            function (Container $container): Uninstaller {
+            static function (Container $container): Uninstaller {
                 return new Uninstaller($container[TableInstaller::class]);
             }
         );

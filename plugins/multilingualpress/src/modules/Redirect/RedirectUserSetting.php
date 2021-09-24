@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,8 +16,8 @@ namespace Inpsyde\MultilingualPress\Module\Redirect;
 
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Framework\Setting\User\UserSettingViewModel;
-
 use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
+
 use function Inpsyde\MultilingualPress\printNonceField;
 
 /**

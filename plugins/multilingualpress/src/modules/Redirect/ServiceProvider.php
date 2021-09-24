@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,38 +14,39 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\Redirect;
 
+use Inpsyde\MultilingualPress\Asset\AssetFactory;
+use Inpsyde\MultilingualPress\Core\Admin\NewSiteSettings;
 use Inpsyde\MultilingualPress\Core\Admin\PluginSettingsUpdater;
-use Inpsyde\MultilingualPress\Core\ServiceProvider as CoreServiceProvider;
-use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
-use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
+use Inpsyde\MultilingualPress\Core\Admin\SiteSettings;
+use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsUpdater;
+use Inpsyde\MultilingualPress\Core\Frontend\AlternateLanguages;
 use Inpsyde\MultilingualPress\Core\Locations;
+use Inpsyde\MultilingualPress\Core\ServiceProvider as CoreServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageTab;
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageTabData;
-use Inpsyde\MultilingualPress\Framework\Api\Translations;
-use Inpsyde\MultilingualPress\Asset\AssetFactory;
 use Inpsyde\MultilingualPress\Framework\Admin\SitesListTableColumn;
+use Inpsyde\MultilingualPress\Framework\Api\Translations;
 use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
+use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
 use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
 use Inpsyde\MultilingualPress\Framework\Module\Exception\ModuleAlreadyRegistered;
+use Inpsyde\MultilingualPress\Framework\Module\Module;
+use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
+use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
 use Inpsyde\MultilingualPress\Framework\PluginProperties;
+use Inpsyde\MultilingualPress\Framework\Service\Container;
+use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
+use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSetting;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionView;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingUpdater;
 use Inpsyde\MultilingualPress\Framework\Setting\User\UserSetting;
 use Inpsyde\MultilingualPress\Framework\Setting\User\UserSettingUpdater;
-use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
-use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
-use Inpsyde\MultilingualPress\Framework\Module\Module;
-use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
-use Inpsyde\MultilingualPress\Framework\Service\Container;
-use Inpsyde\MultilingualPress\Core\Admin\NewSiteSettings;
-use Inpsyde\MultilingualPress\Core\Admin\SiteSettings;
-use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsUpdater;
-use Inpsyde\MultilingualPress\Core\Frontend\AlternateLanguages;
 use Inpsyde\MultilingualPress\Module\Redirect\Settings\RedirectFallbackViewRenderer;
 use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
 use Inpsyde\MultilingualPress\Module\Redirect\Settings\TabView;
+
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
 final class ServiceProvider implements ModuleServiceProvider
@@ -67,14 +70,14 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             AcceptLanguageParser::class,
-            function (): AcceptLanguageParser {
+            static function (): AcceptLanguageParser {
                 return new AcceptLanguageParser();
             }
         );
 
         $container->addService(
             LanguageNegotiator::class,
-            function (Container $container): LanguageNegotiator {
+            static function (Container $container): LanguageNegotiator {
                 return new LanguageNegotiator(
                     $container[Translations::class],
                     $container[ServerRequest::class],
@@ -85,14 +88,14 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             NoredirectPermalinkFilter::class,
-            function (): NoredirectPermalinkFilter {
+            static function (): NoredirectPermalinkFilter {
                 return new NoredirectPermalinkFilter();
             }
         );
 
         $container->addService(
             NoRedirectStorage::class,
-            function (): NoRedirectStorage {
+            static function (): NoRedirectStorage {
                 return is_user_logged_in() && wp_using_ext_object_cache()
                     ? new NoRedirectObjectCacheStorage()
                     : new NoRedirectSessionStorage();
@@ -101,7 +104,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             RedirectRequestChecker::class,
-            function (Container $container): RedirectRequestChecker {
+            static function (Container $container): RedirectRequestChecker {
                 return new RedirectRequestChecker(
                     $container[Repository::class],
                     $container[NoRedirectStorage::class]
@@ -181,7 +184,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             Redirector::class,
-            function (Container $container): Redirector {
+            static function (Container $container): Redirector {
 
                 $negotiator = $container[LanguageNegotiator::class];
 
@@ -214,7 +217,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             NotFoundSiteRedirect::class,
-            function (Container $container): NotFoundSiteRedirect {
+            static function (Container $container): NotFoundSiteRedirect {
                 return new NotFoundSiteRedirect(
                     $container[Repository::class],
                     $container[NoRedirectStorage::class]
@@ -236,14 +239,14 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->share(
             Repository::class,
-            function (): Repository {
+            static function (): Repository {
                 return new Repository();
             }
         );
 
         $container->addService(
             RedirectSiteSetting::class,
-            function (Container $container): RedirectSiteSetting {
+            static function (Container $container): RedirectSiteSetting {
                 return new RedirectSiteSetting(
                     Repository::OPTION_SITE,
                     $container[NonceFactory::class]->create([self::SETTING_NONCE_ACTION . 'site']),
@@ -254,7 +257,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             RedirectUserSetting::class,
-            function (Container $container): RedirectUserSetting {
+            static function (Container $container): RedirectUserSetting {
                 return new RedirectUserSetting(
                     Repository::META_KEY_USER,
                     $container[NonceFactory::class]->create([self::SETTING_NONCE_ACTION . 'user']),
@@ -265,7 +268,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             Settings\Updater::class,
-            function (Container $container): Settings\Updater {
+            static function (Container $container): Settings\Updater {
                 return new Settings\Updater(
                     $container[NonceFactory::class]->create(['save_module_redirect_settings']),
                     $container[Repository::class]
@@ -375,7 +378,7 @@ final class ServiceProvider implements ModuleServiceProvider
         $sitesListTableColumn = new SitesListTableColumn(
             'multilingualpress.redirect',
             __('Redirect', 'multilingualpress'),
-            function (string $column, int $siteId) use ($settingsRepository): string {
+            static function (string $column, int $siteId) use ($settingsRepository): string {
                 return $settingsRepository->isRedirectEnabledForSite($siteId)
                     ? '<span class="dashicons dashicons-yes"></span>'
                     : '';

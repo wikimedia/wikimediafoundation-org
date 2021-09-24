@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -19,8 +21,6 @@ use Inpsyde\MultilingualPress\Framework\Admin\PersistentAdminNotices;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
-
-use function Inpsyde\MultilingualPress\siteLanguageName;
 
 /**
  * Class MetaboxAction
@@ -119,7 +119,8 @@ final class MetaboxAction implements Metabox\Action
     {
         $relation = $this->fieldsHelper->fieldRequestValue($request, MetaboxFields::FIELD_RELATION);
 
-        if ($relation !== MetaboxFields::FIELD_RELATION_NEW
+        if (
+            $relation !== MetaboxFields::FIELD_RELATION_NEW
             && $relation !== MetaboxFields::FIELD_RELATION_LEAVE
         ) {
             return '';
@@ -127,7 +128,8 @@ final class MetaboxAction implements Metabox\Action
 
         $hasRemotePost = $this->relationshipContext->hasRemotePost();
 
-        if (($relation === MetaboxFields::FIELD_RELATION_NEW && $hasRemotePost)
+        if (
+            ($relation === MetaboxFields::FIELD_RELATION_NEW && $hasRemotePost)
             || ($relation === MetaboxFields::FIELD_RELATION_LEAVE && !$hasRemotePost)
         ) {
             return '';
@@ -167,13 +169,12 @@ final class MetaboxAction implements Metabox\Action
         PostRelationSaveHelper $relationshipHelper
     ): array {
 
-        $language = siteLanguageName($this->relationshipContext->remoteSiteId());
         $source = $this->relationshipContext->sourcePost();
         $hasRemote = $this->relationshipContext->hasRemotePost();
 
         $title = $values[MetaboxFields::FIELD_TITLE] ?? '';
         if (!$title && !$hasRemote) {
-            $title = $source->post_title . " ({$language})";
+            $title = $source->post_title;
         }
         $slug = $values[MetaboxFields::FIELD_SLUG] ?? '';
         if (!$slug && !$hasRemote) {
@@ -191,6 +192,11 @@ final class MetaboxAction implements Metabox\Action
 
         if ($values[MetaboxFields::FIELD_COPY_CONTENT] ?? false) {
             $post['post_content'] = $source->post_content;
+        }
+
+        if ($status === 'future') {
+            $post['post_date'] = $this->relationshipContext->sourcePost()->post_date;
+            $post['post_date_gmt'] = $this->relationshipContext->sourcePost()->post_date_gmt;
         }
 
         if (!$hasRemote) {
@@ -254,7 +260,7 @@ final class MetaboxAction implements Metabox\Action
         }
 
         $syncTaxonomies = $values[MetaboxFields::FIELD_COPY_TAXONOMIES] ?? false;
-        $terms = $syncTaxonomies ? [] : ($values[MetaboxFields::FIELD_TAXONOMIES] ?? false);
+        $terms = $syncTaxonomies ? [] : ($values[MetaboxFields::FIELD_TAXONOMIES] ?? []);
         $slugs = $values[MetaboxFields::FIELD_TAXONOMY_SLUGS] ?? [];
 
         if ($syncTaxonomies) {
@@ -347,11 +353,13 @@ final class MetaboxAction implements Metabox\Action
          *
          * @param RelationshipContext $relationshipContext
          * @param array $post
+         * @param string $operation
          */
         do_action(
             self::ACTION_METABOX_BEFORE_UPDATE_REMOTE_POST,
             $this->relationshipContext,
-            $post
+            $post,
+            $operation
         );
 
         if ($operation === MetaboxFields::FIELD_RELATION_NEW) {
@@ -360,11 +368,13 @@ final class MetaboxAction implements Metabox\Action
              *
              * @param array $post The remote post object
              * @param RelationshipContext $relationshipContext
+             * @param string $operation
              */
             $post = (array)apply_filters(
                 self::FILTER_NEW_RELATE_REMOTE_POST_BEFORE_INSERT,
                 $post,
-                $this->relationshipContext
+                $this->relationshipContext,
+                $operation
             );
         }
 
@@ -377,8 +387,14 @@ final class MetaboxAction implements Metabox\Action
          *
          * @param RelationshipContext $relationshipContext
          * @param array $post
+         * @param string $operation
          */
-        do_action(self::ACTION_METABOX_AFTER_UPDATE_REMOTE_POST, $this->relationshipContext, $post);
+        do_action(
+            self::ACTION_METABOX_AFTER_UPDATE_REMOTE_POST,
+            $this->relationshipContext,
+            $post,
+            $operation
+        );
 
         if (!is_numeric($postId) || !$postId) {
             return 0;
@@ -402,13 +418,16 @@ final class MetaboxAction implements Metabox\Action
          * Perform action after the post relations have been created
          *
          * @param RelationshipContext $relationshipContext
-         * @param Request
+         * @param Request $request
+         * @param PersistentAdminNotices $notices
+         * @param string $operation
          */
         do_action(
             self::ACTION_METABOX_AFTER_RELATE_POSTS,
             $this->relationshipContext,
             $request,
-            $notices
+            $notices,
+            $operation
         );
 
         return (int)$remotePost->ID;
@@ -463,7 +482,8 @@ final class MetaboxAction implements Metabox\Action
 
             $taxonomyObject = get_taxonomy($taxonomy);
 
-            if (!$taxonomyObject
+            if (
+                !$taxonomyObject
                 || !current_user_can($taxonomyObject->cap->delete_terms, $taxonomy)
             ) {
                 continue;

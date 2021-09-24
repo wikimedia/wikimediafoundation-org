@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -13,17 +15,18 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Module\Trasher;
 
 use Inpsyde\MultilingualPress\Asset\AssetFactory;
+use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Core\Locations;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
-use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
-use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
 use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
-use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
+use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
 use Inpsyde\MultilingualPress\Framework\Module\Module;
 use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
+use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
 use Inpsyde\MultilingualPress\Framework\PluginProperties;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
+
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
 final class ServiceProvider implements ModuleServiceProvider
@@ -45,14 +48,14 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->share(
             TrasherSettingRepository::class,
-            function (): TrasherSettingRepository {
+            static function (): TrasherSettingRepository {
                 return new TrasherSettingRepository();
             }
         );
 
         $container->addService(
             Trasher::class,
-            function (Container $container): Trasher {
+            static function (Container $container): Trasher {
                 return new Trasher(
                     $container[TrasherSettingRepository::class],
                     $container[ContentRelations::class],
@@ -63,7 +66,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             TrasherSettingUpdater::class,
-            function (Container $container): TrasherSettingUpdater {
+            static function (Container $container): TrasherSettingUpdater {
                 return new TrasherSettingUpdater(
                     $container[TrasherSettingRepository::class],
                     $container[ContentRelations::class],
@@ -76,7 +79,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             TrasherSettingView::class,
-            function (Container $container): TrasherSettingView {
+            static function (Container $container): TrasherSettingView {
                 return new TrasherSettingView(
                     $container[TrasherSettingRepository::class],
                     $container[NonceFactory::class]->create([self::NONCE_ACTION]),
@@ -141,15 +144,6 @@ final class ServiceProvider implements ModuleServiceProvider
         add_action('save_post', wpHookProxy([$trasherSettingUpdater, 'update']), 10, 2);
         add_action('wp_trash_post', wpHookProxy([$trasher, 'trashRelatedPosts']));
 
-        add_action(
-            'save_post',
-            [$container[TrasherSettingUpdater::class], 'update'],
-            10,
-            2
-        );
-
-        add_action('wp_trash_post', [$container[Trasher::class], 'trashRelatedPosts']);
-
         $assetManager = $container[AssetManager::class];
         /** @var AssetFactory $assetFactory */
         $assetFactory = $container[self::MODULE_ASSETS_FACTORY_SERVICE_NAME];
@@ -184,7 +178,7 @@ final class ServiceProvider implements ModuleServiceProvider
             }
         );
 
-        add_action('admin_init', function () {
+        add_action('admin_init', static function () {
             register_meta('post', '_trash_the_other_posts', [
                 'show_in_rest' => true,
             ]);

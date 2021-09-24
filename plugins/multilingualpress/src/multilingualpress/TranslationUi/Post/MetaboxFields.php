@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -39,15 +41,19 @@ class MetaboxFields
     const FIELD_EDIT_LINK = 'edit-link';
 
     const FILTER_TAXONOMIES_AND_TERMS_OF = 'multilingualpress.taxonomies_and_terms_of';
+    const FILTER_MAX_NUMBER_OF_TERMS = 'multilingualpress.max_number_of_terms';
 
     /**
      * Get all existing taxonomies for the given post, including all existing terms.
      *
      * @param \WP_Post $post
      * @return \stdClass[]
+     * phpcs:disable Generic.Metrics.NestingLevel.TooHigh
      */
     public static function taxonomiesAndTermsOf(\WP_Post $post): array
     {
+        // phpcs:enable
+
         /** @var \WP_Taxonomy[] $taxonomies */
         $taxonomies = get_object_taxonomies($post);
 
@@ -67,33 +73,43 @@ class MetaboxFields
             return [];
         }
 
-        /** @var \WP_Term[] $allTerms */
-        $allTerms = get_terms(['taxonomy' => $taxonomies, 'hide_empty' => false]);
-        if (!$allTerms || is_wp_error($allTerms)) {
-            return [];
-        }
-
         $output = [];
-        foreach ($allTerms as $term) {
-            $sameTax = array_key_exists($term->taxonomy, $output);
-            $taxonomy = $sameTax ? $output[$term->taxonomy]->object : get_taxonomy($term->taxonomy);
+        /** @var \WP_Term[] $allTerms */
+        foreach ($taxonomies as $tax) {
+            $termCount = (int)wp_count_terms($tax);
 
-            if (!$taxonomy
+            $sameTax = array_key_exists($tax, $output);
+            $taxonomy = $sameTax ? $output[$tax]->object : get_taxonomy($tax);
+
+            if (
+                !$taxonomy
                 || !$taxonomy->show_ui
                 || !current_user_can($taxonomy->cap->assign_terms, $taxonomy->name)
             ) {
                 continue;
             }
 
+            $taxonomy->term_count = $termCount;
+
             if (!$sameTax) {
-                $output[$term->taxonomy] = (object)['object' => $taxonomy, 'terms' => []];
+                $output[$tax] = (object)['object' => $taxonomy, 'terms' => []];
             }
 
-            $output[$term->taxonomy]->terms[] = $term;
+            $maxNumberOfTerms = apply_filters(self::FILTER_MAX_NUMBER_OF_TERMS, 20);
+            add_filter(
+                Field\Taxonomies::FILTER_TRANSLATION_UI_SELECT_THRESHOLD,
+                static function () use ($maxNumberOfTerms) {
+                    return $maxNumberOfTerms;
+                }
+            );
+
+            if ($termCount < $maxNumberOfTerms) {
+                $allTerms = get_terms(['taxonomy' => $tax, 'hide_empty' => false]);
+                foreach ($allTerms as $term) {
+                    $output[$term->taxonomy]->terms[] = $term;
+                }
+            }
         }
-
-        ksort($output);
-
         return $output;
     }
 
@@ -273,7 +289,7 @@ class MetaboxFields
         ];
 
         foreach ($taxonomies as $taxonomyData) {
-            if (!$taxonomyData->terms) {
+            if (!$taxonomyData->object->term_count > 0) {
                 continue;
             }
             $fields[] = new MetaboxField(

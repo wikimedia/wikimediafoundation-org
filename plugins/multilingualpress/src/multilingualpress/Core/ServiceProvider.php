@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -53,27 +55,21 @@ use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingMultiView;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionView;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
 use Inpsyde\MultilingualPress\Language\EmbeddedLanguage;
+use Inpsyde\MultilingualPress\License\Api\Activator;
 use Inpsyde\MultilingualPress\Translator\PostTranslator;
-use Inpsyde\ProductPagesLicensing\License;
 use Throwable;
 use wpdb;
+
 // phpcs:ignore WordPress.PHP.StrictInArray.MissingArguments
 use function in_array;
 use function Inpsyde\MultilingualPress\assignedLanguageNames;
 use function Inpsyde\MultilingualPress\currentSiteLocale;
-use function Inpsyde\MultilingualPress\isLicensed;
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 use function Inpsyde\MultilingualPress\siteLanguageTag;
+use function Inpsyde\MultilingualPress\languageByTag;
 use function Inpsyde\MultilingualPress\siteLocaleName;
 use function Inpsyde\MultilingualPress\wpHookProxy;
-use Inpsyde\ProductPagesLicensing\Api\Activator as LicenseActivator;
-use Inpsyde\ProductPagesLicensing\Api\Updater as LicenseUpdater;
-use Inpsyde\ProductPagesLicensing\RequestHandler as LicenseRequestHandler;
-use GuzzleHttp\Client as GuzzleClient;
-use Mjelamanov\GuzzlePsr18\Client;
-use Http\Factory\Guzzle\RequestFactory;
-use Http\Factory\Guzzle\UriFactory;
-use const Inpsyde\MultilingualPress\MULTILINGUALPRESS_LICENSE_API_URL;
+use function Inpsyde\MultilingualPress\isLicensed;
 
 /**
  * Service provider for all Core objects.
@@ -84,6 +80,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 {
     const FILTER_PLUGIN_LOCALE = 'plugin_locale';
     const FILTER_AVAILABLE_POST_TYPE_FOR_SETTINGS = 'multilingualpress.post_type_slugs_settings';
+    const FILTER_HTTP_CLIENT_CONFIG = 'multilingualpress.http_client_config';
     const ACTION_BUILD_TABS = 'multilingualpress.build_tabs';
 
     const MESSAGE_TYPE_FACTORIES = 'message_type_factories';
@@ -110,14 +107,14 @@ class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->addService(
             BasePathAdapter::class,
-            function (): BasePathAdapter {
+            static function (): BasePathAdapter {
                 return new BasePathAdapter();
             }
         );
 
         $container->addService(
             SiteDataDeletor::class,
-            function (Container $container): SiteDataDeletor {
+            static function (Container $container): SiteDataDeletor {
                 return new SiteDataDeletor(
                     $container[ContentRelations::class],
                     $container[SiteRelations::class],
@@ -128,7 +125,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             RequestGlobalsManipulator::class,
-            function (): RequestGlobalsManipulator {
+            static function (): RequestGlobalsManipulator {
                 return new RequestGlobalsManipulator(
                     RequestGlobalsManipulator::METHOD_POST
                 );
@@ -137,7 +134,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Locations::class,
-            function (Container $container): Locations {
+            static function (Container $container): Locations {
 
                 $properties = $container[PluginProperties::class];
                 $pluginPath = rtrim($properties->dirPath(), '/');
@@ -156,14 +153,14 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             PostTypeRepository::class,
-            function (): PostTypeRepository {
+            static function (): PostTypeRepository {
                 return new PostTypeRepository();
             }
         );
 
         $container->share(
             ServerRequest::class,
-            function (): ServerRequest {
+            static function (): ServerRequest {
                 return new PhpServerRequest();
             }
         );
@@ -179,61 +176,8 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             TaxonomyRepository::class,
-            function (): TaxonomyRepository {
+            static function (): TaxonomyRepository {
                 return new TaxonomyRepository();
-            }
-        );
-
-        $container->addService(
-            LicenseRequestHandler::class,
-            function (): LicenseRequestHandler {
-                return new LicenseRequestHandler(
-                    new Client(new GuzzleClient()),
-                    new RequestFactory(),
-                    new UriFactory()
-                );
-            }
-        );
-
-        $container->addService(
-            LicenseActivator::class,
-            function (Container $container): LicenseActivator {
-                $pluginProperties = $container[PluginProperties::class];
-                return new LicenseActivator(
-                    $container[LicenseRequestHandler::class],
-                    [
-                        'license_api_url' => MULTILINGUALPRESS_LICENSE_API_URL,
-                        'version' => $pluginProperties->version(),
-                    ]
-                );
-            }
-        );
-
-        $container->share(
-            LicenseUpdater::class,
-            function (Container $container): LicenseUpdater {
-                $pluginProperties = $container[PluginProperties::class];
-                $licenseOption = get_network_option(0, 'multilingualpress_license', []);
-                $licenseProductId = isset($licenseOption['license_product_id'])
-                    ? $licenseOption['license_product_id'] : '';
-                $apiKey = isset($licenseOption['api_key']) ? $licenseOption['api_key'] : '';
-                $instanceKey = isset($licenseOption['instance_key']) ? $licenseOption['instance_key'] : '';
-                $status = isset($licenseOption['status']) ? $licenseOption['status'] : '';
-                $license = new License($licenseProductId, $apiKey, $instanceKey, $status);
-
-                return new LicenseUpdater(
-                    [
-                        'basename' => $pluginProperties->basename(),
-                        'version' => $pluginProperties->version(),
-                        'slug' => $pluginProperties->textDomain(),
-                    ],
-                    [
-                        'product_id' => 'MultilingualPress+3',
-                        'license_api_url' => MULTILINGUALPRESS_LICENSE_API_URL,
-                    ],
-                    $container[LicenseRequestHandler::class],
-                    $license
-                );
             }
         );
 
@@ -273,28 +217,28 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             WordpressContext::class,
-            function (): WordpressContext {
+            static function (): WordpressContext {
                 return new WordpressContext();
             }
         );
 
         $container->share(
             Entity\ActivePostTypes::class,
-            function (): Entity\ActivePostTypes {
+            static function (): Entity\ActivePostTypes {
                 return new Entity\ActivePostTypes();
             }
         );
 
         $container->share(
             Entity\ActiveTaxonomies::class,
-            function (): Entity\ActiveTaxonomies {
+            static function (): Entity\ActiveTaxonomies {
                 return new Entity\ActiveTaxonomies();
             }
         );
 
         $container->share(
             Attachment\Copier::class,
-            function (Container $container): Attachment\Copier {
+            static function (Container $container): Attachment\Copier {
                 return new Attachment\Copier(
                     $container[wpdb::class],
                     $container[Filesystem::class]
@@ -304,7 +248,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Attachment\Collection::class,
-            function (Container $container): Attachment\Collection {
+            static function (Container $container): Attachment\Collection {
                 return new Attachment\Collection(
                     $container[wpdb::class]
                 );
@@ -313,8 +257,14 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Filesystem::class,
-            function (): Filesystem {
+            static function (): Filesystem {
                 return new Filesystem();
+            }
+        );
+
+        $container->share(
+            'multilingualpress.events',
+            static function () {
             }
         );
     }
@@ -328,28 +278,28 @@ class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->share(
             PersistentAdminNotices::class,
-            function (): PersistentAdminNotices {
+            static function (): PersistentAdminNotices {
                 return new PersistentAdminNotices();
             }
         );
 
         $container->share(
             ModuleManager::class,
-            function (): ModuleManager {
+            static function (): ModuleManager {
                 return new ModuleManager(ModuleManager::OPTION);
             }
         );
 
         $container->addService(
             ModuleDeactivator::class,
-            function (Container $container): ModuleDeactivator {
+            static function (Container $container): ModuleDeactivator {
                 return new ModuleDeactivator($container[ModuleManager::class]);
             }
         );
 
         $container->addService(
             self::ACTION_BUILD_TABS,
-            function (Container $container): array {
+            static function (Container $container): array {
 
                 $tabs = [];
 
@@ -397,7 +347,7 @@ class ServiceProvider implements BootstrappableServiceProvider
                             'license'
                         ),
                         new Admin\LicenseSettingsTabView(
-                            $container[LicenseActivator::class],
+                            $container[Activator::class],
                             $container[NonceFactory::class]->create(['update_license_settings'])
                         )
                     );
@@ -422,7 +372,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\PluginSettingsPageView::class,
-            function (Container $container): Admin\PluginSettingsPageView {
+            static function (Container $container): Admin\PluginSettingsPageView {
                 return new Admin\PluginSettingsPageView(
                     $container[NonceFactory::class]->create(['save_plugin_settings']),
                     $container[ServerRequest::class],
@@ -433,7 +383,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\PluginSettingsUpdater::class,
-            function (Container $container): Admin\PluginSettingsUpdater {
+            static function (Container $container): Admin\PluginSettingsUpdater {
                 return new Admin\PluginSettingsUpdater(
                     $container[NonceFactory::class]->create(['save_plugin_settings']),
                     $container[ServerRequest::class]
@@ -447,14 +397,14 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Admin\LanguagesAjaxSearch::class,
-            function (Container $container): Admin\LanguagesAjaxSearch {
+            static function (Container $container): Admin\LanguagesAjaxSearch {
                 return new Admin\LanguagesAjaxSearch($container[ServerRequest::class]);
             }
         );
 
         $container->addService(
             Admin\LanguageSiteSetting::class,
-            function (): Admin\LanguageSiteSetting {
+            static function (): Admin\LanguageSiteSetting {
                 return new Admin\LanguageSiteSetting();
             }
         );
@@ -465,7 +415,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Admin\SiteSettingsRepository::class,
-            function (Container $container): Admin\SiteSettingsRepository {
+            static function (Container $container): Admin\SiteSettingsRepository {
                 return new Admin\SiteSettingsRepository(
                     $container[SiteRelations::class],
                     new Facade(
@@ -478,7 +428,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\NewSiteSettings::class,
-            function (Container $container): Admin\NewSiteSettings {
+            static function (Container $container): Admin\NewSiteSettings {
                 return new Admin\NewSiteSettings(
                     SiteSettingMultiView::fromViewModels(
                         [
@@ -492,7 +442,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\RelationshipsSiteSetting::class,
-            function (Container $container): Admin\RelationshipsSiteSetting {
+            static function (Container $container): Admin\RelationshipsSiteSetting {
                 return new Admin\RelationshipsSiteSetting(
                     $container[Admin\SiteSettingsRepository::class],
                     $container[SiteRelations::class]
@@ -502,7 +452,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\XDefaultSiteSetting::class,
-            function (Container $container): Admin\XDefaultSiteSetting {
+            static function (Container $container): Admin\XDefaultSiteSetting {
                 return new Admin\XDefaultSiteSetting(
                     $container[SiteRelations::class],
                     $container[Admin\SiteSettingsRepository::class]
@@ -512,7 +462,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\SiteSettings::class,
-            function (Container $container): Admin\SiteSettings {
+            static function (Container $container): Admin\SiteSettings {
                 return new Admin\SiteSettings(
                     SiteSettingMultiView::fromViewModels(
                         [
@@ -528,7 +478,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\SiteSettingsTabView::class,
-            function (Container $container): Admin\SiteSettingsTabView {
+            static function (Container $container): Admin\SiteSettingsTabView {
                 return new Admin\SiteSettingsTabView(
                     new SettingsPageTabData(
                         'multilingualpress-site-settings',
@@ -545,7 +495,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\SiteSettingsUpdater::class,
-            function (Container $container): Admin\SiteSettingsUpdater {
+            static function (Container $container): Admin\SiteSettingsUpdater {
                 return new Admin\SiteSettingsUpdater(
                     $container[Admin\SiteSettingsRepository::class],
                     $container[ServerRequest::class]
@@ -555,7 +505,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\SiteSettingsUpdateRequestHandler::class,
-            function (Container $container): Admin\SiteSettingsUpdateRequestHandler {
+            static function (Container $container): Admin\SiteSettingsUpdateRequestHandler {
                 return new Admin\SiteSettingsUpdateRequestHandler(
                     $container[Admin\SiteSettingsUpdater::class],
                     $container[ServerRequest::class],
@@ -570,14 +520,14 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Admin\PostTypeSlugsSettingsRepository::class,
-            function (): Admin\PostTypeSlugsSettingsRepository {
+            static function (): Admin\PostTypeSlugsSettingsRepository {
                 return new Admin\PostTypeSlugsSettingsRepository();
             }
         );
 
         $container->addService(
             Admin\PostTypeSettingsUpdater::class,
-            function (Container $container): Admin\PostTypeSettingsUpdater {
+            static function (Container $container): Admin\PostTypeSettingsUpdater {
                 return new Admin\PostTypeSettingsUpdater(
                     $container[PostTypeRepository::class],
                     $container[NonceFactory::class]->create(['update_post_type_settings'])
@@ -587,7 +537,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\PostTypeSlugsSettingsUpdater::class,
-            function (Container $container): Admin\PostTypeSlugsSettingsUpdater {
+            static function (Container $container): Admin\PostTypeSlugsSettingsUpdater {
                 return new Admin\PostTypeSlugsSettingsUpdater(
                     $container[Admin\PostTypeSlugsSettingsRepository::class],
                     $container[ServerRequest::class]
@@ -597,7 +547,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\PostTypeSlugsSettingsUpdateRequestHandler::class,
-            function (Container $container): Admin\PostTypeSlugsSettingsUpdateRequestHandler {
+            static function (Container $container): Admin\PostTypeSlugsSettingsUpdateRequestHandler {
                 return new Admin\PostTypeSlugsSettingsUpdateRequestHandler(
                     $container[Admin\PostTypeSlugsSettingsUpdater::class],
                     $container[ServerRequest::class],
@@ -608,7 +558,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Admin\TaxonomySettingsUpdater::class,
-            function (Container $container): Admin\TaxonomySettingsUpdater {
+            static function (Container $container): Admin\TaxonomySettingsUpdater {
                 return new Admin\TaxonomySettingsUpdater(
                     $container[TaxonomyRepository::class],
                     $container[NonceFactory::class]->create(['update_taxonomy_settings'])
@@ -623,9 +573,9 @@ class ServiceProvider implements BootstrappableServiceProvider
         if (isLicensed()) {
             $container->addService(
                 Admin\LicenseSettingsUpdater::class,
-                function (Container $container): Admin\LicenseSettingsUpdater {
+                static function (Container $container): Admin\LicenseSettingsUpdater {
                     return new Admin\LicenseSettingsUpdater(
-                        $container[LicenseActivator::class],
+                        $container[Activator::class],
                         $container[NonceFactory::class]->create(['update_license_settings'])
                     );
                 }
@@ -642,21 +592,21 @@ class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->share(
             Frontend\AlternateLanguages::class,
-            function (Container $container): Frontend\AlternateLanguages {
+            static function (Container $container): Frontend\AlternateLanguages {
                 return new Frontend\AlternateLanguages($container[Translations::class]);
             }
         );
 
         $container->addService(
             Frontend\AltLanguageController::class,
-            function (): Frontend\AltLanguageController {
+            static function (): Frontend\AltLanguageController {
                 return new Frontend\AltLanguageController();
             }
         );
 
         $container->addService(
             Frontend\AltLanguageHtmlLinkTagRenderer::class,
-            function (Container $container): Frontend\AltLanguageHtmlLinkTagRenderer {
+            static function (Container $container): Frontend\AltLanguageHtmlLinkTagRenderer {
                 return new Frontend\AltLanguageHtmlLinkTagRenderer(
                     $container[Frontend\AlternateLanguages::class],
                     $container[SiteSettingsRepository::class]
@@ -666,7 +616,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Frontend\AltLanguageHttpHeaderRenderer::class,
-            function (Container $container): Frontend\AltLanguageHttpHeaderRenderer {
+            static function (Container $container): Frontend\AltLanguageHttpHeaderRenderer {
                 return new Frontend\AltLanguageHttpHeaderRenderer(
                     $container[Frontend\AlternateLanguages::class]
                 );
@@ -675,7 +625,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Frontend\PostTypeLinkUrlFilter::class,
-            function (Container $container): Frontend\PostTypeLinkUrlFilter {
+            static function (Container $container): Frontend\PostTypeLinkUrlFilter {
                 return new Frontend\PostTypeLinkUrlFilter($container[PostTypeRepository::class]);
             }
         );
@@ -692,7 +642,7 @@ class ServiceProvider implements BootstrappableServiceProvider
         if (is_admin()) {
             $this->bootstrapAdmin($container);
             is_network_admin() and $this->bootstrapNetworkAdmin($container);
-
+            $container->get('multilingualpress.events');
             return;
         }
 
@@ -712,7 +662,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         add_filter(
             Entity\ActivePostTypes::FILTER_ACTIVE_POST_TYPES,
-            function (array $postTypes) use ($container): array {
+            static function (array $postTypes) use ($container): array {
                 return array_merge(
                     $postTypes,
                     $container[PostTypeRepository::class]->supportedPostTypes()
@@ -722,25 +672,12 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         add_filter(
             Entity\ActiveTaxonomies::FILTER_ACTIVE_TAXONOMIES,
-            function (array $taxonomies) use ($container): array {
+            static function (array $taxonomies) use ($container): array {
                 return array_merge(
                     $taxonomies,
                     $container[TaxonomyRepository::class]->supportedTaxonomies()
                 );
             }
-        );
-
-        $licenseUpdater = $container[LicenseUpdater::class];
-        add_filter(
-            'pre_set_site_transient_update_plugins',
-            wpHookProxy([$licenseUpdater, 'updateCheck'])
-        );
-
-        add_filter(
-            'plugins_api',
-            wpHookProxy([$licenseUpdater, 'pluginInformation']),
-            10,
-            3
         );
 
         add_action(
@@ -761,7 +698,7 @@ class ServiceProvider implements BootstrappableServiceProvider
         $container[PersistentAdminNotices::class]->init();
 
         global $pagenow;
-        $allowedPages = ['post.php', 'post-new.php', 'nav-menus.php', 'term.php', 'plugins.php'];
+        $allowedPages = ['post.php', 'post-new.php', 'nav-menus.php', 'term.php', 'plugins.php', 'profile.php', 'user-edit.php'];
         if (in_array($pagenow, $allowedPages, true)) {
             try {
                 $container[AssetManager::class]->enqueueScript('multilingualpress-admin');
@@ -890,12 +827,13 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         add_action(
             'network_site_new_form',
-            function () use ($newSiteSettings) {
+            static function () use ($newSiteSettings) {
                 (new SiteSettingsSectionView($newSiteSettings))->render();
             }
         );
 
-        if (in_array($pagenow, ['site-new.php', 'sites.php'], true)
+        if (
+            in_array($pagenow, ['site-new.php', 'sites.php'], true)
             || $this->isMultilingualPressSettingsPage($pagenow)
         ) {
             try {
@@ -915,7 +853,7 @@ class ServiceProvider implements BootstrappableServiceProvider
         $siteLanguageColumn = new SitesListTableColumn(
             'multilingualpress.site_language',
             __('Site Language', 'multilingualpress'),
-            function (string $column, int $siteId): string {
+            static function (string $column, int $siteId): string {
                 $language = siteLocaleName($siteId) ?: __('none', 'multilingualpress');
                 return sprintf(
                     '<div class="mlp-site-language">%s</div>',
@@ -928,7 +866,7 @@ class ServiceProvider implements BootstrappableServiceProvider
         $relationshipColumn = new SitesListTableColumn(
             'multilingualpress.relationships',
             __('Relationships', 'multilingualpress'),
-            function (string $column, int $siteId): string {
+            static function (string $column, int $siteId): string {
                 switch_to_blog($siteId);
                 $sites = assignedLanguageNames(true, false);
                 restore_current_blog();
@@ -969,11 +907,19 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         add_filter(
             'language_attributes',
-            wpHookProxy(function (string $attributes): string {
+            wpHookProxy(static function (string $attributes): string {
                 $siteLanguage = siteLanguageTag();
                 if (!$siteLanguage) {
                     return $attributes;
                 }
+
+                $language = languageByTag($siteLanguage);
+                if ($language->isRtl()) {
+                    $attributes .= 'dir="rtl"';
+                    global $wp_locale;
+                    $wp_locale->text_direction = 'rtl';
+                }
+
                 $siteLanguage = EmbeddedLanguage::changeLanguageVariantLocale($siteLanguage);
                 return preg_replace(
                     '/(lang=[\"\'])' . get_bloginfo('language') . '([\"\'])/',
@@ -983,7 +929,7 @@ class ServiceProvider implements BootstrappableServiceProvider
             })
         );
 
-        add_filter('locale', function ($locale) {
+        add_filter('locale', static function ($locale) {
             try {
                 $locale = currentSiteLocale();
             } catch (NonexistentTable $exc) {
@@ -1071,7 +1017,7 @@ class ServiceProvider implements BootstrappableServiceProvider
             'manage_network_options',
             'multilingualpress',
             $container[Admin\PluginSettingsPageView::class],
-            untrailingslashit($properties->dirUrl()) . '/public/images/mlp-admin-icon.png'
+            untrailingslashit($properties->dirUrl()) . '/public/images/mlp-admin-icon.svg'
         );
         $settingsPage = new SettingsPage(
             SettingsPage::ADMIN_NETWORK,
@@ -1086,7 +1032,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         add_filter(
             'network_admin_plugin_action_links_' . $properties->basename(),
-            wpHookProxy(function (array $links) use ($settingsPage) : array {
+            wpHookProxy(static function (array $links) use ($settingsPage): array {
                 // phpcs:enable
                 $url = $settingsPage->url();
                 $label = esc_html__('Settings', 'multilingualpress');
@@ -1098,7 +1044,7 @@ class ServiceProvider implements BootstrappableServiceProvider
             })
         );
 
-        add_action('admin_enqueue_scripts', function () {
+        add_action('admin_enqueue_scripts', static function () {
             // phpcs:disable Inpsyde.CodeQuality.VariablesName.SnakeCaseVar
             // phpcs:disable Inpsyde.CodeQuality.LineLength.TooLong
             $custom_css = '#adminmenu .toplevel_page_multilingualpress .wp-menu-image img { padding: 6px 0 0 0; width: 74%;}';
@@ -1129,7 +1075,7 @@ class ServiceProvider implements BootstrappableServiceProvider
     {
         global $wp_version;
         if (version_compare($wp_version, '5.1', '<')) {
-            add_action('delete_blog', wpHookProxy(function (int $siteId) use ($siteDataDeletor) {
+            add_action('delete_blog', wpHookProxy(static function (int $siteId) use ($siteDataDeletor) {
                 $site = get_site($siteId);
                 $site and $siteDataDeletor->deleteSiteData($site);
             }));

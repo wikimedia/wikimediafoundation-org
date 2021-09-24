@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -16,17 +18,17 @@ use Inpsyde\MultilingualPress\Framework\Cache\CacheFactory;
 use Inpsyde\MultilingualPress\Framework\Cache\Driver\CacheDriver;
 use Inpsyde\MultilingualPress\Framework\Cache\Exception;
 use Inpsyde\MultilingualPress\Framework\Cache\Pool\CachePool;
+use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
 
 use function Inpsyde\MultilingualPress\callExit;
-use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
 
 class Server
 {
 
     const UPDATING_KEYS_TRANSIENT = 'mlp_cache_server_updating_keys';
     const SPAWNING_KEYS_TRANSIENT = 'mlp_cache_server_spawning_keys_';
-    const HEADER_KEY = 'MLP-Cache-Update-Key';
-    const HEADER_TTL = 'MLP-Cache-Update-TTL';
+    const HEADER_KEY = 'Mlp-Cache-Update-Key';
+    const HEADER_TTL = 'Mlp-Cache-Update-TTL';
 
     const VALID_ARG_TYPES = [
         'boolean',
@@ -370,7 +372,8 @@ class Server
 
         $registeredKey = $this->registeredKey($logic->namespace(), $logic->key());
 
-        if ((!$forNetwork && in_array($registeredKey, self::$networkKeys, true))
+        if (
+            (!$forNetwork && in_array($registeredKey, self::$networkKeys, true))
             || ($forNetwork && in_array($registeredKey, self::$siteKeys, true))
         ) {
             throw $forNetwork
@@ -551,6 +554,7 @@ class Server
                 ],
                 'data' => is_array($args) ? $args : '',
                 'cookies' => [],
+                'type' => \Requests::PUT,
             ];
         }
 
@@ -565,7 +569,6 @@ class Server
                 'timeout' => 0.01,
                 'follow_redirects' => false,
                 'blocking' => false,
-                'type' => \Requests::PUT,
             ]
         );
 

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -289,7 +291,7 @@ class Container implements \ArrayAccess
         $currentFactory = $this->factories[$name];
 
         // phpcs:disable Inpsyde.CodeQuality.ReturnTypeDeclaration
-        $this->factories[$name] = function (Container $container) use ($factory, $currentFactory) {
+        $this->factories[$name] = static function (Container $container) use ($factory, $currentFactory) {
             return $factory($currentFactory($container), $container);
         };
         // phpcs:enable

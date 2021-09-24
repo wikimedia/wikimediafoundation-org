@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -39,21 +41,21 @@ final class ServiceProvider implements FrameworkServiceProvider
     {
         $container->share(
             ErrorFactory::class,
-            function (): ErrorFactory {
+            static function (): ErrorFactory {
                 return new ErrorFactory(new ClassResolver(\WP_Error::class));
             }
         );
 
         $container->share(
             NonceFactory::class,
-            function (): NonceFactory {
+            static function (): NonceFactory {
                 return new NonceFactory(new ClassResolver(Nonce::class, WpNonce::class));
             }
         );
 
         $container->share(
             LanguageFactory::class,
-            function (): LanguageFactory {
+            static function (): LanguageFactory {
                 return new LanguageFactory(
                     new ClassResolver(FrameworkLanguage::class, Language::class)
                 );
@@ -62,7 +64,7 @@ final class ServiceProvider implements FrameworkServiceProvider
 
         $container->share(
             UrlFactory::class,
-            function (): UrlFactory {
+            static function (): UrlFactory {
                 return new UrlFactory(new ClassResolver(Url::class, EscapedUrl::class));
             }
         );

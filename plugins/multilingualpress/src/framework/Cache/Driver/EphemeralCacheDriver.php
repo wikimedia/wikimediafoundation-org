@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -113,7 +115,7 @@ final class EphemeralCacheDriver implements CacheDriver
      * @param string $name
      * @return string
      */
-    private function buildKey(string $namespace, string $name) : string
+    private function buildKey(string $namespace, string $name): string
     {
         $key = $namespace . $name;
 

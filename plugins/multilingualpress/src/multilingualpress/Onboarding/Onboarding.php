@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -18,6 +20,7 @@ use Inpsyde\MultilingualPress\Framework\Asset\AssetException;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**

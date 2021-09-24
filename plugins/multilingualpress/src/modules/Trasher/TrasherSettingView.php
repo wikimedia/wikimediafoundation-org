@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,8 +14,8 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\Trasher;
 
-use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
+use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 
 use function Inpsyde\MultilingualPress\printNonceField;
 

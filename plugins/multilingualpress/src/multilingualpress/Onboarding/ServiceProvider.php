@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -34,21 +36,21 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
     {
         $container->addService(
             State::class,
-            function (): State {
+            static function (): State {
                 return new State();
             }
         );
 
         $container->addService(
             Notice::class,
-            function (Container $container): Notice {
+            static function (Container $container): Notice {
                 return new Notice($container[State::class]);
             }
         );
 
         $container->addService(
             Onboarding::class,
-            function (Container $container): Onboarding {
+            static function (Container $container): Onboarding {
                 return new Onboarding(
                     $container[AssetManager::class],
                     $container[SiteRelations::class],
@@ -61,14 +63,14 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
 
         $container->addService(
             PointersRepository::class,
-            function (): PointersRepository {
+            static function (): PointersRepository {
                 return new PointersRepository();
             }
         );
 
         $container->addService(
             Pointers::class,
-            function (Container $container): Pointers {
+            static function (Container $container): Pointers {
                 return new Pointers(
                     $container[ServerRequest::class],
                     $container[PointersRepository::class],
@@ -84,7 +86,7 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
     public function integrate(Container $container)
     {
         $onboarding = $container[Onboarding::class];
-        add_action('current_screen', function () use ($onboarding) {
+        add_action('current_screen', static function () use ($onboarding) {
             $currentScreen = get_current_screen();
             $currentScreen and $onboarding->messages();
         });
@@ -351,7 +353,7 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
      */
     private function dismissPointersForNewUsers()
     {
-        add_action('user_register', function ($userId) {
+        add_action('user_register', static function ($userId) {
 
             $dismissedPointers = explode(
                 ',',

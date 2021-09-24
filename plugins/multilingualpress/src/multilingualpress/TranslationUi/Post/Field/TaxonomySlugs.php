@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -57,7 +59,8 @@ class TaxonomySlugs
 
         /** @var \WP_Taxonomy $taxonomy */
         foreach ($taxonomies as $slug => $taxonomy) {
-            if ($taxonomy
+            if (
+                $taxonomy
                 && $taxonomy->show_ui
                 && current_user_can($taxonomy->cap->assign_terms, $slug)
             ) {

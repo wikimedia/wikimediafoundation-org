@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -145,7 +147,7 @@ class Widget extends \WP_Widget
                 foreach ($languageNames as $key => $name) {
                     ?>
                     <option value="<?= esc_attr($key)?>" id="<?= esc_attr($key)?>"
-                        <?= selected($languageName, $key, false)?>><?= esc_attr($name); ?>
+                        <?= selected($languageName, $key, false)?>><?= esc_html($name); ?>
                     </option>
 
                 <?php } ?>
@@ -189,25 +191,16 @@ class Widget extends \WP_Widget
             ? sanitize_text_field($newInstance['title'])
             : '';
 
-        $instance['show_links_for_translated_content_only'] = (int)(
-            isset($newInstance['show_links_for_translated_content_only'])
-            && '1' === $newInstance['show_links_for_translated_content_only']
-        );
+        $instance['show_links_for_translated_content_only'] = (int)$newInstance['show_links_for_translated_content_only'] ?? 0;
 
-        $instance['show_current_site'] = (int)(
-            isset($newInstance['show_current_site'])
-            && '1' === $newInstance['show_current_site']
-        );
+        $instance['show_current_site'] = (int)$newInstance['show_current_site'] ?? 0;
 
         $instance['language_name'] = isset($newInstance['language_name'])
             ? wp_strip_all_tags($newInstance['language_name'])
             : '';
 
         if (interface_exists(Flag::class)) {
-            $instance['show_flags'] = (int)(
-                isset($newInstance['show_flags'])
-                && '1' === $newInstance['show_flags']
-            );
+            $instance['show_flags'] = (int)$newInstance['show_flags'] ?? 0;
         }
 
         return $instance;

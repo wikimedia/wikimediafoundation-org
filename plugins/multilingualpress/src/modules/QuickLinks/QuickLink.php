@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -16,8 +18,9 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Module\QuickLinks\Model\Collection;
 use Inpsyde\MultilingualPress\Module\QuickLinks\Model\CollectionFactory;
 use Inpsyde\MultilingualPress\Module\QuickLinks\Settings\Repository;
-use function Inpsyde\MultilingualPress\printNonceField;
 use InvalidArgumentException;
+
+use function Inpsyde\MultilingualPress\printNonceField;
 
 /**
  * Class QuickLink
@@ -144,7 +147,8 @@ class QuickLink
                 <?php foreach ($modelCollection as $model) : ?>
                     <li class="mlp-quicklinks-list__item">
                         <a class="mlp-quicklinks-link"
-                           href="<?= esc_attr($model->url()) ?>"
+                           href="<?= esc_url($model->url()) ?>"
+                           lang="<?= esc_attr($model->language()) ?>"
                            hreflang="<?= esc_attr($model->language()) ?>"
                            rel="<?= esc_attr($rel) ?>"
                         >
@@ -184,7 +188,7 @@ class QuickLink
 
             <input type="submit"
                    class="mlp-quicklinks-form__submit"
-                   value="<?= esc_html_x('Redirect', 'QuickLinks', 'multilingualpress') ?>"
+                   value="<?= esc_attr_x('Redirect', 'QuickLinks', 'multilingualpress') ?>"
             />
 
             <?php printNonceField($this->nonce) ?>

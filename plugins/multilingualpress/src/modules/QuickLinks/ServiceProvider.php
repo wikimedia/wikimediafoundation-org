@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,7 +14,6 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\QuickLinks;
 
-use Inpsyde\MultilingualPress\Framework\Api\Translations;
 use Inpsyde\MultilingualPress\Asset\AssetFactory;
 use Inpsyde\MultilingualPress\Core\Admin\PluginSettingsUpdater;
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
@@ -21,6 +22,7 @@ use Inpsyde\MultilingualPress\Core\ServiceProvider as CoreServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageTab;
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageTabData;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
+use Inpsyde\MultilingualPress\Framework\Api\Translations;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetException;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
@@ -37,6 +39,7 @@ use Inpsyde\MultilingualPress\Module\QuickLinks\Settings\QuickLinksPositionViewM
 use Inpsyde\MultilingualPress\Module\QuickLinks\Settings\Repository;
 use Inpsyde\MultilingualPress\Module\QuickLinks\Settings\TabView;
 use wpdb;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**
@@ -62,7 +65,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             ValidateRedirectFilter::class,
-            function (Container $container): ValidateRedirectFilter {
+            static function (Container $container): ValidateRedirectFilter {
                 return new ValidateRedirectFilter(
                     $container[wpdb::class]
                 );
@@ -71,7 +74,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             Redirector::class,
-            function (Container $container): Redirector {
+            static function (Container $container): Redirector {
                 return new Redirector(
                     $container[NonceFactory::class]->create(['quicklinks_redirector'])
                 );
@@ -80,7 +83,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             CollectionFactory::class,
-            function (Container $container): CollectionFactory {
+            static function (Container $container): CollectionFactory {
                 return new CollectionFactory(
                     $container[ContentRelations::class],
                     $container[SiteSettingsRepository::class],
@@ -91,7 +94,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             QuickLink::class,
-            function (Container $container): QuickLink {
+            static function (Container $container): QuickLink {
                 return new QuickLink(
                     $container[CollectionFactory::class],
                     $container[NonceFactory::class]->create(['quicklinks_redirector']),
@@ -106,14 +109,14 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             Repository::class,
-            function (): Repository {
+            static function (): Repository {
                 return new Repository();
             }
         );
 
         $container->addService(
             Settings\Updater::class,
-            function (Container $container): Settings\Updater {
+            static function (Container $container): Settings\Updater {
                 return new Settings\Updater(
                     $container[NonceFactory::class]->create(['save_module_quicklinks_settings']),
                     $container[Repository::class]
@@ -123,7 +126,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->share(
             self::MODULE_ASSETS_FACTORY_SERVICE_NAME,
-            function (Container $container): AssetFactory {
+            static function (Container $container): AssetFactory {
                 $pluginProperties = $container[PluginProperties::class];
 
                 $locations = new Locations();
@@ -145,7 +148,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         add_filter(
             CoreServiceProvider::ACTION_BUILD_TABS,
-            function (array $tabs) use ($container) {
+            static function (array $tabs) use ($container) {
 
                 $settingsRepository = $container[Repository::class];
                 $nonceFactory = $container[NonceFactory::class];

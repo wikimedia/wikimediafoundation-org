@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,7 +14,6 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\NavMenu;
 
-use function Inpsyde\MultilingualPress\siteExists;
 use Inpsyde\MultilingualPress\Core\Admin\Settings\Cache\CacheSettingsOptions;
 use Inpsyde\MultilingualPress\Core\Admin\Settings\Cache\CacheSettingsRepository;
 use Inpsyde\MultilingualPress\Framework\Cache\Exception;
@@ -22,6 +23,11 @@ use Inpsyde\MultilingualPress\Framework\Api\Translation;
 use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Facade;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Throwable;
+use WP_Post;
+
+use function Inpsyde\MultilingualPress\siteExists;
+use function Inpsyde\MultilingualPress\wpHookProxy;
 
 /**
  * Filters nav menu items and passes the proper URL.
@@ -73,8 +79,8 @@ class ItemFilter
     /**
      * Filters the nav menu items.
      *
-     * @param \WP_Post[] $items
-     * @return \WP_Post[]
+     * @param WP_Post[] $items
+     * @return WP_Post[]
      * @throws Exception\NotRegisteredCacheItem
      * @throws Exception\InvalidCacheArgument
      * @throws Exception\InvalidCacheDriver
@@ -117,16 +123,42 @@ class ItemFilter
             $filtered[$key] = $item;
         }
 
+        /**
+         * Filters the language nav menu a tags to add {lang} & {hreflang} attributes
+         * Which will let to comply with the WCAG 2.1 AA accessibility guidelines: https://www.w3.org/TR/WCAG21/
+         */
+        $repository = $this->repository;
+        add_filter(
+            'nav_menu_link_attributes',
+            wpHookProxy(static function (array $attributes, WP_Post $item) use ($translations, $repository): array {
+                if ($item->type !== 'mlp_language') {
+                    return $attributes;
+                }
+                $siteId = $repository->siteIdOfMenuItem((int)$item->ID);
+
+                if (!$siteId) {
+                    return $attributes;
+                }
+
+                $attributes['lang'] = $translations[$siteId]->language()->bcp47tag();
+                $attributes['hreflang'] = $translations[$siteId]->language()->bcp47tag();
+
+                return $attributes;
+            }),
+            10,
+            2
+        );
+
         return $filtered;
     }
 
     /**
      * Delete given post if its remote site ID does not exist anymore.
      *
-     * @param \WP_Post $item
+     * @param WP_Post $item
      * @return bool
      */
-    private function maybeDeleteObsoleteItem(\WP_Post $item): bool
+    private function maybeDeleteObsoleteItem(WP_Post $item): bool
     {
         $siteId = $this->repository->siteIdOfMenuItem((int)$item->ID);
         if (!$siteId) {
@@ -145,11 +177,12 @@ class ItemFilter
     /**
      * Assigns the remote URL and fires an action hook.
      *
-     * @param \WP_Post $item
+     * @param WP_Post $item
      * @param Translation[] $translations
      * @return bool
+     * @throws Throwable
      */
-    private function prepareItem(\WP_Post $item, array $translations): bool
+    private function prepareItem(WP_Post $item, array $translations): bool
     {
         $siteId = $this->repository->siteIdOfMenuItem((int)$item->ID);
         if (!$siteId) {
@@ -161,7 +194,8 @@ class ItemFilter
             $item->classes = [];
         }
 
-        if (get_current_blog_id() === $siteId
+        if (
+            get_current_blog_id() === $siteId
             && !\in_array('mlp-current-language-item', $item->classes, true)
         ) {
             $item->classes[] = 'mlp-current-language-item';
@@ -182,7 +216,7 @@ class ItemFilter
         /**
          * Fires right before a nav menu item is sent to the walker.
          *
-         * @param \WP_Post $item
+         * @param WP_Post $item
          * @param Translation $translation
          */
         do_action(self::ACTION_PREPARE_ITEM, $item, $translation);
@@ -242,7 +276,7 @@ class ItemFilter
     }
 
     /**
-     * @param \WP_Post[] $items
+     * @param WP_Post[] $items
      * @return bool
      */
     protected function itemsExists(array $items): bool

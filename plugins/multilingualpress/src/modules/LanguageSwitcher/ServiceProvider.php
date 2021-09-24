@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -46,7 +48,7 @@ final class ServiceProvider implements ModuleServiceProvider
     {
         $widget = $container[Widget::class];
 
-        add_action('widgets_init', function () use ($widget) {
+        add_action('widgets_init', static function () use ($widget) {
             register_widget($widget);
         });
     }
@@ -55,14 +57,14 @@ final class ServiceProvider implements ModuleServiceProvider
     {
         $container->addService(
             ItemFactory::class,
-            function (): ItemFactory {
+            static function (): ItemFactory {
                 return new ItemFactory();
             }
         );
 
         $container->addService(
             Model::class,
-            function (Container $container): Model {
+            static function (Container $container): Model {
                 return new Model(
                     $container[Translations::class],
                     $container[ItemFactory::class]
@@ -72,14 +74,14 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             View::class,
-            function (): View {
+            static function (): View {
                 return new View();
             }
         );
 
         $container->addService(
             Widget::class,
-            function (Container $container): Widget {
+            static function (Container $container): Widget {
                 return new Widget(
                     $container[Model::class],
                     $container[View::class]

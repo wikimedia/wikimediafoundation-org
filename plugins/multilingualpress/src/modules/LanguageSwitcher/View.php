@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,7 +14,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\LanguageSwitcher;
 
-use function \Inpsyde\MultilingualPress\sanitizeHtmlClass;
+use function Inpsyde\MultilingualPress\sanitizeHtmlClass;
 
 class View
 {
@@ -57,10 +59,13 @@ class View
                         <li class="<?= sanitizeHtmlClass($itemClasses) // phpcs:ignore
                         // WordPress.XSS.EscapeOutput.OutputNotEscaped ?>">
                             <a href="<?= esc_url($item->url()) ?>"
+                               class="mlp-language-switcher-item__link"
+                               lang="<?= esc_attr($item->locale()) ?>"
+                               hreflang="<?= esc_attr($item->locale()) ?>"
                                class="mlp-language-switcher-item__link">
                                 <?php if ($item->flag()) {?>
                                     <img alt="<?= esc_attr($languageName) ?>"
-                                         src="<?= esc_attr($item->flag()) ?>"
+                                         src="<?= esc_url($item->flag()) ?>"
                                     />
                                 <?php }?>
                                 <?= esc_html($languageName) ?>
