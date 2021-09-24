@@ -23,20 +23,20 @@
 	}
 
 	&__header {
-		width: 100vw;
-		position: relative;
+		height: 454px;
 		left: 50%;
-		right: 50%;
 		margin-left: -50vw;
 		margin-right: -50vw;
-		padding: 0;
-		height: 454px;
 		overflow: hidden;
+		padding: 0;
+		position: relative;
+		right: 50%;
+		width: 100vw;
 	}
 
 	&__image-wrapper {
-		position: absolute;
 		height: 454px;
+		position: absolute;
 		width: 4237px;
 		z-index: -1;
 
@@ -50,26 +50,23 @@
 	}
 
 	&__heading-wrapper {
-		max-width: $content-column-padded-rem;
 		margin: 0 auto;
+		max-width: $content-column-padded-rem;
 		@include responsive-padding(0 20, 0 strip-px($block-padding));
 	}
 
 	&__heading-color {
-		max-width: 454px;
 		margin-top: 4rem;
+		max-width: 454px;
 	}
 
 	&__heading {
+		@include font-size(24, 24);
+		@include h3-sans;
+		line-height: 1.5;
 		padding: 1rem;
 		position: relative;
 		transition: opacity 750ms ease;
-
-		@include has-blocks-wrap {
-			@include font-size(24, 24);
-			font-weight: 700;
-			line-height: 1.5;
-		}
 
 		&--transparent {
 			opacity: 0;

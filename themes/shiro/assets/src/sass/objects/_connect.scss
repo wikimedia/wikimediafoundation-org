@@ -6,19 +6,9 @@
     border: 1px solid $wmui-color-base80;
     padding: 1.5rem;
 
-    .wysiwyg,
-    .h2 {
-      margin-bottom: 0.75rem;
-    }
-
     &.gray-module {
       background: #f8f9fa;
     }
-  }
-
-  h2 {
-    @include font-size(24, 21);
-    font-weight: 700;
   }
 
   .icon {

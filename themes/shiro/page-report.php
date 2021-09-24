@@ -42,7 +42,9 @@ while ( have_posts() ) :
 			<?php echo wp_kses( $bodytext1, $allowed_tags ); ?>
 		</div>
 
-		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+		<div class="page-intro mod-margin-bottom wysiwyg">
+			<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>

@@ -5,12 +5,16 @@
 	font-family: $font-family-sans;
 	padding: rem(25);
 
+	h3 {
+		@include h3-sans;
+	}
 
 	&__form:not(:only-child) {
 		@include global-margin-bottom;
 	}
 
 	p {
+		font-family: $font-family-sans;
 		margin-bottom: rem(20);
 	}
 

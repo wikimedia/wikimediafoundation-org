@@ -24,10 +24,14 @@ $wrap_class  = $split ? 'fifty-fifty' : '';
 <div class="elsewhere-wikimedia white-bg mod-margin-bottom <?php echo esc_attr( $width_class ); ?>">
 	<div class="mw-980">
 		<?php if ( ! empty( $pre_heading ) ) : ?>
-		<h3 class="h3 uppercase color-gray"><?php echo esc_html( $pre_heading ); ?> — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span></h3>
+		<p class="double-heading__secondary is-style-h5">
+			<?php echo esc_html( $pre_heading ); ?> — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
+		</p>
 		<?php endif; ?>
 		<?php if ( ! empty( $heading ) ) : ?>
-		<h2 class="h2"><?php echo esc_html( $heading ); ?></h2>
+		<h2 class="double-heading__primary is-style-h3">
+			<?php echo esc_html( $heading ); ?>
+		</h2>
 		<?php endif; ?>
 		<div class="flex flex-medium flex-wrap <?php echo esc_attr( $wrap_class ); ?>">
 			<?php

@@ -1,16 +1,17 @@
 // Utilities, helpers, etc.
-.clear-fix:after {
+.clear-fix::after {
+	clear: both;
 	content: "";
 	display: table;
-	clear: both;
 }
 
 .visually-hidden {
-	position: absolute !important;
-	height: 1px; width: 1px;
-	overflow: hidden;
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	width: 1px;
 }
 
 .display-none {
@@ -27,9 +28,11 @@
 	text-transform: uppercase;
 }
 
+.text-bold,
 .bold {
-	font-weight: bold;
+	font-weight: 700;
 }
+
 .italic {
 	font-style: italic;
 }
@@ -49,25 +52,9 @@
 }
 a.color-blue {
 	color: $color-blue;
-	&:hover { color: $color-dk-purple; }
-}
-.color-dark-blue {
-	color: $color-dark-blue;
-}
-.color-turquoise{
-	color: $color-turquoise;
-}
-.color-dark-turquoise {
-	color: $color-dark-turquoise;
-}
-.color-pink {
-	color: $color-pink;
-}
-.color-dark-pink {
-	color: $color-dark-pink;
-}
-.color-ltgray {
-	color: $color-ltgray;
+	&:hover {
+		color: $color-dk-purple;
+	}
 }
 .color-gray {
 	color: $color-dark-gray; // `$wmui-color-base30` is slightly too light to `#f8f9fa` bg.
@@ -75,42 +62,11 @@ a.color-blue {
 .bg-ltgray .color-gray {
 	color: $wmui-color-base20; // On `.bg-ltgray` we need to increase contrast even a bit more.
 }
-.color-black {
-	color: $color-black;
-}
 
 
 // Background Colors
-.bg-blue {
-	background: $color-blue;
-}
-.bg-dark-blue {
-	background: $color-dark-blue;
-}
-.bg-turquoise{
-	background: $color-turquoise;
-}
-.bg-dark-turquoise {
-	background: $color-dark-turquoise;
-}
-.bg-pink {
-	background: $color-pink;
-}
-.bg-dark-pink {
-	background: $color-dark-pink;
-}
-.bg-gray {
-	background: $color-gray;
-}
 .bg-ltgray {
 	background: $wmui-color-base80;
-}
-.bg-black {
-	background: #000;
-	color: #fff;
-}
-footer.bg-black {
-	background: $footer-gray;
 }
 .rounded {
 	border-radius: 5px;
@@ -129,10 +85,10 @@ footer.bg-black {
 }
 
 .btn-label-a11y {
+	display: block;
 	font-size: 0;
 	height: 1px;
 	overflow: hidden;
-	display: block;
 }
 
 .btn {
@@ -153,38 +109,12 @@ footer.bg-black {
 }
 
 
-.fade-20 {
-	transition: opacity 200ms ease;
-	opacity: 0.2;
-}
-
 // ** FUNCTIONAL STYLES **
-
-// Spacing
-.mar-top {
- margin-top: $space;
-}
-.mar-right {
- margin-right: $space;
-}
-.mar-bottom_sm {
- margin-bottom: $space/2;
-}
-.mar-bottom {
- margin-bottom: $space;
-}
-.mar-bottom_lg {
-	margin-bottom: $space*2;
-	@media (max-width: 767px) {
-	 margin-bottom: $space;
-	}
-}
-
 
 // hide on mobile
 .hide-sm.hide-sm {
 	@media (max-width: $small-bp) {
-	 display:none;
+		display: none;
 	}
 }
 
@@ -192,14 +122,14 @@ footer.bg-black {
 // useful for one-off full-width boxes
 // without being too opinionated in other places that need overlap
 .hide-overflow {
-	overflow:hidden;
+	overflow: hidden;
 }
 
 // z-index
-
 .rise-up {
 	z-index: 1000;
 }
+
 .rise-to-top_small {
 	@media (max-width: 767px) {
 		order: -1;

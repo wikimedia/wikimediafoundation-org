@@ -39,6 +39,10 @@ export const filters = [
 
 export const mimicHeadingStyles = [
 	{
+		name: 'sans-p',
+		label: __( 'Sans p', 'shiro-admin' ),
+	},
+	{
 		name: 'h1',
 		label: __( 'Mimic h1', 'shiro-admin' ),
 	},
@@ -49,6 +53,10 @@ export const mimicHeadingStyles = [
 	{
 		name: 'h3',
 		label: __( 'Mimic h3', 'shiro-admin' ),
+	},
+	{
+		name: 'sans-h3',
+		label: __( 'Sans h3', 'shiro-admin' ),
 	},
 	{
 		name: 'h4',

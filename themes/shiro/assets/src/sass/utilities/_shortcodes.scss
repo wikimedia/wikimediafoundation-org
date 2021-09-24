@@ -1,0 +1,124 @@
+.facts-wrapper {
+	border-bottom: solid 1.2px #0054a6;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	padding-bottom: rem(18);
+
+	.fact-item {
+		border-left: solid 1.2px #0054a6;
+		flex: 1;
+		padding: 0 rem(16);
+
+		&:first-child {
+			border-left: 0;
+			padding-left: 0;
+		}
+
+		strong {
+			display: block;
+			font-size: rem(28);
+			line-height: 1.2;
+		}
+
+		.fact-label {
+			display: block;
+			font-size: rem(12);
+			font-weight: 700;
+			line-height: 1.2;
+		}
+
+		@media (min-width: $small-bp) {
+			padding: 0 rem(37);
+
+			strong {
+				font-size: rem(44);
+			}
+
+			.fact-label {
+				font-size: rem(18);
+			}
+		}
+
+		@media (min-width: $medium-bp) {
+			strong {
+				font-size: rem(54);
+			}
+
+			.fact-label {
+				font-size: rem(20);
+			}
+		}
+	}
+}
+
+.columns-wrapper {
+	&.columns-mobile-reverse {
+		@media (max-width: $medium-bp) {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+	}
+	@media (min-width: $medium-bp) {
+		align-content: flex-start;
+		display: flex;
+		flex-direction: row;
+
+		.column {
+			flex: 1;
+			position: relative;
+		}
+		.column table {
+			max-width: 90%;
+		}
+		.column img {
+			max-width: 100%;
+		}
+	}
+}
+
+// auto tweet shortcode, based on Fact module objects/facts
+// quotes section with 2 or 3 quotes has same structure
+.auto-tweet-container, .quotes-section-container {
+	position: relative;
+
+	.auto-tweet-inner, .quotes-section-inner {
+		background: $color-periwinkle;
+		display: flex;
+		flex-direction: column;
+		padding: rem(20);
+		position: relative;
+		z-index: 999;
+
+		.inline-social-list {
+			font-weight: bold;
+
+			svg,
+			img {
+				height: rem(20);
+				margin: 0;
+			}
+		}
+
+		.social-share {
+			align-self: flex-end;
+			margin-top: auto;
+			width: 100%;
+		}
+	}
+
+	.quotes-section-inner {
+		background-color: #fff;
+		border: 1px solid $wmui-color-base70;
+	}
+
+	.auto-tweet,
+	.quotes-section {
+		color: $wmui-color-base0;
+		font-weight: 400;
+
+		&::first-letter {
+			text-transform: capitalize;
+		}
+	}
+}

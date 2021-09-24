@@ -1,19 +1,19 @@
 .inline-languages {
-
 	@include global-margin-bottom;
-
+	@include list-reset;
 	border-top: 1px solid $wmui-color-base70;
 	text-align: center;
 
 	&__list {
-		padding-top: rem( 19 );
 		padding-bottom: rem( 21 );
+		padding-top: rem( 19 );
 	}
 
 	&__language {
-		margin: 0;
 		display: inline-block;
+		font-size: rem( 14 );
 		font-weight: 600;
+		line-height: 250%;
 
 		&--current {
 			color: $wmui-color-base0;
@@ -38,17 +38,6 @@
 			&:hover {
 				color: #3200be;
 			}
-		}
-	}
-
-	/**
-	 * This should be under .inline-languages__language, but because of existing
-	 * styles we have to force greater specificity.
-	 */
-	ul {
-		li {
-			font-size: rem( 14 );
-			line-height: 250%;
 		}
 	}
 }

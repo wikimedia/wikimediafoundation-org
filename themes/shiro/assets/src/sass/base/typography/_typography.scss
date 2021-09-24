@@ -1,152 +1,26 @@
-p {
-	@include font-size(15, 13);
-	line-height: 1.466;
-}
+a {
+	@include style-guide-link;
+	margin: rem(-1);
+	padding: rem(1);
 
-// Override the `article-main` class selector for use in the editor, so that
-// the block editor can be styled in the same way as frontend templates.
-@mixin article-main {
-	$article-main: ".article-main" !default;
-
-	#{$article-main} {
-		@content;
+	// TODO: This is not valid html, we should really fix all of these.
+	div, ul, p, #{$headings} {
+		color: $wmui-color-base10;
 	}
 }
 
-@mixin article-main-wrap {
-	$article-main: ".article-main" !default;
-
-	#{$article-main} & {
-		@content;
-	}
-}
-
-@include article-main {
-	p {
-
-		@include font-size(18, 13);
-		line-height: 1.72;
-		margin-bottom: 1rem;
-	}
-}
-
-.single-profile {
-	@include article-main {
-		p {
-			font-size: 1.1rem;
-		}
-	}
-}
-
-.single-story {
-	@include article-main {
-		p {
-			font-size: 1.125rem;
-			font-weight: 400;
-			line-height: 1.5;
-		}
-	}
-}
-
+p,
 .p {
-	@extend p;
+	@include p;
 }
 
-// .blockquote-container wrapped around blockquote via JS
-$blockquote-bp: 1230px;
-
-.blockquote-container,
-blockquote {
-	margin: 3rem 0;
-
-	@media (min-width: $blockquote-bp) {
-		margin: 5rem -100px;
-	}
-
-	@media (max-width: $medium-bp) {
-		margin: 5rem 2rem;
-	}
+.is-style-sans-p {
+	@include p;
+	font-family: $font-family-sans;
 }
 
-.blockquote-container blockquote,
-blockquote p {
-	font-size: 1.2rem;
-	line-height: 1.8;
-
-	@media (min-width: $medium-bp) {
-		font-size: 1.5rem;
+@each $slug, $desktop-size, $mobile-size, $line-height in $font-sizes {
+	.has-#{$slug}-font-size {
+		@include has-font-size( $slug );
 	}
-
-	@media (min-width: $blockquote-bp) {
-		font-size: 2rem;
-		padding-left: 0;
-	}
-}
-
-.blockquote-container blockquote {
-	margin-left: rem(30);
-
-	@media (min-width: $blockquote-bp) {
-		margin-left: 93px;
-	}
-
-	&:before {
-		content: "";
-		position: absolute;
-		background-image: url(assets/dist/images/quote-left.svg);
-		background-repeat: no-repeat;
-		background-size: contain;
-
-		bottom: 0;
-		height: 29px;
-		width: 41px;
-		top: -8px;
-		left: -30px;
-
-		@media (min-width: $medium-bp) {
-			top: -3px;
-		}
-
-		@media (min-width: $blockquote-bp) {
-			height: 65px;
-			width: 93px;
-			top: -30px;
-			left: -105px;
-		}
-	}
-
-	&:after {
-		content: "";
-		position: absolute;
-		height: 29px;
-		width: 41px;
-		right: -50px;
-		bottom: -7px;
-		background-image: url(assets/dist/images/quote-right.svg);
-		background-repeat: no-repeat;
-		background-size: contain;
-
-		@media (min-width: $blockquote-bp) {
-			height: 65px;
-			width: 93px;
-			right: -105px;
-			bottom: -20px;
-		}
-	}
-}
-
-.blockquote-container blockquote,
-blockquote p:first-child {
-	position: relative;
-	font-weight: 300;
-	display: inline;
-	padding-left: rem(20);
-}
-
-// functional styles
-.link-inline {
-	color: $color-blue;
-}
-.text-bold {
-	font-weight: bold;
 }

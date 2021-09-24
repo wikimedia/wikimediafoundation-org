@@ -26,12 +26,16 @@ $project_class = '_map';
 <div class="w-100p mod-margin-bottom home-project-list-container">
 	<div class="mw-980 std-mod mod-margin-bottom">
 		<?php if ( ! empty( $title ) ) : ?>
-			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $title ); ?> — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span></h3>
+			<p class="double-heading__secondary is-style-h5">
+				<?php echo esc_html( $title ); ?> — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
+			</p>
 		<?php endif; ?>
 		<div class="flex flex-medium flex-space-between home-project-list">
 			<div class="w-32p home-project-list-item  home-project-list-item_blue">
 				<?php if ( ! empty( $template_args['heading'] ) ) : ?>
-				<h2><?php echo esc_html( $template_args['heading'] ); ?></h2>
+				<h2 class="double-heading__primary is-style-h3">
+					<?php echo esc_html( $template_args['heading'] ); ?>
+				</h2>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $template_args['content'] ) ) : ?>

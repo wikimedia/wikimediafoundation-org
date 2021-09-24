@@ -1,17 +1,11 @@
-@include wysiwyg {
-	p {
-		margin-bottom: rem(40);
+p {
+	margin-bottom: rem(40);
 
-		+ p {
-			margin-top: rem(-20);
-		}
+	+ p {
+		margin-top: rem(-20);
+	}
 
-		&.no-default-margin {
-			margin-bottom: 0;
-
-			+ p {
-				margin-top: 0;
-			}
-		}
+	&.no-default-margin {
+		@include reset-p-margin;
 	}
 }

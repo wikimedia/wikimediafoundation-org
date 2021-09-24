@@ -1,31 +1,38 @@
-.wp-block-quote {
+blockquote {
 	border-left: 4px solid $wmui-color-base80;
-	margin: 3rem 0;
 	font-style: italic;
-	padding-left: rem(24);
+	margin: rem(80) auto;
+	max-width: rem(640);
+	padding-left: rem(22);
+
+	p {
+		@include reset-p-margin;
+		margin-bottom: rem(20);
+	}
 
 	cite {
+		@include has-font-size("small");
 		display: block;
+		font-family: $font-family-sans;
 		margin-top: rem(20);
-
-		@include wysiwyg-wrap {
-			font-family: $font-family-sans;
-		}
 	}
 
-	p:first-child {
-		padding-left: 0;
-	}
-
-	&.is-style-pullquote {
+	/**
+	 * Include :not(.wp-block-quote) to catch blockquotes from
+	 * older articles that are meant to be pullquotes.
+	 */
+	&.is-style-pullquote,
+	&:not(.wp-block-quote) {
 		border-left: none;
 		padding-left: 0;
 
-		@include wysiwyg-wrap {
-			p {
-				@include has-font-size("large");
-				line-height: 1.5;
-			}
+		p {
+			@include has-font-size("large");
+			line-height: 1.5;
+		}
+
+		cite {
+			@include has-font-size("default");
 		}
 	}
 }

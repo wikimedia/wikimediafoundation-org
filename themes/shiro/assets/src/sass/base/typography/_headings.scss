@@ -1,47 +1,41 @@
 $headings: "h1, h2, h3, h4, h5, h6, .is-style-h1, .is-style-h2, .is-style-h3, .is-style-h4, .is-style-h5, .is-style-h6";
 
-h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-}
-
 h1,
-.h1 {
-	@include font-size(64, 30);
+.h1,
+.is-style-h1 {
+	@include h1;
 }
 
 h2,
-.h2 {
-	@include responsive-margin(32, 32, bottom);
-	@include font-size(22, 18);
+.h2,
+.is-style-h2 {
+	@include h2;
 }
 
 h3,
-.h3 {
-	@include font-size(15, 13);
+.h3,
+.is-style-h3 {
+	@include h3;
+}
+
+.is-style-sans-h3 {
+	@include h3;
+	@include h3-sans;
 }
 
 h4,
-.h4 {
-	@include font-size(24, 18);
+.h4,
+.is-style-h4 {
+	@include h4;
 }
 
 h5,
-.h5 {
-	color: $color-dark-gray;
-	@include font-size(20, 16);
-	text-transform: uppercase;
+.h5,
+.is-style-h5 {
+	@include h5;
 }
 
-h6 {
-	color: $color-dark-gray;
-	@include font-size(20, 16);
-}
-
-.tax-role,
-.single-profile,
-.single-story {
-	h2 {
-		@include font-size(22, 18);
-		font-weight: 700;
-	}
+h6,
+.is-style-h6 {
+	@include h6;
 }

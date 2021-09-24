@@ -22,10 +22,12 @@
 	bottom: 0;
 	content: "";
 	display: block;
+	height: 100%;
 	left: 0;
 	position: absolute;
 	right: 0;
 	top: 0;
+	width: 100%;
 }
 
 @mixin aspect-ratio( $width, $height ) {
@@ -36,31 +38,5 @@
 		display: block;
 		padding-top: ($height / $width) * 100%;
 		width: 100%;
-	}
-}
-
-$content-wrapper: ".wysiwyg" !default;
-// The `.wysiwyg` class is used to style post content. This mixin provides a
-// way of replacing the wrapper class name used, so that the block editor can be
-// styled in the same way as frontend templates.
-@mixin wysiwyg {
-	#{$content-wrapper} {
-		@content;
-	}
-}
-
-@mixin wysiwyg-wrap {
-	#{$content-wrapper} & {
-		@content;
-	}
-}
-
-@mixin has-blocks-wrap {
-	@include wysiwyg-wrap {
-		.page.has-blocks &,
-		.single.has-blocks &,
-		.block-area.block-area & {
-			@content;
-		}
 	}
 }

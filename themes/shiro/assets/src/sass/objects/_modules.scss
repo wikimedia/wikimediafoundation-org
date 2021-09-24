@@ -53,7 +53,6 @@
 	}
 
 	.wysiwyg {
-
 		& + div {
 			@include responsive-margin(24, 32, top);
 		}

@@ -1,5 +1,4 @@
 $content-wrapper: ".block-editor-block-list__layout";
-$article-main: ".block-editor-block-list__layout";
 
 // Import helpers first.
 @import "helpers/helpers";
@@ -8,7 +7,9 @@ $article-main: ".block-editor-block-list__layout";
     # Base Styles
   =================== */
 @import "base/base";
-@import "css/style";
+@import "content/content";
+@import "objects/objects";
+@import "utilities/utilities";
 @import "editor/global";
 
 /* ==================

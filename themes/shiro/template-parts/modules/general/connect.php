@@ -42,13 +42,17 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 <div class="connect-container white-bg mod-margin-bottom">
 	<div class="mw-980">
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
-			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['pre_heading'] ); ?>
+			<p class="double-heading__secondary is-style-h5">
+				<?php echo esc_html( $template_args['pre_heading'] ); ?>
 				<?php if ( ! empty( $rand_translation_title['lang'] ) ) : ?>
 				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
-                <?php endif; ?></h3>
+                <?php endif; ?>
+			</p>
         <?php endif; ?>
 		<?php if ( ! empty( $template_args['heading'] ) ) : ?>
-			<h2 class="h2"><?php echo esc_html( $template_args['heading'] ); ?></h2>
+			<h2 class="double-heading__primary is-style-h3">
+				<?php echo esc_html( $template_args['heading'] ); ?>
+			</h2>
 		<?php endif; ?>
 
 		<div class="flex flex-medium flex-space-between">
@@ -56,7 +60,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 			<div class="module-mu w-48p rounded gray-module">
 				<?php wmf_show_icon( 'mail' ); ?>
 				<?php if ( ! empty( $template_args['subscribe_heading'] ) ) : ?>
-					<h3 class="h2"><?php echo esc_html( $template_args['subscribe_heading'] ); ?></h3>
+					<h3 class="is-style-sans-h3"><?php echo esc_html( $template_args['subscribe_heading'] ); ?></h3>
 				<?php endif; ?>
 				<?php if ( ! empty( $template_args['subscribe_content'] ) ) : ?>
 					<div class="wysiwyg">
@@ -88,7 +92,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 			<div class="module-mu w-48p rounded">
 				<?php wmf_show_icon( 'userAvatar' ); ?>
 				<?php if ( ! empty( $template_args['contact_heading'] ) ) : ?>
-					<h3 class="h2"><?php echo esc_html( $template_args['contact_heading'] ); ?></h3>
+					<h3 class="is-style-sans-h3"><?php echo esc_html( $template_args['contact_heading'] ); ?></h3>
 				<?php endif; ?>
 				<?php if ( ! empty( $template_args['contact_content'] ) ) : ?>
 					<div class="wysiwyg">
