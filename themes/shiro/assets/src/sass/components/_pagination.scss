@@ -1,7 +1,6 @@
 .pagination {
-	border-top: 1px solid $wmui-color-base70;
 	border-bottom: 1px solid $wmui-color-base70;
-	padding: rem(32) 0;
+	border-top: 1px solid $wmui-color-base70;
 	margin-bottom: 7rem;
 	@include has-font-size("default");
 	@include responsive-padding(24 20, 32 40);
@@ -9,14 +8,14 @@
 	&__inner {
 		display: flex;
 		justify-content: space-between;
-		max-width: rem(1360);
 		margin: 0 auto;
+		max-width: rem(1360);
 	}
 
 	&__previous-page,
 	&__next-page {
-		display: flex;
 		align-items: center;
+		display: flex;
 
 		&:hover {
 			color: $color-primary;
@@ -59,10 +58,11 @@
 		display: none;
 
 		li {
-			list-style-type: none;
 			display: inline-block;
-			margin-left: 0;
+			font-family: $font-family-sans;
+			list-style-type: none;
 			margin-bottom: 0;
+			margin-left: 0;
 		}
 
 		li.active a,
@@ -73,14 +73,13 @@
 
 		a,
 		span {
-			width: 40px;
+			align-items: center;
+			display: flex;
 			height: 40px;
+			justify-content: center;
 			text-align: center;
 			transition: 0.3s background-color, 0.3s color;
-
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			width: 40px;
 		}
 
 		a:hover {
@@ -94,9 +93,9 @@
 	}
 
 	svg {
-		transition: 0.3s transform;
 		position: relative;
 		top: 3px;
+		transition: 0.3s transform;
 	}
 
 	path {

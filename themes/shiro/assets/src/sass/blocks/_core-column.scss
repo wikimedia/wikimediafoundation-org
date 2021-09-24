@@ -42,6 +42,11 @@
 .wp-block-columns.tweet-columns {
 	p {
 		font-family: $font-family-sans;
+		margin-bottom: rem(20);
+	}
+
+	.is-style-h1 {
+		margin-bottom: rem(5);
 	}
 }
 

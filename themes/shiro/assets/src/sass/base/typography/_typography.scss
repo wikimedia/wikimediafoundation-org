@@ -4,7 +4,7 @@ a {
 	padding: rem(1);
 
 	// TODO: This is not valid html, we should really fix all of these.
-	div, ul, p, #{$headings} {
+	div, ul, p, #{$headings}, #{$heading-classes} {
 		color: $wmui-color-base10;
 	}
 }
@@ -12,6 +12,14 @@ a {
 p,
 .p {
 	@include p;
+}
+
+@each $slug in $heading-classes {
+	#{$slug} {
+		&:is(p) + p {
+			margin-top: 0;
+		}
+	}
 }
 
 .is-style-sans-p {

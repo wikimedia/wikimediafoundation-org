@@ -167,12 +167,6 @@ $header-bp-mw: 1049px;
 				.ungrid .page-landing {
 					margin-bottom: 0;
 				}
-
-				h2 {
-					border-bottom: 3px solid $wmui-color-base0;
-					@include font-size(38, 32);
-					font-weight: 500;
-				}
 			}
 
 			.page-landing .page-intro-text p {
@@ -276,12 +270,11 @@ $header-bp-mw: 1049px;
 		}
 
 		&.h2 {
-			@include font-size(40, 30);
-			font-weight: 700;
+			@include font-size(38, 32);
+			border-bottom: 3px solid $wmui-color-base0;
+			font-weight: 500;
 			margin-bottom: rem(40);
-			text-transform: none;
 		}
-
 
 		a {
 			color: $color-blue;
