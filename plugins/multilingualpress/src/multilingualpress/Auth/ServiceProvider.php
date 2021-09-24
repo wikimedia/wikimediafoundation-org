@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -30,14 +32,14 @@ class ServiceProvider implements FrameworkServiceProvider
     {
         $container->addService(
             AuthFactory::class,
-            function (): AuthFactory {
+            static function (): AuthFactory {
                 return new AuthFactory();
             }
         );
 
         $container->addService(
             EntityAuthFactory::class,
-            function (): EntityAuthFactory {
+            static function (): EntityAuthFactory {
                 return new EntityAuthFactory();
             }
         );

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,6 +17,7 @@ namespace Inpsyde\MultilingualPress\Module\QuickLinks\Settings;
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageView;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Module\QuickLinks\Model\ViewModel;
+
 use function Inpsyde\MultilingualPress\printNonceField;
 
 /**
@@ -99,7 +102,7 @@ class TabView implements SettingsPageView
     {
         return array_filter(
             $models,
-            function (ViewModel $model): bool {
+            static function (ViewModel $model): bool {
                 return (bool)$model;
             }
         );

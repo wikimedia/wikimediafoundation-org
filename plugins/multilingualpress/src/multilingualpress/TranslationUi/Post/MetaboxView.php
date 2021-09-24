@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -66,7 +68,7 @@ final class MetaboxView implements Metabox\View
         if ($remotePostIsTrashed) {
             $tabFields = array_filter(
                 $tabFields,
-                function (MetaboxFillable $tab): bool {
+                static function (MetaboxFillable $tab): bool {
                     return $tab->id() === MetaboxFields::TAB_RELATION;
                 }
             );
@@ -84,7 +86,8 @@ final class MetaboxView implements Metabox\View
                 <?php
                 /** @var MetaboxFillable $tab */
                 foreach ($tabFields as $tab) {
-                    if ($tab instanceof MetaboxFillable
+                    if (
+                        $tab instanceof MetaboxFillable
                         && $tab->enabled($this->relationshipContext)
                     ) {
                         $this->renderTabAnchor($tab);

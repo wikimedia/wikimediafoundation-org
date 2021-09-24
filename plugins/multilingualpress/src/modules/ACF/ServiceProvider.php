@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -20,10 +22,9 @@ use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
-use Inpsyde\MultilingualPress\TranslationUi\Post\PostRelationSaveHelper;
-use Inpsyde\MultilingualPress\TranslationUi\Post\Metabox;
-use Inpsyde\MultilingualPress\TranslationUi\Post\RelationshipContext;
 use Inpsyde\MultilingualPress\Module\ACF\TranslationUi\Post\MetaboxFields;
+use Inpsyde\MultilingualPress\TranslationUi\Post\Metabox;
+use Inpsyde\MultilingualPress\TranslationUi\Post\PostRelationSaveHelper;
 
 /**
  * Class ServiceProvider
@@ -81,7 +82,7 @@ class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             FieldCopier::class,
-            function () use ($container): FieldCopier {
+            static function () use ($container): FieldCopier {
                 return new FieldCopier($container[Copier::class]);
             }
         );
@@ -107,7 +108,7 @@ class ServiceProvider implements ModuleServiceProvider
     {
         add_filter(
             Metabox::HOOK_PREFIX . 'tabs',
-            function (array $tabs): array {
+            static function (array $tabs): array {
                 $acfMetaboxFields = new MetaboxFields();
                 return array_merge($tabs, $acfMetaboxFields->allFieldsTabs());
             },

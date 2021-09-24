@@ -1,6 +1,4 @@
-<?php # -*- coding: utf-8 -*-
-
-declare(strict_types=1);
+<?php
 
 /**
  * Uninstall routines.
@@ -9,6 +7,10 @@ declare(strict_types=1);
  *
  * @see https://developer.wordpress.org/plugins/the-basics/uninstall-methods/
  */
+
+# -*- coding: utf-8 -*-
+
+declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress;
 
@@ -33,7 +35,8 @@ if (!is_multisite()) {
 
 $mainPluginFile = __DIR__ . '/multilingualpress.php';
 
-if (plugin_basename($mainPluginFile) !== WP_UNINSTALL_PLUGIN
+if (
+    plugin_basename($mainPluginFile) !== WP_UNINSTALL_PLUGIN
     || !is_readable($mainPluginFile)
 ) {
     unset($mainPluginFile);
@@ -100,6 +103,13 @@ $uninstaller->deleteOnboardingData(
     ],
     [
         Core\Admin\Pointers\Pointers::USER_META_KEY,
+    ]
+);
+
+$uninstaller->deleteScheduledEvents(
+    [
+        SiteDuplication\Schedule\AttachmentDuplicatorScheduler::SCHEDULE_HOOK,
+        Schedule\Scheduler::ACTION_CLEANUP,
     ]
 );
 

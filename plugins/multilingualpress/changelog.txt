@@ -1,3 +1,78 @@
+version 3.8.1
+* Fixed: Taxonomies for remote post are deleted when updating the source post
+* Fixed: Bug in cache update core
+* Fixed: Error on plugin activation
+* Fixed: Language switcher block is displayed incorrectly on frontend when running on WordPress version 5.8+
+
+version 3.8.0
+* Fixed: Redirection bug when editing post/page with Elementor page builder
+* Added: An alert to ask before leaving if user has unsaved edits in translation meta box
+* Added: Status 'future' in post translation metabox status field
+* Added: Better quality logo for high resolution displays in network admin menu
+* Fixed: Disable new site plugin activation, Copy Attachments and Connect content options when based on site doesn't have any site selected
+* Fixed: Deleted sites are still listed when plugin was temporarily inactive
+* Fixed: Unschedule all Cron jobs when the plugin is uninstalled
+* Added: The feature to copy users on site creation
+* Fixed: de_DE_formal PHP redirection not working correctly
+* Added: Improve Translation Metabox refreshing behavior when the post is saved via Gutenberg
+* Fixed: Fatal error when accessing network admin without permission
+* Added: Language and hreflang to language switcher links: WCAG 2.1 AA accessibility improvement
+* Fixed: Wrong Permalink structure for custom taxonomies
+* Fixed: Improve ACF fields copy functionality
+* Fixed: WooCommerce support when the module is inactive
+* Fixed: WooCommerce Brands support when the module is inactive
+* Added: Remove support for Elementor post types and their taxonomies
+* Fixed: Bug within trasher module
+* Fixed: Improve Elementor data copy process
+* Added: Support for WooCommerce Inventory fields
+* Fixed: The Warning from Updater.php
+* Added: PHP min requirement is now 7.2, WordPress min requirement is now 5.0
+
+version 3.7.2
+* Fixed: Bug when switching tabs in post translation meta box
+* Fixed: Do not display admin messages in the frontend
+* Fixed: Include all the necessary module admin JS files
+
+version 3.7.1
+* Fixed: Error within WooCommerce product translation metabox when plugin is running on PHP 8
+
+version 3.7.0
+* Fixed: Tags and categories selectbox is empty when generated with AJAX
+* Added: Improved support for WooCommerce Downloadable and Virtual Products
+* Added: User biography translation support
+* Added: Copy navigation menu support
+* Fixed: Support for PHP 8
+* Fixed: Bugs when copying ACF fields
+* Fixed: Elementor global site styles not copied to remote post
+* Fixed: WooCommerce Brands support is not working
+* Added: Notice about increasing minimum PHP & WP Versions from next release
+* Fixed: PHPCS Errors on VIPGO
+* Fixed: Bug with user language checking on JS redirection
+* Fixed: WooCommerce Brands plugin support cannot be activated with the latest Brands version installed.
+* Added: Do not add language to post title when creating a new post via translation metabox
+* Added: Filter to allow more nav items within the cache
+
+2021-02-16 - version 3.6.0
+* Fixed: Problem with MultilingualPress and Composer v2
+* Added: Copy all tables of source site when cloning
+* Fixed: The attribute terms are not correctly linked in the created product
+* Added: Support for Beaver Builder plugin
+* Added: Support for Elementor plugin
+* Fixed: Errors on Licencing page
+* Fixed: RTL bugs
+* Added: Filter to display the remote taxonomies select-box via AJAX to improve the performance
+* Added: Remove Guzzle dependency
+* Fixed: bug with pre_edit_form action and passed arguments
+* Fixed: bug with multiple GET requests
+* Fixed: Wrong HTML lang attribute value with Deutsch (sie)
+* Added: Support for Customizer
+* Fixed: Deprecated code "edit_tag_form_pre"
+* Fixed: bug with removing post tags
+* Fixed: Description text on Language Manager screen
+* Fixed: Description text when plugin is first time activated.
+* Fixed: JS error when creating a new site, so the copy images progressbar will be visible
+* Fixed: Bug during creating a new site with “Based On“ option on WP VIP platforms.
+
 2020-09-28 - version 3.5.0
 * Add: Advanced Custom Fields plugin support.
 * Add: WooCommerce Brands plugin support.

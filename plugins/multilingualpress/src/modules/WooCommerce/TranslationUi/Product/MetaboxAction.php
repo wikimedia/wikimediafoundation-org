@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -21,6 +23,9 @@ use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
 use Inpsyde\MultilingualPress\TranslationUi\Post;
+use RuntimeException;
+use WC_Cache_Helper;
+use WC_Product;
 
 /**
  * Class MetaboxAction
@@ -37,7 +42,8 @@ final class MetaboxAction implements Metabox\Action
     const PRODUCT_GALLERY_META_KEY = 'product_image_gallery';
     // phpcs:disable Inpsyde.CodeQuality.LineLength.TooLong
     const ACTION_METABOX_BEFORE_UPDATE_REMOTE_PRODUCT = 'multilingualpress.metabox_before_update_remote_product';
-    const ACTION_METABOX_AFTER_UPDATE_REMOTE_PRODUCT = 'multilingualpress.metabox_before_update_remote_product';
+    const ACTION_METABOX_AFTER_UPDATE_REMOTE_PRODUCT = 'multilingualpress.metabox_after_update_remote_product';
+    const ACTION_METABOX_AFTER_SAVE_REMOTE_PRODUCT_VARIATIONS = 'multilingualpress.metabox_after_save_remote_product_variations';
     // phpcs:enable
 
     /**
@@ -146,17 +152,20 @@ final class MetaboxAction implements Metabox\Action
         $sourceSiteId = $this->postRelationshipContext->sourceSiteId();
         $sourceProductId = $this->postRelationshipContext->sourcePostId();
         $remoteSiteId = $this->postRelationshipContext->remoteSiteId();
+        $remoteProductId = $this->postRelationshipContext->remotePostId();
 
         if ($sourceSiteId === $remoteSiteId || !$this->postRelationshipContext->hasRemotePost()) {
             return true;
         }
 
         switch_to_blog($sourceSiteId);
-        /** @var \WC_Product $sourceProduct */
+        /** @var WC_Product $sourceProduct */
         $sourceProduct = wc_get_product($this->postRelationshipContext->sourcePost());
         if ($sourceProduct instanceof \WC_Product_Variable) {
             $sourceProductVariations = $this->variationProducts($sourceProduct);
         }
+
+        $decimals = wc_get_price_decimal_separator();
 
         $sourceProductVariationAttachmentData = $this->getSourceProductVariationAttachmentData(
             $sourceProductVariations
@@ -173,11 +182,20 @@ final class MetaboxAction implements Metabox\Action
             $overrideProductType
         );
 
+        if (!$remoteProduct->get_id() && $remoteProductId) {
+            $remoteProduct->set_id($remoteProductId);
+        }
+
         if (!$remoteProduct) {
             return true;
         }
         if (!current_user_can('edit_product', $remoteProduct->get_id())) {
             return false;
+        }
+
+        if ($overrideProductType) {
+            $sourceVirtualAttribute = $sourceProduct->get_virtual();
+            $remoteProduct->set_virtual($sourceVirtualAttribute);
         }
 
         $overrideVariations = $values[MetaboxFields::FIELD_OVERRIDE_VARIATIONS] ?? false;
@@ -190,14 +208,23 @@ final class MetaboxAction implements Metabox\Action
             );
         }
 
-        $sku = $values[MetaboxFields::FIELD_SKU] ?? '';
-        $sku and $this->maybeSetSku($remoteProduct, $sku);
-
         $overrideDownloadableFiles = $values[MetaboxFields::FIELD_OVERRIDE_DOWNLOADABLE_FILES] ?? false;
         $overrideDownloadableFiles and $this->maybeSetDownloadableFiles(
             $sourceProduct,
             $remoteProduct
         );
+
+        $overrideDownloadableSettings = $values[MetaboxFields::FIELD_OVERRIDE_DOWNLOADABLE_SETTINGS] ?? false;
+        $overrideDownloadableSettings and $this->maybeSetDownloadableSettings(
+            $sourceProduct,
+            $remoteProduct
+        );
+
+        $overrideInventorySettings = $values[MetaboxFields::FIELD_OVERRIDE_INVENTORY_SETTINGS] ?? false;
+        $inventoryFieldValues = $overrideInventorySettings
+            ? $this->getInventoryFields($sourceProduct)
+            : array_intersect_key($values, $this->getInventoryFields($sourceProduct));
+        $this->setInventoryFields($remoteProduct, $inventoryFieldValues);
 
         $this->maybeSetProductUrlAndButtonText(
             $remoteProduct,
@@ -205,10 +232,10 @@ final class MetaboxAction implements Metabox\Action
             $values[MetaboxFields::FIELD_PRODUCT_URL_BUTTON_TEXT] ?? ''
         );
 
-        $regularPrice = $values[MetaboxFields::FIELD_REGULAR_PRICE] ?? '';
+        $regularPrice = str_replace($decimals, '.', $values[MetaboxFields::FIELD_REGULAR_PRICE]) ?? '';
         $regularPrice and $remoteProduct->set_regular_price($regularPrice);
 
-        $salePrice = $values[MetaboxFields::FIELD_SALE_PRICE] ?? '';
+        $salePrice = str_replace($decimals, '.', $values[MetaboxFields::FIELD_SALE_PRICE]) ?? '';
         $salePrice and $remoteProduct->set_sale_price($salePrice);
 
         $productShortDescription = $values[MetaboxFields::FIELD_PRODUCT_SHORT_DESCRIPTION] ?? '';
@@ -250,8 +277,8 @@ final class MetaboxAction implements Metabox\Action
          * Performs an action before the product has been updated
          *
          * @param Post\RelationshipContext $relationshipContext
-         * @param \WC_Product $remoteProduct
-         * @param \WC_Product $sourceProduct
+         * @param WC_Product $remoteProduct
+         * @param WC_Product $sourceProduct
          */
         do_action(
             self::ACTION_METABOX_BEFORE_UPDATE_REMOTE_PRODUCT,
@@ -266,8 +293,8 @@ final class MetaboxAction implements Metabox\Action
          * Performs an action after the product has been updated
          *
          * @param Post\RelationshipContext $relationshipContext
-         * @param \WC_Product $remoteProduct
-         * @param \WC_Product $sourceProduct
+         * @param WC_Product $remoteProduct
+         * @param WC_Product $sourceProduct
          */
         do_action(
             self::ACTION_METABOX_AFTER_UPDATE_REMOTE_PRODUCT,
@@ -293,6 +320,15 @@ final class MetaboxAction implements Metabox\Action
                 $relationshipHelper,
                 $sourceProductVariationAttachmentData
             );
+
+            do_action(
+                self::ACTION_METABOX_AFTER_SAVE_REMOTE_PRODUCT_VARIATIONS,
+                $this->postRelationshipContext,
+                $relationshipHelper,
+                $sourceProduct,
+                $remoteProduct,
+                $request
+            );
         }
 
         if ($overrideProductGallery) {
@@ -303,43 +339,22 @@ final class MetaboxAction implements Metabox\Action
     }
 
     /**
-     * Set the sku for the remote product
-     * If a product with the same sku exists, set an admin notice to inform the user
-     *
-     * @param string $sku
-     * @param \WC_Product $remoteProduct
-     */
-    private function maybeSetSku(\WC_Product $remoteProduct, string $sku)
-    {
-        try {
-            $sku and $remoteProduct->set_sku($sku);
-        } catch (\WC_Data_Exception $exc) {
-            $message = sprintf(
-                '%s Anyhow, your products are connected, remember to set the correct sku for the remote product.',
-                $exc->getMessage()
-            );
-            $adminNotice = AdminNotice::error($message);
-            $adminNotice->makeDismissible();
-            $this->notice->add($adminNotice, 'product');
-        }
-    }
-
-    /**
      * Set grouped products to remote site by retrieve the related products
      * by the source one.
      *
      * @param ProductRelationSaveHelper $relationshipHelper
-     * @param \WC_Product $sourceProduct
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $sourceProduct
+     * @param WC_Product $remoteProduct
      * @return bool
      */
     private function maybeSetGroupedProducts(
         ProductRelationSaveHelper $relationshipHelper,
-        \WC_Product $sourceProduct,
-        \WC_Product $remoteProduct
+        WC_Product $sourceProduct,
+        WC_Product $remoteProduct
     ): bool {
 
-        if (!$sourceProduct instanceof \WC_Product_Grouped
+        if (
+            !$sourceProduct instanceof \WC_Product_Grouped
             || !$remoteProduct instanceof \WC_Product_Grouped
         ) {
             return false;
@@ -371,14 +386,14 @@ final class MetaboxAction implements Metabox\Action
      * Set the upsells products for the remote product
      *
      * @param ProductRelationSaveHelper $relationshipHelper
-     * @param \WC_Product $sourceProduct
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $sourceProduct
+     * @param WC_Product $remoteProduct
      * @return bool
      */
     private function maybeSetUpsellsProducts(
         ProductRelationSaveHelper $relationshipHelper,
-        \WC_Product $sourceProduct,
-        \WC_Product $remoteProduct
+        WC_Product $sourceProduct,
+        WC_Product $remoteProduct
     ): bool {
 
         $sourceUpsellsProductIds = $sourceProduct->get_upsell_ids('edit');
@@ -404,18 +419,68 @@ final class MetaboxAction implements Metabox\Action
     }
 
     /**
+     * Set the inventory fields for the remote product
+     *
+     * @param WC_Product $remoteProduct
+     * @param array $values List of all Woo inventory field values (field_key => field_value pairs)
+     * @throws \WC_Data_Exception
+     */
+    protected function setInventoryFields(WC_Product $remoteProduct, array $values)
+    {
+        $sku = $values[MetaboxFields::FIELD_SKU] ?? '';
+        $remoteProduct->set_sku($sku);
+
+        $manageStock = (bool)$values[MetaboxFields::FIELD_MANAGE_STOCK] ?? false;
+        $remoteProduct->set_manage_stock($manageStock);
+
+        $stockQuantity = (int)$values[MetaboxFields::FIELD_STOCK] ?? 0;
+        $remoteProduct->set_stock_quantity($stockQuantity);
+
+        $backorders = $values[MetaboxFields::FIELD_BACKORDERS] ?? '';
+        $backorders and $remoteProduct->set_backorders($backorders);
+
+        $lowStockThreshold = (int)$values[MetaboxFields::FIELD_LOW_STOCK_AMOUNT] ?? 0;
+        $remoteProduct->set_low_stock_amount($lowStockThreshold);
+
+        $stockStatus = $values[MetaboxFields::FIELD_STOCK_STATUS] ?? '';
+        $stockStatus and $remoteProduct->set_stock_status($stockStatus);
+
+        $soldIndividually = (bool)$values[MetaboxFields::FIELD_SOLD_INDIVIDUALLY] ?? false;
+        $remoteProduct->set_sold_individually($soldIndividually);
+    }
+
+    /**
+     * Get product inventory field values
+     *
+     * @param WC_Product $sourceProduct
+     * @return array array of product inventory fields as field_key => field_value pairs
+     */
+    protected function getInventoryFields(WC_Product $sourceProduct): array
+    {
+        return [
+            MetaboxFields::FIELD_SKU => $sourceProduct->get_sku(),
+            MetaboxFields::FIELD_MANAGE_STOCK => $sourceProduct->get_manage_stock(),
+            MetaboxFields::FIELD_STOCK => $sourceProduct->get_stock_quantity(),
+            MetaboxFields::FIELD_BACKORDERS => $sourceProduct->get_backorders(),
+            MetaboxFields::FIELD_LOW_STOCK_AMOUNT => $sourceProduct->get_low_stock_amount(),
+            MetaboxFields::FIELD_STOCK_STATUS => $sourceProduct->get_stock_status(),
+            MetaboxFields::FIELD_SOLD_INDIVIDUALLY => $sourceProduct->get_sold_individually(),
+        ];
+    }
+
+    /**
      * Set the cross sells product for the remote product by retrieve the related products
      * by the source one.
      *
      * @param ProductRelationSaveHelper $relationshipHelper
-     * @param \WC_Product $sourceProduct
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $sourceProduct
+     * @param WC_Product $remoteProduct
      * @return bool
      */
     private function maybeSetCrossellsProducts(
         ProductRelationSaveHelper $relationshipHelper,
-        \WC_Product $sourceProduct,
-        \WC_Product $remoteProduct
+        WC_Product $sourceProduct,
+        WC_Product $remoteProduct
     ): bool {
 
         $sourceCrossellsProductIds = $sourceProduct->get_cross_sell_ids('edit');
@@ -443,14 +508,14 @@ final class MetaboxAction implements Metabox\Action
     /**
      * Set Product Gallery Ids
      *
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $remoteProduct
      * @param int $sourceSiteId
      * @param int $remoteSiteId
      * @param Request $request
      * @return bool
      */
     private function setProductGalleryIds(
-        \WC_Product $remoteProduct,
+        WC_Product $remoteProduct,
         int $sourceSiteId,
         int $remoteSiteId,
         Request $request
@@ -487,12 +552,12 @@ final class MetaboxAction implements Metabox\Action
     /**
      * Attach Product Gallery Images to their own product
      *
-     * @param \WC_Product $product
+     * @param WC_Product $product
      */
-    private function attachGalleryImagesToProduct(\WC_Product $product)
+    private function attachGalleryImagesToProduct(WC_Product $product)
     {
         $attachmentIds = array_map('intval', $product->get_gallery_image_ids('edit'));
-        $attachmentIds = array_filter($attachmentIds, function (int $id): bool {
+        $attachmentIds = array_filter($attachmentIds, static function (int $id): bool {
             return $id > 0;
         });
         $attachmentIds = array_filter($attachmentIds);
@@ -508,18 +573,19 @@ final class MetaboxAction implements Metabox\Action
     /**
      * Set Product Url and Button text if product type is an external one
      *
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $remoteProduct
      * @param string $url
      * @param string $buttonText
      * @return bool
      */
     private function maybeSetProductUrlAndButtonText(
-        \WC_Product $remoteProduct,
+        WC_Product $remoteProduct,
         string $url,
         string $buttonText
     ): bool {
 
-        if (!$url
+        if (
+            !$url
             || !$buttonText
             || !$remoteProduct instanceof \WC_Product_External
         ) {
@@ -535,14 +601,14 @@ final class MetaboxAction implements Metabox\Action
     /**
      * Set the remote product attributes
      *
-     * @param \WC_Product $sourceProduct
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $sourceProduct
+     * @param WC_Product $remoteProduct
      * @param ProductRelationSaveHelper $relationshipHelper
      * @return bool
      */
     private function setRemoteProductAttributes(
-        \WC_Product $sourceProduct,
-        \WC_Product $remoteProduct,
+        WC_Product $sourceProduct,
+        WC_Product $remoteProduct,
         ProductRelationSaveHelper $relationshipHelper
     ): bool {
 
@@ -569,14 +635,14 @@ final class MetaboxAction implements Metabox\Action
     /**
      * Store the remote product variations.
      *
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $remoteProduct
      * @param array $sourceVariations
      * @param ProductRelationSaveHelper $relationshipHelper
      * @param array $sourceProductVariationAttachmentData
      * @return bool
      */
     private function saveRemoteProductVariations(
-        \WC_Product $remoteProduct,
+        WC_Product $remoteProduct,
         array $sourceVariations,
         ProductRelationSaveHelper $relationshipHelper,
         array $sourceProductVariationAttachmentData
@@ -610,6 +676,14 @@ final class MetaboxAction implements Metabox\Action
             );
 
             $remoteVariation->save();
+
+            $this->contentRelations->createRelationship(
+                [
+                    $this->postRelationshipContext->sourceSiteId() => $sourceVariation->get_id(),
+                    $this->postRelationshipContext->remoteSiteId() => $remoteVariation->get_id(),
+                ],
+                'post'
+            );
         }
 
         return true;
@@ -641,13 +715,13 @@ final class MetaboxAction implements Metabox\Action
      *
      * @param ProductRelationSaveHelper $helper
      * @param Post\RelationshipContext $context
-     * @param \WC_Product $product
+     * @param WC_Product $product
      * @return array
      */
     private function duplicateAttributes(
         ProductRelationSaveHelper $helper,
         Post\RelationshipContext $context,
-        \WC_Product $product
+        WC_Product $product
     ): array {
 
         $attributes = $product->get_attributes();
@@ -685,7 +759,7 @@ final class MetaboxAction implements Metabox\Action
      * @param ProductRelationSaveHelper $helper
      * @param \WC_Product_Variation $sourceVariation
      * @param array $remoteAttributeTerms
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $remoteProduct
      * @param array $sourceProductVariationAttachmentData
      * @return \WC_Product_Variation
      */
@@ -693,7 +767,7 @@ final class MetaboxAction implements Metabox\Action
         ProductRelationSaveHelper $helper,
         \WC_Product_Variation $sourceVariation,
         array $remoteAttributeTerms,
-        \WC_Product $remoteProduct,
+        WC_Product $remoteProduct,
         array $sourceProductVariationAttachmentData
     ): \WC_Product_Variation {
 
@@ -730,6 +804,7 @@ final class MetaboxAction implements Metabox\Action
             'date_on_sale_to' => $sourceVariation->get_date_on_sale_to('edit'),
             'manage_stock' => $sourceVariation->get_manage_stock('edit'),
             'virtual' => $sourceVariation->get_virtual('edit'),
+            'sold_individually' => $sourceVariation->get_sold_individually('edit'),
             'downloads' => $sourceVariation->get_downloads('edit'),
             'downloadable' => $sourceVariation->get_downloadable('edit'),
             'download_limit' => $sourceVariation->get_download_limit('edit'),
@@ -757,6 +832,7 @@ final class MetaboxAction implements Metabox\Action
      * @param \WC_Product_Attribute $sourceAttribute
      * @param array $options
      * @return \WC_Product_Attribute
+     * @throws RuntimeException
      */
     private function duplicateProductAttributeWithCustomOptions(
         \WC_Product_Attribute $sourceAttribute,
@@ -765,6 +841,10 @@ final class MetaboxAction implements Metabox\Action
 
         $taxonomyName = $sourceAttribute->get_name();
         $id = wc_attribute_taxonomy_id_by_name($taxonomyName);
+
+        if ($id === 0) {
+            $id = $this->createProductAttribute($taxonomyName);
+        }
 
         $productAttribute = new \WC_Product_Attribute();
 
@@ -781,22 +861,48 @@ final class MetaboxAction implements Metabox\Action
     /**
      * Set downloadable files if the product is downloadable
      *
-     * @param \WC_Product $sourceProduct
-     * @param \WC_Product $remoteProduct
+     * @param WC_Product $sourceProduct
+     * @param WC_Product $remoteProduct
      * @return bool
      */
     private function maybeSetDownloadableFiles(
-        \WC_Product $sourceProduct,
-        \WC_Product $remoteProduct
+        WC_Product $sourceProduct,
+        WC_Product $remoteProduct
     ): bool {
 
         $downloads = $sourceProduct->get_downloads();
         if (!$downloads || !$sourceProduct->is_downloadable()) {
+            $remoteProduct->set_downloads($downloads);
             return false;
         }
 
         $remoteProduct->set_downloadable(true);
         $remoteProduct->set_downloads($downloads);
+
+        return true;
+    }
+
+    /**
+     * Copy downloadable Settings if the product is downloadable
+     *
+     * @param WC_Product $sourceProduct
+     * @param WC_Product $remoteProduct
+     * @return bool
+     */
+    private function maybeSetDownloadableSettings(
+        WC_Product $sourceProduct,
+        WC_Product $remoteProduct
+    ): bool {
+
+        if (!$sourceProduct->is_downloadable()) {
+            return false;
+        }
+
+        $downloadLimit = $sourceProduct->get_download_limit();
+        $downloadExpiry = $sourceProduct->get_download_expiry();
+
+        $remoteProduct->set_download_limit($downloadLimit);
+        $remoteProduct->set_download_expiry($downloadExpiry);
 
         return true;
     }
@@ -854,6 +960,7 @@ final class MetaboxAction implements Metabox\Action
     {
         $fields = [];
         $allTabs = $this->metaboxFields->allFieldsTabs();
+
         /** @var MetaboxTab $tab */
         foreach ($allTabs as $tab) {
             $fields += $this->tabFieldsValues($tab, $request);
@@ -922,5 +1029,42 @@ final class MetaboxAction implements Metabox\Action
         }
 
         return $sourceProductVariationAttachmentData;
+    }
+
+    /**
+     * @param string $taxonomyName
+     * @return int
+     * @throws RuntimeException
+     */
+    protected function createProductAttribute(string $taxonomyName): int
+    {
+        $format = ['%s', '%s', '%s', '%s', '%d'];
+        $data = [
+            'attribute_label' => get_taxonomy($taxonomyName)->labels->singular_name,
+            'attribute_name' => str_replace('pa_', '', $taxonomyName),
+            'attribute_type' => 'select',
+            'attribute_orderby' => 'menu_order',
+            'attribute_public' => 0,
+        ];
+
+        global $wpdb;
+        $result = $wpdb->insert(
+            $wpdb->prefix . 'woocommerce_attribute_taxonomies',
+            $data,
+            $format
+        );
+
+        if (is_wp_error($result)) {
+            throw new RuntimeException(
+                $result->get_error_message() ?? 'Can not create attribute',
+                400
+            );
+        }
+
+        wp_schedule_single_event(time(), 'woocommerce_flush_rewrite_rules');
+        delete_transient('wc_attribute_taxonomies');
+        WC_Cache_Helper::incr_cache_prefix('woocommerce-attributes');
+
+        return $wpdb->insert_id;
     }
 }

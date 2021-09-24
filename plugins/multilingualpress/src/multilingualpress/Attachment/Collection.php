@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -54,6 +56,7 @@ class Collection
         $sql = "SELECT meta_value FROM {$this->wpdb->postmeta} WHERE meta_key = %s LIMIT %d OFFSET %d";
 
         /** @var \stdClass[] $metadata */
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $metadata = $this->wpdb->get_results(
             $this->wpdb->prepare(
                 $sql,
@@ -62,6 +65,7 @@ class Collection
                 $offset
             )
         );
+        // phpcs:enable
 
         if (!$metadata) {
             return [];
@@ -83,9 +87,11 @@ class Collection
     {
         $sql = "SELECT COUNT(*) FROM {$this->wpdb->postmeta} WHERE meta_key = %s";
         /** @var \stdClass[] $metadata */
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $count = (int)$this->wpdb->get_var(
             $this->wpdb->prepare($sql, self::META_KEY_ATTACHMENTS)
         );
+        // phpcs:enable
 
         return (int)ceil($count);
     }

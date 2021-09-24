@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,6 +16,7 @@ namespace Inpsyde\MultilingualPress\TranslationUi\Post;
 
 use Inpsyde\MultilingualPress\Framework\Filter\Filter;
 use Inpsyde\MultilingualPress\Framework\Filter\FilterTrait;
+
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
 class PostModifiedDateFilter implements Filter

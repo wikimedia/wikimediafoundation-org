@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -89,7 +91,7 @@ class LanguageNegotiator
 
         $targets = array_filter(
             $targets,
-            function (RedirectTarget $target): bool {
+            static function (RedirectTarget $target): bool {
                 return 0 < $target->userPriority();
             }
         );
@@ -100,7 +102,7 @@ class LanguageNegotiator
 
         uasort(
             $targets,
-            function (RedirectTarget $left, RedirectTarget $right): int {
+            static function (RedirectTarget $left, RedirectTarget $right): int {
                 $leftPriority = $left->priority() * $left->userPriority();
                 $rightPriority = $right->priority() * $right->userPriority();
 
@@ -197,7 +199,7 @@ class LanguageNegotiator
 
         uasort(
             $targets,
-            function (RedirectTarget $left, RedirectTarget $right): int {
+            static function (RedirectTarget $left, RedirectTarget $right): int {
                 return $right->priority() <=> $left->priority();
             }
         );
@@ -222,7 +224,7 @@ class LanguageNegotiator
 
         $args or $args = new TranslationSearchArgs();
 
-        $context = new WordpressContext;
+        $context = new WordpressContext();
         $args->forContentId($context->queriedObjectId())
             ->forSiteId(get_current_blog_id())
             ->forPostType($context->postType())
@@ -235,7 +237,7 @@ class LanguageNegotiator
 
         return array_filter(
             $translations,
-            function (Translation $translation): bool {
+            static function (Translation $translation): bool {
                 return (bool)$translation->remoteUrl();
             }
         );
@@ -279,7 +281,7 @@ class LanguageNegotiator
      */
     private function languagePriority(Language $language, array $languages): float
     {
-        $tag = strtolower($language->bcp47tag());
+        $tag = $this->languageTag($language);
 
         if (isset($languages[$tag])) {
             return (float)$languages[$tag];
@@ -293,5 +295,26 @@ class LanguageNegotiator
         }
 
         return 0.0;
+    }
+
+    /**
+     * The Method will get the language tag
+     * It will also fix the language tags for language variants
+     * and will remove the third part from language ta so de-DE-formal will become de-DE
+     *
+     * @param Language $language The language Object
+     * @return string The language bcp47 tag
+     */
+    private function languageTag(Language $language): string
+    {
+        $languageTag = strtolower($language->bcp47tag());
+        if ($language->type() !== 'variant') {
+            return $languageTag;
+        }
+
+        $languageParts = explode('-', $languageTag);
+        $languageTag = $languageParts[0] . '-' . $languageParts[1];
+
+        return $languageTag;
     }
 }

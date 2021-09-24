@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,11 +14,12 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Core;
 
+// phpcs:enable
+use WP_Taxonomy;
+
 // phpcs:disable WordPress.PHP.StrictInArray.MissingArguments
 use function in_array;
 use function is_array;
-// phpcs:enable
-use WP_Taxonomy;
 
 /**
  * Class TaxonomyRepository
@@ -54,7 +57,7 @@ class TaxonomyRepository
         if ($this->allAvailableTaxonomies) {
             uasort(
                 $this->allAvailableTaxonomies,
-                function (WP_Taxonomy $left, WP_Taxonomy $right): int {
+                static function (WP_Taxonomy $left, WP_Taxonomy $right): int {
                     return strcasecmp($left->labels->name, $right->labels->name);
                 }
             );
@@ -107,7 +110,7 @@ class TaxonomyRepository
 
         $supported = array_filter(
             $settings,
-            function (array $data): bool {
+            static function (array $data): bool {
                 return $data[self::FIELD_ACTIVE] ?? false;
             }
         );
@@ -185,7 +188,7 @@ class TaxonomyRepository
             $allTaxonomies = array_filter(
                 $allTaxonomies,
                 // phpcs:ignore Inpsyde.CodeQuality.ArgumentTypeDeclaration.NoArgumentType
-                function ($taxonomy): bool {
+                static function ($taxonomy): bool {
                     return $taxonomy instanceof WP_Taxonomy and $taxonomy->name !== 'link_category';
                 }
             );

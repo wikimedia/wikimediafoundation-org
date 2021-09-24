@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -29,7 +31,7 @@ class ShortDescription
         $key = MetaboxFields::FIELD_PRODUCT_SHORT_DESCRIPTION;
         $value = $this->value($context);
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <tr>
             <th scope="row">
@@ -66,6 +68,11 @@ class ShortDescription
     {
         $product = wc_get_product($relationshipContext->remotePostId());
         $value = '';
+
+        if (!$product) {
+            return $value;
+        }
+
         if (method_exists($product, 'get_short_description')) {
             $value = $product->get_short_description();
         }
@@ -81,7 +88,7 @@ class ShortDescription
      */
     private function printDefaultEditorScripts()
     {
-        add_action('admin_print_footer_scripts', function () {
+        add_action('admin_print_footer_scripts', static function () {
             \_WP_Editors::print_default_editor_scripts();
         });
     }

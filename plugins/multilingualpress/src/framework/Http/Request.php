@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -26,6 +28,13 @@ interface Request
     const POST = 'POST';
     const PUT = 'PUT';
     const TRACE = 'TRACE';
+
+    const INPUT_GET = INPUT_GET;
+    const INPUT_POST = INPUT_POST;
+    const INPUT_REQUEST = INPUT_REQUEST;
+    const INPUT_COOKIE = INPUT_COOKIE;
+    const INPUT_SERVER = INPUT_SERVER;
+    const INPUT_ENV = INPUT_ENV;
 
     const METHODS = [
         self::CONNECT,
@@ -57,14 +66,14 @@ interface Request
      * Return a value from request body, optionally filtered.
      *
      * @param string $name
-     * @param int $method
+     * @param int $source The input source of the value. One of the `INPUT_*` constants.
      * @param int $filter
      * @param int $options
      * @return mixed
      */
     public function bodyValue(
         string $name,
-        int $method = INPUT_REQUEST,
+        int $source = self::INPUT_REQUEST,
         int $filter = FILTER_UNSAFE_RAW,
         int $options = FILTER_FLAG_NONE
     );

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,6 +16,7 @@ namespace Inpsyde\MultilingualPress\Language;
 
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress\Framework\Language\Language as FrameworkLanguage;
+
 use function Inpsyde\MultilingualPress\languageByTag;
 
 /**

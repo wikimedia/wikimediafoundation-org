@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Module\WooCommerce;
 use Inpsyde\MultilingualPress\Core\TaxonomyRepository;
 use Inpsyde\MultilingualPress\Framework\Api\SiteRelations;
 use Inpsyde\MultilingualPress\Framework\NetworkState;
-use Inpsyde\MultilingualPress\TranslationUi\Term\RelationshipContext;
 
 /**
  * Class AttributesRelationship
@@ -61,14 +62,15 @@ class AttributesRelationship
      * Create attribute taxonomy into current site by getting data by the source site
      *
      * @param \WP_Term $term
+     * @param string $taxonomy
      * @return void
      */
-    public function createAttributeRelation(\WP_Term $term)
+    public function createAttributeRelation(\WP_Term $term, string $taxonomy)
     {
         $sourceSiteId = get_current_blog_id();
-        $taxonomy = $term->taxonomy;
 
-        if (substr($taxonomy, 0, 3) !== self::WC_ATTRIBUTE_TAXONOMY_PREFIX
+        if (
+            substr($taxonomy, 0, 3) !== self::WC_ATTRIBUTE_TAXONOMY_PREFIX
             || !taxonomy_exists($taxonomy)
         ) {
             return;
@@ -156,6 +158,10 @@ class AttributesRelationship
     ): array {
 
         $sourceDbPrefix = $this->wpdb->get_blog_prefix($siteId);
+
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQLPlaceholders.QuotedSimplePlaceholder
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $sourceAttribute = $this->wpdb->get_row(
             $this->wpdb->prepare(
                 "SELECT * FROM {$sourceDbPrefix}woocommerce_attribute_taxonomies WHERE attribute_name='%s'",
@@ -163,6 +169,7 @@ class AttributesRelationship
             ),
             ARRAY_A
         );
+        //phpcs:enable
 
         if (!is_array($sourceAttribute)) {
             return [];

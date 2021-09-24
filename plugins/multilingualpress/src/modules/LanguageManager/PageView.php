@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,6 +17,7 @@ namespace Inpsyde\MultilingualPress\Module\LanguageManager;
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageView;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
+
 use function Inpsyde\MultilingualPress\printNonceField;
 
 /**
@@ -72,7 +75,7 @@ final class PageView implements SettingsPageView
     {
         ?>
         <form class="mlp-language-manager-form"
-              action="<?php echo esc_attr(admin_url('admin-post.php')); ?>"
+              action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
               method="post"
         >
             <?php $this->table->render() ?>

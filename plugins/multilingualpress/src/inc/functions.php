@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -11,13 +13,16 @@
 /**
  * Function files loader.
  */
+
 declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress;
 
+//phpcs:disable WordPressVIPMinimum.Constants.ConstantString.NotCheckingConstantName
 if (\defined(__NAMESPACE__ . '\\FUNCTIONS_LOADED')) {
     return;
 }
+//phpcs:enable
 
 const FUNCTIONS_LOADED = 1;
 
