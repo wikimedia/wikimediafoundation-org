@@ -1,24 +1,24 @@
 // Vertical Spacing
 .mar-top {
-	margin-top: $space;
+	margin-top: rem(16);
 }
 
 .mar-right {
-	margin-right: $space;
+	margin-right: rem(16);
 }
 
 .mar-bottom_sm {
-	margin-bottom: $space/2;
+	margin-bottom: rem(8);
 }
 
 .mar-bottom {
-	margin-bottom: $space;
+	margin-bottom: rem(16);
 }
 
 .mar-bottom_lg {
-	margin-bottom: $space*2;
+	margin-bottom: rem(32);
 	@media (max-width: 767px) {
-		margin-bottom: $space;
+		margin-bottom: rem(16);
 	}
 }
 
