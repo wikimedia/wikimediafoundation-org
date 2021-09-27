@@ -21,7 +21,12 @@
 	// Browsers that don't support mix-blend-mode get the main color as background color on parent's :before element, and img gets 50% opacity.
 	&:before,
 	&:after {
-		@include absolute-full-cover();
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 
 	&:before {
@@ -62,7 +67,12 @@
 
 	&::after,
 	&::before {
-		@include absolute-full-cover();
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 
 	&::before {
@@ -104,7 +114,7 @@
 
 @mixin pink-gradient {
 	&:after {
-		@include absolute-full-cover();
+		@include absoluteFull();
 		opacity: .75;
 
 		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+13,ffffff+13,d40356+100&0+13,1+100 */
@@ -117,7 +127,7 @@
 
 @mixin blue-gradient {
 	&:after {
-		@include absolute-full-cover();
+		@include absoluteFull();
 		opacity: .35;
 
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3a25ff+0,ffffff+87,ffffff+87&1+0,0+87 */
@@ -131,7 +141,7 @@
 @mixin turquoise-gradient {
 
 	&:after {
-		@include absolute-full-cover();
+		@include absoluteFull();
 		opacity: .35;
 
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#01b7b1+0,ffffff+87,ffffff+87&1+0,0+87 */
@@ -145,7 +155,7 @@
 @mixin yellow-gradient {
 
 	&:after {
-		@include absolute-full-cover();
+		@include absoluteFull();
 		opacity: .35;
 
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#01b7b1+0,ffffff+87,ffffff+87&1+0,0+87 */
@@ -159,7 +169,7 @@
 @mixin white-gradient {
 
 	&:after {
-		@include absolute-full-cover();
+		@include absoluteFull();
 		opacity: .20;
 
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+13,ffffff+13,ffffff+100&0+13,1+100 */
