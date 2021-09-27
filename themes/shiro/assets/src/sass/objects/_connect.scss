@@ -6,47 +6,14 @@
     border: 1px solid $wmui-color-base80;
     padding: 1.5rem;
 
-    .wysiwyg,
-    .h2 {
-      margin-bottom: 0.75rem;
-    }
-
     &.gray-module {
       background: #f8f9fa;
     }
   }
 
-  h2 {
-    @include font-size(24, 21);
-    font-weight: 700;
-  }
-
   .icon {
     margin: 0;
     width: 20px;
-  }
-
-  .email-signup #wmf-subscribe-input-email {
-    box-sizing: border-box;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 1rem;
-    background: #fff;
-    margin: 0;
-    height: 100%;
-  }
-
-  .email-signup .btn {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    box-sizing: border-box;
-    padding: 1.03rem;
-    height: 100%;
-  }
-
-  .field-group.input-group {
-    font-size: 13px;
-    margin-top: 0.5rem;
   }
 
   .social-list {

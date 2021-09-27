@@ -30,8 +30,15 @@
 		padding: rem(20);
 	}
 
+	&__heading {
+		@include h3-sans;
+		margin-bottom: rem(4);
+		margin-left: 0;
+	}
+
 	&__body {
 		flex: 1;
+		font-family: $font-family-sans;
 	}
 
 	&__call-to-action {
@@ -41,18 +48,6 @@
 
 		&::before {
 			@include absolute-full-cover();
-		}
-	}
-}
-
-.page.has-blocks,
-.single.has-blocks {
-	@include wysiwyg {
-		.content-card {
-			&__heading {
-				margin-bottom: rem(4);
-				margin-left: 0;
-			}
 		}
 	}
 }

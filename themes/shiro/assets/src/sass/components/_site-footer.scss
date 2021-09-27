@@ -53,8 +53,10 @@
 		}
 
 		p {
-			line-height: inherit;
+			@include reset-p-margin;
+			font-family: $font-family-sans;
 			font-size: inherit;
+			line-height: inherit;
 		}
 	}
 
@@ -163,9 +165,9 @@
 			@include list-reset;
 		}
 
-		li {
-			margin-bottom: rem(10);
+		ul li {
 			font-size: inherit;
+			margin-bottom: rem(10);
 		}
 	}
 

@@ -7,18 +7,15 @@
 	}
 
 	&__heading {
-
 		@include h5;
-		display: flex;
 		align-items: center;
+		display: flex;
 	}
 
-	// Additional specificity is necessary to override styles for links in <p>
-	// elements.
-	.wysiwyg & &__link {
-		display: flex;
+	&__link {
 		align-items: center;
 		color: $wmui-color-base0;
+		display: flex;
 
 		&:hover {
 			color: $wmui-color-blue50;
@@ -26,18 +23,16 @@
 	}
 
 	&__icon {
-		margin-left: rem( 11 );
-		height: 1em;
-		width: 1em;
 		fill: currentColor;
+		height: 1em;
+		margin-left: rem( 11 );
+		width: 1em;
 	}
 
-	// This extra specificity is necessary to override general article styles
-	// for <p> elements.
-	.article-main & &__text {
-		margin-top: -#{rem( 6 )};
-		line-height: 175%;
-		font-size: rem( 12 );
+	&__text {
+		@include has-font-size("small");
+		font-family: $font-family-sans;
+		margin-top: rem( -6 );
 
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
 			font-size: rem( 14 );

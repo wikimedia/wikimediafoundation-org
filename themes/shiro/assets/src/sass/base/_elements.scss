@@ -1,0 +1,11 @@
+body {
+	background: $wmui-color-base100;
+	color: $wmui-color-base10;
+	font-family: $font-family-system-sans;
+	font-size: 100%;
+	overflow-x: hidden;
+}
+
+hr {
+	border-top: 1px solid $wmui-color-base10;
+}

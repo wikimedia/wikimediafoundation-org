@@ -8,7 +8,7 @@
 			padding-top: rem(14);
 		}
 
-		.toc__content &.wysiwyg h3 {
+		h3 {
 			margin-bottom: rem(20);
 		}
 
@@ -18,11 +18,7 @@
 	}
 
 	&__heading {
-		// Override overspecific styles.
-		.toc__content .wysiwyg & {
-			font-family: $font-family-serif;
-			margin-bottom: rem(40);
-		}
+		margin-bottom: rem(40);
 	}
 
 	&__staff-list {
@@ -33,9 +29,13 @@
 		list-style: none;
 		margin-bottom: rem(20);
 
+		// Use li here to override list-reset.
+		li {
+			margin-bottom: rem(40);
+		}
+
 		&__item {
 			flex-basis: 48%;
-			margin-bottom: rem(40);
 			position: relative;
 			transition: 0.3s box-shadow;
 
@@ -59,6 +59,7 @@
 			}
 
 			&--executive {
+				@include global-margin-bottom;
 				flex-basis: 100%;
 
 				&,
@@ -74,11 +75,7 @@
 				}
 
 				p {
-					@include font-size(18, 16);
-
-					.wysiwyg & {
-						margin-bottom: 0;
-					}
+					@include has-font-size("default");
 				}
 			}
 		}
@@ -111,11 +108,8 @@
 		}
 
 		&__item h4 {
-			// Override overspecific styles.
-			.toc__content .wysiwyg & {
-				@include has-font-size("default");
-				line-height: 1.4;
-			}
+			@include has-font-size("default");
+			line-height: 1.4;
 
 			a {
 				color: inherit;
@@ -132,9 +126,7 @@
 		}
 
 		&__item--executive h4 {
-			.toc__content .wysiwyg & {
-				@include has-font-size("medium");
-			}
+			@include has-font-size("medium");
 		}
 
 		&__item:focus-within a::after {
@@ -144,12 +136,9 @@
 
 		p {
 			@include has-font-size("small");
+			@include reset-p-margin;
+			font-family: $font-family-sans;
 			line-height: 1.5;
-
-			// Override overspecific styles.
-			.wysiwyg & {
-				margin-bottom: 0;
-			}
 		}
 	}
 

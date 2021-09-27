@@ -90,6 +90,7 @@
 		&::before {
 			@include style-guide-arrow-content-back;
 			color: currentColor;
+			font-family: $font-family-system-sans;
 			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
 			transition: 300ms ease-in transform;
 		}
@@ -97,6 +98,7 @@
 		&::after {
 			@include style-guide-arrow-content;
 			color: currentColor;
+			font-family: $font-family-system-sans;
 			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
 			transition: 300ms ease-in transform;
 		}

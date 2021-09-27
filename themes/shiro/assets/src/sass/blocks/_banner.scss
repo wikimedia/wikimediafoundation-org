@@ -27,6 +27,10 @@
 		margin-bottom: rem(17);
 	}
 
+	p {
+		font-family: $font-family-sans;
+	}
+
 	&__image {
 		@include absolute-full-cover();
 		object-fit: cover;

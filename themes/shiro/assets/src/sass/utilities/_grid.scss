@@ -1,42 +1,41 @@
 .mw-1360 {
+	margin: 0 auto;
 	max-width: rem(1440);
 	@include responsive-padding(0 20, 0 40);
-	margin: 0 auto;
 }
 
 .mw-1360-bg {
-	max-width: rem(1360);
-	//padding: 0 rem(40);
-	@include responsive-padding(0 20, 0 40);
 	margin: 0 auto;
+	max-width: rem(1360);
+	@include responsive-padding(0 20, 0 40);
 }
 
 .mw-1017 {
+	margin: 0 auto;
 	max-width: rem(1017);
 	@include responsive-padding(0 20, 0 40);
-	margin: 0 auto;
 }
 
 .mw-980 {
+	margin: 0 auto;
 	max-width: rem(1060);
 	@include responsive-padding(0 20, 0 40);
-	margin: 0 auto;
 }
 
 .mw-900 {
+	margin: 0 auto;
 	max-width: rem(940);
 	@include responsive-padding(0 20, 0 40);
-	margin: 0 auto;
 }
 
 .mw-784 {
-	max-width: rem(784);
 	margin: 0 auto;
+	max-width: rem(784);
 }
 
 .w-100p {
-	width: 100%;
 	max-width: 100%;
+	width: 100%;
 }
 
 .w-75p {
@@ -91,7 +90,7 @@
 // List template content + sidebar
 .list-template {
 	@media (min-width: $medium-bp) {
-		margin-top: 7rem;
+		margin-top: 4rem;
 	}
 }
 
