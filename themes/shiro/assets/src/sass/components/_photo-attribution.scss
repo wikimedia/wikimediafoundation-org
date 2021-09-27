@@ -1,5 +1,5 @@
 .photo-attribution {
-	@include padding(24, 20, 32, 40);
+	@include responsive-padding(24 20, 32 40);
 	max-width: $content-column + 2 * $block-padding;
 	margin: 0 auto rem(112);
 

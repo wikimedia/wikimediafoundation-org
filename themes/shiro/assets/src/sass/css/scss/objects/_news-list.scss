@@ -76,23 +76,23 @@
 .news-list-container {
 
   .card {
-    @include marginBottom(60, 80, $medium-bp);
+    @include responsive-margin(60, 80, bottom);
   }
 
   .card-list-container:not(.alternate-img) {
 
     .card-content {
-      @include marginRight(0, 128, $medium-bp);
+      @include responsive-margin(0, 128, right);
     }
   }
 
   .img-container {
     display: block;
-    @include marginBottom(16, 0, $medium-bp);
+    @include responsive-margin(16, 0, bottom);
   }
 
   .h3 {
-    @include marginBottom(4, 4, $medium-bp);
+    @include responsive-margin(4, 4, bottom);
     @include font-size( 20, 18 );
 
     a {
@@ -105,11 +105,11 @@
   }
 
   .h4 {
-    @include marginBottom(8, 16, $medium-bp);
+    @include responsive-margin(8, 16, bottom);
   }
 
   .post-meta {
-    @include marginBottom(16, 24, $medium-bp);
+    @include responsive-margin(16, 24, bottom);
     @include font-size( 13, 13 );
     font-weight: bold;
 
@@ -127,7 +127,7 @@
     &:nth-child(odd) {
 
       .img-container {
-        @include marginRight(0, 128, $medium-bp);
+        @include responsive-margin(0, 128, right);
       }
     }
 
@@ -138,7 +138,7 @@
 
       .card-content {
         order: 1;
-        @include marginRight(0, 128, $medium-bp);
+        @include responsive-margin(0, 128, right);
       }
     }
 
@@ -147,81 +147,6 @@
     }
   }
 }
-
-// .bg-black {
-
-//   .color-gray {
-
-//     a {
-//       transition: 0.3s all;
-
-//       &:hover {
-//         color: #fff;
-//       }
-//     }
-//   }
-
-//   &.related-news-container {
-//     @include padding(80, 0, 112, 0);
-//   }
-
-//   .related-news {
-//     @include flexbox(column, no-wrap, $medium-bp, row);
-
-//     .card {
-//       display: flex;
-//       flex-direction: column;
-
-//       &:not(:last-child) {
-//         @include marginBottom(40, 0, $medium-bp);
-//       }
-
-//       .img-container {
-//         position: relative;
-//         margin-bottom: 1rem;
-
-//         .bg-img {
-//           @include aspect-ratio(16, 9);
-//           background-repeat: no-repeat;
-//           background-size: cover;
-
-//           &:after {
-//             transition: 0.3s all;
-//             @include black-gradient-vertical();
-//           }
-
-//           &.headline-hover:after {
-//             opacity: .5;
-//           }
-//         }
-//       }
-
-//       .card-content,
-//       .card-heading {
-//         width: 90%;
-//         margin: 0 auto;
-//       }
-
-//       .card-heading {
-//         display: flex;
-//         align-items: flex-end;
-//         position: relative;
-//         z-index: 99;
-//         transition: 0.3s all;
-
-//         &:hover {
-//           color: $color-turquoise;
-//         }
-//       }
-
-//       .date {
-//         display: block;
-//         text-transform: none;
-//         @include marginBottom(16, 32, $medium-bp);
-//       }
-//     }
-//   }
-// }
 
 
 .bg-white {
@@ -245,7 +170,7 @@
       flex-direction: column;
 
       &:not(:last-child) {
-        @include marginBottom(40, 0, $medium-bp);
+        @include responsive-margin(40, 0, bottom);
       }
 
       .img-container {

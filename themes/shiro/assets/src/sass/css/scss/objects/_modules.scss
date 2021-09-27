@@ -1,7 +1,7 @@
 .module-mu {
 
 	.h3 {
-		@include marginBottom(8, 8, $medium-bp);
+		@include responsive-margin(8, 8, bottom);
 	}
 
 	h5 {
@@ -55,7 +55,7 @@
 	.wysiwyg {
 
 		& + div {
-			@include marginTop(24, 32, $medium-bp);
+			@include responsive-margin(24, 32, top);
 		}
 	}
 
@@ -304,8 +304,7 @@ a.hover-img-zoom {
 		bottom: 0;
 		z-index: 99;
 
-		// $topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop
-		@include padding(20, 20, 20, 50);
+		@include responsive-padding(20 20, 20 50);
 	}
 }
 
@@ -386,11 +385,11 @@ a.hover-img-zoom {
 
 // Elsewhere module
 .elsewhere-wikimedia {
-	@include padding(0, 20, 0, 40);
+	@include responsive-padding(0 20, 0 40);
 
 	.mw-980 {
 		@media (max-width: $medium-bp) {
-			@include padding(0, 0, 0, 0);
+			@include responsive-padding(0 0, 0 0);
 		}
 	}
 
@@ -400,7 +399,7 @@ a.hover-img-zoom {
 	}
 
 	.h4 {
-		@include marginBottom(8, 16, $medium-bp);
+		@include responsive-margin(8, 16, bottom);
 	}
 
 	.link-external {
@@ -419,7 +418,7 @@ a.hover-img-zoom {
 // When two white background modules are adjacent, put a border between them.
 .white-bg + .white-bg {
 	border-top: 1px solid $color-ltgray;
-	@include paddingTop(64, 112, $medium-bp);
+	@include responsive-padding(64, 112, top);
 }
 
 .data-ungrid,
