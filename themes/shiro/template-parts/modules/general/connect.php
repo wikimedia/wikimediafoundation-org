@@ -79,7 +79,7 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 							</div>
 						</div>
 						<?php if ( ! empty( $template_args['subscribe_additional_fields'] ) ) : ?>
-						<div class="field-group input-group">
+						<div class="mailchimp-subscribe__description">
 							<?php
 								echo \WMF\Editor\Blocks\MailChimpSubscribe\kses_input_fields( $template_args['subscribe_additional_fields'] );
 							?>
@@ -100,8 +100,10 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 					</div>
 				<?php endif; ?>
 				<?php if ( ! empty( $contact_link_href ) ) : ?>
-					<!-- Single link -->
-					<a class="arrow-link" href="<?php echo esc_url( $contact_link_href ); ?>" target="_blank"><?php echo esc_html( $contact_link_text ); ?></a>
+					<div class="wysiwyg">
+						<!-- Single link -->
+						<a class="arrow-link" href="<?php echo esc_url( $contact_link_href ); ?>" target="_blank"><?php echo esc_html( $contact_link_text ); ?></a>
+					</div>
 				<?php endif; ?>
 				<?php get_template_part( 'template-parts/modules/social/follow', 'horizontal', $template_args ); ?>
 			</div><!-- End .multi-use -->
