@@ -7,18 +7,6 @@
 	h5 {
 		text-transform: none;
 		color: #000; // Resetting from global h5
-
-		&.category {
-			@include category();
-		}
-	}
-
-	h4 {
-		&.category,
-		a.category {
-			@include category();
-			transition: 0.3s all;
-		}
 	}
 
 	button {
@@ -127,7 +115,7 @@
 
 	.social-list {
 
-		@include style-guide-list-reset;
+		@include list-reset;
 		display: flex;
 		flex-wrap: wrap;
 
@@ -327,9 +315,7 @@ a.hover-img-zoom {
 		position: relative;
 
 		&:after {
-			position: absolute;
-			content: "";
-			top: 0; bottom: 0; right: 0; left: 0;
+			@include absolute-full-cover();
 			background: rgba(0, 0, 0, 0);
 			transition: 0.3s all;
 		}
