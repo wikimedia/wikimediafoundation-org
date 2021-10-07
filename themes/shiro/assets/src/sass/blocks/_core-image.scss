@@ -1,5 +1,5 @@
 .wp-block-image {
-	@include global-block-styles;
+	@include global-margin-bottom;
 
 	figcaption {
 		padding-left: rem(20);
