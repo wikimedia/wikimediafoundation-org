@@ -201,6 +201,12 @@ function wmf_get_posts_by_child_roles( $term_id ) {
 			} else {
 				$post_list[ $parent_id ] = wmf_get_role_posts( $parent_id );
 			}
+
+			$post_list[ $parent_id ]['children'] = array();
+
+			foreach ( $children as $child_id ) {
+				$post_list[ $parent_id ]['children'][ $child_id ] = wmf_get_role_posts( $child_id );
+			}
 		}
 	}
 

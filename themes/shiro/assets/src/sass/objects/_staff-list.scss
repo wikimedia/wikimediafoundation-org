@@ -142,6 +142,15 @@
 		}
 	}
 
+	// TODO: remove when nested content sections are removed.
+	&__staff-title__nested {
+		color: $wmui-color-base30;
+
+		&::before {
+			content: "↳";
+		}
+	}
+
 	&__read-more {
 		margin-bottom: rem(80);
 	}

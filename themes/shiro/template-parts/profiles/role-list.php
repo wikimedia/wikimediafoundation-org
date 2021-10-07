@@ -94,8 +94,52 @@ foreach ( $post_list as $term_id => $term_data ) :
 			?>
 		</ul>
 		<?php endif; ?>
-	<?php endif; ?>
 
+		<?php if ( ! empty( $term_data['children'] ) ) : ?>
+			<div>
+				<?php
+				foreach ( $term_data['children'] as $child_term_id => $child_term_data ) :
+					$name        = ! empty( $child_term_data['name'] ) ? $child_term_data['name'] : '';
+					$description = term_description( $child_term_id, 'role' );
+					?>
+
+					<?php
+					if ( empty( $child_term_data['posts'] ) ) {
+						continue;
+					}
+					?>
+
+					<?php if ( ! empty( $name ) ) : ?>
+					<h3 class="role__staff-title__nested">
+						<?php echo esc_html( $name ); ?>
+					</h3>
+					<?php endif; ?>
+
+					<?php
+					if ( ! empty( $description ) ) :
+						echo wp_kses_post( $description );
+					endif;
+					?>
+
+					<ul class="role__staff-list">
+						<?php
+						foreach ( $child_term_data['posts'] as $post_id ) :
+							get_template_part(
+								'template-parts/profiles/role',
+								'item',
+								array(
+									'id' => $post_id,
+								)
+							);
+						endforeach;
+						?>
+					</ul>
+
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+	
 	<?php
 	if ( ! empty( $button['link_to_archive'] ) && ! is_tax( 'role', $term_id ) ) :
 		$link_text = ! empty( $button['text'] )
