@@ -28,6 +28,14 @@
 		@include hover-box-shadow;
 	}
 
+	&__image-link:focus {
+		@include focus-reset;
+
+		.blog-post__image {
+			@include focus-ring;
+		}
+	}
+
 	&__content {
 		padding: rem(16) 0 0 0;
 	}

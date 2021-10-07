@@ -1,27 +1,10 @@
 @mixin hover-box-shadow {
 	border: 1px solid transparent;
-	transition: $transition-ease-medium border-color box-shadow;
+	transition: $transition-ease-medium border-color, $transition-ease-medium box-shadow;
 
 	&:hover {
 		border-color: $wmui-color-base90;
 		box-shadow: $box-shadow-card-element;
-	}
-}
-
-/**
-  * Globally consistent bottom margin of 40px. This originated as
-  * default block spacing, but could also be used for other elements.
-  */
-@mixin global-margin-bottom() {
-	margin-bottom: rem(40);
-}
-
-// Responsive padding
-@mixin padding($topBottomMobile, $leftRightMobile, $topBottomDesktop, $leftRightDesktop) {
-	padding: rem($topBottomMobile) rem($leftRightMobile);
-
-	@media (min-width: $medium-bp) {
-		padding: rem($topBottomDesktop) rem($leftRightDesktop);
 	}
 }
 

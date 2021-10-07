@@ -1,6 +1,7 @@
 // Fact Module
 .fact-full-width {
-  @include paddingTopBottom(50, 100);
+  @include responsive-padding(50, 100, top);
+	@include responsive-padding(50, 100, bottom);
 
   .fact-inner {
     @include flexbox(column, nowrap, $medium-bp, row);
@@ -21,18 +22,18 @@
 
   .fact-number {
     @include font-size(112, 72);
-    @include marginBottom(16, 0, $medium-bp);
-    @include marginRight(0, 32, $medium-bp);
+    @include responsive-margin(16, 0, bottom);
+    @include responsive-margin(0, 32, right);
   }
 
   .fact {
-    @include marginBottom(16, 16, $medium-bp);
-    @include marginRight(0, 32, $medium-bp);
+    @include responsive-margin(16, 16, bottom);
+    @include responsive-margin(0, 32, right);
   }
 
   a {
     color: $color-blue;
-    @include marginBottom(40, 0, $medium-bp);
+    @include responsive-margin(40, 0, bottom);
 
     transition: 0.3s all;
 
@@ -57,8 +58,8 @@
 
     .h5 {
       color: #000;
-      @include marginBottom(0, 16, $medium-bp);
-      @include marginRight(16, 0, $medium-bp);
+      @include responsive-margin(0, 16, bottom);
+      @include responsive-margin(16, 0, right);
     }
 
     a {
@@ -79,7 +80,7 @@
       }
 
       &:not(:last-child) {
-        @include marginBottom(0, 16, $medium-bp);
+        @include responsive-margin(0, 16, bottom);
       }
     }
   }
@@ -87,8 +88,8 @@
 
 .fact-container {
   position: relative;
-  @include paddingTopBottom(20, 40);
-
+  @include responsive-padding(20, 40, top);
+	@include responsive-padding(20, 40, bottom);
 
   .bg-img-container {
     width: 100%;
