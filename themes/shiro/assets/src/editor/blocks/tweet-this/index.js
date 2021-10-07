@@ -80,7 +80,7 @@ export const
 		/**
 		 * Render save of the tweet this block.
 		 */
-		save: function SaveStairBlock( { attributes } ) {
+		save: function SaveTweetThis( { attributes } ) {
 			const blockProps = useBlockProps.save( { className: 'tweet-this' } );
 			const { text } = attributes;
 			let { tweetText, tweetUrl } = attributes;

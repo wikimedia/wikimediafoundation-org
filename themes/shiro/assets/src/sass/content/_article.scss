@@ -5,14 +5,19 @@ article {
 		width: 100%;
 	}
 
-	& + .article-footer {
+	// Handle errant h1s in old posts.
+	.single-post:not(.has-blocks) & > h1 {
+		@include h2;
+	}
+
+	+ .article-footer {
 		@include responsive-margin(40, 80, top);
 	}
 
 	@media (max-width: 767px) {
-		padding: 0 1.25rem;
 		display: flex;
 		flex-direction: column;
+		padding: 0 1.25rem;
 
 		.article-main {
 			order: 1;
@@ -42,44 +47,16 @@ article {
 		margin-right: rem(-130);
 	}
 
-	& > div:not(:last-child) {
-		// border-bottom: 1px solid $color-gray;
-		// padding-bottom: 2.5rem;
-		// margin-bottom: 1rem;
-
-		// @media (min-width: $medium-bp) {
-		// 	padding-bottom: 4rem;
-		// 	margin-bottom: 2rem;
-		// }
-	}
-
-	a {
-		transition: 0.3s all;
-
-		i {
-			transition: 0.3s all;
-		}
-
-		&:hover {
-			color: $color-blue;
-
-			i {
-				color: $color-blue;
-				transform: scale(1.17);
-			}
-		}
-	}
-
 	.fact-number {
 		color: $color-dark-gray;
-		margin-bottom: .5rem;
+		margin-bottom: 0.5rem;
 		@include font-size(80, 72);
 	}
 
 	.fact {
 		@include font-size(24, 21);
-		font-weight: 300;
 		color: $color-black;
+		font-weight: 300;
 		margin-bottom: 1rem;
 	}
 
@@ -108,8 +85,8 @@ article {
 
 .download-container {
 	li {
-		margin-bottom: 1rem;
 		list-style-type: none;
+		margin-bottom: 1rem;
 		margin-left: 0;
 	}
 
@@ -118,7 +95,7 @@ article {
 	}
 
 	i {
-		margin-right: .5rem;
+		margin-right: 0.5rem;
 	}
 }
 
@@ -136,10 +113,10 @@ article {
 		}
 
 		li {
+			margin-right: 0.5rem;
 			position: relative;
-			margin-right: .5rem;
 
-			&:not(:last-child):after {
+			&:not(:last-child)::after {
 				content: ",";
 				position: absolute;
 			}
@@ -166,7 +143,7 @@ article {
 
 		a {
 			color: $color-blue;
-			font-weight: bold;
+			font-weight: 700;
 
 			.icon {
 				height: 20px;
@@ -196,28 +173,15 @@ article {
 	}
 
 	&.article-img-main {
-		position: relative;
-		overflow: hidden;
-		max-height: 75vh;
 		margin-top: 0;
+		position: relative;
 	}
 
 	.img-caption {
 		color: #666;
-		margin-top: 0.5rem;
-		font-style: italic;
 		font-size: 13px;
-
-		a {
-			transition: 0.3s all;
-			&:hover {
-				color: $color-blue;
-			}
-		}
-	}
-
-	a {
-		text-decoration: underline;
+		font-style: italic;
+		margin-top: 0.5rem;
 	}
 
 }
@@ -229,8 +193,8 @@ article {
 	@include responsive-margin(30, 60, bottom);
 
 	@media (max-width: $medium-bp) {
-		width: 100%;
 		padding: 0 rem(20);
+		width: 100%;
 	}
 
 	p {

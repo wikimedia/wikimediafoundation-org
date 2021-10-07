@@ -92,11 +92,11 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 	<?php } ?>
 
 	<?php if ( ! is_front_page() && ! is_home() ) { ?>
-		<!-- h2 or title as heading -->
+		<!-- h1 or title as heading -->
 		<?php if ( ! empty( $single_title ) && ! wmf_is_transparency_report_page() ) { ?>
-			<h2 class="h2 eyebrow">
+			<h1>
 				<?php echo wp_kses( $single_title, array( 'span' => array( 'class' ) ) ); ?>
-			</h2>
+			</h1>
 			<?php if ( !empty( $image ) ) { ?>
 				<img src="<?php echo esc_url($image)?>" alt="">
 			<?php } ?>

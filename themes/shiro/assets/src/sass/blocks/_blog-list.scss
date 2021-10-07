@@ -41,15 +41,8 @@
 	}
 
 	&__title {
-		&, // Yes, we also want this selector to target...this selector
-		// Additional specificity necessary to override base h3 styles
-		.single.has-blocks .wysiwyg &,
-		.page.has-blocks .wysiwyg &,
-		.block-area.block-area & {
-			@include h-margins;
-			@include h4;
-			margin-bottom: rem(16);
-		}
+		@include h4;
+		margin-bottom: rem(16);
 
 		a {
 			// The link around the heading should display in same color as text.
@@ -127,13 +120,6 @@
 		flex-direction: row-reverse;
 		justify-content: flex-end;
 		padding: rem(40) 0;
-
-		&__title {
-			// Additional specificity necessary to override base h3 styles
-			.page.has-blocks .wysiwyg & {
-				font-size: rem(20);
-			}
-		}
 
 		&__image-link,
 		&__content {

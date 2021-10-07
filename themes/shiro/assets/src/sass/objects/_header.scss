@@ -58,11 +58,6 @@ $header-bp-mw: 1049px;
 		}
 	}
 
-	h1 {
-		@include font-size(47, 36);
-		font-weight: normal;
-	}
-
 	// Header content positioning classes
 	.bg-pattern-container {
 		position: absolute;
@@ -103,11 +98,14 @@ $header-bp-mw: 1049px;
 
 		&--short {
 			min-height: auto;
-			//padding-bottom: rem(340);
 
 			// TODO: Take header height and header-inner height to auto.
 			.header-inner {
 				min-height: auto;
+			}
+
+			.tax-role & {
+				margin-bottom: rem(40);
 			}
 		}
 	}
@@ -161,14 +159,13 @@ $header-bp-mw: 1049px;
 				.page-landing {
 					margin-bottom: rem(80);
 				}
-				.ungrid .page-landing {
-					margin-bottom: 0;
+
+				.ungrid {
+					margin-bottom: rem(80);
 				}
 
-				h2 {
-					border-bottom: 3px solid $wmui-color-base0;
-					@include font-size(38, 32);
-					font-weight: 500;
+				.ungrid .page-landing {
+					margin-bottom: 0;
 				}
 			}
 
@@ -273,12 +270,11 @@ $header-bp-mw: 1049px;
 		}
 
 		&.h2 {
-			@include font-size(40, 30);
-			font-weight: 700;
+			@include font-size(38, 32);
+			border-bottom: 3px solid $wmui-color-base0;
+			font-weight: 500;
 			margin-bottom: rem(40);
-			text-transform: none;
 		}
-
 
 		a {
 			color: $color-blue;
@@ -355,9 +351,11 @@ $header-bp-mw: 1049px;
 		}
 
 		.h2.eyebrow {
-			text-transform: uppercase;
 			border: none;
 			color: $color-blue;
+			font-family: $font-family-sans;
+			margin-bottom: 1rem;
+			text-transform: uppercase;
 			@include font-size( 24, 22);
 		}
 
@@ -407,26 +405,6 @@ $header-bp-mw: 1049px;
 	.h4.eyebrow + .ungrid {
 		margin-top: 0 !important;
 	}
-
-	&.header-pink .ungrid {
-		background: #fbe9f1;
-
-		.h2.eyebrow {
-			color: #f61971;
-		}
-	}
-
-	&.header-blue .ungrid {
-		background: #eeeaff;
-
-		.bg-img {
-			background-color: #eeeaff;
-		}
-
-		.h2.eyebrow {
-			color: #3a25ff;
-		}
-	}
 }
 
 .header-single {
@@ -445,8 +423,6 @@ $header-bp-mw: 1049px;
 
 .header-role {
 	h1 {
-		@include font-size(40, 30);
-		font-weight: 700;
 		margin-bottom: rem(40);
 	}
 
@@ -462,33 +438,6 @@ $header-bp-mw: 1049px;
 
 	.side-list {
 		margin-bottom: 10px;
-	}
-}
-
-
-.header-default.header-pink {
-	margin-bottom: 0;
-	position: relative;
-
-	.header-inner.nav-open {
-		background: $color-pink;
-	}
-	.logo-nav-container nav,
-	.current-menu-item {
-		color: $color-blue;
-	}
-	.translation-bar,
-	.translation-bar .translation-icon,
-	.translation-bar .arrow-wrap {
-		background: $color-dark-dark-pink;
-		color: #9CFFE7;
-	}
-	.eyebrow {
-		color: $color-pink;
-	}
-
-	.header-content h2 {
-		border-color: $color-pink;
 	}
 }
 

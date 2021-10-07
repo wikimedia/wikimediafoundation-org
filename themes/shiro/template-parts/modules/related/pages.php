@@ -22,16 +22,18 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_pages_pre_hea
 <div class="w-100p mod-margin-bottom">
 	<div class="mw-1360 std-mod">
 		<?php if ( ! empty( $preheading ) ) : ?>
-			<h3 class="h3 color-gray">
+			<p class="double-heading__secondary is-style-h5">
 				<?php echo esc_html( $preheading ); ?>
                 <?php if ( ! empty( $rand_translation_title['content'] ) ) : ?>
                     — <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
                 <?php endif; ?>
-			</h3>
+			</p>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $headline ) ) : ?>
-			<h2 class="h2 white"><?php echo esc_html( $headline ); ?></h2>
+			<h2 class="double-heading__primary is-style-h3">
+				<?php echo esc_html( $headline ); ?>
+			</h2>
 		<?php endif; ?>
 
 		<div class="related-pages flex flex-medium">

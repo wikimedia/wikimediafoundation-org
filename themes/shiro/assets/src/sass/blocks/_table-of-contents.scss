@@ -216,6 +216,7 @@
 	}
 
 	&__content h2[id] {
+		clear: both;
 		cursor: text;
 		margin-top: calc(var(--toc-h2-padding-top) * -1);
 		padding-top: var(--toc-h2-padding-top);

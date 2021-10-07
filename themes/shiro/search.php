@@ -40,13 +40,6 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		endif;
 		?>
 	</div>
-
-	<?php
-	if ( have_posts() ) {
-		# TODO: Filters are hidden for now
-		# get_sidebar( 'search' );
-	}
-	?>
 </div>
 
 <div id="pagination">

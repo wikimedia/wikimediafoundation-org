@@ -8,6 +8,7 @@
 	}
 
 	&__heading {
+		@include h3-sans;
 		line-height: 1.5 !important;
 	}
 
@@ -16,6 +17,7 @@
 	}
 
 	&__body {
+		@include reset-p-margin;
 		background: $background-color-base;
 		font-family: $font-family-serif;
 		margin-left: rem(18);
@@ -26,13 +28,6 @@
 		display: inline-block;
 		position: relative;
 		width: 100%;
-
-		@extend .has-default-font-size;
-
-		// Override more general styles.
-		@include article-main-wrap {
-			margin-bottom: 0;
-		}
 	}
 
 	&__read-more {

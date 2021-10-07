@@ -3,6 +3,11 @@
 	max-width: $content-column + 2 * $block-padding;
 	margin: 0 auto rem(112);
 
+	&__heading {
+		@include h3;
+		@include h3-sans;
+	}
+
 	&__inner {
 		display: flex;
 		flex-wrap: wrap;
@@ -39,6 +44,8 @@
 
 	p {
 		@include has-font-size("small");
+		@include reset-p-margin;
+		font-family: $font-family-sans;
 	}
 
 	a {
