@@ -42,6 +42,7 @@ $highlight-width: 10px;
     .h2,
     p {
       @include responsive-margin(24, 32, bottom);
+      font-family: $font-family-sans;
     }
 
     .h2 {

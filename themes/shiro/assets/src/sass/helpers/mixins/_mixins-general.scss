@@ -13,8 +13,10 @@
 	padding: 0;
 
 	li {
+		font-family: $font-family-sans;
 		font-size: inherit;
 		line-height: inherit;
+		margin-bottom: 0;
 	}
 }
 

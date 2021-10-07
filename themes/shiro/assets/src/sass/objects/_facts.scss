@@ -125,6 +125,7 @@
 
 .fact-stat-lg {
   @include font-size(48, 26);
+  font-family: $font-family-sans;
   letter-spacing: -0.24px;
   font-weight: bold;
   margin-top: 1rem;
@@ -132,6 +133,7 @@
 }
 
 .fact {
+  font-family: $font-family-sans;
   font-size: 1rem;
   line-height: 1.4rem;
   letter-spacing: -0.08px;

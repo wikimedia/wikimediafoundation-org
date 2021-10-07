@@ -3,8 +3,8 @@
 // Re-style the URLInput like a normal input when used in the sidebar
 .edit-post-sidebar {
 	.block-editor-url-input__input[type="text"] {
-		border-radius: 2px;
 		border: 1px solid rgb(117, 117, 117);
+		border-radius: 2px;
 
 		&:focus {
 			border-color: var(--wp-admin-theme-color);
@@ -24,7 +24,8 @@
 		margin-left: rem(20);
 	}
 
-	.block-editor-block-list__block {
+	.block-editor-block-list__block,
+	figure.block-editor-block-list__block {
 		// Allow for the block insertion point to show.
 		margin-bottom: rem(40);
 	}
@@ -33,8 +34,8 @@
 	// distances by cancelling out margins. In the editor we don't want this, because
 	// we wouldn't be able to use the inserter.
 	.wp-block-spacer.wp-block-spacer {
-		margin-top: 0;
 		margin-bottom: rem(40);
+		margin-top: 0;
 	}
 
 	.has-blocks .block-editor-block-list__layout>.wp-block.is-reusable {

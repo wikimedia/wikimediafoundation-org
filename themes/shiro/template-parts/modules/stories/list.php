@@ -31,7 +31,7 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 ?>
 <div class="w-100p mod-margin-bottom stories">
 	<div class="mw-980 std-mod">
-		<h3 class="h3 color-gray uppercase">
+		<p class="double-heading__secondary is-style-h5">
 			<?php
 			echo esc_html( $pre_heading );
 			if ( ! empty( $rand_translation_title ) && ! empty( $rand_translation_title['content'] ) ) :
@@ -40,10 +40,12 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 					<?php echo esc_html( $rand_translation_title['content'] ); ?>
 				</span>
 			<?php endif; ?>
-		</h3>
+		</p>
 
 		<?php if ( ! empty( $headline ) ) : ?>
-		<h2><?php echo esc_html( $headline ); ?></h2>
+		<h2 class="double-heading__primary is-style-h3">
+			<?php echo esc_html( $headline ); ?>
+		</h2>
 		<?php endif; ?>
 	</div>
 

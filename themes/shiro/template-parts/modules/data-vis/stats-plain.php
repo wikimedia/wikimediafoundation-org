@@ -22,8 +22,12 @@ $allowed_tags = [ 'span' => [ 'class' => [], 'style' => [] ], 'em' => [], 'stron
 	<div class="mw-980">
 
 		<div class="heading mar-bottom_lg wysiwyg">
-			<h3 class="h3 color-gray uppercase"><?php echo esc_html( $template_args['subheadline'] ); ?></h3>
-			<h2 class="h2"><?php echo esc_html( $template_args['headline'] ); ?></h2>
+			<p class="double-heading__secondary is-style-h5">
+				<?php echo esc_html( $template_args['subheadline'] ); ?>
+			</p>
+			<h2 class="double-heading__primary is-style-h3">
+				<?php echo esc_html( $template_args['headline'] ); ?>
+			</h2>
 			<p><?php echo wp_kses( $template_args['subtitle'], $allowed_tags ); ?></p>
 		</div>
 

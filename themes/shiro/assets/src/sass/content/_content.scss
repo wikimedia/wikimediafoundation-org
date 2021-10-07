@@ -1,17 +1,11 @@
 /*--------------------------------------------------------------
-# Base styles
+# Page/post type content styles
 --------------------------------------------------------------*/
 
-/* Reset
+/* Article
 --------------------------------------------- */
-@import "resets";
+@import "article";
 
-/* Typography
+/* Transparency reports
 --------------------------------------------- */
-@import "typography/headings";
-@import "typography/typography";
-
-/* Elements
---------------------------------------------- */
-@import "elements";
-@import "forms";
+@import "transparency-report";

@@ -39,6 +39,17 @@
 	@include global-margin-bottom;
 }
 
+.wp-block-columns.tweet-columns {
+	p {
+		font-family: $font-family-sans;
+		margin-bottom: rem(20);
+	}
+
+	.is-style-h1 {
+		margin-bottom: rem(5);
+	}
+}
+
 // New columns style for aligning the buttons to the bottom of the columns.
 .wp-block-columns.is-style-align-buttons-bottom {
 	.wp-block-column,
@@ -54,14 +65,6 @@
 		&:last-child {
 			align-self: flex-start;
 			margin-top: auto;
-		}
-	}
-
-	#{$headings} {
-		.page.has-blocks &.wp-block,
-		.single.has-blocks &.wp-block {
-			margin-left: 0;
-			margin-right: 0;
 		}
 	}
 }
