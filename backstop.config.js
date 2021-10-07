@@ -77,6 +77,11 @@ module.exports = {
 			url: `${rootUrl}about/jobs`,
 			...defaultScenario,
 		},
+		{
+			label: 'Wikipedia20',
+			url: `${rootUrl}wikipedia20`,
+			...defaultScenario,
+		},
 	],
 	paths: {
 		bitmaps_reference: 'backstop_data/bitmaps_reference',
