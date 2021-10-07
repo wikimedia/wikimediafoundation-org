@@ -11,12 +11,12 @@ h1,
 
 h2,
 .h2 {
-	@include marginBottom(32, 32, $medium-bp);
+	@include responsive-margin(32, 32, bottom);
 	@include font-size(22, 18);
 
 	&.small {
 		@include font-size(22, 18);
-		@include marginBottom(40, 56, $medium-bp);
+		@include responsive-margin(40, 56, bottom);
 	}
 }
 
