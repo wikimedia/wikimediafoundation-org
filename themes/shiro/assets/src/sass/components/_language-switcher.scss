@@ -135,8 +135,8 @@
 			--language-picker-item-border-color: #{$wmui-color-blue50};
 		}
 
-
 		a {
+			color: $wmui-color-base0;
 			display: block;
 			padding-left: rem(8);
 			padding-right: rem(8);
@@ -149,6 +149,10 @@
 			&:focus {
 				@include focus-ring;
 			}
+		}
+
+		&--selected a {
+			color: $wmui-color-blue50;
 		}
 
 	}

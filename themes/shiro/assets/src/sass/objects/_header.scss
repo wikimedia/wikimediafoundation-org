@@ -14,10 +14,6 @@ $header-bp-mw: 1049px;
 	margin-bottom: 0;
 	position: relative;
 
-	@media (min-width: $header-bp) and (max-height: 930px) {
-		// TODO remove all min-heights in this stylesheet?
-		//min-height: 100vh;
-	}
 	@media (max-width: $medium-bp) {
 		padding-bottom: 10px;
 	}
@@ -25,31 +21,6 @@ $header-bp-mw: 1049px;
 	a {
 		transition: 0.3s all;
 	}
-
-	li {
-		margin-left: 0;
-		margin-right: 1rem;
-		&:last-child {
-			margin-right: 0;
-		}
-
-		&.current_page_item {
-			a {
-				color: $color-blue;
-
-        span {
-          border-bottom: 2px solid $color-blue;
-        }
-			}
-		}
-
-		a {
-			font-size: 14px;
-			font-weight: 600;
-			color: $color-black;
-		}
-	}
-
 
 	&.h1-highlighted {
 		h1 {
