@@ -8,6 +8,7 @@
 
 	&__heading {
 		@include h5;
+		font-family: $font-family-sans;
 		align-items: center;
 		display: flex;
 	}
@@ -19,6 +20,10 @@
 
 		&:hover {
 			color: $wmui-color-blue50;
+		}
+
+		&:focus {
+			color: $wmui-color-base0;
 		}
 	}
 
