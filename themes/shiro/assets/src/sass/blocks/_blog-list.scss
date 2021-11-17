@@ -28,29 +28,29 @@
 		@include hover-box-shadow;
 	}
 
+	&__image-link:focus {
+		@include focus-reset;
+
+		.blog-post__image {
+			@include focus-ring;
+		}
+	}
+
 	&__content {
 		padding: rem(16) 0 0 0;
 	}
 
 	&__title {
-		&, // Yes, we also want this selector to target...this selector
-		// Additional specificity necessary to override base h3 styles
-		.single.has-blocks .wysiwyg &,
-		.page.has-blocks .wysiwyg &,
-		.block-area.block-area & {
-			@include h-margins;
-			@include h4;
-			margin-bottom: rem(16);
-		}
+		@include h4;
+		margin-bottom: rem(16);
 
 		a {
-			@include style-guide-link;
-
 			// The link around the heading should display in same color as text.
 			color: var(--text-color);
 
 			// Use a lighter underline weight since heading is large + bold.
 			&:hover {
+				color: var(--link-color);
 				text-decoration-thickness: 0.5px;
 				text-underline-offset: 2px;
 			}
@@ -120,13 +120,6 @@
 		flex-direction: row-reverse;
 		justify-content: flex-end;
 		padding: rem(40) 0;
-
-		&__title {
-			// Additional specificity necessary to override base h3 styles
-			.page.has-blocks .wysiwyg & {
-				font-size: rem(20);
-			}
-		}
 
 		&__image-link,
 		&__content {

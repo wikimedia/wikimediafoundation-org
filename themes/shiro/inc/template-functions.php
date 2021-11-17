@@ -65,36 +65,6 @@ function wmf_get_header_container_class() {
 		$class .= ' minimal--short';
 	}
 
-	if ( is_page() ) {
-		$bg_opts = get_post_meta( get_the_ID(), 'page_header_background', true );
-
-		$class .= isset( $bg_opts['color'] ) && 'pink' === $bg_opts['color'] ? ' header-pink' : '';
-		$class .= isset( $bg_opts['color'] ) && 'blue' === $bg_opts['color'] ? ' header-blue' : '';
-	}
-
-	return $class;
-}
-
-/**
- * Get image container class based on location.
- *
- * @return string Class name.
- */
-function wmf_get_photo_class() {
-	$class = 'photo-aspect-ratio';
-
-	if ( ! is_singular( 'page' ) || is_front_page() ) {
-		return $class;
-	}
-
-	$template = basename( get_page_template() );
-
-	switch ( $template ) {
-		case 'page.php':
-			$class .= ' mw-900';
-			break;
-	}
-
 	return $class;
 }
 

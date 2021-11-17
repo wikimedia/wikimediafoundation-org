@@ -1,0 +1,288 @@
+// CTAs
+$highlight-width: 10px;
+.img-left-content-right {
+  .bg-img-container {
+    left: 0;
+    right: auto;
+  }
+
+  .card {
+
+    @media (min-width: $medium-bp) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.img-right-content-left {
+  .bg-img-container {
+    right: 0;
+    left: auto;
+  }
+
+  .card {
+
+    @media (min-width: $medium-bp) {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.cta {
+  .card-content {
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: $medium-bp) {
+      padding: rem(12) 0;
+    }
+
+    .h2,
+    p {
+      @include responsive-margin(24, 32, bottom);
+      font-family: $font-family-sans;
+    }
+
+    .h2 {
+      @include font-size(38, 32);
+    }
+  }
+
+  @media (max-width: 767px) {
+
+    & .bg-img-container,
+    &.cta-secondary .bg-img-container {
+      position: relative;
+      width: 100%;
+      height: 50vw;
+    }
+  }
+
+}
+
+.cta-primary {
+  background: $cta-bg-color;
+
+  .mw-1360 {
+    padding-bottom: rem(40);
+
+    @media (min-width: $medium-bp) {
+      padding-top: rem(40);
+    }
+  }
+
+  .card {
+    color: #fff;
+  }
+
+  .card-content {
+
+    margin-top: -20px;
+
+    @media (min-width: $medium-bp) {
+      padding: 2rem 0;
+      margin-top: 0;
+    }
+
+    @media (max-width: $medium-bp) {
+      padding: 1rem 0;
+    }
+  }
+
+  .h2 {
+    color: $color-pink;
+    line-height: 1.2;
+  }
+
+  p:first-of-type {
+    @include responsive-margin(32, 32, top);
+  }
+  @media (max-width: $medium-bp) {
+    .bg-img-container {
+      top: -20px;
+    }
+  }
+}
+
+.cta-secondary {
+
+  .bg-img-container {
+    @include bgImgPositioning();
+    right: 0;
+  }
+
+  .card-content {
+    margin-top: -30px;
+
+    @media (min-width: $medium-bp) {
+
+      .card-content {
+        padding: 7.5rem 0;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.cta-support,
+.btn-donate {
+
+   .cta-btn-text {
+    background-position: left;
+    background-image: url('./assets/src/svg/lock-white.svg');
+    background-repeat: no-repeat;
+    background-size: 14px;
+    padding-left: 20px;
+  }
+}
+
+.cta-news {
+
+  .bg-img-container {
+    left: 0;
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: 0; bottom: 0; right: 0; left: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: 0.3s all;
+    }
+  }
+
+  .darken-img {
+
+    .bg-img-container {
+
+      &:after {
+        background: rgba(0, 0, 0, .25);
+      }
+    }
+  }
+
+  .card-content{
+    @include responsive-padding(16, 32, top);
+    padding-bottom: 0;
+    margin-top: 0;
+    right: 0;
+
+    @media (min-width: $medium-bp) {
+      padding-top: 5rem;
+    }
+  }
+
+  .h2 {
+
+    a {
+      transition: 0.3s all;
+
+      &:hover {
+        color: $color-blue;
+      }
+    }
+  }
+
+  // Overriding .w-45p to extend h2 out more into the image.
+  .w-45p {
+
+    @media (min-width: $medium-bp) {
+      width: 60%;
+    }
+
+    .post-meta {
+      @media (min-width: $medium-bp) {
+        max-width: 42%;
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
+.sm-img {
+  @include duotoneInline($color-pink, 40%, screen, 1);
+  overflow: hidden;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 90%;
+}
+
+.sm-img-container {
+  // TODO Add duotone
+}
+
+.cta-footer {
+  margin-top: 5rem;
+  @include responsive-margin(0, 80, top);
+}
+
+.cta-description {
+  @include font-size(22, 18);
+  line-height: 1.45;
+  color: $color-pink;
+}
+
+// move button left to align to highlight
+.cta-btn {
+  margin-left: -$highlight-width;
+}
+
+.focus-block {
+  background-color: #ffffff;
+  overflow: hidden;
+  display: block;
+
+  .card,
+  .card-content {
+    height: 100%;
+    display: block;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .stick-to-bottom {
+    position: absolute;
+    bottom: 22px;
+  }
+
+  .mar-bottom {
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  .h2 {
+    @include responsive-margin(5, 5, bottom);
+    font-size: 1.5rem;
+  }
+
+  .bg-img-container {
+    width: 100%;
+    height: rem(200);
+    display: block;
+
+    .bg-img {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+
+      &:after {
+        content: '';
+        background-image: linear-gradient(117deg, #5220ef, #9613c0);
+        opacity: 0.3;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

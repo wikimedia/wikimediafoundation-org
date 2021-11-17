@@ -1,5 +1,5 @@
 .spotlight {
-	@include global-block-styles;
+	@include global-margin-bottom;
 	@include block-style-background-color;
 	@include block-style-text-color;
 	display: flex;
@@ -33,6 +33,7 @@
 		text-align: left;
 
 		p {
+			font-family: $font-family-sans;
 			padding-bottom: rem(26);
 		}
 	}
@@ -48,14 +49,8 @@
 	}
 
 	&__image {
-		bottom: 0;
-		height: 100%;
-		left: 0;
+		@include absolute-full-cover();
 		object-fit: cover;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 100%;
 	}
 
 	&__image-wrapper {
@@ -86,13 +81,8 @@
 		 * Use this to make the image a "clickable link" in an accessible way.
 		 */
 		&::after {
-			content: "";
-			display: block;
-			left: 0;
+			@include absolute-full-cover();
 			padding-bottom: 56.6%;
-			position: absolute;
-			top: 0;
-			width: 100%;
 			z-index: 10;
 
 			@media ( min-width: #{$width-breakpoint-tablet} ) {

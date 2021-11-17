@@ -1,0 +1,1530 @@
+$wp20_font: "Linux Libertine", "Georgia", "Times", serif;
+
+// styles for Wikipedia 20 shortcodes
+
+// FIX for future, font-sizes used .page-template-page-report-landing, .page-template-page-report-section as guide
+.page-template-page-freeform .freeform-content {
+
+	h2 {
+		@include font-size(22, 18);
+		font-weight: 700;
+	}
+
+	.wp20 {
+		h1,
+		h2 {
+			font-family: $wp20_font;
+			font-weight: 400;
+			line-height: 1.1;
+		}
+
+		h1 {
+			@include font-size(64, 30);
+			@include responsive-margin(32, 40, bottom);
+		}
+
+		h2 {
+			@include font-size(44, 24);
+			@include responsive-margin(16, 28, bottom);
+		}
+	}
+
+	p,
+	.p,
+	li {
+		font-size: 1.125rem;
+		line-height: 1.5;
+		> a {
+			font-size: inherit;
+		}
+	}
+	span.p {
+		margin-bottom: 0;
+	}
+	li {
+		margin-bottom: 1.125rem;
+	}
+}
+
+// WP20 variables
+$symbols: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_FIREWORKS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiSource.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiQuote.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_puzzleglobe2.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PACHAMAMA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_CAMERA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_CAKE1.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BRAILLE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WWW.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SMILE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKIVOYAGE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_W.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PENANDPAPER.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__WIKIDATA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_OWL_OF_ATHENA.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_twenty_v1.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_EQUAL.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_KUEBIKO.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MediaWiki.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKI_INCUBATOR.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__HumanFigure2.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiSpecies.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Wikiversity.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__WikiBooks.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols__twenty_v2.png";
+
+$symbols_alt: "./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BASKETBALL.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKTIONARY.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MUSIC_PARTY.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKINEWS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_heart.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_mail.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIKICOMMONS.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_environment.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SERPENT.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WIFI.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_SPRAYCAN.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Mokorotlo.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_THUNDERBIRD.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_ESC.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20symbols_Ghyama.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_Adinkra_Brave.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_WikiVoyge.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_MosqueDome.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_BigBen.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_HumanFigure3.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_IBIS_OF_THOTH.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_PAINTING_EASLE.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_KINTSUGI.png",
+	"./assets/src/foundation-assets/wikipedia20/WP20symbols/WP20Symbols_HAMSA.png";
+
+$random_delay: 5,1,10,4,23,19,3,13,8,21,14,6,22,9,20,16,12,2,7,18,15,11,17,24;
+
+$wp20_color_1: #0154D5;
+$wp20_color_2: #DC0816;
+$wp20_color_3: #028B3F;
+$wp20_color_4: #EE8019;
+$wp20_color_5: #049DFF;
+$wp20_color_6: #F0BC00;
+$wp20_color_7: #E679A6;
+$wp20_color_8: #8401D5;
+$wp20_color_9: #5EB34F;
+$wp20_color_10: #FD6363;
+$wp20_color_11: #E9E7C4;
+$wp20_color_12: #222222;
+$wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_color_5,$wp20_color_6,$wp20_color_7,$wp20_color_8,$wp20_color_9,$wp20_color_10,$wp20_color_11;
+
+@for $i from 1 to 12 {
+	.wp20-color-#{$i} {
+		border-color: #{nth($wp20_colors, $i)} !important;
+	}
+	.wp20-fill-color-#{$i},
+	.wp20-fill-color-#{$i}:hover,
+	.wp20-fill-color-#{$i}.active {
+		fill: #{nth($wp20_colors, $i)};
+	}
+	.wp20-underline-color-#{$i} {
+		border-bottom: 0.125em solid #{nth($wp20_colors, $i)};
+	}
+}
+
+.wp20.story-carousel-container .index,
+.section .wp20.intro p {
+	font-family: $wp20_font;
+}
+
+.section > div {
+	@include responsive-margin(16, 0, bottom);
+}
+
+.section ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		margin-left: 0;
+	}
+}
+
+.section .margin-top {
+	margin-top: 1.5em;
+}
+
+.section .wp20.intro {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	@include responsive-margin(24, 32, bottom);
+
+	p {
+		@include font-size(24, 20);
+	}
+
+	h1:nth-of-type(1) {
+		margin-bottom: 1em;
+		padding-left: 0;
+		padding-right: 2rem;
+		position: relative;
+	}
+
+	h1:nth-of-type(2) {
+		margin-top: 1em;
+	}
+
+	h1:first-child::after {
+		animation: move 8s linear infinite;
+		animation-direction: alternate;
+		animation-play-state: running;
+		background-image: url("./assets/src/svg/wave.svg");
+		background-position-x: 102%;
+		background-position-y: 50%;
+		background-repeat: repeat-x;
+		background-size: 0.71em 0.4em;
+		content: "";
+		display: block;
+		height: 1em;
+		position: absolute;
+		top: auto;
+		transform: translate(45%, 20%);
+		width: 50vw;
+
+		@media (min-width: $medium-bp) {
+			animation-play-state: paused;
+			background-position-y: 0;
+			top: 0;
+			transform: translate(-102%, 40%);
+			width: 100vw;
+		}
+	}
+
+	h1:first-child::before {
+		background-image: url("./assets/src/foundation-assets/wikipedia20/accents/accent1.svg");
+		background-repeat: no-repeat;
+		background-size: contain;
+		bottom: -0.75em;
+		content: "";
+		display: block;
+		height: 1em;
+		left: auto;
+		position: absolute;
+		right: 0;
+		top: auto;
+		transform: rotate(-60deg) #{"/*rtl:rotate(30deg)*/"};
+		width: 1em;
+	}
+
+	.intro h1,
+	> div {
+		overflow: hidden;
+		@media (min-width: $medium-bp) {
+			overflow: visible;
+		}
+	}
+
+	// confetti
+	&::after,
+	&::before {
+		animation: wiggle 3s infinite;
+		background-color: $wp20_color_1;
+		content: "";
+		display: block;
+		height: 0.5rem;
+		left: auto;
+		position: absolute;
+		right: -0.5rem;
+		top: 1rem;
+		transform: rotate(30deg);
+		width: 0.4rem;
+		z-index: 1;
+
+		@media (min-width: $medium-bp) {
+			right: -2rem;
+		}
+	}
+
+	&::before {
+		animation-delay: 1s;
+		height: 0.4rem;
+		left: auto;
+		right: 3rem;
+		top: -3.25rem;
+		width: 0.55rem;
+	}
+}
+
+.section:hover .wp20.intro h1::after {
+	animation-play-state: running;
+}
+
+@for $i from 1 to 11 {
+	.section[data-confetti-option="#{$i}"] {
+		.intro::after {
+			background-color: #{nth($wp20_colors, $i)};
+		}
+		.intro::before {
+			background-color: #{nth($wp20_colors, $i + 1)};
+		}
+	}
+}
+
+#recent-edits-container {
+	background-color: $wp20_color_11;
+	&:hover .box-accent svg path {
+		animation-play-state: running;
+	}
+}
+
+.recent-edits {
+	display: none;
+	font-size: 1.25rem;
+	font-style: normal;
+	line-height: 1.5;
+	transition: $transition;
+
+	@media (min-width: $large-bp) {
+		font-size: 1.375rem;
+	}
+
+	> div {
+		background-color: rgba(255, 255, 255, 0.9);
+		padding: 2.5rem 1rem;
+		position: relative;
+		text-align: center;
+		transition: $transition;
+
+		@media (min-width: $large-bp) {
+			border: 0.16em solid $wp20_color_7;
+		}
+
+		.box-accent {
+			svg {
+				height: auto;
+				width: 100%;
+
+				path {
+					animation: dash 3s ease-in-out infinite;
+					animation-play-state: paused;
+					stroke-dasharray: 100;
+					stroke-dashoffset: 50;
+					stroke-width: 20;
+					transform-origin: center;
+
+					&:nth-child(1) {
+						animation-delay: 0.5s;
+					}
+					&:nth-child(2) {
+						animation-delay: 1s;
+					}
+					&:nth-child(3) {
+						animation-delay: 1.5s;
+					}
+				}
+			}
+		}
+
+		.box-accent-top {
+			left: auto;
+			position: absolute;
+			right: 0;
+			top: 0;
+			transform: translate(1rem,-100%) rotate(0deg) scaleX(1) #{"/*rtl:translate(-1rem,-100%) rotate(0deg) scaleX(-1)*/"};
+			width: 2rem;
+
+			@media (min-width: $medium-bp) {
+				transform: translate(60%,-100%) rotate(0deg) scaleX(1) #{"/*rtl:translate(-60%,-100%) rotate(0deg) scaleX(-1)*/"};
+				width: 3rem;
+			}
+
+			svg path {
+				&:nth-child(1) {
+					stroke: $wp20_color_6;
+				}
+				&:nth-child(2) {
+					stroke: $wp20_color_4;
+				}
+				&:nth-child(3) {
+					stroke: $wp20_color_6;
+				}
+			}
+		}
+
+		.box-accent-bottom {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: auto;
+			transform: translate(-1rem,100%) rotate(15deg) scale(1) #{"/*rtl:translate(1rem,100%) rotate(-15deg) scaleX(-1)*/"};
+			width: 2rem;
+
+			@media (min-width: $medium-bp) {
+				transform: translate(-60%,100%) rotate(15deg) scale(1) #{"/*rtl:translate(60%,100%) rotate(-15deg) scaleX(-1)*/"};
+				width: 3rem;
+			}
+
+			svg path {
+				&:nth-child(1) {
+					stroke: $wp20_color_3;
+				}
+				&:nth-child(2) {
+					stroke: $wp20_color_7;
+				}
+				&:nth-child(3) {
+					stroke: $wp20_color_3;
+				}
+			}
+		}
+	}
+
+	.label-container {
+		font-style: italic;
+		margin-bottom: rem(40, 32);
+		position: relative;
+	}
+
+	.wiki {
+		background-image: linear-gradient(to right, $wp20_color_3 50%, $wp20_color_4 50%);
+		background-position: left 0% bottom 0%;
+		background-repeat: repeat-x;
+		background-size: 200% 0.125em;
+		padding-bottom: 0.125em;
+		transition: background-position 3s ease 0s;
+	}
+
+	.accent {
+		height: 2rem;
+		margin: 0 auto 1rem;
+		transition: 0.5s all ease-out;
+		width: 2rem;
+
+		svg {
+			height: auto;
+			width: 100%;
+		}
+	}
+}
+
+.story-carousel-container {
+	background-image: url("./assets/src/foundation-assets/wikipedia20/accents/confetti.svg");
+	background-position: top center;
+	background-repeat: repeat;
+	background-size: 150%;
+
+	@media (min-width: $medium-bp) {
+		background-repeat: repeat-x;
+		background-size: 75% auto;
+	}
+
+	@media (min-width: $large-bp) {
+		background-repeat: repeat-x;
+		background-size: 60% auto;
+	}
+}
+
+.story-carousel-inner {
+	padding-top: rem(0, 40);
+	position: relative;
+}
+
+.story-carousel {
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
+	padding: 0;
+
+	@media (min-width: $medium-bp) {
+		margin: auto;
+		padding: 0;
+	}
+
+	.story-content-container {
+		padding: 1rem 1rem 0 1rem;
+		@media (min-width: $medium-bp) {
+			padding: 2rem 2rem 0 2rem;
+		}
+	}
+
+	.story-content-container > div {
+		display: none;
+	}
+
+	.story-content-container > div:first-child {
+		display: block;
+	}
+
+	.story-icon {
+		height: 1em;
+		margin-right: 0.5em;
+		margin-top: 0.25em;
+	}
+
+	.story-image {
+		background-color: $wp20_color_11;
+		background-position: center center;
+		background-size: cover;
+		border: 3px solid $wp20_color_1;
+		border-radius: 50%;
+		float: right;
+		height: 20vw;
+		max-height: 200px;
+		max-width: 200px;
+		position: relative;
+		transform: translate(0, -2rem);
+		transform-origin: left bottom;
+		width: 20vw;
+
+		@media (min-width: $medium-bp) {
+			border-width: 0.25rem;
+			transform: translate(10%, -10%) scale(1.25);
+		}
+	}
+
+	@for $i from 1 to 12 {
+		.story-content-container > div:nth-child(11n + #{$i}) .story-image {
+			border-color: #{nth($wp20_colors, $i)};
+		}
+	}
+
+	.story-since {
+		background-image: url("./assets/src/svg/calendar.svg");
+	}
+
+	.story-location {
+		background-image: url("./assets/src/svg/map-pin.svg");
+	}
+
+	.story-location,
+	.story-since {
+		background-position: 0 0.25em;
+		background-repeat: no-repeat;
+		background-size: 1em;
+		flex-wrap: nowrap;
+		padding-left: 1.5em;
+	}
+
+	.story-content .story-location {
+		margin-bottom: 0;
+	}
+
+	.story-content .story-since {
+		margin-top: 0;
+	}
+
+	blockquote {
+		border-left: 0.25rem solid $wmui-color-base0;
+		border-right: 0;
+		margin: 1rem 0 0 0;
+
+		p {
+			display: block;
+			font-weight: 400;
+			padding-left: 1rem;
+			padding-right: 0;
+
+			span {
+				display: block;
+			}
+		}
+	}
+
+	@for $i from 1 to 12 {
+		.story-content-container > div:nth-child(11n + #{$i - 1}) blockquote {
+			border-color: #{nth($wp20_colors, $i)};
+		}
+	}
+
+	.story-nav {
+		align-items: center;
+		background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 40%);
+		bottom: 0;
+		flex-direction: row;
+		font-size: 1rem;
+		height: 4rem;
+		margin-bottom: 1rem;
+		padding: 1rem 1rem 0;
+		position: sticky;
+		width: 100%;
+		z-index: 0;
+
+		@media (min-width: $medium-bp) {
+			flex-direction: row #{"/*rtl:row-reverse*/"};
+			font-size: 1.25rem;
+			height: auto;
+			margin-bottom: 1.5rem;
+			padding: 0 2rem;
+			position: static;
+		}
+
+		.next-story,
+		.prev-story {
+			cursor: pointer;
+			font-size: 1.75rem;
+			padding: 0.2rem 0.5rem;
+			transform: rotate(0) #{"/*rtl:rotate(180deg)*/"};
+			user-select: none;
+
+			@media (min-width: $medium-bp) {
+				display: inline-block;
+				font-size: 3rem;
+				left: 2.5rem;
+				padding: 1rem;
+				position: absolute;
+				right: auto;
+				top: 250px;
+				transition: 1s all;
+			}
+
+			span::after {
+				background-color: $wp20_color_6;
+				border-radius: 50%;
+				bottom: 0;
+				content: "";
+				display: block;
+				height: 2rem;
+				margin: auto;
+				position: absolute;
+				top: 0;
+				transform: scale(1.2) translateX(-4%);
+				transition: 0.3s all ease-out;
+				width: 2rem;
+				z-index: -1;
+			}
+		}
+
+		@media (min-width: $medium-bp) {
+			.prev-story span {
+				animation: sideAttnLeft 10s infinite #{"/*rtl:sideAttnRight 10s infinite*/"};
+				display: block;
+			}
+			.next-story span {
+				animation: sideAttnRight 10s infinite #{"/*rtl:sideAttnLeft 10s infinite*/"};
+				display: block;
+			}
+			.prev-story,
+			.next-story {
+				span::after {
+					height: 3rem;
+					width: 3rem;
+				}
+				&:hover span::after {
+					transform: scale(1.6) translateX(-4%);
+				}
+			}
+			.next-story {
+				left: auto;
+				right: 2.5rem;
+			}
+		}
+
+		.index {
+			flex-grow: 1;
+			text-align: center;
+			width: 100%;
+			@media (min-width: $medium-bp) {
+				text-align: right;
+			}
+		}
+	}
+}
+
+$w-sm: 100vw/3;
+$w-sm-p: 33.33%;
+$w-med: 100vw/6;
+$w-med-p: 16.66%;
+$w-lg: 100vw/8;
+$w-lg-p: 12.5%;
+$row-gutter-sm: 2vw;
+$row-gutter-big: 0.625vw; 
+
+.symbols-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	position: relative;
+
+	.grid-item,
+	.grid-item > div {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		transition: opacity 0.2s;
+	}
+
+	.grid-item {
+		border: 1px solid #ffffff;
+		height: $w-sm * 0.75;
+		margin-bottom: $row-gutter-sm;
+		overflow: hidden;
+		position: relative;
+		width: $w-sm-p;
+
+		@media (min-width: $medium-bp) {
+			height: $w-med * 0.75;
+			margin-bottom: $row-gutter-big;
+			width: $w-med-p;
+		}
+		@media (min-width: $large-bp) {
+			height: $w-lg * 0.75;
+			margin-bottom: $row-gutter-big;
+			width: $w-lg-p;
+		}
+	}
+
+	.grid-item > div {
+		height: 100%;
+		position: absolute;
+		width: 100%;
+	}
+
+	.grid-item > div:nth-child(2) {
+		opacity: 0;
+	}
+
+	.grid-item.reverse > div:nth-child(2) {
+		opacity: 1;
+	}
+
+	@for $i from 1 to length($symbols) {
+		.grid-item:nth-child(#{$i}),
+		.grid-item.grid-text > div {
+			animation: fadeIn 0.1s;
+			animation-delay: #{nth($random_delay, $i) * 0.12}s;
+			animation-fill-mode: both;
+			opacity: 0;
+		}
+		.grid-item:nth-child(#{$i}) > div:nth-child(1) {
+			animation-direction: alternate;
+			background-image: url(#{nth($symbols, $i)});
+		}
+		.grid-item:nth-child(#{$i}) > div:nth-child(2) {
+			animation-direction: alternate-reverse;
+			background-image: url(#{nth($symbols_alt, $i)});
+		}
+	}
+
+	.grid-item.grid-text {
+		background-color: #ffffff;
+		position: absolute;
+		// double width of normal item
+		width: $w-sm-p * 2;
+		z-index: 1;
+
+		@media (min-width: $medium-bp) {
+			width: $w-med-p * 2;
+		}
+
+		@media (min-width: $large-bp) {
+			width: $w-lg-p * 2;
+		}
+
+		> div {
+			align-items: center;
+			background-image: none;
+			display: flex;
+			justify-content: center;
+			text-align: center;
+			width: 100%;
+		}
+	}
+
+	.grid-item.grid-text.grid-text-1 {
+		left: 0;
+		top: $w-sm * 0.75 + 2vw;
+		> div {
+			animation-delay: 1.6s;
+		}
+	}
+
+	.grid-item.grid-text.grid-text-2 {
+		left: $w-sm-p;
+		top: $w-sm * 0.75 * 3 + 6vw;
+		> div {
+			animation-delay: 2.4s;
+		}
+	}
+
+	.grid-item.grid-text.grid-text-3 {
+		left: 0;
+		top: $w-sm * 0.75 * 5 + 10vw;
+		> div {
+			animation-delay: 3.2s;
+		}
+	}
+
+	@media (min-width: $medium-bp) {
+		// 4 rows
+		.grid-item.grid-text.grid-text-1 {
+			left: $w-med-p;
+			top: 0;
+		}
+		.grid-item.grid-text.grid-text-2 {
+			left: $w-med-p * 3;
+			top: $w-med * 0.75 + $row-gutter-big;
+		}
+		.grid-item.grid-text.grid-text-3 {
+			left: $w-med-p * 2;
+			top: $w-med * 0.75 * 3 + $row-gutter-big * 3;
+		}
+	}
+
+	@media (min-width: $large-bp) {
+		// 3 rows
+		.grid-item.grid-text.grid-text-1 {
+			left: $w-lg-p;
+		}
+		.grid-item.grid-text.grid-text-2 {
+			left: $w-lg-p * 5;
+			top: $w-lg * 0.75 + $row-gutter-big;
+		}
+		.grid-item.grid-text.grid-text-3 {
+			left: $w-lg-p * 3;
+			top: $w-lg * 0.75 * 2 + $row-gutter-big * 2;
+		}
+	}
+
+	.grid-item h2 {
+		// rem independent
+		font-size: 28px;
+		font-weight: 700;
+		margin-bottom: 0;
+
+		@media (min-width: $small-bp) {
+			font-size: 34px;
+		}
+		@media (min-width: $medium-bp) {
+			font-size: 38px;
+		}
+		@media (min-width: $large-bp) {
+			font-size: 42px;
+		}
+	}
+}
+
+.timeline {
+	.timeline-container {
+		position: relative;
+	}
+
+	.milestones-window {
+		margin: auto;
+		overflow: hidden;
+		width: 100%;
+		@media (min-width: $medium-bp) {
+			width: calc(100% - 6rem);
+		}
+	}
+
+	.milestones {
+		transition: 1s all;
+		width: 100%;
+	}
+
+	.milestone {
+		display: inline-block;
+		padding: 0;
+		transition: 0.5s all;
+
+		@media (min-width: $medium-bp) {
+			padding: 1rem 2rem 0;
+		}
+
+		.milestone-container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+
+	img {
+		height: auto;
+		margin-bottom: 1.5rem;
+		max-height: 75vw;
+		min-width: 250px;
+		width: 100%;
+
+		@media (min-width: $medium-bp) {
+			margin-bottom: 0;
+			max-height: 24rem;
+			width: 50%;
+		}
+	}
+
+	.milestone-desc {
+		display: block;
+		min-width: 250px;
+		width: 100%;
+		@include responsive-padding(0 0, 0 32);
+
+		@media (min-width: $medium-bp) {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			width: 50%;
+		}
+
+		> h2,
+		> p {
+			margin-bottom: 0;
+		}
+	}
+
+	.milestone-nav {
+		bottom: 0;
+		position: sticky;
+		@media (min-width: $medium-bp) {
+			position: unset;
+		}
+	}
+
+	.next,
+	.prev {
+		@include responsive-padding(0 0, 16 16);
+		cursor: pointer;
+		display: inline-block;
+		font-size: 3rem;
+		left: 0;
+		position: relative;
+		right: auto;
+		top: 50%;
+		transform: rotate(0) #{"/*rtl:rotate(180deg)*/"};
+		transition: 1s all;
+		user-select: none;
+
+		@media (min-width: $medium-bp) {
+			position: absolute;
+		}
+
+		span:after {
+			background-color: $wp20_color_7;
+			border-radius: 50%;
+			bottom: 0;
+			content: "";
+			display: block;
+			height: 3rem;
+			margin: auto;
+			position: absolute;
+			top: 0;
+			transform: scale(1.2) translateX(-2%);
+			transition: 0.3s all ease-out;
+			width: 3rem;
+			z-index: -1;
+		}
+	}
+
+	@media (min-width: $medium-bp) {
+		.prev span {
+			animation: sideAttnLeft 10s infinite #{"/*rtl:sideAttnRight 10s infinite*/"};
+			display: block;
+		}
+		.next span {
+			animation: sideAttnRight 10s infinite #{"/*rtl:sideAttnLeft 10s infinite*/"};
+			display: block;
+		}
+		.next,
+		.prev {
+			&:hover span::after {
+				background-color: $wp20_color_7;
+				transform: scale(1.6) translateX(-2%);
+			}
+		}
+	}
+
+	.next {
+		left: auto;
+		right: 0;
+	}
+}
+
+.movement {
+	position: relative;
+
+	.main-vis {
+		margin-left: 0;
+		margin-right: 0;
+		transform: scaleX(1) #{"/*rtl:scaleX(-1)*/"};
+		width: 69%;
+	}
+	.side-vis {
+		bottom: 0;
+		left: auto;
+		position: absolute;
+		right: 0;
+		transform: scaleX(1) #{"/*rtl:scaleX(-1)*/"};
+		width: 31%;
+		z-index: -1;
+	}
+	@media (min-width: $medium-bp) {
+		.main-vis {
+			margin-left: 4%;
+			margin-right: 0;
+			width: 65%;
+		}
+		.side-vis {
+			left: auto;
+			right: 4%;
+			width: 27%;
+		}
+	}
+	@media (min-width: $large-bp) {
+		.main-vis {
+			margin-left: 10%;
+			margin-right: 0;
+			width: 59%;
+		}
+		.side-vis {
+			left: auto;
+			right: 10%;
+			width: 21%;
+		}
+	}
+	a.nonprofit,
+	a.projects,
+	a.chapters,
+	a.usergroups,
+	a.thematic,
+	a.campaigns {
+		background-position: left center;
+		background-repeat: no-repeat;
+		display: inline-block;
+		margin-bottom: 0;
+		padding-left: 1.25em;
+	}
+	a.nonprofit {
+		background-image: url("./assets/src/svg/individual/wikimedia.svg");
+		background-size: 0.875em;
+	}
+	a.projects {
+		background-image: url("./assets/src/svg/circle.svg");
+		background-position: left 0.05em center;
+		background-size: 0.75em;
+	}
+	a.chapters {
+		background-image: url("./assets/src/svg/triangle.svg");
+		background-size: 0.75em;
+	}
+	a.usergroups {
+		background-image: url("./assets/src/svg/circle.svg");
+		background-position: left 0.2em center;
+		background-size: 0.25em;
+	}
+	a.thematic {
+		background-image: url("./assets/src/svg/square.svg");
+		background-size: 0.625em;
+	}
+	a.campaigns {
+		background-image: url("./assets/src/svg/diamond.svg");
+		background-size: 0.625em;
+	}
+	.project-circle {
+		cursor: crosshair;
+		stroke: transparent;
+		stroke-width: 3;
+		transition: $transition;
+	}
+	circle {
+		transition: $transition;
+	}
+	&:hover circle:not(.project-circle) {
+		fill: $color-blue;
+	}
+	.tooltip {
+		background-color: rgba(248, 249, 250, 0.95);
+		border-radius: 2px;
+		display: inline-block;
+		font-size: 1rem;
+		left: 0 #{"/*rtl:ignore*/"};
+		max-width: 300px;
+		min-width: 200px;
+		padding: 0.5rem 1rem;
+		position: fixed;
+		top: 0;
+		width: 20vw;
+		z-index: 1;
+		p {
+			margin-bottom: 0;
+		}
+		strong {
+			display: block;
+		}
+	}
+}
+
+.top-data {
+	.data-options {
+		span.p {
+			color: $wmui-color-base30;
+			padding: 0 0.75rem;
+		}
+		span {
+			white-space: nowrap;
+		}
+		select {
+			appearance: none;
+			background-image: url("./assets/src/svg/down.svg");
+			background-position: right center;
+			background-repeat: no-repeat;
+			border: 0;
+			border-bottom: 2px solid $wmui-color-base0;
+			color: $wmui-color-base0;
+			display: inline-block;
+			padding: 0 0.875em 0 0;
+			width: auto;
+		}
+		input,
+		label {
+			color: $wmui-color-base0;
+			display: inline-block;
+			width: auto;
+		}
+		input[type="radio"] {
+			border: 0;
+			height: 1rem;
+			width: 1.2rem;
+		}
+		input:checked + label {
+			border-bottom: 2px solid $wmui-color-base0;
+		}
+	}
+	.top-data-content {
+		margin-bottom: 2rem;
+		margin-left: -0.5rem;
+		padding: 0.5rem;
+		transition: $transition;
+		&:hover {
+			background-color: $wmui-color-base90;
+		}
+		.total {
+			display: block;
+			margin-bottom: 1rem;
+			margin-top: 0.5rem;
+		}
+		@media (min-width: $medium-bp) {
+			margin-bottom: 1rem;
+			margin-top: 0;
+		}
+	}
+	.article-image {
+		background-color: $wmui-color-base90;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		border: 8px solid $wmui-color-base90;
+		height: 50px;
+		width: 50px;
+		@media (min-width: $medium-bp) {
+			height: 100px;
+			margin-right: 1rem;
+			width: 100px;
+		}
+	}
+	.article-image-fallback {
+		background-image: url("./assets/src/svg/individual/wikipedia-black.svg");
+		background-size: 50%;
+	}
+	p.heading {
+		font-weight: 700;
+		margin-bottom: 0;
+	}
+	.desc a {
+		color: $wmui-color-base30;
+		text-decoration: underline;
+	}
+	.main-desc {
+		flex-grow: 1;
+		flex-wrap: nowrap;
+		.details {
+			flex-grow: 1;
+			margin-right: 0;
+			order: -1;
+			@media (min-width: $medium-bp) {
+				margin-right: 2rem;
+				order: 0;
+			}
+		}
+	}
+	.lang-code,
+	.data .total {
+		color: $wmui-color-base20;
+	}
+	.data {
+		max-width: 380px;
+		min-width: 200px;
+		text-align: left;
+		@media (min-width: $medium-bp) {
+			text-align: right;
+		}
+	}
+	.article-photo-credits-container {
+		line-height: 1.5;
+		span, a {
+			color: $wmui-color-base30;
+		}
+		a {
+			text-decoration: underline;
+		}
+	}
+}
+
+// easter eggs
+.easter-egg-container {
+	background-color: $wmui-color-base90;
+	border-radius: 5px;
+	box-shadow: 0 5px 20px 0 rgba(0,0,0,.15);
+	display: none;
+	margin-bottom: 0.5rem;
+	overflow: hidden;
+	padding: 1rem 1rem 0 1rem;
+	position: absolute;
+	width: 350px;
+	z-index: 20;
+	.easter-egg-content::after {
+		animation: wiggle 4s 1;
+		animation-delay: 0.5s;
+		animation-fill-mode: both;
+		animation-timing-function: ease-in;
+		background-image: url("./assets/src/foundation-assets/wikipedia20/accents/accent1.svg");
+		background-repeat: no-repeat;
+		background-size: contain;
+		bottom: 0;
+		content: "";
+		display: block;
+		height: 3rem;
+		left: auto;
+		position: absolute;
+		right: 0.5rem;
+		transform: rotate(-55deg);
+		transform-origin: 44% 30%;
+		width: 3rem;
+	}
+	.easter-egg-content:nth-child(2n)::after {
+		animation-direction: reverse;
+		left: auto;
+		right: 2rem;
+		transform: rotate(-30deg);
+	}
+	.easter-egg-content > p,
+	.easter-egg-content > p > a {
+		font-size: 0.9375rem;
+	}
+}
+
+.easter-egg,
+.bday-fun {
+	font-style: normal;
+	font-weight: 400;
+	&.active {
+		animation: move 8s linear infinite;
+		animation-direction: alternate;
+		animation-play-state: paused;
+		background-color: rgba(255, 255, 255, 0);
+		background-image: url("./assets/src/svg/wave.svg");
+		background-position-x: 0;
+		background-position-y: 100%;
+		background-repeat: repeat-x;
+		background-size: 0.6em 0.75em; 
+		cursor: pointer;
+		padding-bottom: 0.5em;
+		pointer-events: none;
+		position: relative;
+		text-decoration: none;
+		@media (min-width: $small-bp) {
+			pointer-events: auto;
+		}
+	}
+	&.egg-highlight::before,
+	&.egg-highlight::after {
+		animation-play-state: running;
+	}
+	&::before {
+		animation: blinkShift 3s linear infinite;
+		animation-play-state: paused;
+		color: #F0BC00;
+		content: "★";
+		font-size: 1rem;
+		height: 1em;
+		left: 90% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		position: absolute;
+		top: -40% #{"/*rtl:ignore*/"};
+		transform: scale(0.5);
+		transform-origin: 50% 50%;
+		width: 1em;
+	}
+	&::after {
+		animation: blinkShift2 3s linear infinite;
+		animation-delay: 0.7s;
+		animation-play-state: paused;
+		color: #E679A6;
+		content: "✦";
+		font-size: 1rem;
+		height: 1em;
+		left: 90% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		position: absolute;
+		top: -40% #{"/*rtl:ignore*/"};
+		transform: scale(0.5);
+		transform-origin: 50% 50%;
+		width: 1em;
+	}
+	&:hover::before,
+	&:hover::after {
+		animation-play-state: running;
+	}
+	&:hover {
+		animation-play-state: running;
+	}
+}
+
+.egg-accent {
+	display: inline;
+}
+
+.visible {
+	opacity: 1;
+	transition: opacity 0.3s ease-in;
+	visibility: visible;
+}
+.hidden {
+	opacity: 0;
+	transition-delay: 0.15s, 0s;
+	transition-duration: 0s, 0.15s;
+	transition-property: visibility, opacity;
+	transition-timing-function: ease;
+	visibility: hidden;
+}
+
+.pulse {
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-name: pulse;
+	fill: #ffffff;
+	fill-opacity: 0;
+	stroke: $color-blue; 
+	stroke-width: 1px;
+	transform-origin: 0% 0% #{"/*rtl:ignore*/"};
+	transition: $transition;
+}
+
+.page-template-page-freeform .freeform-content {
+	// because of shortcodes empty p tags occur
+	p:empty {
+		display: none;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInWait {
+	0%, 49% {
+		opacity: 0;
+	}
+	51%, 100% {
+		opacity: 1;
+	}
+}
+
+@keyframes sideAttnLeft {
+	0% {
+		color: $wmui-color-base0;
+		transform: translateX(0);
+	}
+	15% {
+		color: $color-blue;
+		transform: translateX(-0.5rem);
+	}
+	25% {
+		color: $color-blue;
+		transform: translateX(-0.5rem);
+	}
+	40% {
+		color: $wmui-color-base0;
+		transform: translateX(0);
+	}
+}
+
+@keyframes sideAttnRight {
+	0% {
+		color: $wmui-color-base0;
+		transform: translateX(0);
+	}
+	15% {
+		color: $color-blue;
+		transform: translateX(0.5rem);
+	}
+	25% {
+		color: $color-blue;
+		transform: translateX(0.5rem);
+	}
+	40% {
+		color: $wmui-color-base0;
+		transform: translateX(0);
+	}
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+
+	40% {
+		opacity: 1;
+	}
+
+	55% {
+		opacity: 1;
+	}
+
+	80% {
+		opacity: 0;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+		stroke-width: 2px;
+		transform: scale(0.9);
+	}
+
+	100% {
+		opacity: 0;
+		stroke-width: 0;
+		transform: scale(2.4);
+	}
+}
+
+@keyframes wiggle {
+	20% {
+		transform: rotate(10deg);
+	}
+
+	30% {
+		transform: rotate(-10deg);
+	}
+
+	40% {
+		transform: rotate(15deg);
+	}
+
+	50% {
+		transform: rotate(-7deg);
+	}
+
+	60% {
+		transform: rotate(5deg);
+	}
+}
+
+@keyframes move {
+	0% {
+		background-position-x: 0 #{"/*rtl:ignore*/"};
+	}
+
+	100% {
+		background-position-x: 100px #{"/*rtl:ignore*/"};
+	}
+}
+
+@keyframes blinkShift {
+	0%, 99% {
+		left: 80% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: -40% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+
+	10%, 25% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	40% {
+		left: 80% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: -40% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+
+	50%, 60% {
+		left: 8% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: 30% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+
+	70%, 85% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	90% {
+		left: 8% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: 30% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+}
+
+@keyframes blinkShift2 {
+	0%, 99% {
+		left: 40% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: -30% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+
+	10%, 25% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	40% {
+		left: 40% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: -30% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+
+	50%, 60% {
+		left: 90% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: 40% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+
+	70%, 85% {
+		opacity: 1;
+		transform: scale(0.5);
+	}
+
+	90% {
+		left: 90% #{"/*rtl:ignore*/"};
+		opacity: 0;
+		top: 40% #{"/*rtl:ignore*/"};
+		transform: scale(0);
+	}
+}
+
+@keyframes dash {
+	30% {
+		stroke-dashoffset: 0;
+	}
+}
+
+// overrides standard style of module/object
+.wp20.focus-block {
+	.bg-img-container .bg-img::after {
+		content: none;
+	}
+}
+
+.wp20 .wp-video {
+	margin-bottom: 4rem;
+}

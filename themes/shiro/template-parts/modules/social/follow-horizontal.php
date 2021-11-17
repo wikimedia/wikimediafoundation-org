@@ -26,11 +26,8 @@ if ( empty( $facebook ) && empty( $twitter ) && empty( $instagram ) && empty( $b
 
 <div class="mar-top">
 	<?php if ( ! empty( $follow_text ) ) : ?>
-	<h3 class="h3"><?php echo esc_html( $follow_text ); ?></h3>
+	<h4><?php echo esc_html( $follow_text ); ?></h4>
 	<?php endif; ?>
-	<div class="wysiwyg">
-		<p></p>
-	</div>
 	<ul class="link-list social-list color-blue ">
 
 		<?php if ( ! empty( $facebook ) ) : ?>

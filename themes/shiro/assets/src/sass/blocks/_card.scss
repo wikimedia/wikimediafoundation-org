@@ -1,5 +1,5 @@
 .content-card {
-	@include global-block-styles;
+	@include global-margin-bottom;
 
 	border: 1px solid $wmui-color-base80;
 	border-radius: 4px;
@@ -30,8 +30,15 @@
 		padding: rem(20);
 	}
 
+	&__heading {
+		@include h3-sans;
+		margin-bottom: rem(4);
+		margin-left: 0;
+	}
+
 	&__body {
 		flex: 1;
+		font-family: $font-family-sans;
 	}
 
 	&__call-to-action {
@@ -40,25 +47,7 @@
 		position: static;
 
 		&::before {
-			bottom: 0;
-			content: "";
-			display: block;
-			left: 0;
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
-	}
-}
-
-.page.has-blocks,
-.single.has-blocks {
-	@include wysiwyg {
-		.content-card {
-			&__heading {
-				margin-bottom: rem(4);
-				margin-left: 0;
-			}
+			@include absolute-full-cover();
 		}
 	}
 }

@@ -1,0 +1,48 @@
+
+// Cards
+.card {
+  position: relative;
+
+  @media (min-width: $medium-bp) {
+    margin-right: rem(20);
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .img-container {
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  .bg-img {
+    transition: 0.3s all;
+  }
+
+  .post-meta {
+    color: $color-dark-gray;
+    @include responsive-margin(16, 24, bottom);
+    @include font-size( 13, 13 );
+    font-weight: bold;
+
+    span, time {
+      display: block;
+      margin: 0;
+    }
+
+    a {
+      color: $color-blue;
+      border-bottom: 2px solid rgba(0,0,0,0);
+      transition: 0.3s all;
+
+      &:hover {
+        color: $color-dark-blue;
+        border-color: $color-dark-blue;
+      }
+    }
+  }
+}

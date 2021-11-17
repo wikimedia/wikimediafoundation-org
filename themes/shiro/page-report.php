@@ -29,7 +29,7 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/header/page', 'noimage', $template_args );
 	}
 	?>
-<div class="mw-980 mod-margin-bottom flex flex-medium report-template toc__section">
+<div class="mw-980 mod-margin-bottom_sm flex flex-medium report-template toc__section">
 	<div class="w-32p toc__sidebar">
 		<?php get_sidebar( 'list' ); ?>
 	</div>
@@ -42,7 +42,9 @@ while ( have_posts() ) :
 			<?php echo wp_kses( $bodytext1, $allowed_tags ); ?>
 		</div>
 
-		<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+		<div class="page-intro mod-margin-bottom wysiwyg">
+			<?php get_template_part( 'template-parts/page/page', 'facts' ); ?>
+		</div>
 
 		<?php get_template_part( 'template-parts/page/page', 'list' ); ?>
 	</div>

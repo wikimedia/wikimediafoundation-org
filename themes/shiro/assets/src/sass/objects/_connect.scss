@@ -1,0 +1,79 @@
+
+// Connect
+.connect-container {
+
+  .module-mu {
+    border: 1px solid $wmui-color-base80;
+    padding: 1.5rem;
+
+    &.gray-module {
+      background: #f8f9fa;
+    }
+  }
+
+  .icon {
+    margin: 0;
+    width: 20px;
+  }
+
+  .social-list {
+
+    li {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-right: 4rem;
+    }
+
+    svg.icon {
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+
+  @media (max-width: 1155px) {
+
+    .flex-medium {
+      flex-wrap: wrap;
+    }
+
+    .w-50p:nth-child(odd) {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 3.5rem;
+
+      & + .w-48p {
+        padding-left: 0;
+        width: 50%;
+
+        @media (max-width: 767px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .w-18p {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 767px) {
+
+    .w-48p {
+      margin-bottom: 3.5rem;
+
+      & + .w-18p {
+        width: 100%;
+        padding-left: 0;
+      }
+    }
+
+    .social-list {
+      margin-top: 1.5rem;
+
+      li {
+        width: 46%;
+      }
+    }
+  }
+}

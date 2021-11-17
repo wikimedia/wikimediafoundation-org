@@ -1,0 +1,208 @@
+.mw-1360 {
+	margin: 0 auto;
+	max-width: rem(1440);
+	@include responsive-padding(0 20, 0 40);
+}
+
+.mw-1360-bg {
+	margin: 0 auto;
+	max-width: rem(1360);
+	@include responsive-padding(0 20, 0 40);
+}
+
+.mw-1017 {
+	margin: 0 auto;
+	max-width: rem(1017);
+	@include responsive-padding(0 20, 0 40);
+}
+
+.mw-980 {
+	margin: 0 auto;
+	max-width: rem(1060);
+	@include responsive-padding(0 20, 0 40);
+}
+
+.mw-900 {
+	margin: 0 auto;
+	max-width: rem(940);
+	@include responsive-padding(0 20, 0 40);
+}
+
+.mw-784 {
+	margin: 0 auto;
+	max-width: rem(784);
+}
+
+.w-100p {
+	max-width: 100%;
+	width: 100%;
+}
+
+.w-75p {
+	@include module-width($medium-bp, 75%);
+}
+
+.w-73p {
+	@include module-width($medium-bp, 73%);
+}
+
+.w-68p {
+	@include module-width($medium-bp, 68%);
+}
+
+.w-50p {
+	@include module-width($medium-bp, 50%);
+}
+
+.w-55p {
+	@include module-width($medium-bp, 57%);
+}
+
+.w-48p {
+	@include module-width($medium-bp, 48%);
+}
+
+.w-45p {
+	@include module-width($medium-bp, 45%);
+}
+
+.w-32p {
+	@include module-width($medium-bp, 32%);
+}
+
+.w-27p {
+	@include module-width($medium-bp, 27%);
+}
+
+.w-25p {
+	@include module-width($medium-bp, 25%);
+}
+
+.w-23p {
+	@include module-width($medium-bp, 23%);
+}
+
+.w-18p {
+	@include module-width($medium-bp, 18%);
+}
+
+
+// List template content + sidebar
+.list-template {
+	@media (min-width: $medium-bp) {
+		margin-top: 4rem;
+	}
+}
+
+// TODO: once all ToC navs have been replaced by blocks, we won't need these.
+.list-template,
+.report-template {
+	@media ( max-width: #{$core-gutenberg-break-small} ) {
+		.w-32p > nav {
+			margin-bottom: rem(40);
+		}
+	}
+}
+
+.list-template,
+.report-template,
+.data-template,
+.role-template {
+	@media ( min-width: #{$core-gutenberg-break-small} ) and ( max-width: 767px ) {
+		&.flex.flex-medium {
+			flex-direction: row;
+			flex-wrap: nowrap;
+		}
+
+		.w-32p,
+		.w-68p {
+			width: calc(50% - 1em);
+		}
+	}
+
+	@media ( min-width: #{$core-gutenberg-break-small} ) {
+		.w-32p > nav {
+			margin-right: rem(20);
+			padding-bottom: rem(62);
+		}
+	}
+}
+
+
+// Flex containers
+.flex {
+	&.flex-all {
+		@include flexbox(wrap, wrap, $small-bp, row);
+	}
+	// Becomes a flex container at medium-bp
+	&.flex-medium {
+		@include flexbox(column, nowrap, $medium-bp, row);
+	}
+
+	&.flex-large {
+		@include flexbox(column, nowrap, $large-bp, row);
+	}
+
+	&.flex-xlarge {
+		@include flexbox(column, nowrap, $xlarge-bp, row);
+	}
+
+	&.flex-wrap {
+		flex-wrap: wrap;
+	}
+
+	&.flex-wrap-reverse {
+		flex-wrap: wrap-reverse;
+	}
+
+	&.flex-space-between {
+		justify-content: space-between;
+	}
+
+	&.flex-align-center {
+		align-items: center;
+	}
+
+	&.flex-column-reverse-small {
+		flex-direction: column-reverse;
+		@media (min-width: $medium-bp) {
+			flex-direction: row;
+		}
+	}
+}
+
+
+// Vertical Spacing
+.mod-margin-bottom {
+	margin-bottom: rem(64);
+
+	@media (min-width: $medium-bp) {
+		margin-bottom: rem(112);
+	}
+}
+
+.mod-margin-bottom_sm {
+  margin-bottom: rem(32);
+
+  @media (min-width: $medium-bp) {
+	margin-bottom: rem(56);
+  }
+}
+
+.mod-margin-bottom_xs {
+  margin-bottom: rem(64/3);
+
+  @media (min-width: $medium-bp) {
+	margin-bottom: rem(112/3);
+  }
+}
+
+.mod-padding-vertical {
+	@include responsive-padding(56, 80, top);
+	@include responsive-padding(56, 80, bottom);
+}
+
+.mod-padding-vertical_sm {
+	padding-bottom: rem(48);
+	padding-top: rem(48);
+}

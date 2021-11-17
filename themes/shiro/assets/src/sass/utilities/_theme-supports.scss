@@ -1,0 +1,77 @@
+// Definitions of editor styles registered as theme supports.
+
+// Color definitions: slug, background-color, text-color, link-color.
+$color-palette:
+	base-0    $wmui-color-base0    $wmui-color-base100 $wmui-color-accent50,
+	base-10   $wmui-color-base10   $wmui-color-base100 $wmui-color-accent50,
+	base-20   $wmui-color-base20   $wmui-color-base100 $wmui-color-blue90,
+	base-30   $wmui-color-base30   $wmui-color-base0   $wmui-color-base10,
+	base-50   $wmui-color-base50   $wmui-color-base0   $wmui-color-blue50,
+	base-70   $wmui-color-base70   $wmui-color-base0   $wmui-color-blue50,
+	base-80   $wmui-color-base80   $wmui-color-base0   $wmui-color-blue50,
+	base-90   $wmui-color-base90   $wmui-color-base0   $wmui-color-blue50,
+	base-100  $wmui-color-base100  $wmui-color-base10  $wmui-color-blue50,
+	blue-50   $wmui-color-blue50   $wmui-color-base100 $wmui-color-blue90,
+	blue-90   $wmui-color-blue90   $wmui-color-base0   $wmui-color-blue50,
+	red-50    $wmui-color-red50    $wmui-color-base100 $wmui-color-accent90,
+	red-90    $wmui-color-red90    $wmui-color-base0   $wmui-color-blue50,
+	yellow-50 $wmui-color-yellow50 $wmui-color-base0   $wmui-color-blue50,
+	yellow-90 $wmui-color-yellow90 $wmui-color-base0   $wmui-color-blue50;
+
+:root {
+	--background-color: #{$wmui-color-base100};
+	--text-color: #{$wmui-color-base10};
+	--link-color: #{$wmui-color-blue50};
+}
+
+@each $color, $background-color, $text-color, $link-color in $color-palette {
+
+	.has-#{$color}-background-color {
+		--background-color: #{$background-color};
+		--text-color: #{$text-color};
+		--link-color: #{$link-color};
+		background-color: $background-color;
+		background-color: var(--background-color);
+		color: $text-color;
+		color: var(--text-color);
+	}
+}
+
+
+// Definitions of style variants available to blocks:
+//  NAME     BACKGROUND    TEXT-COLOR   ACCENT COLOR  BUTTON STYLE
+$block-styles:
+	base90       $wmui-color-base90   $wmui-color-base0   $wmui-color-base0  primary,
+	base70       $wmui-color-base70   $wmui-color-base0   $wmui-color-base0  primary,
+	base0        $wmui-color-base0    $wmui-color-base100 $wmui-color-blue50 reverse,
+	blue90       $wmui-color-blue90   $wmui-color-base0   $wmui-color-blue50 primary,
+	blue50       $wmui-color-blue50   $wmui-color-base100 $wmui-color-base0  reverse,
+	red90        $wmui-color-red90    $wmui-color-base0   $wmui-color-red50  primary,
+	donate-red90 $wmui-color-red90    $wmui-color-base0   $wmui-color-red50  primary,
+	red50        $wmui-color-red50    $wmui-color-base100 $wmui-color-base10 reverse,
+	yellow50     $wmui-color-yellow50 $wmui-color-base0   $wmui-color-blue50 primary,
+	yellow90     $wmui-color-yellow90 $wmui-color-base0   $wmui-color-blue50 primary;
+
+@each $name, $background-color, $text-color, $accent-color, $button-style in $block-styles {
+
+	.is-style-#{$name}.is-style-#{$name} {
+		--background-color: #{$background-color};
+		--text-color: #{$text-color};
+		--accent-color: #{$accent-color};
+	}
+}
+
+@mixin block-style-background-color {
+	background-color: $wmui-color-base90;
+	background-color: var(--background-color);
+}
+
+@mixin block-style-text-color {
+	color: $wmui-color-base0;
+	color: var(--text-color);
+}
+
+@mixin block-style-accent-color {
+	color: $wmui-color-base0;
+	color: var(--accent-color);
+}

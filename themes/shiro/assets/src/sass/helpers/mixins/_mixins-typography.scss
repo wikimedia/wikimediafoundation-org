@@ -1,0 +1,117 @@
+// Fonts/Typography
+@mixin font-size($desktop, $mobile) {
+	// Mobile
+	font-size: rem($mobile);
+
+	// Tablet (halfway between desktop and mobile size
+	@media (min-width: $width-breakpoint-tablet) and (max-width: 1280px) {
+		font-size: rem($desktop - (($desktop - $mobile) / 2));
+	}
+
+	// Desktop
+	@media (min-width: 1281px) {
+		font-size: rem($desktop);
+	}
+}
+
+@mixin line-height($desktop, $mobile) {
+	// Mobile
+	line-height: rem($mobile);
+
+	// Tablet (halfway between desktop and mobile size
+	@media (min-width: $width-breakpoint-tablet) and (max-width: 1280px) {
+		line-height: rem($desktop - (($desktop - $mobile) / 2));
+	}
+
+	// Desktop
+	@media (min-width: 1281px) {
+		line-height: rem($desktop);
+	}
+}
+
+// Font-sizes: desktop, mobile, line-height.
+$font-sizes: (
+	"default": 18 16 1.75,
+	"small":   14 12 1.75,
+	"medium":  20 18 1.5,
+	"large":   24 21 1.25,
+	"xlarge":  32 24 1.25,
+	"jumbo":   40 30 1.25
+);
+
+@mixin has-font-size( $size ) {
+	$values: map-get($font-sizes, $size);
+	$desktop: nth($values, 1);
+	$mobile: nth($values, 2);
+	$line-height: nth($values, 3);
+
+	@include font-size( $desktop, $mobile );
+	line-height: $line-height;
+}
+
+@mixin article-font {
+	@include has-font-size("default");
+	font-family: $font-family-serif;
+}
+
+@mixin h-margins {
+	margin: 0 0 0.5em;
+}
+
+@mixin h1 {
+	@extend .has-jumbo-font-size;
+	@include h-margins;
+	font-family: $font-family-sans;
+	font-weight: 700;
+}
+
+@mixin h2 {
+	@extend .has-xlarge-font-size;
+	@include h-margins;
+	font-family: $font-family-serif;
+	font-weight: 400;
+}
+
+@mixin h3 {
+	@extend .has-large-font-size;
+	@include h-margins;
+	font-family: $font-family-serif;
+	font-weight: 400;
+}
+
+@mixin h3-sans {
+	font-family: $font-family-sans;
+	font-weight: 700;
+}
+
+@mixin h4 {
+	@extend .has-medium-font-size;
+	@include h-margins;
+	font-family: $font-family-sans;
+	font-weight: 700;
+}
+
+@mixin h5 {
+	@extend .has-default-font-size;
+	@include h-margins;
+	color: unset;
+	font-weight: 700;
+	text-transform: unset;
+}
+
+@mixin h6 {
+	@include h5;
+}
+
+@mixin p {
+	@include article-font;
+	margin-bottom: 1rem;
+}
+
+@mixin reset-p-margin {
+	margin-bottom: 0;
+
+	+ p {
+		margin-top: 0;
+	}
+}

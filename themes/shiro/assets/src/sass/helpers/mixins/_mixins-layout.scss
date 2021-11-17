@@ -1,0 +1,42 @@
+// Flexbox
+@mixin flexbox( $mobile-direction, $desktop-wrap, $desktop-bp, $desktop-direction ) {
+	display: flex;
+	flex-direction: $mobile-direction;
+
+	@media (min-width: $desktop-bp) {
+		flex-direction: $desktop-direction;
+		flex-wrap: $desktop-wrap;
+	}
+}
+
+// Module Sizing
+@mixin module-width( $desktop-bp, $desktop-width ) {
+	width: 100%;
+
+	@media (min-width: $desktop-bp) {
+		width: $desktop-width;
+	}
+}
+
+@mixin absolute-full-cover() {
+	bottom: 0;
+	content: "";
+	display: block;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+
+@mixin aspect-ratio( $width, $height ) {
+	position: relative;
+
+	&::before {
+		content: " ";
+		display: block;
+		padding-top: ($height / $width) * 100%;
+		width: 100%;
+	}
+}

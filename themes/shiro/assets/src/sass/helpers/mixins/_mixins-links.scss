@@ -1,0 +1,120 @@
+/**
+ * Darkens a color by 30%, using Sass color scale.
+ *
+ * This is necessary for building things like link hover styles, where the
+ * base color is defined by a CSS property on a parent block.
+ *
+ * @param {Color}  $color   Base color.
+ */
+@mixin style-guide-darken-color( $color ) {
+	color: scale-color($color, $hue: 6deg, $lightness: -30%);
+}
+
+/**
+ * Darkens a color by 30%, using CSS filters.
+ *
+ * This is necessary for building things like link hover styles for links with
+ * icons. A fallback scss color is provided for browsers that don't support
+ * the `filter` property.
+ *
+ * @param {Color}  $color   Base color.
+ */
+@mixin style-guide-filter-color( $color ) {
+	@include style-guide-darken-color($color);
+
+	@supports (filter: brightness(0.7) hue-rotate(6deg)) {
+		color: $color;
+		filter: brightness(0.7) hue-rotate(6deg);
+	}
+}
+
+/**
+ * Reset focus ring styles to override with other focus styles.
+ */
+@mixin focus-reset {
+	border-radius: 0;
+	box-shadow: none;
+	outline: none;
+}
+
+/**
+ * Focus faux outline styles.
+ *
+ * @param {Boolean}  $hex          Is color solid or rgba?
+ * @param {Boolean}  $inset        Should the box shadow be inset?
+ * @param {String}   $width        Px width for outline.
+ * @param {String}   $transparency If transparent, what opacity?
+ */
+@mixin focus-ring(
+	$hex: false,
+	$inset: false,
+	$width: 2px,
+	$transparency: 0.8
+) {
+	border-radius: rem(2);
+	box-shadow: if($inset, inset, #{""}) 0 0 0 $width if($hex, $wmui-color-focus-ring-hex, rgba($wmui-color-focus-ring, $transparency));
+	outline: none;
+}
+
+/**
+ * Link styles
+ */
+@mixin style-guide-link {
+	color: $color-primary;
+	color: var(--link-color);
+
+	&:focus {
+		@include style-guide-darken-color($color-primary);
+		@include focus-ring;
+	}
+
+	&:hover {
+		@include style-guide-darken-color($color-primary);
+		text-decoration: underline;
+	}
+}
+
+@mixin style-guide-arrow-content {
+	content: " →" #{"/*rtl:'← '*/;"};
+}
+
+@mixin style-guide-arrow-content-back {
+	content: "← " #{"/*rtl:'→ '*/;"};
+}
+
+@mixin style-guide-arrow($back: false) {
+	display: inline-flex;
+	position: relative;
+
+	@if $back {
+		&::before {
+			@include style-guide-arrow-content-back;
+			color: currentColor;
+			font-family: $font-family-system-sans;
+			margin-right: rem(4); /*rtl: margin: 0 0 0 rem(4);*/
+			transition: 300ms ease-in transform;
+		}
+	} @else {
+		&::after {
+			@include style-guide-arrow-content;
+			color: currentColor;
+			font-family: $font-family-system-sans;
+			margin-left: rem(4); /*rtl: margin: 0 rem(4) 0 0;*/
+			transition: 300ms ease-in transform;
+		}
+	}
+
+	&:hover {
+		text-decoration: none;
+
+		@if $back {
+			&::before {
+				transform: translateX(rem(-5)); /*rtl: transform: translateX(rem(5));*/
+			}
+		} @else {
+			&::after {
+				transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+			}
+		}
+	}
+}

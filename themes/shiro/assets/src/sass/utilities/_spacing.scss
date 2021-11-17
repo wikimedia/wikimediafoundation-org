@@ -1,0 +1,57 @@
+// Vertical Spacing
+.mar-top {
+	margin-top: rem(16);
+}
+
+.mar-right {
+	margin-right: rem(16);
+}
+
+.mar-bottom_sm {
+	margin-bottom: rem(8);
+}
+
+.mar-bottom {
+	margin-bottom: rem(16);
+}
+
+.mar-bottom_lg {
+	margin-bottom: rem(32);
+	@media (max-width: 767px) {
+		margin-bottom: rem(16);
+	}
+}
+
+.mod-margin-bottom {
+	margin-bottom: rem(64);
+
+	@media (min-width: $medium-bp) {
+		margin-bottom: rem(112);
+	}
+}
+
+.mod-margin-bottom_sm {
+	margin-bottom: rem(32);
+
+	@media (min-width: $medium-bp) {
+		margin-bottom: rem(56);
+	}
+}
+
+.mod-margin-bottom_xs {
+	margin-bottom: rem(64/3);
+
+	@media (min-width: $medium-bp) {
+		margin-bottom: rem(112/3);
+	}
+}
+
+.mod-padding-vertical {
+	@include responsive-padding(56, 80, top);
+	@include responsive-padding(56, 80, bottom);
+}
+
+.mod-padding-vertical_sm {
+	padding-bottom: rem(48);
+	padding-top: rem(48);
+}

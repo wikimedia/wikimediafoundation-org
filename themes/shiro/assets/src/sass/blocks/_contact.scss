@@ -10,6 +10,11 @@
 		width: rem(20);
 	}
 
+	&__title {
+		@include h3-sans;
+		margin-bottom: rem(8);
+	}
+
 	&__description {
 		@include has-font-size("default");
 	}
@@ -30,14 +35,8 @@
 		margin-right: 0;
 	}
 
-	@include has-blocks-wrap {
-		&__title {
-			margin-bottom: rem(8);
-		}
-
-		&__social-title {
-			@include has-font-size("default");
-			margin: rem(22) 0 0;
-		}
+	&__social-title {
+		@include has-font-size("default");
+		margin: rem(22) 0 0;
 	}
 }
