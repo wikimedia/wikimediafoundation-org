@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 import initialize from '../util/initialize';
 
 import {
@@ -52,6 +54,49 @@ function processEntry( entry ) {
  */
 function handleIntersection( entries ) {
 	entries.forEach( processEntry );
+}
+
+/**
+ * This sets up secondary (nested menus) to be toggleable.
+ *
+ * @param {HTMLElement} dropdown A dropdown wrapper
+ */
+function initializePrimaryNavSubMenus( dropdown ) {
+	const submenus = dropdown.querySelectorAll( '.sub-menu' );
+	submenus.forEach( submenu => {
+		const _parentItem = submenu.parentElement;
+		const _parentLink = _parentItem.querySelector( 'a' );
+
+		// Add data attributes to the list item.
+		_parentItem.dataset.toggleable = 'yes';
+		_parentItem.dataset.visible = _parentItem.classList.contains(
+			'current-page-ancestor'
+		)
+			? 'yes'
+			: 'no';
+
+		// Add expand buttons after parent links.
+		addExpandButton( _parentLink );
+	} );
+}
+
+/**
+ * Add expand buttons to nav items with children.
+ *
+ * @param {Element} element The element we're working with.
+ */
+function addExpandButton( element ) {
+	// Create a button and append it to the element (after the link for accessibility).
+	const expandNavButton = document.createElement( 'button' );
+	const expandNavButtonText = document.createElement( 'span' );
+	expandNavButtonText.append( __( 'Expand menu item', 'shiro-admin' ) );
+	expandNavButtonText.setAttribute( 'class', 'screen-reader-text' );
+	expandNavButton.append( expandNavButtonText );
+	expandNavButton.setAttribute( 'class', 'menu-item__expand' );
+	expandNavButton.setAttribute( 'type', 'button' );
+	expandNavButton.setAttribute( 'aria-expanded', 'false' );
+	expandNavButton.setAttribute( 'hidden', 'true' );
+	element.parentNode.insertBefore( expandNavButton, element.nextSibling );
 }
 
 /**
@@ -110,6 +155,9 @@ function handleLanguagePickerVisibleChange( dropdown ) {
  */
 function initializeSiteHeader() {
 	if ( _primaryNav ) {
+		// Set up submenu toggles.
+		initializePrimaryNavSubMenus( _primaryNav );
+
 		// Ensure correct state on load
 		handlePrimaryNavVisibleChange( _primaryNav );
 		_primaryNav.dropdown.handlers.visibleChange = handlePrimaryNavVisibleChange;
@@ -167,6 +215,5 @@ function teardown() {
 
 export default initialize( setup, teardown );
 export {
-	setup,
-	teardown,
+	setup, teardown,
 };

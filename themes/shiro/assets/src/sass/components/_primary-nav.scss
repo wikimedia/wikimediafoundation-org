@@ -126,10 +126,10 @@
 					}
 
 				}
+			}
 
-				.sub-menu {
-					display: block;
-				}
+			&[data-visible="yes"] .sub-menu {
+				display: block;
 			}
 
 			a {
