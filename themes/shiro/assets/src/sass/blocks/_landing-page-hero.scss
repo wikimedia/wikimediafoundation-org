@@ -20,7 +20,6 @@
 	@media ( min-width: #{$width-breakpoint-tablet} ) {
 
 		&__header {
-			align-items: start;
 			flex-flow: row nowrap;
 		}
 
@@ -46,6 +45,7 @@
 
 		&__image,
 		&__image-container {
+			align-self: flex-start;
 			display: block;
 		}
 	}
