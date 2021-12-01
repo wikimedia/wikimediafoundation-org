@@ -197,6 +197,10 @@
 		}
 	}
 
+	.menu-item__expand {
+		@include style-guide-dropdown-toggle();
+	}
+
 	.sub-menu {
 		display: none;
 		margin: rem( 15 ) 0 rem( 10 );
