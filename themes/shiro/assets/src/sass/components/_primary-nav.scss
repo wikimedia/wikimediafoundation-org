@@ -4,8 +4,6 @@
 	justify-content: space-between;
 	margin-top: rem(66);
 	padding: 0;
-	padding-top: rem(12);
-	position: relative;
 	width: 100%;
 
 	@media ( min-width: #{$primary-nav-breakpoint} ) {
@@ -16,7 +14,7 @@
 		width: 100%;
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			align-items: start;
+			align-items: center;
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
@@ -71,6 +69,11 @@
 				}
 			}
 		}
+
+		[data-subnav-visible="yes"] & {
+			margin-bottom: calc(var(--subnav-padding-bottom) * 1px);
+			position: relative;
+		}
 	}
 
 	&__items {
@@ -89,14 +92,14 @@
 				align-items: center;
 				flex-direction: row;
 				flex-wrap: wrap;
-				margin-top: rem(-9);
+				margin-top: 0;
 			}
 		}
 
 		li {
 			display: inline-block;
 			margin: 0;
-			padding: rem(11) 0;
+			padding: rem(9) 0;
 
 			@media ( max-width: $medium-landscape ) {
 				width: 100%;
@@ -104,6 +107,7 @@
 
 			@media ( min-width: #{$primary-nav-breakpoint} ) {
 				margin-right: rem(24);
+				padding: rem(12) 0;
 			}
 
 			&:last-child {
@@ -144,7 +148,11 @@
 				span {
 					display: inline-block;
 					margin: 0 rem(-10);
-					padding: rem(5) rem(10);
+					padding: rem(7) rem(10);
+
+					@media ( min-width: #{$primary-nav-breakpoint} ) {
+						padding: rem(8) rem(10) rem(6);
+					}
 				}
 
 				span::after {
@@ -152,13 +160,10 @@
 					content: "";
 					display: block;
 					height: 3px;
+					pointer-events: none;
 					position: relative;
-					transform: translateY(rem(11));
+					transform: translateY(rem(10));
 					z-index: 10;
-
-					@media ( min-width: #{$primary-nav-breakpoint} ) {
-						margin-bottom: 0;
-					}
 				}
 
 				&:hover {
@@ -197,21 +202,54 @@
 		}
 	}
 
+	.menu-item[data-dropdown] {
+		display: flex;
+		flex-wrap: wrap;
+		position: static;
+
+		> a {
+			flex-grow: 1;
+		}
+
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			a span:after {
+				transform: translateY(rem(18));
+			}
+		}
+	}
+
 	.menu-item__expand {
 		@include style-guide-dropdown-toggle();
+		background-color: transparent;
+		background-position: center;
+		background-size: 55%;
+		border: 0 none;
+		padding: rem(6) rem(16);
+		transition: $transition-ease-medium transform;
+
+		&[aria-expanded="true"] {
+			transform: rotateX( 180deg );
+		}
+
+		&[hidden] {
+			display: none;
+		}
 	}
 
 	.sub-menu {
 		display: none;
 		margin: rem( 15 ) 0 rem( 10 );
 		padding-left: rem( 32 );
+		width: 100%;
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
 			@include list-reset;
+			border-top: 1px solid $wmui-color-base80;
+			border-bottom: 1px solid $wmui-color-base80;
 			left: 0;
 			position: absolute;
 			right: 0;
-			width: 100%;
+			top: 100%;
 		}
 
 		a {

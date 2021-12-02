@@ -74,6 +74,9 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 			: '' )
 			. '>';
  
+		// Apply nav menu item filter.
+		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
+
 		// Link attributes.
 		$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
  
