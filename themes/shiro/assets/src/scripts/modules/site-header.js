@@ -104,6 +104,7 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 
 			// Check to see if any subnavs are active and set primary nav attrs.
 			if ( _subNavMenu.dataset.visible === 'yes' ) {
+				_primaryNav.dataset.overflowHidden = 'yes';
 				_primaryNav.dataset.subnavVisible = 'yes';
 				_primaryNav.style.setProperty(
 					'--subnav-padding-bottom',

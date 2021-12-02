@@ -14,9 +14,8 @@
 		width: 100%;
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			align-items: center;
+			align-items: flex-start;
 			display: flex;
-			flex-direction: row-reverse;
 			justify-content: space-between;
 			width: 100%;
 		}
@@ -27,10 +26,6 @@
 			@include target-ie {
 				display: flex;
 				flex-direction: column-reverse;
-			}
-
-			@media ( min-width: #{$primary-nav-breakpoint} ) {
-				flex-direction: row-reverse;
 			}
 		}
 
@@ -68,9 +63,16 @@
 			}
 		}
 
-		[data-subnav-visible="yes"] & {
-			margin-bottom: calc(var(--subnav-padding-bottom) * 1px);
-			position: relative;
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			[data-subnav-visible="yes"] & {
+				margin-bottom: calc(var(--subnav-padding-bottom) * 1px);
+				position: relative;
+			}
+
+			[data-overflow-hidden="yes"] & .primary-nav__items {
+				max-height: rem(58);
+				overflow-x: hidden;
+			}
 		}
 	}
 

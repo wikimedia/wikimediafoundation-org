@@ -16,5 +16,6 @@ if ( has_nav_menu( 'header' ) ) {
 			'walker'         => new \WMF\Walkers\Walker_Main_Nav(),
 		)
 	);
+	get_template_part( 'template-parts/site-navigation/overflow-toggle' );
 }
 ?>

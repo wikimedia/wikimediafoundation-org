@@ -10,6 +10,7 @@
 		align-self: flex-start;
 		flex: 0 0 rem(220);
 		margin-top: rem(12);
+		order: 1;
 	}
 
 	[data-dropdown-status="uninitialized"] & {
