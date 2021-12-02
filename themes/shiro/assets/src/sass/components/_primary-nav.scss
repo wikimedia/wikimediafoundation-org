@@ -40,7 +40,6 @@
 		 * benefit, hence this "backwards" query.
 		 */
 		[data-dropdown-status="initialized"][data-visible="yes"] & {
-
 			@media ( max-width: $medium-landscape ) {
 				--full-window-height: calc(var(--vh, 1vh) * 100);
 				background: $color-white;
@@ -57,14 +56,13 @@
 			}
 
 			.admin-bar & {
-
-				@media (min-width: 600px) {
-					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + $admin-bar-mobile-height));
+				@media ( min-width: 600px ) and ( max-width: $medium-landscape ) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + #{$admin-bar-mobile-height}));
 					top: $primary-nav-mobile-height + $admin-bar-mobile-height;
 				}
 
-				@media (min-width: 784px) {
-					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + $admin-bar-desktop-height));
+				@media ( min-width: 784px ) and ( max-width: $medium-landscape ) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + #{$admin-bar-desktop-height}));
 					top: $primary-nav-mobile-height + $admin-bar-desktop-height;
 				}
 			}
@@ -282,7 +280,6 @@ body.disable-body-scrolling {
  * will be positioned too far down the screen.
  */
 .admin-bar .site-header:not(.site-header--pinned) + .header-inner .primary-nav__drawer {
-
 	@media (max-width: 599px) {
 		max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
 		top: $primary-nav-mobile-height + 46px;
