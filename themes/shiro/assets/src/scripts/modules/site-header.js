@@ -7,6 +7,11 @@ import {
 } from './dropdown';
 
 const _primaryNav = document.querySelector( '[data-dropdown="primary-nav"]' );
+const _overflowToggle = _primaryNav.querySelector(
+	'.primary-nav__overflow-toggle'
+);
+const _primaryNavUl = _primaryNav.querySelector( '.primary-nav__items' );
+const _primaryNavItems = _primaryNavUl.children;
 
 // We need to know the language picker so we can disable/close it
 const _languagePicker = document.querySelector(
@@ -72,13 +77,38 @@ function handleIntersection( entries ) {
 }
 
 /**
+ * Set up the overflow toggle functionality for any extra primary nav items.
+ */
+function initializeOverfowToggle() {
+	const _primaryNavHiddenItems = [];
+
+	// Only continue if the nav wraps.
+	if ( _primaryNavUl.offsetHeight === _primaryNavItems[ 0 ].offsetHeight ) {
+		return;
+	}
+
+	// Enable the toggle.
+	_overflowToggle.removeAttribute( 'hidden' );
+	_overflowToggle.addEventListener( 'click', handleOverflowClick );
+
+	// Process each item to see if it's an overflow item.
+	for ( let i = 0; i < _primaryNavItems.length; i++ ) {
+		const _el = _primaryNavItems[ i ];
+		if ( _el.offsetTop > _el.offsetHeight ) {
+			_el.classList.add( 'overflow-menu-item' );
+			_primaryNavHiddenItems.push( _el );
+		}
+	}
+
+	// Once we're done, set the ul width for consistency.
+	_primaryNavUl.style.width = _primaryNavUl.offsetWidth + 'px';
+}
+
+/**
  * Toggle any overflow menu items.
  */
 function handleOverflowClick() {
 	const _primaryNavOverflow = _primaryNav.dataset.overflowHidden;
-	const _overflowToggle = _primaryNav.querySelector(
-		'.primary-nav__overflow-toggle'
-	);
 
 	_primaryNav.dataset.overflowHidden =
 		_primaryNavOverflow === 'yes' ? 'no' : 'yes';
@@ -110,6 +140,11 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 		if ( _languagePicker ) {
 			_languagePicker.dataset.visible = 'no';
 		}
+
+		// Make sure no overflow nav items are hidden.
+		_primaryNav.dataset.overflowHidden = 'no';
+		_overflowToggle.hidden = true;
+		_primaryNavUl.style.width = null;
 	} else {
 		// When the menu is closed or untoggleable, allow body scrolling.
 		document.body.classList.remove( 'disable-body-scrolling' );
@@ -120,7 +155,10 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 			_subNavMenu.dataset.backdrop = 'inactive';
 
 			// Check to see if any subnavs are active and set primary nav attrs.
-			if ( _subNavMenu.dataset.visible === 'yes' ) {
+			if (
+				_subNavMenu.dataset.visible === 'yes' &&
+				_primaryNav.dataset.toggleable === 'no'
+			) {
 				_primaryNav.dataset.overflowHidden = 'yes';
 				_primaryNav.dataset.subnavVisible = 'yes';
 				_primaryNav.style.setProperty(
@@ -128,32 +166,8 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 					_subNavMenu.dropdown.content.offsetHeight
 				);
 
-				const _overflowToggle = _primaryNav.querySelector(
-					'.primary-nav__overflow-toggle'
-				);
-				const _primaryNavUl = _primaryNav.querySelector(
-					'.primary-nav__items'
-				);
-				const _primaryNavItems = _primaryNavUl.children;
-
-				for ( let i = 0; i < _primaryNavItems.length; i++ ) {
-					const _el = _primaryNavItems[ i ];
-					if ( _el.offsetTop > _el.offsetHeight ) {
-						_el.classList.add( 'overflow-menu-item' );
-					}
-					if ( i === _primaryNavItems.length - 1 ) {
-						_overflowToggle.removeAttribute( 'hidden' );
-						_overflowToggle.addEventListener(
-							'click',
-							handleOverflowClick
-						);
-
-						if ( _primaryNavUl.offsetWidth !== 0 ) {
-							_primaryNavUl.style.width =
-								_primaryNavUl.offsetWidth + 'px';
-						}
-					}
-				}
+				// Set up the overflow toggle functionality for any primary nav items that don't fit on one line.
+				initializeOverfowToggle();
 			}
 		} );
 	}
