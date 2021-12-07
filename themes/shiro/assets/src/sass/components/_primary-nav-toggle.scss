@@ -52,10 +52,10 @@
 	display: inline-block;
 	font-family: $font-family-sans;
 	font-size: rem(14);
-	font-weight: 400;
-	line-height: inherit;
-	margin: rem(12) rem(24) rem(12) 0;
-	padding: rem(8) rem(10) rem(6);
+	font-weight: 500;
+	line-height: 1.2;
+	margin: rem(12) rem(24) rem(12) rem(-10);
+	padding: rem(8) rem(10);
 
 	&[aria-expanded="false"] {
 		.btn-label-opened {
@@ -77,5 +77,15 @@
 
 	&[hidden] {
 		display: none;
+	}
+
+	&:hover {
+		background-color: $wmui-color-blue90;
+		color: $wmui-color-blue50;
+	}
+
+	&:active,
+	&:focus {
+		@include focus-ring;
 	}
 }

@@ -16,7 +16,7 @@
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
 			align-items: flex-start;
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-start;
 			width: 100%;
 		}
 
@@ -69,9 +69,8 @@
 				position: relative;
 			}
 
-			[data-overflow-hidden="yes"] & .primary-nav__items {
-				max-height: rem(58);
-				overflow-x: hidden;
+			[data-overflow-hidden="yes"] .primary-nav & .overflow-menu-item {
+				display: none;
 			}
 		}
 	}
@@ -93,6 +92,7 @@
 				flex-direction: row;
 				flex-wrap: wrap;
 				margin-top: 0;
+				padding: rem(6) 0;
 			}
 		}
 
@@ -107,7 +107,7 @@
 
 			@media ( min-width: #{$primary-nav-breakpoint} ) {
 				margin-right: rem(24);
-				padding: rem(12) 0;
+				padding: rem(6) 0;
 			}
 
 			&:last-child {
@@ -212,7 +212,7 @@
 		}
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			a span:after {
+			[data-overflow-hidden="yes"] & a span:after {
 				transform: translateY(rem(18));
 			}
 		}
@@ -247,6 +247,7 @@
 			border-top: 1px solid $wmui-color-base80;
 			border-bottom: 1px solid $wmui-color-base80;
 			left: 0;
+			padding: rem(6) 0;
 			position: absolute;
 			right: 0;
 			top: 100%;

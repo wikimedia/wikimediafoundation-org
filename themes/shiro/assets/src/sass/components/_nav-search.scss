@@ -9,6 +9,7 @@
 	@media ( min-width: #{$medium-landscape} ) {
 		align-self: flex-start;
 		flex: 0 0 rem(220);
+		margin-left: auto;
 		margin-top: rem(12);
 		order: 1;
 	}

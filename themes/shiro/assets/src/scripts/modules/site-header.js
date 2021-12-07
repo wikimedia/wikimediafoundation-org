@@ -72,6 +72,23 @@ function handleIntersection( entries ) {
 }
 
 /**
+ * Toggle any overflow menu items.
+ */
+function handleOverflowClick() {
+	const _primaryNavOverflow = _primaryNav.dataset.overflowHidden;
+	const _overflowToggle = _primaryNav.querySelector(
+		'.primary-nav__overflow-toggle'
+	);
+
+	_primaryNav.dataset.overflowHidden =
+		_primaryNavOverflow === 'yes' ? 'no' : 'yes';
+	_overflowToggle.setAttribute(
+		'aria-expanded',
+		_primaryNavOverflow === 'yes' ? 'true' : 'false'
+	);
+}
+
+/**
  * Handles the mutation action of the dropdown.
  *
  * This expands on the base behavior of the dropdown's visibility handler.
@@ -110,6 +127,33 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 					'--subnav-padding-bottom',
 					_subNavMenu.dropdown.content.offsetHeight
 				);
+
+				const _overflowToggle = _primaryNav.querySelector(
+					'.primary-nav__overflow-toggle'
+				);
+				const _primaryNavUl = _primaryNav.querySelector(
+					'.primary-nav__items'
+				);
+				const _primaryNavItems = _primaryNavUl.children;
+
+				for ( let i = 0; i < _primaryNavItems.length; i++ ) {
+					const _el = _primaryNavItems[ i ];
+					if ( _el.offsetTop > _el.offsetHeight ) {
+						_el.classList.add( 'overflow-menu-item' );
+					}
+					if ( i === _primaryNavItems.length - 1 ) {
+						_overflowToggle.removeAttribute( 'hidden' );
+						_overflowToggle.addEventListener(
+							'click',
+							handleOverflowClick
+						);
+
+						if ( _primaryNavUl.offsetWidth !== 0 ) {
+							_primaryNavUl.style.width =
+								_primaryNavUl.offsetWidth + 'px';
+						}
+					}
+				}
 			}
 		} );
 	}
