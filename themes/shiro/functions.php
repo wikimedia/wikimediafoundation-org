@@ -127,7 +127,7 @@ function wmf_scripts() {
 		\WMF\Assets\get_manifest_path(),
 		'shiro.js',
 		[
-			'dependencies' => ['wp-i18n'],
+			'dependencies' => [],
 			'handle' => 'shiro-modern',
 		]
 	);
