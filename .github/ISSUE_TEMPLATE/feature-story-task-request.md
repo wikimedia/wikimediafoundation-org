@@ -3,7 +3,7 @@ name: Feature/Story/Task request
 about: Suggest an idea for this project
 title: ''
 labels: 'refine'
-assignees: cstukey
+assignees: rebekahmarkowitz
 
 ---
 
