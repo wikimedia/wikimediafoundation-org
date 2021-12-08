@@ -212,7 +212,8 @@
 		}
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			[data-overflow-hidden="yes"] & a span:after {
+			[data-overflow-hidden="yes"] & > a span:after,
+			[data-subnav-wrapped="no"] a span:after {
 				transform: translateY(rem(18));
 			}
 		}

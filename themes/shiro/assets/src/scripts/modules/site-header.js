@@ -165,6 +165,14 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 					'--subnav-padding-bottom',
 					_subNavMenu.dropdown.content.offsetHeight
 				);
+				if (
+					_subNavMenu.dropdown.content.offsetHeight >=
+					_subNavMenu.dropdown.content.children[ 0 ].offsetHeight * 2
+				) {
+					_subNavMenu.dropdown.content.dataset.subnavWrapped = 'yes';
+				} else {
+					_subNavMenu.dropdown.content.dataset.subnavWrapped = 'no';
+				}
 
 				// Set up the overflow toggle functionality for any primary nav items that don't fit on one line.
 				initializeOverfowToggle();
