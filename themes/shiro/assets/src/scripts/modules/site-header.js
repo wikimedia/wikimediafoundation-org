@@ -39,28 +39,34 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
-	if ( ! entry.isIntersecting ) {
-		// We're on the desktop
-		_primaryNav.dataset.visible = 'yes';
-		_primaryNav.dataset.toggleable = 'no';
-		_primaryNav.dataset.backdrop = 'inactive';
-		_primaryNav.dataset.trap = 'inactive';
+	const { isIntersecting, target } = entry;
 
-		// Make subnavs not toggleable.
-		_subNavMenus.forEach( _subNavMenu => {
-			_subNavMenu.dataset.toggleable = 'no';
-			_subNavMenu.dropdown.toggle.hidden = true;
-		} );
-	} else {
-		// We're on mobile
-		_primaryNav.dataset.visible = 'no';
-		_primaryNav.dataset.toggleable = 'yes';
+	if ( target === _primaryNav.dropdown.toggle ) {
+		if ( ! isIntersecting ) {
+			// We're on the desktop
+			_primaryNav.dataset.visible = 'yes';
+			_primaryNav.dataset.toggleable = 'no';
+			_primaryNav.dataset.backdrop = 'inactive';
+			_primaryNav.dataset.trap = 'inactive';
 
-		// Make subnavs toggleable.
-		_subNavMenus.forEach( _subNavMenu => {
-			_subNavMenu.dataset.toggleable = 'yes';
-			_subNavMenu.dropdown.toggle.removeAttribute( 'hidden' );
-		} );
+			// Make subnavs not toggleable.
+			_subNavMenus.forEach( _subNavMenu => {
+				_subNavMenu.dataset.toggleable = 'no';
+				_subNavMenu.dropdown.toggle.hidden = true;
+			} );
+		} else {
+			// We're on mobile
+			_primaryNav.dataset.visible = 'no';
+			_primaryNav.dataset.toggleable = 'yes';
+
+			// Make subnavs toggleable.
+			_subNavMenus.forEach( _subNavMenu => {
+				_subNavMenu.dataset.toggleable = 'yes';
+				_subNavMenu.dropdown.toggle.removeAttribute( 'hidden' );
+			} );
+		}
+	} else if ( target.classList.contains( 'sub-menu' ) ) {
+		target.closest( '[data-dropdown]' ).dataset.trap = 'inactive';
 	}
 }
 
@@ -184,8 +190,14 @@ function initializeSiteHeader() {
 			);
 		};
 
+		// Observe the primary nav for desktop/mobile toggling.
 		_primaryNav.observer = createObserver();
 		_primaryNav.observer.observe( _primaryNav.dropdown.toggle );
+
+		// Observe the submenus.
+		_subNavMenus.forEach( _subNavMenu => {
+			_primaryNav.observer.observe( _subNavMenu.dropdown.content );
+		} );
 	}
 
 	if ( _languagePicker ) {

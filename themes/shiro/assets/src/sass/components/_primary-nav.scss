@@ -227,6 +227,10 @@
 		&[hidden] {
 			display: none;
 		}
+
+		&:focus {
+			@include focus-ring;
+		}
 	}
 
 	.sub-menu {
