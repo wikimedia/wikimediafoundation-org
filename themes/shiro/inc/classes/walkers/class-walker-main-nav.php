@@ -54,11 +54,18 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 
 		// Set the current item.
 		$this->currentItemID = $item->ID;
- 
+
 		// Passed classes.
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+
+		// Remove "has-children" class from second level items.
+		if ( $depth > 0 && ( $key = array_search( 'menu-item-has-children', $classes ) ) !== false ) {
+			unset( $classes[$key] );
+		}
+
+		// Apply filters and prepare classes for use.
 		$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
- 
+
 		// Build HTML.
 		$active_classes = [ 'current-menu-item', 'current-menu-ancestor' ];
 		$output .= 
@@ -73,13 +80,13 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 				. ' data-toggleable="no"'
 			: '' )
 			. '>';
- 
+
 		// Apply nav menu item filter.
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
 		// Link attributes.
 		$attributes = ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
- 
+
 		// Build HTML output and pass through the proper filter.
 		$item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
 			$args->before,
