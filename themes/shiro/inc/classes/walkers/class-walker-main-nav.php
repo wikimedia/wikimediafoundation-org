@@ -60,7 +60,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
  
 		// Build HTML.
-		$active_classes = [ 'current-menu-item', 'current-page-ancestor' ];
+		$active_classes = [ 'current-menu-item', 'current-menu-ancestor' ];
 		$output .= 
 			$indent
 			. '<li id="nav-menu-item-'. $item->ID . '"'
@@ -78,7 +78,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
 		// Link attributes.
-		$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
+		$attributes = ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
  
 		// Build HTML output and pass through the proper filter.
 		$item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',

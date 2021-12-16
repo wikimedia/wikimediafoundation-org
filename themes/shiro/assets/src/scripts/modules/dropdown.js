@@ -190,7 +190,7 @@ function handleToggleableChange( dropdown ) {
 			// Only set subnavs to visible if they are the active section.
 			const _is_current =
 				dropdown.classList.contains( 'current-menu-item' ) ||
-				dropdown.classList.contains( 'current-page-ancestor' );
+				dropdown.classList.contains( 'current-menu-ancestor' );
 			dropdown.dataset.visible = _is_current ? 'yes' : 'no';
 		} else {
 			// If the dropdown can't be toggled, we should always show it
