@@ -80,6 +80,7 @@
     "webpack-rtl-plugin": "^2.0.0"
   },
   "dependencies": {
+    "@wordpress/i18n": "^4.2.4",
     "bootstrap": "^4.5.0",
     "composer": "^4.1.0",
     "graceful-fs": "^4.2.4",
