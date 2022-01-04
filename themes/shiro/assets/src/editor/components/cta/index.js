@@ -54,15 +54,12 @@ const CtaWithFocusOutside = withFocusOutside(
 						url={ url }
 						onChangeLink={ onChangeLink }
 					/>
-					<div
-						className={
-							classNames(
-								'call-to-action-wrapper',
-								{ 'call-to-action--no-url': ! url }
-							)
-						}
-						onFocus={ () => this.setState( { showButtons: true } ) }
-					>
+					<div className={
+						classNames(
+							'call-to-action-wrapper',
+							{ 'call-to-action--no-url': ! url }
+						)
+					}>
 						<RichText
 						// For some reason withoutInteractiveFormatting doesn't
 						// work here, but this does.
