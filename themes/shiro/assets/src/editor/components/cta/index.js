@@ -72,6 +72,7 @@ const CtaWithFocusOutside = withFocusOutside(
 							}
 							placeholder={ __( 'Call to action', 'shiro-admin' ) }
 							tagName="div"
+							unstableOnFocus={ () => this.setState( { showButtons: true } ) }
 							value={ text }
 							onChange={ onChangeText }
 						/>
