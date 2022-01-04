@@ -20,7 +20,7 @@ import URLPicker from '../url-picker';
  * receive `undefined` which is an expected value: This is how the "remove
  * link" functionality works.
  *
- * `withFocusOutside()` is necessary here (paired with the `onFocus` attribute)
+ * `withFocusOutside()` is necessary here (paired with the `unstableOnFocus` attribute)
  * in order to show & hide the button on the toolbar when the CTA is focused
  * in the editor (or not).
  */
