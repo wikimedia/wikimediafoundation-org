@@ -4,6 +4,8 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import BlockIcon from '../../../svg/blocks/stairs.svg';
+
 import './style.scss';
 
 const template = [
@@ -17,6 +19,7 @@ export const
 	name = 'shiro/stairs',
 	settings = {
 		apiVersion: 2,
+		icon: BlockIcon,
 		title: __( 'Stairs', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {},
