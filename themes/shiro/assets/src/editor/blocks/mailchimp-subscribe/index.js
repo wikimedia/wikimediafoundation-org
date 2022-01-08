@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 
 import './style.scss';
 
+import BlockIcon from '../../../svg/blocks/mailchimp.svg';
 import EmailIcon from '../../../svg/individual/email.svg';
 
 const BLOCKS_TEMPLATE = [
@@ -19,7 +20,7 @@ export const
 	settings = {
 		apiVersion: 2,
 
-		icon: 'email',
+		icon: BlockIcon,
 
 		title: __( 'Mailchimp subscription form', 'shiro-admin' ),
 

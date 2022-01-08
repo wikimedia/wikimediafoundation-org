@@ -5,6 +5,7 @@ import {
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import BlockIcon from '../../../svg/blocks/contact.svg';
 import ContactIcon from '../../../svg/individual/contact.svg';
 import CallToActionPicker from '../../components/cta';
 
@@ -46,7 +47,7 @@ const BLOCKS_TEMPLATE = [
 export const name = 'shiro/contact',
 	settings = {
 		apiVersion: 2,
-		icon: 'admin-comments',
+		icon: BlockIcon,
 		title: __( 'Contact', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {
