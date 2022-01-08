@@ -1,6 +1,8 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
+import BlockIcon from '../../../svg/blocks/table-of-contents.svg';
+
 const BLOCKS_TEMPLATE = [
 	[
 		'core/columns',
@@ -65,7 +67,7 @@ const BLOCKS_TEMPLATE = [
 export const name = 'shiro/toc-columns',
 	settings = {
 		apiVersion: 2,
-		icon: 'align-pull-right',
+		icon: BlockIcon,
 		title: __( 'Table of Contents Columns', 'shiro-admin' ),
 		category: 'wikimedia',
 		description: __(

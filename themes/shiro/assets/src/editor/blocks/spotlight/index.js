@@ -9,6 +9,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+import BlockIcon from '../../../svg/blocks/spotlight.svg';
 import Cta from '../../components/cta/index';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
@@ -25,7 +26,7 @@ export const settings = {
 
 	apiVersion: 2,
 
-	icon: 'cover-image',
+	icon: BlockIcon,
 
 	description: __(
 		'Spotlight with an image and call to action.',

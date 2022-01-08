@@ -127,6 +127,7 @@ export const
 		apiVersion: 2,
 		title: __( 'External Link', 'shiro-admin' ),
 		icon: 'external',
+		category: 'wikimedia',
 		attributes: {
 			url: {
 				type: 'string',

@@ -24,7 +24,7 @@ export const settings = {
 
 	apiVersion: 2,
 
-	icon: 'cover-image',
+	icon: 'list-view',
 
 	description: __(
 		'Dynamic list of recent posts',
