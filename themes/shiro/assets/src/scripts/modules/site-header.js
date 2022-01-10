@@ -13,6 +13,11 @@ const _languagePicker = document.querySelector(
 	'[data-dropdown="language-switcher"]'
 );
 
+// Get all primary nav items with children.
+const _subNavMenus = _primaryNav.querySelectorAll(
+	'.menu-item[data-dropdown]'
+);
+
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe
  */
@@ -34,16 +39,34 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
-	if ( ! entry.isIntersecting ) {
-		// We're on the desktop
-		_primaryNav.dataset.visible = 'yes';
-		_primaryNav.dataset.toggleable = 'no';
-		_primaryNav.dataset.backdrop = 'inactive';
-		_primaryNav.dataset.trap = 'inactive';
-	} else {
-		// We're on mobile
-		_primaryNav.dataset.visible = 'no';
-		_primaryNav.dataset.toggleable = 'yes';
+	const { isIntersecting, target } = entry;
+
+	if ( target === _primaryNav.dropdown.toggle ) {
+		if ( ! isIntersecting ) {
+			// We're on the desktop
+			_primaryNav.dataset.visible = 'yes';
+			_primaryNav.dataset.toggleable = 'no';
+			_primaryNav.dataset.backdrop = 'inactive';
+			_primaryNav.dataset.trap = 'inactive';
+
+			// Make subnavs not toggleable.
+			_subNavMenus.forEach( _subNavMenu => {
+				_subNavMenu.dataset.toggleable = 'no';
+				_subNavMenu.dropdown.toggle.hidden = true;
+			} );
+		} else {
+			// We're on mobile
+			_primaryNav.dataset.visible = 'no';
+			_primaryNav.dataset.toggleable = 'yes';
+
+			// Make subnavs toggleable.
+			_subNavMenus.forEach( _subNavMenu => {
+				_subNavMenu.dataset.toggleable = 'yes';
+				_subNavMenu.dropdown.toggle.removeAttribute( 'hidden' );
+			} );
+		}
+	} else if ( target.classList.contains( 'sub-menu' ) ) {
+		target.closest( '[data-dropdown]' ).dataset.trap = 'inactive';
 	}
 }
 
@@ -71,12 +94,47 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 	const toggleIsVisible = dropdown.dropdown.toggle.offsetParent != null;
 
 	if ( menuIsVisible && toggleIsVisible ) {
+		// When the menu is open on mobile, disable body scrolling and close the language picker.
 		document.body.classList.add( 'disable-body-scrolling' );
 		if ( _languagePicker ) {
 			_languagePicker.dataset.visible = 'no';
 		}
 	} else {
+		// When the menu is closed or untoggleable, allow body scrolling.
 		document.body.classList.remove( 'disable-body-scrolling' );
+
+		// Primary nav and subnav interactions.
+		_subNavMenus.forEach( _subNavMenu => {
+			// Make sure open subnavs aren't triggering the backdrop.
+			_subNavMenu.dataset.backdrop = 'inactive';
+
+			// Check to see if any subnavs are active and set primary nav attrs.
+			if (
+				_subNavMenu.dataset.visible === 'yes' &&
+				_primaryNav.dataset.toggleable === 'no'
+			) {
+				_primaryNav.dataset.subnavVisible = 'yes';
+				_primaryNav.style.setProperty(
+					'--subnav-margin-bottom',
+					_subNavMenu.dropdown.content.offsetHeight
+				);
+
+				_primaryNav
+					.querySelectorAll(
+						'.current-menu-item, .current-menu-ancestor'
+					)
+					.forEach( _el => {
+						if (
+							_el.offsetTop + _el.offsetHeight >=
+							_el.closest( 'ul' ).offsetHeight - _el.offsetHeight
+						) {
+							_el.classList.add( 'menu-item-bottom-line' );
+						} else {
+							_el.classList.remove( 'menu-item-bottom-line' );
+						}
+					} );
+			}
+		} );
 	}
 }
 
@@ -119,6 +177,7 @@ function initializeSiteHeader() {
 			...( translationBar ? getFocusableInside( translationBar ) : [] ),
 			...( headerContent ? getFocusableInside( headerContent ) : [] ),
 		];
+
 		/**
 		 * Get focusable elements for the primary navigation.
 		 *
@@ -130,8 +189,15 @@ function initializeSiteHeader() {
 				skip
 			);
 		};
+
+		// Observe the primary nav for desktop/mobile toggling.
 		_primaryNav.observer = createObserver();
 		_primaryNav.observer.observe( _primaryNav.dropdown.toggle );
+
+		// Observe the submenus.
+		_subNavMenus.forEach( _subNavMenu => {
+			_primaryNav.observer.observe( _subNavMenu.dropdown.content );
+		} );
 	}
 
 	if ( _languagePicker ) {
@@ -167,6 +233,5 @@ function teardown() {
 
 export default initialize( setup, teardown );
 export {
-	setup,
-	teardown,
+	setup, teardown,
 };
