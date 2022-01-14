@@ -434,4 +434,40 @@ class Flow {
 
 		restore_current_blog();
 	}
+
+	/**
+	 * Register the custom meta keys to make them available to the REST API.
+	 */
+	public function register_meta() {
+		register_meta(
+			'post',
+			'_translation_in_progress',
+			array(
+				'show_in_rest'      => true,
+				'type'              => 'boolean',
+				'default'           => 1,
+				'single'            => true,
+				'sanitize_callback' => 'absint',
+				'auth_callback'     => function() {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+
+		register_meta(
+			'post',
+			'_translation_complete',
+			array(
+				'show_in_rest'      => true,
+				'type'              => 'boolean',
+				'default'           => 0,
+				'single'            => true,
+				'sanitize_callback' => 'absint',
+				'auth_callback'     => function() {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+	}
+
 }
