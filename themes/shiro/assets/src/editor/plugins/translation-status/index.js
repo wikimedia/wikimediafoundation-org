@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 /**
- *
+ * Define settings panel controls.
  */
 const MetaBlockField = props => {
 	return (
