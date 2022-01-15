@@ -118,6 +118,11 @@ function wmf_scripts() {
 
 	wp_enqueue_style( 'shiro-style', get_stylesheet_uri(), array(), $style_version );
 
+	wp_enqueue_style( 'stylesheet', get_stylesheet_directory_uri() . '/assets/fonts/stylesheet.css' );
+	wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/assets/css/style.css' );
+	wp_enqueue_style( 'style-scss', get_stylesheet_directory_uri() . '/assets/css/style.scss' );
+	wp_enqueue_style( 'style-map', get_stylesheet_directory_uri() . '/assets/css/style.css.map' );
+
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
 		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
 	}
@@ -465,3 +470,107 @@ function link_reusable_blocks_url() {
 }
 
 add_action( 'admin_menu', 'link_reusable_blocks_url' );
+
+
+function birthday_shortcode(){
+	ob_start();
+	get_template_part('temp-birthday-lists');
+	/* get_template_part('temp-birthday'); */
+
+	$string = ob_get_contents();
+	ob_end_clean();
+	return $string;
+}
+ 
+add_shortcode( 'birthday_list', 'birthday_shortcode' );
+
+function get_birthday_data(){
+	
+	$date = $_POST['date_val'];
+	$month = $_POST['month_val'];
+	
+	$search = $month.'-'.$date;
+	
+	$path = site_url().'/wp-content/themes/birthday/birthday-buddies-main/public/data/Combined40.csv';
+
+	$array = array();
+	if (($open = fopen($path, "r")) !== FALSE){
+		
+		$flag = true;
+		while (($data = fgetcsv($open, 1000, ",")) !== FALSE) 
+		{     
+		  if($flag) { $flag = false; continue; }
+		  $array[] = $data;
+		}
+		fclose($open);
+	}
+	
+	$search_data = array_search($search, array_column($array, 4));
+	
+	$result = array();
+	
+	$out = '';
+		$out .= '<section class="all-historical-people"><div class="mw-980">';
+		
+	
+	foreach ($array as $key => $val) {
+		
+		//print_r($val); die;
+		$birthdate = str_replace('/','-',$val[4]);
+		
+		//print_r($birthdate); die;
+		//if ($birthdate == '8-17-1945') {
+		if (strpos($birthdate, '-'.$search) !== false) {
+           $result[] = $val;
+		   
+		}
+		
+	}
+	
+	$count = 1;	
+	foreach($result as $rs){
+		
+		$img = str_replace(' ','_',$rs[5]);
+		
+		if($count % 2 == 0){
+			   $out .='<div class="all-historical-peoplemain">
+				<div class="all-historical-peopledeatils">
+				  <span>'.$rs[4].'</span>
+				  <h4>'.$rs[1].'</h4>
+				  <p>'.$rs[2].'</p>
+				  <div class="all-historical-peopledeatilsimg">
+					<img src="'.$img.'" alt="">
+				  </div>
+				</div>
+				<div class="all-historical-peopleimage">
+				  <img src="img/image 12.png" alt="">
+				</div>
+			  </div>';
+		   }else{
+			   $out .='<div class="all-historical-peoplemain">
+				<div class="all-historical-peopleimage">
+				  <img src="'.$img.'" alt="">
+				</div>
+				<div class="all-historical-peopledeatils">
+				  <span>'.$rs[4].'</span>
+				  <h4>'.$rs[1].'</h4>
+				  <p>'.$rs[2].'</p>
+				  <div class="all-historical-peopledeatilsimg">
+					<img src="img/CleanShot 2021-12-22 at 23.18 1.png" alt="">
+				  </div>
+				</div>
+				</div>';
+		   }
+		$count++;   
+	}
+	
+	$out .= '</section></div>';
+		
+	//print_r($out); die;
+	
+	echo $out; 
+	//var_dump($result);
+	die();
+}
+add_action('wp_ajax_nopriv_get_birthday_data', 'get_birthday_data');
+add_action('wp_ajax_get_birthday_data', 'get_birthday_data');
