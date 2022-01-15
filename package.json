@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/humanmade/Wikimedia/issues"
   },
-  "homepage": "https://github.com/humanmade/Wikimedia#readme"
+  "homepage": "https://github.com/humanmade/Wikimedia#readme",
+  "devDependencies": {
+    "backstopjs": "^6.0.4"
+  }
 }
