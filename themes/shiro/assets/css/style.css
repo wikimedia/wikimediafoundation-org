@@ -6,42 +6,42 @@
 }
 
 @font-face {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
   src: url("../fonts/HelveticaNeue-Light.woff2") format("woff2"), url("../fonts/HelveticaNeue-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
   src: url("../fonts/HelveticaNeue-Medium.woff2") format("woff2"), url("../fonts/HelveticaNeue-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
   src: url("../fonts/HelveticaNeue-Thin.woff2") format("woff2"), url("../fonts/HelveticaNeue-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
   src: url("../fonts/HelveticaNeueRegular.woff2") format("woff2"), url("../fonts/HelveticaNeueRegular.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
   src: url("../fonts/HelveticaNeue.woff2") format("woff2"), url("../fonts/HelveticaNeue.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
   src: url("../fonts/HelveticaNeue-Bold.woff2") format("woff2"), url("../fonts/HelveticaNeue-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
@@ -90,7 +90,7 @@ body {
 }
 
 .font-Helvetica-Neue {
-  font-family: 'Helvetica-Neue';
+  font-family: 'HelveticaNeue';
 }
 
 .font-georgia {
@@ -358,7 +358,7 @@ body {
 }
 
 .when-birthday .when-birthday-main h4 {
-  font-family: "Helvetica-Neue";
+  font-family: "HelveticaNeue";
   font-size: 20px;
   margin-right: 20px;
 }
@@ -460,7 +460,7 @@ body {
 .See-all-historical h2 {
   font-size: 30px;
   max-width: 50%;
-  font-family: "Helvetica-Neue";
+  font-family: "HelveticaNeue";
 }
 
 @media (max-width: 767px) {
@@ -488,7 +488,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: "Helvetica-Neue";
+  font-family: "HelveticaNeue";
   margin-top: 80px;
   margin-bottom: 80px;
 }
