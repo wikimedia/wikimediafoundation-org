@@ -572,6 +572,5 @@ function get_birthday_data(){
 	//var_dump($result);
 	die();
 }
-
 add_action('wp_ajax_nopriv_get_birthday_data', 'get_birthday_data');
 add_action('wp_ajax_get_birthday_data', 'get_birthday_data');
