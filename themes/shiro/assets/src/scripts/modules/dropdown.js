@@ -185,8 +185,17 @@ function handleTrapChange( dropdown ) {
 function handleToggleableChange( dropdown ) {
 	if ( dropdown.dataset.toggleable === 'no' ) {
 		dropdown.dropdown.toggle.disabled = true;
-		// If the dropdown can't be toggled, we should always show it
-		dropdown.dataset.visible = 'yes';
+
+		if ( dropdown.classList.contains( 'menu-item' ) ) {
+			// Only set subnavs to visible if they are the active section.
+			const _is_current =
+				dropdown.classList.contains( 'current-menu-item' ) ||
+				dropdown.classList.contains( 'current-menu-ancestor' );
+			dropdown.dataset.visible = _is_current ? 'yes' : 'no';
+		} else {
+			// If the dropdown can't be toggled, we should always show it
+			dropdown.dataset.visible = 'yes';
+		}
 	} else {
 		dropdown.dropdown.toggle.removeAttribute( 'disabled' );
 	}

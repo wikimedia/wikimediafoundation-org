@@ -17,6 +17,7 @@ export const
 		apiVersion: 2,
 		title: __( 'Inline Languages', 'shiro-admin' ),
 		icon: 'translation',
+		category: 'wikimedia',
 		supports: {
 			align: [ 'center', 'full' ],
 		},
