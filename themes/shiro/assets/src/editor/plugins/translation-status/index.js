@@ -60,7 +60,7 @@ const MetaBlockField = props => {
 					checked={ props.metaComplete }
 					label={ __( 'Translation completed', 'shiro-admin' ) }
 					onChange={ value => {
-						if ( props.metaInProgress ) {
+						if ( value && props.metaInProgress ) {
 							props.setmetaInProgress( 0 );
 						} else {
 							props.setmetaInProgress( 1 );
