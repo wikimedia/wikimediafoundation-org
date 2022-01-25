@@ -54,39 +54,23 @@ const mapDispatchToProps = dispatch => {
  */
 const MetaBlockField = props => {
 	return (
-		<>
-			<PanelRow>
-				<div>
-					<ToggleControl
-						checked={ props.metaInProgress }
-						label={ __( 'Translation in progress', 'shiro-admin' ) }
-						onChange={ value => {
-							if ( props.metaComplete ) {
-								props.setmetaComplete( 0 );
-							}
+		<PanelRow>
+			<div>
+				<ToggleControl
+					checked={ props.metaComplete }
+					label={ __( 'Translation completed', 'shiro-admin' ) }
+					onChange={ value => {
+						if ( props.metaInProgress ) {
+							props.setmetaInProgress( 0 );
+						} else {
+							props.setmetaInProgress( 1 );
+						}
 
-							props.setmetaInProgress( value );
-						} }
-					/>
-				</div>
-			</PanelRow>
-
-			<PanelRow>
-				<div>
-					<ToggleControl
-						checked={ props.metaComplete }
-						label={ __( 'Translation completed', 'shiro-admin' ) }
-						onChange={ value => {
-							if ( props.metaInProgress ) {
-								props.setmetaInProgress( 0 );
-							}
-
-							props.setmetaComplete( value );
-						} }
-					/>
-				</div>
-			</PanelRow>
-		</>
+						props.setmetaComplete( value );
+					} }
+				/>
+			</div>
+		</PanelRow>
 	);
 };
 
