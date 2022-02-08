@@ -14,7 +14,6 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies.
  */
-//import './style.scss';
 import FacebookIcon from '../../../images/facebook.svg';
 import InstagramIcon from '../../../images/instagram.svg';
 import LinkedInIcon from '../../../images/linkedin.svg';
