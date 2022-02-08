@@ -65,7 +65,7 @@ export const settings = {
 	/**
 	 * Render edit of the Artist Display block.
 	 */
-	edit: function ArtistDisplayEdit( { attributes, setAttributes } ) {
+	edit: function IntroEdit( { attributes, setAttributes } ) {
 		const blockProps = useBlockProps();
 
 		return (
@@ -83,7 +83,7 @@ export const settings = {
 	/**
 	 * Render save of the Artist Display block.
 	 */
-	save: function ArtistDisplaySave( { attributes } ) {
+	save: function IntroSave( { attributes } ) {
 		const blockProps = useBlockProps.save();
 
 		return (
