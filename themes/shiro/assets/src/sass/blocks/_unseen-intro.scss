@@ -1,6 +1,10 @@
 .wp-block-shiro-unseen-intro {
 	margin-top: rem(20);
-	margin-bottom: rem(140);
+	margin-bottom: rem(40);
+
+	@media only screen and (min-width: 765px) {
+		margin-bottom: rem(80);
+	}
 
 	.inner-wrap {
 		max-width: 700px;
