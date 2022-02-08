@@ -159,7 +159,7 @@ export const settings = {
 			linkedInURL,
 		} = attributes;
 
-		const hiddenMeta = hideMeta ? 'screen-reader-text' : '';
+		const hiddenMeta = hideMeta ? 'hidden-info' : '';
 
 		const blockProps = useBlockProps();
 
@@ -273,7 +273,7 @@ export const settings = {
 							<PanelRow>
 								<TextControl
 									label={ __( 'Instagram URL', 'shiro-admin' ) }
-									placeholder={ 'http://...' }
+									placeholder={ 'https://...' }
 									value={ instagramURL }
 									onChange={ value => {
 										setAttributes( { instagramURL: value } );
@@ -284,7 +284,7 @@ export const settings = {
 							<PanelRow>
 								<TextControl
 									label={ __( 'Twitter URL', 'shiro-admin' ) }
-									placeholder={ 'http://...' }
+									placeholder={ 'https://...' }
 									value={ twitterURL }
 									onChange={ value => {
 										setAttributes( { twitterURL: value } );
@@ -295,7 +295,7 @@ export const settings = {
 							<PanelRow>
 								<TextControl
 									label={ __( 'LinkedIn URL', 'shiro-admin' ) }
-									placeholder={ 'http://...' }
+									placeholder={ 'https://...' }
 									value={ linkedInURL }
 									onChange={ value => {
 										setAttributes( { linkedInURL: value } );
@@ -348,7 +348,7 @@ export const settings = {
 			linkedInURL,
 		} = attributes;
 
-		const hiddenMeta = hideMeta ? 'screen-reader-text' : '';
+		const hiddenMeta = hideMeta ? 'hidden-info' : '';
 
 		const blockProps = useBlockProps.save();
 
