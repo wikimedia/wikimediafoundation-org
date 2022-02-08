@@ -66,6 +66,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/profile',
 		'shiro/profile-list',
 		'shiro/unseen-artist',
+		'shiro/unseen-facts',
 		'shiro/unseen-footer',
 		'shiro/unseen-intro',
 
