@@ -1,0 +1,50 @@
+.wp-block-shiro-unseen-intro {
+	margin-top: rem(20);
+	margin-bottom: rem(40);
+
+	@media only screen and (min-width: 765px) {
+		margin-bottom: rem(80);
+	}
+
+	.inner-wrap {
+		max-width: 700px;
+		margin: 0 0 0 auto;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+
+		@media only screen and (min-width: 555px) {
+			flex-direction: row;
+		}
+	}
+
+	.unseen-intro-cta,
+	.unseen-intro-content {
+		@media only screen and (min-width: 555px) {
+			margin-bottom: 0;
+		}
+	}
+
+	.unseen-intro-cta {
+		flex-shrink: 0;
+		font-size: rem(22);
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	.unseen-intro-content {
+		font-size: rem(14);
+		line-height: 1.5;
+
+		@media only screen and (min-width: 555px) {
+			margin-left: rem(20);
+			max-width: 300px;
+		}
+
+		> br {
+			content: "";
+			display: block;
+			height: rem(18);
+		}
+	}
+}
