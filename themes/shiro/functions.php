@@ -482,3 +482,17 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+/**
+ * Add <path> to the array of allowed SVG tags
+ * when using the Safe SVG plugin.
+ *
+ * @param array $tags Array of allowed tags.
+ * @return array
+ */
+function shiro_filter_safe_svg_tags( $tags ) {
+	$tags[] = 'path';
+
+	return $tags;
+}
+add_filter( 'svg_allowed_tags', 'shiro_filter_safe_svg_tags' );
