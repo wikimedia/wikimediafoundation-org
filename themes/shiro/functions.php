@@ -482,22 +482,3 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
-
-function shiro_kses_allowed_svg_tags( $tags ) {
-	$tags['svg'] = [
-		'xmlns'       => [],
-		'fill'        => [],
-		'viewbox'     => [],
-		'role'        => [],
-		'aria-hidden' => [],
-		'focusable'   => [],
-	];
-
-	$tags['path'] = [
-		'd'    => [],
-		'fill' => [],
-	];
-
-	return $tags;
-}
-add_filter( 'wp_kses_allowed_html', 'shiro_kses_allowed_svg_tags', 10, 2 );
