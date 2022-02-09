@@ -18,6 +18,15 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Run VIP Go Deploy script unbuilt
+        run: bash .github/vip-go-deploy.sh
+        env:
+          SRC_REPO: ${{ github.repository }}
+          SRC_DIR: ${{ github.workspace }}
+          TMP_DIR: ${{ runner.temp }}
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          USE_SUFFIX: ${{ false }}
+
       - name: Lock PHP and composer versions
         uses: "shivammathur/setup-php@v2"
         with:
@@ -44,7 +53,7 @@ jobs:
       - name: Build assets
         run: (npm --prefix themes/shiro run build)
 
-      - name: Run VIP Go Deploy script
+      - name: Run VIP Go Deploy script built
         run: bash .github/vip-go-deploy.sh
         env:
           SRC_REPO: ${{ github.repository }}
