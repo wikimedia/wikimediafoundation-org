@@ -71,6 +71,10 @@
 		margin: 0 10px 10px 0;
 		padding: 0 $padding-horizontal-base;
 
+		.has-base-90-background-color & {
+			box-shadow: 0 0 1px $color-primary;
+		}
+
 		&:hover {
 			background-color: $wmui-color-blue50;
 			color: $wmui-color-base100;
