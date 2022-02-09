@@ -19,13 +19,7 @@ jobs:
           persist-credentials: false
 
       - name: Run VIP Go Deploy script unbuilt
-        run: bash .github/vip-go-deploy.sh
-        env:
-          SRC_REPO: ${{ github.repository }}
-          SRC_DIR: ${{ github.workspace }}
-          TMP_DIR: ${{ runner.temp }}
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-          USE_SUFFIX: ${{ 0 }}
+        run: git push "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ DEPLOY_REPO }}.git" --ff-only
 
       - name: Lock PHP and composer versions
         uses: "shivammathur/setup-php@v2"
