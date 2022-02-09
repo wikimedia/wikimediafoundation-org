@@ -10,11 +10,7 @@ set -ex
 # The deploy suffix flexibility is mainly here to allow
 # us to test Circle and Travis builds simultaneously on
 # the https://github.com/Automattic/vip-go-skeleton/ repo.
-if [[ 1 = ${USE_SUFFIX} ]]; then
-	DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:--built}"
-else
-	DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:-}"
-fi
+DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:--built}"
 BRANCH="${GITHUB_REF#refs/heads/}"
 COMMIT_SHA=${GITHUB_SHA}
 
@@ -98,11 +94,7 @@ if [ -z "$(git status --porcelain)" ]; then
 fi
 
 # Commit it.
-if [[ 1 = ${USE_SUFFIX} ]]; then
-	MESSAGE=$( printf 'Build changes from %s\n\n%s' "${COMMIT_SHA}" "${COMMIT_MESSAGE}" )
-else
-	MESSAGE=$( printf 'Deploy changes from %s\n\n%s' "${COMMIT_SHA}" "${COMMIT_MESSAGE}" )
-fi
+MESSAGE=$( printf 'Build changes from %s\n\n%s' "${COMMIT_SHA}" "${COMMIT_MESSAGE}" )
 # Set the Author to the commit (expected to be a client dev) and the committer
 # will be set to the default Git user for this CI system
 git commit --author="${COMMIT_AUTHOR_NAME} <${COMMIT_AUTHOR_EMAIL}>" -m "${MESSAGE}"
