@@ -1,0 +1,156 @@
+.wp-block-shiro-unseen-artist {
+	display: flex;
+	flex-direction: column;
+	margin-top: rem(72);
+
+	@media only screen and (min-width: 655px) {
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top: rem(92);
+		margin-bottom: rem(54);
+	}
+
+	a {
+		color: #3366cc;
+	}
+
+	.person-bio {
+		margin-bottom: rem(32);
+
+		@media only screen and (min-width: 655px) {
+			order: 2;
+			margin-left: rem(20);
+			margin-bottom: 0;
+		}
+	}
+
+	.artist-info {
+		flex-shrink: 0;
+		width: 200px;
+
+		@media only screen and (min-width: 655px) {
+			order: 1;
+			padding-top: rem(155);
+		}
+	}
+
+	.wp-block-image {
+		margin-left: calc(50% - 50vw);
+		margin-right: calc(50% - 50vw);
+		max-width: 100vw;
+
+		@media only screen and (min-width: 655px) {
+			margin-left: 0;
+			margin-right: 0;
+			max-width: initial;
+		}
+	}
+
+	.wp-block-image img {
+		width: 100%;
+
+		@media only screen and (min-width: 655px) {
+			width: auto;
+		}
+	}
+
+	.person-bio-top-heading {
+		font-size: rem(20);
+		line-height: 1.35;
+		margin-bottom: rem(30);
+
+		@media only screen and (min-width: 655px) {
+			font-size: rem(24);
+			margin-bottom: rem(48);
+		}
+	}
+
+	.person-bio-heading,
+	.person-bio-entry {
+		max-width: 420px;
+	}
+
+	.person-bio-heading {
+		color: #3366cc;
+		font-size: rem(30);
+		line-height: 1.1;
+		margin-bottom: rem(25);
+
+		@media only screen and (min-width: 655px) {
+			font-size: rem(36);
+		}
+	}
+
+	.person-bio-entry {
+		font-size: rem(14);
+		line-height: 1.5;
+
+		> br {
+			content: "";
+			display: block;
+			height: rem(18);
+		}
+	}
+
+	.artist-info-heading {
+		font-size: rem(17);
+		font-weight: 300;
+		margin-bottom: rem(4);
+		line-height: 1.1;
+	}
+
+	.artist-info-name {
+		font-size: rem(22);
+		font-weight: 700;
+		line-height: 1.2;
+		margin-bottom: rem(4);
+	}
+
+	.artist-info-link {
+		font-size: rem(12);
+		font-weight: 700;
+		text-decoration: underline;
+		text-transform: uppercase;
+	}
+
+	.artist-social {
+		list-style: none;
+		margin: rem(32) 0 0 0;
+		padding: 0;
+
+		li,
+		li a {
+			display: inline-block;
+		}
+
+		li,
+		li a,
+		img {
+			height: 20px;
+			width: auto;
+		}
+
+		li {
+			margin: 0 rem(15) rem(10) 0;
+
+			&:last-of-type {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.wp-block-shiro-unseen-artist .hidden-info {
+	@media only screen and (min-width: 655px) {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute !important;
+		width: 1px;
+		word-wrap: normal !important;
+	}
+}
