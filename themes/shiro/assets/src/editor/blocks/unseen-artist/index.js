@@ -14,10 +14,6 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies.
  */
 import './style.scss';
-import FacebookIcon from '../../../images/facebook.svg';
-import InstagramIcon from '../../../images/instagram.svg';
-import LinkedInIcon from '../../../images/linkedin.svg';
-import TwitterIcon from '../../../images/twitter.svg';
 
 // Get the theme URL.
 const themeUrl = shiroEditorVariables.themeUrl; // eslint-disable-line no-undef
@@ -166,7 +162,7 @@ export const settings = {
 		const facebook = facebookURL ? (
 			<li>
 				<a href={ facebookURL }>
-					{ <FacebookIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/facebook-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Facebook.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -174,7 +170,7 @@ export const settings = {
 		const instagram = instagramURL ? (
 			<li>
 				<a href={ instagramURL }>
-					{ <InstagramIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/instagram-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Instagram.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -182,7 +178,7 @@ export const settings = {
 		const twitter = twitterURL ? (
 			<li>
 				<a href={ twitterURL }>
-					{ <TwitterIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/twitter-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Twitter.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -190,7 +186,7 @@ export const settings = {
 		const linkedIn = linkedInURL ? (
 			<li>
 				<a href={ linkedInURL }>
-					{ <LinkedInIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on LinkedIn.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -355,7 +351,7 @@ export const settings = {
 		const facebook = facebookURL ? (
 			<li>
 				<a href={ facebookURL }>
-					{ <FacebookIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/facebook-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Facebook.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -363,7 +359,7 @@ export const settings = {
 		const instagram = instagramURL ? (
 			<li>
 				<a href={ instagramURL }>
-					{ <InstagramIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/instagram-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Instagram.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -371,7 +367,7 @@ export const settings = {
 		const twitter = twitterURL ? (
 			<li>
 				<a href={ twitterURL }>
-					{ <TwitterIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/twitter-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Twitter.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
@@ -379,7 +375,7 @@ export const settings = {
 		const linkedIn = linkedInURL ? (
 			<li>
 				<a href={ linkedInURL }>
-					{ <LinkedInIcon /> }
+					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on LinkedIn.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
