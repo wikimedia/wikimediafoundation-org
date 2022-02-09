@@ -25,7 +25,7 @@ jobs:
           SRC_DIR: ${{ github.workspace }}
           TMP_DIR: ${{ runner.temp }}
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-          USE_SUFFIX: ${{ false }}
+          USE_SUFFIX: ${{ 0 }}
 
       - name: Lock PHP and composer versions
         uses: "shivammathur/setup-php@v2"
@@ -60,4 +60,4 @@ jobs:
           SRC_DIR: ${{ github.workspace }}
           TMP_DIR: ${{ runner.temp }}
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-          USE_SUFFIX: ${{ true }}
+          USE_SUFFIX: ${{ 1 }}

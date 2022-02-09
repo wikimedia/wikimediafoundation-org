@@ -10,9 +10,10 @@ set -ex
 # The deploy suffix flexibility is mainly here to allow
 # us to test Circle and Travis builds simultaneously on
 # the https://github.com/Automattic/vip-go-skeleton/ repo.
-DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:-}"
-if [[ -n ${USE_SUFFIX} ]]; then
+if [[ 1 = ${USE_SUFFIX} ]]; then
 	DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:--built}"
+else
+	DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:-}"
 fi
 BRANCH="${GITHUB_REF#refs/heads/}"
 COMMIT_SHA=${GITHUB_SHA}
