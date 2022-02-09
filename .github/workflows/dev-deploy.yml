@@ -19,7 +19,7 @@ jobs:
           persist-credentials: false
 
       - name: Pull from VIP Go
-        run: git pull "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git" --rebase=true
+        run: git pull "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git" --rebase=false
 
       - name: Push to VIP Go unbuilt
         run: git push "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"
