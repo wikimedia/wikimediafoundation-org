@@ -51,3 +51,4 @@ jobs:
           SRC_DIR: ${{ github.workspace }}
           TMP_DIR: ${{ runner.temp }}
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          USE_SUFFIX: ${{ true }}
