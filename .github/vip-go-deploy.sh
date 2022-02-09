@@ -11,7 +11,7 @@ set -ex
 # us to test Circle and Travis builds simultaneously on
 # the https://github.com/Automattic/vip-go-skeleton/ repo.
 DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:-}"
-if [[ ${USE_SUFFIX} ]]; then
+if [[ -n ${USE_SUFFIX} ]]; then
 	DEPLOY_SUFFIX="${VIP_DEPLOY_SUFFIX:--built}"
 fi
 BRANCH="${GITHUB_REF#refs/heads/}"
