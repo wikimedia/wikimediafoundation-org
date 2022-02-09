@@ -18,7 +18,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run VIP Go Deploy script unbuilt
+      - name: Pull from VIP Go
+        run: git pull "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"
+
+      - name: Push to VIP Go unbuilt
         run: git push "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"
 
       - name: Lock PHP and composer versions
