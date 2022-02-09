@@ -125,7 +125,7 @@
 
 		li,
 		li a,
-		svg {
+		img {
 			height: 20px;
 			width: auto;
 		}
@@ -135,12 +135,6 @@
 
 			&:last-of-type {
 				margin: 0;
-			}
-		}
-
-		svg {
-			path {
-				fill: #3366cc;
 			}
 		}
 	}
