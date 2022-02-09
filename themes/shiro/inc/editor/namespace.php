@@ -65,6 +65,10 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/external-link',
 		'shiro/profile',
 		'shiro/profile-list',
+		'shiro/unseen-artist',
+		'shiro/unseen-facts',
+		'shiro/unseen-footer',
+		'shiro/unseen-intro',
 
 		// Core blocks
 		'core/paragraph',
@@ -143,6 +147,8 @@ function add_theme_supports() {
 		[ 'name' => __( 'Red 90', 'shiro-admin' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
 		[ 'name' => __( 'Yellow 50', 'shiro-admin' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
 		[ 'name' => __( 'Yellow 90', 'shiro-admin' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
+		[ 'name' => __( 'Light Blue', 'shiro-admin' ), 'slug' => 'light-blue', 'color' => '#effafd' ],
+		[ 'name' => __( 'Wiki Blue', 'shiro-admin' ), 'slug' => 'wiki-blue', 'color' => '#3366CC' ],
 	] );
 
 	// Disable custom color and gradient selection in the editor.

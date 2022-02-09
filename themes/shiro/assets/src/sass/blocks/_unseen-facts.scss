@@ -1,0 +1,143 @@
+.wp-block-shiro-unseen-facts {
+	display: flex;
+	flex-direction: column;
+	margin-top: rem(52);
+	margin-bottom: rem(72);
+	position: relative;
+
+	@media only screen and (min-width: 765px) {
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top: rem(92);
+		margin-bottom: rem(54);
+	}
+
+	.facts-content {
+		max-width: 560px;
+
+		@media only screen and (min-width: 765px) {
+			order: 2;
+			margin-left: rem(20);
+			padding-top: rem(80);
+		}
+	}
+
+	.facts-box {
+		flex-shrink: 0;
+
+		@media only screen and (min-width: 765px) {
+			order: 1;
+			max-width: 340px;
+		}
+	}
+
+	a {
+		color: #3366cc;
+		text-decoration: underline;
+	}
+
+	.social-icons {
+		list-style: none;
+		margin: rem(32) 0 rem(30) 0;
+		padding: 0;
+
+		@media only screen and (min-width: 765px) {
+			margin: rem(32) 0 rem(40) 0;
+			position: absolute;
+			top: 0;
+			left: 75px;
+		}
+
+		li,
+		li a {
+			display: inline-block;
+
+			@media only screen and (min-width: 765px) {
+				display: block;
+			}
+		}
+
+		li,
+		li a,
+		img {
+			height: 20px;
+			width: auto;
+		}
+
+		li {
+			margin: 0 rem(15) rem(10) 0;
+
+			@media only screen and (min-width: 765px) {
+				margin: 0 rem(15) rem(20) 0;
+			}
+
+			&:last-of-type {
+				margin: 0;
+			}
+		}
+	}
+
+	.section-heading {
+		color: #3366cc;
+		font-size: rem(34);
+		line-height: 1.1;
+		margin-bottom: rem(30);
+
+		@media only screen and (min-width: 765px) {
+			font-size: rem(60);
+			margin-bottom: rem(60);
+		}
+	}
+
+	.facts-box,
+	.facts-box ul li,
+	.section-content {
+		font-size: rem(16);
+		line-height: 1.5;
+	}
+
+	.section-content {
+		margin-bottom: rem(60);
+
+		@media only screen and (min-width: 765px) {
+			margin-bottom: 0;
+			padding-bottom: rem(100);
+			border-bottom: 1px solid #000;
+		}
+
+		> br {
+			content: "";
+			display: block;
+			height: rem(18);
+		}
+	}
+
+	.facts-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+
+	.facts-box > div {
+		background-color: #79CFF31A;
+		padding: rem(25);
+		border-bottom: 1px solid #000;
+
+		@media only screen and (min-width: 765px) {
+			padding: rem(40);
+			border-bottom: none;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0 0 0 rem(15);
+		}
+
+		p {
+			font-size: rem(22);
+			font-weight: 700;
+			line-height: 1.2;
+			margin-bottom: rem(30);
+		}
+	}
+}
