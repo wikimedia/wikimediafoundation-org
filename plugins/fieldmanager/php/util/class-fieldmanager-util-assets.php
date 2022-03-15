@@ -212,7 +212,6 @@ class Fieldmanager_Util_Assets {
 			}
 
 			// Set the default directory.
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 			if ( '' == $args['plugin_dir'] ) {
 				$args['plugin_dir'] = fieldmanager_get_baseurl(); // Allow overrides for child plugins.
 			}
@@ -272,7 +271,6 @@ class Fieldmanager_Util_Assets {
 			}
 
 			// Set the default directory.
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 			if ( '' == $args['plugin_dir'] ) {
 				$args['plugin_dir'] = fieldmanager_get_baseurl(); // Allow overrides for child plugins.
 			}

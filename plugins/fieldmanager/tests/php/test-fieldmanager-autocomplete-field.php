@@ -8,8 +8,8 @@
  */
 class Test_Fieldmanager_Autocomplete_Field extends WP_UnitTestCase {
 
-	public function set_up() {
-		parent::set_up();
+	public function setUp() {
+		parent::setUp();
 		Fieldmanager_Field::$debug = true;
 
 		$this->post_id = $this->factory->post->create(
@@ -65,14 +65,14 @@ class Test_Fieldmanager_Autocomplete_Field extends WP_UnitTestCase {
 		ob_start();
 		$fm->add_meta_box( 'Test Autocomplete', 'post' )->render_meta_box( $this->post, array() );
 		$html = ob_get_clean();
-		$this->assertMatchesRegularExpression( '/<input[^>]+type=[\'"]text[\'"][^>]+value=[\'"]{2}/', $html );
+		$this->assertRegExp( '/<input[^>]+type=[\'"]text[\'"][^>]+value=[\'"]{2}/', $html );
 
 		$args['exact_match'] = false;
 		$fm                  = new Fieldmanager_Autocomplete( $args );
 		ob_start();
 		$fm->add_meta_box( 'Test Autocomplete', 'post' )->render_meta_box( $this->post, array() );
 		$html = ob_get_clean();
-		$this->assertMatchesRegularExpression( '/<input[^>]+type=[\'"]text[\'"][^>]+value=[\'"]' . $args['default_value'] . '[\'"]/', $html );
+		$this->assertRegExp( '/<input[^>]+type=[\'"]text[\'"][^>]+value=[\'"]' . $args['default_value'] . '[\'"]/', $html );
 	}
 
 	public function test_ajax() {

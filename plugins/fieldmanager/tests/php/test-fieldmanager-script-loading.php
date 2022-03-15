@@ -6,12 +6,13 @@
  */
 class Test_Fieldmanager_Script_Loading extends Fieldmanager_Assets_Unit_Test_Case {
 
-	public function set_up() {
-		parent::set_up();
+	public function setUp() {
+		parent::setUp();
 
 		// Instantiate field classes that register scripts.
 		new Fieldmanager_Autocomplete( 'Test', array( 'datasource' => new Fieldmanager_Datasource_Post() ) );
 		new Fieldmanager_Datepicker( 'Test' );
+		new Fieldmanager_Grid( 'Test' );
 		new Fieldmanager_Group( 'Test', array( 'tabbed' => 'horizontal' ) );
 		new Fieldmanager_Media( 'Test' );
 		new Fieldmanager_Select( 'Test' );
@@ -32,38 +33,15 @@ class Test_Fieldmanager_Script_Loading extends Fieldmanager_Assets_Unit_Test_Cas
 	 */
 	public function script_data() {
 		return array(
-			'fieldmanager_script' => array(
-				'fieldmanager_script',
-				array( 'fm_loader', 'jquery', 'jquery-ui-sortable' ),
-			),
-			'fm_autocomplete_js'  => array(
-				'fm_autocomplete_js',
-				array( 'fm_loader', 'fieldmanager_script', 'jquery-ui-autocomplete' ),
-			),
-			'fm_datepicker'       => array(
-				'fm_datepicker',
-				array( 'fm_loader', 'fieldmanager_script', 'jquery-ui-datepicker' ),
-			),
-			'fm_group_tabs_js'    => array(
-				'fm_group_tabs_js',
-				array( 'fm_loader', 'jquery', 'jquery-hoverintent' ),
-			),
-			'fm_media'            => array(
-				'fm_media',
-				array( 'jquery' ),
-			),
-			'fm_richtext'         => array(
-				'fm_richtext',
-				array( 'fm_loader', 'jquery', 'fieldmanager_script', 'utils' ),
-			),
-			'fm_select_js'        => array(
-				'fm_select_js',
-				array( 'fm_loader' ),
-			),
-			'fm_colorpicker'      => array(
-				'fm_colorpicker',
-				array( 'fm_loader', 'jquery', 'wp-color-picker' ),
-			),
+			array( 'fieldmanager_script', array( 'fm_loader', 'jquery', 'jquery-ui-sortable' ) ),
+			array( 'fm_autocomplete_js', array( 'fm_loader', 'fieldmanager_script', 'jquery-ui-autocomplete' ) ),
+			array( 'fm_datepicker', array( 'fm_loader', 'fieldmanager_script', 'jquery-ui-datepicker' ) ),
+			array( 'fm_group_tabs_js', array( 'fm_loader', 'jquery', 'jquery-hoverintent' ) ),
+			array( 'fm_media', array( 'jquery' ) ),
+			array( 'fm_richtext', array( 'fm_loader', 'jquery', 'fieldmanager_script', 'utils' ) ),
+			array( 'fm_select_js', array( 'fm_loader' ) ),
+			array( 'grid', array( 'fm_loader', 'handsontable', 'contextmenu', 'ui_position' ) ),
+			array( 'fm_colorpicker', array( 'fm_loader', 'jquery', 'wp-color-picker' ) ),
 		);
 	}
 
