@@ -25,6 +25,7 @@ use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
 use Inpsyde\MultilingualPress\TranslationUi\Post;
 use RuntimeException;
 use WC_Cache_Helper;
+use WC_Data_Exception;
 use WC_Product;
 
 /**
@@ -173,6 +174,8 @@ final class MetaboxAction implements Metabox\Action
         restore_current_blog();
 
         $values = $this->allFieldsValues($request);
+        $changedFields = $this->changedFields($request);
+
         $overrideProductType = $this->maybeOverrideProductType($values);
 
         $remoteProduct = $relationshipHelper->remoteProduct(
@@ -220,11 +223,8 @@ final class MetaboxAction implements Metabox\Action
             $remoteProduct
         );
 
-        $overrideInventorySettings = $values[MetaboxFields::FIELD_OVERRIDE_INVENTORY_SETTINGS] ?? false;
-        $inventoryFieldValues = $overrideInventorySettings
-            ? $this->getInventoryFields($sourceProduct)
-            : array_intersect_key($values, $this->getInventoryFields($sourceProduct));
-        $this->setInventoryFields($remoteProduct, $inventoryFieldValues);
+        $inventoryFieldValues = $this->changedInventoryFields($sourceProduct, $changedFields, $values);
+        $this->assignInventoryFields($remoteProduct, $inventoryFieldValues);
 
         $this->maybeSetProductUrlAndButtonText(
             $remoteProduct,
@@ -232,17 +232,25 @@ final class MetaboxAction implements Metabox\Action
             $values[MetaboxFields::FIELD_PRODUCT_URL_BUTTON_TEXT] ?? ''
         );
 
-        $regularPrice = str_replace($decimals, '.', $values[MetaboxFields::FIELD_REGULAR_PRICE]) ?? '';
-        $regularPrice and $remoteProduct->set_regular_price($regularPrice);
+        $regularPriceFieldName = MetaboxFields::FIELD_REGULAR_PRICE;
+        $regularPrice = str_replace($decimals, '.', $values[$regularPriceFieldName]) ?? '';
+
+        if ($regularPrice && in_array($regularPriceFieldName, $changedFields, true)) {
+            $remoteProduct->set_regular_price($regularPrice);
+        }
 
         $salePrice = str_replace($decimals, '.', $values[MetaboxFields::FIELD_SALE_PRICE]) ?? '';
-        $salePrice and $remoteProduct->set_sale_price($salePrice);
+        if ($salePrice && in_array($salePrice, $changedFields, true)) {
+            $remoteProduct->set_sale_price($salePrice);
+        }
 
         $productShortDescription = $values[MetaboxFields::FIELD_PRODUCT_SHORT_DESCRIPTION] ?? '';
         $productShortDescription and $remoteProduct->set_short_description($productShortDescription);
 
         $purchaseNote = $values[MetaboxFields::FIELD_PURCHASE_NOTE] ?? '';
-        $purchaseNote and $remoteProduct->set_purchase_note($purchaseNote);
+        if ($purchaseNote && in_array($purchaseNote, $changedFields, true)) {
+            $remoteProduct->set_purchase_note($purchaseNote);
+        }
 
         $overrideProductGallery = $values[MetaboxFields::FIELD_OVERRIDE_PRODUCT_GALLERY] ?? false;
         $overrideProductGallery and $this->setProductGalleryIds(
@@ -422,13 +430,17 @@ final class MetaboxAction implements Metabox\Action
      * Set the inventory fields for the remote product
      *
      * @param WC_Product $remoteProduct
-     * @param array $values List of all Woo inventory field values (field_key => field_value pairs)
-     * @throws \WC_Data_Exception
+     * @param array<string> $values a map of product inventory field keys to values
+     * @throws WC_Data_Exception
      */
-    protected function setInventoryFields(WC_Product $remoteProduct, array $values)
+    protected function assignInventoryFields(WC_Product $remoteProduct, array $values)
     {
+        if (empty($values)) {
+            return;
+        }
+
         $sku = $values[MetaboxFields::FIELD_SKU] ?? '';
-        $remoteProduct->set_sku($sku);
+        $this->maybeSetSku($remoteProduct, $sku ?? '');
 
         $manageStock = (bool)$values[MetaboxFields::FIELD_MANAGE_STOCK] ?? false;
         $remoteProduct->set_manage_stock($manageStock);
@@ -450,14 +462,32 @@ final class MetaboxAction implements Metabox\Action
     }
 
     /**
-     * Get product inventory field values
+     * Set the product sku
+     *
+     * @param WC_Product $product
+     * @param string $sku
+     * @throws WC_Data_Exception
+     */
+    protected function maybeSetSku(\WC_Product $product, string $sku)
+    {
+        if ($product->get_object_read() && ! empty($sku) && !wc_product_has_unique_sku($product->get_id(), $sku)) {
+            return;
+        }
+
+        $product->set_sku($sku);
+    }
+
+    /**
+     * Get a map of changed inventory field keys to values
      *
      * @param WC_Product $sourceProduct
-     * @return array array of product inventory fields as field_key => field_value pairs
+     * @param array<string> $changedFields The list of changed field meta keys
+     * @param array<string> $productFields a map of product field keys to values
+     * @return array<string> a map of product inventory field keys to values
      */
-    protected function getInventoryFields(WC_Product $sourceProduct): array
+    protected function changedInventoryFields(WC_Product $sourceProduct, array $changedFields, array $productFields): array
     {
-        return [
+        $allInventoryFields = [
             MetaboxFields::FIELD_SKU => $sourceProduct->get_sku(),
             MetaboxFields::FIELD_MANAGE_STOCK => $sourceProduct->get_manage_stock(),
             MetaboxFields::FIELD_STOCK => $sourceProduct->get_stock_quantity(),
@@ -466,6 +496,14 @@ final class MetaboxAction implements Metabox\Action
             MetaboxFields::FIELD_STOCK_STATUS => $sourceProduct->get_stock_status(),
             MetaboxFields::FIELD_SOLD_INDIVIDUALLY => $sourceProduct->get_sold_individually(),
         ];
+
+        if (in_array(MetaboxFields::FIELD_OVERRIDE_INVENTORY_SETTINGS, $changedFields, true)) {
+            return $allInventoryFields;
+        }
+
+        $changedInventoryFields = array_intersect_key($allInventoryFields, array_flip($changedFields));
+
+        return array_intersect_key($productFields, $changedInventoryFields);
     }
 
     /**
@@ -1066,5 +1104,27 @@ final class MetaboxAction implements Metabox\Action
         WC_Cache_Helper::incr_cache_prefix('woocommerce-attributes');
 
         return $wpdb->insert_id;
+    }
+
+    /**
+     * Get The list of changed meta keys from request
+     *
+     * @param Request $request
+     * @return array<string> The list of changed field meta keys
+     */
+    protected function changedFields(Request $request): array
+    {
+        $multilingualpress = $request->bodyValue(
+            'multilingualpress',
+            INPUT_POST,
+            FILTER_DEFAULT,
+            FILTER_FORCE_ARRAY
+        );
+
+        $remoteSiteId = $this->postRelationshipContext->remoteSiteId();
+        $translation = $multilingualpress["site-{$remoteSiteId}"] ?? [];
+        $changedFields = $translation[Post\MetaboxFields::FIELD_CHANGED_FIELDS] ?? [];
+
+        return $changedFields ? explode(',', $changedFields) : [];
     }
 }

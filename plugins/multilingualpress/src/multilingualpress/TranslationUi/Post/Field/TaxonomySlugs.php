@@ -65,7 +65,11 @@ class TaxonomySlugs
                 && current_user_can($taxonomy->cap->assign_terms, $slug)
             ) {
                 ?>
-                <input type="hidden" name="<?= esc_attr($name) ?>[]" value="<?= esc_attr($slug) ?>">
+                <input
+                    type="hidden"
+                    data-slug=<?= esc_attr($slug) ?>
+                    name="<?= esc_attr($name) ?>[]"
+                    value="">
                 <?php
             }
         }

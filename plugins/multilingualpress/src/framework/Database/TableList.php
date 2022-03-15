@@ -136,8 +136,11 @@ class TableList
     {
         global $wpdb;
         if ($siteId !== (int)get_main_site_id()) {
-            return $wpdb->get_col("SHOW TABLES LIKE '{$wpdb->prefix}%'");
+            $prefix = str_replace("_", "\_", $wpdb->prefix);
+            //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+            return $wpdb->get_col("SHOW TABLES LIKE '{$prefix}%'");
         }
+        // phpcs:enable
 
         $allTables = $this->allTables();
         if (!$allTables) {

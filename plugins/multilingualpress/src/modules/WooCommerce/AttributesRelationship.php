@@ -126,14 +126,6 @@ class AttributesRelationship
     public function addSupportForAttribute(int $id, array $data)
     {
         $taxonomies = $this->translatableTaxonomies();
-        if (!$taxonomies) {
-            foreach (TaxonomyRepository::DEFAULT_SUPPORTED_TAXONOMIES as $key) {
-                $taxonomies[$key] = [
-                    TaxonomyRepository::FIELD_ACTIVE => true,
-                    TaxonomyRepository::FIELD_SKIN => '',
-                ];
-            }
-        }
 
         $taxonomies = array_merge($taxonomies, [
             wc_attribute_taxonomy_name($data['attribute_name']) => [

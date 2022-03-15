@@ -175,19 +175,12 @@ class ServiceProvider implements ModuleServiceProvider
             }
         );
 
+        $this->disableSettingsForWooCommerceEntities($container);
+
         $moduleManager = $container[ModuleManager::class];
         if (!$moduleManager->isModuleActive(self::MODULE_ID)) {
             $this->removeWooCommerceSupport($container);
         }
-
-        /**
-         * This filter will remove the product attributes from settings and
-         * it should be called at this stage to work either when module is inactive or active
-         */
-        add_filter(
-            TaxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
-            [$container[AvailableTaxonomiesAttributes::class], 'removeAttributes']
-        );
     }
 
     /**
@@ -454,14 +447,6 @@ class ServiceProvider implements ModuleServiceProvider
                 return $allAvailablePostTypes;
             }
         );
-
-        add_filter(
-            PostTypeRepository::FILTER_PUBLIC_POST_TYPES,
-            static function ($allAvailablePostTypes) {
-                unset($allAvailablePostTypes['shop_order']);
-                return $allAvailablePostTypes;
-            }
-        );
     }
 
     /**
@@ -538,5 +523,31 @@ class ServiceProvider implements ModuleServiceProvider
                 }
             );
         }
+    }
+
+    /**
+     * Disable MLP settings for certain WooCommerce entities.
+     *
+     * Regardless of whether the WooCommerce module is active, some WooCommerce entities settings should be removed
+     * from admin area, cause some entities like "Attributes" are supported under the hood when the module is active and
+     * some are not translatable at all, such as "Orders".
+     * This method is for removing the settings of such entities from admin area.
+     *
+     * @param Container $container
+     */
+    protected function disableSettingsForWooCommerceEntities(Container $container)
+    {
+        add_filter(
+            PostTypeRepository::FILTER_PUBLIC_POST_TYPES,
+            static function ($allAvailablePostTypes) {
+                unset($allAvailablePostTypes['shop_order']);
+                return $allAvailablePostTypes;
+            }
+        );
+
+        add_filter(
+            TaxonomyRepository::FILTER_ALL_AVAILABLE_TAXONOMIES,
+            [$container[AvailableTaxonomiesAttributes::class], 'removeAttributes']
+        );
     }
 }

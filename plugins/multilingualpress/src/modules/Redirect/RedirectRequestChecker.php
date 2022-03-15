@@ -58,7 +58,7 @@ class RedirectRequestChecker
         }
 
         if (
-            !$this->settingsRepository->isRedirectEnabledForSite()
+            !$this->settingsRepository->isRedirectSettingEnabledForSite()
             || $this->settingsRepository->isRedirectEnabledForUser()
             || $this->noRedirectStorage->hasLanguage(siteLanguageTag())
         ) {

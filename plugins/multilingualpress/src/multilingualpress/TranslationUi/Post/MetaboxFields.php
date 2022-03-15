@@ -39,6 +39,7 @@ class MetaboxFields
     const FIELD_TAXONOMIES = 'remote-taxonomies';
     const FIELD_TAXONOMY_SLUGS = 'remote-taxonomy-slugs';
     const FIELD_EDIT_LINK = 'edit-link';
+    const FIELD_CHANGED_FIELDS = 'changed-fields';
 
     const FILTER_TAXONOMIES_AND_TERMS_OF = 'multilingualpress.taxonomies_and_terms_of';
     const FILTER_MAX_NUMBER_OF_TERMS = 'multilingualpress.max_number_of_terms';
@@ -306,5 +307,15 @@ class MetaboxFields
         );
 
         return $fields;
+    }
+
+    /**
+     * Will create a new hidden metabox field for detecting changed fields with JS
+     *
+     * @return MetaboxField
+     */
+    public function changedFieldsField(): MetaboxField
+    {
+        return new MetaboxField(self::FIELD_CHANGED_FIELDS, new Field\ChangedFields(), 'sanitize_text_field');
     }
 }

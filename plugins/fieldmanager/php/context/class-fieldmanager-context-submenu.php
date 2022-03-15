@@ -92,6 +92,8 @@ class Fieldmanager_Context_Submenu extends Fieldmanager_Context_Storable {
 			add_action( 'admin_menu', array( $this, 'register_submenu_page' ) );
 		}
 		add_action( 'admin_init', array( $this, 'handle_submenu_save' ) );
+
+		parent::__construct();
 	}
 
 	/**
@@ -109,7 +111,8 @@ class Fieldmanager_Context_Submenu extends Fieldmanager_Context_Storable {
 		?>
 		<div class="wrap">
 			<?php
-			if ( ! empty( $_GET['msg'] ) && 'success' == $_GET['msg'] ) : // WPCS: input var okay.
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison, WordPress.Security.NonceVerification.Recommended -- baseline
+			if ( ! empty( $_GET['msg'] ) && 'success' == $_GET['msg'] ) :
 				?>
 				<div class="updated success"><p><?php echo esc_html( $this->updated_message ); ?></p></div>
 			<?php endif; ?>
@@ -141,7 +144,8 @@ class Fieldmanager_Context_Submenu extends Fieldmanager_Context_Storable {
 	 * Save a submenu page
 	 */
 	public function handle_submenu_save() {
-		if ( empty( $_GET['page'] ) || $_GET['page'] != $this->menu_slug ) { // WPCS: input var okay.
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison, WordPress.Security.NonceVerification.Recommended -- baseline
+		if ( empty( $_GET['page'] ) || $_GET['page'] != $this->menu_slug ) {
 			return;
 		}
 
@@ -168,11 +172,14 @@ class Fieldmanager_Context_Submenu extends Fieldmanager_Context_Storable {
 	 * @return bool True.
 	 */
 	public function save_submenu_data( $data = null ) {
-		$this->fm->data_id   = $this->fm->name;
-		$this->fm->data_type = 'options';
-		$current             = get_option( $this->fm->name, null );
-		$data                = $this->prepare_data( $current, $data );
-		$data                = apply_filters( 'fm_submenu_presave_data', $data, $this );
+		$this->fm->data_id         = $this->fm->name;
+		$this->fm->data_type       = 'options';
+		$this->fm->current_context = $this;
+
+		$current = get_option( $this->fm->name, null );
+		$data    = $this->prepare_data( $current, $data );
+		$data    = apply_filters( 'fm_submenu_presave_data', $data, $this );
+
 		if ( $this->fm->skip_save ) {
 			return true;
 		}

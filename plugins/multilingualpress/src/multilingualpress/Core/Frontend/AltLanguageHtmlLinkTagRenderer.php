@@ -64,6 +64,7 @@ final class AltLanguageHtmlLinkTagRenderer implements AltLanguageRenderer
      * @param array ...$args
      *
      * phpcs:disable Inpsyde.CodeQuality.ArgumentTypeDeclaration.NoArgumentType
+     * phpcs:disable WordPressVIPMinimum.Security.ProperEscapingFunction.notAttrEscAttr
      */
     public function render(...$args)
     {
@@ -96,7 +97,7 @@ final class AltLanguageHtmlLinkTagRenderer implements AltLanguageRenderer
             $language = EmbeddedLanguage::changeLanguageVariant($language);
             $htmlLinkTag = sprintf(
                 '<link rel="alternate" hreflang="%1$s" href="%2$s">',
-                esc_attr($language),
+                esc_html($language),
                 esc_url($url)
             );
 

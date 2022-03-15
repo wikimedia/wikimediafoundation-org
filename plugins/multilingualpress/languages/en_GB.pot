@@ -13,15 +13,15 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: multilingualpress.php:63
+#: multilingualpress.php:66
 msgid "MultilingualPress 3 requires at least  PHP version 7.2. <br />Please ask your server administrator to update your environment to PHP version 7.2."
 msgstr ""
 
-#: multilingualpress.php:70, multilingualpress.php:93
+#: multilingualpress.php:73, multilingualpress.php:96, multilingualpress.php:268
 msgid "The plugin MultilingualPress has been deactivated"
 msgstr ""
 
-#: multilingualpress.php:86
+#: multilingualpress.php:89
 msgid "You try to activate MLP Version 3 but you already have MLP Version 2 activated. Please check out our <a href=\"https://multilingualpress.org/docs/getting-started-with-multilingualpress-3/\">guide</a> before you continue!"
 msgstr ""
 
@@ -54,6 +54,18 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
+#: modules/multilingualpress-site-flags/src/ServiceProvider.php:58
+msgid "The module can be activated only if the old MultilingualPress Site Flags Addon is disabled"
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/ServiceProvider.php:70
+msgid "MultilingualPress Site Flags"
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/ServiceProvider.php:329
+msgid "Enable Site Flags for MultilingualPress."
+msgstr ""
+
 #: modules/multilingualpress-woocommerce-brands/src/ServiceProvider.php:31
 msgid "WooCommerce Brands"
 msgstr ""
@@ -66,15 +78,15 @@ msgstr ""
 msgid "The module can be activated only if WooCommerce Brands is active at least in the main site."
 msgstr ""
 
-#: src/modules/ACF/ServiceProvider.php:45
+#: src/modules/ACF/ServiceProvider.php:46
 msgid "Enable ACF Support for MultilingualPress."
 msgstr ""
 
-#: src/modules/ACF/ServiceProvider.php:51
+#: src/modules/ACF/ServiceProvider.php:52
 msgid "The module can be activated only if ACF plugin is active at least in the main site."
 msgstr ""
 
-#: src/modules/ACF/ServiceProvider.php:62
+#: src/modules/ACF/ServiceProvider.php:63
 msgid "ACF"
 msgstr ""
 
@@ -146,7 +158,7 @@ msgstr ""
 msgid "Native name"
 msgstr ""
 
-#: src/modules/LanguageManager/TableFormView.php:328, src/multilingualpress/Core/Admin/LanguageSiteSetting.php:47, src/multilingualpress/Core/Admin/XDefaultSiteSetting.php:62
+#: src/modules/LanguageManager/TableFormView.php:328, src/multilingualpress/Core/Admin/XDefaultSiteSetting.php:62
 msgid "None"
 msgstr ""
 
@@ -196,43 +208,43 @@ msgstr ""
 msgid "Enable Language Switcher Widget."
 msgstr ""
 
-#: src/modules/LanguageSwitcher/ServiceProvider.php:40, src/modules/LanguageSwitcher/Widget.php:39, src/modules/LanguageSwitcher/Widget.php:44
+#: src/modules/LanguageSwitcher/ServiceProvider.php:40, src/modules/LanguageSwitcher/Widget.php:47, src/modules/LanguageSwitcher/Widget.php:52
 msgid "Language Switcher"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:88
+#: src/modules/LanguageSwitcher/Widget.php:97
 msgid "Title:"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:104
+#: src/modules/LanguageSwitcher/Widget.php:113
 msgid "Show links for translated content only"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:122
+#: src/modules/LanguageSwitcher/Widget.php:131
 msgid "Show current site"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:136
+#: src/modules/LanguageSwitcher/Widget.php:145
 msgid "Choose how to show the language name:"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:141
+#: src/modules/LanguageSwitcher/Widget.php:150
 msgid "Language ISO Name"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:142
+#: src/modules/LanguageSwitcher/Widget.php:151
 msgid "Language Locale"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:143
+#: src/modules/LanguageSwitcher/Widget.php:152
 msgid "Language Name"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:144
+#: src/modules/LanguageSwitcher/Widget.php:153
 msgid "Language ISO Code"
 msgstr ""
 
-#: src/modules/LanguageSwitcher/Widget.php:168
+#: src/modules/LanguageSwitcher/Widget.php:177
 msgid "Show flags"
 msgstr ""
 
@@ -259,11 +271,7 @@ msgstr ""
 msgid "QuickLink"
 msgstr ""
 
-#: src/modules/Redirect/RedirectSiteSetting.php:68
-msgid "Enable automatic redirect"
-msgstr ""
-
-#: src/modules/Redirect/RedirectSiteSetting.php:81, src/modules/Redirect/RedirectUserSetting.php:90, src/modules/Redirect/ServiceProvider.php:153, src/modules/Redirect/ServiceProvider.php:296, src/modules/Redirect/ServiceProvider.php:380
+#: src/modules/Redirect/RedirectSiteSettings.php:87, src/modules/Redirect/RedirectUserSetting.php:90, src/modules/Redirect/ServiceProvider.php:155, src/modules/Redirect/ServiceProvider.php:317, src/modules/Redirect/ServiceProvider.php:401
 msgid "Redirect"
 msgstr ""
 
@@ -271,7 +279,7 @@ msgstr ""
 msgid "Do not redirect me to the best matching language version."
 msgstr ""
 
-#: src/modules/Redirect/ServiceProvider.php:292
+#: src/modules/Redirect/ServiceProvider.php:313
 msgid "Enable the Redirect checkbox on each site: this allows you to enable/disable the automatic redirection feature according to the user browser language settings."
 msgstr ""
 
@@ -311,43 +319,43 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:309
+#: src/multilingualpress/Core/ServiceProvider.php:310
 msgid "Modules"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:321
+#: src/multilingualpress/Core/ServiceProvider.php:322
 msgid "Translatable Post Types"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:333
+#: src/multilingualpress/Core/ServiceProvider.php:334
 msgid "Translatable Taxonomies"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:346
+#: src/multilingualpress/Core/ServiceProvider.php:347
 msgid "License"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:485, src/multilingualpress/Core/ServiceProvider.php:781, src/multilingualpress/Core/ServiceProvider.php:1015, src/multilingualpress/Core/ServiceProvider.php:1016, src/multilingualpress/Core/ServiceProvider.php:1024, src/multilingualpress/Core/Admin/NewSiteSettings.php:63
+#: src/multilingualpress/Core/ServiceProvider.php:517, src/multilingualpress/Core/ServiceProvider.php:858, src/multilingualpress/Core/ServiceProvider.php:1082, src/multilingualpress/Core/ServiceProvider.php:1083, src/multilingualpress/Core/ServiceProvider.php:1091, src/multilingualpress/Core/Admin/NewSiteSettings.php:63
 msgid "MultilingualPress"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:799, src/multilingualpress/Core/ServiceProvider.php:806
+#: src/multilingualpress/Core/ServiceProvider.php:876, src/multilingualpress/Core/ServiceProvider.php:883
 msgid "Post Type Slugs"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:855
+#: src/multilingualpress/Core/ServiceProvider.php:932
 msgid "Site Language"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:857, src/multilingualpress/Core/ServiceProvider.php:875
+#: src/multilingualpress/Core/ServiceProvider.php:934, src/multilingualpress/Core/ServiceProvider.php:952
 msgid "none"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:868, src/multilingualpress/Core/Admin/RelationshipsSiteSetting.php:97
+#: src/multilingualpress/Core/ServiceProvider.php:945, src/multilingualpress/Core/Admin/RelationshipsSiteSetting.php:97
 msgid "Relationships"
 msgstr ""
 
-#: src/multilingualpress/Core/ServiceProvider.php:1025, src/multilingualpress/Core/ServiceProvider.php:1038
+#: src/multilingualpress/Core/ServiceProvider.php:1092, src/multilingualpress/Core/ServiceProvider.php:1105
 msgid "Settings"
 msgstr ""
 
@@ -355,7 +363,7 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
-#: src/multilingualpress/Customizer/ServiceProvider.php:46, src/multilingualpress/Customizer/ServiceProvider.php:80, src/multilingualpress/NavMenu/ServiceProvider.php:216, src/multilingualpress/Core/Admin/LanguageSiteSetting.php:103
+#: src/multilingualpress/Customizer/ServiceProvider.php:46, src/multilingualpress/Customizer/ServiceProvider.php:80, src/multilingualpress/NavMenu/ServiceProvider.php:216
 msgid "Language"
 msgstr ""
 
@@ -499,57 +507,72 @@ msgctxt "onboarding"
 msgid " or "
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:173, src/multilingualpress/Onboarding/ServiceProvider.php:256
-msgctxt "pointers"
-msgid "Save Changes"
+#: src/multilingualpress/Onboarding/Onboarding.php:235
+msgid ""
+"From now on your site frontend language will be decided by default WordPress language\n"
+"        setting. We have automatically checked if WordPress default language setting matches MultilingualPress language \n"
+"        for your existing sites but please recheck the language settings of your sites"
+msgstr ""
+
+#: src/multilingualpress/Onboarding/Onboarding.php:241
+msgid "</br> The following WordPress Language settings have been changed: "
+msgstr ""
+
+#: src/multilingualpress/Onboarding/Onboarding.php:248
+msgid "We have changed the functionality of the MultilingualPress language setting"
 msgstr ""
 
 #: src/multilingualpress/Onboarding/ServiceProvider.php:174, src/multilingualpress/Onboarding/ServiceProvider.php:257
 msgctxt "pointers"
-msgid "Finally, save to apply the changes."
+msgid "Save Changes"
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:152, src/multilingualpress/Onboarding/ServiceProvider.php:214
+#: src/multilingualpress/Onboarding/ServiceProvider.php:175, src/multilingualpress/Onboarding/ServiceProvider.php:258
 msgctxt "pointers"
-msgid "Site Relationships"
+msgid "Finally, save to apply the changes."
 msgstr ""
 
 #: src/multilingualpress/Onboarding/ServiceProvider.php:153, src/multilingualpress/Onboarding/ServiceProvider.php:215
 msgctxt "pointers"
+msgid "Site Relationships"
+msgstr ""
+
+#: src/multilingualpress/Onboarding/ServiceProvider.php:154, src/multilingualpress/Onboarding/ServiceProvider.php:216
+msgctxt "pointers"
 msgid "Set up site relationships to existing sites in the network."
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:135, src/multilingualpress/Onboarding/ServiceProvider.php:193
+#: src/multilingualpress/Onboarding/ServiceProvider.php:136, src/multilingualpress/Onboarding/ServiceProvider.php:194
 msgctxt "pointers"
 msgid "Language"
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:136
+#: src/multilingualpress/Onboarding/ServiceProvider.php:137
 msgctxt "pointers"
 msgid "Select the language of the site."
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:235
+#: src/multilingualpress/Onboarding/ServiceProvider.php:236
 msgctxt "pointers"
 msgid "Based on site"
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:236
+#: src/multilingualpress/Onboarding/ServiceProvider.php:237
 msgctxt "pointers"
 msgid "Select a site to copy all its contents to the new site."
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:194
+#: src/multilingualpress/Onboarding/ServiceProvider.php:195
 msgctxt "pointers"
 msgid "After filling the above WordPress site fields, select the language of the site."
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:280
+#: src/multilingualpress/Onboarding/ServiceProvider.php:281
 msgctxt "pointers"
 msgid "Use Dynamic Permalinks"
 msgstr ""
 
-#: src/multilingualpress/Onboarding/ServiceProvider.php:281
+#: src/multilingualpress/Onboarding/ServiceProvider.php:282
 msgctxt "pointers"
 msgid "If the post type can not translate the URL, you can activate dynamic permalinks (which is a plain URL) as a workaround to solve the problem."
 msgstr ""
@@ -585,6 +608,10 @@ msgstr ""
 #: src/multilingualpress/SiteDuplication/ServiceProvider.php:306
 msgctxt "Site Duplication"
 msgid "Attachments copy has been stopped without errors."
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/Flag/Raster.php:61
+msgid "%s language flag"
 msgstr ""
 
 #. translators: %s is the site ID.
@@ -653,20 +680,11 @@ msgstr ""
 msgid "Alternative language title"
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/LanguageSiteSetting.php:49
-msgid "Start typing language or country name to search"
+#: src/multilingualpress/Core/Admin/LanguageSiteSetting.php:55
+msgid "MultilingualPress Language"
 msgstr ""
 
-#: src/multilingualpress/Core/Admin/LanguageSiteSetting.php:58
-msgid "Current selection:"
-msgstr ""
-
-#: src/multilingualpress/Core/Admin/LanguageSiteSetting.php:65
-msgctxt "remove selected language"
-msgid "Remove"
-msgstr ""
-
-#: src/multilingualpress/Core/Admin/LanguageSiteSetting.php:118
+#: src/multilingualpress/Core/Admin/LanguageSiteSetting.php:70
 msgid "Choose language"
 msgstr ""
 
@@ -742,6 +760,14 @@ msgstr ""
 
 #: src/multilingualpress/Core/Admin/TaxonomySettingsTabView.php:107
 msgid "Taxonomy"
+msgstr ""
+
+#: src/multilingualpress/Core/Admin/WordPressLanguageSiteSetting.php:60
+msgid "WordPress Language"
+msgstr ""
+
+#: src/multilingualpress/Core/Admin/WordPressLanguageSiteSetting.php:69
+msgid "This setting defines which language your site frontend should use"
 msgstr ""
 
 #: src/multilingualpress/Core/Admin/XDefaultSiteSetting.php:67
@@ -859,54 +885,54 @@ msgstr ""
 
 #. translators: %s is site name including language
 #. translators: %s is site name including language
-#: src/multilingualpress/TranslationUi/Post/Metabox.php:163, src/multilingualpress/TranslationUi/Term/Metabox.php:160
+#: src/multilingualpress/TranslationUi/Post/Metabox.php:165, src/multilingualpress/TranslationUi/Term/Metabox.php:160
 msgid "Translation for \"%s\""
 msgstr ""
 
 #. translators: %s is the language name
-#: src/multilingualpress/TranslationUi/Post/MetaboxAction.php:247
+#: src/multilingualpress/TranslationUi/Post/MetaboxAction.php:288
 msgid "Error updating translation for %s: error updating post in database."
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:131
+#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:132
 msgctxt "translation post metabox"
 msgid "Relationship"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:137
+#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:138
 msgctxt "translation post metabox"
 msgid "Title and Content"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:138
+#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:139
 msgctxt "translation post metabox"
 msgid "Title"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:150
+#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:151
 msgctxt "translation post metabox"
 msgid "Excerpt"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:157
+#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:158
 msgctxt "translation post metabox"
 msgid "Advanced"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:163
+#: src/multilingualpress/TranslationUi/Post/MetaboxFields.php:164
 msgctxt "translation post metabox"
 msgid "Taxonomies"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxView.php:130, src/multilingualpress/TranslationUi/Term/MetaboxView.php:117
+#: src/multilingualpress/TranslationUi/Post/MetaboxView.php:144, src/multilingualpress/TranslationUi/Term/MetaboxView.php:117
 msgid "Edit"
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxView.php:161
+#: src/multilingualpress/TranslationUi/Post/MetaboxView.php:175
 msgid "The currently connected translation post is trashed."
 msgstr ""
 
-#: src/multilingualpress/TranslationUi/Post/MetaboxView.php:166
+#: src/multilingualpress/TranslationUi/Post/MetaboxView.php:180
 msgid "Edit the relationship or no further editing will be possible."
 msgstr ""
 
@@ -929,6 +955,26 @@ msgctxt "translation term metabox"
 msgid "Term Data"
 msgstr ""
 
+#: modules/multilingualpress-site-flags/src/Core/Admin/SiteFlagUrlSetting.php:64
+msgid "Custom Site Flag"
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/Core/Admin/SiteMenuLanguageStyleSetting.php:73
+msgid "Menu Language Style"
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/Core/Admin/SiteMenuLanguageStyleSetting.php:84
+msgid "Flags and Languages"
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/Core/Admin/SiteMenuLanguageStyleSetting.php:85
+msgid "Only Flags"
+msgstr ""
+
+#: modules/multilingualpress-site-flags/src/Core/Admin/SiteMenuLanguageStyleSetting.php:86
+msgid "Only Languages"
+msgstr ""
+
 #: src/modules/ACF/TranslationUi/Post/MetaboxFields.php:40
 msgctxt "translation post metabox"
 msgid "ACF"
@@ -942,7 +988,7 @@ msgstr ""
 msgid "Share a little biographical information to fill out your profile. This may be shown publicly."
 msgstr ""
 
-#: src/modules/WooCommerce/TranslationUi/Product/MetaboxAction.php:307
+#: src/modules/WooCommerce/TranslationUi/Product/MetaboxAction.php:315
 msgid "Error updating products data. Something went wrong."
 msgstr ""
 

@@ -1,17 +1,17 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.11.0",
-        "version_normalized": "1.11.0.0",
+        "version": "v1.12.0",
+        "version_normalized": "1.12.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "ae03311f45dfe194412081526be2e003960df74b"
+            "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/ae03311f45dfe194412081526be2e003960df74b",
-            "reference": "ae03311f45dfe194412081526be2e003960df74b",
+            "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+            "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
             "shasum": "",
             "mirrors": [
                 {
@@ -35,7 +35,7 @@
             "symfony/phpunit-bridge": "^4.2 || ^5",
             "symfony/process": "^2.3"
         },
-        "time": "2021-04-28T06:42:17+00:00",
+        "time": "2021-09-13T08:19:44+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -118,6 +118,7 @@
             "modx",
             "moodle",
             "osclass",
+            "pantheon",
             "phpbb",
             "piwik",
             "ppi",
@@ -140,7 +141,7 @@
         ],
         "support": {
             "issues": "https://github.com/composer/installers/issues",
-            "source": "https://github.com/composer/installers/tree/v1.11.0"
+            "source": "https://github.com/composer/installers/tree/v1.12.0"
         },
         "funding": [
             {
@@ -158,18 +159,85 @@
         ]
     },
     {
-        "name": "inpsyde/multilingualpress-woocommerce-brands",
-        "version": "0.1.3",
-        "version_normalized": "0.1.3.0",
+        "name": "inpsyde/multilingualpress-site-flags",
+        "version": "2.0.3-alpha2",
+        "version_normalized": "2.0.3.0-alpha2",
         "source": {
             "type": "git",
-            "url": "git@github.com:inpsyde/multilingualpress-woocommerce-brands.git",
-            "reference": "e4ff59566ccb23bae89b991f9482c3e97bfc92a7"
+            "url": "https://github.com/inpsyde/multilingualpress-site-flags.git",
+            "reference": "7a295883db99c2d6724fc9184c29bc034a65a61d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/inpsyde/multilingualpress-woocommerce-brands/zipball/e4ff59566ccb23bae89b991f9482c3e97bfc92a7",
-            "reference": "e4ff59566ccb23bae89b991f9482c3e97bfc92a7",
+            "url": "https://api.github.com/repos/inpsyde/multilingualpress-site-flags/zipball/7a295883db99c2d6724fc9184c29bc034a65a61d",
+            "reference": "7a295883db99c2d6724fc9184c29bc034a65a61d",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/r%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": "^7.2|^8.0"
+        },
+        "require-dev": {
+            "brain/monkey": "~2.3",
+            "inpsyde/php-coding-standards": "^1.0.0-beta1",
+            "mockery/mockery": "~0.9",
+            "phpunit/phpunit": "^7.0|^8.0|^9.0",
+            "squizlabs/php_codesniffer": "^3.2",
+            "wp-cli/i18n-command": "dev-master"
+        },
+        "time": "2021-11-22T12:40:04+00:00",
+        "type": "mlp-mod",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Inpsyde\\MultilingualPress\\SiteFlags\\": "src/"
+            }
+        },
+        "autoload-dev": {
+            "psr-4": {
+                "Inpsyde\\MultilingualPress\\SiteFlags\\Tests\\Unit\\": "tests/php/unit"
+            }
+        },
+        "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Inpsyde GmbH",
+                "email": "hello@inpsyde.com",
+                "homepage": "https://inpsyde.com",
+                "role": "Company"
+            }
+        ],
+        "description": "An external module to add additional functionality to MultilingualPress. The module will enable displaying flags in the language switcher, it can be activated from MultilingualPress settings",
+        "support": {
+            "source": "https://github.com/inpsyde/multilingualpress-site-flags/tree/2.0.3-alpha2"
+        }
+    },
+    {
+        "name": "inpsyde/multilingualpress-woocommerce-brands",
+        "version": "0.1.4",
+        "version_normalized": "0.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:inpsyde/multilingualpress-woocommerce-brands.git",
+            "reference": "2f60e5b50a6ed42e7bea643150a1f4a373d0f776"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/inpsyde/multilingualpress-woocommerce-brands/zipball/2f60e5b50a6ed42e7bea643150a1f4a373d0f776",
+            "reference": "2f60e5b50a6ed42e7bea643150a1f4a373d0f776",
             "shasum": "",
             "mirrors": [
                 {
@@ -181,7 +249,7 @@
         "require": {
             "php": "^7.0"
         },
-        "time": "2021-05-25T15:25:06+00:00",
+        "time": "2021-11-16T14:00:40+00:00",
         "type": "mlp-mod",
         "installation-source": "dist",
         "autoload": {
@@ -190,9 +258,12 @@
             }
         },
         "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
         "description": "Enable WooCommerce Brands Support for MultilingualPress.",
         "support": {
-            "source": "https://github.com/inpsyde/multilingualpress-woocommerce-brands/tree/0.1.3",
+            "source": "https://github.com/inpsyde/multilingualpress-woocommerce-brands/tree/0.1.4",
             "issues": "https://github.com/inpsyde/multilingualpress-woocommerce-brands/issues"
         }
     }

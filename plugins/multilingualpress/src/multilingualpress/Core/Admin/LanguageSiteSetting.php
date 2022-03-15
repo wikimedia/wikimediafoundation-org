@@ -18,7 +18,6 @@ use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingViewModel;
 
 use function Inpsyde\MultilingualPress\allLanguages;
-use function Inpsyde\MultilingualPress\languageByTag;
 use function Inpsyde\MultilingualPress\siteLanguageTag;
 
 /**
@@ -35,53 +34,6 @@ final class LanguageSiteSetting implements SiteSettingViewModel
      * @inheritdoc
      */
     public function render(int $siteId)
-    {
-        if (($GLOBALS['pagenow'] ?? '') !== 'sites.php') {
-            $this->renderSelect($siteId);
-
-            return;
-        }
-
-        $value = $this->currentSiteLanguage($siteId);
-        $language = $value ? languageByTag($value) : null;
-        $none = __('None', 'multilingualpress');
-        $name = $language ? $language->name() : $none;
-        $placeholder = __('Start typing language or country name to search', 'multilingualpress');
-        ?>
-        <input
-            id="<?= esc_attr($this->id) ?>-tag"
-            type="hidden"
-            name="<?= esc_attr(SiteSettingsRepository::NAME_LANGUAGE) ?>"
-            value="<?= esc_attr($value) ?>">
-        <p>
-            <?php
-            esc_html_e('Current selection:', 'multilingualpress');
-            print ' <strong><em class="current-selection">' . esc_html($name) . '</em></strong>';
-            ?>
-            &nbsp;&nbsp;
-            <a
-                href="#<?= esc_attr($this->id) ?>"
-                class="remove-selection"<?= $language ? '' : ' style="display:none;"' ?>>
-                <?= esc_html_x('Remove', 'remove selected language', 'multilingualpress') ?>
-            </a>
-        </p>
-        <p>
-            <input
-                type="text"
-                id="<?= esc_attr($this->id) ?>"
-                data-connected="#<?= esc_attr($this->id) ?>-tag"
-                data-action="<?= esc_attr(LanguagesAjaxSearch::ACTION) ?>"
-                data-none="<?= esc_attr($none) ?>"
-                placeholder="<?= esc_attr($placeholder) ?>"
-                value="">
-        </p>
-        <?php
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function renderSelect(int $siteId)
     {
         ?>
         <select
@@ -100,7 +52,7 @@ final class LanguageSiteSetting implements SiteSettingViewModel
     {
         return sprintf(
             '<label for="%2$s">%1$s</label>',
-            esc_html__('Language', 'multilingualpress'),
+            esc_html__('MultilingualPress Language', 'multilingualpress'),
             esc_attr($this->id)
         );
     }

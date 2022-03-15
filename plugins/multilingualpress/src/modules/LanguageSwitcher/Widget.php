@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Module\LanguageSwitcher;
 
 use Inpsyde\MultilingualPress\Flags\Flag\Flag;
+use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
+use Inpsyde\MultilingualPress\SiteFlags\ServiceProvider as SiteFlags;
 
 class Widget extends \WP_Widget
 {
@@ -29,10 +31,16 @@ class Widget extends \WP_Widget
     private $view;
 
     /**
+     * @var ModuleManager
+     */
+    private $moduleManager;
+
+    /**
      * @param Model $model
      * @param View $view
+     * @param ModuleManager $moduleManager
      */
-    public function __construct(Model $model, View $view)
+    public function __construct(Model $model, View $view, ModuleManager $moduleManager)
     {
         $widgetOptions = [
             'classname' => 'multilingualpress_language_switcher',
@@ -47,6 +55,7 @@ class Widget extends \WP_Widget
 
         $this->model = $model;
         $this->view = $view;
+        $this->moduleManager = $moduleManager;
     }
 
     /**
@@ -155,7 +164,7 @@ class Widget extends \WP_Widget
         </p>
 
         <?php
-        if (interface_exists(Flag::class)) {
+        if ($this->isShowFlagOption()) {
             $showFlags = !empty($instance['show_flags']); ?>
             <p>
                 <?php
@@ -199,10 +208,23 @@ class Widget extends \WP_Widget
             ? wp_strip_all_tags($newInstance['language_name'])
             : '';
 
-        if (interface_exists(Flag::class)) {
+        if ($this->isShowFlagOption()) {
             $instance['show_flags'] = (int)$newInstance['show_flags'] ?? 0;
         }
 
         return $instance;
+    }
+
+    /**
+     * Whether to show the site flags option
+     *
+     * The "Show Flags" option should be shown if the old version of Site Flags addon is active or
+     * if the new Site Flags module is enabled
+     *
+     * @return bool
+     */
+    protected function isShowFlagOption(): bool
+    {
+        return interface_exists(Flag::class) || $this->moduleManager->isModuleActive(SiteFlags::MODULE_ID);
     }
 }

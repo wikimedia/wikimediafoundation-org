@@ -84,7 +84,8 @@ final class ServiceProvider implements ModuleServiceProvider
             static function (Container $container): Widget {
                 return new Widget(
                     $container[Model::class],
-                    $container[View::class]
+                    $container[View::class],
+                    $container[ModuleManager::class]
                 );
             }
         );
