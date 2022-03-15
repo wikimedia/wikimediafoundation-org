@@ -17,11 +17,7 @@
     "source": "https://github.com/wpcomvip/wikimediafoundation-org"
   },
   "config": {
-    "sort-order": true,
-    "allow-plugins": {
-      "composer/installers": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    "sort-order": true
   },
   "repositories": [
     {
