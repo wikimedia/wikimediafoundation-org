@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Module\ACF;
 
 use Inpsyde\MultilingualPress\Attachment\Copier;
+use Inpsyde\MultilingualPress\Core\PostTypeRepository;
 use Inpsyde\MultilingualPress\Framework\Module\Exception\ModuleAlreadyRegistered;
 use Inpsyde\MultilingualPress\Framework\Module\Module;
 use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
@@ -86,6 +87,8 @@ class ServiceProvider implements ModuleServiceProvider
                 return new FieldCopier($container[Copier::class]);
             }
         );
+
+        $this->disableSettingsForAcfEntities();
     }
 
     /**
@@ -139,5 +142,28 @@ class ServiceProvider implements ModuleServiceProvider
     private function isACFActive(): bool
     {
         return \class_exists('ACF');
+    }
+
+    /**
+     * Disable MLP settings for ACF custom post type.
+     *
+     * Regardless of whether the ACF module is active, ACF custom post type settings should be removed
+     * from admin area, cause they are not translatable. The custom post type is called "Field Groups"
+     */
+    protected function disableSettingsForAcfEntities()
+    {
+        $filters = [
+            PostTypeRepository::FILTER_ALL_AVAILABLE_POST_TYPES,
+            PostTypeRepository::FILTER_SUPPORTED_POST_TYPES,
+        ];
+        foreach ($filters as $filter) {
+            add_filter(
+                $filter,
+                static function (array $postTypes): array {
+                    unset($postTypes['acf-field-group']);
+                    return $postTypes;
+                }
+            );
+        }
     }
 }

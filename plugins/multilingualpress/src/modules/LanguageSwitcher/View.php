@@ -19,6 +19,7 @@ use function Inpsyde\MultilingualPress\sanitizeHtmlClass;
 class View
 {
     const FILTER_ITEM_LANGUAGE_NAME = 'multilingualpress.language_switcher_item_language_name';
+    const FILTER_ITEM_FLAG_URL = 'multilingualpress.language_switcher_item_flag_url';
 
     /**
      * Displays widget view in frontend
@@ -55,6 +56,7 @@ class View
                     <?php foreach ($model['items'] as $item) :
                         $itemClasses = $this->itemClass($item->siteId());
                         $languageName = (string)apply_filters(self::FILTER_ITEM_LANGUAGE_NAME, $item->languageName());
+                        $flagUrl = (string)apply_filters(self::FILTER_ITEM_FLAG_URL, $item->flag(), $item->isoCode());
                         ?>
                         <li class="<?= sanitizeHtmlClass($itemClasses) // phpcs:ignore
                         // WordPress.XSS.EscapeOutput.OutputNotEscaped ?>">
@@ -63,9 +65,9 @@ class View
                                lang="<?= esc_attr($item->locale()) ?>"
                                hreflang="<?= esc_attr($item->locale()) ?>"
                                class="mlp-language-switcher-item__link">
-                                <?php if ($item->flag()) {?>
+                                <?php if (!empty($model['show_flags']) && $flagUrl) {?>
                                     <img alt="<?= esc_attr($languageName) ?>"
-                                         src="<?= esc_url($item->flag()) ?>"
+                                         src="<?= esc_url($flagUrl) ?>"
                                     />
                                 <?php }?>
                                 <?= esc_html($languageName) ?>

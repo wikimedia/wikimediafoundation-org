@@ -131,12 +131,12 @@ class ItemFilter
         add_filter(
             'nav_menu_link_attributes',
             wpHookProxy(static function (array $attributes, WP_Post $item) use ($translations, $repository): array {
-                if ($item->type !== 'mlp_language') {
+                if ($item->type !== 'mlp_language' || empty($translations)) {
                     return $attributes;
                 }
                 $siteId = $repository->siteIdOfMenuItem((int)$item->ID);
 
-                if (!$siteId) {
+                if (!$siteId || !isset($translations[$siteId])) {
                     return $attributes;
                 }
 

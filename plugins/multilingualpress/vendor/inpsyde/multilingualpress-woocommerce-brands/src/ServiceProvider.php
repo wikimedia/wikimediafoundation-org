@@ -28,7 +28,7 @@ class ServiceProvider implements ModuleServiceProvider
                 self::MODULE_ID,
                 [
                     'description' => "{$this->description()} {$this->disabledDescription()}",
-                    'name' => __('WooCommerce Brands', 'multilingualpress-woocommerce-brands'),
+                    'name' => __('WooCommerce Brands', 'multilingualpress'),
                     'active' => true,
                     'disabled' => !$this->isWooCommerceBrandsActive(),
                 ]
@@ -93,7 +93,7 @@ class ServiceProvider implements ModuleServiceProvider
     {
         return __(
             'Enable WooCommerce Brands Support for MultilingualPress.',
-            'multilingualpress-woocommerce-brands'
+            'multilingualpress'
         );
     }
 
@@ -105,7 +105,7 @@ class ServiceProvider implements ModuleServiceProvider
         if (!$this->isWooCommerceBrandsActive()) {
             return __(
                 'The module can be activated only if WooCommerce Brands is active at least in the main site.',
-                'multilingualpress-woocommerce-brands'
+                'multilingualpress'
             );
         }
 

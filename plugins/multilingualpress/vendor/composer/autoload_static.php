@@ -4,12 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita043fd294a565aca301d95802e82bc65
+class ComposerStaticInit79426d8f878b1dab4aa92e40c270a342
 {
     public static $prefixLengthsPsr4 = array (
         'I' => 
         array (
             'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => 45,
+            'Inpsyde\\MultilingualPress\\SiteFlags\\' => 36,
             'Inpsyde\\MultilingualPress\\Module\\' => 33,
             'Inpsyde\\MultilingualPress\\Framework\\' => 36,
             'Inpsyde\\MultilingualPress\\' => 26,
@@ -24,6 +25,10 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => 
         array (
             0 => __DIR__ . '/..' . '/inpsyde/multilingualpress-woocommerce-brands/src',
+        ),
+        'Inpsyde\\MultilingualPress\\SiteFlags\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src',
         ),
         'Inpsyde\\MultilingualPress\\Module\\' => 
         array (
@@ -105,6 +110,7 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Composer\\Installers\\OsclassInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/OsclassInstaller.php',
         'Composer\\Installers\\OxidInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/OxidInstaller.php',
         'Composer\\Installers\\PPIInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PPIInstaller.php',
+        'Composer\\Installers\\PantheonInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PantheonInstaller.php',
         'Composer\\Installers\\PhiftyInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PhiftyInstaller.php',
         'Composer\\Installers\\PhpBBInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PhpBBInstaller.php',
         'Composer\\Installers\\PimcoreInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PimcoreInstaller.php',
@@ -165,6 +171,7 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\Cache\\NavMenuItemsSerializer' => __DIR__ . '/../..' . '/src/multilingualpress/Cache/NavMenuItemsSerializer.php',
         'Inpsyde\\MultilingualPress\\Cache\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Cache/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\AltLanguageTitleSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/AltLanguageTitleSiteSetting.php',
+        'Inpsyde\\MultilingualPress\\Core\\Admin\\LanguageInstaller' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LanguageInstaller.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\LanguageSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LanguageSiteSetting.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\LanguagesAjaxSearch' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LanguagesAjaxSearch.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\LicenseSettingsTabView' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LicenseSettingsTabView.php',
@@ -193,6 +200,7 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\Cache\\CacheSettingsTabView' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/Cache/CacheSettingsTabView.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\Cache\\CacheSettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/Cache/CacheSettingsUpdater.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\SettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/SettingsUpdater.php',
+        'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\WordPressSettingsScreen' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/WordPressSettingsScreen.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettings' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettings.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettingsRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettingsRepository.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettingsRepositoryTrait' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettingsRepositoryTrait.php',
@@ -201,6 +209,7 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettingsUpdater.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\TaxonomySettingsTabView' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/TaxonomySettingsTabView.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\TaxonomySettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/TaxonomySettingsUpdater.php',
+        'Inpsyde\\MultilingualPress\\Core\\Admin\\WordPressLanguageSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/WordPressLanguageSiteSetting.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\XDefaultSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/XDefaultSiteSetting.php',
         'Inpsyde\\MultilingualPress\\Core\\Entity\\ActivePostTypes' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Entity/ActivePostTypes.php',
         'Inpsyde\\MultilingualPress\\Core\\Entity\\ActiveTaxonomies' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Entity/ActiveTaxonomies.php',
@@ -214,6 +223,7 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\Core\\ModuleDeactivator' => __DIR__ . '/../..' . '/src/multilingualpress/Core/ModuleDeactivator.php',
         'Inpsyde\\MultilingualPress\\Core\\PostTypeRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/PostTypeRepository.php',
         'Inpsyde\\MultilingualPress\\Core\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Core/ServiceProvider.php',
+        'Inpsyde\\MultilingualPress\\Core\\SettingsRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/SettingsRepository.php',
         'Inpsyde\\MultilingualPress\\Core\\SiteDataDeletor' => __DIR__ . '/../..' . '/src/multilingualpress/Core/SiteDataDeletor.php',
         'Inpsyde\\MultilingualPress\\Core\\TaxonomyRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/TaxonomyRepository.php',
         'Inpsyde\\MultilingualPress\\Customizer\\SaveCustomizerData' => __DIR__ . '/../..' . '/src/multilingualpress/Customizer/SaveCustomizerData.php',
@@ -354,6 +364,8 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\Framework\\Service\\IntegrationServiceProvider' => __DIR__ . '/../..' . '/src/framework/Service/IntegrationServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Framework\\Service\\ServiceProvider' => __DIR__ . '/../..' . '/src/framework/Service/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Framework\\Service\\ServiceProvidersCollection' => __DIR__ . '/../..' . '/src/framework/Service/ServiceProvidersCollection.php',
+        'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingOption' => __DIR__ . '/../..' . '/src/framework/Setting/SettingOption.php',
+        'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingOptionInterface' => __DIR__ . '/../..' . '/src/framework/Setting/SettingOptionInterface.php',
         'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingsBoxView' => __DIR__ . '/../..' . '/src/framework/Setting/SettingsBoxView.php',
         'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingsBoxViewModel' => __DIR__ . '/../..' . '/src/framework/Setting/SettingsBoxViewModel.php',
         'Inpsyde\\MultilingualPress\\Framework\\Setting\\SiteSettingsUpdatable' => __DIR__ . '/../..' . '/src/framework/Setting/SiteSettingsUpdatable.php',
@@ -449,7 +461,7 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\NotFoundSiteRedirect' => __DIR__ . '/../..' . '/src/modules/Redirect/NotFoundSiteRedirect.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\PhpRedirector' => __DIR__ . '/../..' . '/src/modules/Redirect/PhpRedirector.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectRequestChecker' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectRequestChecker.php',
-        'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectSiteSetting' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectSiteSetting.php',
+        'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectSiteSettings' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectSiteSettings.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectTarget' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectTarget.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectUserSetting' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectUserSetting.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\Redirector' => __DIR__ . '/../..' . '/src/modules/Redirect/Redirector.php',
@@ -557,12 +569,23 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\CopyUsersSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/CopyUsersSetting.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\SearchEngineVisibilitySetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/SearchEngineVisibilitySetting.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\SiteDuplicator' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/SiteDuplicator.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteFlagUrlSetting' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteFlagUrlSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteMenuLanguageStyleSetting' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteMenuLanguageStyleSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteSettingsRepository' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteSettingsRepository.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteSettingsUpdater' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteSettingsUpdater.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\FlagFilter' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/FlagFilter.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Factory' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Factory.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Flag' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Flag.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Raster' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Raster.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Svg' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Svg.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\ServiceProvider' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\MetaboxFieldsHelper' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/MetaboxFieldsHelper.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\ContextBuilder' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/ContextBuilder.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\RelationshipUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/RelationshipUpdater.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\Search' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/Search.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\Term' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/Term.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\Base' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/Base.php',
+        'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\ChangedFields' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/ChangedFields.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\CopyContent' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/CopyContent.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\CopyFeaturedImage' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/CopyFeaturedImage.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\CopyTaxonomies' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/CopyTaxonomies.php',
@@ -620,9 +643,9 @@ class ComposerStaticInita043fd294a565aca301d95802e82bc65
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita043fd294a565aca301d95802e82bc65::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita043fd294a565aca301d95802e82bc65::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInita043fd294a565aca301d95802e82bc65::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit79426d8f878b1dab4aa92e40c270a342::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit79426d8f878b1dab4aa92e40c270a342::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit79426d8f878b1dab4aa92e40c270a342::$classMap;
 
         }, null, ClassLoader::class);
     }

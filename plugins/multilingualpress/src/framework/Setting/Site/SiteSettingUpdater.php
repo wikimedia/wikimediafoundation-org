@@ -73,10 +73,6 @@ class SiteSettingUpdater
             FILTER_SANITIZE_STRING
         );
 
-        if (!is_string($value)) {
-            $value = '';
-        }
-
         return $value
             ? update_blog_option($siteId, $this->option, $value)
             : delete_blog_option($siteId, $this->option);

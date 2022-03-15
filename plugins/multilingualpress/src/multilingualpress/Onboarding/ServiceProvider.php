@@ -89,6 +89,7 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
         add_action('current_screen', static function () use ($onboarding) {
             $currentScreen = get_current_screen();
             $currentScreen and $onboarding->messages();
+            $currentScreen and $onboarding->handleLanguageSettings();
         });
 
         $this->registerPointersForScreen($container);
@@ -324,7 +325,7 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
             ->registerScript(
                 $assetFactory->createInternalScript(
                     'onboarding',
-                    'onboarding.js'
+                    'onboarding.min.js'
                 )
             )->registerScript(
                 $assetFactory->createInternalScript(
@@ -342,7 +343,7 @@ class ServiceProvider implements IntegrationServiceProvider, BootstrappableServi
     {
         add_action(
             'wp_ajax_onboarding_plugin',
-            [Onboarding::class, 'handleAjaxDismissOnboardingMessage']
+            [$container[Onboarding::class], 'handleAjaxDismissOnboardingMessage']
         );
 
         add_action('admin_init', [$container[Onboarding::class], 'handleDismissOnboardingMessage']);

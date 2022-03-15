@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Installation;
 
+use Inpsyde\MultilingualPress\Core\TaxonomyRepository;
 use Inpsyde\MultilingualPress\Framework\Api\SiteRelations;
 use Inpsyde\MultilingualPress\Framework\Database\Table;
 use Inpsyde\MultilingualPress\Framework\Database\TableInstaller;
@@ -175,6 +176,10 @@ final class ServiceProvider implements IntegrationServiceProvider
                 );
                 break;
         }
+
+        $this->enableSupportForDefaultTaxonomies(
+            $container[TaxonomyRepository::class]
+        );
     }
 
     /**
@@ -219,5 +224,22 @@ final class ServiceProvider implements IntegrationServiceProvider
             $siteLanguageTag = siteLanguageTag($siteId);
             !$siteLanguageTag and $repository->updateLanguage($siteLang, $siteId);
         }
+    }
+
+    /**
+     * When plugin is installed, the support for default taxonomies should be enabled automatically
+     *
+     * @param TaxonomyRepository $repository
+     * @return void
+     */
+    protected function enableSupportForDefaultTaxonomies(TaxonomyRepository $repository): void
+    {
+        list($found, $settings) = $repository->allSettings();
+        if ($found) {
+            return;
+        }
+
+        $activeDefaultTaxonomies = array_fill_keys($repository::DEFAULT_SUPPORTED_TAXONOMIES, [$repository::FIELD_ACTIVE => true]);
+        $repository->supportTaxonomies($activeDefaultTaxonomies);
     }
 }

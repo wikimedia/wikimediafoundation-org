@@ -38,6 +38,7 @@ use Inpsyde\MultilingualPress\Framework\PluginProperties;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
+use Inpsyde\MultilingualPress\Framework\Setting\SettingOption;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSetting;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionView;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingUpdater;
@@ -81,7 +82,8 @@ final class ServiceProvider implements ModuleServiceProvider
                 return new LanguageNegotiator(
                     $container[Translations::class],
                     $container[ServerRequest::class],
-                    $container[AcceptLanguageParser::class]
+                    $container[AcceptLanguageParser::class],
+                    $container[Repository::class]
                 );
             }
         );
@@ -244,11 +246,30 @@ final class ServiceProvider implements ModuleServiceProvider
             }
         );
 
+        $container->share(
+            'redirect_site_settings',
+            static function (Container $container): array {
+                $repository = $container[Repository::class];
+                return [
+                    new SettingOption(
+                        $repository::OPTION_SITE_ENABLE_REDIRECT,
+                        $repository::OPTION_SITE_ENABLE_REDIRECT,
+                        'Enable automatic redirect'
+                    ),
+                    new SettingOption(
+                        $repository::OPTION_SITE_ENABLE_REDIRECT_FALLBACK,
+                        $repository::OPTION_SITE_ENABLE_REDIRECT_FALLBACK,
+                        'Redirect Fallback site for this language'
+                    ),
+                ];
+            }
+        );
+
         $container->addService(
-            RedirectSiteSetting::class,
-            static function (Container $container): RedirectSiteSetting {
-                return new RedirectSiteSetting(
-                    Repository::OPTION_SITE,
+            RedirectSiteSettings::class,
+            static function (Container $container): RedirectSiteSettings {
+                return new RedirectSiteSettings(
+                    $container->get('redirect_site_settings'),
                     $container[NonceFactory::class]->create([self::SETTING_NONCE_ACTION . 'site']),
                     $container[Repository::class]
                 );
@@ -334,7 +355,7 @@ final class ServiceProvider implements ModuleServiceProvider
     private function activateModuleForAdmin(Container $container)
     {
         $setting = new SiteSetting(
-            $container[RedirectSiteSetting::class],
+            $container[RedirectSiteSettings::class],
             new SiteSettingUpdater(
                 Repository::OPTION_SITE,
                 $container[ServerRequest::class],
@@ -379,7 +400,7 @@ final class ServiceProvider implements ModuleServiceProvider
             'multilingualpress.redirect',
             __('Redirect', 'multilingualpress'),
             static function (string $column, int $siteId) use ($settingsRepository): string {
-                return $settingsRepository->isRedirectEnabledForSite($siteId)
+                return $settingsRepository->isRedirectSettingEnabledForSite($siteId)
                     ? '<span class="dashicons dashicons-yes"></span>'
                     : '';
             }

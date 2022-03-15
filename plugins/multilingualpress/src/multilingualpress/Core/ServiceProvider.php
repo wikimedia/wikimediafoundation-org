@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Core;
 
 use Inpsyde\MultilingualPress\Attachment;
+use Inpsyde\MultilingualPress\Core\Admin\LanguageSiteSetting;
 use Inpsyde\MultilingualPress\Core\Admin\PostTypeSlugSetting;
 use Inpsyde\MultilingualPress\Core\Admin\PostTypeSlugsSettingsRepository;
 use Inpsyde\MultilingualPress\Core\Admin\PostTypeSlugsSettingsSectionView;
@@ -33,7 +34,6 @@ use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\BasePathAdapter;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Facade;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Server;
-use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
 use Inpsyde\MultilingualPress\Framework\Filesystem;
 use Inpsyde\MultilingualPress\Framework\Http\PhpServerRequest;
@@ -63,7 +63,6 @@ use wpdb;
 // phpcs:ignore WordPress.PHP.StrictInArray.MissingArguments
 use function in_array;
 use function Inpsyde\MultilingualPress\assignedLanguageNames;
-use function Inpsyde\MultilingualPress\currentSiteLocale;
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 use function Inpsyde\MultilingualPress\siteLanguageTag;
 use function Inpsyde\MultilingualPress\languageByTag;
@@ -82,6 +81,8 @@ class ServiceProvider implements BootstrappableServiceProvider
     const FILTER_AVAILABLE_POST_TYPE_FOR_SETTINGS = 'multilingualpress.post_type_slugs_settings';
     const FILTER_HTTP_CLIENT_CONFIG = 'multilingualpress.http_client_config';
     const ACTION_BUILD_TABS = 'multilingualpress.build_tabs';
+
+    const WORDPRESS_LANGUAGE_SETTING_MARKUP = 'wordpress.language_setting_markup';
 
     const MESSAGE_TYPE_FACTORIES = 'message_type_factories';
 
@@ -402,10 +403,40 @@ class ServiceProvider implements BootstrappableServiceProvider
             }
         );
 
+        /**
+         * will return WordPress language setting markup
+         */
+        $container->share(
+            self::WORDPRESS_LANGUAGE_SETTING_MARKUP,
+            static function (Container $container): string {
+                $request = $container[ServerRequest::class];
+                $siteId = (int)$request->bodyValue('id', INPUT_REQUEST, FILTER_SANITIZE_NUMBER_INT);
+                $selected = get_blog_option($siteId, 'WPLANG');
+                return wp_dropdown_languages(
+                    [
+                        'name' => 'WPLANG',
+                        'id' => 'WPLANG',
+                        'echo' => false,
+                        'languages' => get_available_languages(),
+                        'translations' => wp_get_available_translations(),
+                        'selected' => $selected,
+                    ]
+                );
+            }
+        );
+
         $container->addService(
             Admin\LanguageSiteSetting::class,
             static function (): Admin\LanguageSiteSetting {
                 return new Admin\LanguageSiteSetting();
+            }
+        );
+
+        $container->addService(
+            Admin\WordPressLanguageSiteSetting::class,
+            static function (Container $container): Admin\WordPressLanguageSiteSetting {
+                $wordPressLanguageSettingMarkup = $container->get(self::WORDPRESS_LANGUAGE_SETTING_MARKUP);
+                return new Admin\WordPressLanguageSiteSetting($wordPressLanguageSettingMarkup);
             }
         );
 
@@ -466,6 +497,7 @@ class ServiceProvider implements BootstrappableServiceProvider
                 return new Admin\SiteSettings(
                     SiteSettingMultiView::fromViewModels(
                         [
+                            $container[Admin\WordPressLanguageSiteSetting::class],
                             $container[Admin\LanguageSiteSetting::class],
                             $container[Admin\RelationshipsSiteSetting::class],
                             $container[Admin\XDefaultSiteSetting::class],
@@ -494,11 +526,19 @@ class ServiceProvider implements BootstrappableServiceProvider
         );
 
         $container->addService(
+            Admin\LanguageInstaller::class,
+            static function (): Admin\LanguageInstaller {
+                return new Admin\LanguageInstaller();
+            }
+        );
+
+        $container->addService(
             Admin\SiteSettingsUpdater::class,
             static function (Container $container): Admin\SiteSettingsUpdater {
                 return new Admin\SiteSettingsUpdater(
                     $container[Admin\SiteSettingsRepository::class],
-                    $container[ServerRequest::class]
+                    $container[ServerRequest::class],
+                    $container[Admin\LanguageInstaller::class]
                 );
             }
         );
@@ -581,6 +621,21 @@ class ServiceProvider implements BootstrappableServiceProvider
                 }
             );
         }
+
+        /* ---------------------------------------------------------------------------
+           WordPress Settings Screen Settings
+           ------------------------------------------------------------------------ */
+        $container->addService(
+            Admin\Settings\WordPressSettingsScreen::class,
+            static function (Container $container): Admin\Settings\WordPressSettingsScreen {
+                return new Admin\Settings\WordPressSettingsScreen(
+                    [
+                        $container[LanguageSiteSetting::class],
+                    ],
+                    $container[Admin\SiteSettingsRepository::class]
+                );
+            }
+        );
     }
 
     /**
@@ -698,7 +753,16 @@ class ServiceProvider implements BootstrappableServiceProvider
         $container[PersistentAdminNotices::class]->init();
 
         global $pagenow;
-        $allowedPages = ['post.php', 'post-new.php', 'nav-menus.php', 'term.php', 'plugins.php', 'profile.php', 'user-edit.php'];
+        $allowedPages = [
+            'post.php',
+            'post-new.php',
+            'nav-menus.php',
+            'term.php',
+            'plugins.php',
+            'profile.php',
+            'user-edit.php',
+            'options-general.php',
+        ];
         if (in_array($pagenow, $allowedPages, true)) {
             try {
                 $container[AssetManager::class]->enqueueScript('multilingualpress-admin');
@@ -758,13 +822,26 @@ class ServiceProvider implements BootstrappableServiceProvider
             'wp_ajax_' . Admin\LanguagesAjaxSearch::ACTION,
             [$container[Admin\LanguagesAjaxSearch::class], 'handle']
         );
+
+        add_action(
+            'admin_init',
+            wpHookProxy([$container[Admin\Settings\WordPressSettingsScreen::class], 'addSettings'])
+        );
+
+        add_action(
+            'update_option',
+            wpHookProxy([$container[Admin\Settings\WordPressSettingsScreen::class], 'saveSettings']),
+            10,
+            3
+        );
     }
 
     /**
      * @param Container $container
      * @throws Throwable
      * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
-     * phpcs:disable Generic.Metrics.NestingLevel.TooHigh
+     * phpcs:disable Inpsyde.CodeQuality.NestingLevel.High
+     * phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
      */
     private function bootstrapNetworkAdmin(Container $container)
     {
@@ -928,16 +1005,6 @@ class ServiceProvider implements BootstrappableServiceProvider
                 );
             })
         );
-
-        add_filter('locale', static function ($locale) {
-            try {
-                $locale = currentSiteLocale();
-            } catch (NonexistentTable $exc) {
-                // Do nothing. This happen when the plugin is installed the first time.
-            }
-
-            return $locale;
-        });
 
         $urlFilter = $container[Frontend\PostTypeLinkUrlFilter::class];
         add_action(PostTranslator::ACTION_GENERATE_PERMALINK, [$urlFilter, 'enable']);

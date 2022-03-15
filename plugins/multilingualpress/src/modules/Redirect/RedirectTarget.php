@@ -23,6 +23,7 @@ use function Inpsyde\MultilingualPress\combineAtts;
  * @method int siteId()
  * @method string url()
  * @method float userPriority()
+ * @method int languageFallbackPriority()
  */
 class RedirectTarget
 {
@@ -38,6 +39,8 @@ class RedirectTarget
 
     const KEY_USER_PRIORITY = 'userPriority';
 
+    const KEY_LANGUAGE_FALLBACK_PRIORITY = 'languageFallbackPriority';
+
     const DEFAULTS = [
         self::KEY_CONTENT_ID => 0,
         self::KEY_LANGUAGE => '',
@@ -45,6 +48,7 @@ class RedirectTarget
         self::KEY_SITE_ID => 0,
         self::KEY_URL => '',
         self::KEY_USER_PRIORITY => 0.0,
+        self::KEY_LANGUAGE_FALLBACK_PRIORITY => 0,
     ];
 
     /**
@@ -65,6 +69,7 @@ class RedirectTarget
         $data[static::KEY_SITE_ID] = (int)$data[static::KEY_SITE_ID];
         $data[static::KEY_URL] = (string)$data[static::KEY_URL];
         $data[static::KEY_USER_PRIORITY] = (float)$data[static::KEY_USER_PRIORITY];
+        $data[static::KEY_LANGUAGE_FALLBACK_PRIORITY] = (int)$data[static::KEY_LANGUAGE_FALLBACK_PRIORITY];
 
         $this->data = $data;
     }

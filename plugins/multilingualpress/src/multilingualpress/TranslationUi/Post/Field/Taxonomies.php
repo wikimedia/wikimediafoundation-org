@@ -91,7 +91,7 @@ class Taxonomies
         );
 
         ?>
-        <tr class="mlp-taxonomy-box">
+        <tr class="mlp-taxonomy-box" data-type="<?= esc_attr($this->taxonomy->name)?>">
             <?php
             $isSelect
                 ? $this->renderSelect($assignedIds, $idBase, $name, $inputType)
