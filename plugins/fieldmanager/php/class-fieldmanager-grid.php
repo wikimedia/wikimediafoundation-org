@@ -10,6 +10,8 @@
  *
  * This field uses {@link https://github.com/handsontable/handsontable/
  * Handsontable} to provide a grid interface.
+ *
+ * @deprecated 1.4.0
  */
 class Fieldmanager_Grid extends Fieldmanager_Field {
 
@@ -41,6 +43,8 @@ class Fieldmanager_Grid extends Fieldmanager_Field {
 	 * @param array  $options The form options.
 	 */
 	public function __construct( $label = '', $options = array() ) {
+		_deprecated_function( __METHOD__, '1.4.0' );
+
 		$this->attributes = array(
 			'size' => '50',
 		);
@@ -67,15 +71,17 @@ class Fieldmanager_Grid extends Fieldmanager_Field {
 	 * @return string The HTML string.
 	 */
 	public function form_element( $value = '' ) {
+		_deprecated_function( __METHOD__, '1.4.0' );
+
 		$grid_activate_id = 'grid-activate-' . uniqid( true );
 		if ( ! empty( $value ) && is_callable( $this->grid_sort ) ) {
 			$value = call_user_func( $this->grid_sort, $value );
 		}
 		$out = sprintf(
 			'<div class="grid-toggle-wrapper">
+				<p><a href="#" class="grid-activate button-secondary" id="%7$s" data-with-grid-title="%6$s">%5$s</a></p>
 				<div class="fm-grid" id="%2$s" data-fm-grid-name="%1$s" data-fm-grid-opts="%3$s"></div>
 				<input name="%1$s" class="fm-element" type="hidden" value="%4$s" />
-				<p><a href="#" class="grid-activate" id="%7$s" data-with-grid-title="%6$s">%5$s</a></p>
 			</div>',
 			esc_attr( $this->get_form_name() ),
 			esc_attr( 'hot-grid-id-' . uniqid( true ) ), // handsontable must have an ID, but we don't care what it is.
@@ -96,6 +102,8 @@ class Fieldmanager_Grid extends Fieldmanager_Field {
 	 * @return array Sanitized row/col matrix.
 	 */
 	public function presave( $value, $current_value = array() ) {
+		_deprecated_function( __METHOD__, '1.4.0' );
+
 		$rows = json_decode( stripslashes( $value ), true );
 		if ( ! is_array( $rows ) ) {
 			return array();
