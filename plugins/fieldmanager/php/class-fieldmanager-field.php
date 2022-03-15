@@ -201,13 +201,6 @@ abstract class Fieldmanager_Field {
 	public $data_id = null;
 
 	/**
-	 * Fieldmanager context handling data submitted with this field. Generally set internally.
-	 *
-	 * @var ?Fieldmanager_Context
-	 */
-	public $current_context = null;
-
-	/**
 	 * If true, save empty elements to DB (if $this->limit != 1; single elements
 	 * are always saved).
 	 *
@@ -392,7 +385,6 @@ abstract class Fieldmanager_Field {
 			$this->template = fieldmanager_get_template( $tpl_slug );
 		}
 		ob_start();
-		// phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable -- baseline
 		include $this->template;
 		return ob_get_clean();
 	}
@@ -417,7 +409,7 @@ abstract class Fieldmanager_Field {
 
 		// Only enqueue base assets once, and only when we have a field.
 		if ( ! self::$enqueued_base_assets ) {
-			fm_add_script( 'fieldmanager_script', 'js/fieldmanager.js', array( 'fm_loader', 'jquery', 'jquery-ui-sortable' ), FM_VERSION, false, 'fm' );
+			fm_add_script( 'fieldmanager_script', 'js/fieldmanager.js', array( 'fm_loader', 'jquery', 'jquery-ui-sortable' ), FM_VERSION );
 			fm_add_style( 'fieldmanager_style', 'css/fieldmanager.css', array(), FM_VERSION );
 			self::$enqueued_base_assets = true;
 		}
@@ -458,7 +450,6 @@ abstract class Fieldmanager_Field {
 		}
 
 		// If this is a single field with a limit of 1, serialize_data has no impact.
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( ! $this->serialize_data && ! $this->is_group() && 1 == $this->limit ) {
 			$this->serialize_data = true;
 		}
@@ -475,15 +466,12 @@ abstract class Fieldmanager_Field {
 	 *
 	 * @since 1.3.0 Added the 'fm-display-if' class for fields using display-if.
 	 *
-	 * @param mixed|mixed[]|null $values The current value or values for this
-	 *                                   element, or an associative array of
-	 *                                   the values of this element's children.
-	 *                                   Can be null if no value exists.
+	 * @param array $values The current values of this element, in a tree structure
+	 *                      if the element has children.
 	 * @return string HTML for all form elements.
 	 */
 	public function element_markup( $values = array() ) {
 		$values = $this->preload_alter_values( $values );
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 != $this->limit ) {
 			// count() generates a warning when passed non-countable values in PHP 7.2.
 			if ( is_scalar( $values ) ) {
@@ -527,14 +515,12 @@ abstract class Fieldmanager_Field {
 
 		// Find the array position of the "counter" (e.g. in element[0], [0] is the counter, thus the position is 1).
 		$html_array_position = 0; // default is no counter; i.e. if $this->limit = 0.
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 != $this->limit ) {
 			$html_array_position = 1; // base situation is formname[0], so the counter is in position 1.
 			if ( $this->parent ) {
 				$parent = $this->parent;
 				while ( $parent ) {
 					$html_array_position++; // one more for having a parent (e.g. parent[this][0]).
-					// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 					if ( 1 != $parent->limit ) { // and another for the parent having multiple (e.g. parent[0][this][0]).
 						$html_array_position++;
 					}
@@ -577,7 +563,7 @@ abstract class Fieldmanager_Field {
 		 *
 		 * @param string             $out    Field markup.
 		 * @param Fieldmanager_Field $this   Field instance.
-		 * @param mixed|mixed[]|null $values Current element value or values, if any.
+		 * @param mixed              $values Current element values.
 		 */
 		$out = apply_filters( 'fm_element_markup_start', $out, $this, $values );
 
@@ -590,22 +576,19 @@ abstract class Fieldmanager_Field {
 		 *
 		 * @param string             $out    Field markup.
 		 * @param Fieldmanager_Field $this   Field instance.
-		 * @param mixed|mixed[]|null $values Current element value or values, if any.
+		 * @param mixed              $values Current element values.
 		 */
 		$out = apply_filters( "fm_element_markup_start_{$this->name}", $out, $this, $values );
 
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( ( 0 == $this->limit || ( $this->limit > 1 && $this->limit > $this->minimum_count ) ) && 'top' == $this->add_more_position ) {
 			$out .= $this->add_another();
 		}
 
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 != $this->limit ) {
 			$out .= $this->single_element_markup( null, true );
 		}
 		for ( $i = 0; $i < $max; $i++ ) {
 			$this->seq = $i;
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 			if ( 1 == $this->limit ) {
 				$value = $values;
 			} else {
@@ -613,7 +596,6 @@ abstract class Fieldmanager_Field {
 			}
 			$out .= $this->single_element_markup( $value );
 		}
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( ( 0 == $this->limit || ( $this->limit > 1 && $this->limit > $this->minimum_count ) ) && 'bottom' == $this->add_more_position ) {
 			$out .= $this->add_another();
 		}
@@ -626,7 +608,7 @@ abstract class Fieldmanager_Field {
 		 *
 		 * @param string             $out    Field markup.
 		 * @param Fieldmanager_Field $this   Field instance.
-		 * @param mixed|mixed[]|null $values Current element value or values, if any.
+		 * @param mixed              $values Current element values.
 		 */
 		$out = apply_filters( 'fm_element_markup_end', $out, $this, $values );
 
@@ -639,7 +621,7 @@ abstract class Fieldmanager_Field {
 		 *
 		 * @param string             $out    Field markup.
 		 * @param Fieldmanager_Field $this   Field instance.
-		 * @param mixed|mixed[]|null $values Current element value or values, if any.
+		 * @param mixed              $values Current element values.
 		 */
 		$out = apply_filters( "fm_element_markup_end_{$this->name}", $out, $this, $values );
 
@@ -660,9 +642,8 @@ abstract class Fieldmanager_Field {
 	 * @see Fieldmanager_Field::element_markup()
 	 * @see Fieldmanager_Field::form_element()
 	 *
-	 * @param mixed|mixed[]|null $value    Single element value, if any.
-	 * @param bool               $is_proto True to generate a prototype element
-	 *                                     for Javascript.
+	 * @param  mixed $value    The current value of this element.
+	 * @param  bool  $is_proto True to generate a prototype element for Javascript.
 	 * @return string HTML for a single form element.
 	 */
 	public function single_element_markup( $value = null, $is_proto = false ) {
@@ -682,17 +663,6 @@ abstract class Fieldmanager_Field {
 		// Check if the required attribute is set. If so, add the class.
 		if ( $this->required ) {
 			$classes[] = 'form-required';
-		}
-
-		if ( ! $this->is_group() && ! $this->is_tab ) {
-			$classes[] = 'fm-field';
-		}
-
-		if ( ! $this->is_group() && $this->sortable ) {
-			$classes[] = 'fm-sortable-field';
-			if ( ( ! $this->one_label_per_item || empty( $this->label ) ) && empty( $this->description ) ) {
-				$classes[] = 'fm-no-labels';
-			}
 		}
 
 		if ( $is_proto ) {
@@ -715,7 +685,6 @@ abstract class Fieldmanager_Field {
 		 * the title from the tab label.
 		 */
 		if ( ! empty( $this->label ) && ! $this->is_tab && $this->one_label_per_item ) {
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 			if ( 1 != $this->limit ) {
 				$out .= $this->wrap_with_multi_tools( $label, array( 'fmjs-removable-label' ) );
 			} elseif ( ! $this->label_after_element ) {
@@ -725,7 +694,7 @@ abstract class Fieldmanager_Field {
 			}
 		}
 
-		if ( ! empty( $this->description ) && ! $this->description_after_element && ! $this->is_group() ) {
+		if ( isset( $this->description ) && ! empty( $this->description ) && ! $this->description_after_element ) {
 			$out .= sprintf( '<div class="fm-item-description">%s</div>', $this->escape( 'description' ) );
 		}
 
@@ -735,7 +704,6 @@ abstract class Fieldmanager_Field {
 
 		$form_element = $this->form_element( $value );
 
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 != $this->limit && ( ! $this->one_label_per_item || empty( $this->label ) ) ) {
 			$out .= $this->wrap_with_multi_tools( $form_element );
 		} else {
@@ -746,7 +714,7 @@ abstract class Fieldmanager_Field {
 			$out .= $label;
 		}
 
-		if ( ! empty( $this->description ) && $this->description_after_element && ! $this->is_group() ) {
+		if ( isset( $this->description ) && ! empty( $this->description ) && $this->description_after_element ) {
 			$out .= sprintf( '<div class="fm-item-description">%s</div>', $this->escape( 'description' ) );
 		}
 
@@ -761,8 +729,8 @@ abstract class Fieldmanager_Field {
 	/**
 	 * Alter values before rendering.
 	 *
-	 * @param mixed|mixed[]|null $values The current value or values for this element, if any.
-	 * @return mixed|mixed[]|null The altered value.
+	 * @param  array $values The values to load.
+	 * @return array $values The loaded values.
 	 */
 	public function preload_alter_values( $values ) {
 		return apply_filters( 'fm_preload_alter_values', $values, $this );
@@ -778,19 +746,13 @@ abstract class Fieldmanager_Field {
 	public function wrap_with_multi_tools( $html, $classes = array() ) {
 		$classes[] = 'fmjs-removable';
 		$out       = sprintf( '<div class="%s">', implode( ' ', $classes ) );
-		$handle    = '';
 		if ( $this->sortable ) {
-			if ( ( $this->one_label_per_item || ! empty( $this->label ) ) && ! in_array( 'fmjs-removable-label', $classes, true ) && empty( $this->description ) ) {
-				$classes[] = 'fmjs-removable-sort';
-			}
-			$handle = $this->get_sort_handle();
+			$out .= $this->get_sort_handle();
 		}
-		$out .= $handle;
 		$out .= '<div class="fmjs-removable-element">';
 		$out .= $html;
 		$out .= '</div>';
 
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 0 == $this->limit || $this->limit > $this->minimum_count ) {
 			$out .= $this->get_remove_handle();
 		}
@@ -809,13 +771,11 @@ abstract class Fieldmanager_Field {
 		$tree = $this->get_form_tree();
 		$name = '';
 		foreach ( $tree as $level => $branch ) {
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 			if ( 0 == $level ) {
 				$name .= $branch->name;
 			} else {
 				$name .= '[' . $branch->name . ']';
 			}
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 			if ( 1 != $branch->limit ) {
 				$name .= '[' . $branch->get_seq() . ']';
 			}
@@ -862,7 +822,6 @@ abstract class Fieldmanager_Field {
 	public function get_element_key() {
 		$el  = $this;
 		$key = $el->name;
-		// phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition -- baseline
 		while ( $el = $el->parent ) {
 			if ( $el->add_to_prefix ) {
 				$key = "{$el->name}_{$key}";
@@ -877,7 +836,6 @@ abstract class Fieldmanager_Field {
 	 * @return bool True if yes, false if no.
 	 */
 	public function is_repeatable() {
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 != $this->limit ) {
 			return true;
 		} elseif ( $this->parent ) {
@@ -905,7 +863,6 @@ abstract class Fieldmanager_Field {
 	 * @return mixed Sanitized values.
 	 */
 	public function presave_all( $values, $current_values ) {
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 == $this->limit && empty( $this->multiple ) ) {
 			$values = $this->presave_alter_values( array( $values ), array( $current_values ) );
 			if ( ! empty( $values ) ) {
@@ -920,7 +877,6 @@ abstract class Fieldmanager_Field {
 		}
 
 		// If $this->limit != 1, and $values is not an array, that'd just be wrong, and possibly an attack, so...
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 1 != $this->limit && ! is_array( $values ) ) {
 
 			// EXCEPT maybe this is a request to remove indices.
@@ -1015,7 +971,6 @@ abstract class Fieldmanager_Field {
 	 * @param  array $current_values The current values.
 	 */
 	protected function save_index( $values, $current_values ) {
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 		if ( 'post' != $this->data_type || empty( $this->data_id ) ) {
 			return;
 		}
@@ -1080,13 +1035,6 @@ abstract class Fieldmanager_Field {
 	 * @return array The filtered values.
 	 */
 	protected function presave_alter_values( $values, $current_values = array() ) {
-		/**
-		 * Filters the new field value prior to saving.
-		 *
-		 * @param mixed              $values         New field value.
-		 * @param Fieldmanager_Field $this           Field object.
-		 * @param mixed              $current_values Current field value.
-		 */
 		return apply_filters( 'fm_presave_alter_values', $values, $this, $current_values );
 	}
 
@@ -1324,7 +1272,6 @@ abstract class Fieldmanager_Field {
 		$this->require_base();
 		// Check if any default meta boxes need to be removed for this field.
 		$this->add_meta_boxes_to_remove( $this->meta_boxes_to_remove );
-		// phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict -- baseline
 		if ( in_array( 'attachment', (array) $post_types ) ) {
 			$this->is_attachment = true;
 		}
@@ -1397,7 +1344,7 @@ abstract class Fieldmanager_Field {
 	 *
 	 * @param string $debug_message The debug message.
 	 */
-	public function _unauthorized_access( $debug_message = '' ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore -- baseline
+	public function _unauthorized_access( $debug_message = '' ) {
 		if ( self::$debug ) {
 			throw new FM_Exception( esc_html( $debug_message ) );
 		} else {
@@ -1412,7 +1359,7 @@ abstract class Fieldmanager_Field {
 	 *
 	 * @param string $debug_message The debug message.
 	 */
-	protected function _failed_validation( $debug_message = '' ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore -- baseline
+	protected function _failed_validation( $debug_message = '' ) {
 		if ( self::$debug ) {
 			throw new FM_Validation_Exception( $debug_message );
 		} else {
@@ -1432,7 +1379,7 @@ abstract class Fieldmanager_Field {
 	 *
 	 * @param string $debug_message The debug message.
 	 */
-	public function _invalid_definition( $debug_message = '' ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore -- baseline
+	public function _invalid_definition( $debug_message = '' ) {
 		if ( self::$debug ) {
 			throw new FM_Exception( esc_html( $debug_message ) );
 		} else {

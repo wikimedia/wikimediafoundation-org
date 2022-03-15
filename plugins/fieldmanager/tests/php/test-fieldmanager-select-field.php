@@ -11,8 +11,8 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 	public $post;
 	public $custom_datasource;
 
-	public function set_up() {
-		parent::set_up();
+	public function setUp() {
+		parent::setUp();
 		Fieldmanager_Field::$debug = true;
 
 		$this->post_id = $this->factory->post->create(
@@ -56,7 +56,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="one"\s*>one</option>'
 			. '\s*<option\s*value="two"\s*>two</option>'
@@ -65,7 +65,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 			$html
 		);
 
-		$this->assertStringNotContainsString( '<option value="">&nbsp;</option>', $html );
+		$this->assertNotContains( '<option value="">&nbsp;</option>', $html );
 	}
 
 	public function test_basic_save() {
@@ -77,7 +77,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm, array( 'two' ) );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="one"\s*>one</option>'
 			. '\s*<option\s*value="two"\s*selected>two</option>'
@@ -100,7 +100,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="1"\s*>one</option>'
 			. '\s*<option\s*value="2"\s*>two</option>'
@@ -110,7 +110,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm, array( 2 ) );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="1"\s*>one</option>'
 			. '\s*<option\s*value="2"\s*selected>two</option>'
@@ -130,7 +130,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+multiple[^>]*>'
 			. '\s*<option\s*value="one"\s*>one</option>'
 			. '\s*<option\s*value="two"\s*>two</option>'
@@ -150,7 +150,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm, array( 'two' ) );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+multiple[^>]*>'
 			. '\s*<option\s*value="one"\s*>one</option>'
 			. '\s*<option\s*value="two"\s*selected>two</option>'
@@ -160,7 +160,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm, array( 'two', 'three' ) );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+multiple[^>]*>'
 			. '\s*<option\s*value="one"\s*>one</option>'
 			. '\s*<option\s*value="two"\s*selected>two</option>'
@@ -168,56 +168,6 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 			. '\s*</select>#si',
 			$html
 		);
-	}
-
-	public function test_multiselect_save_datasource_term() {
-		$taxonomy   = 'tax_multiselect_test';
-		$field_name = 'base_field';
-
-		register_taxonomy( $taxonomy, $this->post->post_type );
-
-		$term_ids = static::factory()->term->create_many( 3, array( 'taxonomy' => $taxonomy ) );
-		sort( $term_ids );
-
-		$fm = new Fieldmanager_Group(
-			array(
-				'name'           => 'fm_group',
-				'serialize_data' => false,
-				'children'       => array(
-					$field_name => new Fieldmanager_Select(
-						array(
-							'multiple'   => true,
-							'options'    => $term_ids,
-							'datasource' => new Fieldmanager_Datasource_Term(
-								array(
-									'taxonomy'              => array( $taxonomy ),
-									'only_save_to_taxonomy' => true,
-								)
-							),
-						)
-					),
-				),
-			)
-		);
-
-		$_POST = array(
-			'post_ID'   => $this->post->ID,
-			'post_type' => $this->post->post_type,
-			'fm_group'  => array(
-				$field_name => $term_ids,
-			),
-		);
-		$fm->add_meta_box( $fm->name, $this->post->post_type )->save_to_post_meta( $this->post->ID );
-
-		$saved_term_ids = wp_list_pluck( wp_get_post_terms( $this->post->ID, $taxonomy ), 'term_id' );
-		sort( $saved_term_ids );
-		$this->assertSame( $term_ids, $saved_term_ids );
-
-		unset( $_POST['fm_group'] );
-		$fm->add_meta_box( $fm->name, $this->post->post_type )->save_to_post_meta( $this->post->ID );
-
-		$saved_term_ids = wp_list_pluck( wp_get_post_terms( $this->post->ID, $taxonomy ), 'term_id' );
-		$this->assertEmpty( array_intersect( $term_ids, $saved_term_ids ) );
 	}
 
 	public function test_repeatable_multiselect_save() {
@@ -257,7 +207,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		$this->assertEquals( 2, substr_count( $html, '<option value="one" >one</option>' ) );
 
 		// @see https://github.com/alleyinteractive/wordpress-fieldmanager/issues/150
-		$this->assertStringContainsString('<option value="">&nbsp;</option>', $html );
+		$this->assertContains( '<option value="">&nbsp;</option>', $html );
 
 		$html = $this->_get_html_for( $fm, array( 'three', 'one' ) );
 		$this->assertEquals( 4, preg_match_all( '#<select[^>]+>.*?</select>#si', $html, $matches ) );
@@ -315,7 +265,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option value="">&nbsp;</option>'
 			. '\s*<option value="one"\s*>one</option>'
@@ -336,7 +286,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option value="one"\s*>one</option>'
 			. '\s*<option value="two"\s*selected>two</option>'
@@ -355,7 +305,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="January"\s*>January</option>'
 			. '\s*<option\s*value="February"\s*>February</option>'
@@ -376,7 +326,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="January"\s*>January</option>'
 			. '\s*<option\s*value="February"\s*selected>February</option>'
@@ -396,7 +346,7 @@ class Test_Fieldmanager_Select_Field extends WP_UnitTestCase {
 		);
 
 		$html = $this->_get_html_for( $fm, 'February' );
-		$this->assertMatchesRegularExpression(
+		$this->assertRegExp(
 			'#<select[^>]+>'
 			. '\s*<option\s*value="January"\s*>January</option>'
 			. '\s*<option\s*value="February"\s*selected>February</option>'

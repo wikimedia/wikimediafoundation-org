@@ -7,8 +7,8 @@
 class Test_Fieldmanager_Calculate_Context extends WP_UnitTestCase {
 	protected $screen, $self, $get, $submenus;
 
-	public function set_up() {
-		parent::set_up();
+	public function setUp() {
+		parent::setUp();
 
 		$this->screen   = get_current_screen();
 		$this->self     = isset( $_SERVER['PHP_SELF'] ) ? $_SERVER['PHP_SELF'] : null;
@@ -21,13 +21,13 @@ class Test_Fieldmanager_Calculate_Context extends WP_UnitTestCase {
 		set_current_screen( 'dashboard-user' );
 	}
 
-	public function tear_down() {
+	public function tearDown( $value = null ) {
 		$GLOBALS['current_screen'] = $this->screen;
 		$_SERVER['PHP_SELF']       = $this->self;
 		$_GET                      = $this->get;
 		_fieldmanager_registry( 'submenus', $this->submenus );
 
-		parent::tear_down();
+		parent::tearDown();
 	}
 
 	/**

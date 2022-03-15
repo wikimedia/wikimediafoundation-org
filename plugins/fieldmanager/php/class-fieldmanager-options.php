@@ -154,11 +154,9 @@ abstract class Fieldmanager_Options extends Fieldmanager_Field {
 
 				// If grouped display is desired, check where to add the start and end points
 				// Note we are assuming the data has come pre-sorted into groups.
-				// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 				if ( $this->grouped && ( $current_group != $data_element['group'] ) ) {
 
 					// Append the end for the previous group unless this is the first group.
-					// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- baseline
 					if ( '' != $current_group ) {
 						$form_data_elements_html .= $this->form_data_end_group();
 					}
@@ -197,7 +195,6 @@ abstract class Fieldmanager_Options extends Fieldmanager_Field {
 			$this->options_template = fieldmanager_get_template( $tpl_slug );
 		}
 		ob_start();
-		// phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable -- baseline
 		include $this->options_template;
 		return ob_get_clean();
 	}
@@ -211,7 +208,6 @@ abstract class Fieldmanager_Options extends Fieldmanager_Field {
 	 * @return string $attribute On match, empty On failure.
 	 */
 	public function option_selected( $current_option, $options, $attribute ) {
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison, WordPress.PHP.StrictInArray.MissingTrueStrict -- baseline
 		if ( ( null != $options && ! empty( $options ) ) && in_array( $current_option, $options ) ) {
 			return $attribute;
 		}
@@ -266,8 +262,7 @@ abstract class Fieldmanager_Options extends Fieldmanager_Field {
 	/**
 	 * Alter values before rendering.
 	 *
-	 * @param mixed|mixed[]|null $values The current value or values for this element, if any.
-	 * @return mixed|mixed[]|null The altered value.
+	 * @param array $values The current values.
 	 */
 	public function preload_alter_values( $values ) {
 		if ( $this->datasource ) {
@@ -278,9 +273,6 @@ abstract class Fieldmanager_Options extends Fieldmanager_Field {
 
 	/**
 	 * Presave hook to set taxonomy data, maybe.
-	 *
-	 * @since 1.4.0 Passes the new values through Fieldmanager_Field::presave_alter_values()
-	 *              before saving, including the 'fm_presave_alter_values' filter.
 	 *
 	 * @param  array $values         The new values.
 	 * @param  array $current_values The current values.
@@ -293,9 +285,9 @@ abstract class Fieldmanager_Options extends Fieldmanager_Field {
 			} elseif ( ! empty( $this->datasource->only_save_to_post_parent ) ) {
 				$this->skip_save = true;
 			}
-			$values = $this->datasource->presave_alter_values( $this, $values, $current_values );
+			return $this->datasource->presave_alter_values( $this, $values, $current_values );
 		}
-		return parent::presave_alter_values( $values, $current_values );
+		return $values;
 	}
 
 
