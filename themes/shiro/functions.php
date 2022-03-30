@@ -487,3 +487,16 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+/**
+ * Add thumbnails to the HM Gutenberg Tools post select screen.
+ *
+ * @param int    $id ID of the item to prepare.
+ * @param object $post The post object.
+ *
+ * @return int
+ */
+function shiro_add_hm_gb_tools_post_select_thumbnail( $id, $post ) {
+	return $post->_thumbnail_id;
+}
+add_filter( 'hm_gb_tools_item_thumbnail_id', 'shiro_add_hm_gb_tools_post_select_thumbnail', 10, 2 );
