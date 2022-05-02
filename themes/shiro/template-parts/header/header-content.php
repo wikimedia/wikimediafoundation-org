@@ -75,8 +75,10 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 						</div>
 						<div class="mw-980">
-							<div class="vision_container">
-								<?php get_template_part( 'template-parts/header/vision'); ?>
+							<div class="vision_container hero-home">
+								<div class="hero-home__heading-color has-yellow-50-background-color">
+									<?php get_template_part( 'template-parts/header/vision'); ?>
+								</div>
 							</div>
 						</div>
 					</div>

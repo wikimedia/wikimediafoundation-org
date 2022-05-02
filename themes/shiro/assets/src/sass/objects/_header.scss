@@ -209,12 +209,8 @@ $header-bp-mw: 1049px;
 	.header-content {
 		position: relative;
 		z-index: 2;
-		margin-top: 75px;
+		margin-top: rem(30);
 		width: 100%;
-
-		.has-blocks & {
-			margin-top: rem(30);
-		}
 	}
 
 	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {

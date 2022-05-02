@@ -46,6 +46,6 @@ foreach ($visions as $key => $vision) {
     'langcode' => $visions_langcode[$key],
   ];
     
-  echo '<h2 lang="'. esc_attr($vision_output[$vision]['langcode']) .'" class="vision '. esc_attr($is_visible) .' '. esc_attr($vision_output[$vision]['rssclass']) .'">' . esc_html($vision_output[$vision]['text']) . '</h2>';
+  echo '<h2 lang="'. esc_attr($vision_output[$vision]['langcode']) .'" class="hero-home__heading vision '. esc_attr($is_visible) .' '. esc_attr($vision_output[$vision]['rssclass']) .'">' . esc_html($vision_output[$vision]['text']) . '</h2>';
   $is_visible = '';
 }
