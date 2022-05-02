@@ -30,7 +30,7 @@ $wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '');
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
 $bg_opts          = wmf_get_background_image();
-$bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
+$bg_color         = ( is_array( $bg_opts ) && $bg_opts['color'] ) ? 'pink' : 'blue';
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = wmf_get_translations();
