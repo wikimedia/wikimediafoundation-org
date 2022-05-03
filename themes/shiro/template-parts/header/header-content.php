@@ -5,6 +5,10 @@
  * @package shiro
  */
 
+if ( is_front_page() && has_blocks() ) {
+	return;
+}
+
 $page_header_data = $args;
 
 $h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
