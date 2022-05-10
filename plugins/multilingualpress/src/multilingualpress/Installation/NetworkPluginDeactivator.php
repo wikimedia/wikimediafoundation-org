@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -50,7 +52,7 @@ class NetworkPluginDeactivator
      * @param string[] $targetPlugins
      * @return array
      */
-    private function filterOutNotActive(array $activePlugins, string...$targetPlugins): array
+    private function filterOutNotActive(array $activePlugins, string ...$targetPlugins): array
     {
         $toDeactivate = [];
         foreach ($targetPlugins as $target) {

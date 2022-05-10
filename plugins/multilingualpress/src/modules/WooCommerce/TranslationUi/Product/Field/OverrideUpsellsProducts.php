@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -29,7 +31,7 @@ class OverrideUpsellsProducts
         $key = MetaboxFields::FIELD_UPSELLS_PRODUCTS;
         $label = _x('Upsell Products', 'WooCommerce Product Field', 'multilingualpress');
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <tr>
             <th scope="row">

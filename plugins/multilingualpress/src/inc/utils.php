@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -174,9 +176,10 @@ function redirectAfterSettingsUpdate(
         $url = (string)($serverRequest->bodyValue('_wp_http_referer') ?: admin_url());
     }
 
+    //phpcs:disable WordPressVIPMinimum.Security.ExitAfterRedirect.NoExit
     wp_safe_redirect(add_query_arg('settings-updated', true, $url));
-
     callExit();
+    //phpcs:enable
 }
 
 /**
@@ -206,7 +209,9 @@ function siteExists(int $siteId, int $networkId = 0): bool
             $networkId
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $cache[$networkId] = array_map('intval', $wpdb->get_col($query));
+        //phpcs:enable
     }
 
     return in_array($siteId, $cache[$networkId], true);
@@ -245,7 +250,7 @@ function tableExists(string $tableName): bool
  */
 function callExit($message = '')
 {
-    $exitCallback = function () use ($message) {
+    $exitCallback = static function () use ($message) {
         is_string($message) and $message = esc_html($message);
         exit($message); // phpcs:ignore WordPress
     };
@@ -347,7 +352,7 @@ function wpHookProxy(callable $callback): callable
     // phpcs:enable
     // phpcs:disable Inpsyde.CodeQuality.ReturnTypeDeclaration.NoReturnType
     // phpcs:disable Inpsyde.CodeQuality.ArgumentTypeDeclaration.NoArgumentType
-    return function (...$args) use ($callback) {
+    return static function (...$args) use ($callback) {
 
         // phpcs:enable
 

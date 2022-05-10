@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -21,7 +23,7 @@ class ServiceProvidersCollection implements \Countable
      * @var \SplObjectStorage
      */
     private $storage;
-    
+
     public function __construct()
     {
         $this->storage = new \SplObjectStorage();

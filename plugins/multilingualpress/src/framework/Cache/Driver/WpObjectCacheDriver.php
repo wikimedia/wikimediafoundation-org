@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -87,7 +89,8 @@ final class WpObjectCacheDriver implements CacheDriver
      */
     private function maybeGlobal(string $namespace)
     {
-        if ($this->isNetwork
+        if (
+            $this->isNetwork
             && !in_array($namespace, self::$globalNamespaces, true)
         ) {
             self::$globalNamespaces[] = $namespace;

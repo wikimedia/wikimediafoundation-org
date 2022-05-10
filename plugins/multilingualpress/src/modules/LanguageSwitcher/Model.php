@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -79,6 +81,7 @@ class Model
 
             $model['items'][] = $this->itemFactory->create(
                 $language->{$model['language_name']}(),
+                $language->bcp47tag(),
                 $language->isoCode(),
                 $this->languageFlag($model, $language->isoCode()),
                 $url,

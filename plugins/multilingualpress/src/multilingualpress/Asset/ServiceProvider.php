@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -30,14 +32,14 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->share(
             AssetFactory::class,
-            function (Container $container): AssetFactory {
+            static function (Container $container): AssetFactory {
                 return new AssetFactory($container[Locations::class]);
             }
         );
 
         $container->share(
             AssetManager::class,
-            function (): AssetManager {
+            static function (): AssetManager {
                 return new AssetManager();
             }
         );

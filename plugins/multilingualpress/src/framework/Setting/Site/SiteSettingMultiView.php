@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -41,13 +43,13 @@ final class SiteSettingMultiView implements SiteSettingView
 
         $settings = array_filter(
             $settings,
-            function (SiteSettingViewModel $setting): bool {
+            static function (SiteSettingViewModel $setting): bool {
                 return (bool) $setting;
             }
         );
 
         $views = array_map(
-            function (SiteSettingViewModel $setting): SiteSettingSingleView {
+            static function (SiteSettingViewModel $setting): SiteSettingSingleView {
                 return new SiteSettingSingleView($setting, false);
             },
             $settings
@@ -64,7 +66,7 @@ final class SiteSettingMultiView implements SiteSettingView
     {
         $this->views = array_filter(
             $views,
-            function (SiteSettingView $view): bool {
+            static function (SiteSettingView $view): bool {
                 return (bool) $view;
             }
         );
@@ -89,7 +91,7 @@ final class SiteSettingMultiView implements SiteSettingView
 
         array_walk(
             $this->views,
-            function (SiteSettingView $view) use ($siteId) {
+            static function (SiteSettingView $view) use ($siteId) {
                 $view->render($siteId);
             }
         );
