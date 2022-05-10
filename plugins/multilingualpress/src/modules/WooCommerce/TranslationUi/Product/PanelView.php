@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -77,7 +79,7 @@ class PanelView
      */
     private function renderTabs(RelationshipContext $relationshipContext)
     {
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         foreach ($this->dataTabs() as $key => $tab) {
             $target = sprintf(
                 '#mlp_%1$s_%2$s',
@@ -87,7 +89,7 @@ class PanelView
 
             ?>
             <li class="<?= $this->tabClassAttribute($key, $tab) ?>">
-                <a href="<?= esc_attr($target) ?>">
+                <a href="<?= esc_url($target) ?>">
                     <span><?= esc_html($tab['label']) ?></span>
                 </a>
             </li>
@@ -169,7 +171,7 @@ class PanelView
         $classes[] = "{$key}_tab";
         $classes[] = "mlp-{$key}-settings";
 
-        return array_reduce($classes, function (string $stack, string $class): string {
+        return array_reduce($classes, static function (string $stack, string $class): string {
             return $stack . ' ' . sanitize_html_class($class);
         }, '');
     }

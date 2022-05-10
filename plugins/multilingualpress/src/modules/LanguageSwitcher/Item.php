@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -22,6 +24,11 @@ class Item
     /**
      * @var string
      */
+    private $locale;
+
+    /**
+     * @var string
+     */
     private $isoCode;
 
     /**
@@ -41,6 +48,7 @@ class Item
 
     /**
      * @param string $languageName
+     * @param string $locale
      * @param string $isoCode
      * @param string $flag
      * @param string $url
@@ -48,6 +56,7 @@ class Item
      */
     public function __construct(
         string $languageName,
+        string $locale,
         string $isoCode,
         string $flag,
         string $url,
@@ -55,6 +64,7 @@ class Item
     ) {
 
         $this->languageName = $languageName;
+        $this->locale = $locale;
         $this->isoCode = $isoCode;
         $this->flag = $flag;
         $this->url = $url;
@@ -99,5 +109,13 @@ class Item
     public function siteId(): int
     {
         return $this->siteId;
+    }
+
+    /**
+     * @return string
+     */
+    public function locale(): string
+    {
+        return $this->locale;
     }
 }

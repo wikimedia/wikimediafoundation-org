@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -224,7 +226,7 @@ class AssetManager
 
         array_walk(
             $data,
-            function (array $data, string $objectName) use ($handle) {
+            static function (array $data, string $objectName) use ($handle) {
                 wp_localize_script($handle, $objectName, $data);
             }
         );

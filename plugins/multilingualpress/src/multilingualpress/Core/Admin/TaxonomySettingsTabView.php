@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -128,12 +130,12 @@ final class TaxonomySettingsTabView implements SettingsPageView
                     name="<?= esc_attr($this->fieldName($slug, $field)) ?>"
                     value="1"
                     id="<?= esc_attr($id) ?>"
-                    title="<?= esc_html($slug) ?>"
+                    title="<?= esc_attr($slug) ?>"
                     <?php checked($isActive) ?>>
             </th>
             <td>
                 <label for="<?= esc_attr($id) ?>" class="mlp-block-label">
-                    <strong class="mlp-setting-name" title="<?= esc_html($slug) ?>">
+                    <strong class="mlp-setting-name" title="<?= esc_attr($slug) ?>">
                         <?= esc_html($taxonomy->labels->name) ?>
                     </strong>
                 </label>

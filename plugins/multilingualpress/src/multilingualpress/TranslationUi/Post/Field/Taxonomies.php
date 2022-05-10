@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -77,19 +79,19 @@ class Taxonomies
         $name = $helper->fieldName("{$base}][{$this->taxonomy->name}");
         $siteId = $context->remoteSiteId();
         $assignedTerms = get_the_terms($context->remotePost(), $this->taxonomy->name);
-
         $assignedIds = is_array($assignedTerms)
             ? wp_parse_id_list(array_column($assignedTerms, 'term_id'))
             : [];
 
-        $inputType = $this->inputType();
+        $inputType = $this->inputType($this->taxonomy->term_count);
         $isSelect = apply_filters(
             self::FILTER_TRANSLATION_UI_USE_SELECT,
             strpos($inputType, 'select') === 0,
             $this->taxonomy->name
         );
+
         ?>
-        <tr class="mlp-taxonomy-box">
+        <tr class="mlp-taxonomy-box" data-type="<?= esc_attr($this->taxonomy->name)?>">
             <?php
             $isSelect
                 ? $this->renderSelect($assignedIds, $idBase, $name, $inputType)
@@ -121,16 +123,9 @@ class Taxonomies
         <td>
             <select<?= $multiple ? ' multiple' : '' ?>
                 id="<?= esc_attr($idBase) ?>"
-                name="<?= esc_attr($name) ?><?= $multiple ? '[]' : '' ?>">
-                <?php
-                foreach ($this->terms as $term) :
-                    $tId = (int)$term->term_id;
-                    $selected = in_array($tId, $assignedIds, true);
-                    ?>
-                    <option value="<?= esc_attr((string)$tId) ?>"<?php selected(true, $selected) ?>>
-                        <?= esc_html($term->name) ?>
-                    </option>
-                <?php endforeach ?>
+                name="<?= esc_attr($name) ?><?= $multiple ? '[]' : '' ?>"
+                data-assignedids="<?= esc_attr(json_encode($assignedIds)) ?>"
+                data-taxonomy="<?= esc_attr($this->taxonomy->name) ?>">
             </select>
         </td>
         <?php
@@ -170,9 +165,10 @@ class Taxonomies
     }
 
     /**
+     * @param int $termCount
      * @return string
      */
-    private function inputType(): string
+    private function inputType(int $termCount): string
     {
         static $singleTermTaxonomies;
         if (!is_array($singleTermTaxonomies)) {
@@ -187,15 +183,14 @@ class Taxonomies
             );
         }
 
-        $count = count($this->terms);
         $threshold = (int)apply_filters(
             self::FILTER_TRANSLATION_UI_SELECT_THRESHOLD,
-            20,
+            1,
             $this->taxonomy->name,
-            $count
+            $termCount
         );
 
-        $select = $count > $threshold;
+        $select = $termCount > $threshold;
         if (in_array($this->taxonomy->name, $singleTermTaxonomies, true)) {
             return $select ? 'select' : 'radio';
         }

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -35,7 +37,7 @@ final class ServiceProvider implements IntegrationServiceProvider
 
         $container->addService(
             Activator::class,
-            function (): Activator {
+            static function (): Activator {
                 return new Activator();
             }
         );
@@ -62,7 +64,7 @@ final class ServiceProvider implements IntegrationServiceProvider
         }
 
         $activator->registerCallback(
-            function () use ($container) {
+            static function () use ($container) {
 
                 $contentRelations = $container[ContentRelations::class];
 

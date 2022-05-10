@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -72,7 +74,7 @@ final class MultilingualPress
         $this->container->lock();
 
         $integrations = $this->serviceProviders->filter(
-            function (ServiceProvider $provider) : bool {
+            static function (ServiceProvider $provider): bool {
                 return $provider instanceof IntegrationServiceProvider;
             }
         );
@@ -83,7 +85,7 @@ final class MultilingualPress
         }
 
         $bootstrappable = $this->serviceProviders->filter(
-            function (ServiceProvider $provider) : bool {
+            static function (ServiceProvider $provider): bool {
                 return $provider instanceof BootstrappableServiceProvider;
             }
         );
@@ -119,7 +121,8 @@ final class MultilingualPress
      */
     private function needsModules(): bool
     {
-        if (is_network_admin()
+        if (
+            is_network_admin()
             || in_array($GLOBALS['pagenow'], ['admin-ajax.php', 'admin-post.php'], true)
         ) {
             return true;
@@ -142,7 +145,7 @@ final class MultilingualPress
          */
         do_action(static::ACTION_REGISTER_MODULES);
 
-        $activation = function (
+        $activation = static function (
             ModuleServiceProvider $module,
             ModuleManager $moduleManager,
             Container $container
@@ -153,7 +156,7 @@ final class MultilingualPress
         };
 
         $moduleProviders = $this->serviceProviders->filter(
-            function (ServiceProvider $provider) : bool {
+            static function (ServiceProvider $provider): bool {
                 return $provider instanceof ModuleServiceProvider;
             }
         );

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,12 +14,12 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product;
 
+use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\ProductUrl;
 use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\ProductUrlButtonText;
+use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\PurchaseNote;
 use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\RegularPrice;
 use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\SalePrice;
-use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\PurchaseNote;
 use Inpsyde\MultilingualPress\TranslationUi\Post;
-use Inpsyde\MultilingualPress\Module\WooCommerce\TranslationUi\Product\Field\ProductUrl;
 
 /**
  * MultilingualPress Metabox Fields for WooCommerce Panel
@@ -74,7 +76,43 @@ class WooCommerceMetaboxFields
             new MetaboxField(
                 new Post\MetaboxField(
                     MetaboxFields::FIELD_SKU,
-                    new Field\Sku()
+                    new Field\Inventory\Sku()
+                )
+            ),
+            new MetaboxField(
+                new Post\MetaboxField(
+                    MetaboxFields::FIELD_MANAGE_STOCK,
+                    new Field\Inventory\ManageStock()
+                )
+            ),
+            new MetaboxField(
+                new Post\MetaboxField(
+                    MetaboxFields::FIELD_STOCK,
+                    new Field\Inventory\Stock()
+                )
+            ),
+            new MetaboxField(
+                new Post\MetaboxField(
+                    MetaboxFields::FIELD_BACKORDERS,
+                    new Field\Inventory\Backorders(wc_get_product_backorder_options())
+                )
+            ),
+            new MetaboxField(
+                new Post\MetaboxField(
+                    MetaboxFields::FIELD_LOW_STOCK_AMOUNT,
+                    new Field\Inventory\LowStockAmount((int)get_option('woocommerce_notify_low_stock_amount'))
+                )
+            ),
+            new MetaboxField(
+                new Post\MetaboxField(
+                    MetaboxFields::FIELD_STOCK_STATUS,
+                    new Field\Inventory\StockStatus(wc_get_product_stock_status_options())
+                )
+            ),
+            new MetaboxField(
+                new Post\MetaboxField(
+                    MetaboxFields::FIELD_SOLD_INDIVIDUALLY,
+                    new Field\Inventory\SoldIndividually()
                 )
             ),
         ];

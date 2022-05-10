@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -33,6 +35,7 @@ use Inpsyde\MultilingualPress\Database\Table\SiteRelationsTable;
 use Inpsyde\MultilingualPress\Framework\Factory\LanguageFactory;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\ServiceProvider as BaseServiceProvider;
+
 use function Inpsyde\MultilingualPress\resolve;
 
 /**
@@ -42,12 +45,15 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
 {
     /**
      * @inheritdoc
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      */
     public function register(Container $container)
     {
+        // phpcs:enable
+
         $container->share(
             ContentRelations::class,
-            function (Container $container): WpdbContentRelations {
+            static function (Container $container): WpdbContentRelations {
                 return new WpdbContentRelations(
                     $container[\wpdb::class],
                     $container[ContentRelationsTable::class],
@@ -55,14 +61,16 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
                     $container[ActivePostTypes::class],
                     $container[ActiveTaxonomies::class],
                     new Facade($container[Server::class], ContentRelations::class),
-                    $container[CacheSettingsRepository::class]
+                    $container[CacheSettingsRepository::class],
+                    $container[SiteSettingsRepository::class],
+                    $container[SiteRelations::class]
                 );
             }
         );
 
         $container->share(
             Languages::class,
-            function (Container $container): WpdbLanguages {
+            static function (Container $container): WpdbLanguages {
                 return new WpdbLanguages(
                     $container[\wpdb::class],
                     $container[LanguagesTable::class],
@@ -74,7 +82,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
 
         $container->share(
             SiteRelations::class,
-            function (Container $container): WpdbSiteRelations {
+            static function (Container $container): WpdbSiteRelations {
                 return new WpdbSiteRelations(
                     $container[\wpdb::class],
                     $container[SiteRelationsTable::class],
@@ -86,7 +94,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
 
         $container->share(
             FrameworkTranslations::class,
-            function (Container $container): FrameworkTranslations {
+            static function (Container $container): FrameworkTranslations {
                 return new Translations(
                     $container[SiteRelations::class],
                     $container[ContentRelations::class],
@@ -137,7 +145,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
             SiteRelations::RELATED_SITE_IDS_CACHE_KEY
         );
         $relatedSiteIdsCacheLogic->updateWith(
-            function (int $siteId, bool $includeSite) use ($container) : array {
+            static function (int $siteId, bool $includeSite) use ($container): array {
                 return $container[SiteRelations::class]->relatedSiteIds($siteId, $includeSite);
             }
         );
@@ -157,7 +165,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
             ContentRelations::HAS_SITE_RELATIONS_CACHE_KEY
         );
         $contentRelationsCacheLogic->updateWith(
-            function (int $siteId, string $type = '') use ($container) : bool {
+            static function (int $siteId, string $type = '') use ($container): bool {
                 return $container[ContentRelations::class]->hasSiteRelations($siteId, $type);
             }
         );
@@ -167,7 +175,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
             ContentRelations::CONTENT_IDS_CACHE_KEY
         );
         $contentIdsCacheLogic->updateWith(
-            function (int $relationshipId) use ($container): array {
+            static function (int $relationshipId) use ($container): array {
                 return $container[ContentRelations::class]->contentIds($relationshipId);
             }
         );
@@ -177,7 +185,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
             ContentRelations::RELATIONS_CACHE_KEY
         );
         $contentRelationCacheLogic->updateWith(
-            function (int $siteId, int $contentId, string $type) use ($container): array {
+            static function (int $siteId, int $contentId, string $type) use ($container): array {
                 return $container[ContentRelations::class]->relations($siteId, $contentId, $type);
             }
         );
@@ -195,7 +203,7 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
     {
         $translationsCacheLogic =
             (new ItemLogic(Translations::class, Translations::SEARCH_CACHE_KEY))
-                ->updateWith(function (array $translationArgs): array {
+                ->updateWith(static function (array $translationArgs): array {
                     $translationArgs = new TranslationSearchArgs($translationArgs);
 
                     return resolve(FrameworkTranslations::class)->searchTranslations($translationArgs);

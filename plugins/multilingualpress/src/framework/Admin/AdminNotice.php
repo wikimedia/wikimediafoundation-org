@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -224,7 +226,7 @@ class AdminNotice
         $classes = $this->sanitizeHtmlClassesByString($this->classes());
         $paragraphs = '<p>' . implode('</p><p>', array_map([$this, 'kses'], $content)) . '</p>';
 
-        // phpcs:disable WordPress.XSS
+        // phpcs:disable WordPress.Security
         printf(
             '<div data-action="mlp_action_dismiss" class="%1$s">%2$s%3$s</div>',
             $classes,

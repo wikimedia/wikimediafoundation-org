@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -122,7 +124,8 @@ class Copier
         $uploadPath = $uploadDir['path'] ?? '';
         $uploadUrl = $uploadDir['url'] ?? '';
 
-        if (!$uploadPath
+        if (
+            !$uploadPath
             || !$uploadUrl
             || !$this->filesystem->mkDirP($uploadDir['path'])
         ) {
@@ -147,7 +150,8 @@ class Copier
                 continue;
             }
 
-            if (!$this->filesystem->pathExists($sourceAttachmentPath)
+            if (
+                !$this->filesystem->pathExists($sourceAttachmentPath)
                 || !$this->filesystem->isReadable($sourceAttachmentPath)
             ) {
                 continue;
@@ -409,9 +413,11 @@ WHERE meta_key = '_wp_attached_file'
 AND meta_value LIKE '%s'
 SQL;
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $result = $this->wpdb->get_row(
             $this->wpdb->prepare($sql, '%' . $this->wpdb->esc_like($attachmentPath) . '%')
         );
+        // phpcs:enable
 
         $attachmentId = $result->post_id ?? 0;
 

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,6 +16,7 @@ namespace Inpsyde\MultilingualPress\TranslationUi\Post;
 
 use Inpsyde\MultilingualPress\Framework\Admin\Metabox;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
+use Inpsyde\MultilingualPress\TranslationUi\Post\Field\ChangedFields;
 use Inpsyde\MultilingualPress\TranslationUi\Post\Metabox as Box;
 
 final class MetaboxView implements Metabox\View
@@ -34,26 +37,37 @@ final class MetaboxView implements Metabox\View
     private $relationshipContext;
 
     /**
+     * @var ChangedFields
+     */
+    private $fieldsAreChangedInput;
+
+    /**
      * @param MetaboxFields $fields
      * @param MetaboxFieldsHelper $helper
      * @param RelationshipContext $relationshipContext
+     * @param ChangedFields $fieldsAreChangedInput
      */
     public function __construct(
         MetaboxFields $fields,
         MetaboxFieldsHelper $helper,
-        RelationshipContext $relationshipContext
+        RelationshipContext $relationshipContext,
+        ChangedFields $fieldsAreChangedInput
     ) {
 
         $this->fields = $fields;
         $this->helper = $helper;
         $this->relationshipContext = $relationshipContext;
+        $this->fieldsAreChangedInput = $fieldsAreChangedInput;
     }
 
     /**
      * @inheritdoc
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      */
     public function render(Metabox\Info $info)
     {
+        // phpcs:enable
+
         $remotePostIsTrashed = $this->relationshipContext->hasRemotePost()
             && $this->relationshipContext->remotePost()->post_status === 'trash';
 
@@ -66,12 +80,13 @@ final class MetaboxView implements Metabox\View
         if ($remotePostIsTrashed) {
             $tabFields = array_filter(
                 $tabFields,
-                function (MetaboxFillable $tab): bool {
+                static function (MetaboxFillable $tab): bool {
                     return $tab->id() === MetaboxFields::TAB_RELATION;
                 }
             );
             $this->renderTrashedMessage();
         }
+
         ?>
         <div
             class="mlp-translation-metabox mlp-translation-metabox--post"
@@ -79,12 +94,14 @@ final class MetaboxView implements Metabox\View
         >
 
             <?php $this->relationshipContext->renderFields($this->helper) ?>
+            <?php ($this->fieldsAreChangedInput)($this->helper, $this->relationshipContext); ?>
 
             <ul class="nav-tab-wrapper wp-clearfix">
                 <?php
                 /** @var MetaboxFillable $tab */
                 foreach ($tabFields as $tab) {
-                    if ($tab instanceof MetaboxFillable
+                    if (
+                        $tab instanceof MetaboxFillable
                         && $tab->enabled($this->relationshipContext)
                     ) {
                         $this->renderTabAnchor($tab);

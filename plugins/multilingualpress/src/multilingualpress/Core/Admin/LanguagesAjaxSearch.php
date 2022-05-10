@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,9 +16,9 @@ namespace Inpsyde\MultilingualPress\Core\Admin;
 
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
+use Inpsyde\MultilingualPress\Framework\Language\Language;
 
 use function Inpsyde\MultilingualPress\allLanguages;
-use Inpsyde\MultilingualPress\Framework\Language\Language;
 
 class LanguagesAjaxSearch
 {
@@ -68,7 +70,7 @@ class LanguagesAjaxSearch
 
         uasort(
             $found,
-            function (array $left, array $right): int {
+            static function (array $left, array $right): int {
                 return strcasecmp($left['label'], $right['label']);
             }
         );

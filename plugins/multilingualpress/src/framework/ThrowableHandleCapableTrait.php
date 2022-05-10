@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -13,6 +15,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Framework;
 
 use Throwable;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**

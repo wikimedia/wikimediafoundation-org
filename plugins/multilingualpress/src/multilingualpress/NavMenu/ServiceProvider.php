@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -26,21 +28,28 @@ use Inpsyde\MultilingualPress\Framework\Service\BootstrappableServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\IntegrationServiceProvider;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\NavMenu\CopyNavMenu\Ajax\CopyNavMenuSettingsView;
+use Inpsyde\MultilingualPress\NavMenu\CopyNavMenu\CopyNavMenu;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
 final class ServiceProvider implements BootstrappableServiceProvider, IntegrationServiceProvider
 {
     const NONCE_ACTION = 'add_languages_to_nav_menu';
+    const NONCE_COPY_NAV_MENU_ACTION = 'copy_nav_menu';
 
     /**
      * @inheritdoc
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      */
     public function register(Container $container)
     {
+        // phpcs:enable
+
         $container->addService(
             AjaxHandler::class,
-            function (Container $container): AjaxHandler {
+            static function (Container $container): AjaxHandler {
                 return new AjaxHandler(
                     $container[NonceFactory::class]->create([self::NONCE_ACTION]),
                     $container[ItemRepository::class],
@@ -50,15 +59,24 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
         );
 
         $container->addService(
+            CopyNavMenuSettingsView::class,
+            static function (Container $container): CopyNavMenuSettingsView {
+                return new CopyNavMenuSettingsView(
+                    $container[NonceFactory::class]->create([self::NONCE_COPY_NAV_MENU_ACTION])
+                );
+            }
+        );
+
+        $container->addService(
             ItemDeletor::class,
-            function (Container $container): ItemDeletor {
+            static function (Container $container): ItemDeletor {
                 return new ItemDeletor($container[\wpdb::class]);
             }
         );
 
         $container->addService(
             ItemFilter::class,
-            function (Container $container): ItemFilter {
+            static function (Container $container): ItemFilter {
                 return new ItemFilter(
                     $container[Translations::class],
                     $container[ItemRepository::class],
@@ -70,15 +88,25 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
 
         $container->addService(
             LanguagesMetaboxView::class,
-            function (Container $container): LanguagesMetaboxView {
+            static function (Container $container): LanguagesMetaboxView {
                 $nonce = $container[NonceFactory::class]->create([self::NONCE_ACTION]);
                 return new LanguagesMetaboxView($nonce);
             }
         );
 
+        $container->addService(
+            CopyNavMenu::class,
+            static function (Container $container): CopyNavMenu {
+                return new CopyNavMenu(
+                    $container[NonceFactory::class]->create([self::NONCE_COPY_NAV_MENU_ACTION]),
+                    $container[ServerRequest::class]
+                );
+            }
+        );
+
         $container->share(
             ItemRepository::class,
-            function (): ItemRepository {
+            static function (): ItemRepository {
                 return new ItemRepository();
             }
         );
@@ -124,10 +152,11 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
         $metaboxView = $container[LanguagesMetaboxView::class];
         $nonce = $container[NonceFactory::class]->create([self::NONCE_ACTION]);
         $wordpressContext = $container[WordpressContext::class];
+        $copyNavMenu = $container[CopyNavMenu::class];
 
         add_action(
             'load-nav-menus.php',
-            function () use ($assetManager, $nonce) {
+            static function () use ($assetManager, $nonce) {
                 try {
                     $assetManager->enqueueScriptWithData(
                         'multilingualpress-admin',
@@ -150,7 +179,7 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
 
         add_action(
             'admin_init',
-            function () use ($metaboxView, $wordpressContext) {
+            static function () use ($metaboxView, $wordpressContext, $copyNavMenu) {
                 if ($wordpressContext->isType(WordPressContext::TYPE_CUSTOMIZER)) {
                     return;
                 }
@@ -163,6 +192,8 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
                     'side',
                     'low'
                 );
+
+                $copyNavMenu->handleCopyNavMenu();
             }
         );
 
@@ -171,11 +202,16 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
             [$container[AjaxHandler::class], 'handle']
         );
 
+        add_action(
+            'wp_ajax_' . CopyNavMenuSettingsView::ACTION,
+            [$container[CopyNavMenuSettingsView::class], 'handle']
+        );
+
         $itemRepository = $container[ItemRepository::class];
 
         add_filter(
             'wp_setup_nav_menu_item',
-            function ($item) use ($itemRepository) {
+            static function ($item) use ($itemRepository) {
                 if ($itemRepository->siteIdOfMenuItem((int)($item->ID ?? 0))) {
                     $item->type_label = esc_html__(
                         'Language',
@@ -197,7 +233,7 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
         $itemFilterCacheLogic =
             (new ItemLogic(ItemFilter::class, ItemFilter::ITEMS_FILTER_CACHE_KEY))
                 ->generateKeyWith(
-                    function (string $key, array $postArrays): string {
+                    static function (string $key, array $postArrays): string {
                         $url = parse_url(add_query_arg([]), PHP_URL_PATH);
                         // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
                         $key .= substr(md5(serialize(array_keys($postArrays)) . $url), -12, 10);
@@ -205,7 +241,7 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
                     }
                 )
                 ->updateWith(
-                    function (array $postArrays) use ($itemFilter): array {
+                    static function (array $postArrays) use ($itemFilter): array {
 
                         $postArrays = array_values($postArrays);
                         $serializer = NavMenuItemsSerializer::fromSerialized(...$postArrays);
@@ -227,7 +263,7 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
     {
         global $wp_version;
         if (version_compare($wp_version, '5.1', '<')) {
-            add_action('delete_blog', wpHookProxy(function (int $siteId) use ($itemDeletor) {
+            add_action('delete_blog', wpHookProxy(static function (int $siteId) use ($itemDeletor) {
                 $site = get_site($siteId);
                 $site and $itemDeletor->deleteItemsForDeletedSite($site);
             }));

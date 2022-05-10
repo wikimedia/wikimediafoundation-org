@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -20,6 +22,8 @@ class Repository
 {
     const META_KEY_USER = 'multilingualpress_redirect';
     const OPTION_SITE = 'multilingualpress_module_redirect';
+    const OPTION_SITE_ENABLE_REDIRECT = 'option_site_enable_redirect';
+    const OPTION_SITE_ENABLE_REDIRECT_FALLBACK = 'option_site_enable_redirect_fallback';
 
     const MODULE_SETTINGS = 'multilingualpress_module_redirect_settings';
     const MODULE_SETTING_FALLBACK_REDIRECT_SITE_ID = 'fallback_site_id';
@@ -28,14 +32,22 @@ class Repository
      * Is the Redirect enabled for the given site?
      *
      * @param int $siteId
+     * @param string $setting
      * @return bool
      */
-    public function isRedirectEnabledForSite(int $siteId = 0): bool
+    public function isRedirectSettingEnabledForSite(int $siteId = 0, string $setting = self::OPTION_SITE_ENABLE_REDIRECT): bool
     {
-        return (bool)get_blog_option(
-            $siteId ?: get_current_blog_id(),
-            self::OPTION_SITE
-        );
+        $siteId = $siteId ?: get_current_blog_id();
+        $savedSetting = (array)get_blog_option($siteId, self::OPTION_SITE);
+
+        /**
+         * This need to be done to check the prev option name, to keep the BC.
+         */
+        if (!empty($savedSetting) && $setting === self::OPTION_SITE_ENABLE_REDIRECT &&  $savedSetting[0] === '1') {
+            $savedSetting[] = $setting;
+        }
+
+        return in_array($setting, $savedSetting, true);
     }
 
     /**

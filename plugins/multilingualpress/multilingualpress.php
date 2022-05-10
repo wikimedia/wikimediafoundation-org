@@ -13,13 +13,13 @@
  * Description: The multisite-based plugin for your multilingual WordPress websites.
  * Author: Inpsyde GmbH
  * Author URI: https://inpsyde.com
- * Version: 3.5.0
+ * Version: 3.9.1
  * Text Domain: multilingualpress
  * Domain Path: /languages/
  * License: GPLv2+
  * Network: true
- * Requires at least: 4.8
- * Requires PHP: 7.0
+ * Requires at least: 5.0
+ * Requires PHP: 7.2
  * 
  */
 
@@ -28,6 +28,9 @@ namespace Inpsyde\MultilingualPress;
 // phpcs:disable PSR1.Files.SideEffects
 // phpcs:disable NeutronStandard.StrictTypes.RequireStrictTypes
 // phpcs:disable Inpsyde.CodeQuality.ReturnTypeDeclaration
+// phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+
+use Exception;
 
 defined('ABSPATH') or die();
 
@@ -46,7 +49,7 @@ function deactivateNotice($function)
         'network_admin_notices',
     ];
     foreach ($hooks as $hook) {
-        add_action($hook, function () use ($function) {
+        add_action($hook, static function () use ($function) {
             $function();
 
             deactivate_plugins(plugin_basename(__FILE__));
@@ -58,10 +61,10 @@ function deactivateNotice($function)
 }
 
 /** @noinspection ConstantCanBeUsedInspection */
-if (version_compare(PHP_VERSION, '7', '<')) {
-    deactivateNotice(function () {
+if (version_compare(PHP_VERSION, '7.2', '<')) {
+    deactivateNotice(static function () {
         $message = __(
-            'MultilingualPress 3 requires at least PHP version 7. <br />Please ask your server administrator to update your environment to PHP version 7.',
+            'MultilingualPress 3 requires at least  PHP version 7.2. <br />Please ask your server administrator to update your environment to PHP version 7.2.',
             'multilingualpress'
         );
 
@@ -82,7 +85,7 @@ if (!function_exists('is_plugin_active')) {
     require_once untrailingslashit(ABSPATH) . '/wp-admin/includes/plugin.php';
 }
 if (is_plugin_active('multilingual-press/multilingual-press.php')) {
-    deactivateNotice(function () {
+    deactivateNotice(static function () {
         $message = __(
             'You try to activate MLP Version 3 but you already have MLP Version 2 activated. Please check out our <a href="https://multilingualpress.org/docs/getting-started-with-multilingualpress-3/">guide</a> before you continue!',
             'multilingualpress'
@@ -100,40 +103,24 @@ if (is_plugin_active('multilingual-press/multilingual-press.php')) {
     return;
 }
 
-// phpcs:ignore
-function autoload()
+/**
+ * Loads definitions and/or autoloader.
+ *
+ * @param string $rootDir
+ * @throws Exception
+ */
+function autoload(string $rootDir)
 {
-    require_once __DIR__ . '/src/inc/functions.php';
-
-    static $done;
-    if (is_bool($done)) {
-        return $done;
+    $autoloadPath = "$rootDir/vendor/autoload.php";
+    if (!file_exists($autoloadPath)) {
+        throw new Exception("The autoload file({$autoloadPath}) doesn't exist");
     }
-    if (class_exists(MultilingualPress::class)) {
-        $done = true;
 
-        return true;
-    }
-    if (is_readable(__DIR__ . '/autoload.php')) {
-        /** @noinspection PhpIncludeInspection */
-        require_once __DIR__ . '/autoload.php';
-        $done = true;
+    /* @noinspection PhpIncludeInspection */
+    require_once "$rootDir/src/inc/functions.php";
 
-        return true;
-    }
-    if (is_readable(__DIR__ . '/vendor/autoload.php')) {
-        require_once __DIR__ . '/vendor/autoload.php';
-        $done = true;
-
-        return true;
-    }
-    $done = false;
-
-    return false;
-}
-
-if (!autoload()) {
-    return;
+    /* @noinspection PhpIncludeInspection */
+    require_once $autoloadPath;
 }
 
 /**
@@ -158,31 +145,44 @@ function bootstrap()
         );
 
         $providers = new Framework\Service\ServiceProvidersCollection();
-        $providers
-            ->add(new Activation\ServiceProvider())
-            ->add(new Api\ServiceProvider())
-            ->add(new Asset\ServiceProvider())
-            ->add(new Cache\ServiceProvider())
-            ->add(new Core\ServiceProvider())
-            ->add(new Auth\ServiceProvider())
-            ->add(new Database\ServiceProvider())
-            ->add(new Factory\ServiceProvider())
-            ->add(new Installation\ServiceProvider())
-            ->add(new Integration\ServiceProvider())
-            ->add(new NavMenu\ServiceProvider())
-            ->add(new SiteDuplication\ServiceProvider())
-            ->add(new TranslationUi\ServiceProvider())
-            ->add(new Translator\ServiceProvider())
-            ->add(new Module\AltLanguageTitleInAdminBar\ServiceProvider())
-            ->add(new Module\Redirect\ServiceProvider())
-            ->add(new Module\Trasher\ServiceProvider())
-            ->add(new Module\LanguageManager\ServiceProvider())
-            ->add(new Module\LanguageSwitcher\ServiceProvider())
-            ->add(new Module\WooCommerce\ServiceProvider())
-            ->add(new Module\QuickLinks\ServiceProvider())
-            ->add(new Onboarding\ServiceProvider())
-            ->add(new Schedule\ServiceProvider())
-            ->add(new Module\ACF\ServiceProvider());
+
+        $modules = [
+            new Activation\ServiceProvider(),
+            new Api\ServiceProvider(),
+            new Asset\ServiceProvider(),
+            new Cache\ServiceProvider(),
+            new Core\ServiceProvider(),
+            new Auth\ServiceProvider(),
+            new Database\ServiceProvider(),
+            new Factory\ServiceProvider(),
+            new Installation\ServiceProvider(),
+            new Integration\ServiceProvider(),
+            new NavMenu\ServiceProvider(),
+            new SiteDuplication\ServiceProvider(),
+            new TranslationUi\ServiceProvider(),
+            new Translator\ServiceProvider(),
+            new Module\AltLanguageTitleInAdminBar\ServiceProvider(),
+            new Module\Redirect\ServiceProvider(),
+            new Module\Trasher\ServiceProvider(),
+            new Module\LanguageManager\ServiceProvider(),
+            new Module\LanguageSwitcher\ServiceProvider(),
+            new Module\WooCommerce\ServiceProvider(),
+            new Module\QuickLinks\ServiceProvider(),
+            new Onboarding\ServiceProvider(),
+            new Schedule\ServiceProvider(),
+            new Customizer\ServiceProvider(),
+            new Module\ACF\ServiceProvider(),
+            new License\ServiceProvider(),
+            new Module\BeaverBuilder\ServiceProvider(),
+            new Module\Elementor\ServiceProvider(),
+            new Module\User\ServiceProvider(),
+        ];
+
+        $modules = apply_filters('multilingualpress.modules', $modules);
+
+        foreach ($modules as $module) {
+            $providers->add($module);
+        }
 
         $multilingualpress = new MultilingualPress($container, $providers);
 
@@ -224,7 +224,7 @@ function activate()
 
     add_action(
         'activated_plugin',
-        function (string $plugin) {
+        static function (string $plugin) {
             if (plugin_basename(__FILE__) === $plugin) {
                 // Bootstrap MultilingualPress to take care of installation or upgrade routines.
                 bootstrap();
@@ -234,15 +234,44 @@ function activate()
     );
 }
 
-(function (string $rootFile) {
-    $rootDir = dirname($rootFile);
-    $modularity = "{$rootDir}/src/inc/modularity.php";
-    if (file_exists($modularity)) {
-        $moduleActivator = require_once $modularity;
-        $moduleActivator($rootDir);
+/**
+ * Load missed WordPress functions.
+ */
+function loadWordPressFunctions()
+{
+    if (!function_exists('wp_get_available_translations')) {
+        require_once(ABSPATH . 'wp-admin/includes/translation-install.php');
     }
+}
 
-    add_action('plugins_loaded', __NAMESPACE__ . '\\bootstrap', 0);
+(static function (string $rootFile) {
+    $rootDir = dirname($rootFile);
 
-    register_activation_hook($rootFile, __NAMESPACE__ . '\\activate');
+    try {
+        autoload($rootDir);
+
+        $modularity = "{$rootDir}/src/inc/modularity.php";
+        if (file_exists($modularity)) {
+            $moduleActivator = require_once $modularity;
+            $moduleActivator($rootDir);
+        }
+
+        add_action('plugins_loaded', __NAMESPACE__ . '\\bootstrap', 0);
+
+        register_activation_hook($rootFile, __NAMESPACE__ . '\\activate');
+
+        loadWordPressFunctions();
+    } catch (Exception $exception) {
+        deactivateNotice(static function () use ($exception) {
+            printf(
+                '<div class="notice notice-error"><span class="notice-title">%1$s</span><p>%2$s</p></div>',
+                esc_html__(
+                    'The plugin MultilingualPress has been deactivated',
+                    'multilingualpress'
+                ),
+                wp_kses($exception->getMessage(), [])
+            );
+        });
+        return;
+    }
 })(__FILE__);

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -86,12 +88,16 @@ class AttributeTermTranslateUrl implements Filter
 
         list($remoteTitle, $remoteSlug) = $this->termData($termTaxonomyId);
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $taxonomySlug = $this->wpdb->get_var(
             $this->wpdb->prepare(
                 "SELECT taxonomy from {$this->wpdb->prefix}term_taxonomy where term_taxonomy_id = %d",
                 $termTaxonomyId
             )
         );
+        //phpcs:enable
+
         $remoteUrl = $this->buildRemoteUrl($taxonomySlug, $remoteSlug);
 
         if ($remoteTitle and $remoteUrl) {
@@ -137,12 +143,15 @@ class AttributeTermTranslateUrl implements Filter
      */
     private function isAttributeTaxonomy(int $termTaxonomyId): bool
     {
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $taxonomySlug = (string)$this->wpdb->get_var(
             $this->wpdb->prepare(
                 "SELECT taxonomy FROM {$this->wpdb->prefix}term_taxonomy WHERE term_taxonomy_id = %d",
                 $termTaxonomyId
             )
         );
+        //phpcs:enable
 
         return false !== strpos($taxonomySlug, 'pa_');
     }
@@ -180,6 +189,7 @@ class AttributeTermTranslateUrl implements Filter
      */
     private function termData(int $termTaxonomyId): array
     {
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $termData = $this->wpdb->get_results(
             $this->wpdb->prepare(
                 $this->remoteTermSql(),
@@ -187,6 +197,7 @@ class AttributeTermTranslateUrl implements Filter
             ),
             ARRAY_N
         );
+        //phpcs:enable
 
         $termData = array_filter((array)$termData);
         if (!$termData) {

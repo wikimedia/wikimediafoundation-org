@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,6 +17,7 @@ namespace Inpsyde\MultilingualPress\Core\Admin\Settings\Cache;
 use Inpsyde\MultilingualPress\Core\Admin\Settings\SettingsUpdater;
 use Inpsyde\MultilingualPress\Framework\Auth\Auth;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
+
 use function Inpsyde\MultilingualPress\stringToBool;
 
 /**

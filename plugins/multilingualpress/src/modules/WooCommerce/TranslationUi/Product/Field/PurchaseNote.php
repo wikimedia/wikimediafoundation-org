@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -33,7 +35,7 @@ class PurchaseNote
         $key = MetaboxFields::FIELD_PURCHASE_NOTE;
         $value = $this->value($relationshipContext);
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <div class="options_group">
             <p class="form-field <?= $key ?>_field">
@@ -90,6 +92,11 @@ class PurchaseNote
     {
         $product = wc_get_product($relationshipContext->remotePostId());
         $value = '';
+
+        if (!$product) {
+            return $value;
+        }
+
         if (method_exists($product, 'get_purchase_note')) {
             $value = $product->get_purchase_note('edit');
         }

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -23,9 +25,10 @@ use Inpsyde\MultilingualPress\Framework\NetworkState;
 use Inpsyde\MultilingualPress\Framework\Url\SimpleUrl;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
 use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
-use function Inpsyde\MultilingualPress\siteLocaleName;
 use InvalidArgumentException;
 use UnexpectedValueException;
+
+use function Inpsyde\MultilingualPress\siteLocaleName;
 
 /**
  * Class CollectionFactory

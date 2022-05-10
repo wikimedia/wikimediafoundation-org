@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,9 +14,9 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\ACF\TranslationUi\Post\Field;
 
+use Inpsyde\MultilingualPress\Module\ACF\TranslationUi\Post\MetaboxFields;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
 use Inpsyde\MultilingualPress\TranslationUi\Post\RelationshipContext;
-use Inpsyde\MultilingualPress\Module\ACF\TranslationUi\Post\MetaboxFields;
 
 class CopyACFFields
 {
