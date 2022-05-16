@@ -93,13 +93,16 @@ function render_block( $attributes ) : string {
 		}, false );
 
 		if ( ! $in_translated ) {
-			$args['tax_query'] = [
+			if ( ! isset( $args['tax_query'] ) ) {
+				$args['tax_query'] = [];
+			}
+			$args['tax_query'] = array_merge( $args['tax_query'], [
 				[
 					'taxonomy' => 'content-language',
 					'field' => 'term_id',
 					'terms' => [ wmf_get_current_content_language_term()->term_id ],
 				]
-			];
+			] );
 		}
 	}
 
