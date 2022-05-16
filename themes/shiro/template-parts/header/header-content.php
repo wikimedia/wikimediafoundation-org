@@ -5,6 +5,10 @@
  * @package shiro
  */
 
+if ( is_front_page() && has_blocks() ) {
+	return;
+}
+
 $page_header_data = $args;
 
 $h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
@@ -30,7 +34,7 @@ $wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '');
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
 $bg_opts          = wmf_get_background_image();
-$bg_color         = $bg_opts['color'] ? 'pink' : 'blue';
+$bg_color         = ( is_array( $bg_opts ) && $bg_opts['color'] ) ? 'pink' : 'blue';
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = wmf_get_translations();
@@ -75,8 +79,10 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 
 						</div>
 						<div class="mw-980">
-							<div class="vision_container">
-								<?php get_template_part( 'template-parts/header/vision'); ?>
+							<div class="vision_container hero-home">
+								<div class="hero-home__heading-color has-yellow-50-background-color">
+									<?php get_template_part( 'template-parts/header/vision'); ?>
+								</div>
 							</div>
 						</div>
 					</div>
