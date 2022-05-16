@@ -58,7 +58,7 @@ function register_block() {
  * @param [] $attributes  Parsed block attributes.
  * @return string HTML markup.
  */
-function render_block( $attributes ) {
+function render_block( $attributes ) : string {
 
 	$args = [
 		'posts_per_page'   => $attributes['postsToShow'],
@@ -76,6 +76,33 @@ function render_block( $attributes ) {
 		$args['author'] = $attributes['selectedAuthor'];
 	}
 
+	if ( wmf_get_current_content_language_term() !== null ) {
+		/*
+		 * This allows for a special case where translated posts will *not* be
+		 * filtered out: If the block has `Translations` selected as one of the
+		 * categories to show, then we *don't* filter out non-main languages.
+		 * To do so would almost certainly result in no posts being returned.
+		 */
+		$in_translated = array_reduce( $args['category__in'], function( $collected, $cat_id ) {
+			if ( $collected === true ) {
+				return true;
+			}
+			$term = get_term( $cat_id, 'category' );
+
+			return $term->slug === 'translations';
+		}, false );
+
+		if ( ! $in_translated ) {
+			$args['tax_query'] = [
+				[
+					'taxonomy' => 'content-language',
+					'field' => 'term_id',
+					'terms' => [ wmf_get_current_content_language_term()->term_id ],
+				]
+			];
+		}
+	}
+
 	$recent_posts = get_posts( $args );
 
 	if ( count( $recent_posts ) > 0 ) {
@@ -87,4 +114,6 @@ function render_block( $attributes ) {
 
 		return $output;
 	}
+
+	return '';
 }
