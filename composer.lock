@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd4c8870906ef79e250ca2435ee30639",
+    "content-hash": "5ab951dd8192835471104121d45dc346",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -263,6 +263,35 @@
                 "source": "https://github.com/humanmade/asset-loader/tree/v0.5.0"
             },
             "time": "2021-01-27T15:20:46+00:00"
+        },
+        {
+            "name": "humanmade/hm-gutenberg-tools",
+            "version": "v1.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/hm-gutenberg-tools.git",
+                "reference": "89052d4e9827793931bf0cd6d4a40c985da60898"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/hm-gutenberg-tools/zipball/89052d4e9827793931bf0cd6d4a40c985da60898",
+                "reference": "89052d4e9827793931bf0cd6d4a40c985da60898",
+                "shasum": ""
+            },
+            "require-dev": {
+                "humanmade/coding-standards": "^0.6.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Human Made Gutenberg Tools",
+            "support": {
+                "issues": "https://github.com/humanmade/hm-gutenberg-tools/issues",
+                "source": "https://github.com/humanmade/hm-gutenberg-tools/tree/v1.6.2"
+            },
+            "time": "2021-12-07T07:31:47+00:00"
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",
@@ -1158,5 +1187,5 @@
         "php": "^5.2|^7"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
