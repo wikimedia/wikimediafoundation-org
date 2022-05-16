@@ -118,3 +118,94 @@ function wmf_add_default_content_language( int $post_ID ): void {
 add_action( 'wp_insert_post', 'wmf_add_default_content_language' );
 add_action( 'admin_init', 'wmf_create_current_language_term' );
 add_action( 'init', 'wmf_register_content_language_taxonomy' );
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	/**
+	 * Adds the site's main language as a content-language term for all posts that have not set a content-language term.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--dry-run[=<boolean>]]
+	 * : When true, no changes are made to DB.
+	 * ---
+	 * default: true
+	 * options:
+	 *   - true
+	 *   - false
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *    // Run command but make no changes.
+	 *    wp vip apply-default-language
+	 *
+	 *    // Run command and make changes.
+	 *    wp vip apply-default-language --dry-run=false
+	 *
+	 * @param $args
+	 * @param $opts
+	 *
+	 * @return void
+	 * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
+	 */
+	function wmf_cli_apply_default_language( $args, $opts ) {
+		wp_suspend_cache_invalidation( true );
+		wp_suspend_cache_addition( true );
+		wp_defer_term_counting( true );
+		vip_reset_db_query_log();
+		vip_reset_local_object_cache();
+
+		// Default to dry run.
+		$dry_run = ( $opts['dry-run'] ?? 'true' ) === 'true';
+
+		$term = wmf_get_and_maybe_create_current_language_term();
+		if ( $term === null ) {
+			WP_CLI::error( 'Count not find term for current language!' );
+			return;
+		}
+
+		$query_args = [
+			'post_types' => apply_filters( 'wmf_content_language_post_types', [ 'post' ] ),
+			'posts_per_page' => 50,
+			'fields' => 'ids',
+			'tax_query' => [
+				[
+					'taxonomy' => 'content-language',
+					'field' => 'term_id',
+					'terms' => [ $term->term_id ],
+					'operator' => 'NOT EXISTS',
+				]
+			]
+		];
+		$posts = get_posts( $query_args );
+		$count = 0;
+		while ( count( $posts ) > 0 ) {
+			foreach ( $posts as $post_id ) {
+				$terms = wp_get_post_terms( $post_id, 'content-language' );
+				if ( is_wp_error( $terms ) ) {
+					WP_CLI::error( "$post_id - Cannot find content-language taxonomy!" );
+					$count++;
+					continue;
+				}
+				if ( count($terms) > 0 ) {
+					WP_CLI::success( "$post_id - Has languages; no need to update." );
+					$count++;
+					continue;
+				}
+
+				if ( ! $dry_run) {
+					wmf_add_default_content_language( $post_id );
+				}
+				WP_CLI::success( "$post_id - Updated content-language terms!" );
+				$count++;
+				unset( $terms );
+			}
+			vip_reset_db_query_log();
+			vip_reset_local_object_cache();
+			$posts = get_posts( $query_args );
+		}
+		wp_defer_term_counting( false );
+		WP_CLI::success( "Updated $count posts." );
+	}
+	\WP_CLI::add_command( 'vip apply-default-language', 'wmf_cli_apply_default_language' );
+}
