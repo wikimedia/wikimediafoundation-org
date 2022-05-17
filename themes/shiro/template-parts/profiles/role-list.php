@@ -42,7 +42,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 	?>
 
 	<?php
-	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executives ) && empty( $experts ) ) ) :
+	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executive ) && empty( $experts ) ) ) :
 		if ( ! empty( $executive ) ) :
 			?>
 			<ul class="role__staff-list">
