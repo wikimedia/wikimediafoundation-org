@@ -75,10 +75,19 @@ function render_block( $attributes ) {
 	];
 
 	$categories = array_column( $attributes['categories'] ?? [], 'id' );
+	$excluded_categories = array_column( $attributes['excludedCategories'] ?? [], 'id' );
+
 	if ( count( $categories ) > 0 ) {
 		$args['cat'] = join( ',', $categories );
 	}
 
+	if ( count( $excluded_categories ) > 0 ) {
+		if ( ! isset( $args['cat'] ) ) {
+			$args['cat'] = '';
+		}
+		$args['cat'] = array_reduce( $excluded_categories, function( $carry, $item ) {
+			return $carry . ",-$item";
+		}, $args['cat'] );
 	}
 
 	if ( isset( $attributes['selectedAuthor'] ) ) {
