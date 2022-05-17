@@ -171,7 +171,21 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 		$query_args = [
 			'post_types' => apply_filters( 'wmf_content_language_post_types', [ 'post' ] ),
-			'posts_per_page' => 50,
+			/*
+			 * Getting *all* posts is a bad practice, but in this case it's
+			 * the simplest solution:
+			 * - The action the loop takes changes the thing the query looks
+			 *   for, so originally this just repeated the query.
+			 * - This works fine across multiple queries for dry-run=false, but
+			 *   for dry-run=true (the default) it creates an infinite loop.
+			 * - These should behave the same, with changes to the DB being the
+			 *   only difference, so the above is a problem.
+			 * In this particular context, we can be 99% certain we're only
+			 * running this command in a known environment with ~500 posts, and
+			 * the action we run on each post is minimal. Given that, a query
+			 * getting *all* posts should be safe.
+			 */
+			'posts_per_page' => -1,
 			'fields' => 'ids',
 			'tax_query' => [
 				[
@@ -184,30 +198,25 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		];
 		$posts = get_posts( $query_args );
 		$count = 0;
-		while ( count( $posts ) > 0 ) {
-			foreach ( $posts as $post_id ) {
-				$terms = wp_get_post_terms( $post_id, 'content-language' );
-				if ( is_wp_error( $terms ) ) {
-					WP_CLI::error( "$post_id - Cannot find content-language taxonomy!" );
-					$count++;
-					continue;
-				}
-				if ( count($terms) > 0 ) {
-					WP_CLI::success( "$post_id - Has languages; no need to update." );
-					$count++;
-					continue;
-				}
-
-				if ( ! $dry_run) {
-					wmf_add_default_content_language( $post_id );
-				}
-				WP_CLI::success( "$post_id - Updated content-language terms!" );
+		foreach ( $posts as $post_id ) {
+			$terms = wp_get_post_terms( $post_id, 'content-language' );
+			if ( is_wp_error( $terms ) ) {
+				WP_CLI::error( "$post_id - Cannot find content-language taxonomy!" );
 				$count++;
-				unset( $terms );
+				continue;
 			}
-			vip_reset_db_query_log();
-			vip_reset_local_object_cache();
-			$posts = get_posts( $query_args );
+			if ( count($terms) > 0 ) {
+				WP_CLI::success( "$post_id - Has languages; no need to update." );
+				$count++;
+				continue;
+			}
+
+			if ( ! $dry_run) {
+				wmf_add_default_content_language( $post_id );
+			}
+			WP_CLI::success( "$post_id - Updated content-language terms!" );
+			$count++;
+			unset( $terms );
 		}
 		wp_defer_term_counting( false );
 		WP_CLI::success( "Updated $count posts." );
