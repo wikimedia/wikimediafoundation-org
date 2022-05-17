@@ -158,6 +158,11 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		// Default to dry run.
 		$dry_run = ! ( ( $opts['dry-run'] ?? true ) === 'false' );
 
+		if ($dry_run) {
+			WP_CLI::warning( 'This is dry run; nothing will actually be changed.' );
+			sleep( 5 );
+		}
+
 		$term = wmf_get_and_maybe_create_current_language_term();
 		if ( $term === null ) {
 			WP_CLI::error( 'Count not find term for current language!' );
