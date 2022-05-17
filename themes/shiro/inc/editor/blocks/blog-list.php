@@ -55,10 +55,11 @@ function register_block() {
 /**
  * Callback for server-side rendering for the blog-list block.
  *
- * @param [] $attributes  Parsed block attributes.
+ * @param array $attributes
+ *
  * @return string HTML markup.
  */
-function render_block( $attributes ) : string {
+function render_block( array $attributes ) : string {
 
 	$args = [
 		'posts_per_page'   => $attributes['postsToShow'],
