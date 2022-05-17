@@ -6,8 +6,8 @@
  * WordPress dependencies
  */
 import apiFetch from '@wordpress/api-fetch';
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, QueryControls } from '@wordpress/components';
+import { InspectorControls, InspectorAdvancedControls, useBlockProps } from '@wordpress/block-editor';
+import { PanelBody, QueryControls, FormTokenField } from '@wordpress/components';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -42,6 +42,12 @@ export const settings = {
 				type: 'object',
 			},
 		},
+		excludedCategories: {
+			type: 'array',
+			items: {
+				type: 'object',
+			},
+		},
 		order: {
 			type: 'string',
 			default: 'desc',
@@ -62,6 +68,7 @@ export const settings = {
 		const {
 			postsToShow,
 			categories,
+			excludedCategories,
 			order,
 			orderBy,
 			selectedAuthor,
@@ -71,9 +78,17 @@ export const settings = {
 			className: 'blog-list',
 		} );
 
-		const [ categoriesList, setCategoriesList ] = useState( [] );
 		const [ authorList, setAuthorList ] = useState( [] );
+		const [ categoriesList, setCategoriesList ] = useState( [] );
 		const categorySuggestions = categoriesList.reduce(
+			( accumulator, category ) => ( {
+				...accumulator,
+				[ category.name ]: category,
+			} ),
+			{}
+		);
+		const [ excludedCategoriesList, setExcludedCategoriesList ] = useState( [] );
+		const excludedCategorySuggestions = excludedCategoriesList.reduce(
 			( accumulator, category ) => ( {
 				...accumulator,
 				[ category.name ]: category,
@@ -82,31 +97,31 @@ export const settings = {
 		);
 
 		/**
-		 * Handle selecting a category from the list.
-		 *
-		 * (Copied from the core/latest-posts block.)
+		 * Return a function for selecting categories.
 		 */
-		const selectCategories = tokens => {
-			const hasNoSuggestion = tokens.some(
-				token =>
-					typeof token === 'string' && ! categorySuggestions[ token ]
-			);
-			if ( hasNoSuggestion ) {
-				return;
-			}
-			// Categories that are already will be objects, while new additions will be strings (the name).
-			// allCategories nomalizes the array so that they are all objects.
-			const allCategories = tokens.map( token => {
-				return typeof token === 'string'
-					? categorySuggestions[ token ]
-					: token;
-			} );
-			// We do nothing if the category is not selected
-			// from suggestions.
-			if ( allCategories.includes( null ) ) {
-				return false;
-			}
-			setAttributes( { categories: allCategories } );
+		const createSelectCategories = ( suggestions, setter ) => {
+			return tokens => {
+				const hasNoSuggestion = tokens.some(
+					token =>
+						typeof token === 'string' && ! suggestions[ token ]
+				);
+				if ( hasNoSuggestion ) {
+					return;
+				}
+				// Categories that are already will be objects, while new additions will be strings (the name).
+				// allCategories nomralizes the array so that they are all objects.
+				const allCategories = tokens.map( token => {
+					return typeof token === 'string'
+						? suggestions[ token ]
+						: token;
+				} );
+				// We do nothing if the category is not selected
+				// from suggestions.
+				if ( allCategories.includes( null ) ) {
+					return false;
+				}
+				setter( allCategories );
+			};
 		};
 
 		const isStillMounted = useRef();
@@ -125,11 +140,13 @@ export const settings = {
 				.then( data => {
 					if ( isStillMounted.current ) {
 						setCategoriesList( data );
+						setExcludedCategoriesList( data );
 					}
 				} )
 				.catch( () => {
 					if ( isStillMounted.current ) {
 						setCategoriesList( [] );
+						setExcludedCategoriesList( [] );
 					}
 				} );
 			apiFetch( {
@@ -170,7 +187,7 @@ export const settings = {
 									selectedAuthor: value !== '' ? Number( value ) : undefined,
 								} )
 							}
-							onCategoryChange={ selectCategories }
+							onCategoryChange={ createSelectCategories( categorySuggestions, allCategories => setAttributes( { categories: allCategories } ) ) }
 							onNumberOfItemsChange={ postsToShow => setAttributes( { postsToShow } ) }
 							onOrderByChange={ orderBy => setAttributes( { orderBy } ) }
 							onOrderChange={ order => setAttributes( { order } ) }
@@ -178,6 +195,20 @@ export const settings = {
 					</PanelBody>
 
 				</InspectorControls>
+				<InspectorAdvancedControls>
+					<FormTokenField
+						key="query-controls-categories-select"
+						label={ __( 'Excluded Categories' ) }
+						maxSuggestions={ 20 }
+						suggestions={ Object.keys( excludedCategorySuggestions ) }
+						value={ excludedCategories &&
+							excludedCategories.map( item => ( {
+								id: item.id,
+								value: item.name || item.value,
+							} ) ) }
+						onChange={ createSelectCategories( excludedCategorySuggestions, allCategories => setAttributes( { excludedCategories: allCategories } ) ) }
+					/>
+				</InspectorAdvancedControls>
 				<ServerSideRender
 					attributes={ attributes }
 					block={ name }

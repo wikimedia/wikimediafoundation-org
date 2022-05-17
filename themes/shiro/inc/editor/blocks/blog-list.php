@@ -36,6 +36,12 @@ function register_block() {
 						'type' => 'object',
 					],
 				],
+				'excludedCategories' => [
+					'type' => 'array',
+					'items' => [
+						'type' => 'object',
+					],
+				],
 				'order' => [
 					'type' => 'string',
 					'default' => 'desc',
