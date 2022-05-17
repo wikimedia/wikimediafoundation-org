@@ -74,8 +74,6 @@ function render_block( array $attributes ) : string {
 		$args['cat'] = join( ',', $categories );
 	}
 
-	}
-
 	if ( isset( $attributes['selectedAuthor'] ) ) {
 		$args['author'] = $attributes['selectedAuthor'];
 	}
@@ -87,7 +85,7 @@ function render_block( array $attributes ) : string {
 		 * categories to show, then we *don't* filter out non-main languages.
 		 * To do so would almost certainly result in no posts being returned.
 		 */
-		$in_translated = array_reduce( $args['category__in'], function( $collected, $cat_id ) {
+		$in_translated = array_reduce( $categories, function( $collected, $cat_id ) {
 			if ( $collected === true ) {
 				return true;
 			}
