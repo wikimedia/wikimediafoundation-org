@@ -39,7 +39,7 @@ function wmf_get_current_content_language_slug(): string {
  * @return \WP_Term|null
  */
 function wmf_get_current_content_language_term(): ?WP_Term {
-	$term = get_term_by('slug', wmf_get_current_content_language_slug(), 'content-language' );
+	$term = get_term_by( 'slug', wmf_get_current_content_language_slug(), 'content-language' );
 	if ( ! is_a( $term, WP_Term::class ) ) {
 		return null;
 	}
