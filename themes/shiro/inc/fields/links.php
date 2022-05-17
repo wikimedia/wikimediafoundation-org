@@ -44,8 +44,7 @@ function wmf_links_fields() {
 			),
 		)
 	);
-	$links->add_meta_box( __( 'Off Site Links', 'shiro-admin' ), array( 'page', 'post', 'profile' ) );
+	$links->add_meta_box( __( 'Off Site Links', 'shiro-admin' ), array( 'page', 'post' ) );
 }
 add_action( 'fm_post_post', 'wmf_links_fields' );
 add_action( 'fm_post_page', 'wmf_links_fields' );
-add_action( 'fm_post_profile', 'wmf_links_fields' );
