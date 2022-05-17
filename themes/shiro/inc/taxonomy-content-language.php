@@ -20,6 +20,8 @@ function wmf_register_content_language_taxonomy(): void {
 /**
  * Get the slug (i.e. the locale code) for the main language of the current site.
  *
+ * Returns an empty string if it can't determine the primary language.
+ *
  * In practice, this will always be US English, but this is better than
  * hard-coding that.
  *
