@@ -69,8 +69,11 @@ function render_block( array $attributes ) : string {
 		'suppress_filters' => false,
 	];
 
-	if ( isset( $attributes['categories'] ) ) {
-		$args['category__in'] = array_column( $attributes['categories'], 'id' );
+	$categories = array_column( $attributes['categories'] ?? [], 'id' );
+	if ( count( $categories ) > 0 ) {
+		$args['cat'] = join( ',', $categories );
+	}
+
 	}
 
 	if ( isset( $attributes['selectedAuthor'] ) ) {
