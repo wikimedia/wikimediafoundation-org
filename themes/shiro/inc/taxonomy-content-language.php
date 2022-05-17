@@ -24,17 +24,19 @@ function wmf_register_content_language_taxonomy(): void {
  * hard-coding that.
  *
  * @return string
- * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
  */
 function wmf_get_current_content_language_slug(): string {
-	return \Inpsyde\MultilingualPress\siteLocale( get_current_blog_id() );
+	try {
+		return \Inpsyde\MultilingualPress\siteLocale( get_current_blog_id() );
+	} catch (\Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable $exception) {
+		return '';
+	}
 }
 
 /**
  * Get the term corresponding to the main language, or null if none exists.
  *
  * @return \WP_Term|null
- * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
  */
 function wmf_get_current_content_language_term(): ?WP_Term {
 	$term = get_term_by('slug', wmf_get_current_content_language_slug(), 'content-language' );
@@ -51,7 +53,6 @@ function wmf_get_current_content_language_term(): ?WP_Term {
  * Returns null if the term cannot be found and cannot be created.
  *
  * @return \WP_Term|null
- * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
  */
 function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
 	$term = wmf_get_current_content_language_term();
@@ -66,7 +67,6 @@ function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
  * Create a content-language term for the site's current main language.
  *
  * @return \WP_Term|null
- * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
  */
 function wmf_create_current_language_term(): ?WP_Term {
 	// Make sure that we always have the "main language" term.
@@ -90,7 +90,6 @@ function wmf_create_current_language_term(): ?WP_Term {
  * @param int $post_ID
  *
  * @return void
- * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
  */
 function wmf_add_default_content_language( int $post_ID ): void {
 	$languages = wp_get_post_terms( $post_ID, 'content-language' );
@@ -146,7 +145,6 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	 * @param $opts
 	 *
 	 * @return void
-	 * @throws \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable
 	 */
 	function wmf_cli_apply_default_language( $args, $opts ) {
 		wp_suspend_cache_invalidation( true );
