@@ -156,7 +156,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		vip_reset_local_object_cache();
 
 		// Default to dry run.
-		$dry_run = ( $opts['dry-run'] ?? 'true' ) === 'true';
+		$dry_run = ! ( ( $opts['dry-run'] ?? true ) === 'false' );
 
 		$term = wmf_get_and_maybe_create_current_language_term();
 		if ( $term === null ) {
