@@ -18,7 +18,6 @@ const { compose } = wp.compose;
  *
  */
 const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
-	console.dir( postMeta );
 	let links = null;
 
 	if ( postMeta.contact_links.length ) {
