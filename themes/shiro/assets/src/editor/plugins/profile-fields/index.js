@@ -13,7 +13,7 @@ const {
 	ToggleControl,
 } = wp.components;
 
-const { withSelect, withDispatch } = wp.data;
+const { select, withSelect, useSelect, withDispatch } = wp.data;
 const { compose } = wp.compose;
 
 /**
@@ -21,6 +21,7 @@ const { compose } = wp.compose;
  */
 const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 	let links = null;
+	const { connectedUser } = useSelect( select => ( { connectedUser: select( 'core' ).getEntityRecord( 'postType', 'guest-author', postMeta.connected_user, { _fields: [ 'author_name' ] } )?.author_name } ) );
 
 	/**
 	 *
@@ -28,9 +29,8 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 	const suggestionsRender = props => (
 		<div className="components-dropdown-menu__menu">
 			{ props.suggestions.map( ( suggestion, index ) => {
-				console.log( suggestion );
 				return (
-					<div className="components-button components-dropdown-menu__menu-item is-active has-text has-icon" >{ suggestion.title }</div> );
+					<div className="components-button components-dropdown-menu__menu-item is-active has-text has-icon" onClick={ () => setPostMeta( { connected_user: suggestion.id } ) } >{ suggestion.title }</div> );
 			} ) }
 		</div>
 	);
