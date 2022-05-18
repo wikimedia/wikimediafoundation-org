@@ -1,12 +1,14 @@
+import './style.scss';
+import {
+	__experimentalLinkControlSearchInput as LinkControlSearchInput,
+} from '@wordpress/block-editor';
+
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { PluginDocumentSettingPanel } = wp.editPost;
-const { Fragment } = wp.element;
 
 const {
-	PanelBody,
 	Button,
-	IconButton,
 	TextControl,
 	ToggleControl,
 } = wp.components;
@@ -19,6 +21,19 @@ const { compose } = wp.compose;
  */
 const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 	let links = null;
+
+	/**
+	 *
+	 */
+	const suggestionsRender = props => (
+		<div className="components-dropdown-menu__menu">
+			{ props.suggestions.map( ( suggestion, index ) => {
+				console.log( suggestion );
+				return (
+					<div className="components-button components-dropdown-menu__menu-item is-active has-text has-icon" >{ suggestion.title }</div> );
+			} ) }
+		</div>
+	);
 
 	if ( postMeta.contact_links.length ) {
 		links = postMeta.contact_links.map( ( link, index ) => {
@@ -67,6 +82,22 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 			<ToggleControl checked={ postMeta.profile_featured }
 				label={ __( 'Featured?' ) }
 				onChange={ value => setPostMeta( { profile_featured: value } ) }
+			/>
+			<LinkControlSearchInput
+				allowDirectEntry={ false }
+				placeholder="Search here..."
+				renderSuggestions={ value => {
+					console.dir( value );
+					return suggestionsRender( value );
+				} }
+				suggestionsQuery={ {
+					type: 'post',
+					subtype: 'guest-author',
+				} }
+				value={ postMeta.connected_user }
+				withCreateSuggestion={ false }
+				withURLSuggestion={ false }
+				onChange={ connected_user => setPostMeta( { connected_user } ) }
 			/>
 			<h2>{ __( 'Contact Links', 'shiro-admin' ) }</h2>
 			<ul>
