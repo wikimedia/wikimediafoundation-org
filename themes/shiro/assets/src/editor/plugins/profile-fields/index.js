@@ -23,7 +23,7 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 
 	if ( postMeta.contact_links.length ) {
 		links = postMeta.contact_links.map( ( link, index ) => {
-			return ( <li key={ index }>
+			return ( <li key={ index } className={ 'profile-fields__contact-link' }>
 				<TextControl label={ __( 'Title', 'shiro-admin' ) }
 					value={ postMeta.contact_links[index].title }
 					onChange={ value => {
