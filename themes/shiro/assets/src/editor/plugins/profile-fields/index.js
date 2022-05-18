@@ -68,20 +68,19 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 				label={ __( 'Featured?' ) }
 				onChange={ value => setPostMeta( { profile_featured: value } ) }
 			/>
-			<PanelBody title={ __( 'Contact Links', 'shiro-admin' ) }>
-				<ul>
-					{ links }
-				</ul>
-				<Button
-					isDefault
-					onClick={ () => setPostMeta( {
-						contact_links: [ ...postMeta.contact_links, {
-							title: '',
-							link: '',
-						} ],
-					} ) }
-				>{ __( 'Add Contact Link' ) }</Button>
-			</PanelBody>
+			<h2>{ __( 'Contact Links', 'shiro-admin' ) }</h2>
+			<ul>
+				{ links }
+			</ul>
+			<Button
+				isDefault
+				onClick={ () => setPostMeta( {
+					 contact_links: [ ...postMeta.contact_links, {
+						  title: '',
+						  link: '',
+					 } ],
+				} ) }
+			>{ __( 'Add Contact Link' ) }</Button>
 		</PluginDocumentSettingPanel>
 	);
 };
