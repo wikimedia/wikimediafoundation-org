@@ -39,15 +39,15 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 						setPostMeta( { contact_links } );
 					} }
 				/>
-				<IconButton
-					icon="no-alt"
-					label="Delete link"
+				<Button
+					isDestructive
+					isSmall
 					onClick={ () => {
 						const contact_links = [ ...postMeta.contact_links ];
-						contact_links.splice(index, 1);
+						contact_links.splice( index, 1 );
 						setPostMeta( { contact_links } );
 					} }
-				/>
+				>{ __( 'Remove Link' ) }</Button>
 			</li> );
 		} );
 	}
