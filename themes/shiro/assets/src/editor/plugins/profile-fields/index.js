@@ -1,4 +1,5 @@
 import './style.scss';
+import apiFetch from '@wordpress/api-fetch';
 import {
 	__experimentalLinkControlSearchInput as LinkControlSearchInput,
 } from '@wordpress/block-editor';
@@ -11,29 +12,76 @@ const {
 	Button,
 	TextControl,
 	ToggleControl,
+	Popover,
 } = wp.components;
 
-const { select, withSelect, useSelect, withDispatch } = wp.data;
+const { withSelect, useSelect, withDispatch } = wp.data;
+const { useState, useEffect } = wp.element;
 const { compose } = wp.compose;
 
 /**
  *
  */
-const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
+const ProfileFields = ( { authorName, postMeta, setPostMeta } ) => {
 	let links = null;
-	const { connectedUser } = useSelect( select => ( { connectedUser: select( 'core' ).getEntityRecord( 'postType', 'guest-author', postMeta.connected_user, { _fields: [ 'author_name' ] } )?.author_name } ) );
+	let authors = null;
+	// const { connectedUser } = useSelect( select => ( { connectedUser: select( 'core' ).getEntityRecord( 'postType', 'guest-author', postMeta.connected_user ) } ), { postMeta } );
+	// console.dir(connectedUser);
+
+	const [ suggestions, setSuggestions ] = useState( [] );
+	const [ author, setAuthor ] = useState(authorName);
+	const [ isSearchingAuthor, setIsSearchingAuthor ] = useState( false );
+
+	useEffect( () => {
+		return () => {
+			findAuthor( author );
+		};
+	}, [ author ] );
+
+	useEffect( () => {
+		return () => {
+			setAuthor( authorName );
+		};
+	} );
+	/**
+	 *
+	 */
+	const findAuthor = search => {
+		const searchParams = new URLSearchParams( {
+			search,
+			per_page: 20,
+			type: 'post',
+			subtype: 'guest-author',
+		} );
+		apiFetch( { path: `/wp/v2/search?${searchParams}` } ).then( authors => {
+			setSuggestions( authors.map( guest => {
+				return {
+					id: guest.id,
+					title: guest.title,
+				};
+			} )
+			);
+		} );
+	};
 
 	/**
 	 *
 	 */
-	const suggestionsRender = props => (
-		<div className="components-dropdown-menu__menu">
-			{ props.suggestions.map( ( suggestion, index ) => {
-				return (
-					<div className="components-button components-dropdown-menu__menu-item is-active has-text has-icon" onClick={ () => setPostMeta( { connected_user: suggestion.id } ) } >{ suggestion.title }</div> );
-			} ) }
-		</div>
-	);
+	const selectAuthor = ( id, name ) => {
+		setPostMeta( { connected_user: id } );
+		setAuthor( name );
+		setIsSearchingAuthor( false );
+	};
+
+	if ( suggestions.length ) {
+		authors = suggestions.map( author => {
+			return (
+				<Button key={ author.id }
+					onClick={ () => selectAuthor( author.id, author.title ) }
+				>{ author.title }</Button>
+			);
+		} );
+	}
 
 	if ( postMeta.contact_links.length ) {
 		links = postMeta.contact_links.map( ( link, index ) => {
@@ -83,22 +131,13 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 				label={ __( 'Featured?' ) }
 				onChange={ value => setPostMeta( { profile_featured: value } ) }
 			/>
-			<LinkControlSearchInput
-				allowDirectEntry={ false }
-				placeholder="Search here..."
-				renderSuggestions={ value => {
-					console.dir( value );
-					return suggestionsRender( value );
-				} }
-				suggestionsQuery={ {
-					type: 'post',
-					subtype: 'guest-author',
-				} }
-				value={ postMeta.connected_user }
-				withCreateSuggestion={ false }
-				withURLSuggestion={ false }
-				onChange={ connected_user => setPostMeta( { connected_user } ) }
-			/>
+			<div>
+				<TextControl label={ 'Author' }
+					value={ author }
+					onChange={ value => setAuthor( value ) }
+					onFocus={ () => setIsSearchingAuthor( true ) } />
+				{ isSearchingAuthor && suggestions.length > 0 && <Popover>{ authors }</Popover> }
+			</div>
 			<h2>{ __( 'Contact Links', 'shiro-admin' ) }</h2>
 			<ul>
 				{ links }
@@ -106,10 +145,10 @@ const ProfileFields = ( { postType, postMeta, setPostMeta } ) => {
 			<Button
 				isDefault
 				onClick={ () => setPostMeta( {
-					 contact_links: [ ...postMeta.contact_links, {
-						  title: '',
-						  link: '',
-					 } ],
+					contact_links: [ ...postMeta.contact_links, {
+						title: '',
+						link: '',
+					} ],
 				} ) }
 			>{ __( 'Add Contact Link' ) }</Button>
 		</PluginDocumentSettingPanel>
@@ -121,6 +160,7 @@ const ProfileFieldsComposed = compose( [
 		return {
 			postMeta: select( 'core/editor' ).getEditedPostAttribute( 'meta' ),
 			postType: select( 'core/editor' ).getCurrentPostType(),
+			authorName: select( 'core' ).getEntityRecord( 'postType', 'guest-author', select( 'core/editor' ).getEditedPostAttribute( 'meta' )?.connected_user )?.author_name,
 		};
 	} ),
 	withDispatch( dispatch => {
@@ -137,6 +177,6 @@ const ProfileFieldsComposed = compose( [
 
 registerPlugin( 'profile-fields', {
 	render: () => {
-		return ( <ProfileFieldsComposed /> );
+		return ( <ProfileFieldsComposed/> );
 	},
 } );
