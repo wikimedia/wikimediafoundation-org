@@ -53,6 +53,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/card',
 		'shiro/contact',
 		'shiro/double-heading',
+		'shiro/linked-toc-columns',
 		'shiro/share-article',
 		'shiro/spotlight',
 		'shiro/stairs',
@@ -102,6 +103,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 	if ( $post->post_type === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
+		$blocks[] = 'shiro/report-landing-hero';
 	}
 
 	return $blocks;
