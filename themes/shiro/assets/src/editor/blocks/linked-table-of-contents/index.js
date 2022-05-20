@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import domReady from '@wordpress/dom-ready';
+import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
@@ -29,21 +29,21 @@ export const name = 'shiro/linked-toc',
 			const blockProps = useBlockProps( {
 				className: 'linked-table-of-contents table-of-contents linked-toc toc',
 			} );
+			const permalink = useSelect( select => select( 'core/editor' ).getPermalink() );
 
 			return (
 				<div className="toc-nav linked-toc-nav">
-					<div { ...blockProps }>
+					<ul { ...blockProps }>
 						<InnerBlocks
-							allowedBlocks={ [ 'shiro/external-link' ] }
+							allowedBlocks={ [ 'shiro/linked-toc-item' ] }
 							template={ [
-								[ 'shiro/external-link', {
-									url: '#',
-									heading: __( 'WIKIMEDIA IN EDUCATION', 'shiro' ),
+								[ 'shiro/linked-toc-item', {
+									url: permalink,
 								} ],
-								[ 'shiro/external-link' ],
+								[ 'shiro/linked-toc-item' ],
 							] }
 						/>
-					</div>
+					</ul>
 				</div>
 			);
 		},
@@ -57,12 +57,10 @@ export const name = 'shiro/linked-toc',
 			} );
 
 			return (
-				<div
-					className="toc-nav linked-toc-nav"
-				>
-					<div { ...blockProps }>
+				<div className="toc-nav linked-toc-nav">
+					<ul { ...blockProps }>
 						<InnerBlocks.Content />
-					</div>
+					</ul>
 				</div>
 			);
 		},

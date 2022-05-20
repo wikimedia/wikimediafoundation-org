@@ -1,94 +1,13 @@
-.linked-table-of-contents {
-  .external-link {
-    &__text {
-      display: none;
-    }
-    &__heading {
-      svg {
-        display: none;
-      }
-    }
-  }
-}
-
-// Table of contents block styles
+// Linked table of contents block styles
 .linked-toc {
 
-  .external-link {
-    color: $wmui-color-base0;
-    display: block;
-    line-height: 1.75;
-    padding: rem(10) rem(27) rem(14) rem(18);
-    text-decoration: none;
+    .toc {
 
-    @media ( min-width: #{$core-gutenberg-break-small} ) {
-      font-size: rem(14);
-      padding: rem(9) rem(15);
-    }
+      &__nested {
 
-    &:hover {
-      background-color: $wmui-color-blue90;
-      text-decoration: none;
-    }
-
-    &--active,
-    &--active:hover,
-    &--active:focus,
-    &--active-page,
-    &--active-page:hover,
-    &--active-page:focus {
-      background-color: $wmui-color-blue50;
-      color: $wmui-color-base100;
-      font-weight: 700;
-    }
-
-    &:focus {
-      @include focus-ring(true, true);
-    }
-
-    @media ( max-width: #{$core-gutenberg-break-small} ) {
-      .external-link:first-child & {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-
-        &::after {
-          @include style-guide-dropdown-caret-blue();
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: contain;
-          content: "";
-          display: block;
-          height: rem(16);
-          margin-left: rem(25);
-          transform: rotate(180deg);
-          width: rem(16);
-        }
-
-        &--active::after {
-          @include style-guide-dropdown-caret-white();
+        ul {
+          margin-bottom: 0;
         }
       }
     }
-  }
-
-  // Nested lists
-  &__nested {
-    @include list-reset;
-
-    @media ( max-width: #{$core-gutenberg-break-small} ) {
-      display: none;
-    }
-  }
-
-  &__nested &__link {
-    padding-left: rem(44);
-
-    &--active,
-    &--active:hover {
-      background-color: inherit;
-      color: $wmui-color-base0;
-    }
-  }
-
 }

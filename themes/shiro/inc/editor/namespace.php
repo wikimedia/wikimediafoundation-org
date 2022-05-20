@@ -54,6 +54,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/contact',
 		'shiro/double-heading',
 		'shiro/linked-toc-columns',
+		'shiro/linked-toc-item',
 		'shiro/share-article',
 		'shiro/spotlight',
 		'shiro/stairs',
