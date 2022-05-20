@@ -2,7 +2,7 @@
 /**
  * Additional functionality for the shiro/linked-toc-item block.
  *
- * This block is defined in the block JS.
+ * This block is defined as a client side block in JS. This is additional functionality when rendering the block.
  */
 
 namespace WMF\Editor\Blocks\LinkedTOCItem;
@@ -30,28 +30,10 @@ function set_active_item( string $block_content, array $block ) {
 		return $block_content;
 	}
 
-	// Apply the active class if the page url is active.
-	$link_block_doc = new \DOMDocument();
-	$link_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
+	// Possibly retrieve updated content that includes new classes.
+	$content = __set_active_item_helper( $block_content, true );
 
-	$a_element = $link_block_doc->getElementsByTagName('a')[0];
-
-	$classes = $a_element->getAttribute('class');
-	$href    = $a_element->getAttribute('href');
-
-	if ( empty( $classes ) || empty( $href ) ) {
-		return $block_content;
-	}
-	$classes = explode( ' ', $classes );
-
-	// If are on the landing page set the '#' as the active link.
-	if ( $href == get_the_permalink() ) {
-		$a_element->setAttribute( 'class', implode( array_merge( $classes, [ 'toc__link--active-page' ] ), ' ' ) );
-	}
-
-	$content = $link_block_doc->saveHTML();
-
-	return is_string( $content ) ? $content : '';
+	return is_null( $content ) ? $block_content : $content;
 }
 
 /**
@@ -118,41 +100,30 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 		$modified_blocks = false;
 		$link_blocks = $link_toc_block['innerBlocks'];
 		foreach ( $link_blocks as $order => $link_block ) {
-			if ( $link_block['blockName'] !== 'shiro/linked-toc-item' ) {
+			if ( $link_block['blockName'] !== BLOCK_NAME ) {
 				continue;
 			}
 
-			$link_block_doc = new \DOMDocument();
-			$link_block_doc->loadHTML( $link_block['innerHTML'], \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
-
-			$a_element = $link_block_doc->getElementsByTagName('a')[0];
-			$classes   = $a_element->getAttribute('class');
-			$href      = $a_element->getAttribute('href');
-
-			if ( empty( $classes ) || empty( $href ) ) {
-				continue;
-			}
-			$classes = explode( ' ', $classes );
-
-			// We are on the active link.
-			$is_active_item = ( $href === get_permalink() );
-			if ( ! $is_active_item ) {
+			// Possibly retrieve updated content that includes new classes.
+			$content = __set_active_item_helper( $link_block['innerHTML'], false );
+			if ( is_null( $content ) ) {
 				continue;
 			}
 
-			$a_element->setAttribute( 'class', implode( array_merge( $classes, [ 'toc__link--active' ] ), ' ' ) );
+			// Append the original block content as a submenu after the item.
+			$modified_block_content = sprintf( '%1$s<ul class="toc__nested">%2$s</ul>', $content, $block_content );
 
-			// Add the original block content.
-			$modified_block_content = sprintf( '%1$s<ul class="toc__nested">%2$s</ul>', $link_block_doc->saveHTML(), $block_content );
-
+			// Set the block properties to be the updated content.
 			$link_block['innerHTML'] = $link_block['innerContent'][0] = $modified_block_content;
 
 			// Add the items back on to the parent block stack.
 			$link_blocks[ $order ] = $link_block;
 
+			// Identify we have updated the content.
 			$modified_blocks = true;
 		}
 
+		// If blocked were modified, we need to update the left column.
 		if ( $modified_blocks ) {
 			$link_toc_block['innerBlocks'] = $link_blocks;
 			array_unshift($left_blocks['innerBlocks'], $link_toc_block );
@@ -162,4 +133,44 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 	}
 
 	return $block_content;
+}
+
+/**
+ * Helper function to parse linked toc items and add active classes if the current post url matched the url specified
+ * on the item.
+ *
+ * @param string $block_content The block content about to be appended.
+ * @param boolean $page Identify if the current item is a page.
+ *
+ * @return string|null
+ */
+function __set_active_item_helper( $block_content, $page ) {
+	// We need to get the items class and href, so using a domdoc to confidently locate them.
+	$link_block_doc = new \DOMDocument();
+	$link_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
+
+	// Check for the link.
+	if ( empty( $link_block_doc->getElementsByTagName('a')->length ) ) {
+		return null;
+	}
+
+	$a_element = $link_block_doc->getElementsByTagName('a')[0];
+	$classes   = $a_element->getAttribute('class');
+	$href      = $a_element->getAttribute('href');
+
+	if ( empty( $classes ) || empty( $href ) ) {
+		return null;
+	}
+	$classes = explode( ' ', $classes );
+
+	// Check if we are on the active link.
+	$is_active_item = ( $href === get_permalink() );
+	if ( ! $is_active_item ) {
+		return null;
+	}
+
+	$active_type = $page ? 'toc__link--active-page' : 'toc__link--active';
+	$a_element->setAttribute( 'class', implode( array_merge( $classes, [ $active_type ] ), ' ' ) );
+
+	return $link_block_doc->saveHTML() ?? $block_content;
 }
