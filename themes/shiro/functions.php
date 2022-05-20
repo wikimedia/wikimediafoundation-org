@@ -276,6 +276,7 @@ require get_template_directory() . '/inc/editor/patterns/communication-module.ph
 require get_template_directory() . '/inc/editor/patterns/template-default.php';
 require get_template_directory() . '/inc/editor/patterns/template-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-list.php';
+require get_template_directory() . '/inc/editor/patterns/template-report-landing.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
