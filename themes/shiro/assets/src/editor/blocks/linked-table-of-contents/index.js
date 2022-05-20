@@ -4,8 +4,6 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
-import './style.scss';
-
 export const name = 'shiro/linked-toc',
 	settings = {
 		apiVersion: 2,
