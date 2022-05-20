@@ -147,7 +147,6 @@ export const
 			const {
 				url,
 				heading,
-				text,
 			} = attributes;
 
 			return (
