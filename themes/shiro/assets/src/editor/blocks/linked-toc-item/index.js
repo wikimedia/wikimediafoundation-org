@@ -21,11 +21,9 @@ import { __ } from '@wordpress/i18n';
 /**
  * Local dependencies
  */
-import './style.scss';
-import ExternalLinkIcon from '../../../svg/individual/open.svg';
 import URLPicker from '../../components/url-picker';
 
-const ExternalLinkWithFocusOutside = withFocusOutside(
+const LinkedTOCItemWithFocusOutside = withFocusOutside(
 	class extends React.Component {
 		constructor( props ) {
 			super( props );
@@ -68,7 +66,7 @@ const ExternalLinkWithFocusOutside = withFocusOutside(
 	}
 );
 
-ExternalLinkWithFocusOutside.propTypes = {
+LinkedTOCItemWithFocusOutside.propTypes = {
 	url: PropTypes.string,
 	heading: PropTypes.string,
 	setUrl: PropTypes.func.isRequired,
@@ -78,7 +76,7 @@ ExternalLinkWithFocusOutside.propTypes = {
 /**
  * Provide a simple content structure.
  */
-ExternalLinkWithFocusOutside.Content = ( { url, heading, text } ) => {
+LinkedTOCItemWithFocusOutside.Content = ( { url, heading, text } ) => {
 	return (
 		<>
 			<a
@@ -90,7 +88,7 @@ ExternalLinkWithFocusOutside.Content = ( { url, heading, text } ) => {
 	);
 };
 
-ExternalLinkWithFocusOutside.Content.propTypes = {
+LinkedTOCItemWithFocusOutside.Content.propTypes = {
 	url: PropTypes.string,
 	heading: PropTypes.string,
 };
@@ -123,7 +121,7 @@ export const
 		/**
 		 * Edit the external links block content.
 		 */
-		edit: function EditExternalLinksBlock( { attributes, setAttributes } ) {
+		edit: function EditLinkedTOCItemsBlock( { attributes, setAttributes } ) {
 			const blockProps = useBlockProps( { className: 'toc__item linked-toc__item' } );
 			const {
 				url,
@@ -132,7 +130,7 @@ export const
 
 			return (
 				<li { ...blockProps }>
-					<ExternalLinkWithFocusOutside
+					<LinkedTOCItemWithFocusOutside
 						heading={ heading }
 						setHeading={ heading => setAttributes( { heading } ) }
 						setUrl={ url => setAttributes( { url } ) }
@@ -144,7 +142,7 @@ export const
 		/**
 		 * Save content for the external links block.
 		 */
-		save: function SaveExternalLinksBlock( { attributes } ) {
+		save: function SaveLinkedTOCItemsBlock( { attributes } ) {
 			const blockProps = useBlockProps.save( { className: 'toc__item linked-toc__item' } );
 			const {
 				url,
@@ -154,7 +152,7 @@ export const
 
 			return (
 				<li { ...blockProps }>
-					<ExternalLinkWithFocusOutside.Content
+					<LinkedTOCItemWithFocusOutside.Content
 						heading={ heading }
 						url={ url }
 					/>
