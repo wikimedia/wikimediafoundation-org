@@ -97,8 +97,15 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 		}
 
 		// Iterate over the links in the column.
-		$modified_blocks = false;
-		$link_blocks = $link_toc_block['innerBlocks'];
+		$link_blocks  = $link_toc_block['innerBlocks'];
+
+		// Do not continue if no link blocks are set on the parent link toc. Since there is only one linked toc allowed
+		// fall out completely.
+		if ( empty( $link_blocks ) ) {
+			return $block_content;
+		}
+
+		$parent_found = false;
 		foreach ( $link_blocks as $order => $link_block ) {
 			if ( $link_block['blockName'] !== BLOCK_NAME ) {
 				continue;
@@ -119,15 +126,18 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 			// Add the items back on to the parent block stack.
 			$link_blocks[ $order ] = $link_block;
 
-			// Identify we have updated the content.
-			$modified_blocks = true;
+			// Identify we found the parent link.
+			$parent_found = true;
 		}
 
-		// If blocked were modified, we need to update the left column.
-		if ( $modified_blocks ) {
-			$link_toc_block['innerBlocks'] = $link_blocks;
-			array_unshift($left_blocks['innerBlocks'], $link_toc_block );
+		// No link to this block was found on the parent linked toc block. So just return original block content.
+		if ( empty( $parent_found ) ) {
+			return $block_content;
 		}
+
+		// Re-assemble the blocks.
+		$link_toc_block['innerBlocks'] = $link_blocks;
+		array_unshift($left_blocks['innerBlocks'], $link_toc_block );
 
  		return render_block( $left_blocks );
 	}
