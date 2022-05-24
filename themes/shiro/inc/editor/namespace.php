@@ -221,6 +221,7 @@ function enqueue_block_editor_assets() {
 				'wp-element',
 				'wp-hooks',
 				'wp-token-list',
+				'hm-gb-tools-editor',
 			],
 			'handle' => 'shiro_editor_js',
 		]
