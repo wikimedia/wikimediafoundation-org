@@ -16,7 +16,44 @@ const { useSelect } = wp.data;
 const { useState, useMemo } = wp.element;
 
 /**
- *
+ * Wraps a set of ContactLinks.
+ */
+const ContactLinkList = props => {
+	const { list, setListItem } = props;
+	return ( <ul>
+		{ list.map( ( item, index ) => {
+			return ( <ContactLink
+				index={ index }
+				item={ item }
+				setLink={ setListItem }
+			/> );
+		} ) }
+	</ul> );
+};
+
+/**
+ * Individual, editable, ContactLink.
+ * Manage a single instance of a contact vector, i.e. email, social, etc.
+ */
+const ContactLink = props => {
+	const { index, item, setLink } = props;
+	return ( <li key={ index } className={ 'profile-fields__contact-link' }>
+		<TextControl label={ __( 'Title', 'shiro-admin' ) }
+			value={ item.title }
+			onChange={ value => setLink( index, { title: value } ) }
+		/>
+		<TextControl label={ __( 'Link', 'shiro-admin' ) }
+			value={ item.link }
+			onChange={ value => setLink( index, { link: value } ) }
+		/>
+		<Button
+			isDestructive
+			isSmall
+			onClick={ () => setLink( index, null ) }
+		>{ __( 'Remove Link' ) }</Button>
+	</li> );
+};
+
  */
 const ProfileFields = () => {
 	let links = null;
@@ -134,36 +171,6 @@ const ProfileFields = () => {
 	// 	} );
 	// }
 
-	if ( postMeta && postMeta.contact_links.length ) {
-		links = postMeta.contact_links.map( ( link, index ) => {
-			return ( <li key={ index } className={ 'profile-fields__contact-link' }>
-				<TextControl label={ __( 'Title', 'shiro-admin' ) }
-					value={ postMeta.contact_links[index].title }
-					onChange={ value => {
-						const contact_links = [ ...postMeta.contact_links ];
-						contact_links[index].title = value;
-						setPostMeta( { contact_links } );
-					} }
-				/>
-				<TextControl label={ __( 'Link', 'shiro-admin' ) }
-					value={ postMeta.contact_links[index].link }
-					onChange={ value => {
-						const contact_links = [ ...postMeta.contact_links ];
-						contact_links[index].link = value;
-						setPostMeta( { contact_links } );
-					} }
-				/>
-				<Button
-					isDestructive
-					isSmall
-					onClick={ () => {
-						const contact_links = [ ...postMeta.contact_links ];
-						contact_links.splice( index, 1 );
-						setPostMeta( { contact_links } );
-					} }
-				>{ __( 'Remove Link' ) }</Button>
-			</li> );
-		} );
 	}
 	return (
 		<PluginDocumentSettingPanel
@@ -196,9 +203,22 @@ const ProfileFields = () => {
 				/>
 			</div>
 			<h2>{ __( 'Contact Links', 'shiro-admin' ) }</h2>
-			<ul>
-				{ links }
-			</ul>
+			<ContactLinkList
+				list={ postMeta.contact_links }
+				setListItem={ ( index, data ) => {
+					const contact_links = [ ...postMeta.contact_links ];
+					if ( data === null ) {
+						// If data is null, that means delete this entry.
+						contact_links.splice( index, 1 );
+					} else {
+						contact_links[index] = {
+							...contact_links[index],
+							data,
+						};
+					}
+					setPostMeta( { contact_links } );
+				} }
+			/>
 			<Button
 				isDefault
 				onClick={ () => setPostMeta( {
