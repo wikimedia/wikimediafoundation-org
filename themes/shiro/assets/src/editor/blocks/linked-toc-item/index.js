@@ -101,6 +101,7 @@ export const
 		title: __( 'Linked Table Of Contents Item', 'shiro-admin' ),
 		icon: 'external',
 		category: 'wikimedia',
+		parent: [ 'shiro/linked-toc' ],
 		supports: {
 			inserter: true,
 			multiple: true,
