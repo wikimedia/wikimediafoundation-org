@@ -1,5 +1,4 @@
 import './style.scss';
-import apiFetch from '@wordpress/api-fetch';
 import { store, useEntityProp } from '@wordpress/core-data';
 
 const { __ } = wp.i18n;
@@ -10,13 +9,11 @@ const {
 	Button,
 	TextControl,
 	ToggleControl,
-	Popover,
 	ComboboxControl,
 } = wp.components;
 
-const { useSelect, useDispatch } = wp.data;
+const { useSelect } = wp.data;
 const { useState, useMemo } = wp.element;
-const { compose } = wp.compose;
 
 /**
  *
