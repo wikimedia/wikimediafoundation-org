@@ -14,7 +14,6 @@ import { __ } from '@wordpress/i18n';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker';
 import blockStyles, { applyDefaultStyle } from '../../helpers/block-styles';
-import './style.scss';
 
 export const name = 'shiro/report-landing-hero';
 
