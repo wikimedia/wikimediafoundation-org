@@ -54,19 +54,18 @@ const ContactLink = props => {
 	</li> );
 };
 
+/**
+ * Panel providing an interface to several pieces of Profile metadata.
  */
 const ProfileFields = () => {
-	let links = null;
+	const postType = useSelect( select => select( 'core/editor' ).getCurrentPostType(), [] );
 
-	const postType = useSelect(
-		select => select( 'core/editor' ).getCurrentPostType(),
-		[]
-	);
 	const [ postMeta, setPostMeta ] = useEntityProp( 'postType', postType, 'meta' );
+
 	/**
-	 * Set post meta values.
+	 * "Rehydrates" the post ID for the Connected User into a full post object,
+	 * then extracts only the values we need for the Combobox.
 	 */
-	const [ suggestions, setSuggestions ] = useState( [] );
 	const { connectedUser } = useSelect( select => {
 		const { getEntityRecord } = select( store );
 		const user = getEntityRecord( 'postType', 'guest-author', postMeta.connected_user );
@@ -82,6 +81,20 @@ const ProfileFields = () => {
 			},
 		};
 	}, [ postMeta.connected_user ] );
+
+	/**
+	 * Stores the "search value," i.e. whatever the user is typing, for the
+	 * Connected User combobox. We store this in state so that it can be used
+	 * in the following section to optionally modify the authors returned for
+	 * the option set.
+	 */
+	const [ userSearch, setUserSearch ] = useState( '' );
+
+	/**
+	 * Get a selection of guest authors for the Connected User UI.
+	 * Optionally searches as well, since there are a lot more guest authors
+	 * than we would want to get in a single request.
+	 */
 	const { isLoading, allUsers } = useSelect(
 		select => {
 			const { getEntityRecords, isResolving } = select(
@@ -89,13 +102,19 @@ const ProfileFields = () => {
 			);
 			return {
 				allUsers: getEntityRecords( 'postType', 'guest-author', {
-					per_page: -1,
+					per_page: 10,
+					search: userSearch,
 				} ),
 				isLoading: isResolving( 'core', 'getEntityRecords', [] ),
 			};
 		},
-		[]
+		[ userSearch ]
 	);
+
+	/**
+	 * Modified version of the authors returned to allUsers that winnows the
+	 * data down for use in a Combobox.
+	 */
 	const usersOptions = useMemo( () => {
 		const fetchedUsers = ( allUsers ?? [] ).map( user => {
 			return {
@@ -118,8 +137,9 @@ const ProfileFields = () => {
 
 		return fetchedUsers;
 	}, [ allUsers, postMeta.connected_user ] );
+
 	/**
-	 *
+	 * Updates the connected_user postmeta. Used as a callback.
 	 */
 	const updateConnectedUser = id => {
 		setPostMeta( {
@@ -127,56 +147,21 @@ const ProfileFields = () => {
 			connected_user: id,
 		} );
 	};
-	const [ isSearchingAuthor, setIsSearchingAuthor ] = useState( false );
-	/**
-	 *
-	 */
-	// const findAuthor = search => {
-	// 	const searchParams = new URLSearchParams( {
-	// 		search,
-	// 		per_page: 20,
-	// 		type: 'post',
-	// 		subtype: 'guest-author',
-	// 	} );
-	// 	apiFetch( { path: `/wp/v2/search?${searchParams}` } ).then( authors => {
-	// 		setSuggestions( authors.map( guest => {
-	// 			return {
-	// 				value: guest.id,
-	// 				label: guest.title,
-	// 			};
-	// 		} )
-	// 		);
-	// 	} );
-	// };
 
-	/**
-	 *
-	 */
-	// const selectAuthor = ( id, name ) => {
-	// 	setPostMeta( { connected_user: id } );
-	// 	setConnectedUser( {
-	// 		value: id,
-	// 		label: name,
-	// 	} );
-	// 	setIsSearchingAuthor( false );
-	// };
-	//
-	// if ( suggestions && suggestions.length ) {
-	// 	authors = suggestions.map( author => {
-	// 		return (
-	// 			<Button key={ author.id }
-	// 				onClick={ () => selectAuthor( author.id, author.title ) }
-	// 			>{ author.title }</Button>
-	// 		);
-	// 	} );
-	// }
-
+	// We only want to load this on profiles.
+	if ( postType !== 'profile' ) {
+		return null;
 	}
+
 	return (
 		<PluginDocumentSettingPanel
 			icon={ 'admin-users' }
 			title={ __( 'Metadata', 'shiro-admin' ) }
 		>
+			<ToggleControl checked={ postMeta.profile_featured }
+				label={ __( 'Featured Profile?' ) }
+				onChange={ value => setPostMeta( { profile_featured: value } ) }
+			/>
 			<TextControl label={ __( 'Last Name' ) }
 				value={ postMeta.last_name }
 				onChange={ value => setPostMeta( { last_name: value } ) }
@@ -185,23 +170,13 @@ const ProfileFields = () => {
 				value={ postMeta.profile_role }
 				onChange={ value => setPostMeta( { profile_role: value } ) }
 			/>
-			<ToggleControl checked={ postMeta.profile_featured }
-				label={ __( 'Featured?' ) }
-				onChange={ value => setPostMeta( { profile_featured: value } ) }
+			<ComboboxControl isLoading={ isLoading }
+				label={ 'Connected User' }
+				options={ usersOptions }
+				value={ postMeta.connected_user }
+				onChange={ updateConnectedUser }
+				onFilterValueChange={ setUserSearch }
 			/>
-			<div>
-				<TextControl label={ 'Author' }
-					// value={ connectedUser.label }
-					// onChange={ value => setAuthor( value ) }
-					// onFocus={ () => setIsSearchingAuthor( true ) }
-				/>
-				<ComboboxControl isLoading={ isLoading }
-					label={ 'Connected User' }
-					options={ usersOptions }
-					value={ postMeta.connected_user }
-					onChange={ updateConnectedUser }
-				/>
-			</div>
 			<h2>{ __( 'Contact Links', 'shiro-admin' ) }</h2>
 			<ContactLinkList
 				list={ postMeta.contact_links }
@@ -231,26 +206,6 @@ const ProfileFields = () => {
 		</PluginDocumentSettingPanel>
 	);
 };
-
-// const ProfileFieldsComposed = compose( [
-// 	withSelect( select => {
-// 		return {
-// 			postMeta: select( 'core/editor' ).getEditedPostAttribute( 'meta' ),
-// 			postType: select( 'core/editor' ).getCurrentPostType(),
-// 			authorName: select( 'core' ).getEntityRecord( 'postType', 'guest-author', select( 'core/editor' ).getEditedPostAttribute( 'meta' )?.connected_user )?.author_name,
-// 		};
-// 	} ),
-// 	withDispatch( dispatch => {
-// 		return {
-// 			/**
-// 			 * Sets postmeta manipulated by our controls.
-// 			 */
-// 			setPostMeta( newMeta ) {
-// 				dispatch( 'core/editor' ).editPost( { meta: newMeta } );
-// 			},
-// 		};
-// 	} ),
-// ] )( ProfileFields );
 
 registerPlugin( 'profile-fields', {
 	render: () => {
