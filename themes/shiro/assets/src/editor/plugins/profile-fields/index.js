@@ -1,8 +1,6 @@
 import './style.scss';
 import apiFetch from '@wordpress/api-fetch';
-import {
-	__experimentalLinkControlSearchInput as LinkControlSearchInput,
-} from '@wordpress/block-editor';
+import { store, useEntityProp } from '@wordpress/core-data';
 
 const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
@@ -13,77 +11,133 @@ const {
 	TextControl,
 	ToggleControl,
 	Popover,
+	ComboboxControl,
 } = wp.components;
 
-const { withSelect, useSelect, withDispatch } = wp.data;
-const { useState, useEffect } = wp.element;
+const { useSelect, useDispatch } = wp.data;
+const { useState, useMemo } = wp.element;
 const { compose } = wp.compose;
 
 /**
  *
  */
-const ProfileFields = ( { authorName, postMeta, setPostMeta } ) => {
+const ProfileFields = () => {
 	let links = null;
-	let authors = null;
-	// const { connectedUser } = useSelect( select => ( { connectedUser: select( 'core' ).getEntityRecord( 'postType', 'guest-author', postMeta.connected_user ) } ), { postMeta } );
-	// console.dir(connectedUser);
 
+	const postType = useSelect(
+		select => select( 'core/editor' ).getCurrentPostType(),
+		[]
+	);
+	const [ postMeta, setPostMeta ] = useEntityProp( 'postType', postType, 'meta' );
+	/**
+	 * Set post meta values.
+	 */
 	const [ suggestions, setSuggestions ] = useState( [] );
-	const [ author, setAuthor ] = useState(authorName);
+	const { connectedUser } = useSelect( select => {
+		const { getEntityRecord } = select( store );
+		const user = getEntityRecord( 'postType', 'guest-author', postMeta.connected_user );
+		return user ? {
+			connectedUser: {
+				value: user.id,
+				label: user.author_name,
+			},
+		} : {
+			connectedUser: {
+				value: postMeta.connected_user,
+				label: 'Loading...',
+			},
+		};
+	}, [ postMeta.connected_user ] );
+	const { isLoading, allUsers } = useSelect(
+		select => {
+			const { getEntityRecords, isResolving } = select(
+				store
+			);
+			return {
+				allUsers: getEntityRecords( 'postType', 'guest-author', {
+					per_page: -1,
+				} ),
+				isLoading: isResolving( 'core', 'getEntityRecords', [] ),
+			};
+		},
+		[]
+	);
+	const usersOptions = useMemo( () => {
+		const fetchedUsers = ( allUsers ?? [] ).map( user => {
+			return {
+				value: user.id,
+				label: user.author_name,
+			};
+		} );
+
+		// Ensure the current process owner is included in the dropdown list.
+		const foundUser = fetchedUsers.findIndex(
+			( { value } ) => postMeta.connected_user === value
+		);
+
+		if ( foundUser < 0 && postMeta.connected_user ) {
+			return [
+				connectedUser,
+				...fetchedUsers,
+			];
+		}
+
+		return fetchedUsers;
+	}, [ allUsers, postMeta.connected_user ] );
+	/**
+	 *
+	 */
+	const updateConnectedUser = id => {
+		setPostMeta( {
+			...postMeta,
+			connected_user: id,
+		} );
+	};
 	const [ isSearchingAuthor, setIsSearchingAuthor ] = useState( false );
-
-	useEffect( () => {
-		return () => {
-			findAuthor( author );
-		};
-	}, [ author ] );
-
-	useEffect( () => {
-		return () => {
-			setAuthor( authorName );
-		};
-	} );
 	/**
 	 *
 	 */
-	const findAuthor = search => {
-		const searchParams = new URLSearchParams( {
-			search,
-			per_page: 20,
-			type: 'post',
-			subtype: 'guest-author',
-		} );
-		apiFetch( { path: `/wp/v2/search?${searchParams}` } ).then( authors => {
-			setSuggestions( authors.map( guest => {
-				return {
-					id: guest.id,
-					title: guest.title,
-				};
-			} )
-			);
-		} );
-	};
+	// const findAuthor = search => {
+	// 	const searchParams = new URLSearchParams( {
+	// 		search,
+	// 		per_page: 20,
+	// 		type: 'post',
+	// 		subtype: 'guest-author',
+	// 	} );
+	// 	apiFetch( { path: `/wp/v2/search?${searchParams}` } ).then( authors => {
+	// 		setSuggestions( authors.map( guest => {
+	// 			return {
+	// 				value: guest.id,
+	// 				label: guest.title,
+	// 			};
+	// 		} )
+	// 		);
+	// 	} );
+	// };
 
 	/**
 	 *
 	 */
-	const selectAuthor = ( id, name ) => {
-		setPostMeta( { connected_user: id } );
-		setAuthor( name );
-		setIsSearchingAuthor( false );
-	};
+	// const selectAuthor = ( id, name ) => {
+	// 	setPostMeta( { connected_user: id } );
+	// 	setConnectedUser( {
+	// 		value: id,
+	// 		label: name,
+	// 	} );
+	// 	setIsSearchingAuthor( false );
+	// };
+	//
+	// if ( suggestions && suggestions.length ) {
+	// 	authors = suggestions.map( author => {
+	// 		return (
+	// 			<Button key={ author.id }
+	// 				onClick={ () => selectAuthor( author.id, author.title ) }
+	// 			>{ author.title }</Button>
+	// 		);
+	// 	} );
+	// }
 
-	if ( suggestions.length ) {
-		authors = suggestions.map( author => {
-			return (
-				<Button key={ author.id }
-					onClick={ () => selectAuthor( author.id, author.title ) }
-				>{ author.title }</Button>
-			);
-		} );
-	}
-
-	if ( postMeta.contact_links.length ) {
+	if ( postMeta && postMeta.contact_links.length ) {
 		links = postMeta.contact_links.map( ( link, index ) => {
 			return ( <li key={ index } className={ 'profile-fields__contact-link' }>
 				<TextControl label={ __( 'Title', 'shiro-admin' ) }
@@ -133,10 +187,16 @@ const ProfileFields = ( { authorName, postMeta, setPostMeta } ) => {
 			/>
 			<div>
 				<TextControl label={ 'Author' }
-					value={ author }
-					onChange={ value => setAuthor( value ) }
-					onFocus={ () => setIsSearchingAuthor( true ) } />
-				{ isSearchingAuthor && suggestions.length > 0 && <Popover>{ authors }</Popover> }
+					// value={ connectedUser.label }
+					// onChange={ value => setAuthor( value ) }
+					// onFocus={ () => setIsSearchingAuthor( true ) }
+				/>
+				<ComboboxControl isLoading={ isLoading }
+					label={ 'Connected User' }
+					options={ usersOptions }
+					value={ postMeta.connected_user }
+					onChange={ updateConnectedUser }
+				/>
 			</div>
 			<h2>{ __( 'Contact Links', 'shiro-admin' ) }</h2>
 			<ul>
@@ -155,28 +215,28 @@ const ProfileFields = ( { authorName, postMeta, setPostMeta } ) => {
 	);
 };
 
-const ProfileFieldsComposed = compose( [
-	withSelect( select => {
-		return {
-			postMeta: select( 'core/editor' ).getEditedPostAttribute( 'meta' ),
-			postType: select( 'core/editor' ).getCurrentPostType(),
-			authorName: select( 'core' ).getEntityRecord( 'postType', 'guest-author', select( 'core/editor' ).getEditedPostAttribute( 'meta' )?.connected_user )?.author_name,
-		};
-	} ),
-	withDispatch( dispatch => {
-		return {
-			/**
-			 * Sets postmeta manipulated by our controls.
-			 */
-			setPostMeta( newMeta ) {
-				dispatch( 'core/editor' ).editPost( { meta: newMeta } );
-			},
-		};
-	} ),
-] )( ProfileFields );
+// const ProfileFieldsComposed = compose( [
+// 	withSelect( select => {
+// 		return {
+// 			postMeta: select( 'core/editor' ).getEditedPostAttribute( 'meta' ),
+// 			postType: select( 'core/editor' ).getCurrentPostType(),
+// 			authorName: select( 'core' ).getEntityRecord( 'postType', 'guest-author', select( 'core/editor' ).getEditedPostAttribute( 'meta' )?.connected_user )?.author_name,
+// 		};
+// 	} ),
+// 	withDispatch( dispatch => {
+// 		return {
+// 			/**
+// 			 * Sets postmeta manipulated by our controls.
+// 			 */
+// 			setPostMeta( newMeta ) {
+// 				dispatch( 'core/editor' ).editPost( { meta: newMeta } );
+// 			},
+// 		};
+// 	} ),
+// ] )( ProfileFields );
 
 registerPlugin( 'profile-fields', {
 	render: () => {
-		return ( <ProfileFieldsComposed/> );
+		return ( <ProfileFields/> );
 	},
 } );
