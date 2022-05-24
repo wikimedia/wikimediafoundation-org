@@ -56,6 +56,7 @@ const LinkedTOCItemWithFocusOutside = withFocusOutside(
 						allowedFormats={ [ ] }
 						className="linked-toc__link toc__link"
 						placeholder={ __( 'Link heading', 'shiro-admin' ) }
+						tagName="span"
 						value={ heading }
 						onChange={ setHeading }
 						onFocus={ () => this.setState( { showButtons: true } ) }
@@ -76,13 +77,13 @@ LinkedTOCItemWithFocusOutside.propTypes = {
 /**
  * Provide a simple content structure.
  */
-LinkedTOCItemWithFocusOutside.Content = ( { url, heading, text } ) => {
+LinkedTOCItemWithFocusOutside.Content = ( { url, heading } ) => {
 	return (
 		<>
 			<a
 				className="linked-toc__link toc__link"
 				href={ url }>
-				{ heading }
+				<span className="linked-toc__heading-text">{ heading }</span>
 			</a>
 		</>
 	);
