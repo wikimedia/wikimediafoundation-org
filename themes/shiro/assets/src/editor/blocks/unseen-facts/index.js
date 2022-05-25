@@ -67,7 +67,7 @@ export const settings = {
 			type: 'string',
 			default: '#',
 		},
-		behancedURL: {
+		behanceURL: {
 			type: 'string',
 			default: '#',
 		},
@@ -81,7 +81,7 @@ export const settings = {
 			instagramURL: '#',
 			twitterURL: '#',
 			linkedInURL: '#',
-			behancedURL: '#',
+			behanceURL: '#',
 		},
 		innerBlocks: [
 			{
@@ -108,7 +108,7 @@ export const settings = {
 			instagramURL,
 			twitterURL,
 			linkedInURL,
-			behancedURL,
+			behanceURL,
 		} = attributes;
 
 		const blockProps = useBlockProps();
@@ -145,11 +145,11 @@ export const settings = {
 				</a>
 			</li> ) : '';
 
-		const behanced = behancedURL ? (
+		const behance = behanceURL ? (
 			<li>
-				<a href={ behancedURL }>
-					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin.svg` } />
-					<span className={ 'screen-reader-text' }>{ __( 'Follow us on Behanced', 'shiro-admin' ) }</span>
+				<a href={ behanceURL }>
+					<img alt='' src={ `${themeUrl}/assets/src/images/adobe-behance.svg` } />
+					<span className={ 'screen-reader-text' }>{ __( 'Follow us on Behance', 'shiro-admin' ) }</span>
 				</a>
 			</li> ) : '';
 
@@ -207,11 +207,11 @@ export const settings = {
 
 							<PanelRow>
 								<TextControl
-									label={ __( 'Behanced URL', 'shiro-admin' ) }
+									label={ __( 'Behance URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
-									value={ behancedURL }
+									value={ behanceURL }
 									onChange={ value => {
-										setAttributes( { behancedURL: value } );
+										setAttributes( { behanceURL: value } );
 									} }
 								/>
 							</PanelRow>
@@ -226,7 +226,7 @@ export const settings = {
 							{ instagram }
 							{ twitter }
 							{ linkedIn }
-							{ behanced }
+							{ behance }
 						</ul>
 
 						<RichText
@@ -274,7 +274,7 @@ export const settings = {
 			instagramURL,
 			twitterURL,
 			linkedInURL,
-			behancedURL,
+			behanceURL,
 		} = attributes;
 
 		const blockProps = useBlockProps.save();
@@ -311,10 +311,10 @@ export const settings = {
 				</a>
 			</li> ) : '';
 
-		const behanced = behancedURL ? (
+		const behance = behanceURL ? (
 			<li>
-				<a href={ behancedURL }>
-					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin.svg` } />
+				<a href={ behanceURL }>
+					<img alt='' src={ `${themeUrl}/assets/src/images/adobe-behance.svg` } />
 					<span className={ 'screen-reader-text' }>{ __( 'Follow us on LinkedIn', 'shiro-admin' ) }</span>
 				</a>
 			</li> ) : '';
@@ -327,7 +327,7 @@ export const settings = {
 						{ instagram }
 						{ twitter }
 						{ linkedIn }
-						{ behanced }
+						{ behance }
 					</ul>
 
 					<RichText.Content
