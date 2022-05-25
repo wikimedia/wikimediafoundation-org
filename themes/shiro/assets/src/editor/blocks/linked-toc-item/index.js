@@ -70,6 +70,7 @@ const LinkedTOCItemWithFocusOutside = withFocusOutside(
 LinkedTOCItemWithFocusOutside.propTypes = {
 	url: PropTypes.string,
 	heading: PropTypes.string,
+	postId: PropTypes.string,
 	setUrl: PropTypes.func.isRequired,
 	setHeading: PropTypes.func.isRequired,
 };
@@ -77,12 +78,13 @@ LinkedTOCItemWithFocusOutside.propTypes = {
 /**
  * Provide a simple content structure.
  */
-LinkedTOCItemWithFocusOutside.Content = ( { url, heading } ) => {
+LinkedTOCItemWithFocusOutside.Content = ( { url, heading, postId } ) => {
 	return (
 		<>
 			<a
 				className="linked-toc__link toc__link"
-				href={ url }>
+				href={ url }
+				data-post-id={ postId }>
 				<span className="linked-toc__heading-text">{ heading }</span>
 			</a>
 		</>
@@ -120,7 +122,10 @@ export const
 				selector: '.linked-toc__heading-text',
 			},
 			postId: {
-				type: 'integer',
+				type: 'string',
+				source: 'attribute',
+				selector: '.linked-toc__link',
+				attribute: 'data-post-id',
 			},
 		},
 		/**
@@ -156,6 +161,7 @@ export const
 			const {
 				url,
 				heading,
+				postId,
 			} = attributes;
 
 			return (
@@ -163,6 +169,7 @@ export const
 					<LinkedTOCItemWithFocusOutside.Content
 						heading={ heading }
 						url={ url }
+						postId={ postId }
 					/>
 				</li>
 			);

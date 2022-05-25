@@ -13,7 +13,7 @@ const BLOCK_NAME = 'shiro/linked-toc-item';
  * Bootstrap this block functionality.
  */
 function bootstrap() {
-	add_filter( 'render_block', __NAMESPACE__ . '\\set_active_item', 10, 2 );
+	add_filter( 'render_block', __NAMESPACE__ . '\\update_toc_item', 10, 2 );
 	add_filter( 'render_block', __NAMESPACE__ . '\\maybe_create_nested_toc', 20, 2 );
 }
 
@@ -25,13 +25,13 @@ function bootstrap() {
  *
  * @return string
  */
-function set_active_item( string $block_content, array $block ) {
+function update_toc_item( string $block_content, array $block ) {
 	if ( BLOCK_NAME !== $block['blockName'] ) {
 		return $block_content;
 	}
 
-	// Possibly retrieve updated content that includes new classes.
-	$content = __set_active_item_helper( $block_content, true );
+	// Possibly retrieve updated content that includes new classes or permalink.
+	$content = __toc_item_helper( $block_content, true );
 
 	return is_null( $content ) ? $block_content : $content;
 }
@@ -112,7 +112,7 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 			}
 
 			// Possibly retrieve updated content that includes new classes.
-			$content = __set_active_item_helper( $link_block['innerHTML'], false );
+			$content = __toc_item_helper( $link_block['innerHTML'], false );
 			if ( is_null( $content ) ) {
 				continue;
 			}
@@ -146,7 +146,7 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 }
 
 /**
- * Helper function to parse linked toc items and add active classes if the current post url matched the url specified
+ * Helper function to parse linked toc items; update permalinks and add active classes if the current post url matched the url specified
  * on the item.
  *
  * @param string $block_content The block content about to be appended.
@@ -154,33 +154,37 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
  *
  * @return string|null
  */
-function __set_active_item_helper( $block_content, $page ) {
+function __toc_item_helper( $block_content, $page ) {
 	// We need to get the items class and href, so using a domdoc to confidently locate them.
 	$link_block_doc = new \DOMDocument();
 	$link_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
 
 	// Check for the link.
-	if ( empty( $link_block_doc->getElementsByTagName('a')->length ) ) {
+	if ( empty( $link_block_doc->getElementsByTagName( 'a' )->length ) ) {
 		return null;
 	}
 
-	$a_element = $link_block_doc->getElementsByTagName('a')[0];
-	$classes   = $a_element->getAttribute('class');
-	$href      = $a_element->getAttribute('href');
+	$a_element = $link_block_doc->getElementsByTagName( 'a' )[0];
+	$classes   = $a_element->getAttribute( 'class' );
+	$href      = $a_element->getAttribute( 'href' );
+	$post_id   = $a_element->getAttribute( 'data-post-id' );
 
 	if ( empty( $classes ) || empty( $href ) ) {
 		return null;
 	}
-	$classes = explode( ' ', $classes );
 
-	// Check if we are on the active link.
-	$is_active_item = ( $href === get_permalink() );
-	if ( ! $is_active_item ) {
-		return null;
+	if ( ! empty( $post_id ) ) {
+		// Update href to value of post id to ensure we have the latest permalink.
+		$href = get_permalink( $post_id );
+		$a_element->setAttribute( 'href', $href );
 	}
 
-	$active_type = $page ? 'toc__link--active-page' : 'toc__link--active';
-	$a_element->setAttribute( 'class', implode( array_merge( $classes, [ $active_type ] ), ' ' ) );
+	// Check if we are on the active link.
+	if ( $href === get_permalink() ) {
+		$active_type = $page ? 'toc__link--active-page' : 'toc__link--active';
+		$classes     = explode( ' ', $classes );
+		$a_element->setAttribute( 'class', implode( array_merge( $classes, [ $active_type ] ), ' ' ) );
+	}
 
 	return $link_block_doc->saveHTML() ?? $block_content;
 }
