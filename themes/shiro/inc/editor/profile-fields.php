@@ -119,10 +119,13 @@ function wmf_setup_profile_fields_for_editor() {
  * @return void
  */
 function wmf_enable_guest_author_titles_when_searching( WP_Query $query ) {
-	if ( $query->is_search()
-	     && in_array( 'guest-author', $query->get( 'post_type', [] ), true ) ) {
-		add_post_type_support( 'guest-author', [ 'title' ] );
+	if ( ! $query->is_search() ) {
+		return;
 	}
+	if ( ! in_array( 'guest-author', $query->get( 'post_type', [] ), true ) ) {
+		return;
+	}
+	add_post_type_support( 'guest-author', [ 'title' ] );
 }
 
 /**
