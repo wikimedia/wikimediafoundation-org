@@ -136,7 +136,7 @@ const ProfileFields = () => {
 		}
 
 		return fetchedUsers;
-	}, [ allUsers, postMeta.connected_user ] );
+	}, [ allUsers, postMeta.connected_user, connectedUser ] );
 
 	/**
 	 * Updates the connected_user postmeta. Used as a callback.
