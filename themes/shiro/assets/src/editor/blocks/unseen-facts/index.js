@@ -67,6 +67,10 @@ export const settings = {
 			type: 'string',
 			default: '#',
 		},
+		behancedURL: {
+			type: 'string',
+			default: '#',
+		},
 	},
 
 	example: {
@@ -77,6 +81,7 @@ export const settings = {
 			instagramURL: '#',
 			twitterURL: '#',
 			linkedInURL: '#',
+			behancedURL: '#',
 		},
 		innerBlocks: [
 			{
@@ -103,6 +108,7 @@ export const settings = {
 			instagramURL,
 			twitterURL,
 			linkedInURL,
+			behancedURL,
 		} = attributes;
 
 		const blockProps = useBlockProps();
@@ -136,6 +142,14 @@ export const settings = {
 				<a href={ linkedInURL }>
 					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin.svg` } />
 					<span className={ 'screen-reader-text' }>{ __( 'Follow us on LinkedIn', 'shiro-admin' ) }</span>
+				</a>
+			</li> ) : '';
+
+		const behanced = behancedURL ? (
+			<li>
+				<a href={ behancedURL }>
+					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin.svg` } />
+					<span className={ 'screen-reader-text' }>{ __( 'Follow us on Behanced', 'shiro-admin' ) }</span>
 				</a>
 			</li> ) : '';
 
@@ -190,6 +204,17 @@ export const settings = {
 									} }
 								/>
 							</PanelRow>
+
+							<PanelRow>
+								<TextControl
+									label={ __( 'Behanced URL', 'shiro-admin' ) }
+									placeholder={ 'https://...' }
+									value={ behancedURL }
+									onChange={ value => {
+										setAttributes( { behancedURL: value } );
+									} }
+								/>
+							</PanelRow>
 						</PanelBody>
 					</InspectorControls>
 				</Fragment>
@@ -201,6 +226,7 @@ export const settings = {
 							{ instagram }
 							{ twitter }
 							{ linkedIn }
+							{ behanced }
 						</ul>
 
 						<RichText
@@ -248,6 +274,7 @@ export const settings = {
 			instagramURL,
 			twitterURL,
 			linkedInURL,
+			behancedURL,
 		} = attributes;
 
 		const blockProps = useBlockProps.save();
@@ -284,6 +311,14 @@ export const settings = {
 				</a>
 			</li> ) : '';
 
+		const behanced = behancedURL ? (
+			<li>
+				<a href={ behancedURL }>
+					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin.svg` } />
+					<span className={ 'screen-reader-text' }>{ __( 'Follow us on LinkedIn', 'shiro-admin' ) }</span>
+				</a>
+			</li> ) : '';
+
 		return (
 			<section { ...blockProps }>
 				<div className={ 'facts-content' }>
@@ -292,6 +327,7 @@ export const settings = {
 						{ instagram }
 						{ twitter }
 						{ linkedIn }
+						{ behanced }
 					</ul>
 
 					<RichText.Content
