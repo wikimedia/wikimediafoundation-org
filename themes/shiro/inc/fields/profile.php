@@ -149,7 +149,7 @@ function wmf_role_fields() {
 		)
 	);
 
-	$executive_title_override->add_term_meta_box( __( 'Department Executives Title Override', 'shiro-admin' ), 'role' );
+	$executive_title_override->add_term_meta_box( __( 'Department Executive Title Override', 'shiro-admin' ), 'role' );
 
 	// Create checkbox group for expert profiles.
 	$experts = new Fieldmanager_Checkboxes(
