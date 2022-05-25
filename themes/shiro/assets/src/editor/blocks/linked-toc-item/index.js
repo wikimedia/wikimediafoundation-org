@@ -119,6 +119,9 @@ export const
 				source: 'html',
 				selector: '.linked-toc__heading-text',
 			},
+			postId: {
+				type: 'integer',
+			},
 		},
 		/**
 		 * Edit the external links block content.
@@ -135,7 +138,11 @@ export const
 					<LinkedTOCItemWithFocusOutside
 						heading={ heading }
 						setHeading={ heading => setAttributes( { heading } ) }
-						setUrl={ url => setAttributes( { url } ) }
+						setUrl={ ( url, link ) => {
+							setAttributes( { heading: link.title } );
+							setAttributes( { url } );
+							setAttributes( { postId: link.id } );
+						} }
 						url={ url }
 					/>
 				</li>
