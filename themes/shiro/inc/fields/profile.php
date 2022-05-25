@@ -142,6 +142,15 @@ function wmf_role_fields() {
 
 	$executive->add_term_meta_box( __( 'Department Executive', 'shiro-admin' ), 'role' );
 
+	$executive_title_override = new Fieldmanager_TextField(
+		array(
+			'name'        => 'role_executive_title_override',
+			'description' => __( 'If desired, enter a phrase to be used in place of "Department Executive." If this field is empty, "Department Executive" will be used.', 'shiro-admin' ),
+		)
+	);
+
+	$executive_title_override->add_term_meta_box( __( 'Department Executives Title Override', 'shiro-admin' ), 'role' );
+
 	// Create checkbox group for expert profiles.
 	$experts = new Fieldmanager_Checkboxes(
 		wp_parse_args(
@@ -155,6 +164,15 @@ function wmf_role_fields() {
 	);
 
 	$experts->add_term_meta_box( __( 'Department Experts', 'shiro-admin' ), 'role' );
+
+	$experts_title_override = new Fieldmanager_TextField(
+		array(
+			'name'        => 'role_experts_title_override',
+			'description' => __( 'If desired, enter a phrase to be used in place of "Department Experts." If this field is empty, "Department Experts" will be used.', 'shiro-admin' ),
+		)
+	);
+
+	$experts_title_override->add_term_meta_box( __( 'Department Experts Title Override', 'shiro-admin' ), 'role' );
 
 
 	$button = new Fieldmanager_Group(
