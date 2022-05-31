@@ -1,0 +1,24 @@
+### Goal
+Perform a monthly plug-in update and confirm that it didn't break anything noticeable on the site.
+
+### Details
+We want to provide regular plug-in updates for the site as older versions can cause issues within the sites.
+
+Two ways VIP does updates
+
+1. Symbolic link - points WM plug-in directory to VIP master repo - some plug-ins are in there because the whole plug-in is hosted within the repo
+2. Others are hosted locally on the site.
+
+VIP makes it confusing to update plug-ins. 
+
+- The plug-ins with a file are in the VIP library and are automatically updated
+- The plug-ins installed manually, we will need to download the update and upload as a patch.
+
+HM needs to look at plug-in updates and see if we can figure out how to manually update the plug-ins where needed. [View documentation](https://docs.wpvip.com/technical-references/plugins/). Chris is available to meet with KAdam/Alexis on updates if needed.
+
+@kadamwhite Did this for the Diff site, so if you run into any issues with VIP, ping him.
+
+### Acceptance Criteria
+- [ ] Plug-ins are up-to-date
+- [ ] Nothing appears to be broken on the site
+
