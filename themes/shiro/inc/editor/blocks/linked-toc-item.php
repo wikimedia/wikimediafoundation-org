@@ -31,9 +31,9 @@ function update_toc_item( string $block_content, array $block ) {
 	}
 
 	// Possibly retrieve updated content that includes new classes or permalink.
-	$content = __toc_item_helper( $block_content, true );
+	$helper = __toc_item_helper( $block_content, true );
 
-	return is_null( $content ) ? $block_content : $content;
+	return is_null( $helper ) ? $block_content : $helper['content'];
 }
 
 /**
@@ -105,34 +105,30 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 			return $block_content;
 		}
 
-		$parent_found = false;
 		foreach ( $link_blocks as $order => $link_block ) {
 			if ( $link_block['blockName'] !== BLOCK_NAME ) {
 				continue;
 			}
 
-			// Possibly retrieve updated content that includes new classes.
-			$content = __toc_item_helper( $link_block['innerHTML'], false );
-			if ( is_null( $content ) ) {
+			// Possibly retrieve updated content that includes new classes or update permalink.
+			$helper = __toc_item_helper( $link_block['innerHTML'], false );
+			if ( is_null( $helper ) ) {
 				continue;
 			}
 
-			// Append the original block content as a submenu after the item.
-			$modified_block_content = sprintf( '%1$s<ul class="toc__nested">%2$s</ul>', $content, $block_content );
+			// Found the parent?
+			if ( $helper['href'] === get_permalink() ) {
+				// Append the original block content as a submenu after the item.
+				$modified_block_content = sprintf( '%1$s<ul class="toc__nested">%2$s</ul>', $helper['content'], $block_content );
+			} else {
+				$modified_block_content = $helper['content'];
+			}
 
 			// Set the block properties to be the updated content.
 			$link_block['innerHTML'] = $link_block['innerContent'][0] = $modified_block_content;
 
 			// Add the items back on to the parent block stack.
 			$link_blocks[ $order ] = $link_block;
-
-			// Identify we found the parent link.
-			$parent_found = true;
-		}
-
-		// No link to this block was found on the parent linked toc block. So just return original block content.
-		if ( empty( $parent_found ) ) {
-			return $block_content;
 		}
 
 		// Re-assemble the blocks.
@@ -149,10 +145,12 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
  * Helper function to parse linked toc items; update permalinks and add active classes if the current post url matched the url specified
  * on the item.
  *
+ * Return an array of potentially modified items in order to apply logic based on the changes that were made in this helper.
+ *
  * @param string $block_content The block content about to be appended.
  * @param boolean $page Identify if the current item is a page.
  *
- * @return string|null
+ * @return array|null
  */
 function __toc_item_helper( $block_content, $page ) {
 	// We need to get the items class and href, so using a domdoc to confidently locate them.
@@ -186,5 +184,9 @@ function __toc_item_helper( $block_content, $page ) {
 		$a_element->setAttribute( 'class', implode( array_merge( $classes, [ $active_type ] ), ' ' ) );
 	}
 
-	return $link_block_doc->saveHTML() ?? $block_content;
+	return [
+		'classes' => $classes,
+		'content' => $link_block_doc->saveHTML() ?? $block_content,
+		'href'    => $href,
+	];
 }
