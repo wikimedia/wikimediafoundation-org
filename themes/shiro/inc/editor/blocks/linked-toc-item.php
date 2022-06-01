@@ -3,6 +3,8 @@
  * Additional functionality for the shiro/linked-toc-item block.
  *
  * This block is defined as a client side block in JS. This is additional functionality when rendering the block.
+ *
+ * @package shiro
  */
 
 namespace WMF\Editor\Blocks\LinkedTOCItem;
@@ -21,7 +23,7 @@ function bootstrap() {
  * Set the active item in the linked toc if the current url matches the permalink on the toc item.
  *
  * @param string $block_content The block content about to be appended.
- * @param array $block The full block, including name and attributes.
+ * @param array  $block The full block, including name and attributes.
  *
  * @return string
  */
@@ -31,7 +33,7 @@ function update_toc_item( string $block_content, array $block ) {
 	}
 
 	// Possibly retrieve updated content that includes new classes or permalink.
-	$helper = __toc_item_helper( $block_content, true );
+	$helper = _toc_item_helper( $block_content, true );
 
 	return is_null( $helper ) ? $block_content : $helper['content'];
 }
@@ -42,7 +44,7 @@ function update_toc_item( string $block_content, array $block ) {
  * the parent linked toc item.
  *
  * @param string $block_content The block content about to be appended.
- * @param array $block The full block, including name and attributes.
+ * @param array  $block The full block, including name and attributes.
  *
  * @return string Nested toc column or passed in block content.
  */
@@ -78,26 +80,26 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 		// Iterate our way to the link blocks.
 		$columns_blocks = array_shift( $parent_page_block['innerBlocks'] );
 		// Verify we are are still on track. Should be at the columns.
-		if ( $columns_blocks['blockName'] !== 'core/columns' ) {
+		if ( 'core/columns' !== $columns_blocks['blockName'] ) {
 			continue;
 		}
 
 		// Choose the left column, our "table of contents".
 		$left_blocks = array_shift( $columns_blocks['innerBlocks'] );
 		// Verify we are are still on track. Should be at the column.
-		if ( $left_blocks['blockName'] !== 'core/column' ) {
+		if ( 'core/column' !== $left_blocks['blockName'] ) {
 			continue;
 		}
 
 		// Find the linked-toc block.
 		$link_toc_block = array_shift( $left_blocks['innerBlocks'] );
 		// Verify we are are still on track. Should be at the column.
-		if ( $link_toc_block['blockName'] !== 'shiro/linked-toc' ) {
+		if ( 'shiro/linked-toc' !== $link_toc_block['blockName'] ) {
 			continue;
 		}
 
 		// Iterate over the links in the column.
-		$link_blocks  = $link_toc_block['innerBlocks'];
+		$link_blocks = $link_toc_block['innerBlocks'];
 
 		// Do not continue if no link blocks are set on the parent link toc. Since there is only one linked toc allowed
 		// fall out completely.
@@ -106,18 +108,18 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 		}
 
 		foreach ( $link_blocks as $order => $link_block ) {
-			if ( $link_block['blockName'] !== BLOCK_NAME ) {
+			if ( BLOCK_NAME !== $link_block['blockName'] ) {
 				continue;
 			}
 
 			// Possibly retrieve updated content that includes new classes or update permalink.
-			$helper = __toc_item_helper( $link_block['innerHTML'], false );
+			$helper = _toc_item_helper( $link_block['innerHTML'], false );
 			if ( is_null( $helper ) ) {
 				continue;
 			}
 
 			// Found the parent?
-			if ( $helper['href'] === get_permalink() ) {
+			if ( get_permalink() === $helper['href'] ) {
 				// Append the original block content as a submenu after the item.
 				$modified_block_content = sprintf( '%1$s<ul class="toc__nested">%2$s</ul>', $helper['content'], $block_content );
 			} else {
@@ -125,7 +127,8 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 			}
 
 			// Set the block properties to be the updated content.
-			$link_block['innerHTML'] = $link_block['innerContent'][0] = $modified_block_content;
+			$link_block['innerHTML']       = $modified_block_content;
+			$link_block['innerContent'][0] = $modified_block_content;
 
 			// Add the items back on to the parent block stack.
 			$link_blocks[ $order ] = $link_block;
@@ -133,9 +136,9 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 
 		// Re-assemble the blocks.
 		$link_toc_block['innerBlocks'] = $link_blocks;
-		array_unshift($left_blocks['innerBlocks'], $link_toc_block );
+		array_unshift( $left_blocks['innerBlocks'], $link_toc_block );
 
- 		return render_block( $left_blocks );
+		return render_block( $left_blocks );
 	}
 
 	return $block_content;
@@ -147,12 +150,12 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
  *
  * Return an array of potentially modified items in order to apply logic based on the changes that were made in this helper.
  *
- * @param string $block_content The block content about to be appended.
+ * @param string  $block_content The block content about to be appended.
  * @param boolean $page Identify if the current item is a page.
  *
  * @return array|null
  */
-function __toc_item_helper( $block_content, $page ) {
+function _toc_item_helper( $block_content, $page ) {
 	// We need to get the items class and href, so using a domdoc to confidently locate them.
 	$link_block_doc = new \DOMDocument();
 	$link_block_doc->loadHTML( $block_content, \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD );
@@ -178,10 +181,10 @@ function __toc_item_helper( $block_content, $page ) {
 	}
 
 	// Check if we are on the active link.
-	if ( $href === get_permalink() ) {
+	if ( get_permalink() === $href ) {
 		$active_type = $page ? 'toc__link--active-page' : 'toc__link--active';
 		$classes     = explode( ' ', $classes );
-		$a_element->setAttribute( 'class', implode( array_merge( $classes, [ $active_type ] ), ' ' ) );
+		$a_element->setAttribute( 'class', implode( ' ', array_merge( $classes, [ $active_type ] ) ) );
 	}
 
 	return [
