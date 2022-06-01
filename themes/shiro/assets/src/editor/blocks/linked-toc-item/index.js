@@ -83,8 +83,8 @@ LinkedTOCItemWithFocusOutside.Content = ( { url, heading, postId } ) => {
 		<>
 			<a
 				className="linked-toc__link toc__link"
-				href={ url }
-				data-post-id={ postId }>
+				data-post-id={ postId }
+				href={ url }>
 				<span className="linked-toc__heading-text">{ heading }</span>
 			</a>
 		</>
@@ -168,8 +168,8 @@ export const
 				<li { ...blockProps }>
 					<LinkedTOCItemWithFocusOutside.Content
 						heading={ heading }
-						url={ url }
 						postId={ postId }
+						url={ url }
 					/>
 				</li>
 			);
