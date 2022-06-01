@@ -19,7 +19,7 @@ Command to run from private repository:
 
 The theme uses node & npm for dependency management and asset build pipeline. The `engines` field in `themes/shiro/package.json` defines the correct versions of node and npm, and will cause `npm install` to fail if those versions are not in use.
 
-If you're using nvm, running `nvm use` from the theme directory will automatically set (and install if necessary) the correct version of node, which will *usually* include the correct version of npm.
+If you're [using nvm](https://github.com/nvm-sh/nvm#installing-and-updating), running `nvm use` from the theme directory will automatically set (and install if necessary) the correct version of node, which will *usually* include the correct version of npm.
 
 ## Updating Localization
 
