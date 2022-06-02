@@ -89,7 +89,7 @@
     "minimatch": "^3.0.4",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
-    "stylelint": "^13.6.1"
+    "stylelint": "^13.13.1"
   },
   "themeConfig": {
     "rename": {
