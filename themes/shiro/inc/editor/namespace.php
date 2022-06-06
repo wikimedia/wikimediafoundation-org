@@ -51,6 +51,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/banner',
 		'shiro/blog-list',
 		'shiro/card',
+		'shiro/clock',
 		'shiro/contact',
 		'shiro/double-heading',
 		'shiro/share-article',
