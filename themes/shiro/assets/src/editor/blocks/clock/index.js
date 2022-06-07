@@ -8,6 +8,7 @@
 import { useBlockProps, InspectorControls, RichText, InnerBlocks } from '@wordpress/block-editor';
 import { DateTimePicker, PanelBody, ToggleControl } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
+import blockClock from '../../../scripts/block-clock';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -20,7 +21,7 @@ export const name = 'shiro/clock';
 export const settings = {
 	apiVersion: 2,
 
-	icon: 'block',
+	icon: 'star-filled',
 
 	title: __( 'Clock', 'shiro-admin' ),
 
@@ -93,6 +94,11 @@ export const settings = {
 			'core/paragraph',
 		];
 
+		// Setup the counter.
+		useEffect(() => {
+			blockClock();
+		}, [ date ]);
+
 		return (
 			<div { ...blockProps }>
 				<RichText
@@ -105,14 +111,14 @@ export const settings = {
 				/>
 				<div
 					className="content-clock__contents"
-					data-date={ date }
+					data-clock={ date }
 					data-stop={ stopAtTime ?? false }
 				>
 					<div className="content-clock__contents wp-block-columns">
 						<div className="content-clock__contents-left-column wp-block-column">
-							<div className="content-clock__contents__count_label">
+							<div className="content-clock__contents__count-label">
 								<RichText
-									className="content-clock__title is-style-h3"
+									className="content-clock__title"
 									keepPlaceholderOnFocus
 									placeholder={ __( 'Label for Count:', 'shiro-admin' ) }
 									tagName="p"
@@ -122,7 +128,7 @@ export const settings = {
 							</div>
 						</div>
 						<div className="content-clock__contents-right-column wp-block-column">
-							<div className="content-clock__contents__count_count">
+							<div className="content-clock__contents__count-count">
 								<p>{ date }</p>
 							</div>
 						</div>
@@ -159,6 +165,7 @@ export const settings = {
 	save: function Save( { attributes } ) {
 		const blockProps = useBlockProps.save( { className: 'content-clock' } );
 		const {
+			countTitle,
 			date,
 			stopAtTime,
 			title,
@@ -173,8 +180,24 @@ export const settings = {
 				/>
 				<div
 					className="content-clock__contents"
-					data-date={ date }
-					data-stop={ stopAtTime }>
+					data-clock={ date }
+					data-stop={ stopAtTime }
+				>
+					<div className="content-clock__contents wp-block-columns">
+						<div className="content-clock__contents-left-column wp-block-column">
+							<div className="content-clock__contents__count-label">
+								<RichText.Content
+									className="content-clock__title"
+									tagName="p"
+									value={ countTitle }
+								/>
+							</div>
+						</div>
+						<div className="content-clock__contents-right-column wp-block-column">
+							<div className="content-clock__contents__count-count">
+							</div>
+						</div>
+					</div>
 					<InnerBlocks.Content />
 				</div>
 			</div>
