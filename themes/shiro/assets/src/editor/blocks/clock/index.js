@@ -97,7 +97,7 @@ export const settings = {
 		// Setup the counter.
 		useEffect(() => {
 			blockClock();
-		}, [ date ]);
+		}, [ date, stopAtTime ]);
 
 		return (
 			<div { ...blockProps }>
