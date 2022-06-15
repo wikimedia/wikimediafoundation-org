@@ -3,6 +3,8 @@ Wikimedia's Shiro Theme
 
 This theme was originally forked from the Reaktiv Studios starter theme and [Underscores](https://github.com/Automattic/_s) with quite a few additions. The following documentation runs through the basics of the theme and any commands you may need to follow.
 
+More information: https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website
+
 Folder Structure
 ---------------
 The basic folder structure keeps things fairly simple and organized by type.
