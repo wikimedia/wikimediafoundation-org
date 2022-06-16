@@ -9,7 +9,10 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+<<<<<<< HEAD
+=======
 import BlockIcon from '../../../svg/blocks/banner.svg';
+>>>>>>> preprod
 import Cta from '../../components/cta/index';
 import ImageFilter, { DEFAULT_IMAGE_FILTER } from '../../components/image-filter';
 import ImagePicker from '../../components/image-picker/index.js';
@@ -26,7 +29,11 @@ export const settings = {
 
 	apiVersion: 2,
 
+<<<<<<< HEAD
+	icon: 'cover-image',
+=======
 	icon: BlockIcon,
+>>>>>>> preprod
 
 	description: __(
 		'Banner with an image and call to action.',

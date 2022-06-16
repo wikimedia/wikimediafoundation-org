@@ -17,11 +17,7 @@
     "source": "https://github.com/wpcomvip/wikimediafoundation-org"
   },
   "config": {
-    "sort-order": true,
-    "allow-plugins": {
-      "composer/installers": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    "sort-order": true
   },
   "repositories": [
     {
@@ -36,7 +32,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": "^5.2|^8.0",
+    "php": "^5.2|^7",
     "wpackagist-plugin/safe-svg": "^1.9",
     "wpackagist-plugin/safe-redirect-manager": "^1.10",
     "alleyinteractive/wordpress-fieldmanager": "^1.3",

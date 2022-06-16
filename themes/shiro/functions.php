@@ -406,11 +406,14 @@ function wmf_filter_post_kses_tags( $context, $context_type ) {
 				'width'   => true,
 				'height'  => true,
 				'class'   => true,
+<<<<<<< HEAD
+=======
 				'xmlns'   => true,
 			],
 			'path' => [
 				'd'    => true,
 				'fill' => true,
+>>>>>>> preprod
 			],
 			'rect' => [
 				'fill'   => true,
@@ -470,6 +473,8 @@ function link_reusable_blocks_url() {
 }
 
 add_action( 'admin_menu', 'link_reusable_blocks_url' );
+<<<<<<< HEAD
+=======
 
 /**
  * Add page slug as body class.
@@ -487,3 +492,4 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+>>>>>>> preprod

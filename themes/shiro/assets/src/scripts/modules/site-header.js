@@ -13,11 +13,14 @@ const _languagePicker = document.querySelector(
 	'[data-dropdown="language-switcher"]'
 );
 
+<<<<<<< HEAD
+=======
 // Get all primary nav items with children.
 const _subNavMenus = _primaryNav.querySelectorAll(
 	'.menu-item[data-dropdown]'
 );
 
+>>>>>>> preprod
 /**
  * @returns {IntersectionObserver} A configured observer, ready to observe
  */
@@ -39,6 +42,18 @@ function createObserver() {
  * @param {IntersectionObserverEntry} entry A thing that was observed intersecting
  */
 function processEntry( entry ) {
+<<<<<<< HEAD
+	if ( ! entry.isIntersecting ) {
+		// We're on the desktop
+		_primaryNav.dataset.visible = 'yes';
+		_primaryNav.dataset.toggleable = 'no';
+		_primaryNav.dataset.backdrop = 'inactive';
+		_primaryNav.dataset.trap = 'inactive';
+	} else {
+		// We're on mobile
+		_primaryNav.dataset.visible = 'no';
+		_primaryNav.dataset.toggleable = 'yes';
+=======
 	const { isIntersecting, target } = entry;
 
 	if ( target === _primaryNav.dropdown.toggle ) {
@@ -67,6 +82,7 @@ function processEntry( entry ) {
 		}
 	} else if ( target.classList.contains( 'sub-menu' ) ) {
 		target.closest( '[data-dropdown]' ).dataset.trap = 'inactive';
+>>>>>>> preprod
 	}
 }
 
@@ -94,12 +110,18 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 	const toggleIsVisible = dropdown.dropdown.toggle.offsetParent != null;
 
 	if ( menuIsVisible && toggleIsVisible ) {
+<<<<<<< HEAD
+=======
 		// When the menu is open on mobile, disable body scrolling and close the language picker.
+>>>>>>> preprod
 		document.body.classList.add( 'disable-body-scrolling' );
 		if ( _languagePicker ) {
 			_languagePicker.dataset.visible = 'no';
 		}
 	} else {
+<<<<<<< HEAD
+		document.body.classList.remove( 'disable-body-scrolling' );
+=======
 		// When the menu is closed or untoggleable, allow body scrolling.
 		document.body.classList.remove( 'disable-body-scrolling' );
 
@@ -135,6 +157,7 @@ function handlePrimaryNavVisibleChange( dropdown ) {
 					} );
 			}
 		} );
+>>>>>>> preprod
 	}
 }
 
@@ -177,7 +200,10 @@ function initializeSiteHeader() {
 			...( translationBar ? getFocusableInside( translationBar ) : [] ),
 			...( headerContent ? getFocusableInside( headerContent ) : [] ),
 		];
+<<<<<<< HEAD
+=======
 
+>>>>>>> preprod
 		/**
 		 * Get focusable elements for the primary navigation.
 		 *
@@ -189,6 +215,10 @@ function initializeSiteHeader() {
 				skip
 			);
 		};
+<<<<<<< HEAD
+		_primaryNav.observer = createObserver();
+		_primaryNav.observer.observe( _primaryNav.dropdown.toggle );
+=======
 
 		// Observe the primary nav for desktop/mobile toggling.
 		_primaryNav.observer = createObserver();
@@ -198,6 +228,7 @@ function initializeSiteHeader() {
 		_subNavMenus.forEach( _subNavMenu => {
 			_primaryNav.observer.observe( _subNavMenu.dropdown.content );
 		} );
+>>>>>>> preprod
 	}
 
 	if ( _languagePicker ) {
@@ -233,5 +264,10 @@ function teardown() {
 
 export default initialize( setup, teardown );
 export {
+<<<<<<< HEAD
+	setup,
+	teardown,
+=======
 	setup, teardown,
+>>>>>>> preprod
 };

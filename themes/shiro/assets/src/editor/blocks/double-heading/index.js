@@ -11,7 +11,10 @@ import { Button, PanelBody, SelectControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+<<<<<<< HEAD
+=======
 import BlockIcon from '../../../svg/blocks/double-heading.svg';
+>>>>>>> preprod
 import {
 	ensureEmptyHeading,
 	prepareHeadings,
@@ -61,7 +64,11 @@ function ensureSiteLanguageHeading( headings ) {
 export const name = 'shiro/double-heading',
 	settings = {
 		apiVersion: 2,
+<<<<<<< HEAD
+		icon: 'heading',
+=======
 		icon: BlockIcon,
+>>>>>>> preprod
 		title: __( 'Double heading', 'shiro-admin' ),
 		category: 'wikimedia',
 		attributes: {
