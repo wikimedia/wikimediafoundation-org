@@ -13,13 +13,8 @@ if ( empty( $card_data ) ) {
 
 $link       = $card_data['link'] ?? '';
 $image_id   = $card_data['image_id'] ?? '';
-$image_el   = $card_data['image_el'] ?? '';
-if ( ! empty( $image_el ) ) {
-	// An image element overrides an ID.
-	$image_id = '';
-}
 $title      = $card_data['title'] ?? '';
-$authors    = $card_data['authors'] ?? [];
+$authors    = $card_data['authors'] ?? '';
 $date       = $card_data['date'] ?? '';
 $isodate    = $card_data['isodate'] ?? '';
 $excerpt    = $card_data['excerpt'] ?? '';
@@ -42,10 +37,6 @@ $class      = $card_data['class'] ?? 'blog-post';
 		</a>
 	<?php endif; ?>
 
-	<?php if ( ! empty( $image_el ) ) {
-		echo $image_el;
-	} ?>
-
 	<div class="blog-post__content">
 		<?php if ( ! empty( $title ) ) : ?>
 			<h3 class="blog-post__title">
@@ -59,7 +50,7 @@ $class      = $card_data['class'] ?? 'blog-post';
 			<div class="blog-post__categories">
 				<?php
 					foreach ( $categories as $category ) {
-						printf( '<a class="blog-post__category-link" href="%1$s">%2$s</a> ', esc_url( $category['url'] ), esc_html( $category['name'] ) );
+						printf( '<a class="blog-post__category-link" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
 					}
 					?>
 			</div>
@@ -78,11 +69,9 @@ $class      = $card_data['class'] ?? 'blog-post';
 				</time>
 			<?php endif; ?>
 
-			<?php if ( count( $authors > 0 ) ) : ?>
+			<?php if ( ! empty( $authors ) ) : ?>
 				<span class="blog-post__authors">
-					<?php foreach ($authors as $author) {
-						echo wp_kses_post( sprintf('<a href="%s">%s</a>', $author['name'], $author['url']) );
-					} ?>
+					<?php echo wp_kses_post( $authors ); ?>
 				</span>
 			<?php endif; ?>
 		</div>
