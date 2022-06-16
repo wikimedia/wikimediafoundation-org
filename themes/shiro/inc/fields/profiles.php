@@ -37,7 +37,6 @@ function wmf_profiles_module() {
 	}
 
 	$social = new Fieldmanager_Group( $custom_fields );
-	$social->add_meta_box( __( 'Profiles', 'shiro-admin' ), array( 'page', 'profile' ) );
+	$social->add_meta_box( __( 'Profiles', 'shiro-admin' ), array( 'page' ) );
 }
 add_action( 'fm_post_page', 'wmf_profiles_module' );
-add_action( 'fm_post_profile', 'wmf_profiles_module' );
