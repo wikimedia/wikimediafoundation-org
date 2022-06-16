@@ -16,6 +16,7 @@ add_filter( 'register_post_type_args', array( 'WMF\Roles\Base', 'post_type_args_
 add_action( 'restrict_manage_posts', array( 'WMF\Translations\Edit_Posts', 'restrict_manage_posts' ), 10, 2 );
 add_action( 'post_submitbox_misc_actions', array( 'WMF\Translations\Flow', 'publish_actions_callback' ) );
 add_action( 'save_post', array( 'WMF\Translations\Flow', 'save_post_callback' ), 99 );
+add_action( 'init', array( 'WMF\Translations\Flow', 'register_custom_meta' ) );
 add_filter( 'manage_edit-post_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
 add_filter( 'manage_edit-page_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
 add_filter( 'manage_edit-profile_columns', array( 'WMF\Translations\Notice', 'cpt_columns' ) );
