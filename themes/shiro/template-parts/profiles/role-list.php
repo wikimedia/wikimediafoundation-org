@@ -45,28 +45,23 @@ foreach ( $post_list as $term_id => $term_data ) :
 	?>
 
 	<?php
-	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executive ) && empty( $experts ) ) ) :
-		if ( ! empty( $executive ) ) :
+	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executives ) && empty( $experts ) ) ) :
+		if ( ! empty( $executive ) ) {
 			?>
 		<h3 class="role__staff-title__executive is-style-h4">
 			<?php echo esc_html__( $executive_title ); ?>
 		</h3>
-			<ul class="role__staff-list">
-				<?php
-				foreach ( $executive as $executive_id ) {
-					get_template_part(
-						'template-parts/profiles/role',
-						'item',
-						[
-							'id'   => $executive_id,
-							'role' => 'executive',
-						]
-					);
-				}
-				?>
-			</ul>
-			<?php
-		endif;
+		<?php
+			get_template_part(
+				'template-parts/profiles/role',
+				'item',
+				array(
+					'id'   => $executive,
+					'list' => false,
+					'role' => 'executive',
+				)
+			);
+		}
 
 		if ( ! empty( $experts ) ) :
 		?>
@@ -152,7 +147,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
-
+	
 	<?php
 	if ( ! empty( $button['link_to_archive'] ) && ! is_tax( 'role', $term_id ) ) :
 		$link_text = ! empty( $button['text'] )

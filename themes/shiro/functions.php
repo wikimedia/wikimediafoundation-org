@@ -323,7 +323,6 @@ require get_template_directory() . '/inc/fields.php';
 /**
  * Custom Taxonomies.
  */
-require get_template_directory() . '/inc/taxonomy-content-language.php';
 require get_template_directory() . '/inc/taxonomies.php';
 
 /**
