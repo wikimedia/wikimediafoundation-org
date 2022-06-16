@@ -85,7 +85,7 @@ function render_block( $attributes ) {
 		if ( ! isset( $args['cat'] ) ) {
 			$args['cat'] = '';
 		}
-		$args['cat'] = array_reduce( $excluded_categories, function ( $carry, $item ) {
+		$args['cat'] = array_reduce( $excluded_categories, function( $carry, $item ) {
 			return $carry . ",-$item";
 		}, $args['cat'] );
 	}

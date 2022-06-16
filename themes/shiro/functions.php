@@ -86,11 +86,6 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
 
-	// Warn if required environment is not satisfied.
-	if ( ! function_exists( 'Asset_Loader\enqueue_asset' ) ) {
-		trigger_error( 'This theme expects the humanmade/asset-loader plugin to be installed and active.' );
-	}
-
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
