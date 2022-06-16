@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -46,6 +48,8 @@ class ItemDeletor
             return 0;
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $sitesSql = $this->wpdb->prepare(
             "SELECT blog_id FROM {$this->wpdb->blogs} WHERE blog_id != %d",
             $deletedSiteId
@@ -75,6 +79,8 @@ class ItemDeletor
                 wp_delete_post($postId, true) and $deleted++;
             }
         }
+        // phpcs:enable
+
         $networkState->restore();
 
         return $deleted;

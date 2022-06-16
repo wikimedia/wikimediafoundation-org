@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -94,7 +96,9 @@ class TableInstaller
             throw InvalidTable::forAction('uninstall');
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return false !== $this->wpdb->query('DROP TABLE IF EXISTS ' . $table->name());
+        // phpcs:enable
     }
 
     /**
@@ -171,9 +175,12 @@ class TableInstaller
      */
     private function tableExists(string $tableName): bool
     {
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $query = $this->wpdb->prepare('SHOW TABLES LIKE %s', $tableName);
 
         return (bool)$this->wpdb->query($query);
+        // phpcs:enable
     }
 
     /**
@@ -185,6 +192,7 @@ class TableInstaller
     {
         $tableName = $table->name();
         // Bail if the table is not empty.
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         if ($this->wpdb->query("SELECT 1 FROM {$tableName} LIMIT 1")) {
             return;
         }
@@ -199,5 +207,6 @@ class TableInstaller
         $columns = implode(',', $columns);
 
         $this->wpdb->query("INSERT INTO {$tableName} ({$columns}) VALUES {$defaultContent}");
+        // phpcs:enable
     }
 }

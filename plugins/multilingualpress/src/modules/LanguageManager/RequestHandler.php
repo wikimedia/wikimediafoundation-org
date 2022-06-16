@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,6 +16,7 @@ namespace Inpsyde\MultilingualPress\Module\LanguageManager;
 
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
+
 use function Inpsyde\MultilingualPress\redirectAfterSettingsUpdate;
 
 class RequestHandler
@@ -77,7 +80,7 @@ class RequestHandler
     {
         // phpcs:enable
 
-        array_walk($languages, function (array &$language) {
+        array_walk($languages, static function (array &$language) {
             if (!array_key_exists('is_rtl', $language)) {
                 $language['is_rtl'] = 0;
             }

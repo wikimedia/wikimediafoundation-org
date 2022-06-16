@@ -99,7 +99,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 							tagName="div"
 							value={ headings[0]?.text || '' }
 							onChange={ partial( setHeadingAttribute, 'text', 0 ) }
-							onFocus={ () => setActiveHeading( 0 ) }
+							unstableOnFocus={ () => setActiveHeading( 0 ) }
 						/>
 					</div>
 					{ headings.length > 1 && ( <Button
@@ -128,7 +128,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 									tagName="div"
 									value={ heading.text }
 									onChange={ partial( setHeadingAttribute, 'text', headingIndex ) }
-									onFocus={ () => setActiveHeading( headingIndex ) }
+									unstableOnFocus={ () => setActiveHeading( headingIndex ) }
 								/>
 							</div>
 						);

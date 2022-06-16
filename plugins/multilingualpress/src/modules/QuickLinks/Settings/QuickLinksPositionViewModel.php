@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -106,7 +108,7 @@ class QuickLinksPositionViewModel implements ViewModel
                 />
                 <?= esc_html($label) ?>
             </label>
-        <?php
+            <?php
         endforeach;
     }
 }

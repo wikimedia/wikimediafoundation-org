@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -21,6 +23,7 @@ use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\SwitchSiteTrait;
 use WP_Post;
 use WP_Term;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**

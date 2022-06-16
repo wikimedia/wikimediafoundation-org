@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,6 +17,7 @@ namespace Inpsyde\MultilingualPress\Language;
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress\Framework\Language\Language as FrameworkLanguage;
 use Inpsyde\MultilingualPress\Framework\Language\NullLanguage;
+
 use function Inpsyde\MultilingualPress\allDefaultLanguages;
 
 /**
@@ -201,14 +204,38 @@ final class EmbeddedLanguage implements FrameworkLanguage
     public static function changeLanguageVariantLocale(string $locale): string
     {
         $defaultLanguages = allDefaultLanguages();
-        if (empty($defaultLanguages[$locale]) ||
-            $defaultLanguages[$locale]->type() !== self::TYPE_VARIANT) {
+        if (
+            empty($defaultLanguages[$locale]) ||
+            $defaultLanguages[$locale]->type() !== self::TYPE_VARIANT
+        ) {
             return $locale;
         }
         $locale = $defaultLanguages[$locale]->locale();
         $localeParts = explode('_', $locale);
-        $locale = $localeParts[0] . '_' . $localeParts[1];
+        $locale = $localeParts[0] . '-' . $localeParts[1];
 
         return $locale;
+    }
+
+    /**
+     * The method will change the language variant from lang-LANG-Variant to lang-LANG
+     *
+     * @param string $language of the language variant
+     * @return string changed language
+     */
+    public static function changeLanguageVariant(string $language): string
+    {
+        $defaultLanguages = allDefaultLanguages();
+        if (
+            empty($defaultLanguages[$language]) ||
+            $defaultLanguages[$language]->type() !== self::TYPE_VARIANT
+        ) {
+            return $language;
+        }
+
+        $languageParts = explode('-', $language);
+        $language = $languageParts[0] . '-' . $languageParts[1];
+
+        return $language;
     }
 }

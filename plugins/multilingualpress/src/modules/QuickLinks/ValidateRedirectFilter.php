@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -93,9 +95,11 @@ WHERE site_id = %d
 ORDER BY domain DESC
 SQL;
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $domains = $this->wpdb->get_col(
             $this->wpdb->prepare($query, $this->wpdb->blogs, $this->wpdb->siteid)
         );
+        //phpcs:enable
 
         if ($domains) {
             $allowedHosts = array_merge($homeHosts, $domains);
