@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -44,7 +46,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->addService(
             PostTranslator::class,
-            function (Container $container): PostTranslator {
+            static function (Container $container): PostTranslator {
                 return new PostTranslator(
                     $container[PostTypeRepository::class],
                     $container[Admin\PostTypeSlugsSettingsRepository::class],
@@ -55,7 +57,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             TermTranslator::class,
-            function (Container $container): TermTranslator {
+            static function (Container $container): TermTranslator {
                 return new TermTranslator(
                     $container[TaxonomyRepository::class],
                     $container[UrlFactory::class]
@@ -71,14 +73,14 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->addService(
             SearchTranslator::class,
-            function (Container $container): SearchTranslator {
+            static function (Container $container): SearchTranslator {
                 return new SearchTranslator($container[UrlFactory::class]);
             }
         );
 
         $container->addService(
             DateTranslator::class,
-            function (Container $container): DateTranslator {
+            static function (Container $container): DateTranslator {
                 return new DateTranslator(
                     $container[UrlFactory::class]
                 );
@@ -87,7 +89,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             PostTypeTranslator::class,
-            function (Container $container): PostTypeTranslator {
+            static function (Container $container): PostTypeTranslator {
                 return new PostTypeTranslator(
                     $container[Admin\PostTypeSlugsSettingsRepository::class],
                     $container[UrlFactory::class],
@@ -98,7 +100,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             HomeTranslator::class,
-            function (Container $container): HomeTranslator {
+            static function (Container $container): HomeTranslator {
                 return new HomeTranslator(
                     $container[UrlFactory::class],
                     $container[ContentRelations::class]
@@ -144,7 +146,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         add_action(
             'setup_theme',
-            function () use ($postTranslator) {
+            static function () use ($postTranslator) {
                 global $wp_rewrite;
                 $postTranslator->ensureWpRewrite($wp_rewrite);
             }
@@ -170,7 +172,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         add_action(
             'setup_theme',
-            function () use ($termTranslator) {
+            static function () use ($termTranslator) {
                 global $wp_rewrite;
                 $termTranslator->ensureWpRewrite($wp_rewrite);
             }
@@ -196,7 +198,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         add_action(
             'setup_theme',
-            function () use ($dateTranslation) {
+            static function () use ($dateTranslation) {
                 global $wp, $wp_rewrite;
                 $dateTranslation->ensureWp($wp);
                 $dateTranslation->ensureWpRewrite($wp_rewrite);

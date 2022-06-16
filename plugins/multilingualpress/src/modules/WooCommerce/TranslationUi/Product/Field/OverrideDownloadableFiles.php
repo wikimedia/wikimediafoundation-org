@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -28,12 +30,12 @@ class OverrideDownloadableFiles
     {
         $key = MetaboxFields::FIELD_OVERRIDE_DOWNLOADABLE_FILES;
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <tr class="show_if_downloadable">
             <th scope="row">
                 <?= esc_html_x(
-                    'Downloadable Product',
+                    'Downloadable File',
                     'WooCommerce Product Field',
                     'multilingualpress'
                 ) ?>

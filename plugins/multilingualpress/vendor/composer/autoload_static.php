@@ -4,57 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
+class ComposerStaticInit79426d8f878b1dab4aa92e40c270a342
 {
-    public static $files = array (
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Php72\\' => 23,
-            'Symfony\\Polyfill\\Php70\\' => 23,
-            'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
-            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
-        ),
-        'P' => 
-        array (
-            'Psr\\Http\\Message\\' => 17,
-            'Psr\\Http\\Client\\' => 16,
-        ),
-        'O' => 
-        array (
-            'OomphInc\\ComposerInstallersExtender\\' => 36,
-        ),
-        'M' => 
-        array (
-            'Mjelamanov\\GuzzlePsr18\\' => 23,
-        ),
         'I' => 
         array (
-            'Inpsyde\\ProductPagesLicensing\\' => 30,
             'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => 45,
+            'Inpsyde\\MultilingualPress\\SiteFlags\\' => 36,
             'Inpsyde\\MultilingualPress\\Module\\' => 33,
             'Inpsyde\\MultilingualPress\\Framework\\' => 36,
             'Inpsyde\\MultilingualPress\\' => 26,
-        ),
-        'H' => 
-        array (
-            'Http\\Factory\\Guzzle\\' => 20,
-        ),
-        'G' => 
-        array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
         ),
         'C' => 
         array (
@@ -63,46 +22,13 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Php72\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
-        ),
-        'Symfony\\Polyfill\\Php70\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
-        ),
-        'Symfony\\Polyfill\\Intl\\Normalizer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer',
-        ),
-        'Symfony\\Polyfill\\Intl\\Idn\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
-        ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
-        ),
-        'Psr\\Http\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-client/src',
-        ),
-        'OomphInc\\ComposerInstallersExtender\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src',
-        ),
-        'Mjelamanov\\GuzzlePsr18\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src',
-        ),
-        'Inpsyde\\ProductPagesLicensing\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src',
-        ),
         'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/modules/multilingualpress-woocommerce-brands/src',
+            0 => __DIR__ . '/..' . '/inpsyde/multilingualpress-woocommerce-brands/src',
+        ),
+        'Inpsyde\\MultilingualPress\\SiteFlags\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src',
         ),
         'Inpsyde\\MultilingualPress\\Module\\' => 
         array (
@@ -116,22 +42,6 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         array (
             0 => __DIR__ . '/../..' . '/src/multilingualpress',
         ),
-        'Http\\Factory\\Guzzle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src',
-        ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
@@ -139,8 +49,6 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
     );
 
     public static $classMap = array (
-        'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
-        'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Composer\\Installers\\AglInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AglInstaller.php',
         'Composer\\Installers\\AimeosInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AimeosInstaller.php',
         'Composer\\Installers\\AnnotateCmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AnnotateCmsInstaller.php',
@@ -193,6 +101,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Composer\\Installers\\MauticInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/MauticInstaller.php',
         'Composer\\Installers\\MayaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/MayaInstaller.php',
         'Composer\\Installers\\MediaWikiInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/MediaWikiInstaller.php',
+        'Composer\\Installers\\MiaoxingInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/MiaoxingInstaller.php',
         'Composer\\Installers\\MicroweberInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/MicroweberInstaller.php',
         'Composer\\Installers\\ModxInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ModxInstaller.php',
         'Composer\\Installers\\MoodleInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/MoodleInstaller.php',
@@ -201,6 +110,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Composer\\Installers\\OsclassInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/OsclassInstaller.php',
         'Composer\\Installers\\OxidInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/OxidInstaller.php',
         'Composer\\Installers\\PPIInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PPIInstaller.php',
+        'Composer\\Installers\\PantheonInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PantheonInstaller.php',
         'Composer\\Installers\\PhiftyInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PhiftyInstaller.php',
         'Composer\\Installers\\PhpBBInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PhpBBInstaller.php',
         'Composer\\Installers\\PimcoreInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PimcoreInstaller.php',
@@ -209,6 +119,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Composer\\Installers\\Plugin' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/Plugin.php',
         'Composer\\Installers\\PortoInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PortoInstaller.php',
         'Composer\\Installers\\PrestashopInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PrestashopInstaller.php',
+        'Composer\\Installers\\ProcessWireInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ProcessWireInstaller.php',
         'Composer\\Installers\\PuppetInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PuppetInstaller.php',
         'Composer\\Installers\\PxcmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/PxcmsInstaller.php',
         'Composer\\Installers\\RadPHPInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/RadPHPInstaller.php',
@@ -220,102 +131,26 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Composer\\Installers\\ShopwareInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ShopwareInstaller.php',
         'Composer\\Installers\\SilverStripeInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/SilverStripeInstaller.php',
         'Composer\\Installers\\SiteDirectInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/SiteDirectInstaller.php',
+        'Composer\\Installers\\StarbugInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/StarbugInstaller.php',
         'Composer\\Installers\\SyDESInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/SyDESInstaller.php',
         'Composer\\Installers\\SyliusInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/SyliusInstaller.php',
         'Composer\\Installers\\Symfony1Installer' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/Symfony1Installer.php',
         'Composer\\Installers\\TYPO3CmsInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/TYPO3CmsInstaller.php',
         'Composer\\Installers\\TYPO3FlowInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/TYPO3FlowInstaller.php',
         'Composer\\Installers\\TaoInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/TaoInstaller.php',
+        'Composer\\Installers\\TastyIgniterInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/TastyIgniterInstaller.php',
         'Composer\\Installers\\TheliaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/TheliaInstaller.php',
         'Composer\\Installers\\TuskInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/TuskInstaller.php',
         'Composer\\Installers\\UserFrostingInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/UserFrostingInstaller.php',
         'Composer\\Installers\\VanillaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/VanillaInstaller.php',
         'Composer\\Installers\\VgmcpInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/VgmcpInstaller.php',
         'Composer\\Installers\\WHMCSInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/WHMCSInstaller.php',
+        'Composer\\Installers\\WinterInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/WinterInstaller.php',
         'Composer\\Installers\\WolfCMSInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/WolfCMSInstaller.php',
         'Composer\\Installers\\WordPressInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/WordPressInstaller.php',
         'Composer\\Installers\\YawikInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/YawikInstaller.php',
         'Composer\\Installers\\ZendInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZendInstaller.php',
         'Composer\\Installers\\ZikulaInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/ZikulaInstaller.php',
-        'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
-        'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
-        'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
-        'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
-        'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
-        'GuzzleHttp\\Cookie\\CookieJarInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php',
-        'GuzzleHttp\\Cookie\\FileCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php',
-        'GuzzleHttp\\Cookie\\SessionCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php',
-        'GuzzleHttp\\Cookie\\SetCookie' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/SetCookie.php',
-        'GuzzleHttp\\Exception\\BadResponseException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/BadResponseException.php',
-        'GuzzleHttp\\Exception\\ClientException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ClientException.php',
-        'GuzzleHttp\\Exception\\ConnectException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ConnectException.php',
-        'GuzzleHttp\\Exception\\GuzzleException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/GuzzleException.php',
-        'GuzzleHttp\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php',
-        'GuzzleHttp\\Exception\\RequestException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/RequestException.php',
-        'GuzzleHttp\\Exception\\SeekException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/SeekException.php',
-        'GuzzleHttp\\Exception\\ServerException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ServerException.php',
-        'GuzzleHttp\\Exception\\TooManyRedirectsException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php',
-        'GuzzleHttp\\Exception\\TransferException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TransferException.php',
-        'GuzzleHttp\\HandlerStack' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/HandlerStack.php',
-        'GuzzleHttp\\Handler\\CurlFactory' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlFactory.php',
-        'GuzzleHttp\\Handler\\CurlFactoryInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlFactoryInterface.php',
-        'GuzzleHttp\\Handler\\CurlHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlHandler.php',
-        'GuzzleHttp\\Handler\\CurlMultiHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php',
-        'GuzzleHttp\\Handler\\EasyHandle' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/EasyHandle.php',
-        'GuzzleHttp\\Handler\\MockHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/MockHandler.php',
-        'GuzzleHttp\\Handler\\Proxy' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/Proxy.php',
-        'GuzzleHttp\\Handler\\StreamHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/StreamHandler.php',
-        'GuzzleHttp\\MessageFormatter' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/MessageFormatter.php',
-        'GuzzleHttp\\Middleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Middleware.php',
-        'GuzzleHttp\\Pool' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Pool.php',
-        'GuzzleHttp\\PrepareBodyMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php',
-        'GuzzleHttp\\Promise\\AggregateException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/AggregateException.php',
-        'GuzzleHttp\\Promise\\CancellationException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/CancellationException.php',
-        'GuzzleHttp\\Promise\\Coroutine' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Coroutine.php',
-        'GuzzleHttp\\Promise\\EachPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/EachPromise.php',
-        'GuzzleHttp\\Promise\\FulfilledPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/FulfilledPromise.php',
-        'GuzzleHttp\\Promise\\Promise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Promise.php',
-        'GuzzleHttp\\Promise\\PromiseInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromiseInterface.php',
-        'GuzzleHttp\\Promise\\PromisorInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromisorInterface.php',
-        'GuzzleHttp\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectedPromise.php',
-        'GuzzleHttp\\Promise\\RejectionException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectionException.php',
-        'GuzzleHttp\\Promise\\TaskQueue' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueue.php',
-        'GuzzleHttp\\Promise\\TaskQueueInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueueInterface.php',
-        'GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
-        'GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
-        'GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
-        'GuzzleHttp\\Psr7\\DroppingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/DroppingStream.php',
-        'GuzzleHttp\\Psr7\\FnStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/FnStream.php',
-        'GuzzleHttp\\Psr7\\InflateStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/InflateStream.php',
-        'GuzzleHttp\\Psr7\\LazyOpenStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LazyOpenStream.php',
-        'GuzzleHttp\\Psr7\\LimitStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LimitStream.php',
-        'GuzzleHttp\\Psr7\\MessageTrait' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MessageTrait.php',
-        'GuzzleHttp\\Psr7\\MultipartStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MultipartStream.php',
-        'GuzzleHttp\\Psr7\\NoSeekStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/NoSeekStream.php',
-        'GuzzleHttp\\Psr7\\PumpStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/PumpStream.php',
-        'GuzzleHttp\\Psr7\\Request' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Request.php',
-        'GuzzleHttp\\Psr7\\Response' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Response.php',
-        'GuzzleHttp\\Psr7\\Rfc7230' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc7230.php',
-        'GuzzleHttp\\Psr7\\ServerRequest' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/ServerRequest.php',
-        'GuzzleHttp\\Psr7\\Stream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Stream.php',
-        'GuzzleHttp\\Psr7\\StreamDecoratorTrait' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamDecoratorTrait.php',
-        'GuzzleHttp\\Psr7\\StreamWrapper' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamWrapper.php',
-        'GuzzleHttp\\Psr7\\UploadedFile' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UploadedFile.php',
-        'GuzzleHttp\\Psr7\\Uri' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Uri.php',
-        'GuzzleHttp\\Psr7\\UriNormalizer' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriNormalizer.php',
-        'GuzzleHttp\\Psr7\\UriResolver' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriResolver.php',
-        'GuzzleHttp\\RedirectMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RedirectMiddleware.php',
-        'GuzzleHttp\\RequestOptions' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RequestOptions.php',
-        'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
-        'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
-        'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
-        'GuzzleHttp\\Utils' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Utils.php',
-        'Http\\Factory\\Guzzle\\RequestFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/RequestFactory.php',
-        'Http\\Factory\\Guzzle\\ResponseFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/ResponseFactory.php',
-        'Http\\Factory\\Guzzle\\ServerRequestFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/ServerRequestFactory.php',
-        'Http\\Factory\\Guzzle\\StreamFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/StreamFactory.php',
-        'Http\\Factory\\Guzzle\\UploadedFileFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/UploadedFileFactory.php',
-        'Http\\Factory\\Guzzle\\UriFactory' => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src/UriFactory.php',
         'Inpsyde\\MultilingualPress\\Activation\\Activator' => __DIR__ . '/../..' . '/src/multilingualpress/Activation/Activator.php',
         'Inpsyde\\MultilingualPress\\Activation\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Activation/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Api\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Api/ServiceProvider.php',
@@ -336,6 +171,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Cache\\NavMenuItemsSerializer' => __DIR__ . '/../..' . '/src/multilingualpress/Cache/NavMenuItemsSerializer.php',
         'Inpsyde\\MultilingualPress\\Cache\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Cache/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\AltLanguageTitleSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/AltLanguageTitleSiteSetting.php',
+        'Inpsyde\\MultilingualPress\\Core\\Admin\\LanguageInstaller' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LanguageInstaller.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\LanguageSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LanguageSiteSetting.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\LanguagesAjaxSearch' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LanguagesAjaxSearch.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\LicenseSettingsTabView' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/LicenseSettingsTabView.php',
@@ -364,6 +200,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\Cache\\CacheSettingsTabView' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/Cache/CacheSettingsTabView.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\Cache\\CacheSettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/Cache/CacheSettingsUpdater.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\SettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/SettingsUpdater.php',
+        'Inpsyde\\MultilingualPress\\Core\\Admin\\Settings\\WordPressSettingsScreen' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/Settings/WordPressSettingsScreen.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettings' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettings.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettingsRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettingsRepository.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettingsRepositoryTrait' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettingsRepositoryTrait.php',
@@ -372,6 +209,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Core\\Admin\\SiteSettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/SiteSettingsUpdater.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\TaxonomySettingsTabView' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/TaxonomySettingsTabView.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\TaxonomySettingsUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/TaxonomySettingsUpdater.php',
+        'Inpsyde\\MultilingualPress\\Core\\Admin\\WordPressLanguageSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/WordPressLanguageSiteSetting.php',
         'Inpsyde\\MultilingualPress\\Core\\Admin\\XDefaultSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Admin/XDefaultSiteSetting.php',
         'Inpsyde\\MultilingualPress\\Core\\Entity\\ActivePostTypes' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Entity/ActivePostTypes.php',
         'Inpsyde\\MultilingualPress\\Core\\Entity\\ActiveTaxonomies' => __DIR__ . '/../..' . '/src/multilingualpress/Core/Entity/ActiveTaxonomies.php',
@@ -385,8 +223,12 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Core\\ModuleDeactivator' => __DIR__ . '/../..' . '/src/multilingualpress/Core/ModuleDeactivator.php',
         'Inpsyde\\MultilingualPress\\Core\\PostTypeRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/PostTypeRepository.php',
         'Inpsyde\\MultilingualPress\\Core\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Core/ServiceProvider.php',
+        'Inpsyde\\MultilingualPress\\Core\\SettingsRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/SettingsRepository.php',
         'Inpsyde\\MultilingualPress\\Core\\SiteDataDeletor' => __DIR__ . '/../..' . '/src/multilingualpress/Core/SiteDataDeletor.php',
         'Inpsyde\\MultilingualPress\\Core\\TaxonomyRepository' => __DIR__ . '/../..' . '/src/multilingualpress/Core/TaxonomyRepository.php',
+        'Inpsyde\\MultilingualPress\\Customizer\\SaveCustomizerData' => __DIR__ . '/../..' . '/src/multilingualpress/Customizer/SaveCustomizerData.php',
+        'Inpsyde\\MultilingualPress\\Customizer\\SaveCustomizerDataInterface' => __DIR__ . '/../..' . '/src/multilingualpress/Customizer/SaveCustomizerDataInterface.php',
+        'Inpsyde\\MultilingualPress\\Customizer\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Customizer/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Database\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Database/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Database\\Table\\ContentRelationsTable' => __DIR__ . '/../..' . '/src/multilingualpress/Database/Table/ContentRelationsTable.php',
         'Inpsyde\\MultilingualPress\\Database\\Table\\LanguagesTable' => __DIR__ . '/../..' . '/src/multilingualpress/Database/Table/LanguagesTable.php',
@@ -522,6 +364,8 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Framework\\Service\\IntegrationServiceProvider' => __DIR__ . '/../..' . '/src/framework/Service/IntegrationServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Framework\\Service\\ServiceProvider' => __DIR__ . '/../..' . '/src/framework/Service/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Framework\\Service\\ServiceProvidersCollection' => __DIR__ . '/../..' . '/src/framework/Service/ServiceProvidersCollection.php',
+        'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingOption' => __DIR__ . '/../..' . '/src/framework/Setting/SettingOption.php',
+        'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingOptionInterface' => __DIR__ . '/../..' . '/src/framework/Setting/SettingOptionInterface.php',
         'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingsBoxView' => __DIR__ . '/../..' . '/src/framework/Setting/SettingsBoxView.php',
         'Inpsyde\\MultilingualPress\\Framework\\Setting\\SettingsBoxViewModel' => __DIR__ . '/../..' . '/src/framework/Setting/SettingsBoxViewModel.php',
         'Inpsyde\\MultilingualPress\\Framework\\Setting\\SiteSettingsUpdatable' => __DIR__ . '/../..' . '/src/framework/Setting/SiteSettingsUpdatable.php',
@@ -566,6 +410,10 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Integration\\WpCli' => __DIR__ . '/../..' . '/src/multilingualpress/Integration/WpCli.php',
         'Inpsyde\\MultilingualPress\\Language\\EmbeddedLanguage' => __DIR__ . '/../..' . '/src/multilingualpress/Language/EmbeddedLanguage.php',
         'Inpsyde\\MultilingualPress\\Language\\Language' => __DIR__ . '/../..' . '/src/multilingualpress/Language/Language.php',
+        'Inpsyde\\MultilingualPress\\License\\Api\\Activator' => __DIR__ . '/../..' . '/src/multilingualpress/License/Api/Activator.php',
+        'Inpsyde\\MultilingualPress\\License\\Api\\Updater' => __DIR__ . '/../..' . '/src/multilingualpress/License/Api/Updater.php',
+        'Inpsyde\\MultilingualPress\\License\\License' => __DIR__ . '/../..' . '/src/multilingualpress/License/License.php',
+        'Inpsyde\\MultilingualPress\\License\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/License/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Module\\ACF\\FieldCopier' => __DIR__ . '/../..' . '/src/modules/ACF/FieldCopier.php',
         'Inpsyde\\MultilingualPress\\Module\\ACF\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/ACF/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Module\\ACF\\TranslationUi\\Post\\Field\\CopyACFFields' => __DIR__ . '/../..' . '/src/modules/ACF/TranslationUi/Post/Field/CopyACFFields.php',
@@ -573,6 +421,8 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Module\\AltLanguageTitleInAdminBar\\AdminBarCustomizer' => __DIR__ . '/../..' . '/src/modules/AltLanguageTitleInAdminBar/AdminBarCustomizer.php',
         'Inpsyde\\MultilingualPress\\Module\\AltLanguageTitleInAdminBar\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/AltLanguageTitleInAdminBar/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Module\\AltLanguageTitleInAdminBar\\SettingsRepository' => __DIR__ . '/../..' . '/src/modules/AltLanguageTitleInAdminBar/SettingsRepository.php',
+        'Inpsyde\\MultilingualPress\\Module\\BeaverBuilder\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/BeaverBuilder/ServiceProvider.php',
+        'Inpsyde\\MultilingualPress\\Module\\Elementor\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/Elementor/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Module\\LanguageManager\\Db' => __DIR__ . '/../..' . '/src/modules/LanguageManager/Db.php',
         'Inpsyde\\MultilingualPress\\Module\\LanguageManager\\LanguageInstaller' => __DIR__ . '/../..' . '/src/modules/LanguageManager/LanguageInstaller.php',
         'Inpsyde\\MultilingualPress\\Module\\LanguageManager\\PageView' => __DIR__ . '/../..' . '/src/modules/LanguageManager/PageView.php',
@@ -611,7 +461,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\NotFoundSiteRedirect' => __DIR__ . '/../..' . '/src/modules/Redirect/NotFoundSiteRedirect.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\PhpRedirector' => __DIR__ . '/../..' . '/src/modules/Redirect/PhpRedirector.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectRequestChecker' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectRequestChecker.php',
-        'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectSiteSetting' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectSiteSetting.php',
+        'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectSiteSettings' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectSiteSettings.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectTarget' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectTarget.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\RedirectUserSetting' => __DIR__ . '/../..' . '/src/modules/Redirect/RedirectUserSetting.php',
         'Inpsyde\\MultilingualPress\\Module\\Redirect\\Redirector' => __DIR__ . '/../..' . '/src/modules/Redirect/Redirector.php',
@@ -626,6 +476,12 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Module\\Trasher\\TrasherSettingRepository' => __DIR__ . '/../..' . '/src/modules/Trasher/TrasherSettingRepository.php',
         'Inpsyde\\MultilingualPress\\Module\\Trasher\\TrasherSettingUpdater' => __DIR__ . '/../..' . '/src/modules/Trasher/TrasherSettingUpdater.php',
         'Inpsyde\\MultilingualPress\\Module\\Trasher\\TrasherSettingView' => __DIR__ . '/../..' . '/src/modules/Trasher/TrasherSettingView.php',
+        'Inpsyde\\MultilingualPress\\Module\\User\\MetaValueFilter' => __DIR__ . '/../..' . '/src/modules/User/MetaValueFilter.php',
+        'Inpsyde\\MultilingualPress\\Module\\User\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/User/ServiceProvider.php',
+        'Inpsyde\\MultilingualPress\\Module\\User\\TranslationUi\\Field\\Biography' => __DIR__ . '/../..' . '/src/modules/User/TranslationUi/Field/Biography.php',
+        'Inpsyde\\MultilingualPress\\Module\\User\\TranslationUi\\MetaboxAction' => __DIR__ . '/../..' . '/src/modules/User/TranslationUi/MetaboxAction.php',
+        'Inpsyde\\MultilingualPress\\Module\\User\\TranslationUi\\MetaboxFields' => __DIR__ . '/../..' . '/src/modules/User/TranslationUi/MetaboxFields.php',
+        'Inpsyde\\MultilingualPress\\Module\\User\\TranslationUi\\MetaboxView' => __DIR__ . '/../..' . '/src/modules/User/TranslationUi/MetaboxView.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\ArchiveProducts' => __DIR__ . '/../..' . '/src/modules/WooCommerce/ArchiveProducts.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\AttributeTermTranslateUrl' => __DIR__ . '/../..' . '/src/modules/WooCommerce/AttributeTermTranslateUrl.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\AttributesRelationship' => __DIR__ . '/../..' . '/src/modules/WooCommerce/AttributesRelationship.php',
@@ -634,9 +490,18 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\ProductMetaboxesBehaviorActivator' => __DIR__ . '/../..' . '/src/modules/WooCommerce/ProductMetaboxesBehaviorActivator.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\ServiceProvider' => __DIR__ . '/../..' . '/src/modules/WooCommerce/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Ajax\\Search' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Ajax/Search.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\Backorders' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/Backorders.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\LowStockAmount' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/LowStockAmount.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\ManageStock' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/ManageStock.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\OverrideInventorySettings' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/OverrideInventorySettings.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\Sku' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/Sku.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\SoldIndividually' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/SoldIndividually.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\Stock' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/Stock.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Inventory\\StockStatus' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Inventory/StockStatus.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideAttributes' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideAttributes.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideCrossellsProducts' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideCrossellsProducts.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideDownloadableFiles' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideDownloadableFiles.php',
+        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideDownloadableSettings' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideDownloadableSettings.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideGroupedProducts' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideGroupedProducts.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideProductGallery' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideProductGallery.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\OverrideProductType' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/OverrideProductType.php',
@@ -648,7 +513,6 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\RegularPrice' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/RegularPrice.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\SalePrice' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/SalePrice.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\ShortDescription' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/ShortDescription.php',
-        'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\Field\\Sku' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/Field/Sku.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\FieldsAwareOfProductType' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/FieldsAwareOfProductType.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\MetaboxAction' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/MetaboxAction.php',
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\MetaboxField' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/MetaboxField.php',
@@ -661,6 +525,8 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Module\\WooCommerce\\TranslationUi\\Product\\WooCommerceMetaboxFields' => __DIR__ . '/../..' . '/src/modules/WooCommerce/TranslationUi/Product/WooCommerceMetaboxFields.php',
         'Inpsyde\\MultilingualPress\\MultilingualPress' => __DIR__ . '/../..' . '/src/multilingualpress/MultilingualPress.php',
         'Inpsyde\\MultilingualPress\\NavMenu\\AjaxHandler' => __DIR__ . '/../..' . '/src/multilingualpress/NavMenu/AjaxHandler.php',
+        'Inpsyde\\MultilingualPress\\NavMenu\\CopyNavMenu\\Ajax\\CopyNavMenuSettingsView' => __DIR__ . '/../..' . '/src/multilingualpress/NavMenu/CopyNavMenu/Ajax/CopyNavMenuSettingsView.php',
+        'Inpsyde\\MultilingualPress\\NavMenu\\CopyNavMenu\\CopyNavMenu' => __DIR__ . '/../..' . '/src/multilingualpress/NavMenu/CopyNavMenu/CopyNavMenu.php',
         'Inpsyde\\MultilingualPress\\NavMenu\\ItemDeletor' => __DIR__ . '/../..' . '/src/multilingualpress/NavMenu/ItemDeletor.php',
         'Inpsyde\\MultilingualPress\\NavMenu\\ItemFilter' => __DIR__ . '/../..' . '/src/multilingualpress/NavMenu/ItemFilter.php',
         'Inpsyde\\MultilingualPress\\NavMenu\\ItemRepository' => __DIR__ . '/../..' . '/src/multilingualpress/NavMenu/ItemRepository.php',
@@ -686,11 +552,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Schedule\\Schedule' => __DIR__ . '/../..' . '/src/multilingualpress/Schedule/Schedule.php',
         'Inpsyde\\MultilingualPress\\Schedule\\Scheduler' => __DIR__ . '/../..' . '/src/multilingualpress/Schedule/Scheduler.php',
         'Inpsyde\\MultilingualPress\\Schedule\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Schedule/ServiceProvider.php',
-        'Inpsyde\\MultilingualPress\\SiteDuplication\\ActivatePluginsSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/ActivatePluginsSetting.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\ActivePlugins' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/ActivePlugins.php',
-        'Inpsyde\\MultilingualPress\\SiteDuplication\\BasedOnSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/BasedOnSiteSetting.php',
-        'Inpsyde\\MultilingualPress\\SiteDuplication\\ConnectContentSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/ConnectContentSetting.php',
-        'Inpsyde\\MultilingualPress\\SiteDuplication\\CopyAttachmentsSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/CopyAttachmentsSetting.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Schedule\\AttachmentDuplicatorHandler' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Schedule/AttachmentDuplicatorHandler.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Schedule\\AttachmentDuplicatorScheduler' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Schedule/AttachmentDuplicatorScheduler.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Schedule\\MaybeScheduleAttachmentDuplication' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Schedule/MaybeScheduleAttachmentDuplication.php',
@@ -699,14 +561,31 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Schedule\\ScheduleActionsNames' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Schedule/ScheduleActionsNames.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Schedule\\ScheduleAssetManager' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Schedule/ScheduleAssetManager.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\Schedule\\SiteScheduleOption' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Schedule/SiteScheduleOption.php',
-        'Inpsyde\\MultilingualPress\\SiteDuplication\\SearchEngineVisibilitySetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/SearchEngineVisibilitySetting.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/ServiceProvider.php',
+        'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\ActivatePluginsSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/ActivatePluginsSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\BasedOnSiteSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/BasedOnSiteSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\ConnectContentSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/ConnectContentSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\CopyAttachmentsSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/CopyAttachmentsSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\CopyUsersSetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/CopyUsersSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteDuplication\\Settings\\SearchEngineVisibilitySetting' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/Settings/SearchEngineVisibilitySetting.php',
         'Inpsyde\\MultilingualPress\\SiteDuplication\\SiteDuplicator' => __DIR__ . '/../..' . '/src/multilingualpress/SiteDuplication/SiteDuplicator.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteFlagUrlSetting' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteFlagUrlSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteMenuLanguageStyleSetting' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteMenuLanguageStyleSetting.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteSettingsRepository' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteSettingsRepository.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Core\\Admin\\SiteSettingsUpdater' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Core/Admin/SiteSettingsUpdater.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\FlagFilter' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/FlagFilter.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Factory' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Factory.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Flag' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Flag.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Raster' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Raster.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\Flag\\Svg' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/Flag/Svg.php',
+        'Inpsyde\\MultilingualPress\\SiteFlags\\ServiceProvider' => __DIR__ . '/..' . '/inpsyde/multilingualpress-site-flags/src/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\MetaboxFieldsHelper' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/MetaboxFieldsHelper.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\ContextBuilder' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/ContextBuilder.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\RelationshipUpdater' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/RelationshipUpdater.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\Search' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/Search.php',
+        'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Ajax\\Term' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Ajax/Term.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\Base' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/Base.php',
+        'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\ChangedFields' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/ChangedFields.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\CopyContent' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/CopyContent.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\CopyFeaturedImage' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/CopyFeaturedImage.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\Field\\CopyTaxonomies' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/Field/CopyTaxonomies.php',
@@ -729,6 +608,7 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\PostRelationSaveHelper' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/PostRelationSaveHelper.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\RelationshipContext' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/RelationshipContext.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\RelationshipPermission' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/RelationshipPermission.php',
+        'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\RenderCallback' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/RenderCallback.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\SourcePostSaveContext' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/SourcePostSaveContext.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\Post\\TableList' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/Post/TableList.php',
         'Inpsyde\\MultilingualPress\\TranslationUi\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/TranslationUi/ServiceProvider.php',
@@ -757,55 +637,15 @@ class ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab
         'Inpsyde\\MultilingualPress\\Translator\\ServiceProvider' => __DIR__ . '/../..' . '/src/multilingualpress/Translator/ServiceProvider.php',
         'Inpsyde\\MultilingualPress\\Translator\\TermTranslator' => __DIR__ . '/../..' . '/src/multilingualpress/Translator/TermTranslator.php',
         'Inpsyde\\MultilingualPress\\Translator\\UrlBlogFragmentTrailingTrait' => __DIR__ . '/../..' . '/src/multilingualpress/Translator/UrlBlogFragmentTrailingTrait.php',
-        'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\ServiceProvider' => __DIR__ . '/../..' . '/modules/multilingualpress-woocommerce-brands/src/ServiceProvider.php',
-        'Inpsyde\\ProductPagesLicensing\\Api\\Activator' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/Api/Activator.php',
-        'Inpsyde\\ProductPagesLicensing\\Api\\Updater' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/Api/Updater.php',
-        'Inpsyde\\ProductPagesLicensing\\License' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/License.php',
-        'Inpsyde\\ProductPagesLicensing\\RequestHandler' => __DIR__ . '/..' . '/inpsyde/product-pages-licensing/src/RequestHandler.php',
-        'Mjelamanov\\GuzzlePsr18\\Client' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Client.php',
-        'Mjelamanov\\GuzzlePsr18\\Exception\\GuzzleException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/GuzzleException.php',
-        'Mjelamanov\\GuzzlePsr18\\Exception\\NetworkException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/NetworkException.php',
-        'Mjelamanov\\GuzzlePsr18\\Exception\\RequestException' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/RequestException.php',
-        'Mjelamanov\\GuzzlePsr18\\Exception\\WithRequest' => __DIR__ . '/..' . '/mjelamanov/psr18-guzzle/src/Exception/WithRequest.php',
-        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
-        'OomphInc\\ComposerInstallersExtender\\Installer' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/Installer.php',
-        'OomphInc\\ComposerInstallersExtender\\InstallerHelper' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/InstallerHelper.php',
-        'OomphInc\\ComposerInstallersExtender\\Plugin' => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src/Plugin.php',
-        'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
-        'Psr\\Http\\Client\\ClientExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/ClientExceptionInterface.php',
-        'Psr\\Http\\Client\\ClientInterface' => __DIR__ . '/..' . '/psr/http-client/src/ClientInterface.php',
-        'Psr\\Http\\Client\\NetworkExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/NetworkExceptionInterface.php',
-        'Psr\\Http\\Client\\RequestExceptionInterface' => __DIR__ . '/..' . '/psr/http-client/src/RequestExceptionInterface.php',
-        'Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/..' . '/psr/http-message/src/MessageInterface.php',
-        'Psr\\Http\\Message\\RequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/RequestFactoryInterface.php',
-        'Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/RequestInterface.php',
-        'Psr\\Http\\Message\\ResponseFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ResponseFactoryInterface.php',
-        'Psr\\Http\\Message\\ResponseInterface' => __DIR__ . '/..' . '/psr/http-message/src/ResponseInterface.php',
-        'Psr\\Http\\Message\\ServerRequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ServerRequestFactoryInterface.php',
-        'Psr\\Http\\Message\\ServerRequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/ServerRequestInterface.php',
-        'Psr\\Http\\Message\\StreamFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/StreamFactoryInterface.php',
-        'Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/..' . '/psr/http-message/src/StreamInterface.php',
-        'Psr\\Http\\Message\\UploadedFileFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UploadedFileFactoryInterface.php',
-        'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
-        'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
-        'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
-        'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
-        'Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
-        'Symfony\\Polyfill\\Intl\\Idn\\Info' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Info.php',
-        'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\DisallowedRanges' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/DisallowedRanges.php',
-        'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\Regex' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/Regex.php',
-        'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
-        'Symfony\\Polyfill\\Php70\\Php70' => __DIR__ . '/..' . '/symfony/polyfill-php70/Php70.php',
-        'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
-        'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+        'Inpsyde\\MultilingualPress\\WooCommerce\\Brands\\ServiceProvider' => __DIR__ . '/..' . '/inpsyde/multilingualpress-woocommerce-brands/src/ServiceProvider.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6b5038e0518b92bd311cb59cd793ecab::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit79426d8f878b1dab4aa92e40c270a342::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit79426d8f878b1dab4aa92e40c270a342::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit79426d8f878b1dab4aa92e40c270a342::$classMap;
 
         }, null, ClassLoader::class);
     }

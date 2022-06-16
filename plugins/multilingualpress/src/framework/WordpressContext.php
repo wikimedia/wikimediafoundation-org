@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -44,7 +46,7 @@ class WordpressContext
         }
 
         // Checks if the current request is for a single post or the page for posts.
-        $isSingular = function () use ($wpQuery): bool {
+        $isSingular = static function () use ($wpQuery): bool {
             return $wpQuery->is_singular() || ($wpQuery->is_home() && !$wpQuery->is_front_page());
         };
 
@@ -53,7 +55,7 @@ class WordpressContext
          *
          * We rely on relations, that's why the page_for_posts is treated like a normal page.
          */
-        $isHome = function () use ($wpQuery): bool {
+        $isHome = static function () use ($wpQuery): bool {
             return $wpQuery->is_home() && !$wpQuery->is_posts_page;
         };
 

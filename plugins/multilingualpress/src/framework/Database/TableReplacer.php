@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -39,6 +41,7 @@ class TableReplacer
      */
     public function replace(string $destination, string $source): bool
     {
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $hasPrimaryKey = $this->wpdb->get_results(
             "SHOW KEYS FROM {$destination} WHERE Key_name = 'PRIMARY'"
         );
@@ -54,6 +57,7 @@ class TableReplacer
         if ($hasPrimaryKey) {
             $this->wpdb->query("ALTER TABLE {$destination} ENABLE KEYS");
         }
+        // phpcs:enable
 
         return $replaced;
     }

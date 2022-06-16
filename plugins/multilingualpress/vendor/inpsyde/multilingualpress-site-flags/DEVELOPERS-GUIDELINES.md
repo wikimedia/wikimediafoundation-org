@@ -1,0 +1,1 @@
+See Multilingualpress DEVELOPERS-GUIDELINES.md

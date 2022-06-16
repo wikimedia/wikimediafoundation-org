@@ -1,0 +1,1 @@
+{"version":3,"file":"backend.css","sources":["resources/scss/backend.scss"],"sourcesContent":[".translations.column-translations {\n    a {\n        img {\n            width: 16px;\n        }\n    }\n}\n"],"names":[],"mappings":"AAAA,AAEQ,aAFK,AAAA,oBAAoB,CAC7B,CAAC,CACG,GAAG,AAAC,CACA,KAAK,CAAE,IAAI,CACd"}

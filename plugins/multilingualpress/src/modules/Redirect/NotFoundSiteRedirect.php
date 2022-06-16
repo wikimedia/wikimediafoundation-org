@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,12 +14,13 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\Redirect;
 
-use function Inpsyde\MultilingualPress\callExit;
-use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
-use function Inpsyde\MultilingualPress\isWpDebugMode;
-use function Inpsyde\MultilingualPress\siteLocale;
-use function Inpsyde\MultilingualPress\siteLanguageTag;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
+use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
+
+use function Inpsyde\MultilingualPress\callExit;
+use function Inpsyde\MultilingualPress\isWpDebugMode;
+use function Inpsyde\MultilingualPress\siteLanguageTag;
+use function Inpsyde\MultilingualPress\siteLocale;
 
 /**
  * Class NotFoundSiteRedirect
@@ -63,7 +66,7 @@ class NotFoundSiteRedirect implements Redirector
             $siteUrlToRedirectTo = $this->redirectUrlForSite($siteIdToRedirectTo);
         } catch (NonexistentTable $exc) {
             if (isWpDebugMode()) {
-                throw new $exc;
+                throw new $exc();
             }
 
             return false;
@@ -109,6 +112,7 @@ class NotFoundSiteRedirect implements Redirector
      */
     protected function redirectToUrl(string $url)
     {
+        //phpcs:disable WordPressVIPMinimum.Security.ExitAfterRedirect.NoExit
         wp_redirect($url) and callExit();
     }
 }

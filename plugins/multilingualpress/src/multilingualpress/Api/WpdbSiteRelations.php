@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -20,6 +22,7 @@ use Inpsyde\MultilingualPress\Framework\Api\SiteRelations;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Facade;
 use Inpsyde\MultilingualPress\Framework\Database\Table;
+
 use function is_array;
 
 /**
@@ -83,6 +86,8 @@ final class WpdbSiteRelations implements SiteRelations
                 SiteRelationsTable::COLUMN_SITE_2
             );
 
+            //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+            //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
             return (int)$this->wpdb->query(
                 $this->wpdb->prepare(
                     "DELETE FROM {$this->table->name()} WHERE {$where}",
@@ -92,6 +97,7 @@ final class WpdbSiteRelations implements SiteRelations
                     $sourceSite
                 )
             );
+            // phpcs:enable
         }
 
         $where = sprintf(
@@ -100,6 +106,8 @@ final class WpdbSiteRelations implements SiteRelations
             SiteRelationsTable::COLUMN_SITE_2
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         return (int)$this->wpdb->query(
             $this->wpdb->prepare(
                 "DELETE FROM {$this->table->name()} WHERE {$where}",
@@ -107,6 +115,7 @@ final class WpdbSiteRelations implements SiteRelations
                 $sourceSite
             )
         );
+        // phpcs:enable
     }
 
     /**
@@ -137,7 +146,9 @@ final class WpdbSiteRelations implements SiteRelations
             SiteRelationsTable::COLUMN_SITE_2
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $rows = $this->wpdb->get_results($query, ARRAY_A);
+        // phpcs:enable
 
         return $rows
             ? $this->siteRelationsFromQueryResults($rows)
@@ -183,6 +194,7 @@ SQL;
             SiteRelationsTable::COLUMN_SITE_2
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $rows = $this->wpdb->get_col(
             $this->wpdb->prepare(
                 $query,
@@ -190,6 +202,7 @@ SQL;
                 $siteId
             )
         );
+        // phpcs:enable
 
         if (!$rows) {
             return [];
@@ -231,7 +244,9 @@ SQL;
             $values
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return (int)$this->wpdb->query($query);
+        // phpcs:enable
     }
 
     /**
@@ -282,7 +297,7 @@ SQL;
     {
         $relations = array_reduce(
             $rows,
-            function (array $relations, array $row): array {
+            static function (array $relations, array $row): array {
                 $site1 = (int)$row[SiteRelationsTable::COLUMN_SITE_1];
                 $site2 = (int)$row[SiteRelationsTable::COLUMN_SITE_2];
                 $relations[$site1][$site2] = $site2;

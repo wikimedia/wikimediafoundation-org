@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -22,6 +24,8 @@ namespace Inpsyde\MultilingualPress\Cache;
  */
 class NavMenuItemsSerializer
 {
+    const ALLOWED_MENU_ITEM_FILTER = 'mlp.cache.allowed-nav-menu-items';
+
     /**
      * @var string[]
      */
@@ -113,7 +117,7 @@ class NavMenuItemsSerializer
             }
 
             $menuItem = $postArray['menu_item'] ?? [];
-            foreach (self::MENU_ITEM_ALLOWED_PROPERTIES as list($property, $type, $default)) {
+            foreach (self::filterAllowedProperties() as list($property, $type, $default)) {
                 if (!isset($post->{$property})) {
                     $post->{$property} = $this->extractValue($menuItem, $property, $type, $default);
                 }
@@ -211,11 +215,19 @@ class NavMenuItemsSerializer
         static $properties = [];
 
         if (!$properties) {
-            $properties = array_map(function (array $item): string {
+            $properties = array_map(static function (array $item): string {
                 return $item[0];
-            }, self::MENU_ITEM_ALLOWED_PROPERTIES);
+            }, self::filterAllowedProperties());
         }
 
         return $properties;
+    }
+
+    private static function filterAllowedProperties(): array
+    {
+        $allowedProperties = self::MENU_ITEM_ALLOWED_PROPERTIES;
+        $additionalProperties = \array_filter((array)\apply_filters(self::ALLOWED_MENU_ITEM_FILTER, []));
+
+        return \array_merge($additionalProperties, $allowedProperties);
     }
 }

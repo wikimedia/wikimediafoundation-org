@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,8 +16,9 @@ namespace Inpsyde\MultilingualPress\Core\Admin;
 
 use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageView;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
-use Inpsyde\ProductPagesLicensing\Api\Activator;
-use Inpsyde\ProductPagesLicensing\License;
+use Inpsyde\MultilingualPress\License\Api\Activator;
+use Inpsyde\MultilingualPress\License\License;
+
 use function Inpsyde\MultilingualPress\printNonceField;
 
 class LicenseSettingsTabView implements SettingsPageView
@@ -176,6 +179,7 @@ class LicenseSettingsTabView implements SettingsPageView
                             'multilingualpress'
                         ),
                         // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         $this->displayLastDigits($licenseOption['api_key'])
                     ); ?>
                 </td>
