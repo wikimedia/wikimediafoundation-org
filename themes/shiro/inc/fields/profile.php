@@ -19,6 +19,20 @@ function wmf_profile_fields() {
 
 	$last_name->add_meta_box( __( 'Sorting', 'shiro-admin' ), 'profile', 'normal', 'high' );
 
+	$user = new Fieldmanager_Autocomplete(
+		array(
+			'name'       => 'connected_user',
+			'datasource' => new Fieldmanager_Datasource_Post(
+				array(
+					'query_args' => array(
+						'post_type' => 'guest-author',
+					),
+				)
+			),
+		)
+	);
+	$user->add_meta_box( __( 'Connected User', 'shiro-admin' ), 'profile' );
+
 	$contact_links = new Fieldmanager_Group(
 		array(
 			'label'          => __( 'Contact Link', 'shiro-admin' ),
@@ -49,19 +63,6 @@ function wmf_profile_fields() {
 	);
 	$info->add_meta_box( __( 'Profile Info', 'shiro-admin' ), 'profile' );
 
-	$user = new Fieldmanager_Autocomplete(
-		array(
-			'name'       => 'connected_user',
-			'datasource' => new Fieldmanager_Datasource_Post(
-				array(
-					'query_args' => array(
-						'post_type' => 'guest-author',
-					),
-				)
-			),
-		)
-	);
-	$user->add_meta_box( __( 'Connected User', 'shiro-admin' ), 'profile' );
 }
 add_action( 'fm_post_profile', 'wmf_profile_fields' );
 
@@ -155,7 +156,6 @@ function wmf_role_fields() {
 	);
 
 	$experts->add_term_meta_box( __( 'Department Experts', 'shiro-admin' ), 'role' );
-
 
 	$button = new Fieldmanager_Group(
 		array(
