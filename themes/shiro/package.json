@@ -16,6 +16,10 @@
     "start:gulp": "gulp",
     "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/helpers/_style-guide-variables.scss && rm wikimedia-ui-base.less"
   },
+    "engines": {
+    "node": ">=12.x",
+    "npm": ">=6.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/reaktivstudios/rkv-starter-theme.git"
