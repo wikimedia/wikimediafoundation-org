@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -17,3 +18,7 @@ const ACTION_ADD_SERVICE_PROVIDERS = 'multilingualpress.add_service_providers';
 const ACTION_LOG = 'multilingualpress.log';
 
 const MULTILINGUALPRESS_LICENSE_API_URL = 'https://multilingualpress.org/';
+
+if (!defined('INPUT_REQUEST')) {
+    define('INPUT_REQUEST', 99);
+}

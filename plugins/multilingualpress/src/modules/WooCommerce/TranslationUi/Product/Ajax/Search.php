@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -17,6 +19,7 @@ use Inpsyde\MultilingualPress\Framework\SwitchSiteTrait;
 use Inpsyde\MultilingualPress\TranslationUi\Post\Ajax\ContextBuilder;
 use Inpsyde\MultilingualPress\TranslationUi\Post\RelationshipContext;
 use wpdb;
+
 use function Inpsyde\MultilingualPress\resolve;
 
 /**
@@ -137,6 +140,7 @@ SQL;
 
         $escapedLikeQuery = '%' . $this->wpdb->esc_like($searchQuery) . '%';
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return $this->wpdb->get_results(
             $this->wpdb->prepare(
                 $sql,
@@ -148,5 +152,6 @@ SQL;
                 apply_filters(self::FILTER_PRODUCT_SEARCH_LIMIT, resolve('product_search_limit'))
             )
         );
+        //phpcs:enable
     }
 }

@@ -48,6 +48,13 @@ function render_block( $attributes ) {
 		return '';
 	}
 
+	$max_profiles = apply_filters('max_profile_list_profiles', 3);
+	// Only randomize if there are more profiles than the max.
+	if ($max_profiles < count($profile_ids)) {
+		shuffle($profile_ids);
+		$profile_ids = array_slice($profile_ids, 0, $max_profiles);
+	}
+
 	ob_start();
 
 	echo '<div class="profile-list">';

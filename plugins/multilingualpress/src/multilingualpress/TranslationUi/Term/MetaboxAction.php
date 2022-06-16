@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -98,7 +100,8 @@ final class MetaboxAction implements Metabox\Action
     {
         $relation = $this->fieldsHelper->fieldRequestValue($request, MetaboxFields::FIELD_RELATION);
 
-        if ($relation !== MetaboxFields::FIELD_RELATION_NEW
+        if (
+            $relation !== MetaboxFields::FIELD_RELATION_NEW
             && $relation !== MetaboxFields::FIELD_RELATION_LEAVE
         ) {
             return '';
@@ -106,7 +109,8 @@ final class MetaboxAction implements Metabox\Action
 
         $hasRemoteTerm = $this->relationshipContext->hasRemoteTerm();
 
-        if (($relation === MetaboxFields::FIELD_RELATION_NEW && $hasRemoteTerm)
+        if (
+            ($relation === MetaboxFields::FIELD_RELATION_NEW && $hasRemoteTerm)
             || ($relation === MetaboxFields::FIELD_RELATION_LEAVE && !$hasRemoteTerm)
         ) {
             return '';
@@ -311,7 +315,8 @@ final class MetaboxAction implements Metabox\Action
          */
         do_action(self::ACTION_AFTER_UPDATE_REMOTE_TERM, $this->relationshipContext, $termData);
 
-        if (!is_array($update)
+        if (
+            !is_array($update)
             || empty($update['term_id'])
             || empty($update['term_taxonomy_id'])
         ) {
@@ -336,7 +341,8 @@ final class MetaboxAction implements Metabox\Action
 
         $termExists = term_exists($name, $taxonomy);
 
-        if (is_array($termExists)
+        if (
+            is_array($termExists)
             && !empty($termExists['term_id'])
             && !empty($termExists['term_taxonomy_id'])
         ) {
@@ -349,7 +355,8 @@ final class MetaboxAction implements Metabox\Action
         }
 
         $insert = wp_insert_term($name, $taxonomy, $termData);
-        if (!is_array($insert)
+        if (
+            !is_array($insert)
             || empty($insert['term_id'])
             || empty($insert['term_taxonomy_id'])
         ) {

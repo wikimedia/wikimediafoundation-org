@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -13,6 +15,8 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Core\Frontend;
 
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
+use Inpsyde\MultilingualPress\Language\EmbeddedLanguage;
+
 use function Inpsyde\MultilingualPress\siteLanguageTag;
 
 /**
@@ -60,6 +64,7 @@ final class AltLanguageHtmlLinkTagRenderer implements AltLanguageRenderer
      * @param array ...$args
      *
      * phpcs:disable Inpsyde.CodeQuality.ArgumentTypeDeclaration.NoArgumentType
+     * phpcs:disable WordPressVIPMinimum.Security.ProperEscapingFunction.notAttrEscAttr
      */
     public function render(...$args)
     {
@@ -76,20 +81,23 @@ final class AltLanguageHtmlLinkTagRenderer implements AltLanguageRenderer
          * @param string $xDefault
          * @param int $type
          */
-        if (!apply_filters(
-            self::FILTER_RENDER_HREFLANG,
-            count($translations) > 1 || $xDefaultLanguage,
-            $translations,
-            $xDefaultLanguage,
-            $this->type()
-        )) {
+        if (
+            !apply_filters(
+                self::FILTER_RENDER_HREFLANG,
+                count($translations) > 1 || $xDefaultLanguage,
+                $translations,
+                $xDefaultLanguage,
+                $this->type()
+            )
+        ) {
             return;
         }
 
         foreach ($translations as $language => $url) {
+            $language = EmbeddedLanguage::changeLanguageVariant($language);
             $htmlLinkTag = sprintf(
                 '<link rel="alternate" hreflang="%1$s" href="%2$s">',
-                esc_attr($language),
+                esc_html($language),
                 esc_url($url)
             );
 

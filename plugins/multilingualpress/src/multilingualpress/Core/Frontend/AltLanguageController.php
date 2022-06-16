@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -62,7 +64,7 @@ class AltLanguageController
 
         add_action(
             $action,
-            function (...$args) use ($renderer) {
+            static function (...$args) use ($renderer) {
                 if (!is_paged()) {
                     $renderer->render(...$args);
                 }

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,6 +16,7 @@ namespace Inpsyde\MultilingualPress\TranslationUi\Term;
 
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
 use Inpsyde\MultilingualPress\Framework\NetworkState;
+
 use function Inpsyde\MultilingualPress\siteLanguageTag;
 
 class TableList
