@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -53,9 +55,10 @@ class Relation
     {
         $language = siteLocaleName($context->remoteSiteId());
 
+        $hasRemotePost = $context->hasRemotePost();
         $currently = __('Currently not connected.', 'multilingualpress');
         $currentlyMarkupFormat = '<strong>%s</strong>';
-        if ($context->hasRemotePost()) {
+        if ($hasRemotePost) {
             // translators: 1 is the post title, 2 the post status, 3 the post date
             $format = __('Currently connected with "%1$s" (%2$s - %3$s)', 'multilingualpress');
             $post = $context->remotePost();
@@ -73,10 +76,16 @@ class Relation
                 );
             }
 
+            $postStatusMarkupFormat = '<span class="mlp-entity-status">%1$s</span>';
+            $postStatusMarkup = sprintf(
+                $postStatusMarkupFormat,
+                get_post_status_object($post->post_status)->label
+            );
+
             $currently = sprintf(
                 $format,
                 $editPostLinkMarkup ?: $editPostTitle,
-                get_post_status_object($post->post_status)->label,
+                $postStatusMarkup,
                 $post->post_date
             );
 
@@ -88,14 +97,10 @@ class Relation
             <td>
                 <?= sprintf($currentlyMarkupFormat, wp_kses_post($currently)) ?>
                 <?php
-                $hasRemotePost = $context->hasRemotePost();
                 $this->leaveConnectionField($helper, $hasRemotePost, $context);
-                if ($hasRemotePost) {
-                    $this->removeConnectionField($helper, $language);
-                }
-                if (!$hasRemotePost) {
-                    $this->newPostField($helper, $language, $context);
-                }
+                $hasRemotePost
+                    ? $this->removeConnectionField($helper, $language)
+                    : $this->newPostField($helper, $language, $context);
                 $this->existingPostField($helper, $language, $context);
                 ?>
             </td>

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,9 +14,9 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\Trasher;
 
+use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
 use Inpsyde\MultilingualPress\Framework\NetworkState;
-use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 
 class Trasher
 {

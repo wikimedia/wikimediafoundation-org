@@ -9,7 +9,10 @@ import SelectionListItemAction from './selection-item-action';
 const { Spinner } = wp.components;
 
 const SelectionListItem = ( { post, thumbnail, author, postTypeObject, isSelected, actions } ) => (
-	<li className={ classNames( 'post-list-item post-list-item--selection', { 'post-list-item--selected': isSelected } ) }>
+	<li className={ classNames( 'post-list-item post-list-item--selection', {
+		'post-list-item--selected': isSelected,
+		'post-list-item--has-thumbnail': thumbnail,
+	} ) }>
 		{ post ? (
 			<Fragment>
 				{ thumbnail

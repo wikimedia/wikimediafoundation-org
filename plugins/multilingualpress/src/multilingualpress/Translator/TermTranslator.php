@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -310,7 +312,8 @@ class TermTranslator implements Translator
         }
 
         $remotePermalinkStructure = (string)get_option('permalink_structure');
-        $hasBlogPrefix = strpos($remotePermalinkStructure, '/blog/') !== false;
+        $hasBlogPrefix = !$taxonomy->rewrite['slug'] &&
+            strpos($remotePermalinkStructure, '/blog/') !== false;
 
         $base = $this->composeBase($option, $taxonomySlug);
 

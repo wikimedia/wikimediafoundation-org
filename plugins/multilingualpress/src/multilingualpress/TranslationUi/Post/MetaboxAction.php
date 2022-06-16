@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -17,10 +19,11 @@ use Inpsyde\MultilingualPress\Framework\Admin\AdminNotice;
 use Inpsyde\MultilingualPress\Framework\Admin\Metabox;
 use Inpsyde\MultilingualPress\Framework\Admin\PersistentAdminNotices;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
+use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
 
-use function Inpsyde\MultilingualPress\siteLanguageName;
+use function Inpsyde\MultilingualPress\translationIds;
 
 /**
  * Class MetaboxAction
@@ -119,7 +122,8 @@ final class MetaboxAction implements Metabox\Action
     {
         $relation = $this->fieldsHelper->fieldRequestValue($request, MetaboxFields::FIELD_RELATION);
 
-        if ($relation !== MetaboxFields::FIELD_RELATION_NEW
+        if (
+            $relation !== MetaboxFields::FIELD_RELATION_NEW
             && $relation !== MetaboxFields::FIELD_RELATION_LEAVE
         ) {
             return '';
@@ -127,7 +131,8 @@ final class MetaboxAction implements Metabox\Action
 
         $hasRemotePost = $this->relationshipContext->hasRemotePost();
 
-        if (($relation === MetaboxFields::FIELD_RELATION_NEW && $hasRemotePost)
+        if (
+            ($relation === MetaboxFields::FIELD_RELATION_NEW && $hasRemotePost)
             || ($relation === MetaboxFields::FIELD_RELATION_LEAVE && !$hasRemotePost)
         ) {
             return '';
@@ -158,39 +163,81 @@ final class MetaboxAction implements Metabox\Action
     }
 
     /**
-     * @param array $values
+     * Generate the remote post data
+     *
+     * @param array<string, scalar|null> $values A map of
+     * {@link https://developer.wordpress.org/reference/classes/wp_post/ WP_Post} data field names to values
      * @param PostRelationSaveHelper $relationshipHelper
-     * @return array
+     * @return array<string, scalar|null> A map of
+     * {@link https://developer.wordpress.org/reference/classes/wp_post/ WP_Post} data field names to values
+     * @throws NonexistentTable
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     * phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
      */
     private function generatePostData(
         array $values,
         PostRelationSaveHelper $relationshipHelper
     ): array {
 
-        $language = siteLanguageName($this->relationshipContext->remoteSiteId());
+        // phpcs:enable
+
+        $sourceSiteId = $this->relationshipContext->sourceSiteId();
+        $remoteSiteId = $this->relationshipContext->remoteSiteId();
         $source = $this->relationshipContext->sourcePost();
         $hasRemote = $this->relationshipContext->hasRemotePost();
 
+        $changedFieldsMeta = $values[MetaboxFields::FIELD_CHANGED_FIELDS] ?? '';
+        $changedFields = explode(',', $changedFieldsMeta);
+
         $title = $values[MetaboxFields::FIELD_TITLE] ?? '';
-        if (!$title && !$hasRemote) {
-            $title = $source->post_title . " ({$language})";
+        $newRemotePostTitleIsEmpty = $this->newRemotePostFieldIsEmpty($title, $hasRemote);
+        if ($newRemotePostTitleIsEmpty) {
+            $title = $source->post_title;
         }
+
         $slug = $values[MetaboxFields::FIELD_SLUG] ?? '';
-        if (!$slug && !$hasRemote) {
+        $newRemotePostSlugIsEmpty = $this->newRemotePostFieldIsEmpty($slug, $hasRemote);
+        if ($newRemotePostSlugIsEmpty) {
             $slug = sanitize_title($title);
         }
+
         $status = $this->maybeChangePostStatus($values[MetaboxFields::FIELD_STATUS], $hasRemote) ?? '';
+        $newRemotePostStatusIsEmpty = $this->newRemotePostFieldIsEmpty($status, $hasRemote);
+        if ($newRemotePostStatusIsEmpty) {
+            $status = 'draft';
+        }
+
         $excerpt = $values[MetaboxFields::FIELD_EXCERPT] ?? '';
 
         $post = [];
         $hasRemote and $post['ID'] = $this->relationshipContext->remotePostId();
-        $title and $post['post_title'] = $title;
-        $slug and $post['post_name'] = $slug;
-        $status and $post['post_status'] = $status;
-        $excerpt and $post['post_excerpt'] = $excerpt;
+
+        if ($newRemotePostTitleIsEmpty || $this->isFieldChanged(MetaboxFields::FIELD_TITLE, $changedFields)) {
+            $post['post_title'] = $title;
+        }
+
+        if ($newRemotePostSlugIsEmpty || $this->isFieldChanged(MetaboxFields::FIELD_SLUG, $changedFields)) {
+            $post['post_name'] = $slug;
+        }
+
+        if ($newRemotePostStatusIsEmpty || $this->isFieldChanged(MetaboxFields::FIELD_STATUS, $changedFields)) {
+            $post['post_status'] = $status;
+        }
+
+        if ($this->isFieldChanged(MetaboxFields::FIELD_EXCERPT, $changedFields)) {
+            $post['post_excerpt'] = $excerpt;
+        }
 
         if ($values[MetaboxFields::FIELD_COPY_CONTENT] ?? false) {
-            $post['post_content'] = $source->post_content;
+            switch_to_blog($sourceSiteId);
+            $sourcePostContent = $this->handleReusableBlocks($source->ID, $source->post_content, $sourceSiteId, $remoteSiteId);
+            restore_current_blog();
+            $post['post_content'] = $sourcePostContent;
+        }
+
+        if ($status === 'future') {
+            $post['post_date'] = $this->relationshipContext->sourcePost()->post_date;
+            $post['post_date_gmt'] = $this->relationshipContext->sourcePost()->post_date_gmt;
         }
 
         if (!$hasRemote) {
@@ -254,7 +301,7 @@ final class MetaboxAction implements Metabox\Action
         }
 
         $syncTaxonomies = $values[MetaboxFields::FIELD_COPY_TAXONOMIES] ?? false;
-        $terms = $syncTaxonomies ? [] : ($values[MetaboxFields::FIELD_TAXONOMIES] ?? false);
+        $terms = $syncTaxonomies ? [] : ($values[MetaboxFields::FIELD_TAXONOMIES] ?? []);
         $slugs = $values[MetaboxFields::FIELD_TAXONOMY_SLUGS] ?? [];
 
         if ($syncTaxonomies) {
@@ -262,7 +309,7 @@ final class MetaboxAction implements Metabox\Action
         }
 
         if (!$syncTaxonomies && ($terms || $slugs) && $this->relationshipContext->hasRemotePost()) {
-            $this->saveTaxonomyTerms($terms, $slugs ? array_fill_keys($slugs, 1) : []);
+            $this->saveTaxonomyTerms(array_intersect_key($terms, array_flip($slugs)), $slugs ? array_fill_keys($slugs, 1) : []);
         }
 
         return false;
@@ -300,6 +347,9 @@ final class MetaboxAction implements Metabox\Action
         foreach ($allTabs as $tab) {
             $fields += $this->tabFieldsValues($tab, $request);
         }
+
+        $changedFields = $this->fields->changedFieldsField();
+        $fields[$changedFields->key()] = $changedFields->requestValue($request, $this->fieldsHelper);
 
         return $fields;
     }
@@ -347,11 +397,13 @@ final class MetaboxAction implements Metabox\Action
          *
          * @param RelationshipContext $relationshipContext
          * @param array $post
+         * @param string $operation
          */
         do_action(
             self::ACTION_METABOX_BEFORE_UPDATE_REMOTE_POST,
             $this->relationshipContext,
-            $post
+            $post,
+            $operation
         );
 
         if ($operation === MetaboxFields::FIELD_RELATION_NEW) {
@@ -360,11 +412,13 @@ final class MetaboxAction implements Metabox\Action
              *
              * @param array $post The remote post object
              * @param RelationshipContext $relationshipContext
+             * @param string $operation
              */
             $post = (array)apply_filters(
                 self::FILTER_NEW_RELATE_REMOTE_POST_BEFORE_INSERT,
                 $post,
-                $this->relationshipContext
+                $this->relationshipContext,
+                $operation
             );
         }
 
@@ -377,8 +431,14 @@ final class MetaboxAction implements Metabox\Action
          *
          * @param RelationshipContext $relationshipContext
          * @param array $post
+         * @param string $operation
          */
-        do_action(self::ACTION_METABOX_AFTER_UPDATE_REMOTE_POST, $this->relationshipContext, $post);
+        do_action(
+            self::ACTION_METABOX_AFTER_UPDATE_REMOTE_POST,
+            $this->relationshipContext,
+            $post,
+            $operation
+        );
 
         if (!is_numeric($postId) || !$postId) {
             return 0;
@@ -402,13 +462,16 @@ final class MetaboxAction implements Metabox\Action
          * Perform action after the post relations have been created
          *
          * @param RelationshipContext $relationshipContext
-         * @param Request
+         * @param Request $request
+         * @param PersistentAdminNotices $notices
+         * @param string $operation
          */
         do_action(
             self::ACTION_METABOX_AFTER_RELATE_POSTS,
             $this->relationshipContext,
             $request,
-            $notices
+            $notices,
+            $operation
         );
 
         return (int)$remotePost->ID;
@@ -463,7 +526,8 @@ final class MetaboxAction implements Metabox\Action
 
             $taxonomyObject = get_taxonomy($taxonomy);
 
-            if (!$taxonomyObject
+            if (
+                !$taxonomyObject
                 || !current_user_can($taxonomyObject->cap->delete_terms, $taxonomy)
             ) {
                 continue;
@@ -488,10 +552,81 @@ final class MetaboxAction implements Metabox\Action
         if (!$status && $hasRemote) {
             $status = $this->relationshipContext->remotePost()->post_status;
         }
-        if (!$status && !$hasRemote) {
-            $status = 'draft';
-        }
 
         return $status;
+    }
+
+    /**
+     * Replace the reusable blocks.
+     *
+     * If reusable gutenberg block exists in source post content and if it is connected with the reusable block in
+     * remote site, then we need to replace it's id with the id of remote block
+     *
+     * @param int $sourcePostId The source post id
+     * @param string $sourcePostContent The source post content
+     * @param int $sourceSiteId The source site id
+     * @param int $remoteSiteId The remote site id
+     * @return string The post content with replaced reusable block ids from remote site
+     * @throws NonexistentTable
+     */
+    protected function handleReusableBlocks(
+        int $sourcePostId,
+        string $sourcePostContent,
+        int $sourceSiteId,
+        int $remoteSiteId
+    ): string {
+
+        if (!has_block('block', $sourcePostId)) {
+            return $sourcePostContent;
+        }
+
+        $blocks = parse_blocks($sourcePostContent);
+
+        if (!is_array($blocks) || empty($blocks)) {
+            return $sourcePostContent;
+        }
+
+        $blocksToBeReplaced = [];
+        $replaceWithBlock = [];
+        foreach ($blocks as $block) {
+            if ($block['blockName'] !== 'core/block' || empty($block['attrs']['ref'])) {
+                continue;
+            }
+
+            $translationIds = translationIds($block['attrs']['ref'], 'post', $sourceSiteId);
+            if (empty($translationIds) || !isset($translationIds[$remoteSiteId])) {
+                continue;
+            }
+
+            $blocksToBeReplaced[] = serialize_block($block);
+            $block['attrs']['ref'] = $translationIds[$remoteSiteId];
+            $replaceWithBlock[] = serialize_block($block);
+        }
+
+        return str_replace($blocksToBeReplaced, $replaceWithBlock, $sourcePostContent);
+    }
+
+    /**
+     * Check if the field with given name is changed
+     *
+     * @param string $field The field name to check
+     * @param array $changedFields The list of changed fields
+     * @return bool Whether the field is changed
+     */
+    protected function isFieldChanged(string $field, array $changedFields): bool
+    {
+        return in_array($field, $changedFields, true);
+    }
+
+    /**
+     * Check if the field with given name was not set when creating a new connection
+     *
+     * @param string $field The field name to check
+     * @param bool $hasRemote whether the current post is already connected
+     * @return bool Whether the field was not set when a new connection is created
+     */
+    protected function newRemotePostFieldIsEmpty(string $field, bool $hasRemote): bool
+    {
+        return !$field && !$hasRemote;
     }
 }

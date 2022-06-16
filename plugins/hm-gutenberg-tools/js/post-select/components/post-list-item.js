@@ -7,7 +7,10 @@ import wp from 'wp';
 const { __ }  = wp.i18n;
 
 const PostListItem = ( { post, author, thumbnail, postTypeObject, isSelected, onToggleSelected } ) => (
-	<li className={ classNames( 'post-list-item', { 'post-list-item--selected': isSelected } ) }>
+	<li className={ classNames( 'post-list-item', {
+		'post-list-item--selected': isSelected,
+		'post-list-item--has-thumbnail': thumbnail,
+	} ) }>
 		<label htmlFor={ `select-post-${post.id}` }>
 			{ thumbnail
 				? <img

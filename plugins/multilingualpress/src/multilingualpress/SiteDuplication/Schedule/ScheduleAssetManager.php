@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -18,6 +20,7 @@ use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Schedule\AjaxScheduleHandler;
 use Inpsyde\MultilingualPress\SiteDuplication\ServiceProvider;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**

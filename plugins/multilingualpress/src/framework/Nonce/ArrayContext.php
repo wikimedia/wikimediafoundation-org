@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -19,7 +21,6 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Exception\ContextValueNotSet;
  */
 final class ArrayContext implements Context
 {
-
     use ReadOnlyContextTrait;
 
     /**

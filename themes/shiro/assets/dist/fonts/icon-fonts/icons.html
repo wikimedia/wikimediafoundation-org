@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>icons</title>
+    <style>
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .preview {
+            width: 100px;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .preview .inner {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #f5f5f5;
+            -webkit-border-radius: 3px 3px 0 0;
+            -moz-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .preview .inner i {
+            line-height: 85px;
+            font-size: 40px;
+            color: #333;
+        }
+
+        .label {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 10px;
+            font-family: Monaco, monospace;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: #ddd;
+            -webkit-border-radius: 0 0 3px 3px;
+            -moz-border-radius: 0 0 3px 3px;
+            border-radius: 0 0 3px 3px;
+            color: #666;
+        }
+
+        @font-face {
+    font-family: "icons";
+    src: url("./icons.eot?76ad57356fb3d4456b938e11d989b185?#iefix") format("embedded-opentype"),
+url("./icons.woff2?76ad57356fb3d4456b938e11d989b185") format("woff2"),
+url("./icons.woff?76ad57356fb3d4456b938e11d989b185") format("woff"),
+url("./icons.ttf?76ad57356fb3d4456b938e11d989b185") format("truetype"),
+url("./icons.svg?76ad57356fb3d4456b938e11d989b185#icons") format("svg");
+}
+
+i {
+    line-height: 1;
+}
+
+i:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    vertical-align: top;
+}
+
+.icons-icon-arrow-right:before {
+    content: "\f101";
+}
+.icons-icon-search:before {
+    content: "\f102";
+}
+.icons-icon-star-two:before {
+    content: "\f103";
+}
+.icons-icon-star:before {
+    content: "\f104";
+}
+.icons-icon-translation:before {
+    content: "\f105";
+}
+
+
+    </style>
+</head>
+<body>
+
+    <h1>icons</h1>
+
+
+        <div class="preview">
+            <span class="inner">
+                <i class="icons-icon-arrow-right"></i>
+            </span>
+            <br>
+            <span class='label'>icon-arrow-right</span>
+        </div>
+
+
+        <div class="preview">
+            <span class="inner">
+                <i class="icons-icon-search"></i>
+            </span>
+            <br>
+            <span class='label'>icon-search</span>
+        </div>
+
+
+        <div class="preview">
+            <span class="inner">
+                <i class="icons-icon-star-two"></i>
+            </span>
+            <br>
+            <span class='label'>icon-star-two</span>
+        </div>
+
+
+        <div class="preview">
+            <span class="inner">
+                <i class="icons-icon-star"></i>
+            </span>
+            <br>
+            <span class='label'>icon-star</span>
+        </div>
+
+
+        <div class="preview">
+            <span class="inner">
+                <i class="icons-icon-translation"></i>
+            </span>
+            <br>
+            <span class='label'>icon-translation</span>
+        </div>
+
+
+</body>
+</html>
