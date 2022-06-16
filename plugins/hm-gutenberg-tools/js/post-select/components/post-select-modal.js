@@ -12,6 +12,7 @@ const { __ } = wp.i18n;
 
 const PostSelectModal = props => {
 	const {
+		filters,
 		modalTitle,
 		postType,
 		onSelect,
@@ -23,6 +24,7 @@ const PostSelectModal = props => {
 		contentState,
 		termFilters,
 		selection,
+		showDateFilters,
 		modalRef,
 		isLoading,
 	} = props;
@@ -52,8 +54,10 @@ const PostSelectModal = props => {
 		<Fragment>
 			{ ( contentState === 'browse' ) && (
 				<PostSelectBrowse
+					filters={ filters }
 					postType={ postType }
 					selection={ selection }
+					showDateFilters={ showDateFilters }
 					termFilters={ termFilters }
 					onToggleSelected={ onToggleSelected }
 				/>
@@ -88,6 +92,7 @@ PostSelectModal.defaultProps = {
 };
 
 PostSelectModal.propTypes = {
+	filters: PropTypes.objectOf( PropTypes.arrayOf( PropTypes.number ) ),
 	postType: PropTypes.array.isRequired,
 	modalTitle: PropTypes.string,
 	onSelect: PropTypes.func.isRequired,
@@ -100,6 +105,7 @@ PostSelectModal.propTypes = {
 	termFilters: PropTypes.array,
 	selection: PropTypes.arrayOf( PropTypes.object ),
 	modalRef: PropTypes.func.isRequired,
+	showDateFilters: PropTypes.bool,
 };
 
 export default PostSelectModal;
