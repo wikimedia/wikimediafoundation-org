@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -16,6 +18,7 @@ use Inpsyde\MultilingualPress\Framework\Asset\AssetException;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionViewModel;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingView;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**

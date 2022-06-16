@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -127,7 +129,7 @@ class Notice
         );
         $message = $this->appendButtonToMessage(
             _x(
-                'This guide will help you with the setup  site relationships, to do so please click the following button:',
+                'This guide will help you setup site relationships. To get started click the following button:',
                 'onboarding',
                 'multilingualpress'
             ),

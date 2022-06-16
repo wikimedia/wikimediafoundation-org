@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -66,7 +68,7 @@ class Uninstaller
     {
         return array_reduce(
             $options,
-            function (int $deleted, string $option): int {
+            static function (int $deleted, string $option): int {
                 return $deleted + (int)delete_network_option(0, $option);
             },
             0
@@ -91,11 +93,11 @@ class Uninstaller
 
         array_walk(
             $siteIds,
-            function (int $siteId) use ($keys) {
+            static function (int $siteId) use ($keys) {
                 switch_to_blog($siteId);
                 array_walk(
                     $keys,
-                    function (string $key) {
+                    static function (string $key) {
                         delete_post_meta_by_key($key);
                     }
                 );
@@ -125,13 +127,13 @@ class Uninstaller
 
         $deleted = array_reduce(
             $siteIds,
-            function (int $deleted, int $siteId) use ($options): int {
+            static function (int $deleted, int $siteId) use ($options): int {
 
                 switch_to_blog($siteId);
 
                 $deleted += array_reduce(
                     $options,
-                    function (int $deleted, string $option): int {
+                    static function (int $deleted, string $option): int {
                         return $deleted + (int)delete_option($option);
                     },
                     $deleted
@@ -156,7 +158,7 @@ class Uninstaller
     {
         array_walk(
             $keys,
-            function (string $key) {
+            static function (string $key) {
                 delete_metadata('user', 0, $key, '', true);
             }
         );
@@ -174,6 +176,20 @@ class Uninstaller
 
         foreach ($userMeta as $meta) {
             delete_user_meta(get_current_user_id(), $meta);
+        }
+    }
+
+    /**
+     * Unschedule all MLP events
+     *
+     * When the plugin is uninstalled, we need to remove all the scheduled events
+     *
+     * @param array<string> $events The array of the hook names for which the events should be unscheduled
+     */
+    public function deleteScheduledEvents(array $events)
+    {
+        foreach ($events as $event) {
+            wp_unschedule_hook($event);
         }
     }
 

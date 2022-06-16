@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,9 +16,9 @@ namespace Inpsyde\MultilingualPress\Core\Admin;
 
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
-use Inpsyde\ProductPagesLicensing\Api\Activator;
-use Inpsyde\ProductPagesLicensing\License;
-use Psr\Http\Client\ClientExceptionInterface;
+use Inpsyde\MultilingualPress\License\Api\Activator;
+use Inpsyde\MultilingualPress\License\License;
+
 use function Inpsyde\MultilingualPress\settingsErrors;
 
 class LicenseSettingsUpdater
@@ -44,7 +46,6 @@ class LicenseSettingsUpdater
     /**
      * @param Request $request
      * @return bool
-     * @throws ClientExceptionInterface
      */
     public function updateSettings(Request $request): bool
     {
@@ -131,7 +132,6 @@ class LicenseSettingsUpdater
      * @param string $requestType
      * @param License $license
      * @return array
-     * @throws ClientExceptionInterface
      */
     private function requestTypeActivation(string $requestType, License $license): array
     {

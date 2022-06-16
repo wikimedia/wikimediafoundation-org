@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -16,6 +18,7 @@ use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Database\Table;
 use Inpsyde\MultilingualPress\Framework\Factory\LanguageFactory;
 use Inpsyde\MultilingualPress\Framework\Language\Language;
+
 use function Inpsyde\MultilingualPress\settingsErrors;
 
 /**
@@ -99,7 +102,7 @@ class Updater
      * @param array $languages
      * @return array
      */
-    protected function splitLanguages(array $languages): array
+    public function splitLanguages(array $languages): array
     {
         $splittedLanguages = [
             'toInsert' => [],
@@ -107,7 +110,7 @@ class Updater
             'toDelete' => [],
         ];
         $indexes = array_map(
-            function (Language $item): int {
+            static function (Language $item): int {
                 return $item->id();
             },
             $this->storage->read()
@@ -131,7 +134,8 @@ class Updater
         }
 
         foreach ($languages as $index => $item) {
-            if ($index > 0
+            if (
+                $index > 0
                 && !array_key_exists($index, $splittedLanguages['toDelete'])
                 && !array_key_exists($index, $splittedLanguages['toUpdate'])
             ) {
@@ -166,7 +170,8 @@ class Updater
     {
         // phpcs:enable
         foreach ($languages as &$language) {
-            if (!$language['native_name']
+            if (
+                !$language['native_name']
                 || !$language['english_name']
                 || !$language['locale']
             ) {

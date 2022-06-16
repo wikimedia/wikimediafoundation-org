@@ -20,7 +20,7 @@ import URLPicker from '../url-picker';
  * receive `undefined` which is an expected value: This is how the "remove
  * link" functionality works.
  *
- * `withFocusOutside()` is necessary here (paired with the `onFocus` attribute)
+ * `withFocusOutside()` is necessary here (paired with the `unstableOnFocus` attribute)
  * in order to show & hide the button on the toolbar when the CTA is focused
  * in the editor (or not).
  */
@@ -72,9 +72,9 @@ const CtaWithFocusOutside = withFocusOutside(
 							}
 							placeholder={ __( 'Call to action', 'shiro-admin' ) }
 							tagName="div"
+							unstableOnFocus={ () => this.setState( { showButtons: true } ) }
 							value={ text }
 							onChange={ onChangeText }
-							onFocus={ () => this.setState( { showButtons: true } ) }
 						/>
 						{ ! url && <div className={ 'call-to-action__warning' }>
 							<span aria-label={ __( 'Warning', 'shiro-admin' ) } role={ 'img' }>⚠️</span>

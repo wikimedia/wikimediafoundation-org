@@ -1,0 +1,50 @@
+.wp-block-shiro-unseen-footer {
+	background-color: #79CFF31A;
+	margin-top: rem(200);
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	max-width: 100vw !important; // !important needed to overwrite the default max-width value for blocks.
+	padding: rem(80) rem(20) !important; // !important needed to overwrite the default WordPress padding.
+
+	.inner-wrap {
+		max-width: 700px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+
+		@media only screen and (min-width: 555px) {
+			flex-direction: row;
+		}
+	}
+
+	.unseen-footer-cta,
+	.unseen-footer-content {
+		@media only screen and (min-width: 555px) {
+			margin-bottom: 0;
+		}
+	}
+
+	.unseen-footer-cta {
+		flex-shrink: 0;
+		font-size: rem(22);
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	.unseen-footer-content {
+		font-size: rem(14);
+		line-height: 1.5;
+
+		@media only screen and (min-width: 555px) {
+			margin-left: rem(20);
+			max-width: 300px;
+		}
+
+		> br {
+			content: "";
+			display: block;
+			height: rem(18);
+		}
+	}
+}

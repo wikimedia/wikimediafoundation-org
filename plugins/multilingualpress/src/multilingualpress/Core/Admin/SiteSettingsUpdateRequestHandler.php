@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,10 +14,11 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Core\Admin;
 
-use function Inpsyde\MultilingualPress\redirectAfterSettingsUpdate;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Framework\Setting\SiteSettingsUpdatable;
+
+use function Inpsyde\MultilingualPress\redirectAfterSettingsUpdate;
 
 /**
  * Request handler for site settings update requests.

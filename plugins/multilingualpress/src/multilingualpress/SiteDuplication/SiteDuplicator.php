@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -19,6 +21,8 @@ use Inpsyde\MultilingualPress\Framework\Database\TableReplacer;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\NetworkState;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Throwable;
 
 /**
@@ -32,8 +36,10 @@ class SiteDuplicator
     const NAME_SITE_RELATIONS = 'mlp_site_relations';
     const NAME_CONNECT_CONTENT = 'mlp_connect_content';
     const NAME_COPY_ATTACHMENTS = 'mlp_copy_attachments';
+    const NAME_COPY_USERS = 'mlp_copy_users';
     const DUPLICATE_ACTION_KEY = 'multilingualpress.duplicated_site';
     const FILTER_SITE_TABLES = 'multilingualpress.duplicate_site_tables';
+    const FILTER_EXCLUDED_TABLES = 'multilingualpress.filter_excluded_tables';
 
     /**
      * @var ActivePlugins
@@ -145,8 +151,10 @@ class SiteDuplicator
 
         switch_to_blog($sourceSiteId);
         $tablePrefix = $this->wpdb->prefix;
-        $mappedDomain = $this->mappedDomain();
+        $mappedDomain = $this->mappedDomain($sourceSiteId);
+
         $tables = $this->collectTables($sourceSiteId);
+
         switch_to_blog($newSiteId);
 
         $adminEmail = (string)get_option('admin_email', '');
@@ -154,6 +162,7 @@ class SiteDuplicator
 
         // Important: FIRST, duplicate the tables, and THEN overwrite things.
         $tables and $this->duplicateTables($tables, $tablePrefix);
+
         $this->updateUrls($siteurl, $mappedDomain);
         $this->updateAdminEmail($adminEmail);
 
@@ -173,6 +182,7 @@ class SiteDuplicator
 
         update_option('blogname', stripslashes($blogData['title'] ?? ''));
 
+        $this->handleUsersCopy($sourceSiteId, $newSiteId);
         $this->renameUserRolesOption($tablePrefix);
         $this->handlePlugins();
         $this->handleTheme();
@@ -203,21 +213,25 @@ class SiteDuplicator
     /**
      * Returns the primary domain if domain mapping is active.
      *
+     * @param int $sourceSiteId
      * @return string
      */
-    private function mappedDomain(): string
+    private function mappedDomain(int $sourceSiteId): string
     {
-        /** @noinspection PhpUndefinedFieldInspection */
         if (empty($this->wpdb->dmtable)) {
             return '';
         }
-        /** @noinspection PhpUndefinedFieldInspection */
+
         $query = $this->wpdb->prepare(
-            "SELECT domain FROM {$this->wpdb->dmtable} WHERE active = 1 AND blog_id = %s LIMIT 1",
-            get_current_blog_id()
+            "SELECT domain FROM %s WHERE active = 1 AND blog_id = %s LIMIT 1",
+            $this->wpdb->dmtable,
+            $sourceSiteId
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $domain = $this->wpdb->get_var($query);
+        // phpcs:enable
+
         if (!$domain) {
             return '';
         }
@@ -228,7 +242,7 @@ class SiteDuplicator
     /**
      * Duplicates the tables of the given source site to the current site.
      *
-     * @param int $sourceSiteId
+     * @param array $tables
      * @param string $tablePrefix
      */
     private function duplicateTables(array $tables, string $tablePrefix)
@@ -243,12 +257,26 @@ class SiteDuplicator
     /**
      * @param int $sourceSiteId
      * @return array
+     * @throws Throwable
      */
     protected function collectTables(int $sourceSiteId): array
     {
+        $siteTables = $this->tableList->siteTables($sourceSiteId);
+
+        $excludedTables = (array)apply_filters(
+            self::FILTER_EXCLUDED_TABLES,
+            [],
+            $sourceSiteId,
+            $this->wpdb
+        );
+
+        $collectedTables = $excludedTables
+            ? array_diff($siteTables, $excludedTables)
+            : $siteTables;
+
         return (array)apply_filters(
             self::FILTER_SITE_TABLES,
-            $this->tableList->siteTables($sourceSiteId),
+            $collectedTables,
             $sourceSiteId,
             $this->wpdb
         );
@@ -378,6 +406,30 @@ class SiteDuplicator
         if ($connectContent) {
             $this->contentRelations->relateAllPosts($sourceSiteId, $destinationSiteId);
             $this->contentRelations->relateAllTerms($sourceSiteId, $destinationSiteId);
+        }
+    }
+
+    /**
+     * If the appropriate option is selected then the users will be copied to the new site
+     *
+     * @param int $sourceSiteId the source site id which is selected in "Based on site" option
+     * @param int $destinationSiteId the new created site id
+     */
+    protected function handleUsersCopy(int $sourceSiteId, int $destinationSiteId)
+    {
+        $copyUsers = (int)$this->request->bodyValue(
+            self::NAME_COPY_USERS,
+            INPUT_POST,
+            FILTER_SANITIZE_NUMBER_INT
+        );
+
+        if (!$copyUsers) {
+            return;
+        }
+
+        $users = get_users(['blog_id' => $sourceSiteId]);
+        foreach ($users as $user) {
+            add_user_to_blog($destinationSiteId, $user->ID, $user->roles[0]);
         }
     }
 }

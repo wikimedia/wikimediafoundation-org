@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -55,7 +57,7 @@ final class PostTypeRepository
 
         $postTypes and uasort(
             $postTypes,
-            function (\WP_Post_Type $left, \WP_Post_Type $right): int {
+            static function (\WP_Post_Type $left, \WP_Post_Type $right): int {
                 return strcasecmp($left->labels->name, $right->labels->name);
             }
         );
@@ -91,7 +93,7 @@ final class PostTypeRepository
 
         $supported = array_filter(
             $settings,
-            function (array $type): bool {
+            static function (array $type): bool {
                 return $type[self::FIELD_ACTIVE] ?? false;
             }
         );

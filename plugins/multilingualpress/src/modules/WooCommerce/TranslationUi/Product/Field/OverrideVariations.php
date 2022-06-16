@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -28,7 +30,7 @@ class OverrideVariations
     {
         $key = MetaboxFields::FIELD_OVERRIDE_VARIATIONS;
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <tr class="show_if_variable">
             <th scope="row">

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -66,7 +68,8 @@ class ContextBuilder
             FILTER_SANITIZE_NUMBER_INT
         );
 
-        if (!$sourceSiteId
+        if (
+            !$sourceSiteId
             || !$sourcePostId
             || !$remoteSiteId
             || !siteExists($sourceSiteId)

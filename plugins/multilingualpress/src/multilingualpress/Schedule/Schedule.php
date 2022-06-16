@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -124,7 +126,8 @@ class Schedule
         $startedTs = $data['started'] ?? null;
         $lastUpdateTs = $data['lastUpdate'] ?? null;
 
-        if (!$allSteps
+        if (
+            !$allSteps
             || !$startedTs
             || !is_numeric($stepsDone)
             || !is_numeric($allSteps)
