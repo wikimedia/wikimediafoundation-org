@@ -39,6 +39,6 @@ db.php
 .history
 
 # Meta and workflow-related info
-#.github
+.github
 
 backstop_data
