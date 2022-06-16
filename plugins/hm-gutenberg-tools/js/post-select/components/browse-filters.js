@@ -4,6 +4,7 @@ import wp from 'wp';
 
 import FormFieldSelectTerm from '../containers/term-select-form-field';
 
+import FormFieldDates from './form-field-dates';
 import FormFieldSearch from './form-field-search';
 import FormFieldSelect from './form-field-select';
 
@@ -13,6 +14,7 @@ const { __ } = wp.i18n;
 const PostBrowseFilters = ( {
 	formId,
 	value,
+	showDateFilters,
 	terms,
 	postTypeObjects,
 	onSubmitFilters,
@@ -25,6 +27,13 @@ const PostBrowseFilters = ( {
 			onSubmitFilters();
 		} }
 	>
+
+		{
+			showDateFilters && (
+				<FormFieldDates value={ value } onUpdateFilters={ onUpdateFilters } />
+			)
+		}
+
 		<FormFieldSearch
 			fieldId={ `${formId}-search` }
 			label={ __( 'Search' ) }
@@ -47,7 +56,8 @@ const PostBrowseFilters = ( {
 				placeholder={ __( 'Filter by Post Type', 'hm-gb-tools' ) }
 				onChange={ type => onUpdateFilters( {
 					...value,
-					type,
+					// Convert type option objects to their post type slug.
+					type: type.map( ( { value } ) => value ),
 				} ) }
 			/>
 		) }
@@ -81,7 +91,12 @@ PostBrowseFilters.defaultProps = {
 };
 
 PostBrowseFilters.propTypes = {
-	value: PropTypes.object,
+	value: PropTypes.objectOf(
+		PropTypes.oneOfType( [
+			PropTypes.arrayOf( PropTypes.number ),
+			PropTypes.string,
+		] )
+	),
 	onUpdateFilters: PropTypes.func.isRequired,
 	terms: PropTypes.arrayOf( PropTypes.object ),
 };

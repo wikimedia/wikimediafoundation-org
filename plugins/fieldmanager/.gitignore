@@ -1,1 +1,36 @@
-# Emptied by vip-go-build; '.deployignore' exists and used as global .gitignore. See https://wp.me/p9nvA-89A
+# Dependencies
+vendor
+node_modules
+.env
+composer.lock
+package-lock.json
+
+# Log files
+*.log
+
+# Cache files
+.phpcs/*.json
+.phpunit.result.cache
+
+# Ignore temporary OS files
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.thumbsdb
+
+# IDE files
+*.code-workspace
+.idea
+.vscode
+
+# Created by Apigen for logs
+build/
+
+# Built docs
+docs/
+
+# Code coverage report
+report/

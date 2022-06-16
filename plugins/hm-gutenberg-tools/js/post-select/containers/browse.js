@@ -1,5 +1,6 @@
 /* global wp */
 
+import _isEqual from 'lodash/isequal';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -12,10 +13,11 @@ const { postSelectEndpoint } = window.hmGbToolsData;
 class PostSelectBrowse extends React.Component {
 	constructor( props ) {
 		super( props );
+		const { filters } = props;
 
 		this.state = {
 			posts: [],
-			filters: {},
+			filters: { ...filters },
 			page: 1,
 			isLoading: false,
 			hasPrev: false,
@@ -45,7 +47,7 @@ class PostSelectBrowse extends React.Component {
 			per_page: 25,
 		};
 
-		if ( ! query.type ) {
+		if ( ! query.type || ! query.type.length ) {
 			query.type = Array.isArray( postType ) ? postType : [ postType ];
 		}
 
@@ -71,17 +73,19 @@ class PostSelectBrowse extends React.Component {
 	}
 
 	render() {
-		const { posts, hasPrev, hasMore, isLoading } = this.state;
-		const { selection, onToggleSelected, termFilters, postType } = this.props;
+		const { filters, posts, hasPrev, hasMore, isLoading } = this.state;
+		const { selection, onToggleSelected, termFilters, postType, showDateFilters } = this.props;
 
 		return (
 			<Browse
+				filters={ filters }
 				hasMore={ hasMore }
 				hasPrev={ hasPrev }
 				isLoading={ isLoading }
 				posts={ posts }
 				postTypes={ Array.isArray( postType ) ? postType : [ postType ] }
 				selection={ selection }
+				showDateFilters={ showDateFilters }
 				termFilters={ termFilters }
 				onApplyFilters={ filters => this.applyFilters( filters ) }
 				onNextPostsPage={ () => this.nextPage() }
@@ -105,12 +109,18 @@ class PostSelectBrowse extends React.Component {
 		);
 	}
 
-	applyFilters( filters ) {
-		this.setState( { filters }, () => this.fetchPosts() );
+	applyFilters( newFilters ) {
+		const { filters, page } = this.state;
+		const didFiltersChange = ! _isEqual( filters, newFilters );
+		this.setState( {
+			filters: newFilters,
+			page: didFiltersChange ? 1 : page,
+		}, () => this.fetchPosts() );
 	}
 }
 
 PostSelectBrowse.propTypes = {
+	filters: PropTypes.objectOf( PropTypes.arrayOf( PropTypes.number ) ),
 	postType: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	selection: PropTypes.arrayOf( PropTypes.object ).isRequired,
 	onToggleSelected: PropTypes.func.isRequired,

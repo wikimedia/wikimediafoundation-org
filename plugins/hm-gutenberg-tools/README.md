@@ -43,7 +43,47 @@ HM Gutenberg Tools then exposes all functionality globally as `window.hm`. You c
 * `npm run watch` Watches for changes and builds development versions of the code.
 * `npm run lint` Lints your JS and fixes your code.
 
+## Releasing a new version.
+
+1. Update the version numbers in `plugin.php` and `package.json`.
+2. Add the changelog to the readme for the new version.
+3. Commit your changes to `main` and push.
+4. Run the bash script: `./release.sh v1.2.3`
+
+The script will sync the the build branch with main, build assets and commit the changes, and publish a new tagged version.
+
 ## Changelog
+
+### v1.6.2
+
+* Fix date filter label not being cleared when both selected dates are unset.
+* Switch from node-sass to sass and npm audit fix
+
+### v1.6.1
+
+* Reset PostSelect current page when filters are changed
+
+### v1.6.0
+
+* Adds date range filters for use when searching posts
+
+### v1.5.0
+
+* Handle current selections across multiple post types
+* Correctly handle post type filters in post selection modal
+* Preserbe specified Post Type list when clearing Types token list
+
+### v1.4.1
+
+* Adds a filter to allow the post select query to be modified
+
+### v1.4.0
+
+* Support thumbnails in post select components
+
+### v1.3.1
+
+* Switch selection when clicking off single-post selections
 
 ### v1.1.0
 
