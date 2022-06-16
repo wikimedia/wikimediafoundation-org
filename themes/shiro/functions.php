@@ -258,6 +258,7 @@ require get_template_directory() . '/inc/editor/blocks/blog-list.php';
 require get_template_directory() . '/inc/editor/blocks/blog-post.php';
 require get_template_directory() . '/inc/editor/blocks/double-heading.php';
 require get_template_directory() . '/inc/editor/blocks/inline-languages.php';
+require get_template_directory() . '/inc/editor/blocks/linked-toc-item.php';
 require get_template_directory() . '/inc/editor/blocks/mailchimp-subscribe.php';
 require get_template_directory() . '/inc/editor/blocks/read-more-categories.php';
 require get_template_directory() . '/inc/editor/blocks/share-article.php';
@@ -265,6 +266,7 @@ require get_template_directory() . '/inc/editor/blocks/profile.php';
 require get_template_directory() . '/inc/editor/blocks/profile-list.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
+require get_template_directory() . '/inc/editor/profile-fields.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
@@ -275,6 +277,9 @@ require get_template_directory() . '/inc/editor/patterns/communication-module.ph
 require get_template_directory() . '/inc/editor/patterns/template-default.php';
 require get_template_directory() . '/inc/editor/patterns/template-landing.php';
 require get_template_directory() . '/inc/editor/patterns/template-list.php';
+require get_template_directory() . '/inc/editor/patterns/template-report-landing.php';
+require get_template_directory() . '/inc/editor/patterns/template-report-section.php';
+require get_template_directory() . '/inc/editor/patterns/template-report.php';
 
 WMF\Editor\bootstrap();
 WMF\Editor\HasBlockColumn\bootstrap();
@@ -282,6 +287,7 @@ WMF\Editor\Blocks\BlogList\bootstrap();
 WMF\Editor\Blocks\BlogPost\bootstrap();
 WMF\Editor\Blocks\InlineLanguages\bootstrap();
 WMF\Editor\Blocks\DoubleHeading\bootstrap();
+WMF\Editor\Blocks\LinkedTOCItem\bootstrap();
 WMF\Editor\Blocks\MailchimpSubscribe\bootstrap();
 WMF\Editor\Blocks\ReadMoreCategories\bootstrap();
 WMF\Editor\Blocks\ShareArticle\bootstrap();
@@ -487,3 +493,16 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+/**
+ * Add thumbnails to the HM Gutenberg Tools post select screen.
+ *
+ * @param int    $id ID of the item to prepare.
+ * @param object $post The post object.
+ *
+ * @return int
+ */
+function shiro_add_hm_gb_tools_post_select_thumbnail( $id, $post ) {
+	return $post->_thumbnail_id;
+}
+add_filter( 'hm_gb_tools_item_thumbnail_id', 'shiro_add_hm_gb_tools_post_select_thumbnail', 10, 2 );
