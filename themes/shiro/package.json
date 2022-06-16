@@ -10,11 +10,15 @@
     "build:theme": "run-s build:webpack build:gulp",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
     "build:gulp": "gulp build",
-    "start": "run-p start:theme start:hm-gutenberg-tools",
+    "start": "run-p start:theme",
     "start:theme": "run-p start:webpack start:gulp",
     "start:webpack": "webpack-dev-server --config=.config/webpack.config.dev.js",
     "start:gulp": "gulp",
     "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/helpers/_style-guide-variables.scss && rm wikimedia-ui-base.less"
+  },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
   },
   "repository": {
     "type": "git",
