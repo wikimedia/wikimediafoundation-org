@@ -1,0 +1,13 @@
+// Linked table of contents block styles
+.linked-toc {
+
+    .toc {
+
+      &__nested {
+
+        ul {
+          margin-bottom: 0;
+        }
+      }
+    }
+}
