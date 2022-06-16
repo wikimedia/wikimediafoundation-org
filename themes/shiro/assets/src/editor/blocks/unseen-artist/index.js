@@ -92,6 +92,10 @@ export const settings = {
 			type: 'string',
 			default: '#',
 		},
+		behanceURL: {
+			type: 'string',
+			default: '#',
+		},
 	},
 
 	example: {
@@ -105,6 +109,7 @@ export const settings = {
 			instagramURL: '#',
 			twitterURL: '#',
 			linkedInURL: '#',
+			behanceURL: '#',
 		},
 		innerBlocks: [
 			{
@@ -153,6 +158,7 @@ export const settings = {
 			instagramURL,
 			twitterURL,
 			linkedInURL,
+			behanceURL,
 		} = attributes;
 
 		const hiddenMeta = hideMeta ? 'hidden-info' : '';
@@ -188,6 +194,14 @@ export const settings = {
 				<a href={ linkedInURL }>
 					<img alt='' src={ `${themeUrl}/assets/src/images/linkedin-b.svg` } />
 					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on LinkedIn.', 'shiro-admin' )}` }</span>
+				</a>
+			</li> ) : '';
+
+		const behance = behanceURL ? (
+			<li>
+				<a href={ behanceURL }>
+					<img alt='' src={ `${themeUrl}/assets/src/images/adobe-behance-b.svg` } />
+					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Behance.', 'shiro-admin' )}` }</span>
 				</a>
 			</li> ) : '';
 
@@ -298,6 +312,17 @@ export const settings = {
 									} }
 								/>
 							</PanelRow>
+
+							<PanelRow>
+								<TextControl
+									label={ __( 'Behance URL', 'shiro-admin' ) }
+									placeholder={ 'https://...' }
+									value={ behanceURL }
+									onChange={ value => {
+										setAttributes( { behanceURL: value } );
+									} }
+								/>
+							</PanelRow>
 						</PanelBody>
 					</InspectorControls>
 				</Fragment>
@@ -320,6 +345,7 @@ export const settings = {
 								{ instagram }
 								{ twitter }
 								{ linkedIn }
+								{ behance }
 							</ul>
 						</div>
 					</div>
@@ -342,6 +368,7 @@ export const settings = {
 			instagramURL,
 			twitterURL,
 			linkedInURL,
+			behanceURL,
 		} = attributes;
 
 		const hiddenMeta = hideMeta ? 'hidden-info' : '';
@@ -380,6 +407,14 @@ export const settings = {
 				</a>
 			</li> ) : '';
 
+		const behance = behanceURL ? (
+			<li>
+				<a href={ behanceURL }>
+					<img alt='' src={ `${themeUrl}/assets/src/images/adobe-behance-b.svg` } />
+					<span className={ 'screen-reader-text' }>{ `${__( 'Follow', 'shiro-admin' )} ${artistName} ${__( 'on Behance.', 'shiro-admin' )}` }</span>
+				</a>
+			</li> ) : '';
+
 		return (
 			<section { ...blockProps }>
 				<div className={ 'person-bio' }>
@@ -396,6 +431,7 @@ export const settings = {
 							{ instagram }
 							{ twitter }
 							{ linkedIn }
+							{ behance }
 						</ul>
 					</div>
 				</div>
