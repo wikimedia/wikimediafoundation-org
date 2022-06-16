@@ -1,0 +1,43 @@
+<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Search</title>
+<g id="Canvas" transform="translate(-563 17667)">
+<rect x="563" y="-17667" width="24" height="24" />
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -10843L -556 -10843L -556 -17795Z" />
+</clipPath>
+<g id="Landing &#226;&#128;&#148;&#194;&#160;Support Us" clip-path="url(#clip-0)">
+<path d="M -556 -17795L 884 -17795L 884 -10843L -556 -10843L -556 -17795Z" />
+<clipPath id="clip-1" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -16882L -556 -16882L -556 -17795Z" />
+</clipPath>
+<g id="C02 - Key Image" clip-path="url(#clip-1)">
+<path d="M -556 -17795L 884 -17795L 884 -16882L -556 -16882L -556 -17795Z" />
+<g id="Cyrus_cylinder_extractBy E.A">
+<use xlink:href="#path0_fill" fill="url(#pattern0)" transform="translate(-1083 -18043)" style="mix-blend-mode:multiply"/>
+</g>
+</g>
+<g id="Primary nav">
+<g id="Gradient">
+<use xlink:href="#path1_fill" transform="translate(-556 -17795)" fill="url(#paint1_linear)"/>
+</g>
+<g id="Actions">
+<g id="Search">
+<use xlink:href="#path2_fill" transform="translate(563 -17667)" fill="#ACF8F0"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<pattern id="pattern0" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0" transform="matrix(0.000478927 0 0 0.000884956 0 0)"/>
+</pattern>
+<linearGradient id="paint1_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(8.81746e-14 152 -1440 9.30732e-15 1440 -9.30732e-15)">
+<stop offset="0.348066" stop-color="#301FD5" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#301FD5" stop-opacity="0"/>
+</linearGradient>
+<path id="path0_fill" d="M 0 0L 2088 0L 2088 1130L 0 1130L 0 0Z"/>
+<path id="path1_fill" d="M 0 0L 1440 0L 1440 152L 0 152L 0 0Z"/>
+<path id="path2_fill" d="M 17.3793 15.1724L 24 22.069L 22.069 24L 15.1724 17.3793L 15.1724 16.2759L 14.8966 15.7241C 13.2414 17.1034 11.3103 17.931 9.10345 17.931C 6.62069 17.931 4.41379 17.1034 2.75862 15.4483C 1.10345 13.7931 0 11.5862 0 9.10345C 0 6.62069 0.827586 4.41379 2.48276 2.75862C 4.13793 1.10345 6.62069 0 9.10345 0C 11.5862 0 13.7931 0.827586 15.4483 2.48276C 17.1034 4.13793 17.931 6.34483 17.931 8.82759C 17.931 11.0345 17.1034 12.9655 15.7241 14.6207L 16 14.8966L 17.3793 14.8966L 17.3793 15.1724ZM 4.68966 13.5172C 5.7931 14.6207 7.44828 15.4483 9.10345 15.4483C 10.7586 15.4483 12.4138 14.8966 13.5172 13.5172C 14.6207 12.1379 15.4483 10.7586 15.4483 9.10345C 15.4483 7.44828 14.6207 5.7931 13.5172 4.68966C 12.4138 3.58621 10.7586 2.75862 9.10345 2.75862C 7.44828 2.75862 5.7931 3.31034 4.68966 4.68966C 3.58621 6.06897 2.75862 7.17241 2.75862 9.10345C 2.75862 11.0345 3.31034 12.1379 4.68966 13.5172Z"/>
+</defs>
+</svg>

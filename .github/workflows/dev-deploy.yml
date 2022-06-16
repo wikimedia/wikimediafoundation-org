@@ -1,4 +1,4 @@
-name: Build and deploy to VIP Go
+name: Deploy to VIP Go base branch
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
-    name: Build & deploy to VIP Go
+    name: Deploy to VIP Go base branch
     env:
       DEPLOY_REPO: wpcomvip/wikimediafoundation-org
     steps:
@@ -35,19 +35,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('themes/shiro/package-lock.json', 'plugins/hm-gutenberg-tools/package-lock.json') }}
+          key: npm-${{ hashFiles('themes/shiro/package-lock.json') }}
           restore-keys: npm-
 
       - name: Install dependencies
-        run: (npm --prefix themes/shiro ci && npm --prefix plugins/hm-gutenberg-tools ci)
+        run: (npm --prefix themes/shiro ci)
 
       - name: Build assets
         run: (npm --prefix themes/shiro run build)
 
-      - name: Run VIP Go Deploy script
-        run: bash .github/vip-go-deploy.sh
-        env:
-          SRC_REPO: ${{ github.repository }}
-          SRC_DIR: ${{ github.workspace }}
-          TMP_DIR: ${{ runner.temp }}
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      - name: Push to VIP Go unbuilt
+        run: git push "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"

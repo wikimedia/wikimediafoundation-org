@@ -15,6 +15,12 @@ The process for updating the mirror is documented by GitHub: https://help.github
 Command to run from private repository:
   git push --mirror https://github.com/wikimedia/wikimediafoundation-org.git
 
+## Setup
+
+The theme uses node & npm for dependency management and asset build pipeline. The `engines` field in `themes/shiro/package.json` defines the correct versions of node and npm, and will cause `npm install` to fail if those versions are not in use.
+
+If you're [using nvm](https://github.com/nvm-sh/nvm#installing-and-updating), running `nvm use` from the theme directory will automatically set (and install if necessary) the correct version of node, which will *usually* include the correct version of npm.
+
 ## Updating Localization
 
 There are several composer scripts here that make use of `wp i18n` to help manage localization files. Run `composer run -l` to see a list of available scripts.

@@ -9,6 +9,7 @@ plugins/user-switching
 plugins/asset-loader
 plugins/co-authors-plus
 plugins/fieldmanager
+plugins/hm-gutenberg-tools
 plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
