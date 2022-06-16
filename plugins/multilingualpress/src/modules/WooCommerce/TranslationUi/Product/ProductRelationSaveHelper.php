@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -55,7 +57,7 @@ class ProductRelationSaveHelper
     {
         return array_filter(
             $attributes,
-            function (string $attributeName): bool {
+            static function (string $attributeName): bool {
                 return strpos($attributeName, 'pa_') !== 0;
             },
             ARRAY_FILTER_USE_KEY
@@ -70,7 +72,7 @@ class ProductRelationSaveHelper
     {
         return array_filter(
             $attributes,
-            function (string $attributeName): bool {
+            static function (string $attributeName): bool {
                 return strpos($attributeName, 'pa_') === 0;
             },
             ARRAY_FILTER_USE_KEY
@@ -307,8 +309,9 @@ class ProductRelationSaveHelper
 
         $newTermId = $remoteTermId;
 
-        if (term_exists($sourceTermName)) {
-            return get_term_by('slug', $sourceTermName, $taxonomyName);
+        $remoteTerm = term_exists($sourceTermName, $taxonomyName);
+        if (!empty($remoteTerm['term_id'])) {
+            return get_term_by('id', $remoteTerm['term_id'], $taxonomyName);
         }
 
         $taxonomy = get_taxonomy($taxonomyName);

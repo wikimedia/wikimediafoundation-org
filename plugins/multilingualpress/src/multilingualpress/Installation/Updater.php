@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -46,15 +48,26 @@ class Updater
     }
 
     /**
+     * Will perform the necessary rewrites when the plugin is upgraded.
+     *
+     * When the plugin is upgraded, we need to fix the permalink rewrites.
+     *
+     * @see https://developer.wordpress.org/reference/hooks/upgrader_process_complete/ upgrader_process_complete
+     *
      * @param \WP_Upgrader $upgraderObject
      * @param array $options
      */
     public function rewriteRulesAfterPluginUpgrade(\WP_Upgrader $upgraderObject, array $options)
     {
-        if ($options['action'] === 'update' && $options['type'] === 'plugin') {
-            foreach ($options['plugins'] as $plugin) {
-                ($plugin === $this->pluginProperties->basename()) and flush_rewrite_rules();
-            }
+        $action = $options['action'] ?? '';
+        $type = $options['type'] ?? '';
+
+        if ($action !== 'update' || $type !== 'plugin' || empty($options['plugins'])) {
+            return;
+        }
+
+        foreach ($options['plugins'] as $plugin) {
+            ($plugin === $this->pluginProperties->basename()) and flush_rewrite_rules();
         }
     }
 }

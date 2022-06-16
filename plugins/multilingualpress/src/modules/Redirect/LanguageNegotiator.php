@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -18,6 +20,7 @@ use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\Language\Language;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
 
 class LanguageNegotiator
 {
@@ -46,20 +49,29 @@ class LanguageNegotiator
      */
     private $translations;
 
+
+    /**
+     * @var Repository
+     */
+    private $repository;
+
     /**
      * @param Translations $translations
      * @param Request $request
      * @param AcceptLanguageParser $parser
+     * @param Repository $repository
      */
     public function __construct(
         Translations $translations,
         Request $request,
-        AcceptLanguageParser $parser
+        AcceptLanguageParser $parser,
+        Repository $repository
     ) {
 
         $this->translations = $translations;
         $this->request = $request;
         $this->parser = $parser;
+        $this->repository = $repository;
 
         /**
          * Filters the factor used to compute the priority of language-only matches.
@@ -83,13 +95,14 @@ class LanguageNegotiator
     public function redirectTarget(TranslationSearchArgs $args = null): RedirectTarget
     {
         $targets = $this->redirectTargets($args);
+
         if (!$targets) {
             return new RedirectTarget();
         }
 
         $targets = array_filter(
             $targets,
-            function (RedirectTarget $target): bool {
+            static function (RedirectTarget $target): bool {
                 return 0 < $target->userPriority();
             }
         );
@@ -97,12 +110,11 @@ class LanguageNegotiator
         if (!$targets) {
             return new RedirectTarget();
         }
-
         uasort(
             $targets,
-            function (RedirectTarget $left, RedirectTarget $right): int {
-                $leftPriority = $left->priority() * $left->userPriority();
-                $rightPriority = $right->priority() * $right->userPriority();
+            static function (RedirectTarget $left, RedirectTarget $right): int {
+                $leftPriority = $left->priority() * $left->userPriority() * $left->languageFallbackPriority();
+                $rightPriority = $right->priority() * $right->userPriority() * $right->languageFallbackPriority();
 
                 return $rightPriority <=> $leftPriority;
             }
@@ -145,6 +157,7 @@ class LanguageNegotiator
             );
 
             $userPriority = $this->languagePriority($language, $userLanguages);
+            $languageFallbackPriority = $this->languageFallbackPriority($siteId);
 
             $targets[] = new RedirectTarget(
                 [
@@ -154,6 +167,7 @@ class LanguageNegotiator
                     RedirectTarget::KEY_SITE_ID => $siteId,
                     RedirectTarget::KEY_URL => $url,
                     RedirectTarget::KEY_USER_PRIORITY => $userPriority,
+                    RedirectTarget::KEY_LANGUAGE_FALLBACK_PRIORITY => $languageFallbackPriority,
                 ]
             );
         }
@@ -197,7 +211,7 @@ class LanguageNegotiator
 
         uasort(
             $targets,
-            function (RedirectTarget $left, RedirectTarget $right): int {
+            static function (RedirectTarget $left, RedirectTarget $right): int {
                 return $right->priority() <=> $left->priority();
             }
         );
@@ -222,7 +236,7 @@ class LanguageNegotiator
 
         $args or $args = new TranslationSearchArgs();
 
-        $context = new WordpressContext;
+        $context = new WordpressContext();
         $args->forContentId($context->queriedObjectId())
             ->forSiteId(get_current_blog_id())
             ->forPostType($context->postType())
@@ -235,7 +249,7 @@ class LanguageNegotiator
 
         return array_filter(
             $translations,
-            function (Translation $translation): bool {
+            static function (Translation $translation): bool {
                 return (bool)$translation->remoteUrl();
             }
         );
@@ -279,7 +293,7 @@ class LanguageNegotiator
      */
     private function languagePriority(Language $language, array $languages): float
     {
-        $tag = strtolower($language->bcp47tag());
+        $tag = $this->languageTag($language);
 
         if (isset($languages[$tag])) {
             return (float)$languages[$tag];
@@ -293,5 +307,39 @@ class LanguageNegotiator
         }
 
         return 0.0;
+    }
+
+    /**
+     * The Method will get the language tag
+     * It will also fix the language tags for language variants
+     * and will remove the third part from language ta so de-DE-formal will become de-DE
+     *
+     * @param Language $language The language Object
+     * @return string The language bcp47 tag
+     */
+    private function languageTag(Language $language): string
+    {
+        $languageTag = strtolower($language->bcp47tag());
+        if ($language->type() !== 'variant') {
+            return $languageTag;
+        }
+
+        $languageParts = explode('-', $languageTag);
+        $languageTag = $languageParts[0] . '-' . $languageParts[1];
+
+        return $languageTag;
+    }
+
+    /**
+     * Calculate the redirect language fallback priority
+     *
+     * @param int $siteId
+     * @return int The redirect language fallback priority
+     */
+    protected function languageFallbackPriority(int $siteId): int
+    {
+        $redirectFallback = $this->repository->isRedirectSettingEnabledForSite($siteId, $this->repository::OPTION_SITE_ENABLE_REDIRECT_FALLBACK);
+
+        return $redirectFallback ? 2 : 1;
     }
 }

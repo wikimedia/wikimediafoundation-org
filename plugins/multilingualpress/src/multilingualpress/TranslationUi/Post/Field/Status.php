@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -23,7 +25,7 @@ class Status
     /**
      * @var array
      */
-    private static $statues;
+    protected static $statues;
 
     /**
      * @param $value
@@ -45,7 +47,7 @@ class Status
     /**
      * @return array
      */
-    private static function statuses(): array
+    protected static function statuses(): array
     {
         if (is_array(static::$statues)) {
             return static::$statues;
@@ -57,6 +59,7 @@ class Status
                 'draft',
                 'pending',
                 'publish',
+                'future',
             ]
         );
 

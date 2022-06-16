@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -17,6 +19,7 @@ use Inpsyde\MultilingualPress\Framework\Admin\SettingsPageView;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingView;
+
 use function Inpsyde\MultilingualPress\printNonceField;
 use function Inpsyde\MultilingualPress\settingsPageHead;
 

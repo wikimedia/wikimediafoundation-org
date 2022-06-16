@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -13,6 +15,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Module\Redirect;
 
 use Inpsyde\MultilingualPress\Module\Redirect\Settings\Repository;
+
 use function Inpsyde\MultilingualPress\siteLanguageTag;
 
 /**
@@ -54,7 +57,8 @@ class RedirectRequestChecker
             return false;
         }
 
-        if (!$this->settingsRepository->isRedirectEnabledForSite()
+        if (
+            !$this->settingsRepository->isRedirectSettingEnabledForSite()
             || $this->settingsRepository->isRedirectEnabledForUser()
             || $this->noRedirectStorage->hasLanguage(siteLanguageTag())
         ) {

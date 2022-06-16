@@ -1,4 +1,8 @@
-<?php declare(strict_types=1); # -*- coding: utf-8 -*-
+<?php
+
+declare(strict_types=1);
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -123,7 +127,8 @@ class Metaboxes
             throw new \BadMethodCallException('Cannot add boxes when controller is locked.');
         }
 
-        if (!$this->entity->isValid()
+        if (
+            !$this->entity->isValid()
             || !in_array($this->registeringFor, [Metabox::SAVE, Metabox::SHOW], true)
         ) {
             return $this;
@@ -133,7 +138,8 @@ class Metaboxes
         $isTerm = $this->entity->is(\WP_Term::class);
 
         foreach ($boxes as $box) {
-            if (($isPost && $box instanceof PostMetabox)
+            if (
+                ($isPost && $box instanceof PostMetabox)
                 || ($isTerm && $box instanceof TermMetabox)
             ) {
                 $this->boxes[$box->createInfo($this->registeringFor, $this->entity)->id()] = $box;
@@ -178,9 +184,12 @@ class Metaboxes
 
     /**
      * @return bool
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      */
     private function initForPost(): bool
     {
+        // phpcs:enable
+
         // Show Boxes
         add_action(
             'add_meta_boxes',
@@ -230,6 +239,9 @@ class Metaboxes
         add_action(
             'wp_insert_post',
             function ($postId, \WP_Post $post) {
+                if ($post->post_status === 'trash') {
+                    return;
+                }
                 $this->onPostSave($post);
             },
             100,
@@ -272,7 +284,8 @@ class Metaboxes
 
                     $term = get_term_by('term_taxonomy_id', $termTaxonomyId);
 
-                    if (!$term instanceof \WP_Term
+                    if (
+                        !$term instanceof \WP_Term
                         || (int)$term->term_id !== $termId
                         || $term->taxonomy !== $termTaxonomy
                         || $term->taxonomy !== $taxonomy

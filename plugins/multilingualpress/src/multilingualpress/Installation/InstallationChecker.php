@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -51,7 +53,8 @@ class InstallationChecker
     {
         $installationCheck = $this->checker->checkInstallation();
 
-        if (SystemChecker::PLUGIN_DEACTIVATED === $installationCheck
+        if (
+            SystemChecker::PLUGIN_DEACTIVATED === $installationCheck
             || SystemChecker::INSTALLATION_OK !== $installationCheck
         ) {
             return $installationCheck;

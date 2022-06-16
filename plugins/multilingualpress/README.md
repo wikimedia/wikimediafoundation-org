@@ -38,8 +38,8 @@ and themes, navigation menus, categories, tags and custom taxonomies.
 
 ### Requirements
 
-* WordPress multisite 4.8 or higher.
-* PHP 7 or higher.
+* WordPress multisite 5.0 or higher.
+* PHP 7.2 or higher.
 
 If you're new to WordPress multisite, you might find our [WordPress multisite installation
 tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/) helpful.

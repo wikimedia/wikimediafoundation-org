@@ -1,0 +1,1 @@
+{"version":3,"file":"frontend.css","sources":["resources/scss/frontend.scss"],"sourcesContent":[".mlp-language-nav-item {\n    img {\n        width: 16px;\n    }\n}\n"],"names":[],"mappings":"AAAA,AACI,sBADkB,CAClB,GAAG,AAAC,CACA,KAAK,CAAE,IAAI,CACd"}

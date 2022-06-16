@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -15,6 +17,10 @@ namespace Inpsyde\MultilingualPress\SiteDuplication;
 use Inpsyde\MultilingualPress\Asset\AssetFactory;
 use Inpsyde\MultilingualPress\Attachment;
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsUpdater;
+use Inpsyde\MultilingualPress\Database\Table\ContentRelationsTable;
+use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
+use Inpsyde\MultilingualPress\Database\Table\RelationshipsTable;
+use Inpsyde\MultilingualPress\Database\Table\SiteRelationsTable;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\BasePathAdapter;
@@ -52,6 +58,13 @@ use Inpsyde\MultilingualPress\SiteDuplication\Schedule\RemoveAttachmentIdsTask;
 use Inpsyde\MultilingualPress\SiteDuplication\Schedule\ScheduleActionsNames;
 use Throwable;
 use WP_Site;
+use Inpsyde\MultilingualPress\SiteDuplication\Settings\ActivatePluginsSetting;
+use Inpsyde\MultilingualPress\SiteDuplication\Settings\BasedOnSiteSetting;
+use Inpsyde\MultilingualPress\SiteDuplication\Settings\ConnectContentSetting;
+use Inpsyde\MultilingualPress\SiteDuplication\Settings\CopyAttachmentsSetting;
+use Inpsyde\MultilingualPress\SiteDuplication\Settings\CopyUsersSetting;
+use Inpsyde\MultilingualPress\SiteDuplication\Settings\SearchEngineVisibilitySetting;
+
 use function Inpsyde\MultilingualPress\wpHookProxy;
 use function Inpsyde\MultilingualPress\wpVersion;
 
@@ -74,6 +87,9 @@ class ServiceProvider implements BootstrappableServiceProvider
     const SCHEDULE_ACTION_ATTACHMENTS_USER_REQUIRED_CAPABILITY = 'create_sites';
     const SCHEDULE_ACTION_ATTACHMENTS_NONCE_KEY = 'multilingualpress_attachment_duplicator_action';
 
+    const MLP_TABLES = 'multilingualpress.mlpTables';
+    const SITE_DUPLICATION_FILTER_MLP_TABLES = 'siteDuplication.filterMlpTables';
+
     /**
      * @inheritdoc
      *
@@ -88,14 +104,14 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             ActivePlugins::class,
-            function (): ActivePlugins {
+            static function (): ActivePlugins {
                 return new ActivePlugins();
             }
         );
 
         $container->addService(
             Attachment\Duplicator::class,
-            function (Container $container): Attachment\Duplicator {
+            static function (Container $container): Attachment\Duplicator {
                 return new Attachment\Duplicator(
                     $container[BasePathAdapter::class],
                     $container[Filesystem::class]
@@ -105,14 +121,14 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             ConnectContentSetting::class,
-            function (): ConnectContentSetting {
+            static function (): ConnectContentSetting {
                 return new ConnectContentSetting();
             }
         );
 
         $container->addService(
             ActivatePluginsSetting::class,
-            function (): ActivatePluginsSetting {
+            static function (): ActivatePluginsSetting {
                 return new ActivatePluginsSetting();
             }
         );
@@ -135,8 +151,15 @@ class ServiceProvider implements BootstrappableServiceProvider
         );
 
         $container->addService(
+            CopyUsersSetting::class,
+            static function (): CopyUsersSetting {
+                return new CopyUsersSetting();
+            }
+        );
+
+        $container->addService(
             SearchEngineVisibilitySetting::class,
-            function (): SearchEngineVisibilitySetting {
+            static function (): SearchEngineVisibilitySetting {
                 return new SearchEngineVisibilitySetting();
             }
         );
@@ -157,9 +180,18 @@ class ServiceProvider implements BootstrappableServiceProvider
             }
         );
 
+        $container->share(self::MLP_TABLES, static function (Container $container): array {
+            return [
+                $container[ContentRelationsTable::class]->name(),
+                $container[LanguagesTable::class]->name(),
+                $container[RelationshipsTable::class]->name(),
+                $container[SiteRelationsTable::class]->name(),
+            ];
+        });
+
         $container->addService(
             SiteScheduleOption::class,
-            function (): SiteScheduleOption {
+            static function (): SiteScheduleOption {
                 return new SiteScheduleOption();
             }
         );
@@ -177,7 +209,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Attachment\DatabaseDataReplacer::class,
-            function (Container $container): Attachment\DatabaseDataReplacer {
+            static function (Container $container): Attachment\DatabaseDataReplacer {
                 return new Attachment\DatabaseDataReplacer(
                     $container[\wpdb::class],
                     $container[TableStringReplacer::class],
@@ -188,7 +220,7 @@ class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             AttachmentDuplicatorHandler::class,
-            function (Container $container): AttachmentDuplicatorHandler {
+            static function (Container $container): AttachmentDuplicatorHandler {
                 return new AttachmentDuplicatorHandler(
                     $container[SiteScheduleOption::class],
                     $container[Attachment\Duplicator::class],
@@ -313,12 +345,14 @@ class ServiceProvider implements BootstrappableServiceProvider
                 $container[CopyAttachmentsSetting::class],
                 $container[ConnectContentSetting::class],
                 $container[ActivatePluginsSetting::class],
+                $container[CopyUsersSetting::class],
                 $container[SearchEngineVisibilitySetting::class],
             ]
         );
 
         $this->duplicateSiteBackCompactBootstrap($container);
         $this->defineInitialSettingsBackCompactBootstrap($container);
+        $this->filterExcludedTables($container);
 
         add_action(
             SiteSettingsSectionView::ACTION_AFTER . '_' . NewSiteSettings::SECTION_ID,
@@ -438,5 +472,23 @@ class ServiceProvider implements BootstrappableServiceProvider
         }
 
         return $nonce;
+    }
+
+    /**
+     * @param Container $container
+     * @throws LateAccessToNotSharedService
+     * @throws NameNotFound
+     * @throws Throwable
+     */
+    private function filterExcludedTables(Container $container)
+    {
+        $mlpTables = $container->get(self::MLP_TABLES);
+        $siteDuplicator = $container[SiteDuplicator::class];
+        add_filter(
+            $siteDuplicator::FILTER_EXCLUDED_TABLES,
+            wpHookProxy(static function () use ($mlpTables): array {
+                return $mlpTables;
+            })
+        );
     }
 }

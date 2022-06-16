@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -29,14 +31,14 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->share(
             Scheduler::class,
-            function (): Scheduler {
+            static function (): Scheduler {
                 return new Scheduler();
             }
         );
 
         $container->share(
             AjaxScheduleHandler::class,
-            function (Container $container): AjaxScheduleHandler {
+            static function (Container $container): AjaxScheduleHandler {
                 return new AjaxScheduleHandler(
                     $container[Scheduler::class],
                     $container[NonceFactory::class]
@@ -57,7 +59,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         add_action(
             Scheduler::ACTION_CLEANUP,
-            function ($scheduleId) use ($container) {
+            static function ($scheduleId) use ($container) {
                 \is_string($scheduleId) and $container[Scheduler::class]->cleanupIfDone($scheduleId);
             }
         );
@@ -76,7 +78,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
         foreach ($ajaxActionHooks as $key) {
             add_action(
                 $key,
-                function () use ($ajaxScheduleHandler, $serverRequest) {
+                static function () use ($ajaxScheduleHandler, $serverRequest) {
                     $ajaxScheduleHandler->handle($serverRequest);
                 }
             );
