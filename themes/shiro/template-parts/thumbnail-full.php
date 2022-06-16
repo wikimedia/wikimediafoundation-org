@@ -28,7 +28,6 @@ $has_caption     = ! empty( $caption ) || ! empty( $credit );
 	<div>
 		<?php echo wp_get_attachment_image( $inner_image, 'large' ); ?>
 	</div>
-	<h1></h1>
 </div>
 
 <?php if ( $has_caption ) : ?>
