@@ -125,22 +125,19 @@ function wmf_role_fields() {
 		)
 		: [];
 
-	// Create select box for executive profile.
-	$executive = new Fieldmanager_Select(
+	// Create checkbox group for executive profiles.
+	$executive = new Fieldmanager_Checkboxes(
 		wp_parse_args(
 			$no_posts_args,
 			array(
 				'name'        => 'role_executive',
-				'description' => __( 'Select a profile to feature as the department executive on the Staff & Contractors page.', 'shiro-admin' ),
-				'options'     =>
-					// Combine arrays without re-indexing.
-					array( 0 => __( 'Please select an executive for this department', 'shiro-admin' ) )
-					+ $current_term_posts,
+				'description' => __( 'Select multiple profiles to feature as the department executives on the Staff & Contractors page.', 'shiro-admin' ),
+				'options'     => $current_term_posts,
 			)
 		)
 	);
 
-	$executive->add_term_meta_box( __( 'Department Executive', 'shiro-admin' ), 'role' );
+	$executive->add_term_meta_box( __( 'Department Executive(s)', 'shiro-admin' ), 'role' );
 
 	// Create checkbox group for expert profiles.
 	$experts = new Fieldmanager_Checkboxes(
