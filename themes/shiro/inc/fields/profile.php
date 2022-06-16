@@ -19,20 +19,6 @@ function wmf_profile_fields() {
 
 	$last_name->add_meta_box( __( 'Sorting', 'shiro-admin' ), 'profile', 'normal', 'high' );
 
-	$user = new Fieldmanager_Autocomplete(
-		array(
-			'name'       => 'connected_user',
-			'datasource' => new Fieldmanager_Datasource_Post(
-				array(
-					'query_args' => array(
-						'post_type' => 'guest-author',
-					),
-				)
-			),
-		)
-	);
-	$user->add_meta_box( __( 'Connected User', 'shiro-admin' ), 'profile' );
-
 	$contact_links = new Fieldmanager_Group(
 		array(
 			'label'          => __( 'Contact Link', 'shiro-admin' ),
@@ -63,6 +49,19 @@ function wmf_profile_fields() {
 	);
 	$info->add_meta_box( __( 'Profile Info', 'shiro-admin' ), 'profile' );
 
+	$user = new Fieldmanager_Autocomplete(
+		array(
+			'name'       => 'connected_user',
+			'datasource' => new Fieldmanager_Datasource_Post(
+				array(
+					'query_args' => array(
+						'post_type' => 'guest-author',
+					),
+				)
+			),
+		)
+	);
+	$user->add_meta_box( __( 'Connected User', 'shiro-admin' ), 'profile' );
 }
 add_action( 'fm_post_profile', 'wmf_profile_fields' );
 
@@ -126,22 +125,28 @@ function wmf_role_fields() {
 		)
 		: [];
 
-	// Create select box for executive profile.
-	$executive = new Fieldmanager_Select(
+	// Create checkbox group for executive profiles.
+	$executive = new Fieldmanager_Checkboxes(
 		wp_parse_args(
 			$no_posts_args,
 			array(
 				'name'        => 'role_executive',
-				'description' => __( 'Select a profile to feature as the department executive on the Staff & Contractors page.', 'shiro-admin' ),
-				'options'     =>
-					// Combine arrays without re-indexing.
-					array( 0 => __( 'Please select an executive for this department', 'shiro-admin' ) )
-					+ $current_term_posts,
+				'description' => __( 'Select multiple profiles to feature as the department executives on the Staff & Contractors page.', 'shiro-admin' ),
+				'options'     => $current_term_posts,
 			)
 		)
 	);
 
-	$executive->add_term_meta_box( __( 'Department Executive', 'shiro-admin' ), 'role' );
+	$executive->add_term_meta_box( __( 'Department Executive(s)', 'shiro-admin' ), 'role' );
+
+	$executive_title_override = new Fieldmanager_TextField(
+		array(
+			'name'        => 'role_executive_title_override',
+			'description' => __( 'If desired, enter a phrase to be used in place of "Department Executive." If this field is empty, "Department Executive" will be used.', 'shiro-admin' ),
+		)
+	);
+
+	$executive_title_override->add_term_meta_box( __( 'Department Executive Title Override', 'shiro-admin' ), 'role' );
 
 	// Create checkbox group for expert profiles.
 	$experts = new Fieldmanager_Checkboxes(
@@ -156,6 +161,16 @@ function wmf_role_fields() {
 	);
 
 	$experts->add_term_meta_box( __( 'Department Experts', 'shiro-admin' ), 'role' );
+
+	$experts_title_override = new Fieldmanager_TextField(
+		array(
+			'name'        => 'role_experts_title_override',
+			'description' => __( 'If desired, enter a phrase to be used in place of "Department Experts." If this field is empty, "Department Experts" will be used.', 'shiro-admin' ),
+		)
+	);
+
+	$experts_title_override->add_term_meta_box( __( 'Department Experts Title Override', 'shiro-admin' ), 'role' );
+
 
 	$button = new Fieldmanager_Group(
 		array(
