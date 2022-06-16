@@ -22,6 +22,9 @@ foreach ( $post_list as $term_id => $term_data ) :
 	$name        = ( is_wp_error( $term ) || empty( $term->parent ) ) ? '' : $name;
 	$class       = 'role__section wysiwyg';
 
+	$executive_title = get_term_meta( $term_id, 'role_executive_title_override', true ) ?: __( 'Department Executive', 'shiro' );
+	$experts_title = get_term_meta( $term_id, 'role_experts_title_override', true ) ?: __( 'Department Experts', 'shiro' );
+
 	if ( ! empty( $name ) && ! is_tax( 'role', $term_id ) ) {
 		$class = $class . ' has-h2';
 	}
@@ -44,6 +47,11 @@ foreach ( $post_list as $term_id => $term_data ) :
 	<?php
 	if ( is_tax( 'role', 'staff-contractors' ) && ! ( empty ( $executives ) && empty( $experts ) ) ) :
 		if ( ! empty( $executive ) ) {
+			?>
+		<h3 class="role__staff-title__executive is-style-h4">
+			<?php echo esc_html__( $executive_title ); ?>
+		</h3>
+		<?php
 			get_template_part(
 				'template-parts/profiles/role',
 				'item',
@@ -58,7 +66,7 @@ foreach ( $post_list as $term_id => $term_data ) :
 		if ( ! empty( $experts ) ) :
 		?>
 		<h3 class="role__staff-title__experts is-style-h4">
-			<?php echo esc_html__( 'Department experts', 'shiro' ); ?>
+			<?php echo esc_html__( $experts_title ); ?>
 		</h3>
 		<ul class="role__staff-list">
 			<?php

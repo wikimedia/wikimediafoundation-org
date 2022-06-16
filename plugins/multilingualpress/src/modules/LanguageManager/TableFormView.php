@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,10 +14,11 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\LanguageManager;
 
-use function \Inpsyde\MultilingualPress\arrayToAttrs;
 use Inpsyde\MultilingualPress\Core\Admin\LanguagesAjaxSearch;
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress\Framework\Language\Language;
+
+use function Inpsyde\MultilingualPress\arrayToAttrs;
 
 /**
  * Language Manager Table Form View
@@ -63,7 +66,7 @@ class TableFormView
     public function render()
     {
         $description = __(
-            'Start typing language or country name to search for an already exists language to create a new language based on an existing one.',
+            'Click on the "New Language" button below and start typing the language or the country name to search for an already existing language and create a new language based on the existing one.',
             'multilingualpress'
         );
         ?>

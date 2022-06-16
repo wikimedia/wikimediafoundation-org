@@ -90,6 +90,9 @@ function wmf_add_taxonomies() {
 				'with_front' => false,
 				'slug'       => __( 'stories', 'shiro-admin' ),
 			),
+			'show_in_rest' => true,
+			// REST base cannot be "type" due to conflicts with core routes.
+			'rest_base'    => 'story-types',
 		)
 	);
 	register_taxonomy( 'type', array( 'story' ), $story_type_args );

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -46,28 +48,28 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
     {
         $container->shareFactory(
             \wpdb::class,
-            function (): \wpdb {
+            static function (): \wpdb {
                 return $GLOBALS['wpdb'];
             }
         );
 
         $container->share(
             TableDuplicator::class,
-            function (Container $container): TableDuplicator {
+            static function (Container $container): TableDuplicator {
                 return new TableDuplicator($container[\wpdb::class]);
             }
         );
 
         $container->share(
             TableInstaller::class,
-            function (Container $container): TableInstaller {
+            static function (Container $container): TableInstaller {
                 return new TableInstaller($container[\wpdb::class]);
             }
         );
 
         $container->share(
             TableList::class,
-            function (Container $container): TableList {
+            static function (Container $container): TableList {
                 return new TableList(
                     $container[\wpdb::class],
                     new Facade($container[Server::class], TableList::class),
@@ -78,14 +80,14 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
 
         $container->share(
             TableReplacer::class,
-            function (Container $container): TableReplacer {
+            static function (Container $container): TableReplacer {
                 return new TableReplacer($container[\wpdb::class]);
             }
         );
 
         $container->share(
             TableStringReplacer::class,
-            function (Container $container): TableStringReplacer {
+            static function (Container $container): TableStringReplacer {
                 return new TableStringReplacer($container[\wpdb::class]);
             }
         );
@@ -106,28 +108,28 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
     {
         $container->share(
             Table\ContentRelationsTable::class,
-            function (Container $container): Table\ContentRelationsTable {
+            static function (Container $container): Table\ContentRelationsTable {
                 return new Table\ContentRelationsTable($container[\wpdb::class]->base_prefix);
             }
         );
 
         $container->share(
             Table\LanguagesTable::class,
-            function (Container $container): Table\LanguagesTable {
+            static function (Container $container): Table\LanguagesTable {
                 return new Table\LanguagesTable($container[\wpdb::class]->base_prefix);
             }
         );
 
         $container->share(
             Table\RelationshipsTable::class,
-            function (Container $container): Table\RelationshipsTable {
+            static function (Container $container): Table\RelationshipsTable {
                 return new Table\RelationshipsTable($container[\wpdb::class]->base_prefix);
             }
         );
 
         $container->share(
             Table\SiteRelationsTable::class,
-            function (Container $container): Table\SiteRelationsTable {
+            static function (Container $container): Table\SiteRelationsTable {
                 return new Table\SiteRelationsTable($container[\wpdb::class]->base_prefix);
             }
         );

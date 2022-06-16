@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -26,7 +28,7 @@ final class ServiceProvider implements IntegrationServiceProvider
      */
     public function register(Container $container)
     {
-        $container[WpCli::class] = function (): WpCli {
+        $container[WpCli::class] = static function (): WpCli {
             return new WpCli();
         };
     }

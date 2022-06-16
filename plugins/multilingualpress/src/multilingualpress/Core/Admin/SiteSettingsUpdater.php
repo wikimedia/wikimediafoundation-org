@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -36,13 +38,20 @@ class SiteSettingsUpdater implements SiteSettingsUpdatable
     private $request;
 
     /**
+     * @var LanguageInstaller
+     */
+    private $languageInstaller;
+
+    /**
      * @param SiteSettingsRepository $repository
      * @param Request $request
+     * @param LanguageInstaller $languageInstaller
      */
-    public function __construct(SiteSettingsRepository $repository, Request $request)
+    public function __construct(SiteSettingsRepository $repository, Request $request, LanguageInstaller $languageInstaller)
     {
         $this->repository = $repository;
         $this->request = $request;
+        $this->languageInstaller = $languageInstaller;
     }
 
     /**
@@ -74,6 +83,7 @@ class SiteSettingsUpdater implements SiteSettingsUpdatable
     public function updateSettings(int $siteId)
     {
         $this->updateLanguage($siteId);
+        $this->updateWpLang($siteId);
         $this->updateRelationships($siteId);
         $this->updateXDefault($siteId);
 
@@ -161,9 +171,12 @@ class SiteSettingsUpdater implements SiteSettingsUpdatable
             FILTER_SANITIZE_STRING
         );
 
-        if (in_array($wplang, get_available_languages(), true)) {
-            update_blog_option($siteId, 'WPLANG', $wplang);
+        if (!in_array($wplang, get_available_languages(), true)) {
+            $this->languageInstaller->install($wplang);
         }
+
+        switch_to_locale($wplang);
+        update_blog_option($siteId, 'WPLANG', $wplang);
     }
 
     /**

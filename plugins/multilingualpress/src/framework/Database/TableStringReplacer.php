@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -57,7 +59,9 @@ class TableStringReplacer
         }
 
         $this->wpdb->query('SET autocommit = 0');
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $affectedRows = (int)$this->wpdb->query("UPDATE {$table} SET {$replacements}");
+        // phpcs:enable
         $this->wpdb->query('COMMIT');
         $this->wpdb->query('SET autocommit = 1');
 
@@ -76,6 +80,7 @@ class TableStringReplacer
     {
         $columns = (array)preg_filter('~^[a-zA-Z_][a-zA-Z0-9_]*$~', '$0', $columns);
 
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $sql = array_reduce(
             $columns,
             function (string $sql, string $column) use ($search, $replacement): string {
@@ -87,6 +92,7 @@ class TableStringReplacer
             },
             ''
         );
+        // phpcs:enable
 
         return substr($sql, 0, -1);
     }

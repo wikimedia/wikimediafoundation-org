@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,9 +14,9 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\Redirect;
 
+use Inpsyde\MultilingualPress\Framework\Api\Translation;
 use Inpsyde\MultilingualPress\Framework\Filter\Filter;
 use Inpsyde\MultilingualPress\Framework\Filter\FilterTrait;
-use Inpsyde\MultilingualPress\Framework\Api\Translation;
 
 use function Inpsyde\MultilingualPress\assignedLanguageTags;
 use function Inpsyde\MultilingualPress\wpHookProxy;

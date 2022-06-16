@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,6 +14,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Installation;
 
+use Inpsyde\MultilingualPress\Core\TaxonomyRepository;
 use Inpsyde\MultilingualPress\Framework\Api\SiteRelations;
 use Inpsyde\MultilingualPress\Framework\Database\Table;
 use Inpsyde\MultilingualPress\Framework\Database\TableInstaller;
@@ -76,7 +79,7 @@ final class ServiceProvider implements IntegrationServiceProvider
     {
         $container->addService(
             InstallationChecker::class,
-            function (Container $container): InstallationChecker {
+            static function (Container $container): InstallationChecker {
                 return new InstallationChecker(
                     $container[SystemChecker::class],
                     $container[PluginProperties::class]
@@ -86,7 +89,7 @@ final class ServiceProvider implements IntegrationServiceProvider
 
         $container->addService(
             SystemChecker::class,
-            function (Container $container): SystemChecker {
+            static function (Container $container): SystemChecker {
                 return new SystemChecker(
                     $container[PluginProperties::class],
                     $container[SiteRelationsChecker::class],
@@ -97,7 +100,7 @@ final class ServiceProvider implements IntegrationServiceProvider
 
         $container->addService(
             SiteRelationsChecker::class,
-            function (Container $container): SiteRelationsChecker {
+            static function (Container $container): SiteRelationsChecker {
                 return new SiteRelationsChecker($container[SiteRelations::class]);
             }
         );
@@ -112,28 +115,28 @@ final class ServiceProvider implements IntegrationServiceProvider
     {
         $container->addService(
             Installer::class,
-            function (Container $container): Installer {
+            static function (Container $container): Installer {
                 return new Installer($container[TableInstaller::class]);
             }
         );
 
         $container->addService(
             Updater::class,
-            function (Container $container): Updater {
+            static function (Container $container): Updater {
                 return new Updater($container[PluginProperties::class]);
             }
         );
 
         $container->share(
             NetworkPluginDeactivator::class,
-            function (): NetworkPluginDeactivator {
+            static function (): NetworkPluginDeactivator {
                 return new NetworkPluginDeactivator();
             }
         );
 
         $container->share(
             Uninstaller::class,
-            function (Container $container): Uninstaller {
+            static function (Container $container): Uninstaller {
                 return new Uninstaller($container[TableInstaller::class]);
             }
         );
@@ -173,6 +176,10 @@ final class ServiceProvider implements IntegrationServiceProvider
                 );
                 break;
         }
+
+        $this->enableSupportForDefaultTaxonomies(
+            $container[TaxonomyRepository::class]
+        );
     }
 
     /**
@@ -217,5 +224,22 @@ final class ServiceProvider implements IntegrationServiceProvider
             $siteLanguageTag = siteLanguageTag($siteId);
             !$siteLanguageTag and $repository->updateLanguage($siteLang, $siteId);
         }
+    }
+
+    /**
+     * When plugin is installed, the support for default taxonomies should be enabled automatically
+     *
+     * @param TaxonomyRepository $repository
+     * @return void
+     */
+    protected function enableSupportForDefaultTaxonomies(TaxonomyRepository $repository): void
+    {
+        list($found, $settings) = $repository->allSettings();
+        if ($found) {
+            return;
+        }
+
+        $activeDefaultTaxonomies = array_fill_keys($repository::DEFAULT_SUPPORTED_TAXONOMIES, [$repository::FIELD_ACTIVE => true]);
+        $repository->supportTaxonomies($activeDefaultTaxonomies);
     }
 }

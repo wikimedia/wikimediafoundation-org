@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -101,7 +103,7 @@ class EditSiteTab
     {
         add_action(
             'load-' . $this->settingsPage->hookName(),
-            function () {
+            static function () {
                 $GLOBALS['parent_file'] = SettingsPage::PARENT_SITES;
                 $GLOBALS['submenu_file'] = SettingsPage::PARENT_SITES;
             }
