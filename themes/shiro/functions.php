@@ -266,7 +266,6 @@ require get_template_directory() . '/inc/editor/blocks/profile.php';
 require get_template_directory() . '/inc/editor/blocks/profile-list.php';
 require get_template_directory() . '/inc/editor/has-blocks-column.php';
 require get_template_directory() . '/inc/editor/intro.php';
-require get_template_directory() . '/inc/editor/profile-fields.php';
 require get_template_directory() . '/inc/editor/patterns.php';
 require get_template_directory() . '/inc/editor/patterns/blog-list.php';
 require get_template_directory() . '/inc/editor/patterns/card-columns.php';
