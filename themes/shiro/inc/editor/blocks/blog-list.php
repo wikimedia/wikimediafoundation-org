@@ -74,11 +74,16 @@ function render_block( $attributes ) {
 		'suppress_filters' => false,
 	];
 
+<<<<<<< HEAD
 	$categories = array_column( $attributes['categories'] ?? [], 'id' );
 	$excluded_categories = array_column( $attributes['excludedCategories'] ?? [], 'id' );
 
 	if ( count( $categories ) > 0 ) {
 		$args['cat'] = join( ',', $categories );
+=======
+	if ( isset( $attributes['categories'] ) ) {
+		$args['category__in'] = array_column( $attributes['categories'], 'id' );
+>>>>>>> parent of 856aadeb (Merge pull request #410 from humanmade/345-implement-language-taxonomy)
 	}
 
 	if ( count( $excluded_categories ) > 0 ) {
@@ -90,10 +95,13 @@ function render_block( $attributes ) {
 		}, $args['cat'] );
 	}
 
+<<<<<<< HEAD
 	if ( isset( $attributes['selectedAuthor'] ) ) {
 		$args['author'] = $attributes['selectedAuthor'];
 	}
 
+=======
+>>>>>>> parent of 856aadeb (Merge pull request #410 from humanmade/345-implement-language-taxonomy)
 	$recent_posts = get_posts( $args );
 
 	if ( count( $recent_posts ) > 0 ) {
