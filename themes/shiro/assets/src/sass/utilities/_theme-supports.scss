@@ -35,6 +35,13 @@ $color-palette:
 		color: $text-color;
 		color: var(--text-color);
 	}
+
+	.has-#{$color}-color {
+		--text-color: #{$background-color};
+		--link-color: #{$background-color};
+		color: $background-color;
+		color: var(--text-color);
+	}
 }
 
 
