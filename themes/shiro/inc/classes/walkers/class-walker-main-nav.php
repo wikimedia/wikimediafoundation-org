@@ -59,7 +59,9 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
 		// Remove "has-children" class from second level items.
-		if ( $depth > 0 && ( $key = array_search( 'menu-item-has-children', $classes ) ) !== false ) {
+		$key = array_search( 'menu-item-has-children', $classes, true );
+
+		if ( $depth > 0 && $key !== false ) {
 			unset( $classes[$key] );
 		}
 
@@ -85,7 +87,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
 		// Link attributes.
-		$attributes = ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
+		$attributes = ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) . '"' : '';
 
 		// Build HTML output and pass through the proper filter.
 		$item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',

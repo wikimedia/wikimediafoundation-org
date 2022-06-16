@@ -1,0 +1,25 @@
+name: Deploy to VIP Go base branch
+
+on:
+  push:
+    branches:
+      - preprod
+      - develop
+
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: Deploy to VIP Go base branch
+    env:
+      DEPLOY_REPO: wpcomvip/wikimediafoundation-org
+    steps:
+      - name: Checkout this branch
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Pull from VIP Go
+        run: git pull "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git" --rebase=false
+
+      - name: Push to VIP Go unbuilt
+        run: git push "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"

@@ -36,6 +36,7 @@ db.php
 /languages/continents-cities-ar.mo
 /languages/continents-cities-ar.po
 .DS_Store
+.history
 
 # Meta and workflow-related info
 .github
