@@ -17,11 +17,7 @@
     "source": "https://github.com/wpcomvip/wikimediafoundation-org"
   },
   "config": {
-    "sort-order": true,
-    "allow-plugins": {
-      "composer/installers": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    "sort-order": true
   },
   "repositories": [
     {
@@ -36,15 +32,14 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": "^7.4|^8",
+    "php": "^5.2|^7",
     "wpackagist-plugin/safe-svg": "^2.0",
     "wpackagist-plugin/safe-redirect-manager": "^1.10",
     "alleyinteractive/wordpress-fieldmanager": "^1.3",
     "wpackagist-plugin/co-authors-plus": "^3.4",
     "automattic/maintenance-mode-wp": "^0.2.2",
     "composer/installers": "^1.10",
-    "humanmade/asset-loader": "^0.5.0",
-    "humanmade/hm-gutenberg-tools": "^1.6.2"
+    "humanmade/asset-loader": "^0.5.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
