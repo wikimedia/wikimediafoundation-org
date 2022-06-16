@@ -36,7 +36,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": "^5.2|^8.0",
+    "php": "^7.3|^8.0",
     "wpackagist-plugin/safe-svg": "^1.9",
     "wpackagist-plugin/safe-redirect-manager": "^1.10",
     "alleyinteractive/wordpress-fieldmanager": "^1.3",
