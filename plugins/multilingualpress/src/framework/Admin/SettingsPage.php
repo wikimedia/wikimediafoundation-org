@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -134,7 +136,7 @@ class SettingsPage
      */
     public function hookName(): string
     {
-        return $this->hookName;
+        return $this->hookName ?: '';
     }
 
     /**

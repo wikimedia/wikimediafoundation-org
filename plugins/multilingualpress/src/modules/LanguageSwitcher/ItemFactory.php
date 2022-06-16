@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -16,6 +18,7 @@ class ItemFactory
 {
     /**
      * @param string $languageName
+     * @param string $locale
      * @param string $isoCode
      * @param string $flag
      * @param string $url
@@ -24,12 +27,13 @@ class ItemFactory
      */
     public function create(
         string $languageName,
+        string $locale,
         string $isoCode,
         string $flag,
         string $url,
         int $siteId
     ): Item {
 
-        return new Item($languageName, $isoCode, $flag, $url, $siteId);
+        return new Item($languageName, $locale, $isoCode, $flag, $url, $siteId);
     }
 }

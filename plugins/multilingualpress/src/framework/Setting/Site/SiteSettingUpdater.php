@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -70,10 +72,6 @@ class SiteSettingUpdater
             INPUT_REQUEST,
             FILTER_SANITIZE_STRING
         );
-
-        if (!is_string($value)) {
-            $value = '';
-        }
 
         return $value
             ? update_blog_option($siteId, $this->option, $value)

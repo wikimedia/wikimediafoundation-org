@@ -9,6 +9,10 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+<<<<<<< HEAD
+=======
+import BlockIcon from '../../../svg/blocks/card.svg';
+>>>>>>> preprod
 import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
 
@@ -22,6 +26,11 @@ export const name = 'shiro/card';
 export const settings = {
 	apiVersion: 2,
 
+<<<<<<< HEAD
+=======
+	icon: BlockIcon,
+
+>>>>>>> preprod
 	title: __( 'Card', 'shiro-admin' ),
 
 	category: 'wikimedia',

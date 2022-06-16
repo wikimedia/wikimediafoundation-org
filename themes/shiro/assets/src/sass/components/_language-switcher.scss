@@ -135,8 +135,13 @@
 			--language-picker-item-border-color: #{$wmui-color-blue50};
 		}
 
+<<<<<<< HEAD
 
 		a {
+=======
+		a {
+			color: $wmui-color-base0;
+>>>>>>> preprod
 			display: block;
 			padding-left: rem(8);
 			padding-right: rem(8);
@@ -151,6 +156,13 @@
 			}
 		}
 
+<<<<<<< HEAD
+=======
+		&--selected a {
+			color: $wmui-color-blue50;
+		}
+
+>>>>>>> preprod
 	}
 
 	&__language-name {

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -38,7 +40,8 @@ class SiteRelationsChecker
     {
         $success = false;
 
-        if (wp_doing_ajax()
+        if (
+            wp_doing_ajax()
             || is_network_admin()
             || !is_super_admin()
             || $this->siteRelations->allRelations()

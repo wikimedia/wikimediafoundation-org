@@ -27,7 +27,11 @@ export const settings = {
 
 	category: 'wikimedia',
 
+<<<<<<< HEAD
 	icon: 'cover-image',
+=======
+	icon: 'superhero-alt',
+>>>>>>> preprod
 
 	description: __(
 		'A moving hero for the homepage',

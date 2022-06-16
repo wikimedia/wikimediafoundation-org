@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -26,7 +28,7 @@ final class OverrideGroupedProducts
         $key = MetaboxFields::FIELD_GROUPED_PRODUCTS;
         $label = _x('Grouped Products', 'WooCommerce Product Field', 'multilingualpress');
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <tr class="show_if_grouped">
             <th scope="row">

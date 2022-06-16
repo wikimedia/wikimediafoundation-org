@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -47,12 +49,14 @@ final class AltLanguageHttpHeaderRenderer implements AltLanguageRenderer
         $translations = iterator_to_array($this->alternateLanguages);
 
         /** This filter is documented in src/Core/FrontEnd/AlternateLanguageHTMLLinkTagRenderer.php */
-        if (!apply_filters(
-            self::FILTER_RENDER_HREFLANG,
-            count($translations) > 1,
-            $translations,
-            $this->type()
-        )) {
+        if (
+            !apply_filters(
+                self::FILTER_RENDER_HREFLANG,
+                count($translations) > 1,
+                $translations,
+                $this->type()
+            )
+        ) {
             return;
         }
 

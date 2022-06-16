@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
@@ -27,3 +28,6 @@ yarn-error.log*
 /asset-manifest.json
 
 .idea
+=======
+# Emptied by vip-go-build; '.deployignore' exists and used as global .gitignore. See https://wp.me/p9nvA-89A
+>>>>>>> preprod

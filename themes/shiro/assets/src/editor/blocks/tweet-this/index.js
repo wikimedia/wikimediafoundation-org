@@ -11,10 +11,19 @@ import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
+<<<<<<< HEAD
+=======
+import BlockIcon from '../../../svg/blocks/twitter.svg';
+
+>>>>>>> preprod
 export const
 	name = 'shiro/tweet-this',
 	settings = {
 		apiVersion: 2,
+<<<<<<< HEAD
+=======
+		icon: BlockIcon,
+>>>>>>> preprod
 		title: __( 'Tweet this', 'shiro' ),
 		category: 'wikimedia',
 		attributes: {

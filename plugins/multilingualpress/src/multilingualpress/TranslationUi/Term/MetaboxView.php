@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -71,7 +73,8 @@ final class MetaboxView implements Metabox\View
                 <?php
                 /** @var MetaboxTab $tab */
                 foreach ($tabFields as $tab) {
-                    if ($tab instanceof MetaboxTab
+                    if (
+                        $tab instanceof MetaboxTab
                         && $tab->enabled($this->relationshipContext)
                     ) {
                         $this->renderTabAnchor($tab);

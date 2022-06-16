@@ -1,0 +1,16 @@
+section[data-type="shiro/unseen-footer"] {
+	.inner-wrap {
+		display: block !important; // !important to overwrite the blocks's own front-end CSS.
+	}
+
+	.inner-wrap .block-editor-block-list__layout {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.unseen-footer-cta,
+	.unseen-footer-content {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}

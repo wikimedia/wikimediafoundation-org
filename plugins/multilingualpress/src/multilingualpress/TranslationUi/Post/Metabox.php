@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -20,6 +22,7 @@ use Inpsyde\MultilingualPress\Framework\Entity;
 use Inpsyde\MultilingualPress\Framework\Admin\Metabox\PostMetabox;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
+use Inpsyde\MultilingualPress\TranslationUi\Post\Field\ChangedFields;
 
 use function Inpsyde\MultilingualPress\siteNameWithLanguage;
 
@@ -132,7 +135,8 @@ final class Metabox implements PostMetabox
         return new MetaboxView(
             new MetaboxFields(),
             $this->fieldsHelper,
-            $this->relationshipContext($post)
+            $this->relationshipContext($post),
+            new ChangedFields()
         );
     }
 

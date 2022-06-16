@@ -24,7 +24,11 @@ export const settings = {
 
 	apiVersion: 2,
 
+<<<<<<< HEAD
 	icon: 'cover-image',
+=======
+	icon: 'list-view',
+>>>>>>> preprod
 
 	description: __(
 		'Dynamic list of recent posts',

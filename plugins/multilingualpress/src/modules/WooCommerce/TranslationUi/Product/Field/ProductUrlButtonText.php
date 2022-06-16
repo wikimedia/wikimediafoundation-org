@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -38,7 +40,7 @@ class ProductUrlButtonText
             'multilingualpress'
         );
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <div class="options_group show_if_external">
             <p class="form-field <?= $key ?>_field">
@@ -99,6 +101,11 @@ class ProductUrlButtonText
         /** @var \WC_Product_External $product */
         $product = wc_get_product($relationshipContext->remotePostId());
         $value = '';
+
+        if (!$product) {
+            return $value;
+        }
+
         if (method_exists($product, 'get_button_text')) {
             $value = $product->get_button_text('edit');
         }

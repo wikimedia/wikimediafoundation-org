@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -27,6 +29,7 @@ use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
 use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
 use Inpsyde\MultilingualPress\Framework\PluginProperties;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**
@@ -94,7 +97,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             Db::class,
-            function (Container $container): Db {
+            static function (Container $container): Db {
                 return new Db(
                     $container[\wpdb::class],
                     $container[Languages::class],
@@ -105,7 +108,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             TableFormView::class,
-            function (Container $container): TableFormView {
+            static function (Container $container): TableFormView {
                 return new TableFormView(
                     $container[Db::class],
                     $container[LanguageInstaller::class]
@@ -115,7 +118,7 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             PageView::class,
-            function (Container $container): PageView {
+            static function (Container $container): PageView {
                 return new PageView(
                     $container[NonceFactory::class]->create(['save_language_manager']),
                     $container[ServerRequest::class],
@@ -126,14 +129,14 @@ final class ServiceProvider implements ModuleServiceProvider
 
         $container->addService(
             LanguageInstaller::class,
-            function (): LanguageInstaller {
+            static function (): LanguageInstaller {
                 return new LanguageInstaller();
             }
         );
 
         $container->addService(
             RequestHandler::class,
-            function (Container $container): RequestHandler {
+            static function (Container $container): RequestHandler {
                 return new RequestHandler(
                     new Updater(
                         new Db(

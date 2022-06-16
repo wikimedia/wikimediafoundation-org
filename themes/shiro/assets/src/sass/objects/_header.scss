@@ -14,10 +14,6 @@ $header-bp-mw: 1049px;
 	margin-bottom: 0;
 	position: relative;
 
-	@media (min-width: $header-bp) and (max-height: 930px) {
-		// TODO remove all min-heights in this stylesheet?
-		//min-height: 100vh;
-	}
 	@media (max-width: $medium-bp) {
 		padding-bottom: 10px;
 	}
@@ -26,6 +22,7 @@ $header-bp-mw: 1049px;
 		transition: 0.3s all;
 	}
 
+<<<<<<< HEAD:themes/shiro/assets/src/sass/objects/_header.scss
 	li {
 		margin-left: 0;
 		margin-right: 1rem;
@@ -51,6 +48,8 @@ $header-bp-mw: 1049px;
 	}
 
 
+=======
+>>>>>>> preprod:themes/shiro/assets/src/sass/css/scss/objects/_header.scss
 	&.h1-highlighted {
 		h1 {
 			color: $color-blue;
@@ -497,4 +496,20 @@ $header-bp-mw: 1049px;
       margin-bottom: 1rem;
     }
   }
+}
+
+// Hide page title visually in the Wiki Unseen page.
+.page-wiki-unseen {
+	.header-content h1 {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute !important;
+		width: 1px;
+		word-wrap: normal !important;
+	}
 }
