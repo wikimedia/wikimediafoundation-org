@@ -28,11 +28,7 @@ export const settings = {
 
 	category: 'wikimedia',
 
-<<<<<<< HEAD
-	icon: 'cover-image',
-=======
 	icon: 'superhero',
->>>>>>> preprod
 
 	description: __(
 		'A hero image and text to be used on "subsite" landing pages',

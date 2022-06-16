@@ -49,13 +49,8 @@
 		border: 0;
 
 		@media ( min-width: #{$medium-landscape} ) {
-<<<<<<< HEAD
-			padding-bottom: rem( 5 );
-			padding-top: rem( 5 );
-=======
 			padding-bottom: rem( 6 );
 			padding-top: rem( 6 );
->>>>>>> preprod
 		}
 
 		&:focus {

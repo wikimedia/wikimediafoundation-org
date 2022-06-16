@@ -1,0 +1,21 @@
+<svg width="54" height="16" viewBox="0 0 54 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Scroll Arrow</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-7418 13076)">
+<rect x="7418" y="-13076" width="54" height="16" fill="#E5E5E5"/>
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 7371 -17795L 8811 -17795L 8811 -10227L 7371 -10227L 7371 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="News Index" clip-path="url(#clip-0)">
+<path d="M 7371 -17795L 8811 -17795L 8811 -10227L 7371 -10227L 7371 -17795Z" fill="#FFFFFF"/>
+<g id="Pagination">
+<g id="Scroll Arrow">
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 7472 -13060)" fill="#6D8799" fill-opacity="0.4"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 46 0L 46 6L 0 6L 0 10L 46 10L 46 16L 54 8L 46 0Z"/>
+</defs>
+</svg>

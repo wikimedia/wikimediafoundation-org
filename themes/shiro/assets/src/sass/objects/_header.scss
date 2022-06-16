@@ -22,34 +22,6 @@ $header-bp-mw: 1049px;
 		transition: 0.3s all;
 	}
 
-<<<<<<< HEAD:themes/shiro/assets/src/sass/objects/_header.scss
-	li {
-		margin-left: 0;
-		margin-right: 1rem;
-		&:last-child {
-			margin-right: 0;
-		}
-
-		&.current_page_item {
-			a {
-				color: $color-blue;
-
-        span {
-          border-bottom: 2px solid $color-blue;
-        }
-			}
-		}
-
-		a {
-			font-size: 14px;
-			font-weight: 600;
-			color: $color-black;
-		}
-	}
-
-
-=======
->>>>>>> preprod:themes/shiro/assets/src/sass/css/scss/objects/_header.scss
 	&.h1-highlighted {
 		h1 {
 			color: $color-blue;

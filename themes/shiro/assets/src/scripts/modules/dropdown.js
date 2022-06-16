@@ -185,10 +185,6 @@ function handleTrapChange( dropdown ) {
 function handleToggleableChange( dropdown ) {
 	if ( dropdown.dataset.toggleable === 'no' ) {
 		dropdown.dropdown.toggle.disabled = true;
-<<<<<<< HEAD
-		// If the dropdown can't be toggled, we should always show it
-		dropdown.dataset.visible = 'yes';
-=======
 
 		if ( dropdown.classList.contains( 'menu-item' ) ) {
 			// Only set subnavs to visible if they are the active section.
@@ -200,7 +196,6 @@ function handleToggleableChange( dropdown ) {
 			// If the dropdown can't be toggled, we should always show it
 			dropdown.dataset.visible = 'yes';
 		}
->>>>>>> preprod
 	} else {
 		dropdown.dropdown.toggle.removeAttribute( 'disabled' );
 	}
