@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -52,7 +54,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->share(
             CacheFactory::class,
-            function (Container $container): CacheFactory {
+            static function (Container $container): CacheFactory {
                 $version = $container[PluginProperties::class]->version();
 
                 return new CacheFactory("mlp_{$version}_");
@@ -61,7 +63,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Server::class,
-            function (Container $container): Server {
+            static function (Container $container): Server {
                 return new Server(
                     $container[CacheFactory::class],
                     new WpObjectCacheDriver(),
@@ -83,21 +85,21 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->addService(
             CacheSettingNamesValidator::class,
-            function (): CacheSettingNamesValidator {
+            static function (): CacheSettingNamesValidator {
                 return new CacheSettingNamesValidator();
             }
         );
 
         $container->addService(
             CacheSettingsOptions::class,
-            function (): CacheSettingsOptions {
+            static function (): CacheSettingsOptions {
                 return new CacheSettingsOptions();
             }
         );
 
         $container->addService(
             CacheSettingsRepository::class,
-            function (Container $container): CacheSettingsRepository {
+            static function (Container $container): CacheSettingsRepository {
                 return new CacheSettingsRepository(
                     $container[CacheSettingsOptions::class],
                     $container[CacheSettingNamesValidator::class]
@@ -107,7 +109,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             'cache.RequestAuth',
-            function (Container $container): RequestAuth {
+            static function (Container $container): RequestAuth {
                 return new RequestAuth(
                     $container[NonceFactory::class]->create([self::CACHE_SETTINGS_NONCE]),
                     new WpUserCapability(wp_get_current_user(), 'manage_network_options', 0)
@@ -117,7 +119,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             CacheSettingsUpdater::class,
-            function (Container $container): CacheSettingsUpdater {
+            static function (Container $container): CacheSettingsUpdater {
                 return new CacheSettingsUpdater(
                     $container[CacheSettingsRepository::class],
                     $container['cache.RequestAuth'],
@@ -144,7 +146,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         add_filter(
             CoreServiceProvider::ACTION_BUILD_TABS,
-            function (array $tabs) use ($container) {
+            static function (array $tabs) use ($container) {
 
                 $tabs['internal-cache'] = new SettingsPageTab(
                     new SettingsPageTabData(

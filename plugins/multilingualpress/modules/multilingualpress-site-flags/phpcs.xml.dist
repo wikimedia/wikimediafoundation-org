@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<ruleset name="MultilingualPress Coding Standard">
+
+    <file>./src</file>
+
+    <arg value="sp"/>
+
+    <config name="text_domain" value="multilingualpress-site-flags"/>
+    <config name="ignore_warnings_on_exit" value="1"/>
+
+    <rule ref="Inpsyde"/>
+    <rule ref="Inpsyde.CodeQuality.Psr4">
+        <properties>
+            <property
+                    name="psr4"
+                    type="array"
+                    value="Inpsyde\MultilingualPress\SiteFlags=>src,Inpsyde\MultilingualPress\Tests\Unit=>tests/php/unit"/>
+            <property
+                name="exclude"
+                type="array"
+                value="System,Acceptance" />
+        </properties>
+    </rule>
+
+</ruleset>

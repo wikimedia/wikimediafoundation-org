@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -124,7 +126,8 @@ final class ServerUrl implements Url
         $port = is_numeric($serverPort) ? (int)$serverPort : 80;
         $serverAddress = $this->serverData['SERVER_ADDR'] ?? null;
 
-        if (!is_string($serverAddress)
+        if (
+            !is_string($serverAddress)
             || !preg_match('/^\[[0-9a-fA-F\:]+\]$/', $host)
         ) {
             return [$host, $port];
@@ -174,7 +177,8 @@ final class ServerUrl implements Url
         $iisUrlRewritten = $this->serverData['IIS_WasUrlRewritten'] ?? null;
         $unencodedUrl = $this->serverData['UNENCODED_URL'] ?? null;
 
-        if ((int)$iisUrlRewritten === 1
+        if (
+            (int)$iisUrlRewritten === 1
             && is_string($unencodedUrl)
             && $unencodedUrl
         ) {

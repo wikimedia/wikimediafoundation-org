@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,8 +14,9 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\QuickLinks;
 
-use function Inpsyde\MultilingualPress\callExit;
 use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
+
+use function Inpsyde\MultilingualPress\callExit;
 
 /**
  * Class Redirector
@@ -68,6 +71,7 @@ class Redirector
             return;
         }
 
+        //phpcs:disable WordPressVIPMinimum.Security.ExitAfterRedirect.NoExit
         wp_safe_redirect($url, 303);
         callExit();
     }

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -34,6 +36,7 @@ use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
 use Inpsyde\MultilingualPress\TranslationUi\Post;
+
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
@@ -95,28 +98,28 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $container->share(
             Term\RelationshipPermission::class,
-            function (Container $container): Term\RelationshipPermission {
+            static function (Container $container): Term\RelationshipPermission {
                 return new Term\RelationshipPermission($container[ContentRelations::class]);
             }
         );
 
         $container->addService(
             Term\Ajax\ContextBuilder::class,
-            function (Container $container): Term\Ajax\ContextBuilder {
+            static function (Container $container): Term\Ajax\ContextBuilder {
                 return new Term\Ajax\ContextBuilder($container[ServerRequest::class]);
             }
         );
 
         $container->addService(
             Term\TableList::class,
-            function (Container $container): Term\TableList {
+            static function (Container $container): Term\TableList {
                 return new Term\TableList($container[ContentRelations::class]);
             }
         );
 
         $container->share(
             Term\Ajax\Search::class,
-            function (Container $container): Term\Ajax\Search {
+            static function (Container $container): Term\Ajax\Search {
                 return new Term\Ajax\Search(
                     $container[ServerRequest::class],
                     $container[Term\Ajax\ContextBuilder::class]
@@ -126,7 +129,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->share(
             Term\Ajax\RelationshipUpdater::class,
-            function (Container $container): Term\Ajax\RelationshipUpdater {
+            static function (Container $container): Term\Ajax\RelationshipUpdater {
                 return new Term\Ajax\RelationshipUpdater(
                     $container[ServerRequest::class],
                     $container[Term\Ajax\ContextBuilder::class],
@@ -142,33 +145,36 @@ final class ServiceProvider implements BootstrappableServiceProvider
      * @param Container $container
      * @throws NameOverwriteNotAllowed
      * @throws WriteAccessOnLockedContainer
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      */
     private function registerForPost(Container $container)
     {
+        // phpcs:enable
+
         $container->share(
             Post\RelationshipPermission::class,
-            function (Container $container): Post\RelationshipPermission {
+            static function (Container $container): Post\RelationshipPermission {
                 return new Post\RelationshipPermission($container[ContentRelations::class]);
             }
         );
 
         $container->addService(
             Post\Ajax\ContextBuilder::class,
-            function (Container $container): Post\Ajax\ContextBuilder {
+            static function (Container $container): Post\Ajax\ContextBuilder {
                 return new Post\Ajax\ContextBuilder($container[ServerRequest::class]);
             }
         );
 
         $container->addService(
             Post\TableList::class,
-            function (Container $container): Post\TableList {
+            static function (Container $container): Post\TableList {
                 return new Post\TableList($container[ContentRelations::class]);
             }
         );
 
         $container->share(
             Post\Ajax\Search::class,
-            function (Container $container): Post\Ajax\Search {
+            static function (Container $container): Post\Ajax\Search {
                 return new Post\Ajax\Search(
                     $container[ServerRequest::class],
                     $container[Post\Ajax\ContextBuilder::class]
@@ -177,8 +183,18 @@ final class ServiceProvider implements BootstrappableServiceProvider
         );
 
         $container->share(
+            Post\Ajax\Term::class,
+            static function (Container $container): Post\Ajax\Term {
+                return new Post\Ajax\Term(
+                    $container[ServerRequest::class],
+                    $container[Post\Ajax\ContextBuilder::class]
+                );
+            }
+        );
+
+        $container->share(
             Post\Ajax\RelationshipUpdater::class,
-            function (Container $container): Post\Ajax\RelationshipUpdater {
+            static function (Container $container): Post\Ajax\RelationshipUpdater {
                 return new Post\Ajax\RelationshipUpdater(
                     $container[ServerRequest::class],
                     $container[Post\Ajax\ContextBuilder::class],
@@ -191,7 +207,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         $container->addService(
             Post\PostModifiedDateFilter::class,
-            function (): Post\PostModifiedDateFilter {
+            static function (): Post\PostModifiedDateFilter {
                 return new Post\PostModifiedDateFilter();
             }
         );
@@ -216,7 +232,7 @@ final class ServiceProvider implements BootstrappableServiceProvider
 
         add_action(
             'admin_menu',
-            function () use ($assetManager, $metaboxes) {
+            static function () use ($assetManager, $metaboxes) {
                 $metaboxes->init();
                 try {
                     $assetManager->enqueueStyle('multilingualpress-admin');
@@ -270,13 +286,13 @@ final class ServiceProvider implements BootstrappableServiceProvider
     {
         $contentRelations = $container[ContentRelations::class];
 
-        add_action('delete_term', function (int $termId) use ($contentRelations) {
+        add_action('delete_term', static function (int $termId) use ($contentRelations) {
             $contentRelations->deleteRelation(
                 [get_current_blog_id() => $termId],
                 ContentRelations::CONTENT_TYPE_TERM
             );
         });
-        add_action('after_delete_post', function (int $postId) use ($contentRelations) {
+        add_action('after_delete_post', static function (int $postId) use ($contentRelations) {
             $contentRelations->deleteRelation(
                 [get_current_blog_id() => $postId],
                 ContentRelations::CONTENT_TYPE_POST
@@ -402,6 +418,11 @@ final class ServiceProvider implements BootstrappableServiceProvider
         add_action(
             'wp_ajax_' . Term\Ajax\Search::ACTION,
             [$container[Term\Ajax\Search::class], 'handle']
+        );
+
+        add_action(
+            'wp_ajax_' . Post\Ajax\Term::ACTION,
+            [$container[Post\Ajax\Term::class], 'handle']
         );
 
         add_action(

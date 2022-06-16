@@ -17,7 +17,11 @@ while ( have_posts() ) {
 
 	$blocks = parse_blocks( get_post()->post_content );
 	$first_block = $blocks[0]['blockName'];
-	$show_title = $first_block !== 'shiro/landing-page-hero' && $first_block !== 'shiro/home-page-hero';
+	$show_title = (
+			$first_block !== 'shiro/landing-page-hero' &&
+			$first_block !== 'shiro/home-page-hero' &&
+			$first_block !== 'shiro/report-landing-hero'
+	);
 
 	if ( $show_title ) {
 		$parent_page = wp_get_post_parent_id( get_the_ID() );

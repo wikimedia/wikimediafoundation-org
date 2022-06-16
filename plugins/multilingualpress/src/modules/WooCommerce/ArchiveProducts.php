@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -36,7 +38,8 @@ class ArchiveProducts
 
         $url = get_permalink($shopPageId);
 
-        if ('publish' !== get_post_status($shopPageId)
+        if (
+            'publish' !== get_post_status($shopPageId)
             && !current_user_can('edit_post', $shopPageId)
         ) {
             return '';

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -29,7 +31,7 @@ final class OverrideCrossellsProducts
         $key = MetaboxFields::FIELD_CROSSELLS_PRODUCTS;
         $label = _x('Cross-sell Products', 'WooCommerce Product Field', 'multilingualpress');
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <tr class="show_if_variable show_if_simple">
             <th scope="row">

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -110,7 +112,8 @@ class Duplicator
      */
     private function copyDir(string $sourceDir, array $filepaths, string $destinationDir): bool
     {
-        if (!$this->filesystem->isDir($sourceDir)
+        if (
+            !$this->filesystem->isDir($sourceDir)
             || !$this->filesystem->mkDirP($destinationDir)
         ) {
             return false;
@@ -126,7 +129,8 @@ class Duplicator
                 ++$countPaths;
                 continue;
             }
-            if ($this->filesystem->pathExists($source)
+            if (
+                $this->filesystem->pathExists($source)
                 && $this->filesystem->copy($source, $destination)
             ) {
                 ++$countPaths;
