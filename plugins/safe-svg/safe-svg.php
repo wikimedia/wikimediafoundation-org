@@ -1,9 +1,9 @@
 <?php
 /*
  * Plugin Name:       Safe SVG
- * Plugin URI:        https://wordpress.org/plugins/safe-svg/
- * Description:       Enable SVG uploads and sanitize them to stop XML/SVG vulnerabilities in your WordPress website
- * Version:           2.0.1
+ * Plugin URI:        https://wpsvg.com/
+ * Description:       Allows SVG uploads into WordPress and sanitizes the SVG before saving it
+ * Version:           1.9.10
  * Requires at least: 4.7
  * Requires PHP:      7.0
  * Author:            10up
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) or die( 'Really?' );
 // Try and include our autoloader.
 if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
-} elseif ( ! class_exists( 'enshrined\\svgSanitize\\Sanitizer' ) ) {
+} else {
 	add_action(
 		'admin_notices',
 		function() {
@@ -78,7 +78,7 @@ if ( ! class_exists( 'safe_svg' ) ) {
             add_filter( 'wp_generate_attachment_metadata', array( $this, 'skip_svg_regeneration' ), 10, 2 );
             add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'add_upgrade_link' ) );
             add_filter( 'wp_get_attachment_metadata', array( $this, 'metadata_error_fix' ), 10, 2 );
-            add_filter( 'wp_calculate_image_srcset_meta', array( $this, 'disable_srcset' ), 10, 4 );
+            add_filter( 'wp_get_attachment_image_attributes', array( $this, 'fix_direct_image_output' ), 10, 3 );
         }
 
         /**
@@ -133,13 +133,7 @@ if ( ! class_exists( 'safe_svg' ) ) {
          */
         public function check_for_svg( $file ) {
 
-            // Ensure we have a proper file path before processing
-            if ( ! isset( $file['tmp_name'] ) ) {
-                return $file;
-            }
-
-            $file_name   = isset( $file['name'] ) ? $file['name'] : '';
-            $wp_filetype = wp_check_filetype_and_ext( $file['tmp_name'], $file_name );
+            $wp_filetype = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
             $type        = ! empty( $wp_filetype['type'] ) ? $wp_filetype['type'] : '';
 
             if ( $type === 'image/svg+xml' ) {
@@ -276,13 +270,11 @@ if ( ! class_exists( 'safe_svg' ) ) {
          */
         public function one_pixel_fix( $image, $attachment_id, $size, $icon ) {
             if ( get_post_mime_type( $attachment_id ) === 'image/svg+xml' ) {
-                $dimensions = $this->svg_dimensions( get_attached_file( $attachment_id ) );
-
-                if ( $dimensions ) {
-                    $image[1] = $dimensions['width'];
-                    $image[2] = $dimensions['height'];
-                } else {
+                if ( empty( $image[1] ) ) {
                     $image[1] = 100;
+                }
+
+                if ( empty( $image[2] ) ) {
                     $image[2] = 100;
                 }
             }
@@ -462,7 +454,7 @@ if ( ! class_exists( 'safe_svg' ) ) {
         /**
          * Get SVG size from the width/height or viewport.
          *
-         * @param string|false $svg The file path to where the SVG file should be, false otherwise.
+         * @param $svg
          *
          * @return array|bool
          */
@@ -472,55 +464,16 @@ if ( ! class_exists( 'safe_svg' ) ) {
             $height = 0;
             if ( $svg ) {
                 $attributes = $svg->attributes();
-
-                if ( isset( $attributes->viewBox ) ) {
+                if ( isset( $attributes->width, $attributes->height ) && is_numeric( (float)$attributes->width ) && is_numeric( (float)$attributes->height ) ) {
+                    $width  = floatval( $attributes->width );
+                    $height = floatval( $attributes->height );
+                } elseif ( isset( $attributes->viewBox ) ) {
                     $sizes = explode( ' ', $attributes->viewBox );
                     if ( isset( $sizes[2], $sizes[3] ) ) {
-                        $viewbox_width  = floatval( $sizes[2] );
-                        $viewbox_height = floatval( $sizes[3] );
-                    }
-                }
-
-                if ( isset( $attributes->width, $attributes->height ) && is_numeric( (float) $attributes->width ) && is_numeric( (float) $attributes->height ) && ! $this->str_ends_with( (string) $attributes->width, '%' ) && ! $this->str_ends_with( (string) $attributes->height, '%' ) ) {
-                    $attr_width  = floatval( $attributes->width );
-                    $attr_height = floatval( $attributes->height );
-                }
-
-                /**
-                 * Decide which attributes of the SVG we use first for image tag dimensions.
-                 *
-                 * We default to using the parameters in the viewbox attribute but
-                 * that can be overridden using this filter if you'd prefer to use
-                 * the width and height attributes.
-                 *
-                 * @hook safe_svg_use_width_height_attributes
-                 *
-                 * @param {bool} $false If the width & height attributes should be used first. Default false.
-                 * @param {string} $svg The file path to the SVG.
-                 *
-                 * @return {bool} If we should use the width & height attributes first or not.
-                 */
-                $use_width_height = (bool) apply_filters( 'safe_svg_use_width_height_attributes', false, $svg );
-
-                if ( $use_width_height ) {
-                    if ( isset( $attr_width, $attr_height ) ) {
-                        $width  = $attr_width;
-                        $height = $attr_height;
-                    } elseif ( isset( $viewbox_width, $viewbox_height ) ) {
-                        $width  = $viewbox_width;
-                        $height = $viewbox_height;
+                        $width  = floatval( $sizes[2] );
+                        $height = floatval( $sizes[3] );
                     }
                 } else {
-                    if ( isset( $viewbox_width, $viewbox_height ) ) {
-                        $width  = $viewbox_width;
-                        $height = $viewbox_height;
-                    } elseif ( isset( $attr_width, $attr_height ) ) {
-                        $width  = $attr_width;
-                        $height = $attr_height;
-                    }
-                }
-
-                if ( ! $width && ! $height ) {
                     return false;
                 }
             }
@@ -533,49 +486,39 @@ if ( ! class_exists( 'safe_svg' ) ) {
         }
 
         /**
-         * Disable the creation of srcset on SVG images.
+         * Fix the output of images using wp_get_attachment_image
          *
-         * @param array $image_meta The image meta data.
-         * @param int[]  $size_array    {
-         *     An array of requested width and height values.
-         *
-         *     @type int $0 The width in pixels.
-         *     @type int $1 The height in pixels.
-         * }
-         * @param string $image_src     The 'src' of the image.
-         * @param int    $attachment_id The image attachment ID.
+         * @param array $attr Attributes for the image markup.
+         * @param WP_Post $attachment Image attachment post.
+         * @param string|array $size Requested size. Image size or array of width and height values
+         *                                 (in that order). Default 'thumbnail'.
          */
-        public function disable_srcset( $image_meta, $size_array, $image_src, $attachment_id ) {
-            if ( $attachment_id && 'image/svg+xml' === get_post_mime_type( $attachment_id ) ) {
-                $image_meta['sizes'] = array();
+        public function fix_direct_image_output( $attr, $attachment, $size = 'thumbnail' ) {
+
+            // If we're not getting a WP_Post object, bail early.
+            // @see https://wordpress.org/support/topic/notice-trying-to-get-property-id/
+            if ( ! $attachment instanceof WP_Post ) {
+                return $attr;
             }
 
-            return $image_meta;
+            $mime = get_post_mime_type( $attachment->ID );
+            if ( 'image/svg+xml' === $mime ) {
+                $default_height = 100;
+                $default_width  = 100;
+
+                $dimensions = $this->svg_dimensions( get_attached_file( $attachment->ID ) );
+
+                if ( $dimensions ) {
+                    $default_height = $dimensions['height'];
+                    $default_width  = $dimensions['width'];
+                }
+
+                $attr['height'] = $default_height;
+                $attr['width']  = $default_width;
+            }
+
+            return $attr;
         }
-
-        /**
-         * Polyfill for `str_ends_with()` function added in PHP 8.0.
-         *
-         * Performs a case-sensitive check indicating if
-         * the haystack ends with needle.
-         *
-         * @param string $haystack The string to search in.
-         * @param string $needle   The substring to search for in the `$haystack`.
-         * @return bool True if `$haystack` ends with `$needle`, otherwise false.
-         */
-        protected function str_ends_with( $haystack, $needle ) {
-            if ( function_exists( 'str_ends_with' ) ) {
-                return str_ends_with( $haystack, $needle );
-            }
-
-            if ( '' === $haystack && '' !== $needle ) {
-                return false;
-            }
-
-            $len = strlen( $needle );
-            return 0 === substr_compare( $haystack, $needle, -$len, $len );
-        }
-
     }
 }
 

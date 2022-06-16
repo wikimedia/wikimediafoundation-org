@@ -53,8 +53,6 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/card',
 		'shiro/contact',
 		'shiro/double-heading',
-		'shiro/linked-toc-columns',
-		'shiro/linked-toc-item',
 		'shiro/share-article',
 		'shiro/spotlight',
 		'shiro/stairs',
@@ -104,7 +102,6 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 	if ( $post->post_type === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
-		$blocks[] = 'shiro/report-landing-hero';
 	}
 
 	return $blocks;
@@ -224,7 +221,6 @@ function enqueue_block_editor_assets() {
 				'wp-element',
 				'wp-hooks',
 				'wp-token-list',
-				'hm-gb-tools-editor',
 			],
 			'handle' => 'shiro_editor_js',
 		]
@@ -236,10 +232,9 @@ function enqueue_block_editor_assets() {
 		'shiro_editor_js',
 		'shiroEditorVariables',
 		array(
-			'themeUrl'      => get_stylesheet_directory_uri(),
-			'languages'     => $languages,
-			'siteLanguage'  => $languages[0]['shortname'],
-			'wmfIsMainSite' => wmf_is_main_site(),
+			'themeUrl'     => get_stylesheet_directory_uri(),
+			'languages'    => $languages,
+			'siteLanguage' => $languages[0]['shortname'],
 		)
 	);
 
