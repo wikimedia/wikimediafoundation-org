@@ -6,17 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint assets/src",
-    "build": "run-p build:theme build:hm-gutenberg-tools",
+    "build": "run-p build:theme",
     "build:theme": "run-s build:webpack build:gulp",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
     "build:gulp": "gulp build",
-    "build:hm-gutenberg-tools": "npm --prefix ../../plugins/hm-gutenberg-tools/ run build",
-    "start": "run-p start:theme start:hm-gutenberg-tools",
-    "start:hm-gutenberg-tools": "npm --prefix ../../plugins/hm-gutenberg-tools/ run start",
+    "start": "run-p start:theme",
     "start:theme": "run-p start:webpack start:gulp",
     "start:webpack": "webpack-dev-server --config=.config/webpack.config.dev.js",
     "start:gulp": "gulp",
     "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/helpers/_style-guide-variables.scss && rm wikimedia-ui-base.less"
+  },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
   },
   "repository": {
     "type": "git",
@@ -68,7 +70,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.2.13",
+    "postcss": "^8.2.6",
     "postcss-assets": "^5.0.0",
     "prettier": "npm:wp-prettier@^2.0.5",
     "sass": "^1.32.8",
