@@ -27,7 +27,7 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 
 	wp_enqueue_script( 'symbols_grid', get_stylesheet_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'symbols_grid', "var gridAtts = " . wp_json_encode($atts) . ";");
-
+	
 	ob_start();
 	?>
 
@@ -106,7 +106,7 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 
 	ob_start();
 	?>
-	<div class="story-content" style="display: none;">
+	<div class="story-content wysiwyg" style="display: none;">
 		<?php if ( isset($image_url) ) { ?>
 			<div class="story-image" style="background-image: url(<?php echo esc_attr($image_url) ?>);"></div>
 		<?php } ?>
@@ -117,7 +117,7 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 				<span><?php echo esc_html( $atts['location'] ); ?></span>
 			</p>
 		<?php } ?>
-
+		
 		<?php if ( !empty($atts['since'] ) ) { ?>
 			<p class="story-since flex flex-all">
 				<span><?php echo esc_html( $atts['since'] ); ?></span>
@@ -127,7 +127,7 @@ function wmf_story_shortcode_callback( $atts = [], $content = '' ) {
 		<p class="story-desc p"><?php echo wp_kses_post( $content ) ?></p>
 	</div>
 
-	<?php
+	<?php 
 	return (string) ob_get_clean();
 }
 add_shortcode( 'story', 'wmf_story_shortcode_callback' );
@@ -153,7 +153,7 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	for ($i=0; $i < count($atts['lang_list']); $i++) {
+	for ($i=0; $i < count($atts['lang_list']); $i++) { 
 		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][$i] . '_wikipedia', strtoupper($atts['lang_list'][$i]) . ' Wikipedia' ) );
 	}
 
@@ -222,7 +222,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="<?php echo esc_attr($classes) ?>">
-		<div class="timeline-container">
+		<div class="wysiwyg timeline-container">
 			<div class="milestones-window">
 				<div class="milestones flex flex-all">
 					<?php echo wp_kses_post( $content ) ?>
@@ -294,7 +294,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 	$content = custom_filter_shortcode_text( $content );
 
 	$margin = $atts['margin'] === '1' ? 'mod-margin-bottom ' : '';
-	$classes = $atts['bg_color'] === '1' ? "section mod-padding-vertical bg-ltgray " . $margin : "mw-980 section " . $margin;
+	$classes = $atts['bg_color'] === '1' ? "wysiwyg section mod-padding-vertical bg-ltgray " . $margin : "mw-980 wysiwyg section " . $margin;
 	$atts['class'] = $atts['bg_color'] === '1' ? $atts['class'] . ' mw-980' :  $atts['class'];
 	$id = strtolower( str_replace(" ", "-", $atts['title']) );
 	$image_id = custom_get_attachment_id_by_slug( $atts['img'] );
@@ -311,13 +311,13 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 				<?php echo esc_html( $atts['title'] )  . wp_kses_post( $content ) ?>
 			</div>
 		</div>
-	<?php } else {
+	<?php } else { 
 		if ( $atts['reverse'] === '0') { ?>
 			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
 				<div class="flex flex-medium flex-space-between <?php echo esc_attr($atts['class']) ?>">
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
 					<div class="w-48p mod-margin-bottom_xs">
-						<?php if ( $image_id ) {
+						<?php if ( $image_id ) { 
 							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
 						} else { ?>
 						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
@@ -329,7 +329,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 			<div id="<?php echo esc_attr( $id ) ?>" class="<?php echo esc_attr($classes) ?>">
 				<div class="flex flex-medium flex-space-between flex-column-reverse-small <?php echo esc_attr($atts['class']) ?>">
 					<div class="w-48p mod-margin-bottom_xs">
-						<?php if ( $image_id ) {
+						<?php if ( $image_id ) { 
 							echo wp_get_attachment_image( $image_id, array( 600, 400 ) );
 						} else { ?>
 						<h1><?php echo esc_html( $atts['title'] ); ?></h1>
@@ -338,7 +338,7 @@ function wmf_section_shortcode_callback( $atts = [], $content = '' ) {
 					<div class="w-48p mod-margin-bottom_xs"><?php echo wp_kses_post( $content ) ?></div>
 				</div>
 			</div>
-	<?php }
+	<?php } 
 	}
 	return (string) ob_get_clean();
 }
@@ -367,7 +367,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	?>
 
 	<div id="<?php echo esc_attr($atts['id']) ?>" class="movement section mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
-		<div class="mw-980">
+		<div class="mw-980 wysiwyg">
 			<div class="w-68p">
 				<?php echo wp_kses_post( $content ); ?>
 			</div>
@@ -465,7 +465,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 
 	<div id="<?php echo esc_attr( $atts['id'] ) ?>" class="top-data mw-980 mod-margin-bottom <?php echo esc_attr($atts['class']) ?>">
 		<div>
-			<div class="mod-margin-bottom_xs">
+			<div class="mod-margin-bottom_xs wysiwyg">
 				<?php echo wp_kses_post( $content ) ?>
 			</div>
 			<div class="mod-margin-bottom_xs data-options">
@@ -597,7 +597,7 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 add_shortcode( 'wmf_top_data', 'wmf_top_data_callback' );
 
 /**
- * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js
+ * Define a [wp20_easter_eggs] wrapper shortcode that creates a HTML wrapper for easter eggs and initializes js 
  * which searches for <strong class="easter-egg"> in .section and .movement.
  *
  * @param array  $atts    Shortcode attributes array.
@@ -615,7 +615,7 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 
 	wp_enqueue_script( 'wp20_easter_eggs', get_stylesheet_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . wp_json_encode($atts) . ";");
-
+	
 	ob_start();
 	?>
 
@@ -623,7 +623,7 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 		<?php echo wp_kses_post( $content ); ?>
 	</div>
 
-	<?php
+	<?php 
 	return (string) ob_get_clean();
 
 }
@@ -643,22 +643,22 @@ function egg_shortcode_callback( $atts = [], $content = '' ) {
 	$atts = shortcode_atts( $defaults, $atts, 'egg' );
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
-
+	
 	ob_start();
 	?>
 
-	<div class="easter-egg-content">
+	<div class="easter-egg-content wysiwyg">
 		<?php echo wp_kses_post( $content ); ?>
 	</div>
 
-	<?php
+	<?php 
 	return (string) ob_get_clean();
 
 }
 add_shortcode( 'egg', 'egg_shortcode_callback' );
 
 /*
- * Utility function to deal with the way
+ * Utility function to deal with the way 
  * WordPress auto formats text in a shortcode.
  */
 function custom_filter_shortcode_text($text = "") {

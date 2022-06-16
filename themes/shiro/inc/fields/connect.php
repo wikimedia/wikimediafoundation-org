@@ -47,7 +47,8 @@ function wmf_connect_fields() {
 			),
 		)
 	);
-	$connect->add_meta_box( __( 'Connect', 'shiro-admin' ), [ 'page', 'post' ] );
+	$connect->add_meta_box( __( 'Connect', 'shiro-admin' ), array( 'page', 'post', 'profile' ) );
 }
 add_action( 'fm_post_post', 'wmf_connect_fields' );
 add_action( 'fm_post_page', 'wmf_connect_fields' );
+add_action( 'fm_post_profile', 'wmf_connect_fields' );
