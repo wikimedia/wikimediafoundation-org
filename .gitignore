@@ -1,8 +1,26 @@
+# Debug plugins
+plugins/log-deprecated-notices
+plugins/monster-widget
+plugins/query-monitor
+plugins/user-switching
+*.log
+
+# Dependencies managed using composer
+plugins/asset-loader
+plugins/co-authors-plus
+plugins/fieldmanager
+plugins/hm-gutenberg-tools
+plugins/maintenance-mode
+plugins/safe-redirect-manager
+plugins/safe-svg
+
 # Dependencies, except those from included plugins
 node_modules
 vendor
 !plugins/multilingualpress/vendor
-!plugins/hm-gutenberg-tools/vendor
+
+# Built asset files
+*.sass-cache*
 
 # Uploads directory
 uploads
@@ -11,8 +29,8 @@ uploads
 mu-plugins
 
 # drop-ins; these are managed at the platform-level
-object-cache.php
-db.php
+/object-cache.php
+/db.php
 /languages/admin-de_DE.mo
 /languages/admin-de_DE.po
 /languages/admin-en_GB.mo
@@ -36,9 +54,5 @@ db.php
 /languages/continents-cities-ar.mo
 /languages/continents-cities-ar.po
 .DS_Store
-.history
-
-# Meta and workflow-related info
-.github
 
 backstop_data
