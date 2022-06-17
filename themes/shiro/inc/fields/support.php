@@ -16,7 +16,8 @@ function wmf_support_fields() {
 			'description' => __( 'If enabled, the support module will not be shown with this content.', 'shiro-admin' ),
 		)
 	);
-	$support->add_meta_box( __( 'Support Module', 'shiro-admin' ), array( 'page', 'post' ) );
+	$support->add_meta_box( __( 'Support Module', 'shiro-admin' ), array( 'page', 'post', 'profile' ) );
 }
 add_action( 'fm_post_post', 'wmf_support_fields' );
 add_action( 'fm_post_page', 'wmf_support_fields' );
+add_action( 'fm_post_profile', 'wmf_support_fields' );
