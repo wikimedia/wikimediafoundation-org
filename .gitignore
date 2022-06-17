@@ -5,6 +5,15 @@ plugins/query-monitor
 plugins/user-switching
 *.log
 
+# Dependencies managed using composer
+plugins/asset-loader
+plugins/co-authors-plus
+plugins/fieldmanager
+plugins/hm-gutenberg-tools
+plugins/maintenance-mode
+plugins/safe-redirect-manager
+plugins/safe-svg
+
 # Dependencies, except those from included plugins
 node_modules
 vendor
