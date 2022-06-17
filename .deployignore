@@ -9,6 +9,9 @@ plugins/duplicate-page
 # Built asset files
 *.sass-cache*
 
+# Dependencies, except those from included plugins
+node_modules
+
 # Uploads directory
 uploads
 
