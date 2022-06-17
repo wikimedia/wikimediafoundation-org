@@ -1,0 +1,76 @@
+// @import 'global/variables';
+@import 'components/post-select-modal';
+@import 'components/form-field-dates';
+@import 'components/date-filter';
+
+.hm-post-control {
+	.components-spinner {
+		float: none;
+	}
+
+	.post-select {
+		margin: 8px 0 12px 0;
+	}
+
+	.hm-post-control-current-selection {
+		border: 1px solid #e2e4e7;
+		background: #edeff0;
+		margin: 12px auto 8px;
+		padding: 8px;
+
+		> h4 {
+			font-weight: bold;
+			margin: 0;
+		}
+
+		.hm-post-select-control-list {
+			margin-top: 8px;
+			margin-left: 1.4em;
+			list-style: disc outside;
+			margin-bottom: 0;
+
+			li:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.hm-link-control {
+	.block-editor-url-input input {
+		max-width: 100%;
+	}
+
+	.components-spinner {
+		right: 8px;
+		top: 6px;
+	}
+}
+
+.hm-image-control {
+	&__img-container {
+		position: relative;
+		display: inline-block;
+		margin-bottom: 10px;
+
+		&:after {
+			content: ' ';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			box-shadow: inset 0 0 0 1px rgba( 0, 0, 0, 0.2 );
+		}
+
+		img {
+			display: block;
+			margin: 0 !important;
+		}
+	}
+
+	&__actions {
+		clear: both;
+	}
+}
