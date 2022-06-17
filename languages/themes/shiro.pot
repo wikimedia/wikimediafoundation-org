@@ -1,4 +1,4 @@
-# Copyright (C) 2021 Wikimedia Foundation Design
+# Copyright (C) 2022 Wikimedia Foundation Design
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-28T22:26:47+00:00\n"
+"POT-Creation-Date: 2022-06-17T06:11:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: shiro\n"
 
 #. Theme Name of the theme
@@ -70,8 +70,12 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: inc/editor/blocks/mailchimp-subscribe.php:30
-#: assets/src/editor/blocks/mailchimp-subscribe/index.js:45
+#: inc/classes/walkers/class-walker-main-nav.php:105
+msgid "Expand submenu for "
+msgstr ""
+
+#: inc/editor/blocks/mailchimp-subscribe.php:33
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:44
 msgid "Email address"
 msgstr ""
 
@@ -83,28 +87,28 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: inc/editor/has-blocks-column.php:26
-#: inc/editor/has-blocks-column.php:70
+#: inc/editor/has-blocks-column.php:29
+#: inc/editor/has-blocks-column.php:77
 msgid "Has blocks"
 msgstr ""
 
-#: inc/editor/has-blocks-column.php:41
+#: inc/editor/has-blocks-column.php:44
 msgid "Yes"
 msgstr ""
 
-#: inc/editor/has-blocks-column.php:41
+#: inc/editor/has-blocks-column.php:44
 msgid "No"
 msgstr ""
 
-#: inc/editor/has-blocks-column.php:63
+#: inc/editor/has-blocks-column.php:69
 msgid "Filter by whether the page has blocks"
 msgstr ""
 
-#: inc/editor/has-blocks-column.php:67
+#: inc/editor/has-blocks-column.php:74
 msgid "All"
 msgstr ""
 
-#: inc/editor/has-blocks-column.php:73
+#: inc/editor/has-blocks-column.php:80
 msgid "Doesn't have blocks"
 msgstr ""
 
@@ -134,7 +138,7 @@ msgstr ""
 msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr ""
 
-#: inc/template-tags.php:166
+#: inc/template-tags.php:167
 msgid "By "
 msgstr ""
 
@@ -174,8 +178,25 @@ msgstr ""
 msgid "Stories Page"
 msgstr ""
 
+#: sidebar-list.php:35
 #: sidebar-report.php:31
-msgid "Toggle Menu"
+#: assets/src/editor/blocks/table-of-contents/index.js:148
+msgid "Table of Contents"
+msgstr ""
+
+#: sidebar-list.php:43
+#: assets/src/editor/blocks/table-of-contents/index.js:156
+msgid "Navigate within this page."
+msgstr ""
+
+#: sidebar-list.php:48
+#: sidebar-report.php:44
+#: assets/src/editor/blocks/table-of-contents/index.js:165
+msgid "Toggle menu"
+msgstr ""
+
+#: sidebar-report.php:39
+msgid "Navigate within this section."
 msgstr ""
 
 #: sidebar-search.php:36
@@ -200,19 +221,19 @@ msgstr ""
 msgid "Logo image."
 msgstr ""
 
-#: template-parts/modules/social/follow-horizontal.php:41
+#: template-parts/modules/social/follow-horizontal.php:38
 msgid "Connect with us on Facebook"
 msgstr ""
 
-#: template-parts/modules/social/follow-horizontal.php:50
+#: template-parts/modules/social/follow-horizontal.php:47
 msgid "Connect with us on Twitter"
 msgstr ""
 
-#: template-parts/modules/social/follow-horizontal.php:59
+#: template-parts/modules/social/follow-horizontal.php:56
 msgid "Connect with us on Instagram"
 msgstr ""
 
-#: template-parts/modules/social/follow-horizontal.php:68
+#: template-parts/modules/social/follow-horizontal.php:65
 msgid "Read our blog"
 msgstr ""
 
@@ -221,19 +242,27 @@ msgstr ""
 msgid "Recent posts by %s"
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:57
+#: template-parts/profiles/role-list.php:25
+msgid "Department Executive"
+msgstr ""
+
+#: template-parts/profiles/role-list.php:26
+msgid "Department Experts"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:58
 msgid "Contact a human"
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:63
+#: assets/src/editor/blocks/contact/index.js:64
 msgid "Questions about the Wikimedia Foundation or our projects? Get in touch with our team."
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:69
+#: assets/src/editor/blocks/contact/index.js:70
 msgid "Contact"
 msgstr ""
 
-#: assets/src/editor/blocks/contact/index.js:81
+#: assets/src/editor/blocks/contact/index.js:82
 msgid "Follow"
 msgstr ""
 
@@ -317,42 +346,42 @@ msgstr ""
 msgid "Pullquote"
 msgstr ""
 
-#: assets/src/editor/blocks/mailchimp-subscribe/index.js:11
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:12
 msgid "Get email updates"
 msgstr ""
 
-#: assets/src/editor/blocks/mailchimp-subscribe/index.js:14
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:15
 msgid "Subscribe to news about ongoing projects and initiatives"
 msgstr ""
 
-#: assets/src/editor/blocks/mailchimp-subscribe/index.js:34
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:33
 msgid "This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy."
 msgstr ""
 
-#: assets/src/editor/blocks/mailchimp-subscribe/index.js:40
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:39
 msgid "Subscribe"
 msgstr ""
 
-#: assets/src/editor/blocks/tweet-this/index.js:18
+#: assets/src/editor/blocks/tweet-this/index.js:21
 msgid "Tweet this"
 msgstr ""
 
-#: assets/src/editor/blocks/tweet-this/index.js:54
+#: assets/src/editor/blocks/tweet-this/index.js:57
 msgid "Write tweet this text"
 msgstr ""
 
-#: assets/src/editor/blocks/tweet-this/index.js:60
+#: assets/src/editor/blocks/tweet-this/index.js:63
 msgid "Tweet settings"
 msgstr ""
 
-#: assets/src/editor/blocks/tweet-this/index.js:62
+#: assets/src/editor/blocks/tweet-this/index.js:65
 msgid "When clicking the link, this text will be inside the composed tweet"
 msgstr ""
 
-#: assets/src/editor/blocks/tweet-this/index.js:63
+#: assets/src/editor/blocks/tweet-this/index.js:66
 msgid "Tweet text"
 msgstr ""
 
-#: assets/src/editor/blocks/tweet-this/index.js:70
+#: assets/src/editor/blocks/tweet-this/index.js:73
 msgid "Tweet URL"
 msgstr ""
