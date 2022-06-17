@@ -21,6 +21,12 @@ vendor
 
 # Built asset files
 *.sass-cache*
+themes/shiro/assets/dist
+themes/shiro/map
+themes/shiro/style.css
+themes/shiro/rtl.css
+themes/shiro/editor-style.css
+themes/shiro/editor-style.rtl.css
 
 # Uploads directory
 uploads
