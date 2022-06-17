@@ -1,0 +1,45 @@
+# Debug plugins
+plugins/log-deprecated-notices
+plugins/monster-widget
+plugins/query-monitor
+plugins/user-switching
+plugins/duplicate-page
+*.log
+
+# Built asset files
+*.sass-cache*
+
+# Uploads directory
+uploads
+
+# mu-plugins; these are managed at the platform-level
+mu-plugins
+
+# drop-ins; these are managed at the platform-level
+/object-cache.php
+/db.php
+/languages/admin-de_DE.mo
+/languages/admin-de_DE.po
+/languages/admin-en_GB.mo
+/languages/admin-en_GB.po
+/languages/admin-network-de_DE.mo
+/languages/admin-network-de_DE.po
+/languages/admin-network-en_GB.mo
+/languages/admin-network-en_GB.po
+/languages/continents-cities-de_DE.mo
+/languages/continents-cities-de_DE.po
+/languages/de_DE.mo
+/languages/de_DE.po
+/languages/en_GB.mo
+/languages/en_GB.po
+/languages/admin-ar.mo
+/languages/admin-ar.po
+/languages/admin-network-ar.mo
+/languages/admin-network-ar.po
+/languages/ar.mo
+/languages/ar.po
+/languages/continents-cities-ar.mo
+/languages/continents-cities-ar.po
+.DS_Store
+
+backstop_data
