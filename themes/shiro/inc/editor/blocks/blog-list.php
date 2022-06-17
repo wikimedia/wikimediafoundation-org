@@ -36,6 +36,12 @@ function register_block() {
 						'type' => 'object',
 					],
 				],
+				'excludedCategories' => [
+					'type' => 'array',
+					'items' => [
+						'type' => 'object',
+					],
+				],
 				'order' => [
 					'type' => 'string',
 					'default' => 'desc',
@@ -68,8 +74,20 @@ function render_block( $attributes ) {
 		'suppress_filters' => false,
 	];
 
-	if ( isset( $attributes['categories'] ) ) {
-		$args['category__in'] = array_column( $attributes['categories'], 'id' );
+	$categories = array_column( $attributes['categories'] ?? [], 'id' );
+	$excluded_categories = array_column( $attributes['excludedCategories'] ?? [], 'id' );
+
+	if ( count( $categories ) > 0 ) {
+		$args['cat'] = join( ',', $categories );
+	}
+
+	if ( count( $excluded_categories ) > 0 ) {
+		if ( ! isset( $args['cat'] ) ) {
+			$args['cat'] = '';
+		}
+		$args['cat'] = array_reduce( $excluded_categories, function( $carry, $item ) {
+			return $carry . ",-$item";
+		}, $args['cat'] );
 	}
 
 	if ( isset( $attributes['selectedAuthor'] ) ) {
