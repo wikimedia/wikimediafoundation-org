@@ -3,6 +3,7 @@ plugins/log-deprecated-notices
 plugins/monster-widget
 plugins/query-monitor
 plugins/user-switching
+plugins/duplicate-page
 *.log
 
 # Dependencies, except those from included plugins
