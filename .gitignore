@@ -6,10 +6,12 @@ plugins/user-switching
 plugins/duplicate-page
 *.log
 
+# Meta and workflow-related info
+.github
+
 # Dependencies, except those from included plugins
 node_modules
-vendor
-!plugins/multilingualpress/vendor
+/vendor
 
 # Built asset files
 *.sass-cache*
