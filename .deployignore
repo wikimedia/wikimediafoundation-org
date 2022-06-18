@@ -6,6 +6,9 @@ plugins/user-switching
 plugins/duplicate-page
 *.log
 
+# Repo specific
+/.github
+
 # Built asset files
 *.sass-cache*
 
