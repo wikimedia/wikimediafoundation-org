@@ -9,11 +9,12 @@ plugins/duplicate-page
 # Meta and workflow-related info
 .github
 
-# Built asset files
-*.sass-cache*
-
 # Dependencies, except those from included plugins
 node_modules
+/vendor
+
+# Built asset files
+*.sass-cache*
 
 # Uploads directory
 uploads
