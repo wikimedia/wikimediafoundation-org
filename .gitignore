@@ -6,7 +6,7 @@ plugins/user-switching
 plugins/duplicate-page
 *.log
 
-# Repo specific
+# Meta and workflow-related info
 .github
 
 # Built asset files
