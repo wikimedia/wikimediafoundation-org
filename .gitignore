@@ -10,6 +10,7 @@ plugins/duplicate-page
 node_modules
 vendor
 !plugins/multilingualpress/vendor
+!plugins/wikipedia-preview/vendor
 
 # Built asset files
 *.sass-cache*

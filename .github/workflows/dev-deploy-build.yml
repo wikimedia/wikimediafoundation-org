@@ -9,7 +9,7 @@ on:
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
-    name: Build & deploy to VIP Go built branch
+    name: Build and deploy to VIP Go built branch
     env:
       DEPLOY_REPO: wpcomvip/wikimediafoundation-org
     steps:
@@ -39,10 +39,10 @@ jobs:
           restore-keys: npm-
 
       - name: Install dependencies
-        run: (npm --prefix themes/shiro ci && npm --prefix plugins/hm-gutenberg-tools ci)
+        run: (npm --prefix themes/shiro ci && npm --prefix plugins/hm-gutenberg-tools ci && npm --prefix plugins/wikipedia-preview ci)
 
       - name: Build assets
-        run: (npm --prefix themes/shiro run build)
+        run: (npm --prefix themes/shiro run build && npm --prefix plugins/wikipedia-preview run build)
 
       - name: Run VIP Go Deploy script built
         run: bash .github/vip-go-deploy.sh
