@@ -6,6 +6,16 @@ plugins/user-switching
 plugins/duplicate-page
 *.log
 
+# Dependencies managed using composer
+plugins/asset-loader
+plugins/co-authors-plus
+plugins/fieldmanager
+plugins/hm-gutenberg-tools
+plugins/maintenance-mode
+plugins/safe-redirect-manager
+plugins/safe-svg
+plugins/wikipedia-preview
+
 # Dependencies, except those from included plugins
 node_modules
 vendor
@@ -13,6 +23,12 @@ vendor
 
 # Built asset files
 *.sass-cache*
+themes/shiro/assets/dist
+themes/shiro/map
+themes/shiro/style.css
+themes/shiro/rtl.css
+themes/shiro/editor-style.css
+themes/shiro/editor-style.rtl.css
 
 # Uploads directory
 uploads
