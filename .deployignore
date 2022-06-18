@@ -7,7 +7,7 @@ plugins/duplicate-page
 *.log
 
 # Repo specific
-.github
+.github/
 
 # Built asset files
 *.sass-cache*
