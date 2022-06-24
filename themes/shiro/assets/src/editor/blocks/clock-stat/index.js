@@ -89,19 +89,22 @@ export const settings = {
 
 		return (
 			<div { ...blockProps }>
-				<div className="clock-stat__left-column wp-block-column">
-					<RichText.Content
-						className="clock-stat__stat"
-						tagName="p"
-						value={ label }
-					/>
-				</div>
-				<div className="clock__contents-right-column wp-block-column">
-					<RichText.Content
-						className="clock-stat__label"
-						tagName="p"
-						value={ stat }
-					/>
+				<div className="clock__contents wp-block-columns">
+					<div className="clock-stat__left-column wp-block-column">
+						<RichText.Content
+							className="clock-stat__stat"
+							tagName="p"
+							value={ stat }
+						/>
+					</div>
+					<span className="clock-stat__divider">:</span>
+					<div className="clock__stat-right-column wp-block-column">
+						<RichText.Content
+							className="clock-stat__label"
+							tagName="p"
+							value={ label }
+						/>
+					</div>
 				</div>
 			</div>
 		);
