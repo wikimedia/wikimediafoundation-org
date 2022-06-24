@@ -64,6 +64,11 @@ export const settings = {
 		date: {
 			type: 'string',
 		},
+		disclaimer: {
+			type: 'string',
+			source: 'html',
+			selector: '.clock__contents__disclaimer',
+		},
 		display: {
 			type: 'string',
 			default: displayOptions[0]['value'],
@@ -91,6 +96,7 @@ export const settings = {
 		const {
 			countTitle,
 			date,
+			disclaimer,
 			display,
 			displayPadding,
 			stopAtTime,
@@ -142,6 +148,14 @@ export const settings = {
 					<InnerBlocks
 						allowedBlocks={ ALLOWED_BLOCKS }
 					/>
+					<RichText
+						className="clock__contents__disclaimer"
+						keepPlaceholderOnFocus
+						placeholder={ __( 'Disclaimers', 'shiro-admin' ) }
+						tagName="div"
+						value={ disclaimer }
+						onChange={ disclaimer => setAttributes( { disclaimer } ) }
+					/>
 				</div>
 				<InspectorControls>
 					<PanelBody initialOpen title={ __( 'Clock settings', 'shiro-admin' ) }>
@@ -191,6 +205,7 @@ export const settings = {
 		const {
 			countTitle,
 			date,
+			disclaimer,
 			display,
 			displayPadding,
 			stopAtTime,
@@ -226,6 +241,11 @@ export const settings = {
 					</div>
 				</div>
 				<InnerBlocks.Content />
+				<RichText.Content
+					className="clock__contents__disclaimer"
+					tagName="div"
+					value={ disclaimer }
+				/>
 			</div>
 		);
 	},
