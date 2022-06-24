@@ -44,7 +44,8 @@ function initializeClockBlock( element ) {
 		stopAtTime = element.dataset.stop ? ( element.dataset.stop === 'true' ) : false,
 		countPlaceholder = element.querySelector(
 			'.clock__contents__count-count'
-		);
+		),
+		display = element.dataset.display;
 
 	if ( dateTime === false ) {
 		return;
@@ -67,7 +68,7 @@ function initializeClockBlock( element ) {
 	/**
 	 * Timer callback function.
 	 */
-	function timer() {
+	const timer = () => {
 		const current = Date.now(),
 			diff = Math.abs( current - to ),
 			days = Math.floor( diff / ( secondsInDay ) ),
@@ -75,8 +76,29 @@ function initializeClockBlock( element ) {
 			mins = Math.floor( ( ( diff % ( secondsInDay ) ) % ( secondsInHour ) ) / ( secondsInMinute ) ),
 			secs = Math.floor( ( ( ( diff % ( secondsInDay ) ) % ( secondsInHour ) ) % ( secondsInMinute ) ) / 1000 );
 
-		countPlaceholder.textContent = 'Days:' + days + ', Hours:' + hours + ', Minutes:' + mins + ', Seconds:' + secs;
-	}
+		let output = '';
+
+		switch ( display ) {
+			case 'd-nolabel' :
+				output = '' + days;
+				break;
+			case 'd' :
+				output = days + ' Days';
+				break;
+			case 'dh' :
+				output = days + ' Days ' + hours + ' Hours';
+				break;
+			case 'dhm' :
+				output = days + ' Days ' + hours + ' Hours ' + mins + ' Minutes';
+				break;
+			case 'dhms' :
+			default :
+				output = days + ' Days ' + hours + ' Hours ' + mins + ' Minutes ' + secs + ' Seconds';
+				break;
+		}
+
+		countPlaceholder.innerHTML = wrapCharacters( output );
+	};
 
 	_timers.push( setInterval( timer, 1000 ) );
 }

@@ -6,7 +6,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, InspectorControls, RichText, InnerBlocks } from '@wordpress/block-editor';
-import { DateTimePicker, PanelBody, ToggleControl } from '@wordpress/components';
+import { DateTimePicker, PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -15,6 +15,29 @@ import { __ } from '@wordpress/i18n';
  */
 import './style.scss';
 import clockBlock, { wrapCharacters } from '../../../scripts/clock-block';
+
+const displayOptions = [
+	{
+		value: 'd-nolabel',
+		label: 'Days (No Label)',
+	},
+	{
+		value: 'd',
+		label: 'Days',
+	},
+	{
+		value: 'dh',
+		label: 'Days Hours',
+	},
+	{
+		value: 'dhm',
+		label: 'Days Hours Minutes',
+	},
+	{
+		value: 'dhms',
+		label: 'Days Hours Minutes Seconds',
+	},
+];
 
 export const name = 'shiro/clock';
 
@@ -50,6 +73,10 @@ export const settings = {
 		date: {
 			type: 'string',
 		},
+		display: {
+			type: 'string',
+			default: displayOptions[0]['value'],
+		},
 	},
 
 	/**
@@ -60,6 +87,7 @@ export const settings = {
 		const {
 			countTitle,
 			date,
+			display,
 			stopAtTime,
 			title,
 		} = attributes;
@@ -71,7 +99,7 @@ export const settings = {
 		// Setup the counter.
 		useEffect( () => {
 			clockBlock();
-		}, [ date, stopAtTime ] );
+		}, [ date, stopAtTime, display ] );
 
 		return (
 			<div { ...blockProps }>
@@ -86,6 +114,7 @@ export const settings = {
 				<div
 					className="clock__contents"
 					data-clock={ date }
+					data-display={ display }
 					data-stop={ stopAtTime ?? false }
 				>
 					<div className="clock__contents__count wp-block-columns">
@@ -122,6 +151,13 @@ export const settings = {
 							label={ __( 'Stop clock at the time above', 'shiro-admin' ) }
 							onChange={ stopAtTime => setAttributes( { stopAtTime } ) }
 						/>
+						<SelectControl
+							help={ __( 'Units to display in clock', 'shiro-admin' ) }
+							label={ __( 'Clock Display', 'shiro' ) }
+							options={ displayOptions }
+							value={ display }
+							onChange={ display => setAttributes( { display } ) }
+						/>
 					</PanelBody>
 				</InspectorControls>
 			</div>
@@ -136,6 +172,7 @@ export const settings = {
 		const {
 			countTitle,
 			date,
+			display,
 			stopAtTime,
 			title,
 		} = attributes;
@@ -150,7 +187,8 @@ export const settings = {
 				<div
 					className="clock__contents"
 					data-clock={ date }
-					data-stop={ stopAtTime ?? false }
+					data-display={ display }
+					data-stop={ stopAtTime }
 				>
 					<div className="clock__contents wp-block-columns">
 						<div className="clock__contents-left-column wp-block-column">
