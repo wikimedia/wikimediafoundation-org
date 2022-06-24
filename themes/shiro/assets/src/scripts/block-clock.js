@@ -9,7 +9,7 @@ let _instances = [];
 /**
  * A collection of all the timer intervals.
  *
- * @type {Number[]}
+ * @type {number[]}
  * @private
  */
 let _timers = [];
@@ -39,7 +39,7 @@ function initializeClockBlock( element ) {
 	const dateTime = element.dataset.clock ?? false,
 		stopAtTime = element.dataset.stop ? ( element.dataset.stop === 'true' ) : false,
 		countPlaceholder = element.querySelector(
-			'.content-clock__contents__count-count'
+			'.clock__contents__count-count'
 		);
 
 	if ( dateTime === false ) {
@@ -76,5 +76,4 @@ function initializeClockBlock( element ) {
 
 	_timers.push( setInterval( timer, 1000 ) );
 }
-
 export default setup;
