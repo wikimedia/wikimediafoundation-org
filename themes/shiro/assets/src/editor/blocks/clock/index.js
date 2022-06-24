@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './style.scss';
-import blockClock from '../../../scripts/block-clock';
+import clockBlock, { wrapCharacters } from '../../../scripts/clock-block';
 
 export const name = 'shiro/clock';
 
@@ -36,12 +36,19 @@ export const settings = {
 		countTitle: {
 			type: 'string',
 			source: 'html',
-			selector: '.content-clock__contents__count_label',
+			selector: '.clock__contents__count-label',
 		},
 		title: {
 			type: 'string',
 			source: 'html',
-			selector: '.content-clock__title',
+			selector: '.clock__title',
+		},
+		stopAtTime: {
+			type: 'boolean',
+			default: false,
+		},
+		date: {
+			type: 'string',
 		},
 	},
 
@@ -63,7 +70,7 @@ export const settings = {
 
 		// Setup the counter.
 		useEffect( () => {
-			blockClock();
+			clockBlock();
 		}, [ date, stopAtTime ] );
 
 		return (
@@ -81,23 +88,19 @@ export const settings = {
 					data-clock={ date }
 					data-stop={ stopAtTime ?? false }
 				>
-					<div className="clock__contents wp-block-columns">
+					<div className="clock__contents__count wp-block-columns">
 						<div className="clock__contents-left-column wp-block-column">
-							<div className="clock__contents__count-count">
-								<p>{ date ? date : __( 'Counter will display here', 'shiro-admin' ) }</p>
-							</div>
+							<div className="clock__contents__count-count">{ date }</div>
 						</div>
 						<div className="clock__contents-right-column wp-block-column">
-							<div className="clock__contents__count-label">
-								<RichText
-									className="clock__title"
-									keepPlaceholderOnFocus
-									placeholder={ __( 'Label for Counter:', 'shiro-admin' ) }
-									tagName="p"
-									value={ countTitle }
-									onChange={ countTitle => setAttributes( { countTitle } ) }
-								/>
-							</div>
+							<RichText
+								className="clock__contents__count-label"
+								keepPlaceholderOnFocus
+								placeholder={ __( 'Label for Counter:', 'shiro-admin' ) }
+								tagName="div"
+								value={ countTitle }
+								onChange={ value => setAttributes( { countTitle: wrapCharacters( value ) } ) }
+							/>
 						</div>
 					</div>
 					<InnerBlocks
@@ -147,25 +150,23 @@ export const settings = {
 				<div
 					className="clock__contents"
 					data-clock={ date }
-					data-stop={ stopAtTime }
+					data-stop={ stopAtTime ?? false }
 				>
 					<div className="clock__contents wp-block-columns">
 						<div className="clock__contents-left-column wp-block-column">
-							<div className="clock__contents__count-label">
-								<RichText.Content
-									className="clock__title"
-									tagName="p"
-									value={ countTitle }
-								/>
-							</div>
-						</div>
-						<div className="clock__contents-right-column wp-block-column">
 							<div className="clock__contents__count-count">
 							</div>
 						</div>
+						<div className="clock__contents-right-column wp-block-column">
+							<RichText.Content
+								className="clock__contents__count-label"
+								tagName="div"
+								value={ countTitle }
+							/>
+						</div>
 					</div>
-					<InnerBlocks.Content />
 				</div>
+				<InnerBlocks.Content />
 			</div>
 		);
 	},

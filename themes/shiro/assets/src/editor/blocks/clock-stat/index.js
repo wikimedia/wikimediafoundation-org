@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './style.scss';
+import { wrapCharacters } from '../../../scripts/clock-block';
 
 export const name = 'shiro/clock-stat';
 
@@ -21,9 +22,6 @@ export const settings = {
 		'Adds a stat row to the clock block.',
 		'shiro-admin'
 	),
-	supports: {
-		multiple: true,
-	},
 	attributes: {
 		label: {
 			type: 'string',
@@ -50,7 +48,7 @@ export const settings = {
 
 		return (
 			<div { ...blockProps }>
-				<div className="clock__contents wp-block-columns">
+				<div className="clock-stat wp-block-columns">
 					<div className="clock-stat__left-column wp-block-column">
 						<RichText
 							className="clock-stat__stat"
@@ -109,23 +107,4 @@ export const settings = {
 			</div>
 		);
 	},
-};
-
-/**
- * Wrap all of the characters in the string with a span tag.
- *
- * Removes any HTML elements in the string before performing operation.
- *
- * @param {string} string String to wrap.
- * @returns {string} String of wrapped characters.
- */
-const wrapCharacters = string => {
-	// Strip html.
-	string = string.replace( /(<([^>]+)>)/gi, '' );
-	// Split up the characters.
-	let stringArray = string.split( '' );
-	// Add a <span> around the characters
-	stringArray = stringArray.map( char => '<span>'+char+'</span>' );
-	// Re-construct.
-	return stringArray.join( '' );
 };

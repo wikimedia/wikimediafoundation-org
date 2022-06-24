@@ -1,4 +1,8 @@
 /**
+ * Utilities to create a functioning clock block.
+ */
+
+/**
  * A collection of all clock blocks on the page.
  *
  * @type {Element[]}
@@ -77,3 +81,22 @@ function initializeClockBlock( element ) {
 	_timers.push( setInterval( timer, 1000 ) );
 }
 export default setup;
+
+/**
+ * Wrap all of the characters in the string with a span tag.
+ *
+ * Removes any HTML elements in the string before performing operation.
+ *
+ * @param {string} string String to wrap.
+ * @returns {string} String of wrapped characters.
+ */
+export const wrapCharacters = string => {
+	// Strip html.
+	string = string.replace( /(<([^>]+)>)/gi, '' );
+	// Split up the characters.
+	let stringArray = string.split( '' );
+	// Add a <span> around the characters
+	stringArray = stringArray.map( char => '<span>'+char+'</span>' );
+	// Re-construct.
+	return stringArray.join( '' );
+};
