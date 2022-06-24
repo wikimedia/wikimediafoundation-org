@@ -6,7 +6,7 @@
  * WordPress dependencies
  */
 import { useBlockProps, InspectorControls, RichText, InnerBlocks } from '@wordpress/block-editor';
-import { DateTimePicker, PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
+import { DateTimePicker, PanelBody, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -61,21 +61,25 @@ export const settings = {
 			source: 'html',
 			selector: '.clock__contents__count-label',
 		},
-		title: {
-			type: 'string',
-			source: 'html',
-			selector: '.clock__title',
-		},
-		stopAtTime: {
-			type: 'boolean',
-			default: false,
-		},
 		date: {
 			type: 'string',
 		},
 		display: {
 			type: 'string',
 			default: displayOptions[0]['value'],
+		},
+		displayPadding: {
+			type: 'string',
+			default: '0',
+		},
+		stopAtTime: {
+			type: 'boolean',
+			default: false,
+		},
+		title: {
+			type: 'string',
+			source: 'html',
+			selector: '.clock__title',
 		},
 	},
 
@@ -88,6 +92,7 @@ export const settings = {
 			countTitle,
 			date,
 			display,
+			displayPadding,
 			stopAtTime,
 			title,
 		} = attributes;
@@ -99,7 +104,7 @@ export const settings = {
 		// Setup the counter.
 		useEffect( () => {
 			clockBlock();
-		}, [ date, stopAtTime, display ] );
+		}, [ date, stopAtTime, display, displayPadding ] );
 
 		return (
 			<div { ...blockProps }>
@@ -115,12 +120,14 @@ export const settings = {
 					className="clock__contents"
 					data-clock={ date }
 					data-display={ display }
+					data-displaypadding={ displayPadding }
 					data-stop={ stopAtTime ?? false }
 				>
 					<div className="clock__contents__count wp-block-columns">
 						<div className="clock__contents-left-column wp-block-column">
 							<div className="clock__contents__count-count">{ date }</div>
 						</div>
+						<span className="clock-stat__divider">:</span>
 						<div className="clock__contents-right-column wp-block-column">
 							<RichText
 								className="clock__contents__count-label"
@@ -158,6 +165,18 @@ export const settings = {
 							value={ display }
 							onChange={ display => setAttributes( { display } ) }
 						/>
+						<TextControl
+							help={ __( 'Number of empty values before a unit. Minimum 0 and Maximum 5', 'shiro-admin' ) }
+							label={ __( 'Minimum length of display', 'shiro-admin' ) }
+							value={ displayPadding }
+							onChange={ displayPadding => {
+								let padding = ( displayPadding ) ? parseInt( displayPadding ) : 0;
+								if ( padding > 5 || padding < 0 ) {
+									padding = 0;
+								}
+								setAttributes( { displayPadding: padding.toString() } );
+							} }
+						/>
 					</PanelBody>
 				</InspectorControls>
 			</div>
@@ -173,6 +192,7 @@ export const settings = {
 			countTitle,
 			date,
 			display,
+			displayPadding,
 			stopAtTime,
 			title,
 		} = attributes;
@@ -188,6 +208,7 @@ export const settings = {
 					className="clock__contents"
 					data-clock={ date }
 					data-display={ display }
+					data-displaypadding={ displayPadding }
 					data-stop={ stopAtTime }
 				>
 					<div className="clock__contents wp-block-columns">

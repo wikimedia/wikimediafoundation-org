@@ -45,7 +45,8 @@ function initializeClockBlock( element ) {
 		countPlaceholder = element.querySelector(
 			'.clock__contents__count-count'
 		),
-		display = element.dataset.display;
+		display = element.dataset.display,
+		padding = element.dataset.displaypadding;
 
 	if ( dateTime === false ) {
 		return;
@@ -80,7 +81,7 @@ function initializeClockBlock( element ) {
 
 		switch ( display ) {
 			case 'd-nolabel' :
-				output = '' + days;
+				output = '' + days.toString().padStart( parseInt( padding ), '0' );
 				break;
 			case 'd' :
 				output = days + ' Days';
