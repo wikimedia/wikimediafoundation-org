@@ -1,8 +1,12 @@
 .clock {
   border: rem(1) solid darkgrey;
   margin: 2rem auto;
-  padding: 1.5rem !important;
+  padding: 1.5rem;
   width: rem(400);
+
+  @media ( max-width: #{$core-gutenberg-break-small} ) {
+    width: rem(300);
+  }
 
   .wp-block-columns {
     margin: 0;
@@ -30,6 +34,10 @@
 
       &-right-column {
         margin: 0 !important;
+
+        @media ( max-width: #{$core-gutenberg-break-small} ) {
+          max-width: rem(150);
+        }
       }
 
       &-count {
@@ -52,16 +60,11 @@
       margin-top: rem(15);
     }
   }
-
-  .block-editor-inner-blocks .wp-block {
-    margin: 0 !important;
-  }
 }
 
 .clock-stat {
-  margin: 0;
+  margin: 0 0 rem(8) 0;
   max-width: none;
-  padding-bottom: rem(4) !important;
 
   .wp-block-columns {
     margin: 0;
@@ -78,6 +81,10 @@
 
   &__right-column {
     margin: 0 !important;
+
+    @media ( max-width: #{$core-gutenberg-break-small} ) {
+      max-width: rem(150);
+    }
   }
 
   &__stat {

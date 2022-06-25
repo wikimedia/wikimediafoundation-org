@@ -1,9 +1,8 @@
 @import "~sass-lib/editor/editor-includes";
 
 .clock-stat {
-  margin: 0;
+  margin: 0 0 rem(8) 0;
   max-width: none;
-  padding-bottom: rem(4) !important;
 
   .wp-block-columns {
     margin: 0;
