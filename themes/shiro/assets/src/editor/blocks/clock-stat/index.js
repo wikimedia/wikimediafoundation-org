@@ -96,7 +96,7 @@ export const settings = {
 						/>
 					</div>
 					<span className="clock-stat__divider">:</span>
-					<div className="clock__stat-right-column wp-block-column">
+					<div className="clock-stat__right-column wp-block-column">
 						<RichText.Content
 							className="clock-stat__label"
 							tagName="div"

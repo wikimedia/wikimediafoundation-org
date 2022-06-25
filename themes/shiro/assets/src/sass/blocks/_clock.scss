@@ -1,12 +1,8 @@
-@import "~sass-lib/editor/editor-includes";
-
-.editor-styles-wrapper .block-editor-block-list__layout .wp-block.clock.wp-block-shiro-clock {
+.clock {
   border: rem(1) solid darkgrey;
+  margin: 2rem auto;
   padding: 1.5rem !important;
   width: rem(400);
-}
-
-.editor-styles-wrapper .block-editor-block-list__layout .clock {
 
   .wp-block-columns {
     margin: 0;
@@ -58,6 +54,42 @@
   }
 
   .block-editor-inner-blocks .wp-block {
-      margin: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.clock-stat {
+  margin: 0;
+  max-width: none;
+  padding-bottom: rem(4) !important;
+
+  .wp-block-columns {
+    margin: 0;
+  }
+
+  &__left-column {
+    max-width: fit-content;
+  }
+
+  &__divider {
+    font-weight: bold;
+    padding: 0 rem(5);
+  }
+
+  &__right-column {
+    margin: 0 !important;
+  }
+
+  &__stat {
+    border: rem(2) solid darkgrey;
+    display: flex;
+    font-weight: bold;
+    width: fit-content;
+
+    span {
+      border-right: rem(.5) solid lightgrey;
+      padding: 0 rem(2);
+      min-width: rem(16);
+    }
   }
 }

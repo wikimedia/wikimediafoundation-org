@@ -226,13 +226,13 @@ export const settings = {
 					data-displaypadding={ displayPadding }
 					data-stop={ stopAtTime }
 				>
-					<div className="clock__contents wp-block-columns">
-						<div className="clock__contents-left-column wp-block-column">
+					<div className="clock__contents__count wp-block-columns">
+						<div className="clock__contents__count-left-column wp-block-column">
 							<div className="clock__contents__count-count">
 							</div>
 						</div>
-						<span className="clock__contents-divider">:</span>
-						<div className="clock__contents-right-column wp-block-column">
+						<span className="clock__contents__count-divider">:</span>
+						<div className="clock__contents__count-right-column wp-block-column">
 							<RichText.Content
 								className="clock__contents__count-label"
 								tagName="div"

@@ -1,7 +1,9 @@
+@import "~sass-lib/editor/editor-includes";
+
 .clock-stat {
   margin: 0;
   max-width: none;
-  padding-bottom: 4px !important;
+  padding-bottom: rem(4) !important;
 
   .wp-block-columns {
     margin: 0;
@@ -13,7 +15,7 @@
 
   &__divider {
     font-weight: bold;
-    padding: 0 5px;
+    padding: 0 rem(5);
   }
 
   &__right-column {
@@ -21,15 +23,15 @@
   }
 
   &__stat {
-    border: 2px solid darkgrey;
+    border: rem(2) solid darkgrey;
     display: flex;
     font-weight: bold;
     width: fit-content;
 
     span {
-      border-right: .5px solid lightgrey;
-      padding: 0 2px;
-      min-width: 16px;
+      border-right: rem(.5) solid lightgrey;
+      padding: 0 rem(2);
+      min-width: rem(16);
     }
   }
 }
