@@ -180,7 +180,7 @@ export const settings = {
 							onChange={ display => setAttributes( { display } ) }
 						/>
 						<TextControl
-							help={ __( 'Number of empty values before a unit. Minimum 0 and Maximum 5', 'shiro-admin' ) }
+							help={ __( 'Minimum values before a unit. Minimum 0 and Maximum 5', 'shiro-admin' ) }
 							label={ __( 'Minimum length of display', 'shiro-admin' ) }
 							value={ displayPadding }
 							onChange={ displayPadding => {
@@ -240,8 +240,8 @@ export const settings = {
 							/>
 						</div>
 					</div>
+					<InnerBlocks.Content />
 				</div>
-				<InnerBlocks.Content />
 				<RichText.Content
 					className="clock__contents__disclaimer"
 					tagName="div"

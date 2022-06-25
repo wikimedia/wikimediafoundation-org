@@ -19,6 +19,8 @@
   }
 
   &__contents {
+    margin: 0 auto;
+    width: fit-content;
 
     &__count {
       padding-bottom: rem(8);
