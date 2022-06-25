@@ -119,7 +119,7 @@ export const wrapCharacters = string => {
 	// Split up the characters.
 	let stringArray = string.split( '' );
 	// Add a <span> around the characters
-	stringArray = stringArray.map( char => '<span>'+char+'</span>' );
+	stringArray = stringArray.map( char => '<span>' + char + '</span>' );
 	// Re-construct.
 	return stringArray.join( '' );
 };

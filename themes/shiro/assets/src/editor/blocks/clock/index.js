@@ -115,7 +115,7 @@ export const settings = {
 		return (
 			<div { ...blockProps }>
 				<RichText
-					className="clock__title is-style-h3"
+					className="clock__title is-style-h2"
 					keepPlaceholderOnFocus
 					placeholder={ __( 'Title of the clock', 'shiro-admin' ) }
 					tagName="h2"
@@ -130,18 +130,18 @@ export const settings = {
 					data-stop={ stopAtTime ?? false }
 				>
 					<div className="clock__contents__count wp-block-columns">
-						<div className="clock__contents-left-column wp-block-column">
+						<div className="clock__contents__count-left-column wp-block-column">
 							<div className="clock__contents__count-count">{ date }</div>
 						</div>
-						<span className="clock-stat__divider">:</span>
-						<div className="clock__contents-right-column wp-block-column">
+						<span className="clock__contents__count-divider">:</span>
+						<div className="clock__contents__count-right-column wp-block-column">
 							<RichText
 								className="clock__contents__count-label"
 								keepPlaceholderOnFocus
 								placeholder={ __( 'Label for Counter:', 'shiro-admin' ) }
 								tagName="div"
 								value={ countTitle }
-								onChange={ value => setAttributes( { countTitle: wrapCharacters( value ) } ) }
+								onChange={ countTitle => setAttributes( { countTitle } ) }
 							/>
 						</div>
 					</div>
@@ -231,6 +231,7 @@ export const settings = {
 							<div className="clock__contents__count-count">
 							</div>
 						</div>
+						<span className="clock__contents-divider">:</span>
 						<div className="clock__contents-right-column wp-block-column">
 							<RichText.Content
 								className="clock__contents__count-label"

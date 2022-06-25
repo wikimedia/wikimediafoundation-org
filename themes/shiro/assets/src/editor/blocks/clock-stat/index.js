@@ -53,8 +53,8 @@ export const settings = {
 						<RichText
 							className="clock-stat__stat"
 							keepPlaceholderOnFocus
-							placeholder={ __( 'Stat', 'shiro-admin' ) }
-							tagName="p"
+							placeholder={ 'Stat' }
+							tagName="div"
 							value={ stat }
 							onChange={ value => setAttributes( { stat: wrapCharacters( value ) } ) }
 						/>
@@ -65,9 +65,9 @@ export const settings = {
 							className="clock-stat__label"
 							keepPlaceholderOnFocus
 							placeholder={ __( 'Label', 'shiro-admin' ) }
-							tagName="p"
+							tagName="div"
 							value={ label }
-							onChange={ value => setAttributes( { label: wrapCharacters( value ) } ) }
+							onChange={ label => setAttributes( { label } ) }
 						/>
 					</div>
 				</div>
@@ -91,7 +91,7 @@ export const settings = {
 					<div className="clock-stat__left-column wp-block-column">
 						<RichText.Content
 							className="clock-stat__stat"
-							tagName="p"
+							tagName="div"
 							value={ stat }
 						/>
 					</div>
@@ -99,7 +99,7 @@ export const settings = {
 					<div className="clock__stat-right-column wp-block-column">
 						<RichText.Content
 							className="clock-stat__label"
-							tagName="p"
+							tagName="div"
 							value={ label }
 						/>
 					</div>

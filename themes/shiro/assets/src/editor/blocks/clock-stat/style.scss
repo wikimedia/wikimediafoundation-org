@@ -1,3 +1,35 @@
 .clock-stat {
+  margin: 0;
+  max-width: none;
+  padding-bottom: 4px !important;
 
+  .wp-block-columns {
+    margin: 0;
+  }
+
+  &__left-column {
+    max-width: fit-content;
+  }
+
+  &__divider {
+    font-weight: bold;
+    padding: 0 5px;
+  }
+
+  &__right-column {
+    margin: 0 !important;
+  }
+
+  &__stat {
+    border: 2px solid darkgrey;
+    display: flex;
+    font-weight: bold;
+    width: fit-content;
+
+    span {
+      border-right: .5px solid lightgrey;
+      padding: 0 2px;
+      min-width: 16px;
+    }
+  }
 }
