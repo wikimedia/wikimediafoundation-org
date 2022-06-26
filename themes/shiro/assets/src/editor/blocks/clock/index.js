@@ -261,11 +261,13 @@ export const settings = {
 					) }
 					<InnerBlocks.Content />
 				</div>
-				<RichText.Content
-					className="clock__contents__disclaimer"
-					tagName="div"
-					value={ disclaimer }
-				/>
+				{ disclaimer && (
+					<RichText.Content
+						className="clock__contents__disclaimer"
+						tagName="div"
+						value={ disclaimer }
+					/>
+				) }
 			</div>
 		);
 	},

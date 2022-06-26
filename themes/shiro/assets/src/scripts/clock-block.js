@@ -61,7 +61,28 @@ function initializeClockBlock( element ) {
 		const current = Date.now();
 
 		if ( current > to ) {
-			countPlaceholder.textContent = '0';
+			let output = '';
+
+			switch ( display ) {
+				case 'd-nolabel' :
+					output = '0'.padStart( parseInt( padding ), '0' );
+					break;
+				case 'd' :
+					output = '0 Days';
+					break;
+				case 'dh' :
+					output = '0 Days 0 Hours';
+					break;
+				case 'dhm' :
+					output = '0 Days 0 Hours 0 Minutes';
+					break;
+				case 'dhms' :
+				default :
+					output = '0 Days 0 Hours 0 Minutes 0 Seconds';
+					break;
+			}
+
+			countPlaceholder.innerHTML = wrapCharacters( output );
 			return;
 		}
 	}

@@ -22,6 +22,10 @@
     margin: 0 auto;
     width: fit-content;
 
+    p {
+      margin-bottom: 0;
+    }
+
     &__count {
       padding-bottom: rem(8);
 
@@ -71,6 +75,7 @@
 
     span {
       border-right: none;
+      font-weight: bold;
       min-width: rem(4);
       padding: 0;
     }
