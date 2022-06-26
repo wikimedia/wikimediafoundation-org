@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import './style.scss';
-import clockBlock, { wrapCharacters } from '../../../scripts/clock-block';
+import clockBlock from '../../../scripts/clock-block';
 
 const displayOptions = [
 	{
@@ -104,8 +104,11 @@ export const settings = {
 		} = attributes;
 
 		const ALLOWED_BLOCKS = [
+			'core/paragraph',
 			'shiro/clock-stat',
 		];
+
+		const labeledCounter = ( display !== 'd-nolabel' );
 
 		// Setup the counter.
 		useEffect( () => {
@@ -129,22 +132,30 @@ export const settings = {
 					data-displaypadding={ displayPadding }
 					data-stop={ stopAtTime ?? false }
 				>
-					<div className="clock__contents__count wp-block-columns">
-						<div className="clock__contents__count-left-column wp-block-column">
-							<div className="clock__contents__count-count">{ date }</div>
-						</div>
-						<span className="clock__contents__count-divider">:</span>
-						<div className="clock__contents__count-right-column wp-block-column">
-							<RichText
-								className="clock__contents__count-label"
-								keepPlaceholderOnFocus
-								placeholder={ __( 'Label for Counter:', 'shiro-admin' ) }
-								tagName="div"
-								value={ countTitle }
-								onChange={ countTitle => setAttributes( { countTitle } ) }
-							/>
-						</div>
-					</div>
+					{ labeledCounter
+						? (
+							<div className="clock__contents__count">
+								<div className="clock__contents__count-count has-label">{ date }</div>
+							</div>
+						)
+						: (
+							<div className="clock__contents__count wp-block-columns">
+								<div className="clock__contents__count-left-column wp-block-column">
+									<div className="clock__contents__count-count">{ date }</div>
+								</div>
+								<span className="clock__contents__count-divider">:</span>
+								<div className="clock__contents__count-right-column wp-block-column">
+									<RichText
+										className="clock__contents__count-label"
+										keepPlaceholderOnFocus
+										placeholder={ __( 'Label for Counter', 'shiro-admin' ) }
+										tagName="div"
+										value={ countTitle }
+										onChange={ countTitle => setAttributes( { countTitle } ) }
+									/>
+								</div>
+							</div>
+						) }
 					<InnerBlocks
 						allowedBlocks={ ALLOWED_BLOCKS }
 					/>
@@ -212,6 +223,8 @@ export const settings = {
 			title,
 		} = attributes;
 
+		const labeledCounter = ( display !== 'd-nolabel' );
+
 		return (
 			<div { ...blockProps }>
 				<RichText.Content
@@ -226,20 +239,26 @@ export const settings = {
 					data-displaypadding={ displayPadding }
 					data-stop={ stopAtTime }
 				>
-					<div className="clock__contents__count wp-block-columns">
-						<div className="clock__contents__count-left-column wp-block-column">
-							<div className="clock__contents__count-count">
+					{ labeledCounter ? (
+						<div className="clock__contents__count">
+							<div className="clock__contents__count-count has-label">{ date }</div>
+						</div>
+					) : (
+						<div className="clock__contents__count wp-block-columns">
+							<div className="clock__contents__count-left-column wp-block-column">
+								<div className="clock__contents__count-count">
+								</div>
+							</div>
+							<span className="clock__contents__count-divider">:</span>
+							<div className="clock__contents__count-right-column wp-block-column">
+								<RichText.Content
+									className="clock__contents__count-label"
+									tagName="div"
+									value={ countTitle }
+								/>
 							</div>
 						</div>
-						<span className="clock__contents__count-divider">:</span>
-						<div className="clock__contents__count-right-column wp-block-column">
-							<RichText.Content
-								className="clock__contents__count-label"
-								tagName="div"
-								value={ countTitle }
-							/>
-						</div>
-					</div>
+					) }
 					<InnerBlocks.Content />
 				</div>
 				<RichText.Content

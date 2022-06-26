@@ -62,6 +62,19 @@
       margin-top: rem(15);
     }
   }
+
+  .clock__contents__count-count.has-label {
+    border: none;
+    font-weight: normal;
+    margin: 0 auto;
+    text-align: center;
+
+    span {
+      border-right: none;
+      min-width: rem(4);
+      padding: 0;
+    }
+  }
 }
 
 .clock-stat {

@@ -59,6 +59,19 @@
     }
   }
 
+  .clock__contents__count-count.has-label {
+    border: none;
+    font-weight: normal;
+    margin: 0 auto;
+    text-align: center;
+
+    span {
+      border-right: none;
+      min-width: rem(4);
+      padding: 0;
+    }
+  }
+
   .block-editor-inner-blocks .wp-block {
       margin: 0 !important;
   }
