@@ -20,7 +20,7 @@
 
   &__contents {
     margin: 0 auto;
-    width: fit-content;
+    width: auto;
 
     p {
       margin-bottom: 0;
@@ -42,7 +42,7 @@
         margin: 0 !important;
 
         @media ( max-width: #{$core-gutenberg-break-small} ) {
-          max-width: rem(150);
+          max-width: 9rem;
         }
       }
 
@@ -103,7 +103,7 @@
     margin: 0 !important;
 
     @media ( max-width: #{$core-gutenberg-break-small} ) {
-      max-width: rem(150);
+      max-width: 9rem;
     }
   }
 
