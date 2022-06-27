@@ -135,13 +135,16 @@ export const settings = {
 					{ labeledCounter
 						? (
 							<div className="clock__contents__count">
-								<div className="clock__contents__count-count has-label">{ date }</div>
+								<div className="clock__contents__count-count has-label">
+								</div>
 							</div>
 						)
 						: (
 							<div className="clock__contents__count wp-block-columns">
 								<div className="clock__contents__count-left-column wp-block-column">
-									<div className="clock__contents__count-count">{ date }</div>
+									<div className="clock__contents__count-count">
+										{ wrappedPlaceholder( displayPadding ) }
+									</div>
 								</div>
 								<span className="clock__contents__count-divider">:</span>
 								<div className="clock__contents__count-right-column wp-block-column">
@@ -241,12 +244,14 @@ export const settings = {
 				>
 					{ labeledCounter ? (
 						<div className="clock__contents__count">
-							<div className="clock__contents__count-count has-label">{ date }</div>
+							<div className="clock__contents__count-count has-label">
+							</div>
 						</div>
 					) : (
 						<div className="clock__contents__count wp-block-columns">
 							<div className="clock__contents__count-left-column wp-block-column">
 								<div className="clock__contents__count-count">
+									{ wrappedPlaceholder( displayPadding ) }
 								</div>
 							</div>
 							<span className="clock__contents__count-divider">:</span>
@@ -271,5 +276,21 @@ export const settings = {
 			</div>
 		);
 	},
+};
+
+/**
+ * Create a placeholder value that is wrapped in span.
+ *
+ * @param {number} padding Number of characters to pad.
+ */
+const wrappedPlaceholder = padding => {
+	const days = '0'.padStart( padding, '0' );
+
+	let daysArray = days.split( '' );
+	daysArray = daysArray.map( placeholder => {
+		return ( <span>{ placeholder }</span> );
+	} );
+
+	return daysArray;
 };
 
