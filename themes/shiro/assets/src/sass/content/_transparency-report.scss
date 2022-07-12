@@ -278,6 +278,37 @@
 	}
 }
 
+.wp-block-table {
+    &.is-style-reports-archive {
+		font-size: rem(18);
+
+		tr {
+			border-bottom: 1px solid black;
+		}
+
+		td {
+			padding: 1em;
+
+			&:first-child {
+				padding-left: 0;
+			}
+			&:last-child {
+				padding-right: 0;
+			}
+
+			a {
+				font-size: inherit;
+				font-weight: 500;
+				color: #3a25ff;
+
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+				}
+			}
+		}
+}
+
 // Landing page-specific header styles.
 .page-template-page-report-landing {
 	.header-default {
