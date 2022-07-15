@@ -243,7 +243,8 @@
 		}
 	}
 
-	.reports-archive {
+	.reports-archive,
+	.is-style-reports-archive {
 		font-size: rem(18);
 
 		tr {
@@ -274,6 +275,39 @@
 
 		@media (min-width: $medium-bp) {
 			font-size: rem(20);
+		}
+	}
+}
+
+.wp-block-table {
+	&.is-style-reports-archive {
+		font-size: rem(18);
+
+		tr {
+			border-bottom: 1px solid black;
+		}
+
+		td {
+			border: none;
+			padding: 1em;
+
+			&:first-child {
+				padding-left: 0;
+			}
+			&:last-child {
+				padding-right: 0;
+			}
+
+			a {
+				font-size: inherit;
+				font-weight: 500;
+				color: #3a25ff;
+
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
