@@ -57,6 +57,7 @@ const LinkedTOCItemWithFocusOutside = withFocusOutside(
 						className="linked-toc__link toc__link"
 						placeholder={ __( 'Link heading', 'shiro-admin' ) }
 						tagName="span"
+						unstableOnFocus={ () => this.setState( { showButtons: true } ) }
 						value={ heading }
 						onChange={ setHeading }
 						onFocus={ () => this.setState( { showButtons: true } ) }
@@ -144,9 +145,13 @@ export const
 						heading={ heading }
 						setHeading={ heading => setAttributes( { heading } ) }
 						setUrl={ ( url, link ) => {
-							setAttributes( { heading: link.title } );
 							setAttributes( { url } );
-							setAttributes( { postId: link.id } );
+							if ( link && link.id ) {
+								setAttributes( { postId: link.id } );
+							}
+							if ( link && link.title ) {
+								setAttributes( { heading: link.title } );
+							}
 						} }
 						url={ url }
 					/>
