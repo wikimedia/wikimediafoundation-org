@@ -243,7 +243,8 @@
 		}
 	}
 
-	.reports-archive {
+	.reports-archive,
+	.is-style-reports-archive {
 		font-size: rem(18);
 
 		tr {
@@ -279,7 +280,7 @@
 }
 
 .wp-block-table {
-    &.is-style-reports-archive {
+	&.is-style-reports-archive {
 		font-size: rem(18);
 
 		tr {
@@ -287,6 +288,7 @@
 		}
 
 		td {
+			border: none;
 			padding: 1em;
 
 			&:first-child {

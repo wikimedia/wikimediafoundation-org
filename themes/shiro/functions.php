@@ -492,14 +492,3 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
-
-/**
- * Add styles to Table block.
- */
-register_block_style(
-    'core/table',
-    array(
-        'name'  => 'reports-archive',
-        'label' => 'Reports Archive',
-    )
-);
