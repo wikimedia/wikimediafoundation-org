@@ -2,7 +2,7 @@
 name: Feature/Story/Task request
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: Refine
 assignees: rebekahmarkowitz
 
 ---
