@@ -3,7 +3,7 @@
         'name' => 'shiro/wikimediafoundation',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => 'ec3be159c2d156065f44c25e2677f6be0b79c8b9',
+        'reference' => '9558a168f87abefcf084590319e238bff088b606',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -115,7 +115,7 @@
         'shiro/wikimediafoundation' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => 'ec3be159c2d156065f44c25e2677f6be0b79c8b9',
+            'reference' => '9558a168f87abefcf084590319e238bff088b606',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
