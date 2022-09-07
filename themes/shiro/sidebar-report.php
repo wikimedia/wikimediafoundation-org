@@ -55,6 +55,22 @@ if ( empty( $sidebar_items ) ) {
 				continue;
 			}
 			$link_classes = $report_section['active'] ? 'toc__link toc__link--active-page' : 'toc__link';
+
+			// If report section is active then check for heading blocks at the page, they will be nested toc items.
+			if ( $report_section['active'] ) {
+			
+				$blocks = parse_blocks( $post->post_content );
+				
+				foreach ( $blocks as $block ) {
+					if ( 'core/heading' === $block['blockName'] ) {
+						echo apply_filters( 'the_content', render_block( $block ) );
+						 
+						break;
+					}
+					 
+				}			
+			}
+
 			?>
 			<li class="toc__item">
 				<a class="<?php echo esc_attr( $link_classes ); ?>" href="<?php echo esc_url( $report_section['url'] ); ?>">
@@ -63,6 +79,7 @@ if ( empty( $sidebar_items ) ) {
 				<?php
 				// Nest page anchor sidebar within nav sidebar.
 				if ( $current_page_id === $report_section['id'] ) {
+					//TODO: remove get_sidebar function and use headings
 					get_sidebar( 'list', [ 'nested'=> true ] );
 				}
 				?>
