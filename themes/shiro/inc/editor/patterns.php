@@ -97,10 +97,4 @@ function register_pattern() {
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
 		'content' => TemplateReportSection\pattern(),
 	] );
-
-	register_block_pattern( TemplateReport\NAME, [
-		'title' => __( 'Report page template', 'shiro-admin' ),
-		'categories' => [ TEMPLATE_CATEGORY_NAME ],
-		'content' => TemplateReport\pattern(),
-	] );
 }
