@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -14,14 +16,18 @@ namespace Inpsyde\MultilingualPress\Api;
 
 use Inpsyde\MultilingualPress\Core\Admin\Settings\Cache\CacheSettingsOptions;
 use Inpsyde\MultilingualPress\Core\Admin\Settings\Cache\CacheSettingsRepository;
+use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
 use Inpsyde\MultilingualPress\Database\Table\RelationshipsTable;
 use Inpsyde\MultilingualPress\Framework\Api\ContentRelations;
+use Inpsyde\MultilingualPress\Framework\Api\SiteRelations;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Facade;
 use Inpsyde\MultilingualPress\Framework\NetworkState;
 use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Core\Entity\ActiveTaxonomies;
 use Inpsyde\MultilingualPress\Database\Table\ContentRelationsTable;
+
+use function Inpsyde\MultilingualPress\siteExists;
 use function is_array;
 
 /**
@@ -65,6 +71,16 @@ final class WpdbContentRelations implements ContentRelations
     private $cacheSettingsRepository;
 
     /**
+     * @var SiteSettingsRepository
+     */
+    private $siteSettingsRepository;
+
+    /**
+     * @var SiteRelations
+     */
+    private $siteRelations;
+
+    /**
      * @param \wpdb $wpdb
      * @param ContentRelationsTable $contentRelationshipTable
      * @param RelationshipsTable $relationshipsTable
@@ -72,6 +88,8 @@ final class WpdbContentRelations implements ContentRelations
      * @param ActiveTaxonomies $activeTaxonomies
      * @param Facade $cache
      * @param CacheSettingsRepository $cacheSettingsRepository
+     * @param SiteSettingsRepository $siteSettingsRepository
+     * @param SiteRelations $siteRelations
      */
     public function __construct(
         \wpdb $wpdb,
@@ -80,7 +98,9 @@ final class WpdbContentRelations implements ContentRelations
         ActivePostTypes $activePostTypes,
         ActiveTaxonomies $activeTaxonomies,
         Facade $cache,
-        CacheSettingsRepository $cacheSettingsRepository
+        CacheSettingsRepository $cacheSettingsRepository,
+        SiteSettingsRepository $siteSettingsRepository,
+        SiteRelations $siteRelations
     ) {
 
         $this->wpdb = $wpdb;
@@ -90,6 +110,8 @@ final class WpdbContentRelations implements ContentRelations
         $this->activeTaxonomies = $activeTaxonomies;
         $this->cache = $cache;
         $this->cacheSettingsRepository = $cacheSettingsRepository;
+        $this->siteSettingsRepository = $siteSettingsRepository;
+        $this->siteRelations = $siteRelations;
     }
 
     /**
@@ -139,6 +161,7 @@ final class WpdbContentRelations implements ContentRelations
                 implode(',', $this->existingContentIds($type))
             );
 
+            //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
             $query = $this->wpdb->prepare(
                 $queryTemplate,
                 [
@@ -154,6 +177,7 @@ final class WpdbContentRelations implements ContentRelations
                     $type
                 );
             }
+            // phpcs:enable
         }
 
         $networkState->restore();
@@ -177,7 +201,21 @@ final class WpdbContentRelations implements ContentRelations
             $this->wpdb->blogs
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $siteIds = $this->wpdb->get_col($query);
+        // phpcs:enable
+        $settings = $this->siteSettingsRepository->allSettings();
+        foreach ($settings as $siteId => $setting) {
+            if (siteExists($siteId)) {
+                continue;
+            }
+
+            $this->siteRelations->deleteRelation($siteId);
+            $siteIds[] = $siteId;
+            unset($settings[$siteId]);
+            $this->siteSettingsRepository->updateSettings($settings);
+        }
+
         $errors = 0;
         foreach ($siteIds as $siteId) {
             if (!$this->deleteAllRelationsForSite((int)$siteId)) {
@@ -246,6 +284,7 @@ final class WpdbContentRelations implements ContentRelations
             ContentRelationsTable::COLUMN_SITE_ID
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $query = $this->wpdb->prepare(
             $query,
             $targetSiteId,
@@ -253,6 +292,7 @@ final class WpdbContentRelations implements ContentRelations
         );
 
         return (int)$this->wpdb->query($query);
+        // phpcs:enable
     }
 
     /**
@@ -308,10 +348,12 @@ final class WpdbContentRelations implements ContentRelations
         );
 
         /** @var array[] $rows */
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         $rows = $this->wpdb->get_results(
             $this->wpdb->prepare($query, $relationshipId),
             ARRAY_A
         );
+        // phpcs:enable
 
         $contentIds = [];
         foreach ($rows as $row) {
@@ -398,7 +440,9 @@ final class WpdbContentRelations implements ContentRelations
             ContentRelationsTable::COLUMN_SITE_ID
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return (bool)$this->wpdb->query($this->wpdb->prepare($query, $siteId));
+        // phpcs:enable
     }
 
     /**
@@ -590,7 +634,9 @@ final class WpdbContentRelations implements ContentRelations
             return [];
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return array_map('intval', $this->wpdb->get_col($queries[$type]));
+        // phpcs:enable
     }
 
     /**
@@ -635,7 +681,9 @@ final class WpdbContentRelations implements ContentRelations
             $query .= " AND post_type IN ('{$typesString}')";
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return array_map('intval', $this->wpdb->get_col($query));
+        // phpcs:enable
     }
 
     /**
@@ -709,7 +757,9 @@ WHERE t.$colContentSiteId = %d
   AND r.$colRelType = %s
 SQL;
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return (int)$this->wpdb->get_var($this->wpdb->prepare($sql, $siteId, $contentId, $type));
+        // phpcs:enable
     }
 
     /**
@@ -732,12 +782,15 @@ SQL;
         $colRelId = ContentRelationsTable::COLUMN_RELATIONSHIP_ID;
         $colSiteId = ContentRelationsTable::COLUMN_SITE_ID;
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $relIds = $this->wpdb->get_col(
             $this->wpdb->prepare(
                 "SELECT {$colRelId} FROM {$this->contentRelationshipTable->name()} WHERE {$colSiteId} = %d",
                 $siteId
             )
         );
+        // phpcs:enable
 
         return wp_parse_id_list($relIds);
     }
@@ -763,7 +816,9 @@ SQL;
         $colType = RelationshipsTable::COLUMN_TYPE;
         $query = "SELECT {$colId} FROM {$this->relationshipsTable->name()} WHERE {$colType} = %s";
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return wp_parse_id_list($this->wpdb->get_col($this->wpdb->prepare($query, $type)));
+        // phpcs:enable
     }
 
     /**
@@ -786,12 +841,15 @@ SQL;
         $colType = RelationshipsTable::COLUMN_TYPE;
         $colId = RelationshipsTable::COLUMN_ID;
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+        //phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         return (string)$this->wpdb->get_var(
             $this->wpdb->prepare(
                 "SELECT {$colType} FROM {$this->relationshipsTable->name()} WHERE {$colId} = %d",
                 $relationshipId
             )
         );
+        // phpcs:enable
     }
 
     /**
@@ -820,6 +878,7 @@ SQL;
             $query .= " AND taxonomy IN ('{$taxonomiesString}')";
         }
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return array_map('intval', $this->wpdb->get_col($query));
     }
 
@@ -855,6 +914,7 @@ SQL;
             RelationshipsTable::COLUMN_TYPE
         );
 
+        //phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
         return (bool)$this->wpdb->query($this->wpdb->prepare($query, $siteId, $type));
     }
 

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -18,13 +20,14 @@ use Inpsyde\MultilingualPress\Core\Admin\SiteSettings;
 use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsUpdater;
 use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
 use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
-use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Module\Module;
 use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
+use Inpsyde\MultilingualPress\Framework\Module\ModuleServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSetting;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionView;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingUpdater;
+
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
 /**
@@ -42,7 +45,7 @@ final class ServiceProvider implements ModuleServiceProvider
     {
         $container->addService(
             AdminBarCustomizer::class,
-            function (Container $container): AdminBarCustomizer {
+            static function (Container $container): AdminBarCustomizer {
                 return new AdminBarCustomizer($container[SettingsRepository::class]);
             }
         );
@@ -93,14 +96,14 @@ final class ServiceProvider implements ModuleServiceProvider
     {
         $container->share(
             SettingsRepository::class,
-            function (): SettingsRepository {
+            static function (): SettingsRepository {
                 return new SettingsRepository();
             }
         );
 
         $container->addService(
             AltLanguageTitleSiteSetting::class,
-            function (Container $container): AltLanguageTitleSiteSetting {
+            static function (Container $container): AltLanguageTitleSiteSetting {
                 return new AltLanguageTitleSiteSetting(
                     SettingsRepository::OPTION_SITE,
                     $container[NonceFactory::class]->create([self::SETTING_NONCE_ACTION . 'site']),

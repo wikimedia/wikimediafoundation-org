@@ -1,0 +1,56 @@
+.hero-report {
+
+	@include global-margin-bottom;
+
+	&__header {
+
+		@include alignfull-padded;
+		@include block-style-background-color;
+		@include block-style-text-color;
+
+		display: flex;
+		padding: rem(28) rem(20);
+	}
+
+	&__image-container {
+		display: none;
+		position: relative;
+	}
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+
+		&__header {
+			flex-flow: row nowrap;
+		}
+
+		&__text-column,
+		&__image-container {
+			width: 50%;
+		}
+
+		&__image,
+		&__image-container {
+			align-self: flex-start;
+			display: block;
+		}
+	}
+
+	&__kicker {
+
+		@include has-font-size("large");
+		display: block;
+		font-family: $font-family-serif;
+		font-weight: 400;
+		line-height: 1.5;
+		margin-bottom: rem(5);
+	}
+
+	&__title {
+
+		@include has-font-size("jumbo");
+		font-family: $font-family-sans;
+		line-height: 1.25;
+		width: 100%;
+	}
+
+}

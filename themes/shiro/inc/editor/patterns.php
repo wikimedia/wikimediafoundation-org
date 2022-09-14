@@ -85,4 +85,16 @@ function register_pattern() {
 		'categories' => [ TEMPLATE_CATEGORY_NAME ],
 		'content' => TemplateList\pattern(),
 	] );
+
+	register_block_pattern( TemplateReportLanding\NAME, [
+		'title' => __( 'Report landing page template', 'shiro-admin' ),
+		'categories' => [ TEMPLATE_CATEGORY_NAME ],
+		'content' => TemplateReportLanding\pattern(),
+	] );
+
+	register_block_pattern( TemplateReportSection\NAME, [
+		'title' => __( 'Report section page template', 'shiro-admin' ),
+		'categories' => [ TEMPLATE_CATEGORY_NAME ],
+		'content' => TemplateReportSection\pattern(),
+	] );
 }

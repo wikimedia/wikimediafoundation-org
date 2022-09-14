@@ -11,6 +11,7 @@ const { Spinner } = wp.components;
 
 const PostSelectBrowse = props => {
 	const {
+		filters,
 		posts,
 		isLoading,
 		selection,
@@ -22,13 +23,16 @@ const PostSelectBrowse = props => {
 		onNextPostsPage,
 		onApplyFilters,
 		postTypes,
+		showDateFilters,
 	} = props;
 
 	return (
 		<div className="menu-container">
 			<div className="menu">
 				<PostSelectBrowseFilters
+					filters={ filters }
 					postTypes={ postTypes }
+					showDateFilters={ showDateFilters }
 					termFilters={ termFilters }
 					onApplyFilters={ filters => onApplyFilters( filters ) }
 				/>
@@ -76,6 +80,7 @@ const PostSelectBrowse = props => {
 };
 
 PostSelectBrowse.propTypes = {
+	filters: PropTypes.objectOf( PropTypes.arrayOf( PropTypes.number ) ),
 	postTypes: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	selection: PropTypes.array,
 	onToggleSelected: PropTypes.func.isRequired,

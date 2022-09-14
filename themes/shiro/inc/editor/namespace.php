@@ -15,6 +15,7 @@ function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
 	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
+	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 	add_filter( 'block_categories', __NAMESPACE__ . '\\add_block_categories' );
 }
@@ -53,6 +54,8 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'shiro/card',
 		'shiro/contact',
 		'shiro/double-heading',
+		'shiro/linked-toc-columns',
+		'shiro/linked-toc-item',
 		'shiro/share-article',
 		'shiro/spotlight',
 		'shiro/stairs',
@@ -102,6 +105,7 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 	if ( $post->post_type === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
+		$blocks[] = 'shiro/report-landing-hero';
 	}
 
 	return $blocks;
@@ -158,6 +162,21 @@ function add_theme_supports() {
 
 	// Allow for "wide" and "full" alignment options on blocks that support them.
 	add_theme_support( 'align-wide' );
+}
+
+/**
+ * Register block styles for core blocks, to correspond with CSS classes loaded
+ * by the theme which apply different rules to those blocks' frontend display.
+ */
+function register_core_block_styles() : void {
+	// Add styles to Table block.
+	register_block_style(
+		'core/table',
+		array(
+			'name'  => 'reports-archive',
+			'label' => 'Reports Archive',
+		)
+	);
 }
 
 /**

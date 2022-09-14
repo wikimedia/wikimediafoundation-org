@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -21,6 +23,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Framework\Http;
 
 use Inpsyde\MultilingualPress\Framework\Url\Url;
+use RangeException;
 
 final class PhpServerRequest implements ServerRequest
 {
@@ -48,6 +51,15 @@ final class PhpServerRequest implements ServerRequest
      * @var string|null
      */
     private static $body;
+
+    const INPUT_SOURCES = [
+        INPUT_POST => Request::INPUT_POST,
+        INPUT_GET => Request::INPUT_GET,
+        INPUT_REQUEST => Request::INPUT_REQUEST,
+        INPUT_COOKIE => Request::INPUT_COOKIE,
+        INPUT_SERVER => Request::INPUT_SERVER,
+        INPUT_ENV => Request::INPUT_ENV,
+    ];
 
     /**
      * Returns the URL for current request.
@@ -78,12 +90,12 @@ final class PhpServerRequest implements ServerRequest
      */
     public function bodyValue(
         string $name,
-        int $method = INPUT_REQUEST,
+        int $method = Request::INPUT_REQUEST,
         int $filter = FILTER_UNSAFE_RAW,
         int $options = FILTER_FLAG_NONE
     ) {
         // phpcs:enable
-
+        $method = $this->normalizeInputSource($method);
         $this->ensureValues();
 
         if (!isset(self::$values[$method][$name])) {
@@ -157,7 +169,8 @@ final class PhpServerRequest implements ServerRequest
 
         // phpcs:disable WordPress.VIP.SuperGlobalInputUsage
         self::$server = $this->maybeUnslash(array_change_key_case($_SERVER, CASE_UPPER));
-        if (array_key_exists('HTTP_AUTHORIZATION', self::$server)
+        if (
+            array_key_exists('HTTP_AUTHORIZATION', self::$server)
             || !function_exists('apache_request_headers')
         ) {
             return;
@@ -225,23 +238,23 @@ final class PhpServerRequest implements ServerRequest
             return;
         }
 
-        $queryData = filter_input_array(INPUT_GET) ?: [];
-        self::$values[INPUT_GET] = $queryData;
+        $queryData = filter_input_array(Request::INPUT_GET) ?: [];
+        self::$values[Request::INPUT_GET] = $queryData;
         $method = $this->method();
 
         // For GET requests URL query data represent all the request values.
         if ('GET' === $method) {
-            self::$values[INPUT_REQUEST] = $queryData;
+            self::$values[Request::INPUT_REQUEST] = $queryData;
 
             return;
         }
 
         // For POST requests values are represented by URL query data merged with any kind of form data.
         if ($method === 'POST') {
-            self::$values[INPUT_POST] = filter_input_array(INPUT_POST) ?: [];
-            self::$values[INPUT_REQUEST] = array_merge(
-                self::$values[INPUT_GET],
-                self::$values[INPUT_POST]
+            self::$values[Request::INPUT_POST] = filter_input_array(Request::INPUT_POST) ?: [];
+            self::$values[Request::INPUT_REQUEST] = array_merge(
+                self::$values[Request::INPUT_GET],
+                self::$values[Request::INPUT_POST]
             );
 
             return;
@@ -252,7 +265,7 @@ final class PhpServerRequest implements ServerRequest
         // When content type is not URL-encoded, give up parsing body.
         // Raw body can still be accessed and decoded.
         if ('application/x-www-form-urlencoded' !== $contentType) {
-            self::$values[INPUT_REQUEST] = $queryData;
+            self::$values[Request::INPUT_REQUEST] = $queryData;
 
             return;
         }
@@ -261,7 +274,7 @@ final class PhpServerRequest implements ServerRequest
         // we can safely decode raw body stream.
         @parse_str($this->body(), $values);
 
-        self::$values[INPUT_REQUEST] = is_array($values)
+        self::$values[Request::INPUT_REQUEST] = is_array($values)
             ? array_merge($queryData, $values)
             : $queryData;
     }
@@ -322,5 +335,28 @@ final class PhpServerRequest implements ServerRequest
         }
 
         return $values;
+    }
+
+    /**
+     * Normalizes an input source to a known value.
+     *
+     * Will attempt to convert the source to a standardized known value,
+     * if it is registered in the map.
+     *
+     * @param int|string $source The input source to normalize.
+     * @return int The normalized input source.
+     * @throws RangeException If cannot normalize.
+     */
+    protected function normalizeInputSource($source): int
+    {
+        if (isset(static::INPUT_SOURCES[$source])) {
+            $source = static::INPUT_SOURCES[$source];
+        }
+
+        if (!in_array($source, static::INPUT_SOURCES)) {
+            throw new RangeException(sprintf('Unknown input source "%1$s"', $source));
+        }
+
+        return $source;
     }
 }

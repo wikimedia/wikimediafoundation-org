@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -57,12 +59,17 @@ class TaxonomySlugs
 
         /** @var \WP_Taxonomy $taxonomy */
         foreach ($taxonomies as $slug => $taxonomy) {
-            if ($taxonomy
+            if (
+                $taxonomy
                 && $taxonomy->show_ui
                 && current_user_can($taxonomy->cap->assign_terms, $slug)
             ) {
                 ?>
-                <input type="hidden" name="<?= esc_attr($name) ?>[]" value="<?= esc_attr($slug) ?>">
+                <input
+                    type="hidden"
+                    data-slug=<?= esc_attr($slug) ?>
+                    name="<?= esc_attr($name) ?>[]"
+                    value="">
                 <?php
             }
         }

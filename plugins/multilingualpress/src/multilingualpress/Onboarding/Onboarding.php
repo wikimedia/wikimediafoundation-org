@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -18,6 +20,8 @@ use Inpsyde\MultilingualPress\Framework\Asset\AssetException;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable;
 use Inpsyde\MultilingualPress\Framework\Http\Request;
+
+use function Inpsyde\MultilingualPress\assignedLanguages;
 use function Inpsyde\MultilingualPress\isWpDebugMode;
 
 /**
@@ -26,6 +30,7 @@ use function Inpsyde\MultilingualPress\isWpDebugMode;
 class Onboarding
 {
     const OPTION_ONBOARDING_DISMISSED = 'onboarding_dismissed';
+    const OPTION_LANGUAGE_SETTINGS_CHANGED_DISMISSED = 'language_settings_changed_dismissed';
 
     /**
      * @var AssetManager
@@ -128,7 +133,7 @@ class Onboarding
     /**
      * @return void
      */
-    public static function handleAjaxDismissOnboardingMessage()
+    public function handleAjaxDismissOnboardingMessage()
     {
         if (!wp_doing_ajax()) {
             return;
@@ -138,8 +143,20 @@ class Onboarding
             wp_send_json_error('Invalid action.');
         }
 
+        $type = $this->request->bodyValue(
+            'type',
+            INPUT_POST,
+            FILTER_SANITIZE_STRING
+        );
+
+        if (!empty($type) && update_site_option(self::OPTION_LANGUAGE_SETTINGS_CHANGED_DISMISSED, true)) {
+            wp_send_json_success();
+            die;
+        }
+
         if (update_site_option(self::OPTION_ONBOARDING_DISMISSED, true)) {
             wp_send_json_success();
+            die;
         }
 
         wp_send_json_error('Not updated.');
@@ -169,5 +186,79 @@ class Onboarding
     {
         $this->assetManager->enqueueScript('onboarding');
         $this->assetManager->enqueueStyle('multilingualpress-admin');
+    }
+
+    /**
+     * Handle onboarding of new language settings.
+     *
+     * Since we are not overriding the default WordPress language setting we need to show a message about updated
+     * features. Besides that when the plugin is updated we need to check existing value for default WordPress language
+     * setting and if it doesn't match the MLP language setting value then we need to override it with MLP language
+     * setting value. This has to be done only once so that the users will not loose their frontend language.
+     * This Functionality will be removed after next release.
+     *
+     * @throws NonexistentTable
+     * phpcs:disable Inpsyde.CodeQuality.NestingLevel.High
+     * phpcs:disable Inpsyde.CodeQuality.LineLength.TooLong
+     */
+    public function handleLanguageSettings()
+    {
+        if (!$this->mayDisplayMessage()) {
+            return;
+        }
+
+        $assignedLanguages = assignedLanguages();
+        $languagesForNotices = [];
+        $mlpCheckLanguages = (bool)get_site_option('mlp_check_languages');
+        $noticeDismissed = (bool)get_site_option(self::OPTION_LANGUAGE_SETTINGS_CHANGED_DISMISSED);
+
+        if (!$mlpCheckLanguages) {
+            foreach ($assignedLanguages as $siteId => $language) {
+                $wpLang = get_blog_option($siteId, 'WPLANG');
+                $mlpLanguageLocale = $language->locale();
+
+                if ($wpLang === $mlpLanguageLocale || !in_array($mlpLanguageLocale, get_available_languages(), true)) {
+                    continue;
+                }
+
+                $languagesForNotices[$siteId]['mlpLanguage'] = $mlpLanguageLocale;
+                $languagesForNotices[$siteId]['wpLanguage'] = $wpLang ?? 'en_US';
+                update_blog_option($siteId, 'WPLANG', $mlpLanguageLocale);
+            }
+            update_site_option('mlp_check_languages', true);
+        }
+
+        if ($noticeDismissed) {
+            return;
+        }
+
+        $generalMessage = __('From now on your site frontend language will be decided by default WordPress language
+        setting. We have automatically checked if WordPress default language setting matches MultilingualPress language 
+        for your existing sites but please recheck the language settings of your sites', 'multilingualpress');
+
+        if (!empty($languagesForNotices)) {
+            $langs = '';
+            $langMessage = __('</br> The following WordPress Language settings have been changed: ', 'multilingualpress');
+            foreach ($languagesForNotices as $siteId => $language) {
+                $langs .= "{$language['wpLanguage']} => {$language['mlpLanguage']}, Sited ID: {$siteId}";
+            }
+            $langMessage .= $langs;
+        }
+
+        $title = __('We have changed the functionality of the MultilingualPress language setting', 'multilingualpress');
+
+        try {
+            $this->enqueueAssets();
+        } catch (AssetException $exc) {
+            if (isWpDebugMode()) {
+                throw $exc;
+            }
+        }
+
+        AdminNotice::info($generalMessage . ($langMessage ?? ''))
+            ->withTitle($title)
+            ->makeDismissible()
+            ->inNetworkScreens()
+            ->render();
     }
 }

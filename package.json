@@ -1,6 +1,6 @@
 {
   "name": "wikimediafoundation",
-  "version": "1.0.0",
+  "version": "3.1.5",
   "description": "This repository hosts the files for the Wikimedia Foundation website (wikimediafoundation.org). More information about the website is available on Meta-Wiki: https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website",
   "scripts": {
     "test": "npx backstop test --config=backstop.config.js",

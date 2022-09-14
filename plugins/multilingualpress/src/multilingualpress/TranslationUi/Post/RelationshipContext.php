@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -12,8 +14,9 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\TranslationUi\Post;
 
-use function Inpsyde\MultilingualPress\combineAtts;
 use Inpsyde\MultilingualPress\TranslationUi\MetaboxFieldsHelper;
+
+use function Inpsyde\MultilingualPress\combineAtts;
 
 /**
  * Relationship context data object.
@@ -58,13 +61,15 @@ class RelationshipContext
         $instance = new static();
         $instance->data = combineAtts($context->data, $data);
 
-        if (!array_key_exists(self::SOURCE_POST_ID, $data)
+        if (
+            !array_key_exists(self::SOURCE_POST_ID, $data)
             && array_key_exists('source', $context->posts)
         ) {
             $instance->posts['source'] = $context->posts['source'];
         }
 
-        if (!array_key_exists(self::REMOTE_POST_ID, $data)
+        if (
+            !array_key_exists(self::REMOTE_POST_ID, $data)
             && array_key_exists('remote', $context->posts)
         ) {
             $instance->posts['remote'] = $context->posts['remote'];

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -52,7 +54,7 @@ final class SettingView
         >
             <?php array_walk(
                 $this->fields,
-                function (MetaboxField $field) use ($helper, $relationshipContext) {
+                static function (MetaboxField $field) use ($helper, $relationshipContext) {
                     $field->render($helper, $relationshipContext);
                 }
             ); ?>

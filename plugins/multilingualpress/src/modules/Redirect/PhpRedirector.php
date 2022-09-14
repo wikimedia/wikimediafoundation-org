@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -96,8 +98,10 @@ class PhpRedirector implements Redirector
 
         $this->noRedirectStorage->addLanguage($target->language());
 
+        //phpcs:disable WordPressVIPMinimum.Security.ExitAfterRedirect.NoExit
         wp_redirect($target->url());
         callExit();
+        //phpcs:enable
     }
 
     /**
@@ -106,7 +110,7 @@ class PhpRedirector implements Redirector
      *
      * @return bool
      */
-    protected function requestLanguageIsSameAsCurrentSiteLanguage():bool
+    protected function requestLanguageIsSameAsCurrentSiteLanguage(): bool
     {
         $requestAcceptLanguageHeader = $this->request->header('Accept-Language');
         $acceptLanguage = $this->acceptLanguageParser->parseHeader($requestAcceptLanguageHeader);

@@ -1,4 +1,6 @@
-<?php # -*- coding: utf-8 -*-
+<?php
+
+# -*- coding: utf-8 -*-
 /*
  * This file is part of the MultilingualPress package.
  *
@@ -33,7 +35,7 @@ class SalePrice
         $key = MetaboxFields::FIELD_SALE_PRICE;
         $value = $this->value($relationshipContext);
 
-        // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <div class="options_group show_if_simple show_if_external">
             <p class="form-field <?= $key ?>_field">
@@ -51,6 +53,15 @@ class SalePrice
                     id="<?= esc_attr($helper->fieldId($key)) ?>"
                     value="<?= esc_attr($value) ?>"
                 />
+                <?= wp_kses(
+                    $this->salePriceTooltip(),
+                    [
+                        'span' => [
+                            'class' => true,
+                            'data-tip' => true,
+                        ],
+                    ]
+                ); ?>
             </p>
         </div>
         <?php
@@ -67,10 +78,35 @@ class SalePrice
     {
         $product = wc_get_product($relationshipContext->remotePostId());
         $value = '';
+
+        if (!$product) {
+            return $value;
+        }
+
         if (method_exists($product, 'get_sale_price')) {
             $value = $product->get_sale_price();
         }
 
-        return (string)wc_format_localized_price($value);
+        switch_to_blog($relationshipContext->sourceSiteId());
+        $decimals = wc_get_price_decimal_separator();
+        restore_current_blog();
+
+        return (string)preg_replace('/\D/', $decimals, $value);
+    }
+
+    /**
+     * Build Sale Price ToolTip
+     *
+     * @return string
+     */
+    private function salePriceTooltip(): string
+    {
+        $description = _x(
+            'The Decimal and Thousand separators will be automatically converted in regards of remote site options',
+            'Product data sale price translation meta box',
+            'multilingualpress'
+        );
+
+        return wc_help_tip($description);
     }
 }
