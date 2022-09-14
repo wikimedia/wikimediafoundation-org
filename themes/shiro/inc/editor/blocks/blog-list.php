@@ -61,7 +61,7 @@ function register_block() {
 /**
  * Callback for server-side rendering for the blog-list block.
  *
- * @param array $attributes
+ * @param array $attributes Parsed block attributes.
  *
  * @return string HTML markup.
  */

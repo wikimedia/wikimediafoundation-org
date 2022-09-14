@@ -86,7 +86,7 @@ function wmf_create_current_language_term(): ?WP_Term {
 /**
  * Add the default language term if there is not already a content-language set.
  *
- * Primarily this is used as a hook on wp_insert_post--you usually won't be
+ * Primarily this is used as a hook on wp_insert_post -- you usually won't be
  * calling it manually.
  *
  * @param int $post_ID
@@ -172,8 +172,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		$query_args = [
 			'post_types' => apply_filters( 'wmf_content_language_post_types', [ 'post' ] ),
 			/*
-			 * Getting *all* posts is a bad practice, but in this case it's
-			 * the simplest solution:
+			 * Getting *all* posts is a bad practice, but in this case it's the
+			 * simplest solution:
 			 * - The action the loop takes changes the thing the query looks
 			 *   for, so originally this just repeated the query.
 			 * - This works fine across multiple queries for dry-run=false, but
