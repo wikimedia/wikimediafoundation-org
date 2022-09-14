@@ -28,6 +28,9 @@ function wmf_register_content_language_taxonomy(): void {
  * @return string
  */
 function wmf_get_current_content_language_slug(): string {
+	if ( ! function_exists( '\\Inpsyde\\MultilingualPress\\siteLocale' ) ) {
+		return '';
+	}
 	try {
 		return \Inpsyde\MultilingualPress\siteLocale( get_current_blog_id() );
 	} catch (\Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable $exception) {
