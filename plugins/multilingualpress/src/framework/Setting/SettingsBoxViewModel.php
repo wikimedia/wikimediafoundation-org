@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Setting;
  */
 interface SettingsBoxViewModel
 {
-
     /**
      * Returns the description.
      *

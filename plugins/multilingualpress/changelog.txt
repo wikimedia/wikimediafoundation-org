@@ -1,10 +1,27 @@
-2021-12-06 - version 3.9.1
+version 4.0.0
+* Added: Hreflang options to show country and region or only region
+* Added: Possibility to change the quicklinks view type
+* Added: Possibility to set Site Language With WP CLI
+* Added: MultilingualPress: Language Menu block
+* Added: Improvement for site flags mapping
+* Added: Filter to modify the relation status message markup
+* Fixed: No flags displayed for Quicklinks, no custom flags for language switcher widget
+* Fixed: Flexible ACF content & data structure not copied by ACF module
+* Fixed: Bad language attribute and duplicate class for language switcher and language menu
+* Fixed: Changing Scheduled post date translation metabox bug
+* Fixed: Wrongly triggered confirmation modal
+* Fixed: Many request after updating post in a gutenberg context for several time
+* Fixed: Admin css is loaded on frontend
+* Fixed: Certain product data not updating through metabox
+* Fixed: Not copying custom stock status attributes
+
+version 3.9.1
 * Added: Allow removal of Service Providers
 * Fixed: Galician (Galego) flag in flags extension
 * Fixed: Product translation metabox fields are not updated
 * Fixed: Redirect bug if language fallback option is not used
 
-2021-11-18 - version 3.9.0
+version 3.9.0
 * Fixed: Site duplication drops tables of other sites
 * Added: Update the translation metabox settings only if they are changed
 * Fixed: Error on menu item language attributes
@@ -22,13 +39,13 @@
 * Fixed: Remove support for ACF acf-field-group post type as it is not translatable
 * Added: Translations for external modules
 
-2021-09-16 - version 3.8.1
+version 3.8.1
 * Fixed: Taxonomies for remote post are deleted when updating the source post
 * Fixed: Bug in cache update core
 * Fixed: Error on plugin activation
 * Fixed: Language switcher block is displayed incorrectly on frontend when running on WordPress version 5.8+
 
-2021-08-24 - version 3.8.0
+version 3.8.0
 * Fixed: Redirection bug when editing post/page with Elementor page builder
 * Added: An alert to ask before leaving if user has unsaved edits in translation meta box
 * Added: Status 'future' in post translation metabox status field
@@ -52,15 +69,15 @@
 * Fixed: The Warning from Updater.php
 * Added: PHP min requirement is now 7.2, WordPress min requirement is now 5.0
 
-2021-05-13 - version 3.7.2
+version 3.7.2
 * Fixed: Bug when switching tabs in post translation meta box
 * Fixed: Do not display admin messages in the frontend
 * Fixed: Include all the necessary module admin JS files
 
-2021-04-19 - version 3.7.1
+version 3.7.1
 * Fixed: Error within WooCommerce product translation metabox when plugin is running on PHP 8
 
-2021-04-15 - version 3.7.0
+version 3.7.0
 * Fixed: Tags and categories selectbox is empty when generated with AJAX
 * Added: Improved support for WooCommerce Downloadable and Virtual Products
 * Added: User biography translation support
@@ -95,7 +112,7 @@
 * Fixed: Description text on Language Manager screen
 * Fixed: Description text when plugin is first time activated.
 * Fixed: JS error when creating a new site, so the copy images progressbar will be visible
-* Fixed: Bug during creating a new site with Ã¢â‚¬Å“Based OnÃ¢â‚¬Å“ option on WP VIP platforms.
+* Fixed: Bug during creating a new site with “Based On“ option on WP VIP platforms.
 
 2020-09-28 - version 3.5.0
 * Add: Advanced Custom Fields plugin support.

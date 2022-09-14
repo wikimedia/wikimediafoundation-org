@@ -24,7 +24,6 @@ use Inpsyde\MultilingualPress\Framework\Service\Container;
  */
 final class ServiceProvider implements BootstrappableServiceProvider
 {
-
     /**
      * @inheritdoc
      */

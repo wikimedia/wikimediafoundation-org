@@ -22,5 +22,4 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class ContainerException extends \Exception
 {
-
 }

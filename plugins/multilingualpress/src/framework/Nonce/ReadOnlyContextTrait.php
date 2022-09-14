@@ -18,7 +18,6 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Exception\ContextValueManipulation
 
 trait ReadOnlyContextTrait
 {
-
     /**
      * @param $name
      * @param $value

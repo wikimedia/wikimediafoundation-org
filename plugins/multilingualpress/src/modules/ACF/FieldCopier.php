@@ -33,23 +33,12 @@ class FieldCopier
     /**
      * ACF field Types
      */
-    const FIELD_TYPE_GROUP = 'group';
-    const FIELD_TYPE_REPEATER = 'repeater';
-    const FIELD_TYPE_FLEXIBLE = 'flexible_content';
     const FIELD_TYPE_IMAGE = 'image';
     const FIELD_TYPE_GALLERY = 'gallery';
     const FIELD_TYPE_TAXONOMY = 'taxonomy';
-    const FIELD_TYPE_CLONE = 'clone';
 
     const FILE_FIELD_TYPES_FILTER = 'multilingualpress_acf_file_field_types_filter';
     const DEFAULT_FILE_FIELD_TYPES = ['file', 'video', 'image', 'application'];
-    const COMPLEX_FIELDS = [self::FIELD_TYPE_FLEXIBLE, self::FIELD_TYPE_GROUP, self::FIELD_TYPE_REPEATER];
-
-    /**
-     * ACF flexible field's layout key
-     * It is used to exclude the key from sync keys
-     */
-    const FLEXIBLE_FIELD_LAYOUT_KEY = 'acf_fc_layout';
 
     /**
      * @var Copier
@@ -100,143 +89,109 @@ class FieldCopier
         $remoteSiteId = $context->remoteSiteId();
         $translation = $multilingualpress["site-{$remoteSiteId}"] ?? '';
         $copyAcfFieldsIsChecked = $translation[MetaboxFields::FIELD_COPY_ACF_FIELDS] ?? 0;
+        // Let's keep this in order to be able to bail early if there are no ACF fields for the current post
         $fields = get_field_objects();
 
         if (empty($translation) || !$copyAcfFieldsIsChecked || !$fields) {
             return $keysToSync;
         }
 
-        return $this->findACFFieldKeys($fields, $keysToSync, $context);
+        $acfFieldObjects = $this->getACFFieldObjects(get_the_ID());
+        $acfMetaKeys = $this->extractACFFieldMetaKeys($acfFieldObjects);
+        $this->handleSpecialACFFieldTypes($acfFieldObjects, $context);
+        return array_merge($keysToSync, $acfMetaKeys);
     }
 
     /**
-     * This method will receive the ACF fields and
-     * will find the appropriate meta keys depending on field type
+     * Gets the ACF field objects.
      *
-     * @param array $fields The list of advanced custom fields
-     * @psalm-param array<Field> $fields The list of advanced custom fields
-     * @param array $keys The list of meta keys
-     * where should be added the ACF field keys to be synced
-     * @param RelationshipContext $context
-     * @return array The list of meta keys to be synced
+     * Gets the ACF field object based on post meta key
      *
-     * phpcs:disable Inpsyde.CodeQuality.NestingLevel.High
-     * phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
-     * @throws NonexistentTable
+     * @param int $postId The id for the post for which to get ACF field objects
+     * @return array The list of advanced custom fields
+     * @psalm-return array<Field> The list of advanced custom fields
      */
-    protected function findACFFieldKeys(array $fields, array $keys, RelationshipContext $context): array
+    private function getACFFieldObjects(int $postId): array
+    {
+        $acfFieldObjects = [];
+        $allPostMetaForPost = get_post_meta($postId);
+
+        foreach ($allPostMetaForPost as $singlePostMetaKey => $singlePostMetaValue) {
+            $acfFieldObject = get_field_object($singlePostMetaKey);
+
+            // get_field_object returns false if the meta key is not an ACF field
+            if (empty($acfFieldObject)) {
+                continue;
+            }
+
+            $acfFieldObjects[] = $acfFieldObject;
+        }
+
+        return $acfFieldObjects;
+    }
+
+    /**
+     * Extract all meta keys from the list of ACF fields.
+     *
+     * We need a list of ACF post meta keys, including field key reference that each field has,
+     * cause this way the data for the target page will be complete immediately and the editor
+     * wont have to save the page in order for ACF content to show up in the frontend.
+     *
+     * @param array $acfFieldObjects The list of advanced custom fields
+     * @psalm-param array<Field> $acfFieldObjects The list of advanced custom fields
+     * @return array<string> The list of ACF post meta keys
+     */
+    protected function extractACFFieldMetaKeys(array $acfFieldObjects): array
+    {
+        $acfFieldMetaKeys = [];
+
+        foreach ($acfFieldObjects as $acfFieldObject) {
+            $acfFieldMetaKeys[] = $acfFieldObject['name'];
+            $acfFieldMetaKeys[] = "_{$acfFieldObject['name']}";
+        }
+
+        return $acfFieldMetaKeys;
+    }
+
+    /**
+     * Deals with ACF field types that need special handling such as files and taxonomies.
+     *
+     * @param array $acfFieldObjects The list of advanced custom fields
+     * @psalm-param array<Field> $acfFieldObjects The list of advanced custom fields
+     * @param RelationshipContext $context
+     * @throws NonexistentTable
+     * phpcs:disable Inpsyde.CodeQuality.NestingLevel.High
+     */
+    private function handleSpecialACFFieldTypes(array $acfFieldObjects, RelationshipContext $context)
     {
         // phpcs:enable
 
-        foreach ($fields as $fieldKey => $field) {
-            switch ($field['type']) {
-                case self::FIELD_TYPE_GROUP:
-                case self::FIELD_TYPE_REPEATER:
-                case self::FIELD_TYPE_FLEXIBLE:
-                    $layouts = $this->findComplexFieldLayouts($field);
-                    $parentKey = $this->findComplexFieldKey($field);
-                    $value = $field['value'] ?? '';
-                    $fieldName = $field['name'] ?? '';
+        foreach ($acfFieldObjects as $acfFieldObject) {
+            if (!isset($acfFieldObject['type']) || !isset($acfFieldObject['key'])) {
+                return;
+            }
 
-                    if (empty($layouts) || !$value) {
-                        break;
-                    }
-                    $layoutsStructure = $this->recursivelyFindLayoutStructure($layouts, $parentKey);
-                    $foundKeys = $this->recursivelyFindLayoutFieldKeys($value, $fieldName, $context, $layoutsStructure, $fieldName);
-
-                    foreach ($foundKeys as $value) {
-                        $keys[] = $value;
-                    }
-                    $keys[] = $fieldKey;
-                    break;
+            switch ($acfFieldObject['type']) {
                 case self::FIELD_TYPE_IMAGE:
-                case in_array($field['type'], $this->acfFileFieldTypes, true):
                 case self::FIELD_TYPE_GALLERY:
-                    $keys[] = $fieldKey;
-                    $this->handleFileTypeFieldsCopy((string)$field['type'], $field['value'], $context, $fieldKey);
+                case in_array($acfFieldObject['type'], $this->acfFileFieldTypes, true):
+                    $this->handleFileTypeFieldsCopy(
+                        $acfFieldObject['type'],
+                        (array)$acfFieldObject['value'],
+                        $context,
+                        $acfFieldObject['name']
+                    );
                     break;
                 case self::FIELD_TYPE_TAXONOMY:
-                    $keys[] = $fieldKey;
-                    $this->handleTaxTypeFieldsCopy((string)$field['type'], $field['value'], $context, $fieldKey);
+                    $this->handleTaxTypeFieldsCopy(
+                        $acfFieldObject['type'],
+                        (array)$acfFieldObject['value'],
+                        $context,
+                        $acfFieldObject['name']
+                    );
                     break;
-                default:
-                    $keys[] = $fieldKey;
             }
         }
-
-        return $keys;
-    }
-
-    /**
-     * Recursively loop over the layout fields and generate the necessary keys and the types
-     *
-     * @param array $layouts The list of fields for which to find the structure
-     * @psalm-param array<Field> $layouts The list of fields for which to find the structure
-     * @param string $parentKey The parent field key to generate the key
-     * @return array A map of the field key => field type
-     */
-    protected function recursivelyFindLayoutStructure(array $layouts, string $parentKey): array
-    {
-        $fieldsStructure = [];
-        foreach ($layouts as $layout) {
-            $parentKeyLayoutNamePart = $layout['name'] ? "{$parentKey}_{$layout['name']}" : $parentKey;
-            $layoutParentKey = $parentKey ? $parentKeyLayoutNamePart : $layout['name'];
-            $newKey = isset($layout['type']) ? $layoutParentKey : $parentKey;
-
-            if (isset($layout['type'])) {
-                $fieldsStructure[$newKey] = $layout['type'];
-            }
-
-            $subFields = $layout['sub_fields'] ?? ($layout['layouts'] ?? []);
-            if (!empty($subFields)) {
-                $fieldsStructure = array_merge($fieldsStructure, $this->recursivelyFindLayoutStructure($subFields, $newKey));
-            }
-        }
-
-        return $fieldsStructure;
-    }
-
-    /**
-     * This Method will recursively loop over the layout fields and will generate the necessary keys
-     *
-     * @param array $fields The list of fields
-     * @psalm-param array<Field> $fields The list of fields
-     * @param string $parentKey The key of the parent field to bind with the current key
-     * @param RelationshipContext $context
-     * @param array<string> $layoutsStructure A map of field structure key => field type
-     * @param string $parentStructureKey The Parent field structure key
-     * @return array<string> The list of the generated keys
-     * @throws NonexistentTable
-     */
-    protected function recursivelyFindLayoutFieldKeys(
-        array $fields,
-        string $parentKey,
-        RelationshipContext $context,
-        array $layoutsStructure,
-        string $parentStructureKey
-    ): array {
-
-        $keys = [];
-        foreach ($fields as $key => $value) {
-            $newKey = "{$parentKey}_{$key}";
-            $structureKey = !is_int($key) ? "{$parentStructureKey}_{$key}" : $parentStructureKey;
-
-            $fieldType = array_key_exists($structureKey, $layoutsStructure) ? $layoutsStructure[$structureKey] : '';
-
-            $keys = array_merge($keys, $this->handleCloneTypeFieldsCopy($fieldType, (array)$value, $parentKey));
-            $this->handleFileTypeFieldsCopy($fieldType, (array)$value, $context, $newKey);
-            $this->handleTaxTypeFieldsCopy($fieldType, $value, $context, $newKey);
-
-            if (is_array($value) && (in_array($fieldType, self::COMPLEX_FIELDS, true) || $fieldType === 'tab')) {
-                $keys = array_merge($keys, $this->recursivelyFindLayoutFieldKeys($value, $newKey, $context, $layoutsStructure, $structureKey));
-            }
-
-            if ($key !== self::FLEXIBLE_FIELD_LAYOUT_KEY) {
-                $keys[] = $newKey;
-            }
-        }
-
-        return $keys;
     }
 
     /**
@@ -266,8 +221,9 @@ class FieldCopier
         $remoteSiteId = $context->remoteSiteId();
         $connectedTaxIds = [];
 
-        if ($fieldValue instanceof WP_Term) {
-            $translations = translationIds($fieldValue->term_id, 'term');
+        if ($fieldValue instanceof WP_Term || isset($fieldValue['term_id'])) {
+            $termId = $fieldValue->term_id ?? $fieldValue['term_id'];
+            $translations = translationIds($termId, 'term');
             if (empty($translations[$remoteSiteId])) {
                 return;
             }
@@ -278,6 +234,10 @@ class FieldCopier
 
         foreach ($fieldValue as $tax) {
             $taxId = $tax instanceof WP_Term ? $tax->term_id : $tax;
+            if (!$taxId) {
+                continue;
+            }
+
             $translations = translationIds($taxId, 'term');
             if (empty($translations[$remoteSiteId])) {
                 continue;
@@ -370,67 +330,5 @@ class FieldCopier
             10,
             2
         );
-    }
-
-    /**
-     * The method will find a list of field layouts for complex fields (Repeater, Group, Flexible)
-     *
-     * @param array $field The map of field properties
-     * @psalm-param Field $field The map of field properties
-     * @psalm-return array<Field> A list of fields
-     * @return array A list of fields
-     */
-    protected function findComplexFieldLayouts(array $field): array
-    {
-        if (empty($field['type'])) {
-            return [];
-        }
-
-        return $field['type'] === self::FIELD_TYPE_GROUP || $field['type'] === self::FIELD_TYPE_REPEATER
-            ? [$field]
-            : ($field['layouts'] ?? []);
-    }
-
-    /**
-     * The method will find the key for complex fields (Repeater, Group, Flexible)
-     *
-     * @param array $field The map of field properties
-     * @psalm-param Field $field The map of field properties
-     * @return string The field key
-     */
-    protected function findComplexFieldKey(array $field): string
-    {
-        if (empty($field['type'])) {
-            return '';
-        }
-
-        return $field['type'] === self::FIELD_TYPE_GROUP  || $field['type'] === self::FIELD_TYPE_REPEATER
-            ? ''
-            : ($field['name'] ?? '');
-    }
-
-    /**
-     * Get the correct field keys and values for Clone type fields
-     *
-     * @param string $fieldType The ACF field type, should be "clone"
-     * @param array $value The clone field value which contains a map of cloned field keys and values
-     * @param string $parentKey The parent key to correctly generate clone field keys
-     * @return array The list of cloned field keys
-     */
-    protected function handleCloneTypeFieldsCopy(string $fieldType, array $value, string $parentKey): array
-    {
-        if ($fieldType !== self::FIELD_TYPE_CLONE) {
-            return [];
-        }
-
-        $keys = [];
-        foreach ($value as $cloneFieldKey => $cloneFieldValue) {
-            if (empty($cloneFieldValue)) {
-                continue;
-            }
-            $keys[] = "{$parentKey}_{$cloneFieldKey}";
-        }
-
-        return $keys;
     }
 }

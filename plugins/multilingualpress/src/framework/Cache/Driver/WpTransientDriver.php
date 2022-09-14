@@ -25,7 +25,6 @@ use Inpsyde\MultilingualPress\Framework\Cache\Item\Value;
  */
 final class WpTransientDriver implements CacheDriver
 {
-
     /**
      * @var bool
      */

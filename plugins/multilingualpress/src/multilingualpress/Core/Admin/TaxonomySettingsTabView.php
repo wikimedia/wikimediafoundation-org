@@ -25,7 +25,6 @@ use function Inpsyde\MultilingualPress\printNonceField;
  */
 final class TaxonomySettingsTabView implements SettingsPageView
 {
-
     /**
      * @var Nonce
      */

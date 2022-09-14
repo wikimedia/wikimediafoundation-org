@@ -22,7 +22,6 @@ use Inpsyde\MultilingualPress\Framework\Asset\Style;
  */
 final class StandardWpStyle implements Style
 {
-
     /**
      * @var string[]
      */

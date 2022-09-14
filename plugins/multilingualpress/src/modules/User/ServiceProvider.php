@@ -100,7 +100,7 @@ class ServiceProvider implements ModuleServiceProvider
      */
     public function activateModule(Container $container)
     {
-        if (is_network_admin()) {
+        if (is_network_admin() || !is_admin()) {
             return;
         }
 

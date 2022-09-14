@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Setting\Site;
  */
 interface SiteSettingView
 {
-
     /**
      * Renders the site setting markup.
      *

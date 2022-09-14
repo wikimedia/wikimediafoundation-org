@@ -106,7 +106,7 @@ class WooCommerceMetaboxFields
             new MetaboxField(
                 new Post\MetaboxField(
                     MetaboxFields::FIELD_STOCK_STATUS,
-                    new Field\Inventory\StockStatus(wc_get_product_stock_status_options())
+                    new Field\Inventory\StockStatus()
                 )
             ),
             new MetaboxField(

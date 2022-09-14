@@ -19,7 +19,6 @@ use Inpsyde\MultilingualPress\Framework\Url\Url;
  */
 interface AssetUrl extends Url
 {
-
     /**
      * Returns the file version.
      *

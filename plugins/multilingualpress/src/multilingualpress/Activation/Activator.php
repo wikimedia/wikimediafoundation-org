@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Activation;
  */
 class Activator
 {
-
     const OPTION = 'multilingualpress_activation';
 
     /**

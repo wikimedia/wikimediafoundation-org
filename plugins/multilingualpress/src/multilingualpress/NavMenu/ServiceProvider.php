@@ -16,6 +16,7 @@ namespace Inpsyde\MultilingualPress\NavMenu;
 
 use Inpsyde\MultilingualPress\Cache\NavMenuItemsSerializer;
 use Inpsyde\MultilingualPress\Core\Admin\Settings\Cache\CacheSettingsRepository;
+use Inpsyde\MultilingualPress\Framework\Api\SiteRelations;
 use Inpsyde\MultilingualPress\Framework\Api\Translations;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetException;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Facade;
@@ -24,16 +25,24 @@ use Inpsyde\MultilingualPress\Framework\Cache\Server\Server;
 use Inpsyde\MultilingualPress\Framework\Factory\NonceFactory;
 use Inpsyde\MultilingualPress\Framework\Asset\AssetManager;
 use Inpsyde\MultilingualPress\Framework\Http\ServerRequest;
+use Inpsyde\MultilingualPress\Framework\Module\ModuleManager;
 use Inpsyde\MultilingualPress\Framework\Service\BootstrappableServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\IntegrationServiceProvider;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\Module\Blocks\Context\ContextFactoryInterface;
+use Inpsyde\MultilingualPress\NavMenu\BlockTypes\LanguageMenuContextFactory;
 use Inpsyde\MultilingualPress\NavMenu\CopyNavMenu\Ajax\CopyNavMenuSettingsView;
 use Inpsyde\MultilingualPress\NavMenu\CopyNavMenu\CopyNavMenu;
+use Inpsyde\MultilingualPress\Module\Blocks\ServiceProvider as BlocksModule;
 
 use function Inpsyde\MultilingualPress\isWpDebugMode;
+use function Inpsyde\MultilingualPress\siteNameWithLanguage;
 use function Inpsyde\MultilingualPress\wpHookProxy;
 
+/**
+ * @psalm-type relatedSites = array{id: int, name: string}
+ */
 final class ServiceProvider implements BootstrappableServiceProvider, IntegrationServiceProvider
 {
     const NONCE_ACTION = 'add_languages_to_nav_menu';
@@ -46,6 +55,28 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
     public function register(Container $container)
     {
         // phpcs:enable
+
+        $moduleDirPath = __DIR__ ;
+
+        /**
+         * Configuration to the path of module directory.
+         */
+        $container->share(
+            'multilingualpress.NavMenu.ModuleDirPath',
+            static function () use ($moduleDirPath): string {
+                return $moduleDirPath;
+            }
+        );
+
+        /**
+         * Configuration to the path of module block type templates.
+         */
+        $container->share(
+            'multilingualpress.NavMenu.BlockTypesTemplatePath',
+            static function () use ($moduleDirPath): string {
+                return $moduleDirPath . '/tpl/';
+            }
+        );
 
         $container->addService(
             AjaxHandler::class,
@@ -110,6 +141,49 @@ final class ServiceProvider implements BootstrappableServiceProvider, Integratio
                 return new ItemRepository();
             }
         );
+
+        /**
+         * Configuration for related sites.
+         *
+         * @return array The list of related sites info, which is a map of a site ID to site name.
+         * @psalm-return array<relatedSites>
+         */
+        $container->share(
+            'multilingualpress.NavMenu.RelatedSites',
+            static function (Container $container): array {
+                $siteRelations = $container->get(SiteRelations::class);
+                $relatedSiteIds = $siteRelations->relatedSiteIds(get_current_blog_id(), true);
+                $relatedSitesConfig = [];
+
+                foreach ($relatedSiteIds as $key => $siteId) {
+                    $relatedSitesConfig[$key]['id'] = $siteId;
+                    $relatedSitesConfig[$key]['name'] = siteNameWithLanguage($siteId);
+                }
+
+                return $relatedSitesConfig;
+            }
+        );
+
+        $container->share(
+            LanguageMenuContextFactory::class,
+            static function (Container $container): ContextFactoryInterface {
+                return new LanguageMenuContextFactory(
+                    $container->get(Translations::class),
+                    $container->get('multilingualpress.siteFlags.flagFactory')
+                );
+            }
+        );
+
+        $moduleManager = $container->get(ModuleManager::class);
+        if ($moduleManager->isModuleActive(BlocksModule::MODULE_ID)) {
+            /**
+             * Configuration for block types.
+             */
+            $container->extend(
+                'multilingualpress.Blocks.BlockTypes',
+                require $moduleDirPath . '/BlockTypes/block-types.php'
+            );
+        }
     }
 
     /**

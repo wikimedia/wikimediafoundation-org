@@ -20,7 +20,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class LateAccessToNotSharedService extends InvalidValueReadAccess
 {
-
     /**
      * @param string $name
      * @param string $action

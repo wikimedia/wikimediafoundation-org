@@ -16,7 +16,6 @@ namespace Inpsyde\MultilingualPress\Framework\Module;
 
 final class Module
 {
-
     /**
      * @var string
      */

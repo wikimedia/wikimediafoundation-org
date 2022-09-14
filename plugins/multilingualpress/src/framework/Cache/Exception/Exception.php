@@ -16,5 +16,4 @@ namespace Inpsyde\MultilingualPress\Framework\Cache\Exception;
 
 class Exception extends \Exception
 {
-
 }
