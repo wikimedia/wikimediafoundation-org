@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb41c3a400294f11112fd431924b7506",
+    "content-hash": "df79ddfbd21cbb1915cb14256d9a5ea5",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -294,41 +294,6 @@
             "time": "2021-12-07T07:31:47+00:00"
         },
         {
-            "name": "wikimedia/wikipediapreview-wordpress",
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wikimedia/wikipediapreview-wordpress.git",
-                "reference": "ace231977e90f82a944b0a7982e4b026c48af8c0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikipediapreview-wordpress/zipball/ace231977e90f82a944b0a7982e4b026c48af8c0",
-                "reference": "ace231977e90f82a944b0a7982e4b026c48af8c0",
-                "shasum": ""
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-                "phpcompatibility/phpcompatibility-wp": "^2.1",
-                "squizlabs/php_codesniffer": "^3.6",
-                "wp-coding-standards/wpcs": "^2.3"
-            },
-            "type": "library",
-            "scripts": {
-                "lint": [
-                    "phpcs --ignore=build"
-                ],
-                "lint:fix": [
-                    "phpcbf --ignore=build"
-                ]
-            },
-            "support": {
-                "source": "https://github.com/wikimedia/wikipediapreview-wordpress/tree/v1.3.0",
-                "issues": "https://github.com/wikimedia/wikipediapreview-wordpress/issues"
-            },
-            "time": "2022-01-04T20:04:52+00:00"
-        },
-        {
             "name": "wpackagist-plugin/co-authors-plus",
             "version": "3.5.2",
             "source": {
@@ -381,6 +346,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/safe-svg/"
+        },
+        {
+            "name": "wpackagist-plugin/wikipedia-preview",
+            "version": "1.6.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wikipedia-preview/",
+                "reference": "tags/1.6.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wikipedia-preview.1.6.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wikipedia-preview/"
         }
     ],
     "packages-dev": [

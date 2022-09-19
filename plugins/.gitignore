@@ -1,5 +1,6 @@
 # Managed via Composer.
 maintenance-mode
+wikipedia-preview
 
 # If a plugin is distributed with a bundled vendor directory, keep it.
 !vendor
