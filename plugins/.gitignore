@@ -1,8 +1,0 @@
-# Managed via Composer.
-fieldmanager
-maintenance-mode
-safe-redirect-manager
-wikipedia-preview
-
-# If a plugin is distributed with a bundled vendor directory, keep it.
-!vendor
