@@ -51,7 +51,7 @@ function render_block( $attributes ) {
 		}
 
 		$heading['className'] = '';
-		if ( $heading['switchRtl'] ) {
+		if ( $heading['switchRtl'] ?? false ) {
 			$heading['className'] = 'switch-rtl';
 		}
 		$translated_headings[] = $heading;
