@@ -7,3 +7,7 @@ To upgrade an individual plugin via Composer, run `composer update` with the pac
 ```
 composer update wpackagist-plugin/wikipedia-preview
 ```
+
+To upgrade _all_ plugins, along with dependency tools like PHPCS, you may run `composer update` with no arguments. However, note that this can lead to significant version changes across the entire project. Where possible, plugins should be upgraded individually, with each plugin update in a single commit. This makes it easier to diagnose issues when testing the site in the develop or preprod environments.
+
+If a plugin still shows as outdated in the UI or via `wp plugin list` after running any of the `composer update` commands above, you may need to manually adjust the version range for that plugin in `composer.json` and try again. This is sometimes necessary for major version upgrades, for example.
