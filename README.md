@@ -15,6 +15,10 @@ The process for updating the mirror is documented by GitHub: https://help.github
 Command to run from private repository:
   git push --mirror https://github.com/wikimedia/wikimediafoundation-org.git
 
+## Updating plugins
+
+Some plugins are managed via [`composer.json`](./composer.json), while others (for example paid plugins like MultilingualPress) are committed into the repository manually within the [`plugins/` directory](./plugins/). See the [additional README in that folder](./plugins/) for more information on how to update individual plugins.
+
 ## Setup
 
 The theme uses node & npm for dependency management and asset build pipeline. The `engines` field in `themes/shiro/package.json` defines the correct versions of node and npm, and will cause `npm install` to fail if those versions are not in use.
