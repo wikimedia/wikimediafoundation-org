@@ -35,11 +35,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('themes/shiro/package-lock.json', 'plugins/hm-gutenberg-tools/package-lock.json') }}
+          key: npm-${{ hashFiles('themes/shiro/package-lock.json' }}
           restore-keys: npm-
 
       - name: Install dependencies
-        run: (npm --prefix themes/shiro ci && npm --prefix plugins/hm-gutenberg-tools ci && npm --prefix plugins/wikipedia-preview ci)
+        run: (npm --prefix themes/shiro ci && npm --prefix plugins/wikipedia-preview ci)
 
       - name: Build assets
         run: (npm --prefix themes/shiro run build && npm --prefix plugins/wikipedia-preview run build)
