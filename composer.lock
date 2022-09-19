@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d826d60d0ea94bfe6f3cdf663253b0de",
+    "content-hash": "ef2a91e8ebfd999dd3ac4dcb75572e98",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -232,16 +232,16 @@
         },
         {
             "name": "humanmade/asset-loader",
-            "version": "v0.5.0",
+            "version": "v0.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/humanmade/asset-loader.git",
-                "reference": "717ebc20e999affe7c601015221fe76037c011c4"
+                "reference": "0292258fa1391278d04e2802ba87628cade0ce52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/humanmade/asset-loader/zipball/717ebc20e999affe7c601015221fe76037c011c4",
-                "reference": "717ebc20e999affe7c601015221fe76037c011c4",
+                "url": "https://api.github.com/repos/humanmade/asset-loader/zipball/0292258fa1391278d04e2802ba87628cade0ce52",
+                "reference": "0292258fa1391278d04e2802ba87628cade0ce52",
                 "shasum": ""
             },
             "require": {
@@ -260,9 +260,9 @@
             "description": "Utilities to seamlessly consume Webpack-bundled assets in WordPress themes & plugins.",
             "support": {
                 "issues": "https://github.com/humanmade/asset-loader/issues",
-                "source": "https://github.com/humanmade/asset-loader/tree/v0.5.0"
+                "source": "https://github.com/humanmade/asset-loader/tree/v0.6.2"
             },
-            "time": "2021-01-27T15:20:46+00:00"
+            "time": "2022-07-26T16:43:22+00:00"
         },
         {
             "name": "humanmade/hm-gutenberg-tools",
