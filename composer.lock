@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df79ddfbd21cbb1915cb14256d9a5ea5",
+    "content-hash": "d826d60d0ea94bfe6f3cdf663253b0de",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -313,15 +313,15 @@
         },
         {
             "name": "wpackagist-plugin/safe-redirect-manager",
-            "version": "1.10.1",
+            "version": "1.11.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/safe-redirect-manager/",
-                "reference": "tags/1.10.1"
+                "reference": "tags/1.11.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/safe-redirect-manager.1.10.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/safe-redirect-manager.1.11.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
