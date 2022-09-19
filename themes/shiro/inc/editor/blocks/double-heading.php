@@ -57,8 +57,11 @@ function render_block( $attributes ) {
 		$translated_headings[] = $heading;
 	}
 
-	$random_key         = array_rand( $translated_headings );
-	$translated_heading = $translated_headings[ $random_key ];
+	$translated_heading = null;
+	if ( ! empty( $translated_headings ) ) {
+		$random_key         = array_rand( $translated_headings );
+		$translated_heading = $translated_headings[ $random_key ];
+	}
 	$primary_heading    = $attributes[ 'primaryHeading'] ?? null;
 
 	ob_start()
