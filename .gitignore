@@ -20,7 +20,6 @@ plugins/wikipedia-preview
 node_modules
 vendor
 !plugins/multilingualpress/vendor
-!plugins/wikipedia-preview/vendor
 # If a plugin is distributed with a bundled vendor directory, keep it.
 !plugins/**/vendor
 

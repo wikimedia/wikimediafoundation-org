@@ -39,10 +39,10 @@ jobs:
           restore-keys: npm-
 
       - name: Install dependencies
-        run: (npm --prefix themes/shiro ci && npm --prefix plugins/wikipedia-preview ci)
+        run: (npm --prefix themes/shiro ci)
 
       - name: Build assets
-        run: (npm --prefix themes/shiro run build && npm --prefix plugins/wikipedia-preview run build)
+        run: (npm --prefix themes/shiro run build)
 
       - name: Run VIP Go Deploy script built
         run: bash .github/vip-go-deploy.sh
