@@ -51,14 +51,14 @@ function render_block( $attributes ) {
 		}
 
 		$heading['className'] = '';
-		if ( $heading['switchRtl'] ) {
+		if ( $heading['switchRtl'] ?? false ) {
 			$heading['className'] = 'switch-rtl';
 		}
 		$translated_headings[] = $heading;
 	}
 
 	$translated_heading = null;
-	if ( ! empty( $translated_headings ) ) {
+	if ( count( $translated_headings ) > 0 ) {
 		$random_key         = array_rand( $translated_headings );
 		$translated_heading = $translated_headings[ $random_key ];
 	}
