@@ -235,9 +235,14 @@ final class MetaboxAction implements Metabox\Action
             $post['post_content'] = $sourcePostContent;
         }
 
-        if ($status === 'future') {
-            $post['post_date'] = $this->relationshipContext->sourcePost()->post_date;
-            $post['post_date_gmt'] = $this->relationshipContext->sourcePost()->post_date_gmt;
+        if ($this->isFieldChanged(MetaboxFields::FIELD_STATUS, $changedFields)) {
+            $post['post_date'] = '';
+            $post['post_date_gmt'] = '';
+
+            if ($status === 'future') {
+                $post['post_date'] = $source->post_date;
+                $post['post_date_gmt'] = $source->post_date_gmt;
+            }
         }
 
         if (!$hasRemote) {

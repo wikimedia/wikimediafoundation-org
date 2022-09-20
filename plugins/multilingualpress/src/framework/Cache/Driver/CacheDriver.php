@@ -16,7 +16,6 @@ use Inpsyde\MultilingualPress\Framework\Cache\Item\Value;
 
 interface CacheDriver
 {
-
     const FOR_NETWORK = 32;
 
     /**

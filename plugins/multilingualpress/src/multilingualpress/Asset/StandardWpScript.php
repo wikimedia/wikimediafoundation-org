@@ -22,7 +22,6 @@ use Inpsyde\MultilingualPress\Framework\Asset\Script;
  */
 final class StandardWpScript implements Script
 {
-
     /**
      * @var array[]
      */

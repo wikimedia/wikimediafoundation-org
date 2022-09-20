@@ -20,7 +20,6 @@ namespace Inpsyde\MultilingualPress\Framework\Nonce\Exception;
  */
 class ContextValueNotSet extends \Exception
 {
-
     /**
      * Returns a new exception object.
      *

@@ -21,5 +21,4 @@ use Inpsyde\MultilingualPress\TranslationUi\Post\PostMetaboxField;
  */
 interface WooCommerceMetaboxField extends PostMetaboxField
 {
-
 }

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress\Core;
 
 use Inpsyde\MultilingualPress\Attachment;
+use Inpsyde\MultilingualPress\Core\Admin\HreflangSiteSetting;
 use Inpsyde\MultilingualPress\Core\Admin\LanguageSiteSetting;
 use Inpsyde\MultilingualPress\Core\Admin\PostTypeSlugSetting;
 use Inpsyde\MultilingualPress\Core\Admin\PostTypeSlugsSettingsRepository;
@@ -51,8 +52,10 @@ use Inpsyde\MultilingualPress\Framework\Service\BootstrappableServiceProvider;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\NameOverwriteNotAllowed;
 use Inpsyde\MultilingualPress\Framework\Service\Exception\WriteAccessOnLockedContainer;
+use Inpsyde\MultilingualPress\Framework\Setting\SettingOption;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingMultiView;
 use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingsSectionView;
+use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingViewModel;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
 use Inpsyde\MultilingualPress\Language\EmbeddedLanguage;
 use Inpsyde\MultilingualPress\License\Api\Activator;
@@ -481,10 +484,32 @@ class ServiceProvider implements BootstrappableServiceProvider
             }
         );
 
+        $container->share(
+            'multilingualpress.Core.HreflangSettings',
+            static function (): array {
+                return [
+                    new SettingOption(
+                        SiteSettingsRepository::NAME_HREFLANG_XDEFAULT,
+                        SiteSettingsRepository::NAME_HREFLANG_XDEFAULT,
+                        __('X-Default', 'multilingualpress'),
+                        __('Select a default site as fallback when no page translation is found.', 'multilingualpress')
+                    ),
+                    new SettingOption(
+                        SiteSettingsRepository::NAME_HREFLANG_DISPLAY_TYPE,
+                        SiteSettingsRepository::NAME_HREFLANG_DISPLAY_TYPE,
+                        __('Display Style', 'multilingualpress'),
+                        __('Select how do you want to display the hreflang for this language', 'multilingualpress')
+                    ),
+                ];
+            }
+        );
+
         $container->addService(
-            Admin\XDefaultSiteSetting::class,
-            static function (Container $container): Admin\XDefaultSiteSetting {
-                return new Admin\XDefaultSiteSetting(
+            HreflangSiteSetting::class,
+            static function (Container $container): SiteSettingViewModel {
+                $hreflangSettings = $container->get('multilingualpress.Core.HreflangSettings');
+                return new HreflangSiteSetting(
+                    $hreflangSettings,
                     $container[SiteRelations::class],
                     $container[Admin\SiteSettingsRepository::class]
                 );
@@ -500,7 +525,7 @@ class ServiceProvider implements BootstrappableServiceProvider
                             $container[Admin\WordPressLanguageSiteSetting::class],
                             $container[Admin\LanguageSiteSetting::class],
                             $container[Admin\RelationshipsSiteSetting::class],
-                            $container[Admin\XDefaultSiteSetting::class],
+                            $container[HreflangSiteSetting::class],
                         ]
                     ),
                     $container[AssetManager::class]
@@ -648,7 +673,10 @@ class ServiceProvider implements BootstrappableServiceProvider
         $container->share(
             Frontend\AlternateLanguages::class,
             static function (Container $container): Frontend\AlternateLanguages {
-                return new Frontend\AlternateLanguages($container[Translations::class]);
+                return new Frontend\AlternateLanguages(
+                    $container->get(Translations::class),
+                    $container->get(SiteSettingsRepository::class)
+                );
             }
         );
 

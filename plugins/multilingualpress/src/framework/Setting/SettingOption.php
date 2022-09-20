@@ -24,20 +24,27 @@ class SettingOption implements SettingOptionInterface
 
     protected $label;
 
+    protected $description;
+
+    protected $type;
+
     /**
      * @param string $id The setting id
      * @param string $value The setting value
      * @param string $label The setting label
+     * @param string $description The setting description
      */
     public function __construct(
         string $id,
         string $value,
-        string $label
+        string $label,
+        string $description
     ) {
 
         $this->id = $id;
         $this->value = $value;
         $this->label = $label;
+        $this->description = $description;
     }
 
     /**
@@ -62,5 +69,13 @@ class SettingOption implements SettingOptionInterface
     public function label(): string
     {
         return $this->label;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function description(): string
+    {
+        return $this->description;
     }
 }

@@ -16,7 +16,6 @@ namespace Inpsyde\MultilingualPress\Framework\Widget\Dashboard;
 
 class Widget
 {
-
     /**
      * @var array
      */

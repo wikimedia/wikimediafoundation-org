@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service;
  */
 interface ServiceProvider
 {
-
     /**
      * Registers the provided services on the given container.
      *

@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Module\Exception;
  */
 class ModuleAlreadyRegistered extends \Exception
 {
-
     /**
      * Returns a new exception object.
      *

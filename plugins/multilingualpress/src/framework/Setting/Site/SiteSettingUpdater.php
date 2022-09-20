@@ -19,7 +19,6 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
 
 class SiteSettingUpdater
 {
-
     /**
      * @var Nonce
      */

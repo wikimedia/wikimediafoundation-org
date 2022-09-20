@@ -51,7 +51,15 @@ function load_asset_manifest( $path ) {
 		return null;
 	}
 
-	$manifests[ $path ] = json_decode( $contents, true );
+	/**
+	 * Filter the contents of the loaded manifest.
+	 *
+	 * @since 0.6.0
+	 *
+	 * @param array  $contents The loaded manifest contents.
+	 * @param string $path     The path to the JSON file loaded.
+	 */
+	$manifests[ $path ] = apply_filters( 'asset_loader_manifest_contents', json_decode( $contents, true ), $path );
 
 	return $manifests[ $path ];
 }
@@ -105,9 +113,9 @@ function get_version( string $asset_uri, string $manifest_path ) : ?string {
 	// but numbers and the letters a through f", which matches most common hash
 	// algorithms (including Webpack's default of MD4) while rarely matching
 	// any human-readable naming scheme.
-	if ( preg_match( '/[a-f0-9]{16}/', $asset_uri ) ) {
-		// If the file is already hashed then a version string is not required.
-		return null;
+	if ( preg_match( '/[a-f0-9]{16,}/', $asset_uri, $possible_hash ) ) {
+		// If the file is already hashed, then use the existing hash as the version string.
+		return $possible_hash[0];
 	}
 
 	// Next, try hashing the contents of the asset manifest file (if available).

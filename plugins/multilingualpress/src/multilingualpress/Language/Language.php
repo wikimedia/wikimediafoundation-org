@@ -35,6 +35,7 @@ final class Language implements FrameworkLanguage
         LanguagesTable::COLUMN_NATIVE_NAME => '',
         LanguagesTable::COLUMN_CUSTOM_NAME => '',
         LanguagesTable::COLUMN_RTL => false,
+        EmbeddedLanguage::KEY_TYPE => 'locale',
     ];
 
     /**
@@ -191,5 +192,13 @@ final class Language implements FrameworkLanguage
     public function locale(): string
     {
         return (string)($this->data[LanguagesTable::COLUMN_LOCALE] ?? '');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function type(): string
+    {
+        return $this->data[EmbeddedLanguage::KEY_TYPE] ?? 'locale';
     }
 }

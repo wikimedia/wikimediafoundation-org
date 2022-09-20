@@ -20,7 +20,6 @@ use Inpsyde\MultilingualPress\Framework\Language\Language;
  */
 interface Languages
 {
-
     /**
      * Deletes the language with the given ID.
      *

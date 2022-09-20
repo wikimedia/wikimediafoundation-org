@@ -29,6 +29,7 @@ use Inpsyde\MultilingualPress\Database\Table\ContentRelationsTable;
 
 use function Inpsyde\MultilingualPress\siteExists;
 use function is_array;
+use function get_sites;
 
 /**
  * Content relations API implementation using the WordPress database object.

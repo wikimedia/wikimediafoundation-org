@@ -239,16 +239,18 @@ final class MetaboxAction implements Metabox\Action
             $remoteProduct->set_regular_price($regularPrice);
         }
 
-        $salePrice = str_replace($decimals, '.', $values[MetaboxFields::FIELD_SALE_PRICE]) ?? '';
-        if ($salePrice && in_array($salePrice, $changedFields, true)) {
+        $salePriceFieldName = MetaboxFields::FIELD_SALE_PRICE;
+        $salePrice = str_replace($decimals, '.', $values[$salePriceFieldName]) ?? '';
+        if ($salePrice && in_array($salePriceFieldName, $changedFields, true)) {
             $remoteProduct->set_sale_price($salePrice);
         }
 
         $productShortDescription = $values[MetaboxFields::FIELD_PRODUCT_SHORT_DESCRIPTION] ?? '';
         $productShortDescription and $remoteProduct->set_short_description($productShortDescription);
 
-        $purchaseNote = $values[MetaboxFields::FIELD_PURCHASE_NOTE] ?? '';
-        if ($purchaseNote && in_array($purchaseNote, $changedFields, true)) {
+        $purchaseNoteFieldName = MetaboxFields::FIELD_PURCHASE_NOTE;
+        $purchaseNote = $values[$purchaseNoteFieldName] ?? '';
+        if ($purchaseNote && in_array($purchaseNoteFieldName, $changedFields, true)) {
             $remoteProduct->set_purchase_note($purchaseNote);
         }
 
@@ -439,26 +441,28 @@ final class MetaboxAction implements Metabox\Action
             return;
         }
 
-        $sku = $values[MetaboxFields::FIELD_SKU] ?? '';
-        $this->maybeSetSku($remoteProduct, $sku ?? '');
+        $skuIsChanged = key_exists(MetaboxFields::FIELD_SKU, $values);
+        $skuIsChanged && $this->maybeSetSku($remoteProduct, $values[MetaboxFields::FIELD_SKU]);
 
-        $manageStock = (bool)$values[MetaboxFields::FIELD_MANAGE_STOCK] ?? false;
-        $remoteProduct->set_manage_stock($manageStock);
+        $manageStockIsChanged = key_exists(MetaboxFields::FIELD_MANAGE_STOCK, $values);
+        $manageStockValue = $values[MetaboxFields::FIELD_MANAGE_STOCK] ?? false;
+        $manageStockIsChanged && $remoteProduct->set_manage_stock((bool)$manageStockValue);
 
-        $stockQuantity = (int)$values[MetaboxFields::FIELD_STOCK] ?? 0;
-        $remoteProduct->set_stock_quantity($stockQuantity);
+        $stockQuantityIsChanged = key_exists(MetaboxFields::FIELD_STOCK, $values);
+        $stockQuantityIsChanged && $remoteProduct->set_stock_quantity((int)$values[MetaboxFields::FIELD_STOCK]);
 
-        $backorders = $values[MetaboxFields::FIELD_BACKORDERS] ?? '';
-        $backorders and $remoteProduct->set_backorders($backorders);
+        $backordersIsChanged = key_exists(MetaboxFields::FIELD_BACKORDERS, $values);
+        $backordersIsChanged && $remoteProduct->set_backorders($values[MetaboxFields::FIELD_BACKORDERS]);
 
-        $lowStockThreshold = (int)$values[MetaboxFields::FIELD_LOW_STOCK_AMOUNT] ?? 0;
-        $remoteProduct->set_low_stock_amount($lowStockThreshold);
+        $lowStockIsChanged = key_exists(MetaboxFields::FIELD_LOW_STOCK_AMOUNT, $values);
+        $lowStockIsChanged && $remoteProduct->set_low_stock_amount((int)$values[MetaboxFields::FIELD_LOW_STOCK_AMOUNT]);
 
-        $stockStatus = $values[MetaboxFields::FIELD_STOCK_STATUS] ?? '';
-        $stockStatus and $remoteProduct->set_stock_status($stockStatus);
+        $stockStatusChanged = key_exists(MetaboxFields::FIELD_STOCK_STATUS, $values);
+        $stockStatusChanged && $remoteProduct->set_stock_status($values[MetaboxFields::FIELD_STOCK_STATUS]);
 
-        $soldIndividually = (bool)$values[MetaboxFields::FIELD_SOLD_INDIVIDUALLY] ?? false;
-        $remoteProduct->set_sold_individually($soldIndividually);
+        $soldIndividuallyIsChanged = key_exists(MetaboxFields::FIELD_SOLD_INDIVIDUALLY, $values);
+        $soldIndividuallyValue = $values[MetaboxFields::FIELD_SOLD_INDIVIDUALLY] ?? false;
+        $soldIndividuallyIsChanged && $remoteProduct->set_sold_individually((bool)$soldIndividuallyValue);
     }
 
     /**

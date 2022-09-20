@@ -20,9 +20,6 @@ use Inpsyde\MultilingualPress\SiteFlags\Core\Admin\SiteSettingsRepository;
 use function Inpsyde\MultilingualPress\siteLanguageTag;
 use function Inpsyde\MultilingualPress\languageByTag;
 
-/**
- * MultilingualPress Flag Factory
- */
 class Factory
 {
     /**
@@ -31,12 +28,38 @@ class Factory
     private $settingsRepository;
 
     /**
-     * Factory constructor
-     * @param SiteSettingsRepository $settingsRepository
+     * @var string
      */
-    public function __construct(SiteSettingsRepository $settingsRepository)
-    {
+    protected $pathToFlagsFolder;
+
+    /**
+     * @var string
+     */
+    protected $flagImageExtension;
+
+    /**
+     * @var string
+     */
+    protected $pluginPath;
+
+    /**
+     * @var string
+     */
+    protected $pluginUrl;
+
+    public function __construct(
+        SiteSettingsRepository $settingsRepository,
+        string $pathToFlagsFolder,
+        string $flagImageExtension,
+        string $pluginPath,
+        string $pluginUrl
+    ) {
+
         $this->settingsRepository = $settingsRepository;
+        $this->pathToFlagsFolder = $pathToFlagsFolder;
+        $this->flagImageExtension = $flagImageExtension;
+        $this->pluginPath = $pluginPath;
+        $this->pluginUrl = $pluginUrl;
     }
 
     /**
@@ -61,15 +84,19 @@ class Factory
     }
 
     /**
+     * Will return the flag url of a given language.
+     *
      * @param Language $language
-     * @return string
+     * @return string The flag url.
      */
-    private function flag(Language $language): string
+    protected function flag(Language $language): string
     {
         $languageCode = $language->isoCode();
-        $siteFlagUrl = plugin_dir_url(dirname(__DIR__))
-            . "resources/images/flags/{$languageCode}.gif";
+        $bcp47tag = $language->bcp47tag();
 
-        return $siteFlagUrl;
+        $flagPath = "{$this->pluginPath}{$this->pathToFlagsFolder}{$bcp47tag}{$this->flagImageExtension}";
+        $flagImageName = file_exists($flagPath) ? $bcp47tag : $languageCode;
+
+        return "{$this->pluginUrl}{$this->pathToFlagsFolder}{$flagImageName}{$this->flagImageExtension}";
     }
 }

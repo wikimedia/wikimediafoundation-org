@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Widget\Sidebar;
  */
 interface Widget
 {
-
     /**
      * Registers the widget.
      *

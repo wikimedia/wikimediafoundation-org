@@ -24,7 +24,6 @@ use function Inpsyde\MultilingualPress\callExit;
 
 class Server
 {
-
     const UPDATING_KEYS_TRANSIENT = 'mlp_cache_server_updating_keys';
     const SPAWNING_KEYS_TRANSIENT = 'mlp_cache_server_spawning_keys_';
     const HEADER_KEY = 'Mlp-Cache-Update-Key';

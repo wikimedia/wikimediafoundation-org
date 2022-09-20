@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class WriteAccessOnLockedContainer extends NameOverwriteNotAllowed
 {
-
     /**
      * @param string $name
      * @return WriteAccessOnLockedContainer

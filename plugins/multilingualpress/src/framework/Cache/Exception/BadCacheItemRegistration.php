@@ -16,7 +16,6 @@ namespace Inpsyde\MultilingualPress\Framework\Cache\Exception;
 
 class BadCacheItemRegistration extends Exception
 {
-
     /**
      * @return BadCacheItemRegistration
      */

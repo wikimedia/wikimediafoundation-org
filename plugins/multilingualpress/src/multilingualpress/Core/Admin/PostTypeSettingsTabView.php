@@ -25,7 +25,6 @@ use function Inpsyde\MultilingualPress\printNonceField;
  */
 final class PostTypeSettingsTabView implements SettingsPageView
 {
-
     /**
      * @var Nonce
      */

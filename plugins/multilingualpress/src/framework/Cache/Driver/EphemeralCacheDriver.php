@@ -23,7 +23,6 @@ use Inpsyde\MultilingualPress\Framework\Cache\Item\Value;
  */
 final class EphemeralCacheDriver implements CacheDriver
 {
-
     const NOOP = 8192;
 
     /**

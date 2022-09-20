@@ -14,12 +14,14 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Module\LanguageSwitcher;
 
+use Inpsyde\MultilingualPress\Language\EmbeddedLanguage;
+
 use function Inpsyde\MultilingualPress\sanitizeHtmlClass;
 
 class View
 {
     const FILTER_ITEM_LANGUAGE_NAME = 'multilingualpress.language_switcher_item_language_name';
-    const FILTER_ITEM_FLAG_URL = 'multilingualpress.language_switcher_item_flag_url';
+    const FILTER_LANGUAGE_SWITCHER_ITEM_FLAG_URL = 'multilingualpress.languageSwitcher.ItemFlagUrl';
 
     /**
      * Displays widget view in frontend
@@ -56,15 +58,15 @@ class View
                     <?php foreach ($model['items'] as $item) :
                         $itemClasses = $this->itemClass($item->siteId());
                         $languageName = (string)apply_filters(self::FILTER_ITEM_LANGUAGE_NAME, $item->languageName());
-                        $flagUrl = (string)apply_filters(self::FILTER_ITEM_FLAG_URL, $item->flag(), $item->isoCode());
+                        $locale = EmbeddedLanguage::changeLanguageVariantLocale($item->locale());
+                        $flagUrl = (string)apply_filters(self::FILTER_LANGUAGE_SWITCHER_ITEM_FLAG_URL, $item->flag(), $item->siteId());
                         ?>
                         <li class="<?= sanitizeHtmlClass($itemClasses) // phpcs:ignore
                         // WordPress.XSS.EscapeOutput.OutputNotEscaped ?>">
                             <a href="<?= esc_url($item->url()) ?>"
                                class="mlp-language-switcher-item__link"
-                               lang="<?= esc_attr($item->locale()) ?>"
-                               hreflang="<?= esc_attr($item->locale()) ?>"
-                               class="mlp-language-switcher-item__link">
+                               lang="<?= esc_attr($locale) ?>"
+                               hreflang="<?= esc_attr($locale) ?>">
                                 <?php if (!empty($model['show_flags']) && $flagUrl) {?>
                                     <img alt="<?= esc_attr($languageName) ?>"
                                          src="<?= esc_url($flagUrl) ?>"

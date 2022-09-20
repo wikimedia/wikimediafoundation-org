@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Asset;
  */
 class AssetLocation
 {
-
     /**
      * @var string
      */

@@ -13,7 +13,7 @@
  * Description: The multisite-based plugin for your multilingual WordPress websites.
  * Author: Inpsyde GmbH
  * Author URI: https://inpsyde.com
- * Version: 3.9.1
+ * Version: 4.0.0
  * Text Domain: multilingualpress
  * Domain Path: /languages/
  * License: GPLv2+
@@ -112,15 +112,13 @@ if (is_plugin_active('multilingual-press/multilingual-press.php')) {
 function autoload(string $rootDir)
 {
     $autoloadPath = "$rootDir/vendor/autoload.php";
-    if (!file_exists($autoloadPath)) {
-        throw new Exception("The autoload file({$autoloadPath}) doesn't exist");
+    if (file_exists($autoloadPath)) {
+        /* @noinspection PhpIncludeInspection */
+        require_once $autoloadPath;
     }
 
     /* @noinspection PhpIncludeInspection */
     require_once "$rootDir/src/inc/functions.php";
-
-    /* @noinspection PhpIncludeInspection */
-    require_once $autoloadPath;
 }
 
 /**
@@ -145,18 +143,18 @@ function bootstrap()
         );
 
         $providers = new Framework\Service\ServiceProvidersCollection();
-
         $modules = [
             new Activation\ServiceProvider(),
+            new WpCli\ServiceProvider(),
             new Api\ServiceProvider(),
             new Asset\ServiceProvider(),
             new Cache\ServiceProvider(),
             new Core\ServiceProvider(),
             new Auth\ServiceProvider(),
+            new Module\Blocks\ServiceProvider(),
             new Database\ServiceProvider(),
             new Factory\ServiceProvider(),
             new Installation\ServiceProvider(),
-            new Integration\ServiceProvider(),
             new NavMenu\ServiceProvider(),
             new SiteDuplication\ServiceProvider(),
             new TranslationUi\ServiceProvider(),

@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Module\Exception;
  */
 class InvalidModule extends \Exception
 {
-
     /**
      * Returns a new exception object.
      *
