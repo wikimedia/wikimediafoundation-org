@@ -24,7 +24,6 @@ use function Inpsyde\MultilingualPress\wpHookProxy;
 
 class ServiceProvider implements BootstrappableServiceProvider
 {
-
     /**
      * @inheritdoc
      * phpcs:disable Generic.Metrics.NestingLevel.TooHigh

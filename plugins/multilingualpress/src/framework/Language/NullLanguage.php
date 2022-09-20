@@ -90,4 +90,12 @@ final class NullLanguage implements Language
     {
         return '';
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function type(): string
+    {
+        return '';
+    }
 }

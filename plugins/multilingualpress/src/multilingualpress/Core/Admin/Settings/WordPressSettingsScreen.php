@@ -22,7 +22,6 @@ use Inpsyde\MultilingualPress\Framework\Setting\Site\SiteSettingViewModel;
  */
 class WordPressSettingsScreen
 {
-
     /**
      * @var array
      */

@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Setting\Site;
  */
 interface SiteSettingsSectionViewModel
 {
-
     /**
      * Returns the ID of the site settings section.
      *

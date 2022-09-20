@@ -80,15 +80,16 @@ class FlagFilter
     }
 
     /**
-     * Show the flags on language switcher items
+     * Filter the Language Switcher item flag url
      *
-     * @param string $flag
-     * @param string $isoCode
-     * @return string
+     * @param string $flagUrl The Language Switcher item flag Url
+     * @param int $siteId The Language Switcher item site id
+     * @return string The filtered Language Switcher item flag Url
      */
-    public function languageSwitcherItems(string $flag, string $isoCode): string
+    public function languageSwitcherItemFlagUrl(string $flagUrl, int $siteId): string
     {
-        return "{$this->flagsPath}/{$isoCode}.gif";
+        $flag = $this->flagFactory->create($siteId);
+        return $flag->url();
     }
 
     /**

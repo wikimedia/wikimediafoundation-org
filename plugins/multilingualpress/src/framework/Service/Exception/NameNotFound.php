@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class NameNotFound extends InvalidValueReadAccess
 {
-
     /**
      * Returns a new exception object.
      *

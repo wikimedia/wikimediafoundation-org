@@ -19,5 +19,4 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class InvalidValueReadAccess extends InvalidValueAccess
 {
-
 }

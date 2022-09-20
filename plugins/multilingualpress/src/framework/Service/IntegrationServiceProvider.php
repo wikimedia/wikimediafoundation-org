@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service;
  */
 interface IntegrationServiceProvider extends ServiceProvider
 {
-
     /**
      * Integrates the registered services with MultilingualPress.
      *

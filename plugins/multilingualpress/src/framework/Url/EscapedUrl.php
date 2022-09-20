@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Url;
  */
 final class EscapedUrl implements Url
 {
-
     /**
      * @var string
      */

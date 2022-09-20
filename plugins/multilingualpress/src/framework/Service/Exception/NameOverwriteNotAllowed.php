@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class NameOverwriteNotAllowed extends InvalidValueAccess
 {
-
     /**
      * @param string $name
      * @return NameOverwriteNotAllowed

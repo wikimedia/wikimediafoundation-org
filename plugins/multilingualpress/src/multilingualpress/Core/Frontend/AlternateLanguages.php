@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Core\Frontend;
 
+use Inpsyde\MultilingualPress\Core\Admin\SiteSettingsRepository;
 use Inpsyde\MultilingualPress\Framework\Api\Translations;
 use Inpsyde\MultilingualPress\Framework\Api\Translation;
 use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
@@ -29,6 +30,11 @@ class AlternateLanguages implements \IteratorAggregate
     const FILTER_HREFLANG_URL = 'multilingualpress.hreflang_url';
 
     /**
+     * @var SiteSettingsRepository
+     */
+    protected $siteSettingsRepository;
+
+    /**
      * @var Translations
      */
     private $api;
@@ -41,9 +47,10 @@ class AlternateLanguages implements \IteratorAggregate
     /**
      * @param Translations $api
      */
-    public function __construct(Translations $api)
+    public function __construct(Translations $api, SiteSettingsRepository $siteSettingsRepository)
     {
         $this->api = $api;
+        $this->siteSettingsRepository = $siteSettingsRepository;
     }
 
     /**
@@ -73,9 +80,10 @@ class AlternateLanguages implements \IteratorAggregate
          * @param string[] $postStatus
          */
         $postStatus = (array)apply_filters(self::FILTER_HREFLANG_POST_STATUS, ['publish']);
+        $currentSiteId = get_current_blog_id();
 
         $args = TranslationSearchArgs::forContext(new WordpressContext())
-            ->forSiteId(get_current_blog_id())
+            ->forSiteId($currentSiteId)
             ->makeStrictSearch()
             ->includeBase()
             ->forPostStatus(...array_filter($postStatus, 'is_string'));
@@ -93,7 +101,15 @@ class AlternateLanguages implements \IteratorAggregate
                  */
                 $url = apply_filters(self::FILTER_HREFLANG_URL, $url, $translation);
 
-                $code = $translation->language()->bcp47tag();
+                $hreflangDisplayType = $this->siteSettingsRepository->hreflangSettingForSite(
+                    $translation->remoteSiteId(),
+                    SiteSettingsRepository::NAME_HREFLANG_DISPLAY_TYPE
+                );
+                $hreflangDisplayTypeIsCountry = $hreflangDisplayType && $hreflangDisplayType === 'country';
+                $language = $translation->language();
+
+                $code = $hreflangDisplayTypeIsCountry ? $language->isoCode() : $language->bcp47tag();
+
                 $urls[$code] = (string)$url;
             }
         }

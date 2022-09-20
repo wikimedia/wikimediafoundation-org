@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Setting\Site;
  */
 final class SiteSettingSingleView implements SiteSettingView
 {
-
     /**
      * @var bool
      */

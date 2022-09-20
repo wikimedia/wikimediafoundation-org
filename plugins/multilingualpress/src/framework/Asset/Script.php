@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Asset;
  */
 interface Script extends Asset
 {
-
     /**
      * Makes the given data available for the script.
      *

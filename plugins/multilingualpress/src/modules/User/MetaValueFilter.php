@@ -18,7 +18,6 @@ use Inpsyde\MultilingualPress\Module\User\TranslationUi\MetaboxAction;
 
 class MetaValueFilter
 {
-
     /**
      * Filter the frontend values for user meta fields and replace with correct translations
      *

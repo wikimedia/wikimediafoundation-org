@@ -20,7 +20,6 @@ use Inpsyde\MultilingualPress\TranslationUi\Term\MetaboxFields;
 
 class ParentTerm
 {
-
     /**
      * @param $value
      * @return int

@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Admin;
  */
 interface SettingsPageView
 {
-
     /**
      * Renders the markup.
      */

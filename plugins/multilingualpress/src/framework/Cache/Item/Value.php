@@ -16,7 +16,6 @@ namespace Inpsyde\MultilingualPress\Framework\Cache\Item;
 
 final class Value
 {
-
     /**
      * @var bool
      */

@@ -19,7 +19,6 @@ use Inpsyde\MultilingualPress\TranslationUi\Post\RelationshipContext;
 
 class EditLink
 {
-
     /**
      * @param MetaboxFieldsHelper $helper
      * @param RelationshipContext $context

@@ -22,7 +22,6 @@ use Inpsyde\MultilingualPress\TranslationUi\Post\MetaboxTab;
  */
 class MetaboxFields
 {
-
     const TAB = 'tab-custom-fields';
     const FIELD_COPY_ACF_FIELDS = 'remote-acf-fields-copy';
 

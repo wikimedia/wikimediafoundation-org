@@ -49,7 +49,6 @@ class LanguageNegotiator
      */
     private $translations;
 
-
     /**
      * @var Repository
      */

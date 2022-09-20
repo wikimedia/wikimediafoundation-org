@@ -25,7 +25,9 @@ class SiteSettingsRepository
     const NAME_LANGUAGE = 'mlp_site_language';
     const NAME_LANGUAGE_TYPE = 'mlp_site_language_type';
     const NAME_RELATIONSHIPS = 'mlp_site_relations';
-    const NAME_XDEFAULT = 'multilingualpress_xdefault';
+    const NAME_HREFLANG = 'multilingualpress_hreflang';
+    const NAME_HREFLANG_XDEFAULT = 'xdefault';
+    const NAME_HREFLANG_DISPLAY_TYPE = 'display_type';
     const OPTION = 'multilingualpress_site_settings';
 
     /**
@@ -115,17 +117,33 @@ class SiteSettingsRepository
     }
 
     /**
-     * Updates xDefault setting value.
-     * @param int $xDefault
+     * Updates Hreflang settings values.
+     * @param array $hreflangSettings
      * @param int|null $siteId
      * @return bool
      */
-    public function updateXDefault(int $xDefault, int $siteId = null): bool
+    public function updateHreflangSettings(array $hreflangSettings, int $siteId = null): bool
     {
         return $this->updateSetting(
-            self::NAME_XDEFAULT,
-            $xDefault,
+            self::NAME_HREFLANG,
+            $hreflangSettings,
             $siteId
         );
+    }
+
+    /**
+     * Get the value of Hreflang setting option
+     *
+     * @param int $siteId
+     * @param string $optionName The Hreflang setting option name
+     * @return string The value of Hreflang setting option
+     */
+    public function hreflangSettingForSite(int $siteId, string $optionName): string
+    {
+        $hreflangSettings = $this->allSitesSetting(SiteSettingsRepository::NAME_HREFLANG);
+
+        $isOptionExist = !empty($hreflangSettings[$siteId]) && !empty($hreflangSettings[$siteId][$optionName]);
+
+        return $isOptionExist ? $hreflangSettings[$siteId][$optionName] : '';
     }
 }
