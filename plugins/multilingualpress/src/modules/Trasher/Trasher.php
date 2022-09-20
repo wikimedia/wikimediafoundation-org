@@ -20,7 +20,6 @@ use Inpsyde\MultilingualPress\Framework\NetworkState;
 
 class Trasher
 {
-
     /**
      * @var ActivePostTypes
      */

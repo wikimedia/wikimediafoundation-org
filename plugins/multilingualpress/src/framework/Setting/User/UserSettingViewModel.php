@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Setting\User;
  */
 interface UserSettingViewModel
 {
-
     /**
      * Renders the user setting.
      *

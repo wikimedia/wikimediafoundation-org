@@ -16,7 +16,6 @@ namespace Inpsyde\MultilingualPress\Framework\Cache\Exception;
 
 class InvalidCacheArgument extends Exception
 {
-
     /**
      * @param string $namespace
      * @param string $key

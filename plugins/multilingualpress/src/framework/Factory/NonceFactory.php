@@ -21,7 +21,6 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
  */
 class NonceFactory
 {
-
     /**
      * @var ClassResolver
      */

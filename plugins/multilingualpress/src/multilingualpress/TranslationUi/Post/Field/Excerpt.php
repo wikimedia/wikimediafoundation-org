@@ -20,7 +20,6 @@ use Inpsyde\MultilingualPress\TranslationUi\Post\MetaboxFields;
 
 class Excerpt
 {
-
     /**
      * @param MetaboxFieldsHelper $helper
      * @param RelationshipContext $context

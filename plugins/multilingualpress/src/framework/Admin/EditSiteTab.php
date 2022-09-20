@@ -21,7 +21,6 @@ use function Inpsyde\MultilingualPress\wpHookProxy;
  */
 class EditSiteTab
 {
-
     /**
      * @var SettingsPageTabData
      */

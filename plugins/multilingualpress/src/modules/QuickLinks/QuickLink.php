@@ -30,6 +30,7 @@ use function Inpsyde\MultilingualPress\printNonceField;
 class QuickLink
 {
     const FILTER_NOFOLLOW_ATTRIBUTE = 'multilingualpress.quicklinks_nofollow';
+    public const FILTER_RENDER_AS_SELECT = 'multilingualpress.QuickLinks.RenderAsSelect';
 
     /**
      * @var CollectionFactory
@@ -113,13 +114,21 @@ class QuickLink
     {
         ?>
         <div class="mlp-quicklinks mlp-quicklinks--<?= sanitize_html_class($position) ?>">
-            <?php
-            (4 < count($modelCollection))
-                ? $this->renderAsSelect($modelCollection)
-                : $this->renderAsLinkList($modelCollection);
-            ?>
+            <?php $this->renderCollection($modelCollection); ?>
         </div>
         <?php
+    }
+
+    /**
+     * Render the collection.
+     *
+     * @param Collection $collection
+     */
+    protected function renderCollection(Collection $collection): void
+    {
+        apply_filters(self::FILTER_RENDER_AS_SELECT, 4 < count($collection))
+            ? $this->renderAsSelect($collection)
+            : $this->renderAsLinkList($collection);
     }
 
     /**

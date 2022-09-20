@@ -23,6 +23,7 @@ use Inpsyde\MultilingualPress\Framework\Api\Translation;
 use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
 use Inpsyde\MultilingualPress\Framework\Cache\Server\Facade;
 use Inpsyde\MultilingualPress\Framework\WordpressContext;
+use Inpsyde\MultilingualPress\Language\EmbeddedLanguage;
 use Throwable;
 use WP_Post;
 
@@ -140,8 +141,11 @@ class ItemFilter
                     return $attributes;
                 }
 
-                $attributes['lang'] = $translations[$siteId]->language()->bcp47tag();
-                $attributes['hreflang'] = $translations[$siteId]->language()->bcp47tag();
+                $locale = $translations[$siteId]->language()->bcp47tag() ?? '';
+                $attrValue = EmbeddedLanguage::changeLanguageVariantLocale($locale) ?? '';
+
+                $attributes['lang'] = $attrValue;
+                $attributes['hreflang'] = $attrValue;
 
                 return $attributes;
             }),

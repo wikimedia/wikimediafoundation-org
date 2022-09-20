@@ -82,4 +82,11 @@ interface Language
      * @return string
      */
     public function locale(): string;
+
+    /**
+     * Returns the language type.
+     *
+     * @return string
+     */
+    public function type(): string;
 }

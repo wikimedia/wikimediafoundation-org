@@ -96,6 +96,7 @@ final class EmbeddedLanguage implements FrameworkLanguage
         $data[LanguagesTable::COLUMN_ISO_639_1_CODE] = $isoData[self::KEY_ISO_639_1] ?? '';
         $data[LanguagesTable::COLUMN_ISO_639_2_CODE] = $isoData[self::KEY_ISO_639_2] ?? '';
         $data[LanguagesTable::COLUMN_ISO_639_3_CODE] = $isoData[self::KEY_ISO_639_3] ?? '';
+        $data[self::KEY_TYPE] = $type ?? '';
 
         $instance = new static(new \Inpsyde\MultilingualPress\Language\Language($data));
         $instance->type = $type;

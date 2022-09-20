@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Admin;
  */
 interface SettingsPageTabDataAccess
 {
-
     /**
      * Returns the capability.
      *

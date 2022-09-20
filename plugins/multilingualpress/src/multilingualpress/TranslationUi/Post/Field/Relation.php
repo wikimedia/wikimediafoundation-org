@@ -30,6 +30,8 @@ class Relation
         MetaboxFields::FIELD_RELATION_LEAVE,
     ];
 
+    protected const PREFIX_FOR_RELATION_MESSAGE_FILTER = 'multilingualpress.translation_ui.relation_message_';
+
     /**
      * @param $value
      * @return string
@@ -53,7 +55,8 @@ class Relation
      */
     public function __invoke(MetaboxFieldsHelper $helper, RelationshipContext $context)
     {
-        $language = siteLocaleName($context->remoteSiteId());
+        $remoteSiteId = $context->remoteSiteId();
+        $language = siteLocaleName($remoteSiteId);
 
         $hasRemotePost = $context->hasRemotePost();
         $currently = __('Currently not connected.', 'multilingualpress');
@@ -77,10 +80,7 @@ class Relation
             }
 
             $postStatusMarkupFormat = '<span class="mlp-entity-status">%1$s</span>';
-            $postStatusMarkup = sprintf(
-                $postStatusMarkupFormat,
-                get_post_status_object($post->post_status)->label
-            );
+            $postStatusMarkup = sprintf($postStatusMarkupFormat, get_post_status_object($post->post_status)->label);
 
             $currently = sprintf(
                 $format,
@@ -92,6 +92,8 @@ class Relation
             $currentlyMarkupFormat = '<div class="currently-connected">%s</div>';
         }
 
+        $dynamicRelationMessageFilterName = self::PREFIX_FOR_RELATION_MESSAGE_FILTER . $remoteSiteId;
+        $currentlyMarkupFormat = apply_filters($dynamicRelationMessageFilterName, $currentlyMarkupFormat, $context);
         ?>
         <tr class="main-row">
             <td>

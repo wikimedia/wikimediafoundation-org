@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Asset;
  */
 interface Asset
 {
-
     /**
      * Returns the dependencies.
      *

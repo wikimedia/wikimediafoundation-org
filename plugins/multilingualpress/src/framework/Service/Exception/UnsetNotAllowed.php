@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Service\Exception;
  */
 class UnsetNotAllowed extends InvalidValueAccess
 {
-
     /**
      * @param string $name
      * @return UnsetNotAllowed

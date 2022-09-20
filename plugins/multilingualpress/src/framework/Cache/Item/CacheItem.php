@@ -14,7 +14,6 @@ namespace Inpsyde\MultilingualPress\Framework\Cache\Item;
 
 interface CacheItem
 {
-
     const LIFETIME_IN_SECONDS = HOUR_IN_SECONDS;
 
     /**

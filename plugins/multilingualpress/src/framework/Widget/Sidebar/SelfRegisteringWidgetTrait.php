@@ -21,7 +21,6 @@ namespace Inpsyde\MultilingualPress\Framework\Widget\Sidebar;
  */
 trait SelfRegisteringWidgetTrait
 {
-
     /**
      * Registers the widget.
      *

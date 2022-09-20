@@ -108,10 +108,16 @@ class ServiceProvider implements ModuleServiceProvider
         );
 
         $container->addFactory(
-            Factory::class,
-            static function () use ($container): Factory {
+            'multilingualpress.siteFlags.flagFactory',
+            static function (Container $container): Factory {
+                $pluginProperties = $container->get('siteFlagsProperties');
+
                 return new Factory(
-                    $container[SiteSettingsRepository::class]
+                    $container->get(SiteSettingsRepository::class),
+                    '/resources/images/flags/',
+                    '.gif',
+                    $pluginProperties['pluginPath'],
+                    $pluginProperties['pluginUrl']
                 );
             }
         );
@@ -121,7 +127,7 @@ class ServiceProvider implements ModuleServiceProvider
             static function (Container $container): FlagFilter {
                 return new FlagFilter(
                     $container[SiteSettingsRepository::class],
-                    $container[Factory::class],
+                    $container->get('multilingualpress.siteFlags.flagFactory'),
                     $container->get('multilingualpress.siteFlags.flagsPath')
                 );
             }
@@ -298,7 +304,12 @@ class ServiceProvider implements ModuleServiceProvider
 
         $flagFilter = $container[FlagFilter::class];
         add_filter('nav_menu_item_title', [$flagFilter, 'navMenuItems'], 10, 2);
-        add_filter('multilingualpress.language_switcher_item_flag_url', [$flagFilter, 'languageSwitcherItems'], 10, 2);
+        add_filter(
+            'multilingualpress.languageSwitcher.ItemFlagUrl',
+            [$flagFilter, 'languageSwitcherItemFlagUrl'],
+            10,
+            2
+        );
     }
 
     /**

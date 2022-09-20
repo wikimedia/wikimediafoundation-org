@@ -19,5 +19,4 @@ namespace Inpsyde\MultilingualPress\Framework\Factory\Exception;
  */
 class InvalidClass extends \Exception
 {
-
 }

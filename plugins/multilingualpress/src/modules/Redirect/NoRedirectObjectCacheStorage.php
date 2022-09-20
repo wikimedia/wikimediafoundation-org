@@ -21,7 +21,6 @@ namespace Inpsyde\MultilingualPress\Module\Redirect;
  */
 final class NoRedirectObjectCacheStorage implements NoRedirectStorage
 {
-
     /**
      * @var string
      */

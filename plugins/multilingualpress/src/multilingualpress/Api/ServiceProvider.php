@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress\Api;
 
+use Inpsyde\MultilingualPress\Api\WpCliCommands\SetLanguage;
 use Inpsyde\MultilingualPress\Core\Admin\Settings\Cache\CacheSettingsRepository;
 use Inpsyde\MultilingualPress\Core\Entity\ActivePostTypes;
 use Inpsyde\MultilingualPress\Core\Entity\ActiveTaxonomies;
@@ -35,7 +36,10 @@ use Inpsyde\MultilingualPress\Database\Table\SiteRelationsTable;
 use Inpsyde\MultilingualPress\Framework\Factory\LanguageFactory;
 use Inpsyde\MultilingualPress\Framework\Service\Container;
 use Inpsyde\MultilingualPress\Framework\Service\ServiceProvider as BaseServiceProvider;
+use Inpsyde\MultilingualPress\WpCli\WpCliCommand;
+use Inpsyde\MultilingualPress\WpCli\WpCliCommandsHelper;
 
+use function Inpsyde\MultilingualPress\allDefaultLanguages;
 use function Inpsyde\MultilingualPress\resolve;
 
 /**
@@ -103,6 +107,38 @@ final class ServiceProvider implements BaseServiceProvider, IntegrationServicePr
                     new Facade($container[Server::class], Translations::class),
                     $container[CacheSettingsRepository::class]
                 );
+            }
+        );
+
+        /**
+         * A list of available MLP language BCP-47 codes
+         */
+        $container->share(
+            'multilingualpress.Language.AvailableLanguageCodes',
+            static function (): array {
+                return array_keys(allDefaultLanguages());
+            }
+        );
+
+        $container->share(
+            SetLanguage::class,
+            static function (Container $container): WpCliCommand {
+                $siteSettingsRepository = $container->get(SiteSettingsRepository::class);
+                $availableLanguageCodes = $container->get('multilingualpress.Language.AvailableLanguageCodes');
+                $wpCliCommandsHelper = $container->get(WpCliCommandsHelper::class);
+
+                return new SetLanguage($siteSettingsRepository, $availableLanguageCodes, $wpCliCommandsHelper);
+            }
+        );
+
+        /**
+         * Add WP Cli command to set the language of the site
+         */
+        $container->extend(
+            'multilingualpress.WpCli.WpCliCommands',
+            static function (array $commands, Container $container): array {
+                $commands[] = $container[SetLanguage::class];
+                return $commands;
             }
         );
     }

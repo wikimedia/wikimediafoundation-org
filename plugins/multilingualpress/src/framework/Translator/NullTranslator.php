@@ -22,7 +22,6 @@ use Inpsyde\MultilingualPress\Framework\Api\TranslationSearchArgs;
  */
 final class NullTranslator implements Translator
 {
-
     /**
      * @inheritdoc
      */

@@ -17,5 +17,4 @@ namespace Inpsyde\MultilingualPress\Framework\Nonce;
  */
 interface Context extends \ArrayAccess
 {
-
 }

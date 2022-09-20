@@ -25,21 +25,6 @@ use Inpsyde\MultilingualPress\TranslationUi\Post\RenderCallback;
 class StockStatus implements RenderCallback
 {
     /**
-     * @var array
-     */
-    private $stockStatusOptions;
-
-    /**
-     * StockStatus constructor.
-     *
-     * @param array $stockStatusOptions A map of Woo Stock Status field options
-     */
-    public function __construct(array $stockStatusOptions)
-    {
-        $this->stockStatusOptions = $stockStatusOptions;
-    }
-
-    /**
      * Render the Stock Status Field.
      *
      * @param MetaboxFieldsHelper $helper
@@ -50,6 +35,7 @@ class StockStatus implements RenderCallback
     {
         $key = MetaboxFields::FIELD_STOCK_STATUS;
         $value = $this->value($relationshipContext);
+        $stockStatusOptions = wc_get_product_stock_status_options() ?? [];
         // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         ?>
         <div class="options_group">
@@ -62,7 +48,7 @@ class StockStatus implements RenderCallback
                     name="<?= esc_attr($helper->fieldName($key)) ?>"
                     id="<?= esc_attr($helper->fieldId($key)) ?>"
                 >
-                    <?php foreach ($this->stockStatusOptions as $optionValue => $optionLabel) {?>
+                    <?php foreach ($stockStatusOptions as $optionValue => $optionLabel) {?>
                         <option value="<?= esc_attr($optionValue) ?>" <?php selected($optionValue, $value);?>><?= esc_html($optionLabel) ?></option>
                     <?php }?>
                 </select>

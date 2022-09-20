@@ -25,7 +25,6 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
  */
 class TrasherSettingUpdater
 {
-
     /**
      * @var ActivePostTypes
      */
