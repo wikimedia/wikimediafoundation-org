@@ -45,4 +45,4 @@ jobs:
         run: (npm --prefix themes/shiro run build)
 
       - name: Push to VIP Go unbuilt
-        run: git push "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"
+        run: git push -f "https://git:${{ secrets.DEPLOY_TOKEN }}@github.com/${{ env.DEPLOY_REPO }}.git"
