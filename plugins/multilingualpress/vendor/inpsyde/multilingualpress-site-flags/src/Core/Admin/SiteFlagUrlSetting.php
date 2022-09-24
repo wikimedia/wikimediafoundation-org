@@ -61,7 +61,7 @@ final class SiteFlagUrlSetting implements SiteSettingViewModel
     {
         return sprintf(
             '<label for="%2$s">%1$s</label>',
-            esc_html__('Custom Site Flag', 'multilingualpress'),
+            esc_html__('Custom Site Flag Url', 'multilingualpress'),
             esc_attr($this->id)
         );
     }

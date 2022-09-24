@@ -18,7 +18,6 @@ use Inpsyde\MultilingualPress\Framework\Cache\Item\Value;
 
 final class WpObjectCacheDriver implements CacheDriver
 {
-
     /**
      * @var string[]
      */

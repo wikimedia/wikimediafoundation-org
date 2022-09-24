@@ -2,39 +2,49 @@
 Contributors: wikimediafoundation
 Donate link: https://donate.wikimedia.org/wiki/Ways_to_Give
 Tags: wikipedia, facts, popup, card, wiki
-Stable tag: 1.3.0
-Tested up to: 5.8
+Stable tag: 1.6.0
+Tested up to: 6.0
 License: MIT
 License URI: https://github.com/wikimedia/wikipedia-preview/blob/main/LICENSE
 
 Wikipedia Preview lets you show a popup card with a short summary from Wikipedia when a reader clicks or hovers over a link.
 
 == Description ==
-Wikipedia Preview brings free knowledge to your site in the form of a Wikipedia article preview popup. With Wikipedia Preview, a reader can see a short summary of words or concepts in your content by hovering or tapping on the preview popup, as they read through your content page.
 
-Wikipedia Preview is an official plugin developed and supported by the [Wikimedia Foundation.](https://wikimediafoundation.org/)
+Enhance your website with free knowledge straight from Wikipedia!
 
-The plugin is entirely free to download and implement as it serves our non-profit’s mission to provide free knowledge for everyone.
+Install Wikipedia Preview, the free add-on designed to better engage your visitors and improve the user experience on your website.
+
+The Wikipedia Preview plugin provides context to your site’s visitors with content directly from Wikipedia. It allows you to add links to your content so that when your visitors click or hover on them, they see a pop-up box with information and images straight from Wikipedia. With Wikipedia Preview your visitors gain context on a topic, without ever leaving your website.
+
+Wikipedia Preview is an official plug-in designed and developed by the [Wikimedia Foundation](https://wikimediafoundation.org/), the non-profit behind Wikipedia and other free knowledge projects.
+
+The plug-in is entirely free to download and use, in line with the Wikimedia Foundation’s mission to provide free knowledge for everyone.
+
+https://youtu.be/_m6YzR0j8Fs
 
 **Benefits**
 
-* Leverage an enormous collection of free knowledge to provide context immediately when your readers are curious.
-* Enable users to stay engaged by giving them context while they read.
-* Available in over 300 languages, so you can provide, where available, context in a language different from your site.
-* No need to explain a concept that is not directly related to the article you are writing, add a contextual popup instead.
-* Use the same process you use today to add hyperlinks to your articles or use the Gutenberg editor custom tool.
+* Rich-media content straight from Wikipedia, to give your site’s visitors the context they need, without ever having to leave your website.
+* Always free.
+* Available in 300 languages.
+* Easy to set up. Adding Wikipedia Preview links is even easier than adding other hyperlinks.
+* Leveraging the content and brand name of one of the most popular websites in the world.
 
 **Features**
 
+* Can be set up using the same process you use to add hyperlinks to your articles or using the Gutenberg editor custom tool.
 * Handles any link to a Wikipedia article regardless of language, lead image presence or length.
 * Works for Right-to-Left (RTL) and Left-To-Right (LTR) languages.
-* A built-in gallery to dive into article images.
-* Can be disabled for any page using the post metadata sidebar. Look for the Wikipedia Preview section.
-* Gutenberg editor custom tool to search for Wikipedia articles and visualize Wikipedia Preview for readers.
+* Offers access to a built-in gallery to dive into article images.
+* Can be disabled for any page using the post metadata sidebar.
+* Uses Gutenberg editor custom tool to search for Wikipedia articles and visualize Wikipedia Preview for readers.
 
 **How to use**
 
-After you [download and install](https://wordpress.org/support/article/managing-plugins/#finding-and-installing-plugins) the Wikipedia Preview plugin, simply [add a link](https://wordpress.org/support/article/paragraph-block/#insert-hyperlinks) in your site content to any Wikipedia article URL and it will be turned into a preview.
+1. [Download and install](https://wordpress.org/support/article/managing-plugins/#finding-and-installing-plugins) the Wikipedia Preview plug-in for free.
+2. [Add a Preview link](https://wordpress.org/support/article/paragraph-block/#insert-hyperlinks) to your site’s content (i.e. a word or a phrase you want to provide context for).
+3. Wikipedia Preview will automatically turn the link into a preview of the relevant Wikipedia article.
 
 == Screenshots ==
 

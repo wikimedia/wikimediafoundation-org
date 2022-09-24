@@ -16,7 +16,6 @@ namespace Inpsyde\MultilingualPress\Module\Trasher;
 
 final class TrasherSettingRepository
 {
-
     const META_KEY = '_trash_the_other_posts';
 
     /**

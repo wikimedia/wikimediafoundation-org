@@ -66,7 +66,7 @@ class SiteSettingsUpdater implements SiteSettingsUpdatable
         $this->updateWpLang($siteId);
         $this->updateLanguage($siteId);
         $this->updateRelationships($siteId);
-        $this->updateXDefault($siteId);
+        $this->updateHreflangSettings($siteId);
         $this->handleSearchEngineVisibility($siteId);
 
         /**
@@ -85,7 +85,7 @@ class SiteSettingsUpdater implements SiteSettingsUpdatable
         $this->updateLanguage($siteId);
         $this->updateWpLang($siteId);
         $this->updateRelationships($siteId);
-        $this->updateXDefault($siteId);
+        $this->updateHreflangSettings($siteId);
 
         /**
          * Fires right after the initial settings of an existing site have been updated.
@@ -143,19 +143,20 @@ class SiteSettingsUpdater implements SiteSettingsUpdatable
     }
 
     /**
-     * Updates xDefault value.
+     * Updates the HrefLang settings.
      * @param int $siteId
      */
-    private function updateXDefault(int $siteId)
+    private function updateHreflangSettings(int $siteId)
     {
         // May not exists.
-        $xDefault = (int)$this->request->bodyValue(
-            SiteSettingsRepository::NAME_XDEFAULT,
+        $hreflangSettings = (array)$this->request->bodyValue(
+            SiteSettingsRepository::NAME_HREFLANG,
             INPUT_POST,
-            FILTER_SANITIZE_NUMBER_INT
+            FILTER_SANITIZE_STRING,
+            FILTER_FORCE_ARRAY
         );
 
-        $this->repository->updateXDefault($xDefault, $siteId);
+        $this->repository->updateHreflangSettings($hreflangSettings, $siteId);
     }
 
     /**

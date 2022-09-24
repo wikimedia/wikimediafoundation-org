@@ -49,6 +49,6 @@
             "install-path": "../enshrined/svg-sanitize"
         }
     ],
-    "dev": true,
+    "dev": false,
     "dev-package-names": []
 }

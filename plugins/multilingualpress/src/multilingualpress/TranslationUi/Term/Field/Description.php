@@ -20,7 +20,6 @@ use Inpsyde\MultilingualPress\TranslationUi\Term\MetaboxFields;
 
 class Description
 {
-
     /**
      * @param MetaboxFieldsHelper $helper
      * @param RelationshipContext $context

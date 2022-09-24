@@ -438,7 +438,7 @@ class Flow {
 	/**
 	 * Register the custom meta keys to make them available to the REST API.
 	 */
-	public function register_custom_meta() {
+	public static function register_custom_meta() {
 		register_meta(
 			'post',
 			'_translation_in_progress',

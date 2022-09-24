@@ -254,12 +254,14 @@ final class ServiceProvider implements ModuleServiceProvider
                     new SettingOption(
                         $repository::OPTION_SITE_ENABLE_REDIRECT,
                         $repository::OPTION_SITE_ENABLE_REDIRECT,
-                        'Enable automatic redirect'
+                        __('Enable automatic redirect', 'multilingualpress'),
+                        ''
                     ),
                     new SettingOption(
                         $repository::OPTION_SITE_ENABLE_REDIRECT_FALLBACK,
                         $repository::OPTION_SITE_ENABLE_REDIRECT_FALLBACK,
-                        'Redirect Fallback site for this language'
+                        __('Redirect Fallback site for this language', 'multilingualpress'),
+                        ''
                     ),
                 ];
             }

@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Setting\Site;
  */
 class SiteSetting
 {
-
     /**
      * @var bool
      */

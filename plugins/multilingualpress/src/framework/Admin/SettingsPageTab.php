@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Admin;
  */
 class SettingsPageTab implements SettingsPageTabDataAccess
 {
-
     /**
      * @var SettingsPageTabDataAccess
      */

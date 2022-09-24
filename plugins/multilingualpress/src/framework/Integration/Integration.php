@@ -17,7 +17,6 @@ namespace Inpsyde\MultilingualPress\Framework\Integration;
  */
 interface Integration
 {
-
     /**
      * Integrates some (possibly external) service with MultilingualPress.
      *

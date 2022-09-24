@@ -23,7 +23,6 @@ use Inpsyde\MultilingualPress\Framework\Nonce\Nonce;
  */
 class UserSettingUpdater
 {
-
     /**
      * @var string
      */

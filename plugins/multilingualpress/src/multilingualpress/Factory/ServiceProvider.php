@@ -33,7 +33,6 @@ use Inpsyde\MultilingualPress\Language\Language;
  */
 final class ServiceProvider implements FrameworkServiceProvider
 {
-
     /**
      * @inheritdoc
      */

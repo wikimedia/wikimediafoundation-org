@@ -18,7 +18,6 @@ use Inpsyde\MultilingualPress\Framework\Cache\Driver\CacheDriver;
 
 class InvalidCacheDriver extends Exception
 {
-
     const SITE_DRIVER_AS_NETWORK = 1;
 
     /**

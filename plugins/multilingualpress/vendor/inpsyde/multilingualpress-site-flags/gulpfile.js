@@ -5,7 +5,7 @@ const del = require('del')
 const minimist = require('minimist')
 const pump = require('pump')
 const usage = require('gulp-help-doc')
-const sass = require('gulp-sass')
+const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename')
 const sourcemaps = require('gulp-sourcemaps')
 

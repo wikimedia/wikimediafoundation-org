@@ -39,4 +39,12 @@ interface SettingOptionInterface
      * @return string
      */
     public function label(): string;
+
+
+    /**
+     * The setting option description
+     *
+     * @return string
+     */
+    public function description(): string;
 }

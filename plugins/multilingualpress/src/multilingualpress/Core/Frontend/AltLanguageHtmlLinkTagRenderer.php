@@ -141,10 +141,11 @@ final class AltLanguageHtmlLinkTagRenderer implements AltLanguageRenderer
     private function xDefaultUrl(array $alternateLanguages): string
     {
         $xDefaultLanguage = '';
-        $xDefaultSetting = $this->siteSettingsRepository->allSitesSetting(
-            SiteSettingsRepository::NAME_XDEFAULT
+        $currentSiteId = get_current_blog_id();
+        $xDefaultSiteId = (int)$this->siteSettingsRepository->hreflangSettingForSite(
+            $currentSiteId,
+            SiteSettingsRepository::NAME_HREFLANG_XDEFAULT
         );
-        $xDefaultSiteId = (int)($xDefaultSetting[get_current_blog_id()] ?? 0);
 
         if (!$xDefaultSiteId) {
             return $xDefaultLanguage;

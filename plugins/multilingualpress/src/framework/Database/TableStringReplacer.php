@@ -19,7 +19,6 @@ namespace Inpsyde\MultilingualPress\Framework\Database;
  */
 class TableStringReplacer
 {
-
     /**
      * @var \wpdb
      */
