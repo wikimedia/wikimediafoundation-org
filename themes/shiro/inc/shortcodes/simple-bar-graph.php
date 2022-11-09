@@ -37,7 +37,7 @@ function wmf_simple_bar_graph_shortcode_callback( $atts ) {
 		$values[ $idx ] = [
 			'color' => ( $idx + 1 <= count( $colors ) ) ? $colors[ $idx ] : $colors[0],
 			'width' => floor( (int) $value / (int) $atts['max'] * ( (int) $atts['width'] ) ),
-			'x'     => ( 0 === $idx ) ? 0 : ( (int) $values[ $idx - 1 ]['x'] ) + ( (int) $values[ $idx - 1 ]['width'] ),
+			'x'     => ( 0 === $idx ) ? 0 : intval(  $values[ $idx - 1 ]['x'] ) + intval( $values[ $idx - 1 ]['width'] ),
 		];
 	}
 
