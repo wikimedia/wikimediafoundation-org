@@ -8,6 +8,7 @@
  */
 
 $template_args = get_post_meta( get_the_ID(), 'connect', true );
+$template_args = empty( $template_args ) || is_string( $template_args ) ? array() : $template_args;
 
 // Determine if this is using a legacy customization to the connect text
 $no_custom_connect = empty( array_filter( $template_args ) );
@@ -29,8 +30,6 @@ if ( $no_custom_connect && $reusable_block ) {
 		</div>
 	<?php }
 } else {
-	$template_args = empty( $template_args ) || is_string( $template_args ) ? array() : $template_args;
-
 	$rand_translation = wmf_get_random_translation(
 		'connect', array(
 			'source' => 'meta',
