@@ -48,7 +48,7 @@ if ( ! $featured_posts->have_posts() ) {
 <div class="w-100p bg-white related-news-container mod-margin-bottom bg-ltgray">
 	<div class="mw-980 std-mod">
 		<p class="double-heading__secondary is-style-h5">
-			<?php echo esc_html( $title ); ?> —&nbsp;<span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?>&nbsp;</span>
+			<?php echo esc_html( $title ); ?> —&nbsp;<span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?>&nbsp;</span>
 		</p>
 
 		<?php if ( ! empty( $subtitle ) ) : ?>
