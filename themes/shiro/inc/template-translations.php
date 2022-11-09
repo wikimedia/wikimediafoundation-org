@@ -238,7 +238,7 @@ function wmf_get_random_translation( $key, $args = array() ) {
 
 	switch_to_blog( $target_translation['site_id'] );
 
-	$translation = false;
+	$translation = [];
 
 	switch ( $args['source'] ) {
 		case 'meta':
