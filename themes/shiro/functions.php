@@ -492,3 +492,11 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
+
+function shiro_page_id() {
+	global $post;
+	wp_enqueue_script( 'shiro-page-id', 'assets/src/js/global.js' );
+	wp_localize_script( 'shiro-page-id', 'post_id', $post->ID );
+}
+
+add_action( 'wp_enqueue_scripts', 'shiro_page_id' );
