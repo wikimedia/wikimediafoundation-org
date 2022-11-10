@@ -149,9 +149,9 @@ class Metaboxes {
 	/**
 	 * Processes the type of meta and formats the meta output.
 	 *
-	 * @param int     $remote_blog_id The remote blog ID.
-	 * @param mixed   $meta_data      The metadata.
-	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
+	 * @param int    $remote_blog_id The remote blog ID.
+	 * @param mixed  $meta_data      The metadata.
+	 * @param object $data           The data about the metadata from \Fieldmanager_Field.
 	 */
 	public function show_remote_meta( $remote_blog_id, $meta_data, $data ) {
 		$opt_label = $data->label;
@@ -189,9 +189,9 @@ class Metaboxes {
 	/**
 	 * Outputs details about a Radio field.
 	 *
-	 * @param string  $opt_label      Label for the option.
-	 * @param mixed   $meta_data      The metadata.
-	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
+	 * @param string $opt_label      Label for the option.
+	 * @param mixed  $meta_data      The metadata.
+	 * @param object $data           The data about the metadata from \Fieldmanager_Field.
 	 */
 	public function radio_field( $opt_label, $meta_data, $data ) {
 		$selected_value = __( 'Not set', 'shiro-admin' );
@@ -262,10 +262,10 @@ class Metaboxes {
 	/**
 	 * Outputs details about a Checkboxes field.
 	 *
-	 * @param string  $opt_label      Label for the option.
-	 * @param mixed   $meta_data      The metadata.
-	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
-	 * @param int     $remote_blog_id The remote blog ID.
+	 * @param string $opt_label      Label for the option.
+	 * @param mixed  $meta_data      The metadata.
+	 * @param object $data           The data about the metadata from \Fieldmanager_Field.
+	 * @param int    $remote_blog_id The remote blog ID.
 	 */
 	public function checkboxes_field( $opt_label, $meta_data, $data, $remote_blog_id ) {
 		$checked = array();
@@ -305,9 +305,9 @@ class Metaboxes {
 	/**
 	 * Outputs details about a Group field.
 	 *
-	 * @param mixed   $meta_data      The metadata.
-	 * @param \object $data           The data about the metadata from \Fieldmanager_Field.
-	 * @param int     $remote_blog_id The remote blog ID.
+	 * @param mixed  $meta_data      The metadata.
+	 * @param object $data           The data about the metadata from \Fieldmanager_Field.
+	 * @param int    $remote_blog_id The remote blog ID.
 	 */
 	public function group_field( $meta_data, $data, $remote_blog_id ) {
 		if ( empty( $meta_data ) ) {

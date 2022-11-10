@@ -44,8 +44,8 @@ $contact_link_text = ! empty( $template_args['contact_link_text'] ) ? $template_
 		<?php if ( ! empty( $template_args['pre_heading'] ) ) : ?>
 			<p class="double-heading__secondary is-style-h5">
 				<?php echo esc_html( $template_args['pre_heading'] ); ?>
-				<?php if ( ! empty( $rand_translation_title['lang'] ) ) : ?>
-				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>"><?php echo esc_html( $rand_translation_title['content'] ); ?></span>
+				<?php if ( ! empty( $rand_translation_title['lang'] ?? '' ) ) : ?>
+				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?></span>
                 <?php endif; ?>
 			</p>
         <?php endif; ?>
