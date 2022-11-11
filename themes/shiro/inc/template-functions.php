@@ -421,9 +421,7 @@ add_filter( 'body_class', 'wmf_remove_category_body_class' );
  */
 function wmf_get_background_image() {
 	if ( is_404() ) {
-		return array(
-			'image' => get_theme_mod( 'wmf_404_image' ),
-		);
+		return (int) get_theme_mod( 'wmf_404_image' );
 	}
 
 	$post_id = is_home() ? get_option( 'page_for_posts' ) : get_the_ID();

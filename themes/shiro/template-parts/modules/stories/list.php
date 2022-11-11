@@ -34,10 +34,10 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_stories_label' );
 		<p class="double-heading__secondary is-style-h5">
 			<?php
 			echo esc_html( $pre_heading );
-			if ( ! empty( $rand_translation_title ) && ! empty( $rand_translation_title['content'] ) ) :
+			if ( ! empty( $rand_translation_title ) && ! empty( $rand_translation_title['content'] ?? '' ) ) :
 				?>
-				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ); ?>">
-					<?php echo esc_html( $rand_translation_title['content'] ); ?>
+				— <span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>">
+					<?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?>
 				</span>
 			<?php endif; ?>
 		</p>
