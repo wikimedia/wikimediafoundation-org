@@ -1,14 +1,14 @@
-name: Build and deploy to VIP Go built branch
+name: Build and deploy to VIP Go built branch (legacy)
 
 on:
   push:
     branches:
-      - develop
+      - preprod
 
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
-    name: Build and deploy to VIP Go built branch
+    name: Build and deploy to VIP Go built branch (legacy)
     env:
       DEPLOY_REPO: wpcomvip/wikimediafoundation-org
     steps:
@@ -24,6 +24,24 @@ jobs:
 
       - name: Install Composer Dependencies
         uses: "ramsey/composer-install@v1"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('themes/shiro/package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
+        run: (npm --prefix themes/shiro ci)
+
+      - name: Build assets
+        run: (npm --prefix themes/shiro run build)
 
       - name: Run VIP Go Deploy script built
         run: bash .github/vip-go-deploy.sh
