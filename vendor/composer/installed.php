@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'shiro/wikimediafoundation',
+        'name' => 'wikimedia/wikimediafoundation-org',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '0abe57769c130e0c95d35fb0482eddc02fc8bcff',
+        'reference' => '4bad6c430cc10398f576994024e5ab610f070de5',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -112,15 +112,6 @@
                 0 => '*',
             ),
         ),
-        'shiro/wikimediafoundation' => array(
-            'pretty_version' => 'dev-develop',
-            'version' => 'dev-develop',
-            'reference' => '0abe57769c130e0c95d35fb0482eddc02fc8bcff',
-            'type' => 'wordpress-plugin',
-            'install_path' => __DIR__ . '/../../',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'squizlabs/php_codesniffer' => array(
             'pretty_version' => '3.7.1',
             'version' => '3.7.1.0',
@@ -129,6 +120,15 @@
             'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'wikimedia/wikimediafoundation-org' => array(
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'reference' => '4bad6c430cc10398f576994024e5ab610f070de5',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
             'pretty_version' => '1.2.1',
