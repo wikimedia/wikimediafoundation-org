@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - preprod
 
 jobs:
   deploy_job:
