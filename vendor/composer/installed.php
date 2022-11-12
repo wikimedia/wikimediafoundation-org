@@ -3,7 +3,7 @@
         'name' => 'wikimedia/wikimediafoundation-org',
         'pretty_version' => 'dev-preprod',
         'version' => 'dev-preprod',
-        'reference' => 'b7485acec2397b87ed6e7f05392d8f5636343187',
+        'reference' => 'b72fe28384492f81e54efc4413923a5ca315b2d4',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -124,7 +124,7 @@
         'wikimedia/wikimediafoundation-org' => array(
             'pretty_version' => 'dev-preprod',
             'version' => 'dev-preprod',
-            'reference' => 'b7485acec2397b87ed6e7f05392d8f5636343187',
+            'reference' => 'b72fe28384492f81e54efc4413923a5ca315b2d4',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
