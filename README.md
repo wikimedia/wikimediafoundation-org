@@ -32,7 +32,7 @@ Some plugins are managed via [`composer.json`](./composer.json), while others (f
 
 ### Updating themes
 
-The `shiro` theme is a submodule of [`wikimedia/shiro-wordpress-theme`](https://github.com/wikimedia/shiro-wordpress-theme). The theme handles its own production builds, which are distributed on the `release` branch of that repository. To update the theme submodule,
+The `shiro` theme is a submodule referencing [`wikimedia/shiro-wordpress-theme`](https://github.com/wikimedia/shiro-wordpress-theme). The theme handles its own production builds, which are distributed on the `release` branch of that repository. To update the theme submodule,
 
 ```bash
 # first, pull the latest release branch commit
