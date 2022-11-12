@@ -8,6 +8,17 @@ The production repository is privately hosted on GitHub and maintained by Automa
 
 A public repository is mirrored and made available: https://github.com/wikimedia/wikimediafoundation-org
 
+## Submodules
+
+This theme uses several other theme and plugins as Git submodules. When cloning the repository, use the `--recursive` flag for `git clone`, or else run
+
+```
+git submodule init
+git submodule update --recursive
+```
+
+after cloning to pull in required submodules.
+
 ## Updating mirror
 
 The process for updating the mirror is documented by GitHub: https://help.github.com/en/articles/duplicating-a-repository
@@ -18,6 +29,20 @@ Command to run from private repository:
 ## Updating plugins
 
 Some plugins are managed via [`composer.json`](./composer.json), while others (for example paid plugins like MultilingualPress) are committed into the repository manually within the [`plugins/` directory](./plugins/). See the [additional README in that folder](./plugins/) for more information on how to update individual plugins.
+
+### Updating themes
+
+The `shiro` theme is a submodule referencing [`wikimedia/shiro-wordpress-theme`](https://github.com/wikimedia/shiro-wordpress-theme). The theme handles its own production builds, which are distributed on the `release` branch of that repository. To update the theme submodule,
+
+```bash
+# first, pull the latest release branch commit
+cd themes/shiro
+git checkout release
+git pull origin release
+# then commit the updated submodule
+cd ..
+git add shiro
+```
 
 ## Setup
 
