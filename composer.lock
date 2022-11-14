@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe73755785344ddc0cb69c7e20d9917f",
+    "content-hash": "5fef3f133e6afb761d2579578f412499",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -299,12 +299,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "b36c534839e7ebd63f410b007adc97fd779c38d4"
+                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/b36c534839e7ebd63f410b007adc97fd779c38d4",
-                "reference": "b36c534839e7ebd63f410b007adc97fd779c38d4",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/e5602ffde677511a3f9869f44a91a42f1095b23d",
+                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d",
                 "shasum": ""
             },
             "type": "wordpress-theme",

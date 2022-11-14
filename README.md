@@ -27,10 +27,12 @@ composer install
 
 # Remove the production copy of the theme
 rm -rf themes/shiro
-# Clone the development repository
-git clone git@github.com:wikimedia/shiro-wordpress-theme.git themes/shiro
-# Install and build the theme
+# Reinstall from source
+composer install wikimedia/shiro-wordpress-theme --prefer-source
+# Switch to the `main` branch
 cd themes/shiro
+git checkout main
+# Install and build the theme
 nvm use
 npm install
 npm run build
