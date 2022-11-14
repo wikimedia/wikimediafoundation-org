@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a7501201d1d1c4cf08a9e4850e41925",
+    "content-hash": "fe73755785344ddc0cb69c7e20d9917f",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -292,6 +292,31 @@
                 "source": "https://github.com/humanmade/hm-gutenberg-tools/tree/v1.6.2"
             },
             "time": "2021-12-07T07:31:47+00:00"
+        },
+        {
+            "name": "wikimedia/shiro-wordpress-theme",
+            "version": "dev-release",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
+                "reference": "b36c534839e7ebd63f410b007adc97fd779c38d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/b36c534839e7ebd63f410b007adc97fd779c38d4",
+                "reference": "b36c534839e7ebd63f410b007adc97fd779c38d4",
+                "shasum": ""
+            },
+            "type": "wordpress-theme",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Wikimedia Foundation website theme.",
+            "support": {
+                "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release",
+                "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
+            },
+            "time": "2022-11-14T17:42:51+00:00"
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",
@@ -1231,6 +1256,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "wikimedia/shiro-wordpress-theme": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

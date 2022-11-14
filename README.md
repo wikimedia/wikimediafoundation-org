@@ -8,16 +8,27 @@ The production repository is privately hosted on GitHub and maintained by Automa
 
 A public repository is mirrored and made available: https://github.com/wikimedia/wikimediafoundation-org
 
-## Submodules
+## Developing themes
 
-This theme uses several other theme and plugins as Git submodules. When cloning the repository, use the `--recursive` flag for `git clone`, or else run
+This theme uses several other themes and plugins as composer dependencies. When cloning the repository, run `composer install` to pull down all site dependencies for use in your local development environment. This will pull down production builds of first-party themes and plugins.
 
+To actively develop any of these plugins in your local development environment, you will need to manually replace the production copy checked out via Composer with a full local git repository for that project. For the Shiro theme, for example, follow these steps to set up the theme for local development after cloning:
+
+```bash
+# Install all dependencies
+composer install
+
+# Remove the production copy of the theme
+rm -rf themes/shiro
+# Clone the development repository
+git clone git@github.com:wikimedia/shiro-wordpress-theme.git themes/shiro
+# Install and build the theme
+cd themes/shiro
+nvm use
+npm install
+npm run build
 ```
-git submodule init
-git submodule update --recursive
-```
-
-after cloning to pull in required submodules.
+(Note that the steps above assume you are using [nvm](https://github.com/nvm-sh/nvm) to select the appropriate version of Node for use with the theme.)
 
 ## Updating mirror
 
@@ -32,17 +43,23 @@ Some plugins are managed via [`composer.json`](./composer.json), while others (f
 
 ### Updating themes
 
-The `shiro` theme is a submodule referencing [`wikimedia/shiro-wordpress-theme`](https://github.com/wikimedia/shiro-wordpress-theme). The theme handles its own production builds, which are distributed on the `release` branch of that repository. To update the theme submodule,
+The `shiro` theme is a composer dependency referencing the [`wikimedia/shiro-wordpress-theme`](https://github.com/wikimedia/shiro-wordpress-theme) repository. The theme handles its own production builds, which are distributed on the `release` branch of that repository. To update the theme, adjust the commit hash in `composer.json` to the latest commit on the `release` branch,
 
-```bash
-# first, pull the latest release branch commit
-cd themes/shiro
-git checkout release
-git pull origin release
-# then commit the updated submodule
-cd ..
-git add shiro
+```diff
+diff --git a/composer.json b/composer.json
+index bc224963..6a3dd18f 100644
+--- a/composer.json
++++ b/composer.json
+@@ -46,7 +46,7 @@
+     "humanmade/hm-gutenberg-tools": "^1.6.2",
+-    "wikimedia/shiro-wordpress-theme": "dev-release#b36c534839e7ebd63f410b007adc97fd779c38d4",
++    "wikimedia/shiro-wordpress-theme": "dev-release#e5602ffde677511a3f9869f44a91a42f1095b23d",
+     "wpackagist-plugin/co-authors-plus": "^3.5",
 ```
+
+then run `composer update wikimedia/shiro-wordpress-theme` to update the lockfile.
+
+If doing this overwrites a local checkout of the theme repo, follow the steps in [Developing themes](#developing-themes), above, to reset your local environment to a real git checkout of the repository.
 
 ## Setup
 
