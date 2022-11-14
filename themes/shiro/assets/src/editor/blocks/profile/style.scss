@@ -1,0 +1,14 @@
+.profile-block {
+	.wp-block-column > &:only-child {
+		height: 100%;
+
+		.profile,
+		& > div {
+			height: 100%;
+		}
+	}
+
+	a.profile__link {
+		pointer-events: none;
+	}
+}

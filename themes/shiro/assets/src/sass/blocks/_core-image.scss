@@ -1,0 +1,17 @@
+.wp-block-image {
+	@include global-margin-bottom;
+
+	figcaption {
+		padding-left: rem(20);
+		padding-right: rem(20);
+	}
+
+	&.alignfull {
+		figcaption {
+			width: $content-column;
+			max-width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}

@@ -1,0 +1,157 @@
+// Profile role sections
+.role {
+	&__section {
+		margin-bottom: rem(50);
+
+		&.has-h2 {
+			border-top: 1px solid $wmui-color-base70;
+			padding-top: rem(14);
+		}
+
+		h3 {
+			margin-bottom: rem(20);
+		}
+
+		> p {
+			@include article-font;
+		}
+	}
+
+	&__heading {
+		margin-bottom: rem(40);
+	}
+
+	&__staff-list {
+		@include list-reset;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		list-style: none;
+		margin-bottom: rem(20);
+
+		// Use li here to override list-reset.
+		li {
+			margin-bottom: rem(40);
+		}
+
+		&__item {
+			flex-basis: 48%;
+			position: relative;
+			transition: 0.3s box-shadow;
+
+			@media (max-width: 767px) {
+				&:nth-child(odd) {
+					margin-right: 4%;
+				}
+			}
+
+			@media (min-width: 768px) {
+				flex-basis: 23.5%;
+				margin-right: 2%;
+
+				&:nth-child(4n+4) {
+					margin-right: 0;
+				}
+			}
+
+			&:hover &__photo {
+				box-shadow: 0 0 10px 3px rgba($color-base--active, 0.15);
+			}
+
+			&--executive {
+				@include global-margin-bottom;
+				flex-basis: 100%;
+
+				&,
+				&:nth-child(odd) {
+					margin-right: 0;
+				}
+
+				@media (min-width: 768px) {
+					display: grid;
+					grid-column-gap: 3%;
+					grid-template-columns: 1fr 1fr;
+					grid-template-rows: auto 1fr;
+				}
+
+				p {
+					@include has-font-size("default");
+				}
+			}
+		}
+
+		&__item__photo {
+			background: #d8d8d8;
+			display: inline-block;
+			height: rem(150);
+			margin-bottom: rem(14);
+			object-fit: cover;
+			width: 100%;
+
+			@media (min-width: 380px) {
+				height: rem(200);
+			}
+
+			@media (min-width: 450px) {
+				height: rem(265);
+			}
+
+			@media (min-width: #{$core-gutenberg-break-small}) {
+				height: rem(150);
+			}
+		}
+
+		&__item--executive &__item__photo {
+			grid-row: 1 / span 2;
+			height: auto;
+			min-height: rem(180);
+		}
+
+		&__item h4 {
+			@include has-font-size("default");
+			line-height: 1.4;
+
+			a {
+				color: inherit;
+
+				&::after {
+					@include absolute-full-cover();
+				}
+
+				&:focus {
+					@include focus-reset;
+					text-decoration: underline;
+				}
+			}
+		}
+
+		&__item--executive h4 {
+			@include has-font-size("medium");
+		}
+
+		&__item:focus-within a::after {
+			@include focus-ring($hex: true, $inset: false);
+			margin: rem(-5);
+		}
+
+		p {
+			@include has-font-size("small");
+			@include reset-p-margin;
+			font-family: $font-family-sans;
+			line-height: 1.5;
+		}
+	}
+
+	// TODO: remove when nested content sections are removed.
+	&__staff-title__nested {
+		color: $wmui-color-base30;
+
+		&::before {
+			content: "↳";
+		}
+	}
+
+	&__read-more {
+		margin-bottom: rem(80);
+	}
+}

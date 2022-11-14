@@ -1,0 +1,10 @@
+// Responsive media queries
+@mixin bp($point) {
+	@if $point {
+		@media only screen and (min-width: $point) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}

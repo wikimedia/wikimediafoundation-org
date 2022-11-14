@@ -1,0 +1,57 @@
+.nav-donate {
+	margin-left: rem(6);
+	order: 40;
+
+	@media (min-width: #{$primary-nav-breakpoint}) {
+		margin-left: rem(8);
+	}
+
+	&__link {
+		@include button-secondary();
+		align-items: center;
+		display: flex;
+		min-height: rem(34);
+	}
+
+	&__icon {
+
+		/**
+		 * This extra specificity is necessary to override legacy icon styles
+		 * that cannot yet be removed.
+		 */
+		&.icon {
+			height: rem(14);
+			margin: 0;
+			width: rem(14);
+		}
+
+		&--lock {
+			display: none;
+		}
+
+		@media (min-width: #{$primary-nav-breakpoint}) {
+			&--lock.icon {
+				display: inline-block;
+				margin-right: rem(4);
+			}
+
+			&--heart {
+				display: none;
+			}
+		}
+	}
+
+	&__copy {
+		display: inline-block;
+
+		/**
+		 * "Mobile-first" is preferable, but in this case it seems simpler to
+		 * do this "backwards" since it is hidden on mobile but not desktop.
+		 */
+		@media (max-width: #{$medium-landscape}) {
+			font-size: 0;
+			height: 1px;
+			overflow: hidden;
+		}
+	}
+}

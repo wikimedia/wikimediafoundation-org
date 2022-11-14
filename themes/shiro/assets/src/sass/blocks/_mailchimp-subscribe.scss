@@ -1,0 +1,92 @@
+.mailchimp-subscribe {
+	background: $background-color-framed;
+	border: 1px solid $border-color-framed;
+	border-radius: $border-radius-big;
+	font-family: $font-family-sans;
+	padding: rem(25);
+
+	h3 {
+		@include h3-sans;
+	}
+
+	&__form:not(:only-child) {
+		@include global-margin-bottom;
+	}
+
+	p {
+		font-family: $font-family-sans;
+		margin-bottom: rem(20);
+	}
+
+	> p:not(.mailchimp-subscribe__description) {
+		@include has-font-size("default");
+	}
+
+	.icon {
+		margin-left: 0;
+		width: 20px;
+	}
+
+	.wp-block-column > &__form:only-child {
+		@media (min-width: #{$core-gutenberg-break-medium}) {
+			align-items: stretch;
+			display: flex;
+			height: 100%;
+		}
+	}
+
+	&__input-container {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: rem(20);
+		margin-top: rem(20);
+	}
+
+	&__column-input {
+		width: 100%;
+	}
+
+	&__column-button {
+		margin-top: 8px;
+	}
+
+	&__input-field {
+		@include font-size(14, 16);
+		@include line-height(20, 22);
+
+		background: $background-color-base;
+		border: 1px solid $border-color-base;
+		border-radius: $border-radius-base;
+		margin: 0;
+		padding: rem(6) rem(8);
+
+		&:focus {
+			@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
+		}
+	}
+
+	&__description {
+		@include has-font-size("small");
+		color: $wmui-color-base30;
+	}
+
+	// Override too specific selector
+	.has-small-font-size {
+		@extend .has-small-font-size;
+	}
+
+	@media (min-width: #{ ($width-breakpoint-desktop) }) {
+		&__input-container {
+			flex-wrap: nowrap;
+		}
+
+		&__column-input {
+			flex: 1;
+		}
+
+		&__column-button {
+			margin-left: 8px;
+			margin-top: 0;
+		}
+	}
+}

@@ -1,0 +1,49 @@
+.fm-checkbox-group {
+    max-width: 600px;
+    max-height: 300px;
+    overflow-x: scroll;
+    border: 1px solid #eee;
+    padding: 1em;
+    margin-top: 1em;
+}
+
+.taxonomy-role .fm-checkbox-group {
+	border-color: #8c8f94;
+	margin-top: 0;
+	padding: 5px 10px;
+}
+
+.taxonomy-role .fm-checkbox-group:empty {
+	border-color: transparent;
+	padding: 0;
+}
+
+.taxonomy-role .fm-checkbox-group .fm-option {
+	margin: 10px 0;
+}
+
+.taxonomy-role .fm-item-description {
+	color: #646970;
+}
+
+.wmf-translation-seperator {
+	margin: 2rem 0 4rem
+}
+
+.wmf-translation-seperator:last-of-type {
+	display: none;
+}
+
+.wmf-translation-group {
+	margin: 1rem;
+	padding: 2rem;
+	border: 1px solid #DDD;
+}
+
+.wmf-translation-group-heading {
+	margin: -2.6rem auto 0;
+	padding: 0 3rem;
+	background: #fff;
+	display: block;
+	width: 50px;
+}

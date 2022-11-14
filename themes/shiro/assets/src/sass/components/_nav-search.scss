@@ -1,0 +1,40 @@
+.nav-search {
+	background: #fff;
+	border: 1px solid $border-color-base;
+	border-radius: 2px;
+	box-sizing: border-box;
+	margin-bottom: 0;
+	width: 100%;
+
+	@media ( min-width: #{$medium-landscape} ) {
+		align-self: flex-start;
+		flex: 0 0 rem(220);
+		margin-left: auto;
+		margin-top: rem(12);
+		order: 1;
+	}
+
+	[data-dropdown-status="uninitialized"] & {
+		@include target-ie {
+			margin-top: 0.5rem;
+		}
+	}
+
+	.search-form__field {
+
+		/**
+		 * On iPhones, if the font size in an input field is less than 16px,
+		 * Safari will zoom in when the field is activated--and *not* zoom back
+		 * out when the field is left, which creates a bad UX.
+		 */
+		font-size: 16px;
+
+		&::placeholder {
+			font-size: 14px;
+		}
+
+		@media ( min-width: #{$medium-landscape} ) {
+			font-size: 14px;
+		}
+	}
+}

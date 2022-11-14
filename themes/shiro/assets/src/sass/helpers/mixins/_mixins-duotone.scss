@@ -1,0 +1,263 @@
+// TODO: see if any of this is still needed after content is fully switched to Gutenberg.
+
+// Non-duotone gradient
+@mixin blue-gradient-vertical() {
+	@include absolute-full-cover();
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+37,000000+37,3a25ff+100&0+37,0.65+100 */
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 37%, rgba(58,37,255,0.65) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 37%,rgba(58,37,255,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 37%,rgba(58,37,255,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a63a25ff',GradientType=0 ); /* IE6-9 */
+}
+
+// Duotone
+// http://webdesignerwall.com/tutorials/create-spotify-colorizer-effects-css-blend-modes
+// Playground: https://codepen.io/anon/pen/bYbqQL?editors=1100
+@mixin duotoneInline($color, $gray-scale, $contrast, $mix-blend-mode) {
+	background: $color;
+	position: relative;
+
+	img {
+		display: block;
+		width: 100%;
+		position: relative;
+	}
+
+	// Browsers that don't support mix-blend-mode get the main color as background color on parent's :before element, and img gets 50% opacity.
+	&:before,
+	&:after {
+		@include absolute-full-cover();
+	}
+
+	&:before {
+		opacity: 0.1;
+	}
+
+	&:after {
+		background-color: #d90000;
+		background-image: linear-gradient(129deg, #d90000, #ff00b7);
+		opacity: 0.5;
+	}
+
+	img {
+		opacity: 0.5;
+	}
+
+	// Suports our duo tone properties
+	@supports (mix-blend-mode: $mix-blend-mode) {
+		&:after {
+			content: none;
+		}
+
+		&:before {
+			content: none;
+		}
+
+		img {
+			filter: grayscale($gray-scale) contrast($contrast);
+			mix-blend-mode: $mix-blend-mode;
+			opacity: 1;
+		}
+	}
+}
+
+// Background image
+@mixin duoToneBg($color, $gray-scale, $contrast, $mix-blend-mode) {
+	position: relative;
+
+	&::after,
+	&::before {
+		@include absolute-full-cover();
+	}
+
+	&::before {
+		background-color: $color;
+	}
+
+	.bg-img {
+		overflow: hidden;
+		position: relative;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100%;
+		opacity: 0.5;
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			width: inherit;
+			height: inherit;
+		}
+	}
+
+	@supports (mix-blend-mode: $mix-blend-mode) {
+		&::after {
+			content: none;
+		}
+
+		.bg-img {
+			filter: grayscale($gray-scale) contrast($contrast);
+			mix-blend-mode: $mix-blend-mode;
+			opacity: 1;
+			width: 100%;
+		}
+	}
+}
+
+
+@mixin pink-gradient {
+	&:after {
+		@include absolute-full-cover();
+		opacity: .75;
+
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+13,ffffff+13,d40356+100&0+13,1+100 */
+		background: -moz-linear-gradient(top,  rgba(255,255,255,0) 13%, rgba(212,3,86,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 13%,rgba(212,3,86,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  rgba(255,255,255,0) 13%,rgba(212,3,86,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#d40356',GradientType=0 ); /* IE6-9 */
+	}
+}
+
+@mixin blue-gradient {
+	&:after {
+		@include absolute-full-cover();
+		opacity: .35;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3a25ff+0,ffffff+87,ffffff+87&1+0,0+87 */
+		background: -moz-linear-gradient(left, rgba(58,37,255,1) 0%, rgba(255,255,255,0) 87%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(58,37,255,1) 0%,rgba(255,255,255,0) 87%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(58,37,255,1) 0%,rgba(255,255,255,0) 87%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a25ff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+	}
+}
+
+@mixin turquoise-gradient {
+
+	&:after {
+		@include absolute-full-cover();
+		opacity: .35;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#01b7b1+0,ffffff+87,ffffff+87&1+0,0+87 */
+		background: -moz-linear-gradient(left, rgba(1,183,177,1) 0%, rgba(255,255,255,0) 87%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(1,183,177,1) 0%,rgba(255,255,255,0) 87%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(1,183,177,1) 0%,rgba(255,255,255,0) 87%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01b7b1', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+	}
+}
+
+@mixin yellow-gradient {
+
+	&:after {
+		@include absolute-full-cover();
+		opacity: .35;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#01b7b1+0,ffffff+87,ffffff+87&1+0,0+87 */
+		background: -moz-linear-gradient(left, $color-yellow 0%, rgba(255,255,255,0) 87%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, $color-yellow 0%,rgba(255,255,255,0) 87%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, $color-yellow 0%,rgba(255,255,255,0) 87%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01b7b1', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+	}
+}
+
+@mixin white-gradient {
+
+	&:after {
+		@include absolute-full-cover();
+		opacity: .20;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+13,ffffff+13,ffffff+100&0+13,1+100 */
+		background: -moz-linear-gradient(left, rgba(255,255,255,0) 13%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, rgba(255,255,255,0) 13%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, rgba(255,255,255,0) 13%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+	}
+}
+
+
+@mixin bgImgPositioning() {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 75%;
+	z-index: 1;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+}
+
+// Duotone Classes
+
+// Background Images
+.bg-img {
+
+	&--pink {
+
+		.bg-img-container {
+			@include duoToneBg($color-pink, 50%, 1, screen);
+			@include pink-gradient();
+			@include bgImgPositioning();
+		}
+	}
+
+	&--blue {
+		.bg-img-container {
+			@include duoToneBg($color-blue, 51%, 1, screen);
+			@include blue-gradient();
+			@include bgImgPositioning();
+		}
+	}
+
+	&--turquoise {
+		.bg-img-container {
+			@include duoToneBg($color-turquoise, 50%, 1, darken);
+			@include turquoise-gradient();
+			@include bgImgPositioning();
+			.bg-img.bg-img {
+				opacity: 0.9;
+			}
+		}
+	}
+
+
+	&--transparent-turquoise {
+		.bg-img-container {
+			@include duoToneBg($color-turquoise, 50%, 1, multiply);
+			@include bgImgPositioning();
+			opacity: 0.8;
+
+		}
+	}
+
+	&--turquoise-dark {
+		.bg-img-container {
+			@include duoToneBg($color-turquoise, 50%, 1, multiply);
+			@include turquoise-gradient();
+			@include bgImgPositioning();
+		}
+	}
+
+	&--yellow {
+		.bg-img-container {
+			@include duoToneBg($color-yellow, 100%, 1, multiply);
+			@include bgImgPositioning();
+		}
+	}
+}
+
+// Inline Images
+.duotone-inline-img-container {
+	&--pink {
+		@include duotoneInline($color-pink, 40%, 1, screen);
+	}
+
+	&--blue {
+		@include duotoneInline($color-blue, 40%, 1, screen);
+	}
+
+	&--turquoise {
+		@include duotoneInline($color-turquoise, 40%, 1, screen);
+	}
+}

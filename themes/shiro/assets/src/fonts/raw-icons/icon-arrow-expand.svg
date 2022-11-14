@@ -1,0 +1,12 @@
+<svg width="18" height="12" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Expand Less</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-17951 1643)">
+<g id="Expand Less">
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 17969 -1631.9)" fill="#6D8799"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 9 0L 0 9L 2.1 11.1L 9 4.2L 15.9 11.1L 18 9L 9 0Z"/>
+</defs>
+</svg>

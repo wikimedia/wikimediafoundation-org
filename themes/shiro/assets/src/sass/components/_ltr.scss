@@ -1,0 +1,29 @@
+/* Adds some LTR specific styling meant to be reverse for RTL stylesheet. */
+body {
+	text-align: left;
+	direction: ltr;
+}
+
+.header-home.featured-photo--content-left .bg-img-container,
+.header-default.featured-photo--content-left .bg-img-container {
+	left: auto;
+}
+
+.img-right-content-left .bg-img-container {
+	left: auto;
+	right: 0;
+}
+
+.img-left-content-right .bg-img-container {
+	left: 0;
+	right: auto;
+}
+
+.translation-bar ul {
+	padding-right: 0;
+}
+
+.rtl-switch {		
+    direction: rtl;		
+    text-align: right		
+}

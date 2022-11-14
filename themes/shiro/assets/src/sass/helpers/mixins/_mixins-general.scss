@@ -1,0 +1,27 @@
+@mixin hover-box-shadow {
+	border: 1px solid transparent;
+	transition: $transition-ease-medium border-color, $transition-ease-medium box-shadow;
+
+	&:hover {
+		border-color: $wmui-color-base90;
+		box-shadow: $box-shadow-card-element;
+	}
+}
+
+@mixin list-reset() {
+	margin: 0;
+	padding: 0;
+
+	li {
+		font-family: $font-family-sans;
+		font-size: inherit;
+		line-height: inherit;
+		margin-bottom: 0;
+	}
+}
+
+@mixin target-ie {
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		@content;
+	}
+}

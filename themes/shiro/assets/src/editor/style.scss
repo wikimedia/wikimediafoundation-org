@@ -1,0 +1,61 @@
+@import "~sass-lib/editor/editor-includes";
+
+// Re-style the URLInput like a normal input when used in the sidebar
+.edit-post-sidebar {
+	.block-editor-url-input__input[type="text"] {
+		border: 1px solid rgb(117, 117, 117);
+		border-radius: 2px;
+
+		&:focus {
+			border-color: var(--wp-admin-theme-color);
+			box-shadow: 0 0 0 0.5px var(--wp-admin-theme-color);
+			outline: transparent solid 2px;
+		}
+	}
+}
+
+.editor-styles-wrapper {
+	// This is to match the frontend
+	strong {
+		font-weight: 700;
+	}
+
+	.block-editor-block-list__block.wp-block-column:not(:first-child) {
+		margin-left: rem(20);
+	}
+
+	.block-editor-block-list__block,
+	figure.block-editor-block-list__block {
+		// Allow for the block insertion point to show.
+		margin-bottom: rem(40);
+	}
+
+	// This overrides the styles set on the frontend that allow spacers to set "true"
+	// distances by cancelling out margins. In the editor we don't want this, because
+	// we wouldn't be able to use the inserter.
+	.wp-block-spacer.wp-block-spacer {
+		margin-bottom: rem(40);
+		margin-top: 0;
+	}
+
+	.has-blocks .block-editor-block-list__layout>.wp-block.is-reusable {
+		max-width: none;
+	}
+
+	// Core adds these values to alignfull items, but they aren't applied to
+	// alignfull items inside of reusable blocks, so we re-apply them. They're
+	// using px instead of rem to a) exactly match core values b) avoid a
+	// complicated-to-read definition necessary to get negative values with our
+	// sass function.
+	.is-reusable [data-align="full"] {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+
+	// Groups inside of reusable blocks that have align values still get their
+	// width limited by default. This removes that limitation, allowing them to
+	// expand to the correct width of the wrapping group.
+	[data-align] > .wp-block-group > .wp-block-group__inner-container > .wp-block {
+		max-width: none;
+	}
+}

@@ -1,0 +1,23 @@
+.nav-logo {
+	align-items: center;
+	display: flex;
+	height: 62px;
+	order: 20;
+
+	&:focus {
+		@include focus-reset;
+	}
+
+	&__image {
+		max-height: 24px;
+		width: auto;
+
+		@media (min-width: $primary-nav-breakpoint) {
+			max-height: 32px;
+		}
+	}
+
+	&:focus &__image {
+		@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
+	}
+}

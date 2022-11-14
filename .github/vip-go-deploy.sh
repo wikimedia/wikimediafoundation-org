@@ -42,9 +42,6 @@ else
 	git checkout --quiet "${DEPLOY_BRANCH}"
 fi
 
-# Include submodules
-git submodule update --init
-
 # Copy the files over
 # -------------------
 

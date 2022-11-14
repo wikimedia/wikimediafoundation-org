@@ -1,0 +1,70 @@
+// People cards
+.people-container {
+  @media (max-width: 767px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.join-movement {
+  text-align: center;
+  margin: 0 auto;
+  color: $color-black;
+  line-height: 1.6;
+  @include font-size(18, 16);
+
+  p {
+    @include font-size(18, 16);
+  }
+
+  .btn {
+    margin-top: 1rem;
+    @include font-size(18, 16);
+    text-transform: none;
+  }
+    a {
+    transition: 0.3s all;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-blue;
+         }
+    }
+}
+
+.people {
+
+  .person-name {
+    text-transform: none;
+    color: #000;
+    @include responsive-margin(4, 8, bottom);
+    font-size: 1rem;
+  }
+
+  .person-title {
+    line-height: 1.2;
+
+    @media (min-width: $medium-bp) {
+      line-height: 1.5;
+    }
+  }
+
+  &.slider-on-mobile {
+    @media (max-width: 767px) {
+      display: block;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+
+      &:focus {
+        outline: none;
+      }
+
+      .card {
+        display: inline-block;
+        max-width: 85%;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

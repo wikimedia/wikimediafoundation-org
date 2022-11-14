@@ -1,0 +1,43 @@
+.inline-languages {
+	@include global-margin-bottom;
+	@include list-reset;
+	border-top: 1px solid $wmui-color-base70;
+	text-align: center;
+
+	&__list {
+		padding-bottom: rem( 21 );
+		padding-top: rem( 19 );
+	}
+
+	&__language {
+		display: inline-block;
+		font-size: rem( 14 );
+		font-weight: 600;
+		line-height: 250%;
+
+		&--current {
+			color: $wmui-color-base0;
+		}
+
+		&::after {
+			content: "·";
+			display: inline-block;
+			margin: 0 1rem;
+		}
+
+		&:last-child {
+			&::after {
+				display: none;
+			}
+		}
+
+		a {
+			color: $wmui-color-blue50;
+
+			&:focus,
+			&:hover {
+				color: #3200be;
+			}
+		}
+	}
+}

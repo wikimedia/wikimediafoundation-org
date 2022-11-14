@@ -1,0 +1,35 @@
+.call-to-action {
+	&-wrapper {
+		align-items: flex-start;
+		display: inline-flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		position: relative;
+	}
+
+	// Additional specificity is needed here because otherwise
+	// `.editor-styles-wrapper div` overrides this style.
+	.editor-styles-wrapper &__warning {
+		background-color: #fff;
+		border: 1px solid #000;
+		border-radius: 1rem;
+		color: #d40356;
+		font-size: small;
+		padding: 0.5rem;
+	}
+
+	// Increased specificity has been chosen instead of !important here
+	// so that in the event that something that uses this component needs
+	// to define its own "no url" styles, it can override these ones.
+	.editor-styles-wrapper &--no-url.call-to-action-wrapper &,
+	.editor-styles-wrapper &--no-url.call-to-action-wrapper &:active,
+	.editor-styles-wrapper &--no-url.call-to-action-wrapper &:focus,
+	.editor-styles-wrapper &--no-url.call-to-action-wrapper &:hover {
+		background-color: #c8ccd1;
+
+		.is-style-base70 & {
+			background-color: #f8f9fa;
+			color: #000;
+		}
+	}
+}

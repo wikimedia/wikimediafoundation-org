@@ -1,0 +1,42 @@
+.share-article {
+
+	@include global-margin-bottom;
+	display: flex;
+
+	&__link {
+		width: rem(50);
+		height: rem(50);
+		display: block;
+		line-height: rem(46);
+		text-align: center;
+		border-radius: 100%;
+		border: 1px solid #3A25FF;
+
+		&:not(:first-child) {
+			margin-left: rem(14);
+		}
+
+		&:hover,
+		&:focus {
+			svg {
+				fill: $color-primary--hover;
+				transform: scale(1.17);
+			}
+		}
+	}
+
+	svg {
+		width: rem(20);
+		height: rem(20);
+		vertical-align: middle;
+		fill: $color-primary;
+		transition: 0.3s transform;
+	}
+
+	.header-main & {
+		margin-top: rem(16);
+
+		// Don't apply default margin in header
+		margin-bottom: 0;
+	}
+}

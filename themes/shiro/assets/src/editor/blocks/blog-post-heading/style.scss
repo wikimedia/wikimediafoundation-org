@@ -1,0 +1,67 @@
+@import "~sass-lib/editor/editor-includes";
+
+// stylelint-disable declaration-property-unit-blacklist
+.wp-block[data-type="shiro/blog-post-heading"] {
+	max-width: unset !important;
+	width: 100%;
+}
+
+.post-heading {
+
+	&__image-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0 auto !important;
+		position: relative;
+		max-width: 980px;
+		width: 100%;
+		min-height: 200px;
+
+		&--empty {
+			background: rgba(0, 0, 0, 0.05);
+			border-radius: 10px;
+		}
+	}
+
+	&__click-overlay {
+		appearance: none;
+		background: transparent;
+		border: 0 none;
+		display: flex;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		right: 0;
+
+		.dashicon-wrapper {
+			background: rgba(255, 255, 255, 0.5);
+			border-radius: 2px;
+			padding: 5px;
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			z-index: 1;
+		}
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.05);
+
+			.dashicon-wrapper {
+				background-color: #fff;
+			}
+		}
+	}
+
+	.editor-styles-wrapper & .article-title {
+		margin: rem(80) auto rem(60);
+	}
+
+	&__intro p {
+		font-size: 1.5rem !important;
+		line-height: 1.5 !important;
+	}
+}

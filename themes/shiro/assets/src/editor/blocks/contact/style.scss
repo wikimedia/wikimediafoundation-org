@@ -1,0 +1,12 @@
+@import "~sass-lib/editor/editor-includes";
+
+.contact {
+	.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > &.wp-block {
+		max-width: $content-column-rem;
+		padding: rem(25);
+	}
+
+	.wp-block-button {
+		margin-top: 0;
+	}
+}

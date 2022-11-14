@@ -1,0 +1,45 @@
+.primary-nav-toggle {
+	// button-tertiary
+	@include style-guide-button(
+		$wmui-color-base90,
+		$wmui-color-base90,
+		$color-primary,
+		$border-color-base,
+	);
+
+	align-items: center;
+	display: inline-flex;
+	height: rem(34);
+	justify-content: center;
+	margin-right: rem(17);
+	order: 10;
+	padding: 0;
+	width: rem(40);
+
+	@media screen and (min-width: #{$primary-nav-breakpoint}) {
+		display: none;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
+		border-color: $border-color-base;
+	}
+
+	&__icon {
+		display: none;
+		height: rem(20);
+		margin: 0;
+		width: rem(20);
+
+		[aria-expanded="true"] &--opened,
+		[aria-expanded="false"] &--closed {
+			display: block;
+		}
+	}
+
+	&[hidden] {
+		display: none;
+	}
+}

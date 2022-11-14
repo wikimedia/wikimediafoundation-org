@@ -1,0 +1,383 @@
+# Copyright (C) 2022 Wikimedia Foundation Design
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Shiro 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/shiro\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-05-19T13:40:46-04:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: shiro\n"
+
+#. Theme Name of the theme
+msgid "Shiro"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://github.com/wikimedia/wikimediafoundation-org"
+msgstr ""
+
+#. Description of the theme
+msgid "Wikimedia Foundation website theme, forked from the Reaktiv theme"
+msgstr ""
+
+#. Author of the theme
+msgid "Wikimedia Foundation Design"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://design.wikimedia.org/"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:35
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:51
+#: comments.php:74
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:54
+#: comments.php:77
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:55
+#: comments.php:78
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:92
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:34
+msgid "Close"
+msgstr ""
+
+#: inc/classes/walkers/class-walker-main-nav.php:105
+msgid "Expand submenu for "
+msgstr ""
+
+#: inc/editor/blocks/mailchimp-subscribe.php:33
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:44
+msgid "Email address"
+msgstr ""
+
+#: inc/editor/blocks/read-more-categories.php:50
+#: template-parts/modules/cards/card-horizontal.php:83
+#: template-parts/modules/cards/card-vertical.php:77
+#: template-parts/modules/featured/post-card.php:36
+#: template-parts/modules/stories/excerpt.php:34
+msgid "Read more"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:29
+#: inc/editor/has-blocks-column.php:77
+msgid "Has blocks"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:44
+msgid "Yes"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:44
+msgid "No"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:69
+msgid "Filter by whether the page has blocks"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:74
+msgid "All"
+msgstr ""
+
+#: inc/editor/has-blocks-column.php:80
+msgid "Doesn't have blocks"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:18
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:21
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:25
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:28
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: inc/template-tags.php:38
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:167
+msgid "By "
+msgstr ""
+
+#. Template Name of the theme
+msgid "Data Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Freeform"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "List Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Redirect Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Landing Page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report Section"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Report page"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Stories Page"
+msgstr ""
+
+#: sidebar-list.php:35
+#: sidebar-report.php:31
+#: assets/src/editor/blocks/table-of-contents/index.js:148
+msgid "Table of Contents"
+msgstr ""
+
+#: sidebar-list.php:43
+#: assets/src/editor/blocks/table-of-contents/index.js:156
+msgid "Navigate within this page."
+msgstr ""
+
+#: sidebar-list.php:48
+#: sidebar-report.php:44
+#: assets/src/editor/blocks/table-of-contents/index.js:165
+msgid "Toggle menu"
+msgstr ""
+
+#: sidebar-report.php:39
+msgid "Navigate within this section."
+msgstr ""
+
+#: sidebar-search.php:36
+msgid "Sort By"
+msgstr ""
+
+#. translators: 1. post title
+#: single-profile.php:104
+msgid "Posts by %s"
+msgstr ""
+
+#. translators: %s represents the page title.
+#: single-story.php:26
+msgid "%s stories"
+msgstr ""
+
+#: template-parts/header/story-single.php:11
+msgid "Transparency Report"
+msgstr ""
+
+#: template-parts/modules/projects/project.php:15
+msgid "Logo image."
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:38
+msgid "Connect with us on Facebook"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:47
+msgid "Connect with us on Twitter"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:56
+msgid "Connect with us on Instagram"
+msgstr ""
+
+#: template-parts/modules/social/follow-horizontal.php:65
+msgid "Read our blog"
+msgstr ""
+
+#. translators: %s: Title of Author
+#: template-parts/profiles/related-posts.php:16
+msgid "Recent posts by %s"
+msgstr ""
+
+#: template-parts/profiles/role-list.php:61
+msgid "Department experts"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:58
+msgid "Contact a human"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:64
+msgid "Questions about the Wikimedia Foundation or our projects? Get in touch with our team."
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:70
+msgid "Contact"
+msgstr ""
+
+#: assets/src/editor/blocks/contact/index.js:82
+msgid "Follow"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:110
+msgid "No icon"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:125
+msgid "Icons"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:127
+msgid "A custom icon can be used by inserting an inline image"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/IconSelector.js:128
+msgid "Icon"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:54
+msgid "Call to Action"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:60
+msgid "Pink donate button"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:62
+msgid "Donate now"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:80
+msgid "Primary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:85
+msgid "Secondary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:89
+msgid "Tertiary"
+msgstr ""
+
+#: assets/src/editor/blocks/core-button/index.js:93
+msgid "As link"
+msgstr ""
+
+#: assets/src/editor/blocks/core-columns/index.js:8
+msgid "Align Buttons Bottom"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:8
+msgid "No border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:9
+msgid "Small border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:10
+msgid "Big border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:83
+msgid "Wikimedia group settings"
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:85
+msgid "This will only have an effect when a background color has been chosen for this group."
+msgstr ""
+
+#: assets/src/editor/blocks/core-group/BorderRadiusSelector.js:86
+msgid "Border radius"
+msgstr ""
+
+#: assets/src/editor/blocks/core-quote/index.js:7
+msgid "Default"
+msgstr ""
+
+#: assets/src/editor/blocks/core-quote/index.js:12
+msgid "Pullquote"
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:12
+msgid "Get email updates"
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:15
+msgid "Subscribe to news about ongoing projects and initiatives"
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:33
+msgid "This mailing list is powered by MailChimp. The Wikimedia Foundation will handle your personal information in accordance with this site’s privacy policy."
+msgstr ""
+
+#: assets/src/editor/blocks/mailchimp-subscribe/index.js:39
+msgid "Subscribe"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:21
+msgid "Tweet this"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:57
+msgid "Write tweet this text"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:63
+msgid "Tweet settings"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:65
+msgid "When clicking the link, this text will be inside the composed tweet"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:66
+msgid "Tweet text"
+msgstr ""
+
+#: assets/src/editor/blocks/tweet-this/index.js:73
+msgid "Tweet URL"
+msgstr ""

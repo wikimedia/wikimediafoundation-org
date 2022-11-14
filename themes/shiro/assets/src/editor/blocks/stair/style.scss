@@ -1,0 +1,14 @@
+@import "~sass-lib/editor/editor-includes";
+
+.wp-block-shiro-stair {
+	.wp-block-shiro__image-preview {
+		height: rem(192);
+		width: rem(314);
+	}
+
+	.components-placeholder {
+		background: rgba(0, 0, 0, 0.05);
+		height: rem(192);
+		width: rem(314);
+	}
+}

@@ -1,0 +1,343 @@
+// Group all style modifications for the 2019-2 transparency report together.
+
+.page-template-page-report-landing,
+.page-template-page-report-section,
+.page-template-page-stories {
+	.header-default .header-content {
+		@media (max-width: $medium-bp) {
+			margin-top: rem( 30 );
+		}
+	}
+	.header-default .ungrid {
+		max-height: unset;
+		@media (min-width: $medium-bp) { margin-bottom: 2.5rem; }
+
+		.bg-img {
+			background-size: cover;
+		}
+		.content {
+			width: unset;
+			margin-top: unset;
+		}
+	}
+
+	@keyframes redacted-text {
+		0% { background-color: transparent; }
+		100% { background-color: #000; color: #000; }
+	}
+
+	.blackout {
+		padding: 0 2px;
+		animation: redacted-text 5s alternate infinite;
+	}
+
+	.report-section-title {
+		border-bottom: 3px solid $wmui-color-base0;
+		text-transform: none;
+		@include font-size(36, 24);
+		font-weight: 500;
+		margin-bottom: rem(50);
+	}
+
+	// Anchor link behaviour
+	:target::before {
+		content: ' ';
+		display: block;
+		height: 0;
+		@media screen and (min-width: $medium-bp) {
+			height: rem( 80 );
+			margin-top: rem( -80 );
+		}
+	}
+
+	&.admin-bar {
+		:target::before {
+			@media screen and (min-width: $medium-bp) {
+				height: rem( 125 );
+				margin-top: rem( -125 );
+			}
+			@media screen and (min-width: 48em) {
+				height: rem( 115 );
+				margin-top: rem( -115 );
+			}
+		}
+	}
+
+	// Page content.
+	.report-content {
+
+		.article-img {
+			margin: 1rem 0;
+		}
+
+		img {
+			max-width: 100%;
+		}
+		.column img {
+			@media (max-width: ( $medium-bp - 1 )) {
+				max-width: 50%;
+				display: block;
+				margin: auto;
+			}
+			@media (max-width: $small-bp) {
+				max-width: 75%;
+			}
+		}
+
+		p {
+			font-size: 1.125rem;
+			line-height: 1.5;
+		}
+
+		ul,
+		ol {
+			list-style-position: outside;
+			margin: rem(18) 0 rem(18) 0;
+
+			li {
+				font-size: 1.125rem;
+			}
+
+			ul, ol {
+				margin-bottom: 0;
+			}
+
+			li, ol {
+				line-height: 1.5;
+				margin-left: rem(18);
+				padding: rem(0.33) 0; /*6px @18px*/
+			}
+		}
+
+		ul ul, ul ul ul, li > ul, li > ol {
+			margin-left: 1rem;
+			margin-bottom: 0;
+		}
+
+		h2 {
+			padding-bottom: 4px;
+			border-bottom: 2px solid black;
+			margin-bottom: 1em;
+
+			&.report-section-title {
+				font-size: rem(28);
+				@media (min-width: $medium-bp) { font-size: rem(36); }
+				margin-bottom: 1.5em;
+			}
+		}
+
+		h2.story-link {
+			border-bottom: 0;
+
+			a {
+				color: #3a25ff;
+				&:hover, &:focus {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		h3 {
+			line-height: 1.5;
+			margin: rem(30) 0 rem(21);
+			font-size: rem(18);
+			@media (min-width: $medium-bp) { font-size: rem(21); }
+		}
+
+		h4 {
+			margin: rem(18) 0 rem(6);
+			font-size: rem(16);
+			@media (min-width: $medium-bp) { font-size: rem(18); }
+		}
+
+		.note {
+			font-size: 1rem;
+		}
+
+		.mar-bottom {
+			// This is a misappropriation of this class, but it lets us properly
+			// scroll table overflow on small devices.
+			overflow-x: auto;
+		}
+	}
+
+	table {
+		margin-bottom: 2rem;
+	}
+
+	.table-data {
+		thead tr {
+			border-bottom: 0;
+		}
+		tbody tr {
+			border-bottom: 0.6px solid #000;
+		}
+		th,
+		td {
+			padding: rem(8);
+			font-weight: 500;
+			font-size: rem(14);
+			@media (min-width: $medium-bp) { font-size: rem(16); }
+
+			&:first-child {
+				padding-left: 0;
+			}
+			&:last-child {
+				padding-right: 0;
+			}
+
+			a {
+				color: black; // a11y issue?
+			}
+		}
+		th {
+			text-transform: uppercase;
+		}
+	}
+
+	td.legend-color {
+		width: 1em;
+		height: 1em;
+		margin-bottom: -1em;
+		display: inline-block;
+		padding: 0;
+	}
+
+	.stories {
+		h3.uppercase {
+			font-size: rem(18);
+			margin-bottom: 0.5em;
+			@media (min-width: $medium-bp) { font-size: rem(24); }
+		}
+
+		.img-container {
+			height: 0;
+			width: 100%;
+			padding-bottom: 66%;
+			display: block;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+
+	.card-content {
+		.story-name {
+			margin: 0.5em 0;
+			font-size: rem(21);
+			@media (min-width: $medium-bp) { font-size: rem(24); }
+		}
+
+		.story-excerpt {
+			margin-bottom: 0.5em;
+			font-size: rem(16);
+			@media (min-width: $medium-bp) { font-size: rem(18); }
+		}
+
+		a {
+			font-size: rem(18);
+			font-weight: 500;
+		}
+
+		@media (max-width: ( $medium-bp - 1 )) {
+			margin-bottom: 2em;
+		}
+	}
+
+	.reports-archive,
+	.is-style-reports-archive {
+		font-size: rem(18);
+
+		tr {
+			border-bottom: 1px solid black;
+		}
+
+		td {
+			padding: 1em;
+
+			&:first-child {
+				padding-left: 0;
+			}
+			&:last-child {
+				padding-right: 0;
+			}
+
+			a {
+				font-size: inherit;
+				font-weight: 500;
+				color: #3a25ff;
+
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		@media (min-width: $medium-bp) {
+			font-size: rem(20);
+		}
+	}
+}
+
+.wp-block-table {
+	&.is-style-reports-archive {
+		font-size: rem(18);
+
+		tr {
+			border-bottom: 1px solid black;
+		}
+
+		td {
+			border: none;
+			padding: 1em;
+
+			&:first-child {
+				padding-left: 0;
+			}
+			&:last-child {
+				padding-right: 0;
+			}
+
+			a {
+				font-size: inherit;
+				font-weight: 500;
+				color: #3a25ff;
+
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+// Landing page-specific header styles.
+.page-template-page-report-landing {
+	.header-default {
+		// Finesse sizing of censor bars-header text on mobile.
+		h1 {
+			@media (max-width: ( $medium-bp - 1 )) {
+				width: auto;
+				padding-right: 0;
+			}
+		}
+		.w-50p {
+			@media (max-width: ( $medium-bp - 1 )) {
+				margin-bottom: 0;
+			}
+		}
+		// .page-intro-text contains only the header image on the report landing page,
+		// and should be suppressed on mobile to avoid impacting header spacing.
+		.page-intro-text {
+			@media (max-width: ( $medium-bp - 1 )) {
+				display: none;
+			}
+		}
+	}
+	main p strong {
+		font-weight: bold;
+		@include font-size(24, 21);
+		@include line-height(40, 35);
+	}
+}

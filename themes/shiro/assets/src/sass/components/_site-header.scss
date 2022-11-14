@@ -1,0 +1,61 @@
+.site-header {
+	background: #fff;
+	min-height: rem(62); // Prevent content shift during loading
+	position: fixed;
+	top: 0;
+	transition: top 250ms ease;
+	width: 100%;
+	z-index: 2000;
+
+	&--pinned {
+		box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+
+		.site-main-nav {
+			padding-bottom: 0;
+			padding-top: 0;
+			transition: all 250ms ease;
+		}
+	}
+
+	/**
+	 * Allow space for the WP admin bar, if it's visible.
+	 */
+	.admin-bar & {
+		top: 46px;
+
+		/**
+		 * On sub-"sm" screens, once scrolled the header should be at the
+		 * top of the window because the admin bar is *not* fixed.
+		 */
+		&--pinned {
+			top: 0;
+		}
+
+		@media screen and (min-width: $admin-bar-breakpoint-sm) {
+			top: $admin-bar-mobile-height;
+		}
+
+		@media screen and (min-width: $admin-bar-breakpoint-lg) {
+			top: $admin-bar-desktop-height;
+		}
+	}
+
+	&__inner {
+
+		@include responsive-padding(0 20, 0 40);
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+		max-width: rem(1060);
+		position: relative;
+
+		&::after {
+			content: "";
+			display: block;
+			flex-grow: 1;
+			min-width: rem(17);
+			order: 25;
+		}
+	}
+}

@@ -1,0 +1,137 @@
+// Utilities, helpers, etc.
+.clear-fix::after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+.visually-hidden {
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	width: 1px;
+}
+
+.display-none {
+	display: none;
+}
+
+.display-none_small {
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.text-bold,
+.bold {
+	font-weight: 700;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.center {
+	text-align: center;
+}
+
+
+// Font Colors
+.color-white {
+	color: #fff;
+	transition: 0.3s all;
+}
+.color-blue {
+	color: $color-blue;
+}
+a.color-blue {
+	color: $color-blue;
+	&:hover {
+		color: $color-dk-purple;
+	}
+}
+.color-gray {
+	color: $color-dark-gray; // `$wmui-color-base30` is slightly too light to `#f8f9fa` bg.
+}
+.bg-ltgray .color-gray {
+	color: $wmui-color-base20; // On `.bg-ltgray` we need to increase contrast even a bit more.
+}
+
+
+// Background Colors
+.bg-ltgray {
+	background: $wmui-color-base80;
+}
+.rounded {
+	border-radius: 5px;
+}
+.shadow {
+	border: 1px solid #e5e5e5;
+	transition: all 250ms ease;
+}
+.shadow:hover {
+	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
+// Buttons and links
+.arrow-link {
+	@include button-link-arrow;
+}
+
+.btn-label-a11y {
+	display: block;
+	font-size: 0;
+	height: 1px;
+	overflow: hidden;
+}
+
+.btn {
+	// Colors
+	&.btn-blue,
+	.btn-blue & {
+		@include button-primary();
+	}
+
+	&.btn-white {
+		@include button-tertiary();
+	}
+
+	&.btn-pink,
+	.btn-pink & {
+		@include button-secondary();
+	}
+}
+
+
+// ** FUNCTIONAL STYLES **
+
+// hide on mobile
+.hide-sm.hide-sm {
+	@media (max-width: $small-bp) {
+		display: none;
+	}
+}
+
+// hide overflow.
+// useful for one-off full-width boxes
+// without being too opinionated in other places that need overlap
+.hide-overflow {
+	overflow: hidden;
+}
+
+// z-index
+.rise-up {
+	z-index: 1000;
+}
+
+.rise-to-top_small {
+	@media (max-width: 767px) {
+		order: -1;
+	}
+}
