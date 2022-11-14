@@ -15,6 +15,7 @@ plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
 plugins/wikipedia-preview
+themes/shiro
 
 # Dependencies, except those from included plugins
 node_modules
