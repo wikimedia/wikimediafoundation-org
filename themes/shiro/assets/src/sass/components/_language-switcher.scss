@@ -1,0 +1,178 @@
+.language-switcher {
+	order: 30;
+	position: relative;
+
+	&__button {
+		@include style-guide-dropdown-toggle();
+
+		&:focus,
+		&[aria-expanded=true] {
+			@include focus-ring($hex: false, $inset: false, $width: 4px, $transparency: 0.3);
+
+			@media screen and (min-width: #{$primary-nav-breakpoint}) {
+				@include style-guide-dropdown-caret-blue();
+				border-color: currentColor;
+				color: $wmui-color-blue50;
+			}
+		}
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__icon {
+		fill: currentColor;
+		height: rem(20);
+		margin: 0;
+		margin-right: 6px;
+		width: rem(20);
+	}
+
+	&__label {
+		// Hidden on mobile
+		display: none;
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			display: inline-block;
+		}
+	}
+
+	&__content {
+		[data-dropdown-status="initialized"] & {
+			background: #fff;
+			box-sizing: border-box;
+			flex-direction: column;
+			padding: rem(30) rem(12);
+			position: fixed;
+			right: 0;
+			top: $primary-nav-mobile-height;
+			width: 100%;
+
+			@media (min-width: #{$width-breakpoint-tablet}) {
+				border: 1px solid $wmui-color-blue50;
+				max-width: 100vw;
+				padding: rem(12);
+				position: absolute;
+				right: 0;
+				// This aligns the top of the content with the bottom of the button
+				top: calc(100% - 1px);
+				width: 200px;
+			}
+
+			@media (min-width: #{$width-breakpoint-desktop}) {
+				left: 0;
+				right: unset;
+			}
+		}
+
+		&[hidden] {
+			display: none;
+		}
+
+		/**
+		 * The presence--and behavior--of the WordPress admin bar means that we
+		 * need to get a little weird with some of the positioning for the open
+		 * content drawer.
+		 */
+		.admin-bar & {
+			top: $primary-nav-mobile-height + 46px;
+
+			@media ( min-width: #{$width-breakpoint-tablet} ) {
+				top: calc(100% - 1px);
+			}
+		}
+
+		.admin-bar .site-header--pinned & {
+
+			@media (max-width: 599px) {
+				top: $primary-nav-mobile-height;
+			}
+		}
+
+		ul {
+			@include list-reset;
+			display: flex;
+
+			[data-dropdown-status="initialized"] & {
+				flex-direction: column;
+			}
+
+			li {
+				font-size: rem(14);
+				font-weight: 500;
+				line-height: 175%;
+				list-style: none;
+				margin: 0;
+				margin-bottom: rem(19);
+
+				@media ( min-width: #{$width-breakpoint-tablet} ) {
+					margin-bottom: rem(14);
+				}
+
+				[data-dropdown-status="uninitialized"] & {
+					margin-bottom: 0;
+				}
+
+				a {
+
+					/** Necessary to override some pre-existing styles */
+					font-size: inherit;
+					font-weight: inherit;
+				}
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	&__language {
+		--language-picker-item-border-color: transparent;
+
+		&--selected {
+			--language-picker-item-border-color: #{$wmui-color-blue50};
+		}
+
+		a {
+			color: $wmui-color-base0;
+			display: block;
+			padding-left: rem(8);
+			padding-right: rem(8);
+			padding-top: rem(4);
+
+			&:hover {
+				background-color: $wmui-color-blue90;
+			}
+
+			&:focus {
+				@include focus-ring;
+			}
+		}
+
+		&--selected a {
+			color: $wmui-color-blue50;
+		}
+
+	}
+
+	&__language-name {
+		display: inline-block;
+
+		&::after {
+			border-bottom: 3px solid var(--language-picker-item-border-color);
+			content: "";
+			display: block;
+		}
+	}
+}
+
+// The issue here is IE's lack of support for custom properties, but this seems
+// much simpler than a convoluted @supports query when the vast majority of
+// browsers will support them.
+@include target-ie() {
+	.language-switcher__language--selected .language-switcher__language-name::after {
+		border-bottom: 3px solid $wmui-color-blue50;
+	}
+}

@@ -1,0 +1,95 @@
+.banner {
+
+	@include global-margin-bottom;
+	display: flex;
+	flex-direction: column-reverse;
+	width: 100%;
+
+	@include block-style-background-color;
+	@include block-style-text-color;
+
+	&__image,
+	&__content {
+		width: 100%;
+	}
+
+	&__content {
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		justify-content: start;
+		padding: rem(20);
+	}
+
+	&__heading {
+		min-width: 100%;
+		margin-bottom: rem(17);
+	}
+
+	p {
+		font-family: $font-family-sans;
+	}
+
+	&__image {
+		@include absolute-full-cover();
+		object-fit: cover;
+	}
+
+	&__image-wrapper {
+		position: relative;
+		padding-bottom: 56.6%;
+	}
+
+	/** Button styles */
+	&__cta {
+		margin-right: 1rem;
+
+		@include button-primary;
+
+		/**
+		 * Tertiary buttons have a border, so this "dummy" border is added
+		 * to make all buttons the same height.
+		 */
+		border: 1px solid transparent;
+
+		.is-style-blue50 &,
+		.is-style-red50 & {
+
+			@include button-tertiary;
+		}
+
+		.is-style-donate-red90 & {
+			@include donate-red90-button;
+		}
+	}
+
+	@media ( min-width: #{$width-breakpoint-tablet} ) {
+		flex-direction: row;
+		justify-content: space-between;
+		min-height: 200px;
+
+		&__content {
+			width: 66.666%;
+			padding-top: rem(23);
+			padding-bottom: rem(26);
+			padding-left: rem(30);
+			padding-right: rem(30);
+
+			p {
+				padding-bottom: rem(26);
+			}
+		}
+
+		&__cta {
+			margin-top: auto;
+		}
+
+		&__image-wrapper {
+			width: 33.333%;
+			padding-bottom: 0;
+			overflow: hidden;
+		}
+	}
+}
+

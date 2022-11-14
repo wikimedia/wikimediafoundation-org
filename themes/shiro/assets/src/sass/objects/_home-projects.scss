@@ -1,0 +1,70 @@
+@mixin homeBgImgPosition() {
+  @include absolute-full-cover();
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -0;
+}
+
+.home-project-list-item {
+  position: relative;
+
+  h2 {
+    margin: 1rem 0;
+    @include font-size(23, 20);
+  }
+}
+
+.home-project-list-item--gray {
+  background: $wmui-color-base90;
+
+  @media (max-width: $medium-bp) {
+    margin-top: 2rem;
+    padding: 2rem;
+  }
+
+  .h3 {
+    margin-bottom: 0;
+    @include font-size(17, 15);
+  }
+}
+
+
+.home-project-list-item_map {
+  .bg-img-container {
+      @include duoToneBg($color-blue, 80%, 1, multiply);
+      @include blue-gradient();
+      @include homeBgImgPosition();
+
+    }
+}
+
+.home-project-list-item_teal {
+  .bg-img-container {
+      @include duoToneBg($color-turquoise, 50%, 0.5, multiply);
+      @include turquoise-gradient();
+      @include homeBgImgPosition();
+    }
+}
+.home-project-logo {
+  display: block;
+  margin-bottom: 20px;
+
+  img {
+    max-height: 55px;
+    width: auto;
+  }
+  &:hover {
+    opacity: .75;
+  }
+}
+.home-project-list-item-content {
+  z-index: 1;
+  position: relative;
+
+  @media (min-width: $medium-bp) {
+    position: absolute;
+    right: 20px;
+    left: 20px;
+    top: 40px;
+  }
+}

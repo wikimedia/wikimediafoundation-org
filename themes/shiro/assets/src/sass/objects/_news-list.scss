@@ -1,0 +1,281 @@
+.related-news-container {
+  padding: 3rem 0;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.news-categories {
+  border-top: 1px solid $color-ltgray;
+  border-bottom: 1px solid $color-ltgray;
+  margin-bottom: 4.5rem;
+
+
+  ul {
+    text-align: center;
+
+    &.slider-on-mobile {
+
+      @media (max-width: 767px) {
+        overflow: hidden;
+
+        &:focus {
+          outline: none;
+        }
+
+        // Enable flickity slider
+        &:after {
+          content: 'flickity';
+          display: none;
+        }
+
+        .card {
+          max-width: 85%;
+          margin-right: 1rem;
+        }
+
+
+      }
+    }
+  }
+
+  li {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 0;
+    padding: calc(2.5rem - 4px) 0 2.5rem 0;
+    border-bottom: 4px solid #fff;
+    transition: 0.3s all;
+
+    &.border-turquoise {
+      border-color: $color-turquoise;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+
+  a {
+    transition: 0.3s all;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+
+
+// News List
+.news-list-container {
+
+  .card {
+    @include responsive-margin(60, 80, bottom);
+  }
+
+  .card-list-container:not(.alternate-img) {
+
+    .card-content {
+      @include responsive-margin(0, 128, right);
+    }
+  }
+
+  .img-container {
+    display: block;
+    @include responsive-margin(16, 0, bottom);
+  }
+
+  .h3 {
+    @include responsive-margin(4, 4, bottom);
+    @include font-size( 20, 18 );
+
+    a {
+      transition: 0.3s all;
+
+      &:hover {
+        color: $color-blue;
+      }
+    }
+  }
+
+  .h4 {
+    @include responsive-margin(8, 16, bottom);
+  }
+
+  .post-meta {
+    @include responsive-margin(16, 24, bottom);
+    @include font-size( 13, 13 );
+    font-weight: bold;
+
+    span, time {
+      display: block;
+      margin: 0;
+    }
+  }
+}
+
+.alternate-img {
+
+  .card {
+
+    &:nth-child(odd) {
+
+      .img-container {
+        @include responsive-margin(0, 128, right);
+      }
+    }
+
+    &:nth-child(even) {
+      .img-container {
+        order: 2;
+      }
+
+      .card-content {
+        order: 1;
+        @include responsive-margin(0, 128, right);
+      }
+    }
+
+    .img-container {
+      align-self: flex-start;
+    }
+  }
+}
+
+
+.bg-white {
+
+  .color-gray {
+
+    a {
+      transition: 0.3s all;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .related-news {
+    @include flexbox(column, no-wrap, $medium-bp, row);
+
+    .card {
+      display: flex;
+      flex-direction: column;
+
+      &:not(:last-child) {
+        @include responsive-margin(40, 0, bottom);
+      }
+
+      .img-container {
+        position: relative;
+        margin-bottom: 1rem;
+
+        .bg-img {
+          @include aspect-ratio(16, 9);
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          &:after {
+            transition: 0.3s all;
+          }
+
+          &.headline-hover:after {
+            opacity: .5;
+          }
+        }
+      }
+
+      .card-content,
+      .card-heading {
+        margin: 0 auto;
+      }
+
+      .card-content {
+        padding-bottom: rem(30);
+      }
+
+      .card-heading {
+        position: relative;
+        z-index: 99;
+        transition: 0.3s all;
+
+        h3 {
+          display: flex;
+          align-items: flex-end;
+          @include font-size(18, 16);
+        }
+
+        &:hover,
+        .date {
+          h3 {
+            color: $color-blue;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .date {
+        color: $wmui-color-base30;
+        display: block;
+        text-transform: none;
+        font-weight: bold;
+        @include font-size(14, 12);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}
+
+.bg-ltgray .related-news .card .date {
+  color: $wmui-color-base20;
+}
+
+
+// News List
+.news-card-list {
+
+  .card-list-container {
+
+    .card {
+      margin-right: 0;
+      margin-bottom: 4rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .img-container {
+      order: 2;
+      align-self: flex-start;
+    }
+
+    .card-content {
+      order: 1;
+    }
+  }
+}
+
+// Author link
+.authorlink {
+    margin-top: .2em;
+    float: right;
+    color: $color-blue;
+    @include font-size(16, 14);
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    ::after {
+        content: ' →' #{"/*rtl:' ←'*/;"};
+    }
+}

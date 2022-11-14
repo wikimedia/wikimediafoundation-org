@@ -1,0 +1,287 @@
+.primary-nav {
+	border-top: 1px solid $wmui-color-base80;
+	display: flex;
+	justify-content: space-between;
+	margin-top: rem(66);
+	padding: 0;
+	width: 100%;
+
+	@media ( min-width: #{$primary-nav-breakpoint} ) {
+		min-height: rem(56); // Prevent content shift when loading
+	}
+
+	&__drawer {
+		width: 100%;
+
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			align-items: flex-start;
+			display: flex;
+			justify-content: flex-start;
+			width: 100%;
+		}
+
+		[data-dropdown-status="uninitialized"] & {
+			display: none;
+
+			@include target-ie {
+				display: flex;
+				flex-direction: column-reverse;
+			}
+		}
+
+		/**
+		 * "mobile-first" is generally preferable, but in this case "unsetting"
+		 * the mobile styles on desktop would be overly-complicated for no real
+		 * benefit, hence this "backwards" query.
+		 */
+		[data-dropdown-status="initialized"][data-visible="yes"] & {
+			@media ( max-width: $medium-landscape ) {
+				--full-window-height: calc(var(--vh, 1vh) * 100);
+				background: $color-white;
+				color: #fff;
+				display: block;
+				left: 0;
+				max-height: calc(var(--full-window-height, 100vh) - #{$primary-nav-mobile-height});
+				overflow: auto;
+				padding: 1.5rem;
+				position: fixed;
+				top: $primary-nav-mobile-height;
+				width: 100%;
+				z-index: 3000;
+			}
+
+			.admin-bar & {
+				@media ( min-width: 600px ) and ( max-width: $medium-landscape ) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + #{$admin-bar-mobile-height}));
+					top: $primary-nav-mobile-height + $admin-bar-mobile-height;
+				}
+
+				@media ( min-width: 784px ) and ( max-width: $medium-landscape ) {
+					max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + #{$admin-bar-desktop-height}));
+					top: $primary-nav-mobile-height + $admin-bar-desktop-height;
+				}
+			}
+		}
+
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			[data-subnav-visible="yes"] & {
+				margin-bottom: calc(var(--subnav-margin-bottom) * 1px);
+				position: relative;
+			}
+		}
+	}
+
+	&__items {
+		@include list-reset;
+		align-items: start;
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+
+		[data-dropdown-status="initialized"] & {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			margin-top: rem(21);
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				align-items: center;
+				flex-direction: row;
+				flex-wrap: wrap;
+				margin-top: 0;
+				padding: rem(6) 0;
+			}
+		}
+
+		li {
+			display: inline-block;
+			margin: 0;
+			padding: rem(9) 0;
+
+			@media ( max-width: $medium-landscape ) {
+				width: 100%;
+			}
+
+			@media ( min-width: #{$primary-nav-breakpoint} ) {
+				margin-right: rem(24);
+				padding: rem(6) 0;
+			}
+
+			&.current-menu-item,
+			&.current-menu-ancestor {
+				> a {
+					@media ( min-width: #{$primary-nav-breakpoint} ) {
+						color: $wmui-color-blue50;
+					}
+
+					span {
+						border: 0;
+					}
+
+					span::after {
+						background-color: $wmui-color-blue50;
+					}
+
+				}
+			}
+
+			&.menu-item-bottom-line > a span:after {
+				@media ( min-width: #{$primary-nav-breakpoint} ) {
+					transform: translateY(rem(18));
+				}
+			}
+
+			&[data-visible="yes"] .sub-menu {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			a {
+				align-items: flex-start;
+				color: $wmui-color-base0;
+				display: flex;
+				flex-direction: column;
+				font-size: rem( 14 );
+				font-weight: 500;
+				justify-content: center;
+
+				span {
+					display: inline-block;
+					margin: 0 rem(-10);
+					padding: rem(7) rem(10);
+
+					@media ( min-width: #{$primary-nav-breakpoint} ) {
+						padding: rem(8) rem(10) rem(6);
+					}
+				}
+
+				span::after {
+					border: 0;
+					content: "";
+					display: block;
+					height: 3px;
+					pointer-events: none;
+					position: relative;
+					transform: translateY(rem(10));
+					z-index: 10;
+				}
+
+				&:hover {
+					text-decoration: none;
+
+					span {
+						@media ( min-width: #{$primary-nav-breakpoint} ) {
+							background-color: $wmui-color-blue90;
+							color: $wmui-color-blue50;
+						}
+					}
+				}
+
+				&:focus {
+					@include focus-reset;
+
+					span {
+						@include focus-ring;
+					}
+				}
+			}
+		}
+
+		> li {
+			@media ( max-width: $medium-landscape ) {
+				border-bottom: 1px solid $wmui-color-base80;
+
+				&:first-child {
+					border-top: 1px solid $wmui-color-base80;
+				}
+
+				> a span::after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.menu-item[data-dropdown] {
+		display: flex;
+		flex-wrap: wrap;
+		position: static;
+
+		> a {
+			flex-grow: 1;
+		}
+	}
+
+	.menu-item__expand {
+		@include style-guide-dropdown-toggle();
+		background-color: transparent;
+		background-position: center;
+		background-size: 55%;
+		border: 0 none;
+		padding: rem(6) rem(16);
+		transition: $transition-ease-medium transform;
+
+		&[aria-expanded="true"] {
+			transform: rotateX( 180deg );
+		}
+
+		&[hidden] {
+			display: none;
+		}
+
+		&:focus {
+			@include focus-ring;
+		}
+	}
+
+	.sub-menu {
+		display: none;
+		margin: rem( 15 ) 0 rem( 10 );
+		padding-left: rem( 32 );
+		width: 100%;
+
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			@include list-reset;
+			border-top: 1px solid $wmui-color-base80;
+			border-bottom: 1px solid $wmui-color-base80;
+			left: 0;
+			padding: rem(6) 0;
+			position: absolute;
+			right: 0;
+			top: 100%;
+		}
+
+		a {
+			font-weight: 400;
+		}
+	}
+}
+
+/**
+ * This prevents users from inadvertently scrolling the site when the nav is open.
+ */
+body.disable-body-scrolling {
+	overflow-y: hidden;
+
+	@media (min-width: $primary-nav-breakpoint) {
+		overflow-y: auto;
+
+		& [data-dropdown-backdrop][data-active-dropdowns="primary-nav"] {
+			display: none;
+		}
+	}
+}
+
+/**
+ * This handles a somewhat complex condition:
+ * - The admin bar is present
+ * - The viewport is < 600px wide
+ * - The user has not scrolled down
+ * In *only* this condition, the primary nav drawer needs a little tweak or
+ * will be positioned too far down the screen.
+ */
+.admin-bar .site-header:not(.site-header--pinned) + .header-inner .primary-nav__drawer {
+	@media (max-width: 599px) {
+		max-height: calc(var(--full-window-height, 100vh) - (#{$primary-nav-mobile-height} + 46px));
+		top: $primary-nav-mobile-height + 46px;
+	}
+}

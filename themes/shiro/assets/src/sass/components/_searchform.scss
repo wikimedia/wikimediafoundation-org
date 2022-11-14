@@ -1,0 +1,68 @@
+.search-form {
+	font-size: rem( 14 );
+	line-height: 143%;
+	color: $wmui-color-base30;
+	position: relative;
+	z-index: 5;
+
+	&__button {
+		// remove browser button styling
+		border: none;
+		margin: 0;
+		width: auto;
+		overflow: visible;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		line-height: 1;
+		-webkit-appearance: none;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		z-index: 10;
+		top: rem(2);
+		bottom: rem(2);
+		right: rem(2);
+		padding: 0 rem( 3 );
+
+		&:focus {
+			@include focus-ring($hex: false, $inset: true);
+		}
+	}
+
+	&__label {
+		width: 100%;
+	}
+
+	&__field {
+		width: 100%;
+		margin: 0;
+		padding: rem( 6 ) rem( 8 );
+		// This a complex list of value to make it less magical.
+		// Together they represent the full width of the icon button, so that
+		// even though the fields overlap, input content will never appear
+		// behind the button.
+		//					padding			width of icon	padding
+		padding-right: calc( #{rem( 8 )} + #{rem( 16 )} + #{rem( 8 )} );
+		border: 0;
+
+		@media ( min-width: #{$medium-landscape} ) {
+			padding-bottom: rem( 6 );
+			padding-top: rem( 6 );
+		}
+
+		&:focus {
+			@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
+		}
+	}
+
+	& &__icon {
+		display: block;
+		fill: $wmui-color-base30;
+		height: rem( 24 );
+		margin: 0;
+		width: rem( 24 );
+	}
+}

@@ -1,0 +1,49 @@
+/*!
+ * Theme Name: Shiro
+ * Theme URI: https://github.com/wikimedia/wikimediafoundation-org
+ * Author: Wikimedia Foundation Design
+ * Author URI: https://design.wikimedia.org/
+ * Description: Wikimedia Foundation website theme, forked from the Reaktiv theme
+ * Version: 1.0.0
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: shiro
+**/
+
+// Import helpers first.
+@import "helpers/helpers";
+
+/* ==================
+    # Base Styles
+  =================== */
+@import "base/base";
+@import "content/content";
+@import "objects/objects";
+@import "utilities/utilities";
+
+/* ==================
+    # Custom CSS
+  =================== */
+@import "components/alerts";
+@import "components/blackout-modal";
+@import "components/ltr";
+@import "components/tables";
+@import "components/header";
+@import "components/dropdown";
+@import "components/searchform";
+@import "components/nav-donate";
+@import "components/nav-logo";
+@import "components/nav-search";
+@import "components/primary-nav";
+@import "components/photo-attribution";
+@import "components/accessibility";
+@import "components/icons";
+@import "components/fitvids";
+@import "components/pagination";
+@import "components/profiles";
+@import "components/language-switcher";
+@import "components/site-header";
+@import "components/primary-nav-toggle";
+@import "components/site-footer";
+
+@import "blocks/index";

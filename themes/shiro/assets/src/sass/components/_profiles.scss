@@ -1,0 +1,21 @@
+.single-profile {
+	.header-default {
+		// Default page, blog page
+		&.minimal {
+			&--short:not(.featured-photo--content-left):not(.featured-photo--photo-centered) {
+				padding-bottom: 4.8125rem;
+			}
+		}
+	}
+}
+
+.single-story {
+	.header-default {
+		// Default page, blog page
+		&.minimal {
+			&--short:not(.featured-photo--content-left):not(.featured-photo--photo-centered) {
+				padding-bottom: 2.8125rem;
+			}
+		}
+	}
+}

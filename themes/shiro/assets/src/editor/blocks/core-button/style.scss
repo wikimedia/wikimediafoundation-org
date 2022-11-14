@@ -1,0 +1,23 @@
+@mixin button-wrapper( $container-selector, $inner-selector ) {
+	#{ $container-selector } {
+		&.is-style-as-link {
+			&.has-icon {
+				#{ $inner-selector }:before {
+					// In Firefox, in the editor, this inherits `white-space: pre-wrap` from `div`.
+					// That results in a different positioning of the icon as compared to the frontend.
+					white-space: normal;
+				}
+			}
+		}
+	}
+}
+
+.editor-styles-wrapper {
+	@include button-wrapper('.wp-block-shiro-button', '&');
+	@include button-wrapper('.wp-block-button', '.wp-block-button__link');
+
+	// This gets the default bottom-margin, but we need to reset it to something normal
+	.wp-block-button {
+		margin-bottom: 0.5em;
+	}
+}

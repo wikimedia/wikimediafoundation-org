@@ -1,0 +1,41 @@
+.profile-list {
+	@include global-margin-bottom;
+
+	display: flex;
+	flex-direction: column;
+
+	@media (min-width: #{$medium-bp}) {
+		flex-direction: row;
+	}
+
+	@supports (display: grid) {
+		display: grid;
+		grid-gap: 1.25rem;
+
+		@media (min-width: #{$medium-bp}) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (min-width: #{$medium-landscape}) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.profile {
+		display: inline-block;
+
+		margin-bottom: 1.25rem;
+		margin-right: 1.25rem;
+
+		@supports (display: grid) {
+			margin-bottom: 0;
+			margin-right: 0;
+		}
+
+		@media (min-width: #{$medium-bp}) {
+			@supports (display: grid) {
+				width: 100%;
+			}
+		}
+	}
+}

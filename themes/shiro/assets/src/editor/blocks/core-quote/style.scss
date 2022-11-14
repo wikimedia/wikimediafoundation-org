@@ -1,0 +1,34 @@
+@import "~sass-lib/editor/editor-includes";
+
+.wp-block-quote {
+	.editor-styles-wrapper .single-post .block-editor-block-list__layout > &.wp-block {
+		max-width: $content-column-post-rem;
+		padding: 0 0 0 rem(24);
+		margin: 3rem auto;
+	}
+
+	.editor-styles-wrapper .single-page .block-editor-block-list__layout > &.wp-block {
+		max-width: $content-column-rem;
+		padding: 0 0 0 rem(24);
+		margin: 3rem auto;
+	}
+
+	.wp-block-quote__citation {
+		display: block;
+		margin-top: rem(20);
+	}
+
+	&__citation {
+		@include has-font-size("default");
+	}
+
+	&.is-style-pullquote {
+		.editor-styles-wrapper .single .block-editor-block-list__layout > &.wp-block {
+			padding-left: 0;
+		}
+	}
+
+	> div {
+		display: inline;
+	}
+}

@@ -1,0 +1,9 @@
+@import "~sass-lib/editor/editor-includes";
+
+.wp-block-shiro-input-field {
+	color: $color-placeholder;
+}
+
+.wp-block-column > .mailchimp-subscribe:only-child {
+	height: 100%;
+}

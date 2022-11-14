@@ -1,0 +1,35 @@
+$image-gap: 50px;
+
+.staff-image-container {
+  position: relative;
+  @media (min-width: 640px) {
+    margin-top: -125px;
+  }
+}
+.staff-image-bkg {
+  max-height: 570px;
+  overflow: hidden;
+}
+.staff-image {
+  position: absolute;
+  overflow: hidden;
+
+  top: $image-gap * 0.5;
+  right: $image-gap * 0.5;
+  bottom: $image-gap * 0.5;
+  left: $image-gap * 0.5;
+
+  padding-left: $image-gap * 0.5;
+  padding-right: $image-gap * 0.5;
+
+  @media (min-width: 640px) {
+    top: $image-gap;
+    right: $image-gap;
+    bottom: $image-gap;
+    left: $image-gap;
+
+    padding-left: $image-gap;
+    padding-right: $image-gap;
+  }
+}
+

@@ -1,0 +1,14 @@
+.read-more-categories {
+
+	@include has-font-size("default");
+	@include global-margin-bottom;
+
+	&__text {
+		font-weight: 700;
+	}
+
+	&__links {
+		color: $color-primary;
+		margin-left: rem(5);
+	}
+}

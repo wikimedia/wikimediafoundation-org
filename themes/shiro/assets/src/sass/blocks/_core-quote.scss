@@ -1,0 +1,38 @@
+blockquote {
+	border-left: 4px solid $wmui-color-base80;
+	font-style: italic;
+	margin: rem(80) auto;
+	max-width: rem(640);
+	padding-left: rem(22);
+
+	p {
+		@include reset-p-margin;
+		margin-bottom: rem(20);
+	}
+
+	cite {
+		@include has-font-size("small");
+		display: block;
+		font-family: $font-family-sans;
+		margin-top: rem(20);
+	}
+
+	/**
+	 * Include :not(.wp-block-quote) to catch blockquotes from
+	 * older articles that are meant to be pullquotes.
+	 */
+	&.is-style-pullquote,
+	&:not(.wp-block-quote) {
+		border-left: none;
+		padding-left: 0;
+
+		p {
+			@include has-font-size("large");
+			line-height: 1.5;
+		}
+
+		cite {
+			@include has-font-size("default");
+		}
+	}
+}

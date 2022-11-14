@@ -1,0 +1,122 @@
+.clock {
+  border: rem(1) solid darkgrey;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  width: rem(400);
+
+  @media ( max-width: #{$core-gutenberg-break-small} ) {
+    width: rem(300);
+  }
+
+  .wp-block-columns {
+    margin: 0;
+  }
+
+  &__title {
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__contents {
+    margin: 0 auto;
+    width: auto;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &__count {
+      padding-bottom: rem(8);
+
+      &-left-column {
+        max-width: fit-content;
+      }
+
+      &-divider {
+        font-weight: bold;
+        padding: 0 rem(5);
+      }
+
+      &-right-column {
+        margin: 0 !important;
+
+        @media ( max-width: #{$core-gutenberg-break-small} ) {
+          max-width: 9rem;
+        }
+      }
+
+      &-count {
+        border: rem(2) solid darkgrey;
+        display: flex;
+        font-weight: bold;
+        width: fit-content;
+
+        span {
+          border-right: rem(.5) solid lightgrey;
+          min-width: rem(16);
+          padding: 0 rem(2);
+        }
+      }
+    }
+
+    &__disclaimer {
+      font-size: rem(8);
+      font-style: italic;
+      margin-top: rem(15);
+    }
+  }
+
+  .clock__contents__count-count.has-label {
+    border: none;
+    font-weight: normal;
+    margin: 0 auto;
+    text-align: center;
+
+    span {
+      border-right: none;
+      font-weight: bold;
+      min-width: rem(4);
+      padding: 0;
+    }
+  }
+}
+
+.clock-stat {
+  margin: 0 0 rem(8) 0;
+  max-width: none;
+
+  .wp-block-columns {
+    margin: 0;
+  }
+
+  &__left-column {
+    max-width: fit-content;
+  }
+
+  &__divider {
+    font-weight: bold;
+    padding: 0 rem(5);
+  }
+
+  &__right-column {
+    margin: 0 !important;
+
+    @media ( max-width: #{$core-gutenberg-break-small} ) {
+      max-width: 9rem;
+    }
+  }
+
+  &__stat {
+    border: rem(2) solid darkgrey;
+    display: flex;
+    font-weight: bold;
+    width: fit-content;
+
+    span {
+      border-right: rem(.5) solid lightgrey;
+      padding: 0 rem(2);
+      min-width: rem(16);
+    }
+  }
+}

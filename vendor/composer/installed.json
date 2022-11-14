@@ -1132,6 +1132,34 @@
             "install-path": "../squizlabs/php_codesniffer"
         },
         {
+            "name": "wikimedia/shiro-wordpress-theme",
+            "version": "dev-release",
+            "version_normalized": "dev-release",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
+                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/e5602ffde677511a3f9869f44a91a42f1095b23d",
+                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d",
+                "shasum": ""
+            },
+            "time": "2022-11-14T17:42:51+00:00",
+            "type": "wordpress-theme",
+            "installation-source": "dist",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Wikimedia Foundation website theme.",
+            "support": {
+                "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release",
+                "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
+            },
+            "install-path": "../../themes/shiro"
+        },
+        {
             "name": "wp-coding-standards/wpcs",
             "version": "1.2.1",
             "version_normalized": "1.2.1.0",

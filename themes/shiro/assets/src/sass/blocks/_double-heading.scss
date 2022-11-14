@@ -1,0 +1,18 @@
+.double-heading {
+
+	&.block-editor-block-list__block {
+		@include global-margin-bottom;
+	}
+
+	&__primary {
+		@include h3-sans;
+		color: $wmui-color-base0;
+		line-height: 1.5;
+	}
+
+	&__secondary {
+		color: $wmui-color-base30;
+		font-family: $font-family-sans;
+		margin-bottom: rem(4);
+	}
+}

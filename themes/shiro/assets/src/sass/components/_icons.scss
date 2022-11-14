@@ -1,0 +1,168 @@
+/* ==================
+    #EXAMPLE
+  =================== */
+
+/**
+ * Icons
+ * Comment that describes overall componenet
+ */
+
+/* ==================
+  - Baseline
+  =================== */
+.icon {
+	width: 2rem;
+	height: 2rem;
+	margin: 0 .25rem;
+}
+
+.twitter-container {
+	margin-left: 5px !important;
+}
+
+
+a.teal {
+	.icon {
+		fill: $color-turquoise;
+		vertical-align: middle;
+	}
+}
+
+.search-toggle {
+	.icon {
+		fill: $color-black;
+	}
+}
+
+.color-blue{
+	.icon {
+		fill: $color-blue;
+	}
+
+	.icon:hover {
+		fill: $color-dk-purple;
+	}
+}
+
+.color-blue	a:hover .icon { fill: $color-dk-purple; }
+
+.material {
+	width: 24px;
+	height: 24px;
+}
+
+.icon-white {
+	fill: #fff;
+	vertical-align: sub;
+}
+
+.icon-turquoise {
+	fill: $color-turquoise;
+}
+
+.eyebrow {
+	.icon {
+		width: 24px;
+		height: 24px;
+		vertical-align: sub;
+	}
+}
+
+.social-share {
+	.icon {
+		vertical-align: bottom;
+	}
+}
+
+.search-bar-container {
+	.icon-search {
+		position: absolute;
+        top: 10px;
+        left: 10px;
+        fill: $color-light-turquoise;
+        display: none;
+		z-index: 9;
+
+        @media (min-width: $header-bp) {
+          top: 8px;
+        }
+	}
+}
+
+.subnav-container {
+	.icon-search {
+		fill: $color-blue;
+	}
+}
+
+.search-open .search-bar-container .icon-search {
+	display: block;
+	fill: $color-blue;
+}
+
+.list-download {
+	.icon {
+		transition: 0.3s all;
+	}
+
+	a:hover .icon {
+		fill: $color-blue;
+		transform: scale(1.17);
+	}
+}
+
+.module-mu {
+	.external-link-icon {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
+.elsewhere-wikimedia .link-external a:hover {
+	.icon {
+		fill: $color-blue;
+	}
+}
+
+.icon-translate {
+	margin-right: 1rem;
+}
+
+.icon-trending {
+	transition: 0.3s all;
+}
+
+.translation-bar .arrow-wrap:hover .icon-trending {
+	transform: translateX(0.25rem);
+	fill: white;
+}
+
+.icon-logo-horizontal {
+	width: 279px;
+	height: 62px;
+	margin: 0;
+}
+
+.icon-logo-stacked {
+	width: 179px;
+	height: 131px;
+	margin: 0;
+}
+
+.header-default .social-container {
+	.icon {
+		fill: #3a25ff;
+	}
+
+	a:hover .icon {
+		fill: #2718bd;
+	}
+}
+
+.social-container .icon {
+	transition: 0.3s all;
+}
+
+.social-container a:hover .icon {
+	transform: scale(1.17);
+}

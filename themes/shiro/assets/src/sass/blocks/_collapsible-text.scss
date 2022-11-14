@@ -1,0 +1,72 @@
+// stylelint-disable selector-class-pattern
+
+.collapsible-text {
+	position: relative;
+	text-decoration: none;
+
+	&__content {
+		max-height: 8em;
+		overflow: hidden;
+		padding-bottom: 30px;
+		position: relative;
+		transition: max-height 500ms linear;
+
+		&::before {
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 0) -50%, rgba(#fff, 0.8) 50%, #fff 100%);
+			bottom: 0;
+			content: "";
+			height: 100%;
+			pointer-events: none;
+			position: absolute;
+			transition: opacity 500ms linear;
+			width: 100%;
+		}
+	}
+
+	&__toggle {
+		@include style-guide-button-reset;
+		background: none;
+
+		&:hover {
+			background: #ddd;
+		}
+
+		bottom: 0;
+		display: block;
+		position: absolute;
+
+		.collapse {
+			display: none;
+
+			&::before {
+				content: "\d7";
+				margin-right: 0.5em;
+			}
+		}
+
+		.expand {
+			&::before {
+				content: "\2b";
+				margin-right: 0.5em;
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	&.expanded {
+		.expand {
+			display: none;
+		}
+		.collapse {
+			display: block;
+		}
+
+		.collapsible-text__content {
+			max-height: max-content;
+		}
+
+		.collapsible-text__content::before {
+			opacity: 0;
+		}
+	}
+}

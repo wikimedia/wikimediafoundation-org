@@ -1,0 +1,46 @@
+.external-link {
+
+	@include global-margin-bottom;
+
+	&:only-child {
+		margin-bottom: 0;
+	}
+
+	&__heading {
+		@include h5;
+		font-family: $font-family-sans;
+		align-items: center;
+		display: flex;
+	}
+
+	&__link {
+		align-items: center;
+		color: $wmui-color-base0;
+		display: flex;
+
+		&:hover {
+			color: $wmui-color-blue50;
+		}
+
+		&:focus {
+			color: $wmui-color-base0;
+		}
+	}
+
+	&__icon {
+		fill: currentColor;
+		height: 1em;
+		margin-left: rem( 11 );
+		width: 1em;
+	}
+
+	&__text {
+		@include has-font-size("small");
+		font-family: $font-family-sans;
+		margin-top: rem( -6 );
+
+		@media ( min-width: #{$width-breakpoint-tablet} ) {
+			font-size: rem( 14 );
+		}
+	}
+}

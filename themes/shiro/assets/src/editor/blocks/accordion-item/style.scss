@@ -1,0 +1,11 @@
+.accordion-item {
+	&__title {
+		border-bottom: 2px solid;
+	}
+
+	// Ignore the hide and show frontend behavior...
+	.accordion-item__content {
+		display: block !important;
+		height: auto !important;
+	}
+}

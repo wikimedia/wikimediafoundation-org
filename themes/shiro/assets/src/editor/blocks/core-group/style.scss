@@ -1,0 +1,9 @@
+@import "~sass-lib/editor/editor-includes";
+
+.editor-styles-wrapper {
+	.block-editor-block-list__layout > .wp-block.wp-block-group {
+		&.has-background {
+			padding: rem(20);
+		}
+	}
+}

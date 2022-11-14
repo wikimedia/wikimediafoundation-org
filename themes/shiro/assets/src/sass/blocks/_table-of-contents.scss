@@ -1,0 +1,230 @@
+// Table of contents block styles
+.toc {
+	--full-window-height: calc(var(--vh, 1vh) * 100);
+	@include list-reset;
+
+	&[hidden] {
+		display: none;
+	}
+
+	@media ( min-width: #{$core-gutenberg-break-small} ) {
+		display: block;
+		@include global-margin-bottom;
+	}
+
+	// Set max-heights so that the menu can scroll if needed.
+	[data-sticky="yes"] > & {
+		position: sticky;
+		top: rem(100);
+
+		.admin-bar & {
+			top: rem(132);
+		}
+	}
+
+	// Mobile specific styles for when the menu is open.
+	[data-dropdown-status="initialized"][data-visible="yes"] > & {
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
+			background: $wmui-color-base90;
+			color: $wmui-color-base0;
+			display: block;
+			left: 0;
+			max-height: calc(var(--full-window-height, 100vh) - 102px);
+			overflow: auto;
+			position: absolute;
+			top: var(--toc-h2-padding-top);
+			width: 100%;
+			z-index: 3000;
+		}
+	}
+
+	&-nav {
+		margin-top: calc(var(--toc-h2-padding-top) * -1);
+		padding-top: var(--toc-h2-padding-top);
+		pointer-events: none;
+		position: relative;
+
+		&[data-sticky="yes"] {
+			height: 100%;
+		}
+
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
+			margin-bottom: rem(20);
+		}
+
+		a,
+		button,
+		.wp-block {
+			pointer-events: initial;
+		}
+	}
+
+	&__title {
+		clip-path: none; // Override screen-reader-text
+		left: 0;
+		position: fixed !important; // Override screen-reader-text
+		top: var(--toc-h2-padding-top);
+
+		@media ( min-width: #{$core-gutenberg-break-small} ) {
+			left: -999em;
+		}
+	}
+
+	&__button {
+		@include style-guide-dropdown-toggle();
+		background-color: $wmui-color-blue50;
+		background-image: none;
+		border: 0 none;
+		color: $wmui-color-base100;
+		font-size: rem(16);
+		font-weight: 700;
+		justify-content: flex-start;
+		line-height: 1.75;
+		padding: rem(10) 0 rem(14) rem(18);
+		text-align: left;
+		text-transform: none;
+		width: 100%;
+
+		&::after {
+			@include style-guide-dropdown-caret-white();
+			align-self: stretch;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: rem(16);
+			content: "";
+			display: block;
+			margin: rem(-10) 0 rem(-14);
+			padding: rem(10) rem(25) rem(14);
+			position: relative;
+			width: rem(16);
+			z-index: 3001;
+		}
+
+		&:focus {
+			@include focus-ring(true, true);
+		}
+
+		&[aria-expanded=true]::after {
+			background: none;
+		}
+
+		.btn-label-active-item {
+			flex-grow: 1;
+		}
+
+		&[hidden] {
+			display: none;
+		}
+
+		@media ( min-width: #{$core-gutenberg-break-small} ) {
+			display: none;
+		}
+	}
+
+	&__item {
+		list-style: none;
+	}
+
+	&__link {
+		color: $wmui-color-base0;
+		display: block;
+		line-height: 1.75;
+		padding: rem(10) rem(27) rem(14) rem(18);
+		text-decoration: none;
+
+		@media ( min-width: #{$core-gutenberg-break-small} ) {
+			font-size: rem(14);
+			padding: rem(9) rem(15);
+		}
+
+		&:hover {
+			background-color: $wmui-color-blue90;
+			text-decoration: none;
+		}
+
+		&--active,
+		&--active:hover,
+		&--active:focus,
+		&--active-page,
+		&--active-page:hover,
+		&--active-page:focus {
+			background-color: $wmui-color-blue50;
+			color: $wmui-color-base100;
+			font-weight: 700;
+		}
+
+		&:focus {
+			@include focus-ring(true, true);
+		}
+
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
+			.toc__item:first-child & {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+
+				&::after {
+					@include style-guide-dropdown-caret-blue();
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: contain;
+					content: "";
+					display: block;
+					height: rem(16);
+					margin-left: rem(25);
+					transform: rotate(180deg);
+					width: rem(16);
+				}
+
+				&--active::after {
+					@include style-guide-dropdown-caret-white();
+				}
+			}
+		}
+	}
+
+	// Nested lists
+	&__nested {
+		@include list-reset;
+
+		@media ( max-width: #{$core-gutenberg-break-small} ) {
+			display: none;
+		}
+	}
+
+	&__nested &__link {
+		padding-left: rem(44);
+
+		&--active,
+		&--active:hover {
+			background-color: inherit;
+			color: $wmui-color-base0;
+		}
+	}
+
+	&__section {
+		--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + 20px);
+
+		.admin-bar & {
+			@media screen and (min-width: $admin-bar-breakpoint-sm) {
+				--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + #{$admin-bar-mobile-height} + 20px);
+			}
+
+			@media screen and (min-width: $admin-bar-breakpoint-lg) {
+				--toc-h2-padding-top: calc(#{$primary-nav-mobile-height} + #{$admin-bar-desktop-height} + 20px);
+			}
+		}
+	}
+
+	&__content h2[id] {
+		clear: both;
+		cursor: text;
+		margin-top: calc(var(--toc-h2-padding-top) * -1);
+		padding-top: var(--toc-h2-padding-top);
+		pointer-events: none;
+
+		a {
+			pointer-events: initial;
+		}
+	}
+}

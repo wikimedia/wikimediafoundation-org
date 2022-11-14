@@ -1,0 +1,46 @@
+.image-filter-inherit,
+.image-filter-blue,
+.image-filter-yellow,
+.image-filter-red {
+	&::after {
+		@include absolute-full-cover();
+		mix-blend-mode: multiply;
+		pointer-events: none;
+	}
+}
+
+.is-style-blue90,
+.is-style-blue50 {
+	.image-filter-inherit::after {
+		background-color: $wmui-color-image-filter-blue;
+	}
+}
+
+.is-style-red90,
+.is-style-red50,
+.is-style-donate-red90 {
+	.image-filter-inherit::after {
+		background-color: $wmui-color-image-filter-red;
+	}
+}
+
+.is-style-yellow90,
+.is-style-yellow50 {
+	.image-filter-inherit::after {
+		background-color: $wmui-color-image-filter-yellow;
+	}
+}
+
+.image-filter-blue::after {
+	background-color: $wmui-color-image-filter-blue;
+
+}
+
+.image-filter-red::after {
+	background-color: $wmui-color-image-filter-red;
+
+}
+
+.image-filter-yellow::after {
+	background-color: $wmui-color-image-filter-yellow;
+}

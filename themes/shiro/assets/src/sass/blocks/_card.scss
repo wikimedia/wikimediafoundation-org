@@ -1,0 +1,53 @@
+.content-card {
+	@include global-margin-bottom;
+
+	border: 1px solid $wmui-color-base80;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column-reverse;
+	overflow: hidden;
+	position: relative;
+	transition: 0.3s box-shadow;
+
+	&:only-child {
+		height: 100%;
+		margin-bottom: 0;
+	}
+
+	&:hover,
+	&:focus-within {
+		box-shadow: 0 0 20px 5px rgba($color-base--active, 0.15);
+	}
+
+	&:hover &__call-to-action::after {
+		transform: translateX(rem(5)); /*rtl: transform: translateX(rem(-5));*/
+	}
+
+	&__contents {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		padding: rem(20);
+	}
+
+	&__heading {
+		@include h3-sans;
+		margin-bottom: rem(4);
+		margin-left: 0;
+	}
+
+	&__body {
+		flex: 1;
+		font-family: $font-family-sans;
+	}
+
+	&__call-to-action {
+		@include button-link-arrow;
+		align-self: flex-start;
+		position: static;
+
+		&::before {
+			@include absolute-full-cover();
+		}
+	}
+}

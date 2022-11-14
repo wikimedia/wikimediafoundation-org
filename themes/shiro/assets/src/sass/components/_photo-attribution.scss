@@ -1,0 +1,74 @@
+.photo-attribution {
+	@include responsive-padding(24 20, 32 40);
+	max-width: $content-column + 2 * $block-padding;
+	margin: 0 auto rem(112);
+
+	&__heading {
+		@include h3;
+		@include h3-sans;
+	}
+
+	&__inner {
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+
+.attribution-item {
+	width: 100%;
+	margin: 0 0 rem(40) 0;
+	display: flex;
+	overflow-wrap: break-word;
+
+	&__image {
+		width: rem(63);
+		height: rem(63);
+		margin-right: rem(15);
+		flex-shrink: 0;
+		border: 1px solid $wmui-color-base80;
+
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__content {
+		// 87 = 63 + 15 + 8 + 1
+		width: calc( 100% - #{rem(87)});
+
+		// Align tops of capital letters with the top of the image.
+		margin-top: -7px;
+	}
+
+	p {
+		@include has-font-size("small");
+		@include reset-p-margin;
+		font-family: $font-family-sans;
+	}
+
+	a {
+		color: $color-primary;
+	}
+
+	@media (min-width: $width-breakpoint-tablet) {
+		margin-right: rem(8);
+		width: calc( 33% - #{rem(8)} );
+	}
+
+	@media (min-width: $width-breakpoint-tablet) and (max-width: ($width-breakpoint-desktop - 1)) {
+		flex-wrap: wrap;
+		flex-direction: column;
+
+		&__content {
+			width: 100%;
+			margin-top: 0;
+		}
+	}
+
+	@media (min-width: $width-breakpoint-desktop) {
+		width: calc( 33% - #{rem(8)} );
+		margin-bottom: rem(36);
+	}
+}

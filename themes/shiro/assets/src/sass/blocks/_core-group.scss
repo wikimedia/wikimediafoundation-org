@@ -1,0 +1,21 @@
+.wp-block-group {
+	&.has-background {
+		padding: rem(20);
+
+		&:not(:only-child) {
+			@include global-margin-bottom;
+		}
+	}
+
+	&.alignfull {
+		@include alignfull-padded;
+	}
+
+	&.has-radius-big {
+		border-radius: $border-radius-big;
+	}
+
+	&.has-radius-small {
+		border-radius: $border-radius-base;
+	}
+}

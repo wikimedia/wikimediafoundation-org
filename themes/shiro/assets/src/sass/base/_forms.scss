@@ -1,0 +1,106 @@
+@mixin field-styling {
+	background: none;
+	border: 1px solid $color-ltgray;
+	border-radius: 0;
+	margin: rem(3) 0;
+	padding: rem(10);
+
+	&:focus {
+		@include focus-ring($hex: false, $inset: false, $width: 3px, $transparency: 0.6);
+	}
+}
+
+
+// Form elements
+input,
+textarea {
+	@include field-styling;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	display: block;
+	width: 100%;
+}
+
+.select-wrapper {
+	position: relative;
+
+	&::after {
+		background: url('assets/dist/fonts/raw-icons/arrow-down.svg') no-repeat;
+		content: "";
+		display: block;
+		fill: $color-dark-gray;
+		font-size: rem( 35 );
+		height: rem( 35 );
+		pointer-events: none;
+		position: absolute;
+		right: rem( 5 );
+		top: rem( 5 );
+		width: rem( 35 );
+	}
+}
+
+select {
+	display: block;
+	width: 100%;
+	@include field-styling;
+}
+
+.search-input,
+.search-btn {
+	@include field-styling;
+	display: inline-block;
+}
+.search-input {
+	background: url('assets/dist/fonts/raw-icons/icon-search-grey.svg') rem( 10 ) rem( 10 ) no-repeat;
+	padding-left: rem( 45 );
+	position: relative;
+	width: 80%;
+}
+
+.checkbox-row {
+	margin-bottom: rem( 10 );
+
+	input,
+	label {
+		display: inline-block;
+		vertical-align: middle;
+		width: auto;
+	}
+
+	input[type="checkbox"] {
+		@include field-styling;
+		appearance: inherit;
+		margin-right: rem( 10 );
+	}
+
+	input[type=checkbox]:checked {
+		background: $color-turquoise;
+	}
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button:not([class]):not([id^="mce"]):not([aria-controls]) {
+	@include button-primary();
+}
+
+input[type="reset"] {
+	@include button-tertiary();
+}

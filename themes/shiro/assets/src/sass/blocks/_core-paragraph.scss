@@ -1,0 +1,11 @@
+p {
+	margin-bottom: rem(40);
+
+	+ p {
+		margin-top: rem(-20);
+	}
+
+	&.no-default-margin {
+		@include reset-p-margin;
+	}
+}
