@@ -8,6 +8,13 @@ The production repository is privately hosted on GitHub and maintained by Automa
 
 A public repository is mirrored and made available: https://github.com/wikimedia/wikimediafoundation-org
 
+## Updating mirror
+
+The process for updating the mirror is documented by GitHub: https://help.github.com/en/articles/duplicating-a-repository
+
+Command to run from private repository:
+  git push --mirror https://github.com/wikimedia/wikimediafoundation-org.gito a real git checkout of the repository.
+
 ## Developing themes
 
 This theme uses several other themes and plugins as composer dependencies. When cloning the repository, run `composer install` to pull down all site dependencies for use in your local development environment. This will pull down production builds of first-party themes and plugins.
@@ -28,14 +35,10 @@ nvm use
 npm install
 npm run build
 ```
-(Note that the steps above assume you are using [nvm](https://github.com/nvm-sh/nvm) to select the appropriate version of Node for use with the theme.)
 
-## Updating mirror
+A note on build dependencies: first-party themes and plugins use node & npm for dependency management and asset build pipeline. The `engines` field in `themes/shiro/package.json` defines the correct versions of node and npm, and will cause `npm install` to fail if those versions are not in use.
 
-The process for updating the mirror is documented by GitHub: https://help.github.com/en/articles/duplicating-a-repository
-
-Command to run from private repository:
-  git push --mirror https://github.com/wikimedia/wikimediafoundation-org.git
+If you're [using nvm](https://github.com/nvm-sh/nvm#installing-and-updating), running `nvm use` from the theme directory will automatically set (and install if necessary) the correct version of node, which will *usually* include the correct version of npm. The steps above assume `nvm` is available.
 
 ## Updating plugins
 
@@ -59,13 +62,7 @@ index bc224963..6a3dd18f 100644
 
 then run `composer update wikimedia/shiro-wordpress-theme` to update the lockfile.
 
-If doing this overwrites a local checkout of the theme repo, follow the steps in [Developing themes](#developing-themes), above, to reset your local environment to a real git checkout of the repository.
-
-## Setup
-
-The theme uses node & npm for dependency management and asset build pipeline. The `engines` field in `themes/shiro/package.json` defines the correct versions of node and npm, and will cause `npm install` to fail if those versions are not in use.
-
-If you're [using nvm](https://github.com/nvm-sh/nvm#installing-and-updating), running `nvm use` from the theme directory will automatically set (and install if necessary) the correct version of node, which will *usually* include the correct version of npm.
+If doing this overwrites a local checkout of the theme repo, follow the steps in [Developing themes](#developing-themes), above, to reset your local environment t
 
 ## Updating Localization
 
