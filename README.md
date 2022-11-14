@@ -28,7 +28,7 @@ composer install
 # Remove the production copy of the theme
 rm -rf themes/shiro
 # Reinstall from source
-composer install wikimedia/shiro-wordpress-theme --prefer-source
+composer update wikimedia/shiro-wordpress-theme --prefer-source
 # Switch to the `main` branch
 cd themes/shiro
 git checkout main
