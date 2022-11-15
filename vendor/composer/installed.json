@@ -1138,17 +1138,33 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d"
+                "reference": "dc84e67d08777740782d8b8e6582179bc7547010"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/e5602ffde677511a3f9869f44a91a42f1095b23d",
-                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/dc84e67d08777740782d8b8e6582179bc7547010",
+                "reference": "dc84e67d08777740782d8b8e6582179bc7547010",
                 "shasum": ""
             },
-            "time": "2022-11-14T17:42:51+00:00",
+            "require-dev": {
+                "automattic/vipwpcs": "^2.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "phpcompatibility/phpcompatibility-wp": "^1.0",
+                "squizlabs/php_codesniffer": "^3.3",
+                "staabm/annotate-pull-request-from-checkstyle": "^1.8",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "time": "2022-11-15T00:42:21+00:00",
             "type": "wordpress-theme",
             "installation-source": "dist",
+            "scripts": {
+                "phpcs": [
+                    "phpcs ."
+                ],
+                "phpcs:changed": [
+                    "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
+                ]
+            },
             "license": [
                 "GPL-2.0-or-later"
             ],

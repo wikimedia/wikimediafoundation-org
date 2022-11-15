@@ -15,7 +15,7 @@ $title       = $template_data['title'];
 $image       = ! empty( $template_data['image'] ) ? $template_data['image'] : '';
 $subhead     = ! empty( $template_data['subhead'] ) ? $template_data['subhead'] : '';
 $description = ! empty( $template_data['description'] ) ? $template_data['description'] : '';
-$link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
+$item_link   = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 
 
 ?>
@@ -30,13 +30,13 @@ $link        = ! empty( $template_data['link'] ) ? $template_data['link'] : '';
 		<?php if ( ! empty( $title ) ) : ?>
 		<h3 class="h2 link-external">
 
-			<?php if ( ! empty( $link ) ) : ?>
-			<a href="<?php echo esc_url( $link ); ?>">
+			<?php if ( ! empty( $item_link ) ) : ?>
+			<a href="<?php echo esc_url( $item_link ); ?>">
 			<?php endif; ?>
 
-			<?php echo esc_html( $title ); ?>
+			<?php shiro_safe_title( $title ); ?>
 
-			<?php if ( ! empty( $link ) ) : ?>
+			<?php if ( ! empty( $item_link ) ) : ?>
 				<?php
 				if ( ! empty( $template_data['offsite'] ) ) {
 					wmf_show_icon( 'open', 'external-link-icon' );
