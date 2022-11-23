@@ -9,18 +9,38 @@
 		"wp": false,
 		"shiro": false,
 		"MutationObserverInit": true,
-		"hm": false,
+		"hm": false
 	},
-	"rules": {},
+	"rules": {
+		"arrow-parens": [ "error", "always" ],
+		"react/jsx-sort-props": "off"
+	},
 	"overrides": [
+		{
+			"env": {
+				"node": true
+			},
+			"files": [
+				".config/**/*.js",
+				"gulpfile.js"
+			],
+			"extends": ["@humanmade/eslint-config"],
+			"rules": {
+				"arrow-parens": [ "error", "always" ],
+				"jsdoc/require-param": [0],
+				"jsdoc/require-returns": [0]
+			}
+		},
 		{
 			"parser": "babel-eslint",
 			"files": ["assets/src/editor/**/*.js"],
 			"extends": ["@humanmade/eslint-config"],
 			"rules": {
-				"react/react-in-jsx-scope": [0],
+				"arrow-parens": [ "error", "always" ],
 				"jsdoc/require-param": [0],
-				"jsdoc/require-returns": [0]
+				"jsdoc/require-returns": [0],
+				"react/jsx-sort-props": "off",
+				"react/react-in-jsx-scope": [0]
 			}
 		},
 		{

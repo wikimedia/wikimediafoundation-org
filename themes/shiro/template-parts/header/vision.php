@@ -31,7 +31,7 @@ $visions_langcode = [
 ];
 
 if (empty($visions)) {
-  $visions[] = '<span>Imagine a world</span> in which every single human being can freely share in the sum of all knowledge.';
+  $visions[] = 'Imagine a world in which every single human being can freely share in the sum of all knowledge.';
   $visions_class[] = '';
   $visions_langcode[] = 'en-US';
 }
@@ -45,7 +45,7 @@ foreach ($visions as $key => $vision) {
     'rssclass' => $visions_class[$key],
     'langcode' => $visions_langcode[$key],
   ];
-    
-  echo '<h1 lang="'. esc_attr($vision_output[$vision]['langcode']) .'" class="vision '. esc_attr($is_visible) .' '. esc_attr($vision_output[$vision]['rssclass']) .'">' . esc_html($vision_output[$vision]['text']) . '</h1>';
+
+  echo '<h2 lang="'. esc_attr($vision_output[$vision]['langcode']) .'" class="hero-home__heading vision '. esc_attr($is_visible) .' '. esc_attr($vision_output[$vision]['rssclass']) .'">' . esc_html($vision_output[$vision]['text']) . '</h2>';
   $is_visible = '';
 }

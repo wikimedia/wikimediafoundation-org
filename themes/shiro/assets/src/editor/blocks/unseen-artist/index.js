@@ -217,7 +217,7 @@ export const settings = {
 								<ToggleControl
 									checked={ hideMeta }
 									label={ __( 'Hide artist info on desktop', 'shiro-admin' ) }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { hideMeta: value } );
 									} }
 								/>
@@ -227,7 +227,7 @@ export const settings = {
 								<TextControl
 									label={ __( 'Artist Name', 'shiro-admin' ) }
 									value={ artistName }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { artistName: value } );
 									} }
 								/>
@@ -237,7 +237,7 @@ export const settings = {
 								<TextControl
 									label={ __( 'Top Heading', 'shiro-admin' ) }
 									value={ topHeading }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { topHeading: value } );
 									} }
 								/>
@@ -248,7 +248,7 @@ export const settings = {
 									label={ __( 'Interview Link URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ linkURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { linkURL: value } );
 									} }
 								/>
@@ -258,7 +258,7 @@ export const settings = {
 								<TextControl
 									label={ __( 'Interview Link Text', 'shiro-admin' ) }
 									value={ linkText }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { linkText: value } );
 									} }
 								/>
@@ -274,7 +274,7 @@ export const settings = {
 									label={ __( 'Facebook URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ facebookURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { facebookURL: value } );
 									} }
 								/>
@@ -285,7 +285,7 @@ export const settings = {
 									label={ __( 'Instagram URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ instagramURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { instagramURL: value } );
 									} }
 								/>
@@ -296,7 +296,7 @@ export const settings = {
 									label={ __( 'Twitter URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ twitterURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { twitterURL: value } );
 									} }
 								/>
@@ -307,7 +307,7 @@ export const settings = {
 									label={ __( 'LinkedIn URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ linkedInURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { linkedInURL: value } );
 									} }
 								/>
@@ -318,7 +318,7 @@ export const settings = {
 									label={ __( 'Behance URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ behanceURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { behanceURL: value } );
 									} }
 								/>

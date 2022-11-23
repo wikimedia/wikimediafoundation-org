@@ -73,12 +73,12 @@ export const settings = {
 						<ToggleControl
 							checked={ enableTwitter }
 							label={ __( 'Enable Twitter share', 'shiro-admin' ) }
-							onChange={ enableTwitter => setAttributes( { enableTwitter } ) }
+							onChange={ ( enableTwitter ) => setAttributes( { enableTwitter } ) }
 						/>
 						<ToggleControl
 							checked={ enableFacebook }
 							label={ __( 'Enable Facebook share', 'shiro-admin' ) }
-							onChange={ enableFacebook => setAttributes( { enableFacebook } ) }
+							onChange={ ( enableFacebook ) => setAttributes( { enableFacebook } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>

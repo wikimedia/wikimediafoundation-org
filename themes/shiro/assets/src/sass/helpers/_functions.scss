@@ -1,11 +1,13 @@
+@use "sass:math";
+
 $browser-context: 16; // Default
 
 @function rem($pixels, $context: $browser-context) {
-	@return #{$pixels/$context}rem;
+	@return #{math.div($pixels, $context)}rem;
 }
 
 @function strip-px($value) {
-	@return $value / 1px;
+	@return math.div($value, 1px);
 }
 
 @function px-to-rem($value, $context: $browser-context) {

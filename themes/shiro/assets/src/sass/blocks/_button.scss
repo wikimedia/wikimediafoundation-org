@@ -59,6 +59,12 @@
 			}
 		}
 
+		&.is-style-transparent {
+			#{ $inner-selector } {
+				@include button-transparent;
+			}
+		}
+
 		&.has-icon {
 			#{ $inner-selector }:before {
 				@include button-icon-rules;
@@ -89,12 +95,14 @@
 		@include button-icon("header-orig", "header-orig", $inner-selector);
 		@include button-icon("header-wp20", "header-wp20", $inner-selector);
 		@include button-icon("heart-pink", "heart-pink", $inner-selector);
+		@include button-icon("info", "individual/info", $inner-selector);
 		@include button-icon("language", "language", $inner-selector);
 		@include button-icon("lock", "lock", $inner-selector);
 		@include button-icon("lock-orig", "lock-orig", $inner-selector);
 		@include button-icon("lock-pink", "lock-pink", $inner-selector);
 		@include button-icon("lock-white", "lock-white", $inner-selector);
 		@include button-icon("map-pin", "map-pin", $inner-selector);
+		@include button-icon("musical-note-white", "individual/musical-note-white", $inner-selector);
 		@include button-icon("square", "square", $inner-selector);
 		@include button-icon("triangle", "triangle", $inner-selector);
 		@include button-icon("wave", "wave", $inner-selector);

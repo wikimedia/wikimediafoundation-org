@@ -104,7 +104,7 @@ export const name = 'shiro/contact',
 					placeholder={ __( 'Write contact title', 'shiro-admin' ) }
 					tagName="h3"
 					value={ title }
-					onChange={ title => setAttributes( { title } ) }
+					onChange={ ( title ) => setAttributes( { title } ) }
 				/>
 				<RichText
 					className="contact__description"
@@ -112,14 +112,14 @@ export const name = 'shiro/contact',
 					placeholder={ __( 'Write contact description', 'shiro-admin' ) }
 					tagName="div"
 					value={ description }
-					onChange={ description => setAttributes( { description } ) }
+					onChange={ ( description ) => setAttributes( { description } ) }
 				/>
 				<CallToActionPicker
 					className="contact__call-to-action"
 					text={ linkText }
 					url={ linkUrl }
-					onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
-					onChangeText={ linkText => setAttributes( { linkText } ) }
+					onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
+					onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
 				/>
 				<RichText
 					className="contact__social-title"
@@ -127,7 +127,7 @@ export const name = 'shiro/contact',
 					placeholder={ __( 'Write social links title', 'shiro-admin' ) }
 					tagName="h4"
 					value={ socialTitle }
-					onChange={ socialTitle => setAttributes( { socialTitle } ) }
+					onChange={ ( socialTitle ) => setAttributes( { socialTitle } ) }
 				/>
 				<InnerBlocks
 					allowedBlocks={ [ 'core/buttons' ] }

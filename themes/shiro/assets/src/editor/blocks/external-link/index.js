@@ -161,9 +161,9 @@ export const
 				<div { ...blockProps }>
 					<ExternalLinkWithFocusOutside
 						heading={ heading }
-						setHeading={ heading => setAttributes( { heading } ) }
-						setText={ text => setAttributes( { text } ) }
-						setUrl={ url => setAttributes( { url } ) }
+						setHeading={ ( heading ) => setAttributes( { heading } ) }
+						setText={ ( text ) => setAttributes( { text } ) }
+						setUrl={ ( url ) => setAttributes( { url } ) }
 						text={ text }
 						url={ url }
 					/>

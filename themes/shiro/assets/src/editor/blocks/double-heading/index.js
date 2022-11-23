@@ -20,19 +20,19 @@ import {
 const { languages, siteLanguage } = shiroEditorVariables;
 
 const isRtlMap = zipObject(
-	languages.map( language => language.shortname ),
-	languages.map( language => language.is_rtl )
+	languages.map( ( language ) => language.shortname ),
+	languages.map( ( language ) => language.is_rtl )
 );
 
 /**
  * Return whether the language is a RTL language.
  */
-const isRtl = language => get( isRtlMap, language );
+const isRtl = ( language ) => get( isRtlMap, language );
 
 /**
  * Determine whether the given heading has the site language.
  */
-const isSiteLanguageHeading = heading => heading.lang === siteLanguage;
+const isSiteLanguageHeading = ( heading ) => heading.lang === siteLanguage;
 
 /**
  *
@@ -233,7 +233,7 @@ export const name = 'shiro/double-heading',
 							'shiro-admin'
 						) }
 						value={ primaryHeading }
-						onChange={ primaryHeading =>
+						onChange={ ( primaryHeading ) =>
 							setAttributes( { primaryHeading } ) }
 					/>
 					{ headings.length > 1 && (
@@ -271,11 +271,11 @@ export const name = 'shiro/double-heading',
 										},
 										...languages
 											.filter(
-												language =>
+												( language ) =>
 													language.shortname !==
 													siteLanguage
 											)
-											.map( language => {
+											.map( ( language ) => {
 												return {
 													label: language.name,
 													value: language.shortname,

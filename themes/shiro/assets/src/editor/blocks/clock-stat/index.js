@@ -56,7 +56,7 @@ export const settings = {
 							placeholder={ 'Stat' }
 							tagName="div"
 							value={ stat }
-							onChange={ value => setAttributes( { stat: wrapCharacters( value ) } ) }
+							onChange={ ( value ) => setAttributes( { stat: wrapCharacters( value ) } ) }
 						/>
 					</div>
 					<span className="clock-stat__divider">:</span>
@@ -67,7 +67,7 @@ export const settings = {
 							placeholder={ __( 'Label', 'shiro-admin' ) }
 							tagName="div"
 							value={ label }
-							onChange={ label => setAttributes( { label } ) }
+							onChange={ ( label ) => setAttributes( { label } ) }
 						/>
 					</div>
 				</div>

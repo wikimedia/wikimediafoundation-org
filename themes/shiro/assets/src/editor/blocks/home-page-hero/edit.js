@@ -139,7 +139,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 						<ToggleControl
 							checked={ enableAnimation }
 							label={ __( 'Enable animation', 'shiro-admin' ) }
-							onChange={ enableAnimation => setAttributes( { enableAnimation } ) }
+							onChange={ ( enableAnimation ) => setAttributes( { enableAnimation } ) }
 						/>
 					</PanelBody>
 					<PanelBody initialOpen title={ __( 'Link settings', 'shiro-admin' ) }>
@@ -147,7 +147,7 @@ const HomePageHeroBlock = ( { attributes, setAttributes, isSelected, setHeadingC
 							isFullWidth
 							label={ __( 'Link', 'shiro-admin' ) }
 							value={ linkUrl }
-							onChange={ linkUrl => setAttributes( { linkUrl } ) }
+							onChange={ ( linkUrl ) => setAttributes( { linkUrl } ) }
 						/>
 					</PanelBody>
 				</InspectorControls>

@@ -23,13 +23,23 @@ $wmf_skip2_content_label = get_theme_mod( 'wmf_skip2_content_label', __( 'Skip t
 $wmf_skip2_navigation_label = get_theme_mod( 'wmf_skip2_navigation_label', __( 'Skip to navigation', 'shiro-admin' ) );
 $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Select language', 'shiro-admin' ) );
 $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
-
+$wmf_post_thumbnail_url = get_the_post_thumbnail_url( get_the_ID() );
+$wmf_ogmeta_ogimageurl = get_site_option( 'ogmeta_ogimageurl' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php 
+// If set, configure 'featured image' as 'og:image'.
+if ( $wmf_post_thumbnail_url  && !( is_plugin_active('wordpress-seo/wp-seo.php') )): ?>
+    <meta property="og:image" content="<?php echo esc_url( $wmf_post_thumbnail_url ) ?>" />
+<?php
+// If set, configure 'ogmeta_ogimageurl' as 'og:image'.
+elseif ( $wmf_ogmeta_ogimageurl  && !( is_plugin_active('wordpress-seo/wp-seo.php') )): ?>
+	<meta property="og:image" content="<?php echo esc_url( $wmf_ogmeta_ogimageurl ) ?>" />
+<?php endif; ?>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
 </head>

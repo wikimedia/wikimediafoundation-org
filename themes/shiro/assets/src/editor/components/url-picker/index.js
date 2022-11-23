@@ -52,7 +52,7 @@ function URLPicker( {
 				value={ {
 					url,
 				} }
-				onChange={ link => onChangeLink( link.url, link ) }
+				onChange={ ( link ) => onChangeLink( link.url, link ) }
 			/>
 		</Popover>
 	);

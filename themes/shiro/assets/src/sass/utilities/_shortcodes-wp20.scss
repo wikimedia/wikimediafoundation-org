@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $wp20_font: "Linux Libertine", "Georgia", "Times", serif;
 
 // styles for Wikipedia 20 shortcodes
@@ -628,11 +630,11 @@ $wp20_colors: $wp20_color_1,$wp20_color_2,$wp20_color_3,$wp20_color_4,$wp20_colo
 	}
 }
 
-$w-sm: 100vw/3;
+$w-sm: math.div(100vw, 3);
 $w-sm-p: 33.33%;
-$w-med: 100vw/6;
+$w-med: math.div(100vw, 6);
 $w-med-p: 16.66%;
-$w-lg: 100vw/8;
+$w-lg: 100vw*0.125;
 $w-lg-p: 12.5%;
 $row-gutter-sm: 2vw;
 $row-gutter-big: 0.625vw; 

@@ -113,6 +113,19 @@
 	}
 }
 
+@mixin button-transparent() {
+	@include style-guide-button(
+		transparent,
+		transparent,
+		black,
+		black
+	);
+
+	&:focus {
+		border-color: black;
+	}
+}
+
 @mixin button-link-arrow($back: false) {
 	@include button-link();
 	@include style-guide-arrow($back);

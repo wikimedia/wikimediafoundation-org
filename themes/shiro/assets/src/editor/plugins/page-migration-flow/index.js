@@ -25,14 +25,14 @@ export const settings = {
 	 * Returns nothing, just has side effects to show the user a notice.
 	 */
 	render: function PageMigrationFlow() {
-		const { pageTemplate, blocks } = useSelect( select => {
+		const { pageTemplate, blocks } = useSelect( ( select ) => {
 			return {
 				pageTemplate: select( 'core/editor' ).getEditedPostAttribute( 'template' ),
 				blocks: select( 'core/block-editor' ).getBlocks(),
 			};
 		} );
 
-		const classicBlocks = blocks.filter( block => block.name === 'core/freeform' );
+		const classicBlocks = blocks.filter( ( block ) => block.name === 'core/freeform' );
 		const hasNonClassicBlocks = blocks.length !== classicBlocks.length;
 
 		useEffect( () => {

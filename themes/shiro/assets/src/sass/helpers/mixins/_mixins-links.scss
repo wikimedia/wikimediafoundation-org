@@ -7,7 +7,7 @@
  * @param {Color}  $color   Base color.
  */
 @mixin style-guide-darken-color( $color ) {
-	color: scale-color($color, $hue: 6deg, $lightness: -30%);
+	color: scale-color($color, $lightness: -30%);
 }
 
 /**

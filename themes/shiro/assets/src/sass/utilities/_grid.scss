@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .mw-1360 {
 	margin: 0 auto;
 	max-width: rem(1440);
@@ -190,10 +192,10 @@
 }
 
 .mod-margin-bottom_xs {
-  margin-bottom: rem(64/3);
+  margin-bottom: rem(math.div(64, 3));
 
   @media (min-width: $medium-bp) {
-	margin-bottom: rem(112/3);
+	margin-bottom: rem(math.div(112, 3));
   }
 }
 

@@ -20,8 +20,8 @@ export const name = 'shiro/read-more-categories';
  *
  * @param {string} slug Slug of the taxonomy.
  */
-const useTerms = slug => {
-	const terms = useSelect( select => {
+const useTerms = ( slug ) => {
+	const terms = useSelect( ( select ) => {
 		const { getTaxonomy } = select( 'core' );
 		const taxonomy = getTaxonomy( slug );
 
@@ -31,7 +31,7 @@ const useTerms = slug => {
 
 		const getEntityRecord = select( 'core' ).getEntityRecord;
 
-		return terms.map( id => getEntityRecord( 'taxonomy', slug, id ) );
+		return terms.map( ( id ) => getEntityRecord( 'taxonomy', slug, id ) );
 	} );
 
 	// While the entity is being retrieved, it is undefined. This makes sure we only
@@ -42,9 +42,9 @@ const useTerms = slug => {
 /**
  * Render terms as links with a separator.
  */
-const renderTerms = terms => {
+const renderTerms = ( terms ) => {
 	return sortBy( terms, 'name' )
-		.map( term => ( <a key={ `${term.taxonomy}_${term.id}` } href={ term.link }>{ term.name }</a> ) )
+		.map( ( term ) => ( <a key={ `${term.taxonomy}_${term.id}` } href={ term.link }>{ term.name }</a> ) )
 		.reduce( ( previous, current ) => {
 			if ( previous === null ) {
 				return current;
@@ -105,7 +105,7 @@ export const settings = {
 						placeholder={ __( 'Write read more text', 'shiro-admin' ) }
 						tagName="span"
 						value={ readMoreText }
-						onChange={ readMoreText => setAttributes( { readMoreText } ) }
+						onChange={ ( readMoreText ) => setAttributes( { readMoreText } ) }
 					/>
 					{ /* Whitespace to mimic frontend */ }
 					{ ' ' }

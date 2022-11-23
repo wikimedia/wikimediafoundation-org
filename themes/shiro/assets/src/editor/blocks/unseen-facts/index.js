@@ -166,7 +166,7 @@ export const settings = {
 									label={ __( 'Facebook URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ facebookURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { facebookURL: value } );
 									} }
 								/>
@@ -177,7 +177,7 @@ export const settings = {
 									label={ __( 'Instagram URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ instagramURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { instagramURL: value } );
 									} }
 								/>
@@ -188,7 +188,7 @@ export const settings = {
 									label={ __( 'Twitter URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ twitterURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { twitterURL: value } );
 									} }
 								/>
@@ -199,7 +199,7 @@ export const settings = {
 									label={ __( 'LinkedIn URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ linkedInURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { linkedInURL: value } );
 									} }
 								/>
@@ -210,7 +210,7 @@ export const settings = {
 									label={ __( 'Behance URL', 'shiro-admin' ) }
 									placeholder={ 'https://...' }
 									value={ behanceURL }
-									onChange={ value => {
+									onChange={ ( value ) => {
 										setAttributes( { behanceURL: value } );
 									} }
 								/>
@@ -234,7 +234,7 @@ export const settings = {
 							placeholder={ __( 'Add heading...', 'shiro-admin' ) }
 							tagName='h2'
 							value={ heading }
-							onChange={ value => {
+							onChange={ ( value ) => {
 								setAttributes( { heading: value } );
 							} }
 						/>
@@ -244,7 +244,7 @@ export const settings = {
 							placeholder={ __( 'Add content...', 'shiro-admin' ) }
 							tagName='p'
 							value={ content }
-							onChange={ value => {
+							onChange={ ( value ) => {
 								setAttributes( { content: value } );
 							} }
 						/>

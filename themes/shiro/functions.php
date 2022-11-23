@@ -86,6 +86,10 @@ function wmf_setup() {
 	add_image_size( 'image_16x9_small', '600', '338', true );
 	add_image_size( 'image_square_medium', '250', '250', true );
 
+	// Warn if required environment is not satisfied.
+	if ( ! function_exists( 'Asset_Loader\enqueue_asset' ) ) {
+		trigger_error( 'This theme expects the humanmade/asset-loader plugin to be installed and active.' );
+	}
 }
 add_action( 'after_setup_theme', 'wmf_setup' );
 
@@ -116,13 +120,13 @@ function wmf_scripts() {
 	$style_version = md5_file( get_theme_file_path( 'style.css' ) );
 	$script_version = md5_file( get_theme_file_path( 'assets/dist/scripts.min.js' ) );
 
-	wp_enqueue_style( 'shiro-style', get_stylesheet_uri(), array(), $style_version );
+	wp_enqueue_style( 'shiro-style', get_template_directory_uri() . '/style.css', array(), $style_version );
 
 	if ( get_theme_mod( 'wmf_enable_rtl' ) ) {
-		wp_enqueue_style( 'shiro-style-rtl', get_stylesheet_directory_uri() . '/rtl.css', array(), $style_version );
+		wp_enqueue_style( 'shiro-style-rtl', get_template_directory_uri() . '/rtl.css', array(), $style_version );
 	}
-	wp_enqueue_script( 'shiro-svg4everybody', get_stylesheet_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
-	wp_enqueue_script( 'shiro-script', get_stylesheet_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
+	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
 		\WMF\Assets\get_manifest_path(),
 		'shiro.js',
@@ -149,8 +153,8 @@ function wmf_scripts() {
 	}
 
 	if ( is_page_template( 'page-data.php' ) ) {
-		wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-		wp_enqueue_script( 'datavis', get_stylesheet_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
+		wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
+		wp_enqueue_script( 'datavis', get_template_directory_uri() . '/assets/dist/datavis.min.js', array( 'jquery' ), '0.0.1', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
@@ -160,20 +164,20 @@ add_action( 'wp_enqueue_scripts', 'wmf_scripts' );
  */
 function wmf_add_piwik_analytics() {
 	?>
-	<!-- Matomo -->
-<script>
-var _paq = _paq || [];
-/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-(function() {
-var u="//piwik.wikimedia.org/";
-_paq.push(['setTrackerUrl', u+'piwik.php']);
-_paq.push(['setSiteId', '17']);
-var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-})();
-</script>
-<!-- End Matomo Code -->
+        <!-- Matomo -->
+        <script type="text/javascript">
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="//piwik.wikimedia.org/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '<?php echo esc_attr( get_site_option( 'matomo_siteid' ) ) ?>']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+        </script>
+        <!-- End Matomo Code -->
 	<?php
 }
 add_action( 'wp_footer', 'wmf_add_piwik_analytics' );
@@ -200,24 +204,24 @@ add_filter( 'register_post_type_args', 'wmf_edit_page_post_type', 10, 2 );
 function wmf_admin_scripts() {
 	wp_enqueue_style(
 		'shiro-editor',
-		get_stylesheet_directory_uri() . '/assets/dist/admin/admin.css',
+		get_template_directory_uri() . '/assets/dist/admin/admin.css',
 		array(),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/dist/admin/admin.css' )
+		filemtime( trailingslashit( get_template_directory() ) . 'assets/dist/admin/admin.css' )
 	);
 
 	wp_enqueue_script(
 		'shiro-editor-js',
-		get_stylesheet_directory_uri() . '/assets/src/admin/post-meta.js',
+		get_template_directory_uri() . '/assets/src/admin/post-meta.js',
 		array( 'jquery' ),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/post-meta.js' ),
+		filemtime( trailingslashit( get_template_directory() ) . 'assets/src/admin/post-meta.js' ),
 		true
 	);
 
 	wp_enqueue_script(
 		'shiro-media-js',
-		get_stylesheet_directory_uri() . '/assets/src/admin/media.js',
+		get_template_directory_uri() . '/assets/src/admin/media.js',
 		array( 'jquery' ),
-		filemtime( trailingslashit( get_stylesheet_directory() ) . 'assets/src/admin/media.js' ),
+		filemtime( trailingslashit( get_template_directory() ) . 'assets/src/admin/media.js' ),
 		true
 	);
 }
@@ -318,6 +322,12 @@ require get_template_directory() . '/inc/fields.php';
  */
 require get_template_directory() . '/inc/taxonomy-content-language.php';
 require get_template_directory() . '/inc/taxonomies.php';
+
+/**
+ * Additional Network Settings.
+ */
+require get_template_directory() . '/inc/network-settings.php';
+Network_Settings\bootstrap();
 
 /**
  * Add Custom Post Types.

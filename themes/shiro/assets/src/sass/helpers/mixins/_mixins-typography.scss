@@ -5,7 +5,7 @@
 
 	// Tablet (halfway between desktop and mobile size
 	@media (min-width: $width-breakpoint-tablet) and (max-width: 1280px) {
-		font-size: rem($desktop - (($desktop - $mobile) / 2));
+		font-size: rem($desktop - (($desktop - $mobile) * 0.5));
 	}
 
 	// Desktop
@@ -20,7 +20,7 @@
 
 	// Tablet (halfway between desktop and mobile size
 	@media (min-width: $width-breakpoint-tablet) and (max-width: 1280px) {
-		line-height: rem($desktop - (($desktop - $mobile) / 2));
+		line-height: rem($desktop - (($desktop - $mobile) * 0.5));
 	}
 
 	// Desktop

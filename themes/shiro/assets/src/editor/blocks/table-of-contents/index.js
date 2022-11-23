@@ -48,7 +48,7 @@ export const name = 'shiro/toc',
 			 * tree from where it finds itself, so you may get odd results
 			 * if it isn't inside of a `core/columns` block.
 			 */
-			const potentialHeadingsContainer = useSelect( select => {
+			const potentialHeadingsContainer = useSelect( ( select ) => {
 				const parents = select( 'core/block-editor' ).getBlockParents(
 					clientId
 				);
@@ -57,7 +57,7 @@ export const name = 'shiro/toc',
 					const wrappingColumns = parents
 						.reverse()
 						.find(
-							id =>
+							( id ) =>
 								select( 'core/block-editor' ).getBlockName(
 									id
 								) === 'core/columns'
@@ -88,7 +88,7 @@ export const name = 'shiro/toc',
 						JSON.stringify( headingBlocks ) !==
 						JSON.stringify( headingBlocksFromAttributes )
 					) {
-						setHeadingAnchors( headingBlocks ).then( blocks => {
+						setHeadingAnchors( headingBlocks ).then( ( blocks ) => {
 							setAttributes( { headingBlocks: blocks } );
 						} );
 					}

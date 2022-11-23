@@ -1,6 +1,6 @@
 {
-  "name": "shiro/wikimediafoundation",
-  "description": "Theme and plugins for Wikimedia Foundation Shiro theme",
+  "name": "wikimedia/wikimediafoundation-org",
+  "description": "Theme and plugins for the Wikimedia Foundation website",
   "keywords": [],
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
@@ -31,6 +31,10 @@
     {
       "type": "vcs",
       "url": "git@github.com:Automattic/maintenance-mode-wp.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:wikimedia/shiro-wordpress-theme.git"
     }
   ],
   "minimum-stability": "dev",
@@ -42,6 +46,7 @@
     "automattic/maintenance-mode-wp": "^0.2.2",
     "humanmade/asset-loader": "^0.6.2",
     "humanmade/hm-gutenberg-tools": "^1.6.2",
+    "wikimedia/shiro-wordpress-theme": "dev-release#e5602ffde677511a3f9869f44a91a42f1095b23d",
     "wpackagist-plugin/co-authors-plus": "^3.5",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
     "wpackagist-plugin/safe-svg": "^2.0",
@@ -86,6 +91,12 @@
       ],
       "plugins/{$name}/": [
         "type:wordpress-plugin"
+      ],
+      "themes/shiro": [
+        "wikimedia/shiro-wordpress-theme"
+      ],
+      "themes/{$name}/": [
+        "type:wordpress-theme"
       ]
     }
   }

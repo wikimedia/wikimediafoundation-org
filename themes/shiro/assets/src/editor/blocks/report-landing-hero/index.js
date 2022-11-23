@@ -97,7 +97,7 @@ export const settings = {
 							placeholder={ __( 'Kicker', 'shiro-admin' ) }
 							tagName="small"
 							value={ kicker }
-							onChange={ kicker => setAttributes( { kicker } ) }
+							onChange={ ( kicker ) => setAttributes( { kicker } ) }
 						/>
 						<RichText
 							className="hero-report__title"
@@ -105,13 +105,13 @@ export const settings = {
 							placeholder={ __( 'Title for the page', 'shiro-admin' ) }
 							tagName="h1"
 							value={ title }
-							onChange={ title => setAttributes( { title } ) }
+							onChange={ ( title ) => setAttributes( { title } ) }
 						/>
 					</div>
 					<ImageFilter
 						className="hero-report__image-container"
 						value={ imageFilter }
-						onChange={ imageFilter => setAttributes( { imageFilter } ) }
+						onChange={ ( imageFilter ) => setAttributes( { imageFilter } ) }
 					>
 						<ImagePicker
 							className="hero-report__image"

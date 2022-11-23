@@ -1,26 +1,32 @@
 /**
  * Augment the loader list with an svgr loader.
  *
- * This assumes a particular rule order--it needs to modify the default
- * oneOf definition. If you add or change rules, you may need to change this.
- * Since deep merge seems to concatenate options we should be good, but be
- * aware that this code is *fragile*.
+ * This assumes a particular rule order -- loaders are configured with a oneOf
+ * definition, so that only the first matching rule will execute. Because the
+ * loader object with the oneOf property may not be at a consistent index,
+ * iterate until it is found, apply our custom rule, and then return the
+ * mutated configuration.
  *
- * @param config
- * @return {*}
+ * @param {object} config Webpack configuration object.
+ * @returns {object} Mutated Webpack configuration object.
  */
 function addSvgr( config ) {
-	config.module.rules[1].oneOf.unshift({
-		test: /\.svg$/,
-		loader: '@svgr/webpack',
-		options: {
-			icon: true,
+	for ( let i = 0; i < config.module.rules.length; i++ ) {
+		if ( config.module.rules[ i ].oneOf ) {
+			config.module.rules[ i ].oneOf.unshift( {
+				test: /\.svg$/,
+				loader: '@svgr/webpack',
+				options: {
+					icon: true,
+				},
+			} );
+			return config;
 		}
-	});
+	}
 
 	return config;
 }
 
 module.exports = {
 	addSvgr,
-}
+};

@@ -1,11 +1,12 @@
 {
-  "name": "rkv-starter-theme",
-  "version": "0.1.0",
-  "description": "Reaktiv Studios starter theme.",
+  "name": "shiro-wordpress-theme-develop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Wikimedia Foundation parent theme",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint assets/src",
+    "lint": "eslint assets/src .config gulpfile.js",
     "build": "run-p build:theme",
     "build:theme": "run-s build:webpack build:gulp",
     "build:webpack": "webpack --config=.config/webpack.config.prod.js",
@@ -14,7 +15,18 @@
     "start:theme": "run-p start:webpack start:gulp",
     "start:webpack": "webpack-dev-server --config=.config/webpack.config.dev.js",
     "start:gulp": "gulp",
-    "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/helpers/_style-guide-variables.scss && rm wikimedia-ui-base.less"
+    "download-style-guide-sass": "curl https://raw.githubusercontent.com/wikimedia/wikimedia-ui-base/master/wikimedia-ui-base.less > wikimedia-ui-base.less && npx less2sass wikimedia-ui-base.less && mv wikimedia-ui-base.scss ./assets/src/sass/helpers/_style-guide-variables.scss && rm wikimedia-ui-base.less",
+    "make-shiro-frontend-pot": "wp i18n make-pot . languages/shiro.pot --domain=shiro --exclude=assets/dist",
+    "make-shiro-admin-pot": "wp i18n make-pot . languages/shiro-admin.pot --domain=shiro-admin --exclude=assets/dist",
+    "make-shiro-pot": [
+      "@make-shiro-frontend-pot",
+      "@make-shiro-admin-pot"
+    ],
+    "make-themes-mo": "wp i18n make-mo languages",
+    "make-themes-json": "wp i18n make-json languages --no-purge",
+    "bump:patch": "bump patch --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss",
+    "bump:minor": "bump minor --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss",
+    "bump:major": "bump major --tag --commit 'Prepare v%s release' package.json assets/src/sass/style.scss"
   },
   "engines": {
     "node": "14.x",
@@ -22,17 +34,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/reaktivstudios/rkv-starter-theme.git"
+    "url": "git+ssh://git@github.com/wikimedia/shiro-wordpress-theme-develop.git"
   },
   "author": "Reaktiv Studios <info@reaktivstudios.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/reaktivstudios/rkv-starter-theme/issues"
+    "url": "https://github.com/wikimedia/shiro-wordpress-theme-develop/issues"
   },
-  "homepage": "https://github.com/reaktivstudios/rkv-starter-theme#readme",
+  "homepage": "https://github.com/wikimedia/shiro-wordpress-theme-develop#readme",
   "devDependencies": {
+    "@automattic/webpack-rtl-plugin": "^6.0.0",
     "@humanmade/eslint-config": "^1.1.3",
-    "@humanmade/webpack-helpers": "^0.11.1",
+    "@humanmade/webpack-helpers": "^1.0.0-beta.16",
     "@svgr/webpack": "^5.5.0",
     "babel-eslint": "^10.1.0",
     "block-editor-hmr": "^0.6.3",
@@ -62,7 +75,7 @@
     "gulp-replace": "^1.1.3",
     "gulp-rev": "^9.0.0",
     "gulp-rtlcss": "^1.4.2",
-    "gulp-sass": "^4.1.1",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-strip-debug": "^3.0.0",
     "gulp-stylelint": "^13.0.0",
@@ -73,13 +86,13 @@
     "postcss": "^8.4.14",
     "postcss-assets": "^5.0.0",
     "prettier": "npm:wp-prettier@^2.0.5",
-    "sass": "^1.52.3",
+    "sass": "^1.56.1",
     "stylelint-config-wordpress": "^17.0.0",
     "stylelint-order": "^4.1.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3",
-    "webpack-rtl-plugin": "^2.0.0"
+    "version-bump-prompt": "^6.1.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
     "@wordpress/i18n": "^4.11.0",

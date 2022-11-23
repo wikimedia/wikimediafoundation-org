@@ -14,7 +14,7 @@ import { useEffect } from '@wordpress/element';
  */
 export const useImageSize = ( id, size, onChange = noop ) => {
 	// Query the API to get the correct URL for the image size.
-	const media = useSelect( select => {
+	const media = useSelect( ( select ) => {
 		return select( 'core' ).getMedia( id );
 	} );
 	const sizeData = media?.media_details.sizes[ size ];

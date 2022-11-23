@@ -121,13 +121,13 @@ export const settings = {
 			} );
 		}, [ setAttributes ] );
 
-		const onChangeLink = useCallback( url => {
+		const onChangeLink = useCallback( ( url ) => {
 			setAttributes( {
 				url,
 			} );
 		}, [ setAttributes ] );
 
-		const onChangeText = useCallback( text => {
+		const onChangeText = useCallback( ( text ) => {
 			setAttributes( {
 				buttonText: text,
 			} );
@@ -143,7 +143,7 @@ export const settings = {
 						placeholder={ __( 'Heading for banner', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
-						onChange={ heading => setAttributes( { heading } ) }
+						onChange={ ( heading ) => setAttributes( { heading } ) }
 					/>
 					<RichText
 						allowedFormats={ [ 'core/bold', 'core/italic' ] }
@@ -151,7 +151,7 @@ export const settings = {
 						placeholder={ __( 'Enter the message for this banner.', 'shiro-admin' ) }
 						tagName="p"
 						value={ text }
-						onChange={ text => setAttributes( { text } ) }
+						onChange={ ( text ) => setAttributes( { text } ) }
 					/>
 					<Cta
 						className="banner__cta"
@@ -164,7 +164,7 @@ export const settings = {
 				<ImageFilter
 					className="banner__image-wrapper"
 					value={ imageFilter }
-					onChange={ imageFilter => setAttributes( { imageFilter } ) }>
+					onChange={ ( imageFilter ) => setAttributes( { imageFilter } ) }>
 					<ImagePicker
 						className="banner__image"
 						id={ imageID }

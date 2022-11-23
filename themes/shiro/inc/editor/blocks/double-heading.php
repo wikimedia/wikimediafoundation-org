@@ -34,14 +34,14 @@ function register_block() {
  * @return string HTML markup.
  */
 function render_block( $attributes ) {
-	$site_language = wmf_get_translations()[0];
+	$site_language = wmf_get_translations()[0] ?? [];
 	$translated_headings = [];
 	$site_language_heading = null;
 	$customClass = $attributes['className'] ?? false;
 	$className = $customClass ? "double-heading $customClass" : "double-heading";
 
 	foreach ( $attributes['secondaryHeadings'] as $heading ) {
-		if ( $site_language['shortname'] === ( $heading['lang'] ?? '' ) ) {
+		if ( $site_language['shortname'] ?? null === ( $heading['lang'] ?? '' ) ) {
 			$site_language_heading = $heading;
 			continue;
 		}

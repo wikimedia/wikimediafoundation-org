@@ -4,36 +4,36 @@
  * @param {string} string Text that needs to made into an id.
  * @returns {string} The new id for use.
  */
-const makeId = string => string.replace( /\s/g, '-' ).toLocaleLowerCase();
+const makeId = ( string ) => string.replace( /\s/g, '-' ).toLocaleLowerCase();
 
 /**
  * Process an array of blocks to look for heading blocks.
  *
  * @param {Array} blocks Blocks to process.
  */
-export const getHeadingBlocks = blocks => {
+export const getHeadingBlocks = ( blocks ) => {
 	// Save some work
 	if ( blocks.length < 1 ) {
 		return [];
 	}
 
 	const headingBlocks = blocks
-		.filter( block => block.name === 'core/column' )
+		.filter( ( block ) => block.name === 'core/column' )
 		// Columns with a ToC can't contain valid headers for anchoring
-		.filter( block => {
+		.filter( ( block ) => {
 			if ( ! block.innerBlocks ) {
 				return false;
 			}
 
 			return ! block.innerBlocks.find(
-				block => block.name === 'shiro/toc'
+				( block ) => block.name === 'shiro/toc'
 			);
 		} )
-		.map( block => block.innerBlocks || [] )
+		.map( ( block ) => block.innerBlocks || [] )
 		.flat()
 		// Filter for H2 heading blocks.
 		.filter(
-			block =>
+			( block ) =>
 				block.name === 'core/heading' && block.attributes.level === 2
 		);
 
@@ -45,7 +45,7 @@ export const getHeadingBlocks = blocks => {
  *
  * @param {Array} blocks Blocks to process.
  */
-export const setHeadingAnchors = async blocks => {
+export const setHeadingAnchors = async ( blocks ) => {
 	blocks.forEach( ( block, index ) => {
 		const originalContent =
 			block.originalContent !== undefined

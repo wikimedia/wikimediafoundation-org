@@ -79,9 +79,9 @@ export const settings = {
 								termFilters: [ 'role' ],
 							} }
 							value={ profile_ids }
-							onChange={ profiles => {
+							onChange={ ( profiles ) => {
 								const profile_ids = profiles.map(
-									profile => profile.id
+									( profile ) => profile.id
 								);
 								setAttributes( { profile_ids } );
 							} }

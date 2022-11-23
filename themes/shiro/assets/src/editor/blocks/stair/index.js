@@ -101,7 +101,7 @@ export const
 						placeholder={ __( 'Write heading', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
-						onChange={ heading => setAttributes( { heading } ) }
+						onChange={ ( heading ) => setAttributes( { heading } ) }
 					/>
 					<ImagePicker
 						className="stair__image"
@@ -118,14 +118,14 @@ export const
 						placeholder={ __( 'Start writing your stair contents', 'shiro-admin' ) }
 						tagName="p"
 						value={ content }
-						onChange={ content => setAttributes( { content } ) }
+						onChange={ ( content ) => setAttributes( { content } ) }
 					/>
 					<CallToActionPicker
 						className="stair__read-more arrow-link"
 						text={ linkText }
 						url={ linkUrl }
-						onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
-						onChangeText={ linkText => setAttributes( { linkText } ) }
+						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
+						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
 					/>
 				</div>
 			);

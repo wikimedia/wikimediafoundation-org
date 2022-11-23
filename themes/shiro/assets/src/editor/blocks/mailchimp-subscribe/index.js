@@ -66,7 +66,7 @@ export const
 									className="mailchimp-subscribe__input-field"
 									tagName="div"
 									value={ inputPlaceholder }
-									onChange={ inputPlaceholder => setAttributes( { inputPlaceholder } ) }
+									onChange={ ( inputPlaceholder ) => setAttributes( { inputPlaceholder } ) }
 								/>
 							</div>
 							<div className="mailchimp-subscribe__column-button">
@@ -75,7 +75,7 @@ export const
 									className="wp-block-shiro-button"
 									tagName="div"
 									value={ buttonText }
-									onChange={ buttonText => setAttributes( { buttonText } ) }
+									onChange={ ( buttonText ) => setAttributes( { buttonText } ) }
 								/>
 							</div>
 						</div>
@@ -83,7 +83,7 @@ export const
 							className="has-base-30-color has-text-color has-small-font-size"
 							tagName="p"
 							value={ description }
-							onChange={ description => setAttributes( { description } ) }
+							onChange={ ( description ) => setAttributes( { description } ) }
 						/>
 					</div>
 				</>

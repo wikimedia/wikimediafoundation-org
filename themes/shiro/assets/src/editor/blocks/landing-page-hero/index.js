@@ -5,7 +5,12 @@
 /**
  * WordPress dependencies
  */
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import {
+	RichText,
+	useBlockProps,
+	InspectorControls,
+} from '@wordpress/block-editor';
+import { SelectControl, Panel, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -39,10 +44,12 @@ export const settings = {
 		attributes: {
 			kicker: __( 'Our Work', 'shiro-admin' ),
 			title: __( 'We help everyone share in the sum of all knowledge', 'shiro-admin' ),
+			description: __( 'People all over the world ask their voice-activated devices all sorts of questions, and search engines query Wikipedia knowledge to provide them with answers. That is why we are looking to co-create a sound logo that will be played each time a person is served an answer to a question that was responded with Wikimedia projects.', 'shiro-admin' ),
 			pageIntro: __( 'We are the people who keep knowledge free. There is an amazing community of people around the world that makes great projects like Wikipedia. We help them do that work. We take care of the technical infrastructure, the legal challenges, and the growing pains.', 'shiro-admin' ),
 			imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
 			buttonText: 'Learn More',
 			buttonLink: 'https://wikimediafoundation.org/',
+			ctaButtonStyle: 'no-icon-blue-background',
 		},
 	},
 
@@ -93,6 +100,16 @@ export const settings = {
 			selector: '.hero__intro',
 			multiline: 'p',
 		},
+		description: {
+			type: 'string',
+			source: 'html',
+			selector: '.hero__description',
+			multiline: 'p',
+		},
+		ctaButtonStyle: {
+			type: 'string',
+			default: 'no-icon-blue-background',
+		},
 	},
 
 	/**
@@ -106,14 +123,48 @@ export const settings = {
 			imageUrl,
 			buttonText,
 			buttonLink,
+			description,
 			pageIntro,
 			imageFilter,
+			ctaButtonStyle,
 		} = attributes;
 
 		const blockProps = useBlockProps( { className: 'hero' } );
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) } >
+				<InspectorControls key="setting">
+					<Panel>
+						<PanelBody
+							title={ __( 'Call-to-action button', 'shiro-admin' ) }
+							initialOpen
+						>
+							<SelectControl
+								label={ __( 'Button style', 'shiro-admin' ) }
+								value={ ctaButtonStyle }
+								options={ [
+									{
+										label: __( 'No icon / Blue background', 'shiro-admin' ),
+										value: 'no-icon-blue-background',
+									},
+									{
+										label: __( 'Info icon / Gray background', 'shiro-admin' ),
+										value: 'info-icon-gray-background',
+									},
+									{
+										label: __( 'Info icon / No background', 'shiro-admin' ),
+										value: 'info-icon-no-background',
+									},
+									{
+										label: __( 'Expand icon / Gray background', 'shiro-admin' ),
+										value: 'expand-icon-gray-background',
+									},
+								] }
+								onChange={ ( value ) => setAttributes( { ctaButtonStyle: value } ) }
+							/>
+						</PanelBody>
+					</Panel>
+				</InspectorControls>
 				<header className="hero__header">
 					<div className="hero__text-column">
 						<RichText
@@ -122,7 +173,7 @@ export const settings = {
 							placeholder={ __( 'Kicker', 'shiro-admin' ) }
 							tagName="small"
 							value={ kicker }
-							onChange={ kicker => setAttributes( { kicker } ) }
+							onChange={ ( kicker ) => setAttributes( { kicker } ) }
 						/>
 						<RichText
 							className="hero__title"
@@ -130,20 +181,29 @@ export const settings = {
 							placeholder={ __( 'Title for the page', 'shiro-admin' ) }
 							tagName="h1"
 							value={ title }
-							onChange={ title => setAttributes( { title } ) }
+							onChange={ ( title ) => setAttributes( { title } ) }
+						/>
+						<RichText
+							className="hero__description"
+							keepPlaceholderOnFocus
+							multiline="p"
+							placeholder={ __( 'Description text - some additional information on the hero header.', 'shiro-admin' ) }
+							tagName="div"
+							value={ description }
+							onChange={ ( description ) => setAttributes( { description } ) }
 						/>
 						<Cta
-							className="hero__call-to-action cta-button"
+							className={ `hero__call-to-action cta-button${ ctaButtonStyle }` }
 							text={ buttonText }
 							url={ buttonLink }
-							onChangeLink={ buttonLink => setAttributes( { buttonLink } ) }
-							onChangeText={ buttonText => setAttributes( { buttonText } ) }
+							onChangeLink={ ( buttonLink ) => setAttributes( { buttonLink } ) }
+							onChangeText={ ( buttonText ) => setAttributes( { buttonText } ) }
 						/>
 					</div>
 					<ImageFilter
 						className="hero__image-container"
 						value={ imageFilter }
-						onChange={ imageFilter => setAttributes( { imageFilter } ) }
+						onChange={ ( imageFilter ) => setAttributes( { imageFilter } ) }
 					>
 						<ImagePicker
 							className="hero__image"
@@ -168,7 +228,7 @@ export const settings = {
 					placeholder={ __( 'Introductory paragraph - some information about this page to guide the reader.', 'shiro-admin' ) }
 					tagName="div"
 					value={ pageIntro }
-					onChange={ pageIntro => setAttributes( { pageIntro } ) }
+					onChange={ ( pageIntro ) => setAttributes( { pageIntro } ) }
 				/>
 			</div>
 		);
@@ -185,11 +245,15 @@ export const settings = {
 			imageUrl,
 			buttonText,
 			buttonLink,
+			description,
 			pageIntro,
 			imageFilter,
+			ctaButtonStyle,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
+
+		const ctaButtonAdditionalClass = ctaButtonStyle ? ` hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) }>
@@ -205,9 +269,17 @@ export const settings = {
 							tagName="h1"
 							value={ title }
 						/>
+						{ description && (
+							<RichText.Content
+								className="hero__description"
+								multiline="p"
+								tagName="div"
+								value={ description }
+							/>
+						) }
 						{ buttonLink && (
 							<a
-								className="hero__call-to-action cta-button"
+								className={ `hero__call-to-action cta-button${ ctaButtonAdditionalClass }` }
 								href={ buttonLink }
 							>
 								{ buttonText }

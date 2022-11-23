@@ -14,13 +14,13 @@ $image-gap: 50px;
   position: absolute;
   overflow: hidden;
 
-  top: $image-gap / 2;
-  right: $image-gap / 2;
-  bottom: $image-gap / 2;
-  left: $image-gap / 2;
+  top: $image-gap * 0.5;
+  right: $image-gap * 0.5;
+  bottom: $image-gap * 0.5;
+  left: $image-gap * 0.5;
 
-  padding-left: $image-gap / 2;
-  padding-right: $image-gap / 2;
+  padding-left: $image-gap * 0.5;
+  padding-right: $image-gap * 0.5;
 
   @media (min-width: 640px) {
     top: $image-gap;

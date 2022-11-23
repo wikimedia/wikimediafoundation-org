@@ -85,7 +85,7 @@ export const settings = {
 							// This expects an array, so we have to store a
 							// 1-item-long array
 							value={ profile_id > 0 ? [ profile_id ] : [] }
-							onChange={ record => {
+							onChange={ ( record ) => {
 								// This assumes we'll only ever have one item,
 								// which should be guaranteed by maxPosts: 1
 								const ID = record[ 0 ]?.id;

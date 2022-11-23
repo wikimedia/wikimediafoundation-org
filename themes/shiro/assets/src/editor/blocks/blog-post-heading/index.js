@@ -82,7 +82,7 @@ export const settings = {
 		// (for example, if the original image is too small to be resized to
 		// the large 16x9 crop size).
 		const featuredImageUrl = useSelect(
-			select => {
+			( select ) => {
 				const thumbnailId = select( 'core/editor' ).getEditedPostAttribute( 'featured_media' );
 				if ( ! thumbnailId ) {
 					return false;
@@ -119,7 +119,7 @@ export const settings = {
 						placeholder={ __( 'Add a post intro', 'shiro-admin' ) }
 						tagName="div"
 						value={ attributes.postIntro }
-						onChange={ postIntro => setAttributes( { postIntro } ) }
+						onChange={ ( postIntro ) => setAttributes( { postIntro } ) }
 					/>
 				</div>
 			</div>
@@ -157,6 +157,6 @@ subscribe( () => {
 	}
 
 	// Ensure that the blog post heading hasn't been moved anywhere but the first slot.
-	otherBlocks.filter( block => block.name === name )
-		.forEach( block => removeBlock( block.clientId ) );
+	otherBlocks.filter( ( block ) => block.name === name )
+		.forEach( ( block ) => removeBlock( block.clientId ) );
 } );

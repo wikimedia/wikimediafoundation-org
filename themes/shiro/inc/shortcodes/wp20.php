@@ -25,7 +25,7 @@ function wmf_symbols_grid_callback( $atts = [], $content = '' ) {
 	$text2Class = sizeof($texts) >= 2 ? "grid-item grid-text grid-text-2" : "grid-item";
 	$text3Class = sizeof($texts) >= 3 ? "grid-item grid-text grid-text-3" : "grid-item";
 
-	wp_enqueue_script( 'symbols_grid', get_stylesheet_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'symbols_grid', get_template_directory_uri() . '/assets/dist/shortcode-symbol-grid.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'symbols_grid', "var gridAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -62,7 +62,7 @@ function wmf_story_carousel_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	wp_enqueue_script( 'story_carousel', get_stylesheet_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'story_carousel', get_template_directory_uri() . '/assets/dist/shortcode-stories.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'story_carousel', "var storiesAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -157,7 +157,7 @@ function wmf_recent_edits_callback( $atts = [], $content = '' ) {
 		array_push( $atts['lang_list_long'], get_theme_mod( $atts['lang_list'][$i] . '_wikipedia', strtoupper($atts['lang_list'][$i]) . ' Wikipedia' ) );
 	}
 
-	wp_enqueue_script( 'recent_edits', get_stylesheet_directory_uri() . '/assets/dist/shortcode-recent-edits.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'recent_edits', get_template_directory_uri() . '/assets/dist/shortcode-recent-edits.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'recent_edits', "var recentEditsAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -215,7 +215,7 @@ function wmf_timeline_callback( $atts = [], $content = '' ) {
 	$margin = $atts['margin'] === '0' ? '' : ' mod-margin-bottom';
 	$classes = "timeline " . $atts['class'] . $margin;
 
-	wp_enqueue_script( 'timeline', get_stylesheet_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'timeline', get_template_directory_uri() . '/assets/dist/shortcode-timeline.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'timeline', "var timelineAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -360,7 +360,7 @@ function wmf_movement_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	wp_enqueue_script( 'movement', get_stylesheet_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'movement', get_template_directory_uri() . '/assets/dist/shortcode-movement.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'movement', "var movementAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -441,9 +441,9 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 		'class' => '',
 	];
 	$atts = shortcode_atts( $defaults, $atts, 'wmf_top_data' );
-	$atts['directory'] = get_stylesheet_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
-	$atts['url_edits'] = get_stylesheet_directory_uri() . $atts['path_edits'];
-	$atts['url_views'] = get_stylesheet_directory_uri() . $atts['path_views'];
+	$atts['directory'] = get_template_directory_uri() . "/assets/src/foundation-assets/wikipedia20/data/thumbnails/";
+	$atts['url_edits'] = get_template_directory_uri() . $atts['path_edits'];
+	$atts['url_views'] = get_template_directory_uri() . $atts['path_views'];
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 	$header = get_theme_mod( 'wmf_image_credit_header', __( 'Photo credits', 'shiro-admin' ) );
@@ -456,8 +456,8 @@ function wmf_top_data_callback( $atts = [], $content = '' ) {
 	$atts['views_label'] = get_theme_mod( 'wikipedia_article_views', __( 'views', 'shiro-admin' ) );
 	$atts['edits_label'] = get_theme_mod( 'wikipedia_article_edits', __( 'edits', 'shiro-admin' ) );
 
-	wp_enqueue_script( 'd3', get_stylesheet_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
-	wp_enqueue_script( 'top-data', get_stylesheet_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'd3', get_template_directory_uri() . '/assets/src/datavisjs/libraries/d3.min.js', array( ), '0.0.1', true );
+	wp_enqueue_script( 'top-data', get_template_directory_uri() . '/assets/dist/shortcode-top.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'top-data', "var topAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();
@@ -613,7 +613,7 @@ function wp20_easter_eggs_shortcode_callback( $atts = [], $content = '' ) {
 	$content = do_shortcode( $content );
 	$content = custom_filter_shortcode_text( $content );
 
-	wp_enqueue_script( 'wp20_easter_eggs', get_stylesheet_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
+	wp_enqueue_script( 'wp20_easter_eggs', get_template_directory_uri() . '/assets/dist/shortcode-easter-eggs.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_add_inline_script( 'wp20_easter_eggs', "var eggsAtts = " . wp_json_encode($atts) . ";");
 
 	ob_start();

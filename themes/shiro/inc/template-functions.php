@@ -677,7 +677,7 @@ function wmf_get_page_stories() {
 function wmf_get_svg_uri( string $name ): string
 {
 	$name = str_replace( '.svg', '', $name);
-	$uri = get_stylesheet_directory_uri() . '/assets/src/svg/' . $name . '.svg';
+	$uri = get_template_directory_uri() . '/assets/src/svg/' . $name . '.svg';
 	return esc_url($uri);
 }
 
@@ -693,9 +693,9 @@ function wmf_get_svg_uri( string $name ): string
  * @return string
  */
 function wmf_get_gulp_asset_uri( string $name ): string {
-	$dist_path = get_stylesheet_directory_uri() . '/assets/dist/';
+	$dist_path = get_template_directory_uri() . '/assets/dist/';
 	$manifest  = load_asset_manifest( get_active_manifest( [
-			get_stylesheet_directory() . '/assets/dist/rev-manifest.json',
+			get_template_directory() . '/assets/dist/rev-manifest.json',
 		] ) ) ?? [];
 
 	$resolved_name = $manifest[ $name ] ?? $name;

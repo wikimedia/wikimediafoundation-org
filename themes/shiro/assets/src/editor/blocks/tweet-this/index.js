@@ -41,7 +41,7 @@ export const
 			const blockProps = useBlockProps( { className: 'tweet-this' } );
 			const { text, tweetText, tweetUrl } = attributes;
 
-			const permalink = useSelect( select => select( 'core/editor' ).getPermalink() );
+			const permalink = useSelect( ( select ) => select( 'core/editor' ).getPermalink() );
 			useEffect( () => {
 				if ( ! isString( tweetUrl ) ) {
 					setAttributes( { tweetUrl: permalink } );
@@ -57,7 +57,7 @@ export const
 						placeholder={ __( 'Write tweet this text', 'shiro' ) }
 						tagName="div"
 						value={ text }
-						onChange={ text => setAttributes( { text } ) }
+						onChange={ ( text ) => setAttributes( { text } ) }
 					/>
 					<InspectorControls>
 						<PanelBody title={ __( 'Tweet settings', 'shiro' ) }>
@@ -65,14 +65,14 @@ export const
 								help={ __( 'When clicking the link, this text will be inside the composed tweet', 'shiro' ) }
 								label={ __( 'Tweet text', 'shiro' ) }
 								value={ tweetText }
-								onChange={ tweetText => setAttributes( { tweetText } ) }
+								onChange={ ( tweetText ) => setAttributes( { tweetText } ) }
 							/>
 							<URLInput
 								className="tweet-this__url-input"
 								isFullWidth
 								label={ __( 'Tweet URL', 'shiro' ) }
 								value={ tweetUrl }
-								onChange={ tweetUrl => setAttributes( { tweetUrl } ) }
+								onChange={ ( tweetUrl ) => setAttributes( { tweetUrl } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>

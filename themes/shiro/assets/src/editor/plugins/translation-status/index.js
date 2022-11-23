@@ -10,7 +10,7 @@ const wmfIsMainSite = shiroEditorVariables.wmfIsMainSite; // eslint-disable-line
 /**
  * Fetch the post meta and pass it to our component as props.
  */
-const mapSelectToProps = select => {
+const mapSelectToProps = ( select ) => {
 	return {
 		metaInProgress: select( 'core/editor' )
 			.getEditedPostAttribute( 'meta' )
@@ -24,12 +24,12 @@ const mapSelectToProps = select => {
 /**
  * Update the component props with the post meta value.
  */
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = ( dispatch ) => {
 	return {
 		/**
 		 * Translation in progress post meta.
 		 */
-		setmetaInProgress: value => {
+		setmetaInProgress: ( value ) => {
 			dispatch( 'core/editor' ).editPost( {
 				meta: {
 					_translation_in_progress: value,
@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => {
 		/**
 		 * Translation complete post meta.
 		 */
-		setmetaComplete: value => {
+		setmetaComplete: ( value ) => {
 			dispatch( 'core/editor' ).editPost( {
 				meta: {
 					_translation_complete: value,
@@ -52,14 +52,14 @@ const mapDispatchToProps = dispatch => {
 /**
  * Define settings panel controls.
  */
-const MetaBlockField = props => {
+const MetaBlockField = ( props ) => {
 	return (
 		<PanelRow>
 			<div>
 				<ToggleControl
 					checked={ props.metaComplete }
 					label={ __( 'Translation completed', 'shiro-admin' ) }
-					onChange={ value => {
+					onChange={ ( value ) => {
 						if ( value && props.metaInProgress ) {
 							props.setmetaInProgress( 0 );
 						} else {

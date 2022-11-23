@@ -75,16 +75,16 @@ while ( have_posts() ) :
 						<?php
 						$img = "";
 						if ( is_int(strpos($link['link'],'meta.wikimedia.org') ) ) {
-							$img = get_stylesheet_directory_uri() . "/assets/src/svg/globe.svg";
+							$img = get_template_directory_uri() . "/assets/src/svg/globe.svg";
 						}
 						if ( is_int(strpos($link['link'],'mailto')) ) {
-							$img = get_stylesheet_directory_uri() . "/assets/src/svg/email.svg";
+							$img = get_template_directory_uri() . "/assets/src/svg/email.svg";
 						}
 						if ( is_int(strpos($link['link'],'wikipedia.org')) ) {
-							$img = get_stylesheet_directory_uri() . "/assets/src/svg/individual/wikipedia.svg";
+							$img = get_template_directory_uri() . "/assets/src/svg/individual/wikipedia.svg";
 						}
 						if ( is_int(strpos($link['link'],'/news/')) ) {
-							$img = get_stylesheet_directory_uri() . "/assets/src/svg/individual/wikimedia-blue.svg";
+							$img = get_template_directory_uri() . "/assets/src/svg/individual/wikimedia-blue.svg";
 						}
 						?>
 						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
@@ -96,9 +96,9 @@ while ( have_posts() ) :
 				<?php endif; ?>
 				<?php if ( ! empty( $connected_user ) ) : ?>
                     <?php
-						$authorimg = get_stylesheet_directory_uri() . "/assets/src/svg/edit-ltr.svg";
+						$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-ltr.svg";
 						if ( is_rtl() ) {
-							$authorimg = get_stylesheet_directory_uri() . "/assets/src/svg/edit-rtl.svg";
+							$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-rtl.svg";
 						}
                         $authorlink = wmf_get_author_link( $connected_user );
                         $authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );

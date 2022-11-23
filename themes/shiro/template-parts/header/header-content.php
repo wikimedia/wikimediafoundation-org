@@ -5,6 +5,10 @@
  * @package shiro
  */
 
+if ( is_front_page() && has_blocks() ) {
+	return;
+}
+
 $page_header_data = $args;
 
 $h4_link              = ! empty( $page_header_data['h4_link'] ) ? $page_header_data['h4_link'] : '';
@@ -30,7 +34,7 @@ $wmf_alt_header_image_url = get_theme_mod( 'wmf_alt_header_image_url', '');
 
 $image            = ! empty( $page_header_data['image'] ) ? $page_header_data['image'] : '';
 $bg_opts          = wmf_get_background_image();
-$bg_color         = ! empty( $bg_opts['color'] ) ? 'pink' : 'blue';
+$bg_color         = ( is_array( $bg_opts ) && $bg_opts['color'] ) ? 'pink' : 'blue';
 
 $wmf_translation_selected = get_theme_mod( 'wmf_selected_translation_copy', __( 'Languages', 'shiro-admin' ) );
 $wmf_translations         = wmf_get_translations();
@@ -69,14 +73,16 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
 			<?php endif; ?>
 					<div class="header-animation">
 						<div class="header-bg-img" style="<?php if ( !empty($wmf_alt_header_image_url) ) :
-							echo esc_attr('background-image: url("' . get_stylesheet_directory_uri() .  $wmf_alt_header_image_url . '")');
+							echo esc_attr('background-image: url("' . get_template_directory_uri() .  $wmf_alt_header_image_url . '")');
 							endif;
 						?>">
 
 						</div>
 						<div class="mw-980">
-							<div class="vision_container">
-								<?php get_template_part( 'template-parts/header/vision'); ?>
+							<div class="vision_container hero-home">
+								<div class="hero-home__heading-color has-yellow-50-background-color">
+									<?php get_template_part( 'template-parts/header/vision'); ?>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -171,7 +177,7 @@ if ( ! empty( $h2_title ) xor ! empty( $title )) {
                         </div>
 						<a class="btn btn-blue" href="<?php echo esc_url( $wmf_homedonate_uri ); ?>"><?php echo esc_html( $wmf_homedonate_button ); ?></a>
 						<span class="secure">
-							<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
+							<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/svg/lock.svg" alt="">
 							<?php echo esc_html( $wmf_homedonate_secure ); ?>
 						</span>
 					</div>

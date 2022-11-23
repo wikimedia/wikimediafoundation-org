@@ -10,8 +10,8 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-desktop} ) {
-		margin-left: calc(#{$content-column / 2} - 50vw + #{$half-scrollbar-width});
-		margin-right: calc(#{$content-column / 2} - 50vw + #{$half-scrollbar-width});
+		margin-left: calc(#{$content-column * 0.5} - 50vw + #{$half-scrollbar-width});
+		margin-right: calc(#{$content-column * 0.5} - 50vw + #{$half-scrollbar-width});
 	}
 }
 
@@ -26,7 +26,7 @@
 	}
 
 	@media ( min-width: #{$width-breakpoint-desktop} ) {
-		padding-left: calc(50vw - #{$content-column / 2} - #{$half-scrollbar-width});
-		padding-right: calc(50vw - #{$content-column / 2} - #{$half-scrollbar-width});
+		padding-left: calc(50vw - #{$content-column * 0.5} - #{$half-scrollbar-width});
+		padding-right: calc(50vw - #{$content-column * 0.5} - #{$half-scrollbar-width});
 	}
 }

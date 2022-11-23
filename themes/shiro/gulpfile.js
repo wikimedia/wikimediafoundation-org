@@ -1,57 +1,57 @@
-var gulp         = require( 'gulp' );
-var sass         = require( 'gulp-sass' );
-var rtlcss       = require( 'gulp-rtlcss' );
-var footer       = require('gulp-footer');
-var rename       = require( 'gulp-rename' );
-var sourcemaps   = require( 'gulp-sourcemaps' );
-var rev          = require('gulp-rev');
-var concat       = require( 'gulp-concat' );
-var uglify       = require( 'gulp-uglify' );
-var svgsprite    = require( 'gulp-svg-sprite' );
+let gulp         = require( 'gulp' );
+let concat       = require( 'gulp-concat' );
+let footer       = require( 'gulp-footer' );
+let rename       = require( 'gulp-rename' );
+let rev          = require( 'gulp-rev' );
+let rtlcss       = require( 'gulp-rtlcss' );
+let sass         = require( 'gulp-sass' )( require( 'sass' ) );
+let sourcemaps   = require( 'gulp-sourcemaps' );
+let svgsprite    = require( 'gulp-svg-sprite' );
+let uglify       = require( 'gulp-uglify' );
 
-var paths = {
+let paths = {
 	sassSrc: 'assets/src/sass/style.scss',
 	sassEditorSrc: 'assets/src/sass/editor-style.scss',
 	sassRoot: 'assets/src/sass',
-	sassFiles: ['assets/src/sass/**/*.scss', '!assets/src/sass/base/**/*.scss', '!assets/src/sass/_vars.scss'],
+	sassFiles: [ 'assets/src/sass/**/*.scss', '!assets/src/sass/base/**/*.scss', '!assets/src/sass/_vars.scss' ],
 	jsFiles: 'assets/src/js/**/*.js',
 	dataVisJsFiles: 'assets/src/datavisjs/*.js',
 	shortCodeJsFiles: 'assets/src/shortcodejs/*.js',
-	svgFiles: 'assets/src/svg/individual/*.svg'
-}
+	svgFiles: 'assets/src/svg/individual/*.svg',
+};
 
-var svgConfig = {
+let svgConfig = {
 	mode: {
 		symbol: {
 			sprite: 'icons.svg',
-			dest: '.'
-		}
-	}
-}
+			dest: '.',
+		},
+	},
+};
 
-gulp.task( 'sass', gulp.series(function() {
+gulp.task( 'sass', gulp.series( function () {
 	return gulp.src( paths.sassSrc )
 			   .pipe( sourcemaps.init() )
 			   .pipe( sass.sync( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
 			   .pipe( sourcemaps.write( 'map', {
-					includeContent: false,
-					sourceRoot: './'
-			   }))
+			includeContent: false,
+			sourceRoot: './',
+			   } ) )
 			   .pipe( gulp.dest( './' ) );
 } ) );
 
-gulp.task( 'sassEditor', gulp.series(function() {
+gulp.task( 'sassEditor', gulp.series( function () {
 	return gulp.src( paths.sassEditorSrc )
 		.pipe( sourcemaps.init() )
 		.pipe( sass.sync( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
 		.pipe( sourcemaps.write( 'map', {
 			includeContent: false,
-			sourceRoot: './'
-		}))
+			sourceRoot: './',
+		} ) )
 		.pipe( gulp.dest( './' ) );
 } ) );
 
-gulp.task( 'rtl', gulp.series(function () {
+gulp.task( 'rtl', gulp.series( function () {
 	return gulp.src( 'style.css' )
 		.pipe( rtlcss() )
 		.pipe( footer( 'body{direction:rtl}' ) )
@@ -59,8 +59,7 @@ gulp.task( 'rtl', gulp.series(function () {
 		.pipe( gulp.dest( './' ) );
 } ) );
 
-
-gulp.task( 'rtlEditor', gulp.series(function () {
+gulp.task( 'rtlEditor', gulp.series( function () {
 	return gulp.src( 'editor-style.css' )
 		.pipe( rtlcss() )
 		.pipe( footer( 'body{direction:rtl}' ) )
@@ -81,45 +80,45 @@ gulp.task(
 	} )
 );
 
-gulp.task( 'concat', gulp.series(function() {
+gulp.task( 'concat', gulp.series( function () {
 	return gulp.src( paths.jsFiles )
 			   .pipe( concat( 'scripts.min.js' ) )
 			   .pipe( sourcemaps.init() )
 			   .pipe( uglify() )
 			   .pipe( sourcemaps.write( 'maps' ) )
-			   .pipe( gulp.dest( 'assets/dist' ) )
+			   .pipe( gulp.dest( 'assets/dist' ) );
 } ) );
 
-gulp.task( 'concat2', gulp.series(function() {
+gulp.task( 'concat2', gulp.series( function () {
 	return gulp.src( paths.dataVisJsFiles )
 			   .pipe( concat( 'datavis.min.js' ) )
 			   .pipe( sourcemaps.init() )
 			   .pipe( uglify() )
 			   .pipe( sourcemaps.write( 'maps' ) )
-			   .pipe( gulp.dest( 'assets/dist' ) )
+			   .pipe( gulp.dest( 'assets/dist' ) );
 } ) );
 
-gulp.task('shortCodeScripts', function() {
-  return gulp.src( paths.shortCodeJsFiles )
-	.pipe( rename({ suffix: '.min' }) )
-    .pipe( uglify() )
-    .pipe( gulp.dest( 'assets/dist' ) )
-});
+gulp.task( 'shortCodeScripts', function () {
+	return gulp.src( paths.shortCodeJsFiles )
+		.pipe( rename( { suffix: '.min' } ) )
+		.pipe( uglify() )
+		.pipe( gulp.dest( 'assets/dist' ) );
+} );
 
 gulp.task( 'styles', gulp.series( [ 'sass', 'sassEditor', 'rtl', 'rtlEditor' ] ) );
 gulp.task( 'scripts', gulp.series( [ 'concat', 'concat2', 'shortCodeScripts' ] ) );
 gulp.task( 'build', gulp.series( [ 'svg', 'styles', 'scripts' ] ) );
 
-gulp.task( 'default', gulp.series('build', (done) => {
+gulp.task( 'default', gulp.series( 'build', ( done ) => {
 
-  gulp.watch( paths.sassFiles, gulp.series('styles') );
+	gulp.watch( paths.sassFiles, gulp.series( 'styles' ) );
 
-  gulp.watch( paths.jsFiles, gulp.series('scripts') );
+	gulp.watch( paths.jsFiles, gulp.series( 'scripts' ) );
 
-  gulp.watch( paths.dataVisJsFiles, gulp.series('scripts') );
+	gulp.watch( paths.dataVisJsFiles, gulp.series( 'scripts' ) );
 
-  gulp.watch( paths.shortCodeJsFiles, gulp.series('scripts') );
+	gulp.watch( paths.shortCodeJsFiles, gulp.series( 'scripts' ) );
 
-  done();
+	done();
 
-}));
+} ) );

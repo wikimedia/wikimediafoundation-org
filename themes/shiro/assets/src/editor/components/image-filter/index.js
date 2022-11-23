@@ -54,7 +54,7 @@ function ImageFilter( props ) {
 						label={ __( 'Image filter color', 'shiro-admin' ) }
 						options={ options }
 						value={ activeFilter }
-						onChange={ newFilter => onChange( 'image-filter-' + newFilter ) }
+						onChange={ ( newFilter ) => onChange( 'image-filter-' + newFilter ) }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -70,7 +70,7 @@ ImageFilter.propTypes = {
 /**
  * Render frontend content for the image filter.
  */
-ImageFilter.Content = props => {
+ImageFilter.Content = ( props ) => {
 	const { className = '', value = '', ...otherProps } = props;
 
 	return (

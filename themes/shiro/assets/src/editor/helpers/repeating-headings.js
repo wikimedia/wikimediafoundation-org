@@ -10,7 +10,7 @@ import { RichText } from '@wordpress/block-editor';
  * @param {Array} headings The original list of headings
  * @returns {Array} The modified list of headings
  */
-export const ensureEmptyHeading = headings => {
+export const ensureEmptyHeading = ( headings ) => {
 	if ( headings.length === 0 || ! RichText.isEmpty( last( headings ).text ) ) {
 		headings = [
 			...headings,
@@ -29,10 +29,10 @@ export const ensureEmptyHeading = headings => {
  * @param {Array} headings Headings as they are saved in the attributes.
  * @returns {Array} Headings for use in the render functions.
  */
-export const prepareHeadings = headings => {
+export const prepareHeadings = ( headings ) => {
 	// This allows the user to 'delete' headings, by leaving them empty
-	headings = headings.filter( heading => ! RichText.isEmpty( heading.text ) );
-	headings = headings.map( heading => {
+	headings = headings.filter( ( heading ) => ! RichText.isEmpty( heading.text ) );
+	headings = headings.map( ( heading ) => {
 		return {
 			...heading,
 			switchRtl: isBoolean( heading.switchRtl ) ?

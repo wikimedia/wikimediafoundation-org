@@ -78,7 +78,7 @@ function wmf_autotweet_callback( $atts = [], $content = '' ) {
 		</div>
 		<div class="social-share social-share-home">
 			<span class="inline-social-list">
-				<img class="icon" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/src/svg/individual/social-twitter-blue.svg' ); ?>">
+				<img class="icon" src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/svg/individual/social-twitter-blue.svg' ); ?>">
 				<?php echo esc_html( $share_text ); ?>
 			</span>
 		</div>

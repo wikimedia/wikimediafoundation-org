@@ -123,7 +123,7 @@ export const settings = {
 					placeholder={ __( 'Title of the clock', 'shiro-admin' ) }
 					tagName="h2"
 					value={ title }
-					onChange={ title => setAttributes( { title } ) }
+					onChange={ ( title ) => setAttributes( { title } ) }
 				/>
 				<div
 					className="clock__contents"
@@ -154,7 +154,7 @@ export const settings = {
 										placeholder={ __( 'Label for Counter', 'shiro-admin' ) }
 										tagName="div"
 										value={ countTitle }
-										onChange={ countTitle => setAttributes( { countTitle } ) }
+										onChange={ ( countTitle ) => setAttributes( { countTitle } ) }
 									/>
 								</div>
 							</div>
@@ -168,7 +168,7 @@ export const settings = {
 						placeholder={ __( 'Disclaimers', 'shiro-admin' ) }
 						tagName="div"
 						value={ disclaimer }
-						onChange={ disclaimer => setAttributes( { disclaimer } ) }
+						onChange={ ( disclaimer ) => setAttributes( { disclaimer } ) }
 					/>
 				</div>
 				<InspectorControls>
@@ -179,25 +179,25 @@ export const settings = {
 							__nextRemoveResetButton
 							currentDate={ date }
 							is12Hour={ false }
-							onChange={ date => setAttributes( { date } ) }
+							onChange={ ( date ) => setAttributes( { date } ) }
 						/>
 						<ToggleControl
 							checked={ stopAtTime }
 							label={ __( 'Stop clock at the time above', 'shiro-admin' ) }
-							onChange={ stopAtTime => setAttributes( { stopAtTime } ) }
+							onChange={ ( stopAtTime ) => setAttributes( { stopAtTime } ) }
 						/>
 						<SelectControl
 							help={ __( 'Units to display in clock', 'shiro-admin' ) }
 							label={ __( 'Clock Display', 'shiro' ) }
 							options={ displayOptions }
 							value={ display }
-							onChange={ display => setAttributes( { display } ) }
+							onChange={ ( display ) => setAttributes( { display } ) }
 						/>
 						<TextControl
 							help={ __( 'Minimum values before a unit. Minimum 0 and Maximum 5', 'shiro-admin' ) }
 							label={ __( 'Minimum length of display', 'shiro-admin' ) }
 							value={ displayPadding }
-							onChange={ displayPadding => {
+							onChange={ ( displayPadding ) => {
 								let padding = ( displayPadding ) ? parseInt( displayPadding ) : 0;
 								if ( padding > 5 || padding < 0 ) {
 									padding = 0;
@@ -283,11 +283,11 @@ export const settings = {
  *
  * @param {number} padding Number of characters to pad.
  */
-const wrappedPlaceholder = padding => {
+const wrappedPlaceholder = ( padding ) => {
 	const days = '0'.padStart( padding, '0' );
 
 	let daysArray = days.split( '' );
-	daysArray = daysArray.map( placeholder => {
+	daysArray = daysArray.map( ( placeholder ) => {
 		return ( <span>{ placeholder }</span> );
 	} );
 

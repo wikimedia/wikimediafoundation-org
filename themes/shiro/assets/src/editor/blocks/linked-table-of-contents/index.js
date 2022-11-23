@@ -27,7 +27,7 @@ export const name = 'shiro/linked-toc',
 			const blockProps = useBlockProps( {
 				className: 'linked-table-of-contents table-of-contents linked-toc toc',
 			} );
-			const permalink = useSelect( select => select( 'core/editor' ).getPermalink() );
+			const permalink = useSelect( ( select ) => select( 'core/editor' ).getPermalink() );
 
 			return (
 				<div className="toc-nav linked-toc-nav">

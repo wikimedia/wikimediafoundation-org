@@ -143,7 +143,7 @@ export const
 				<li { ...blockProps }>
 					<LinkedTOCItemWithFocusOutside
 						heading={ heading }
-						setHeading={ heading => setAttributes( { heading } ) }
+						setHeading={ ( heading ) => setAttributes( { heading } ) }
 						setUrl={ ( url, link ) => {
 							setAttributes( { url } );
 							if ( link && link.id ) {

@@ -73,7 +73,7 @@ export default function BorderRadiusSelector( { attributes, setAttributes } ) {
 	/**
 	 * @param {string} selectedRadius Selected radius in the input.
 	 */
-	const onChangeRadius = selectedRadius => {
+	const onChangeRadius = ( selectedRadius ) => {
 		setAttributes( {
 			className: replaceActiveRadius( className, activeRadius, selectedRadius ),
 		} );

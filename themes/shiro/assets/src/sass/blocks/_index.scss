@@ -1,8 +1,10 @@
 @import "./global-early"; // XXX: this is out of alphabetical order so later items can easily override it
 @import "./button"; // XXX: this is out of alphabetical order because it defines mixins used elsewhere.
+@import "./accordion";
 @import "./banner";
 @import "./blog-list";
 @import "./card";
+@import "./collapsible-text";
 @import "./clock";
 @import "./contact";
 @import "./core-column";

@@ -45,7 +45,7 @@ function ImagePicker( props ) {
 	/**
 	 * Handle an upload error
 	 */
-	const onUploadError = message => {
+	const onUploadError = ( message ) => {
 		noticeOperations.removeAllNotices();
 		noticeOperations.createErrorNotice( message );
 	};
@@ -61,7 +61,7 @@ function ImagePicker( props ) {
 	/**
 	 * Handle a newly-selected media attachment.
 	 */
-	const onSelect = media => {
+	const onSelect = ( media ) => {
 		noticeOperations.removeAllNotices();
 
 		// If the selection is cleared, unset attributes and return early.

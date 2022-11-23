@@ -14,8 +14,8 @@
 .alignwide {
 	@media ( min-width: $medium-landscape ) {
 		.single-post & {
-			margin-left: ( ( $content-column-post - $content-column ) / 2 );
-			margin-right: ( ( $content-column-post - $content-column ) / 2 );
+			margin-left: ( ( $content-column-post - $content-column ) * 0.5 );
+			margin-right: ( ( $content-column-post - $content-column ) * 0.5 );
 		}
 	}
 }
@@ -37,8 +37,8 @@
 
 	.single-post & {
 		@media ( min-width: #{$width-breakpoint-tablet} ) {
-			margin-left: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
-			margin-right: calc(#{$content-column-post / 2} - 50vw + #{$half-scrollbar-width});
+			margin-left: calc(#{$content-column-post * 0.5} - 50vw + #{$half-scrollbar-width});
+			margin-right: calc(#{$content-column-post * 0.5} - 50vw + #{$half-scrollbar-width});
 		}
 	}
 }

@@ -58,17 +58,17 @@ if ( empty( $sidebar_items ) ) {
 
 			// If report section is active then check for heading blocks at the page, they will be nested toc items.
 			if ( $report_section['active'] ) {
-			
+
 				$blocks = parse_blocks( $post->post_content );
-				
+
 				foreach ( $blocks as $block ) {
 					if ( 'core/heading' === $block['blockName'] ) {
 						echo apply_filters( 'the_content', render_block( $block ) );
 						 
 						break;
 					}
-					 
-				}			
+
+				}
 			}
 
 			?>

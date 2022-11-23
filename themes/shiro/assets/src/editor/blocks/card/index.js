@@ -120,7 +120,7 @@ export const settings = {
 						placeholder={ __( 'Heading of the card', 'shiro-admin' ) }
 						tagName="h2"
 						value={ heading }
-						onChange={ heading => setAttributes( { heading } ) }
+						onChange={ ( heading ) => setAttributes( { heading } ) }
 					/>
 					<RichText
 						className="content-card__body has-small-font-size"
@@ -128,14 +128,14 @@ export const settings = {
 						placeholder={ __( 'Body of the card', 'shiro-admin' ) }
 						tagName="p"
 						value={ body }
-						onChange={ body => setAttributes( { body } ) }
+						onChange={ ( body ) => setAttributes( { body } ) }
 					/>
 					<CallToActionPicker
 						className="content-card__call-to-action arrow-link"
 						text={ linkText }
 						url={ linkUrl }
-						onChangeLink={ linkUrl => setAttributes( { linkUrl } ) }
-						onChangeText={ linkText => setAttributes( { linkText } ) }
+						onChangeLink={ ( linkUrl ) => setAttributes( { linkUrl } ) }
+						onChangeText={ ( linkText ) => setAttributes( { linkText } ) }
 					/>
 				</div>
 				<ImagePicker

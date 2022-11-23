@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'shiro/wikimediafoundation',
+        'name' => 'wikimedia/wikimediafoundation-org',
         'pretty_version' => 'dev-preprod',
         'version' => 'dev-preprod',
         'reference' => 'db69a28d43b4320256df069b2133f90463176ebb',
@@ -129,6 +129,24 @@
             'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'wikimedia/shiro-wordpress-theme' => array(
+            'pretty_version' => 'dev-release',
+            'version' => 'dev-release',
+            'reference' => 'e5602ffde677511a3f9869f44a91a42f1095b23d',
+            'type' => 'wordpress-theme',
+            'install_path' => __DIR__ . '/../../themes/shiro',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wikimedia/wikimediafoundation-org' => array(
+            'pretty_version' => 'dev-preprod',
+            'version' => 'dev-preprod',
+            'reference' => '9d09c7c0b7c93482b9cfd9206fde8f0d39b9efac',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
             'pretty_version' => '1.2.1',

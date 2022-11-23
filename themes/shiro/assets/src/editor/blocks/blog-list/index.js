@@ -100,9 +100,9 @@ export const settings = {
 		 * Return a function for selecting categories.
 		 */
 		const createSelectCategories = ( suggestions, setter ) => {
-			return tokens => {
+			return ( tokens ) => {
 				const hasNoSuggestion = tokens.some(
-					token =>
+					( token ) =>
 						typeof token === 'string' && ! suggestions[ token ]
 				);
 				if ( hasNoSuggestion ) {
@@ -110,7 +110,7 @@ export const settings = {
 				}
 				// Categories that are already will be objects, while new additions will be strings (the name).
 				// allCategories normalizes the array so that they are all objects.
-				const allCategories = tokens.map( token => {
+				const allCategories = tokens.map( ( token ) => {
 					return typeof token === 'string'
 						? suggestions[ token ]
 						: token;
@@ -137,7 +137,7 @@ export const settings = {
 			apiFetch( {
 				path: addQueryArgs( '/wp/v2/categories', { per_page: -1 } ),
 			} )
-				.then( data => {
+				.then( ( data ) => {
 					if ( isStillMounted.current ) {
 						setCategoriesList( data );
 						setExcludedCategoriesList( data );
@@ -152,7 +152,7 @@ export const settings = {
 			apiFetch( {
 				path: addQueryArgs( '/wp/v2/users', { per_page: -1 } ),
 			} )
-				.then( data => {
+				.then( ( data ) => {
 					if ( isStillMounted.current ) {
 						setAuthorList( data );
 					}
@@ -183,14 +183,14 @@ export const settings = {
 							selectedAuthorId={ selectedAuthor }
 							selectedCategories={ categories }
 							onAuthorChange={
-								value => setAttributes( {
+								( value ) => setAttributes( {
 									selectedAuthor: value !== '' ? Number( value ) : undefined,
 								} )
 							}
-							onCategoryChange={ createSelectCategories( categorySuggestions, allCategories => setAttributes( { categories: allCategories } ) ) }
-							onNumberOfItemsChange={ postsToShow => setAttributes( { postsToShow } ) }
-							onOrderByChange={ orderBy => setAttributes( { orderBy } ) }
-							onOrderChange={ order => setAttributes( { order } ) }
+							onCategoryChange={ createSelectCategories( categorySuggestions, ( allCategories ) => setAttributes( { categories: allCategories } ) ) }
+							onNumberOfItemsChange={ ( postsToShow ) => setAttributes( { postsToShow } ) }
+							onOrderByChange={ ( orderBy ) => setAttributes( { orderBy } ) }
+							onOrderChange={ ( order ) => setAttributes( { order } ) }
 						/>
 					</PanelBody>
 
@@ -202,11 +202,11 @@ export const settings = {
 						maxSuggestions={ 20 }
 						suggestions={ Object.keys( excludedCategorySuggestions ) }
 						value={ excludedCategories &&
-							excludedCategories.map( item => ( {
+							excludedCategories.map( ( item ) => ( {
 								id: item.id,
 								value: item.name || item.value,
 							} ) ) }
-						onChange={ createSelectCategories( excludedCategorySuggestions, allCategories => setAttributes( { excludedCategories: allCategories } ) ) }
+						onChange={ createSelectCategories( excludedCategorySuggestions, ( allCategories ) => setAttributes( { excludedCategories: allCategories } ) ) }
 					/>
 				</InspectorAdvancedControls>
 				<ServerSideRender
