@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fef3f133e6afb761d2579578f412499",
+    "content-hash": "297d235a3394c07c8aa0a5d8bb0fff8b",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -299,15 +299,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d"
+                "reference": "dc84e67d08777740782d8b8e6582179bc7547010"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/e5602ffde677511a3f9869f44a91a42f1095b23d",
-                "reference": "e5602ffde677511a3f9869f44a91a42f1095b23d",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/dc84e67d08777740782d8b8e6582179bc7547010",
+                "reference": "dc84e67d08777740782d8b8e6582179bc7547010",
                 "shasum": ""
             },
+            "require-dev": {
+                "automattic/vipwpcs": "^2.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "phpcompatibility/phpcompatibility-wp": "^1.0",
+                "squizlabs/php_codesniffer": "^3.3",
+                "staabm/annotate-pull-request-from-checkstyle": "^1.8",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
             "type": "wordpress-theme",
+            "scripts": {
+                "phpcs": [
+                    "phpcs ."
+                ],
+                "phpcs:changed": [
+                    "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
+                ]
+            },
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -316,7 +332,7 @@
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
-            "time": "2022-11-14T17:42:51+00:00"
+            "time": "2022-11-15T00:42:21+00:00"
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",

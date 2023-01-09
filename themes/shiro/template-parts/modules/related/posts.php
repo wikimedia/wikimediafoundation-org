@@ -25,21 +25,25 @@ $rand_translation_title = wmf_get_random_translation( 'wmf_related_posts_title' 
 
 <div class="block-area">
 	<div class="wysiwyg mw-980">
-		<?php /** This uses the structure & styles of the double heading, but can't
-		 * use render_blocks() directly because the double-heading block
-		 * structures its data very differently.
-		 */ ?>
+		<?php
+		/*
+		This uses the structure & styles of the double heading, but can't
+		use render_blocks() directly because the double-heading block
+		structures its data very differently.
+		*/
+		?>
 		<div class="double-heading">
 			<?php if ( ! empty( $title ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
-					<span><?php echo esc_html( $title ) ?></span>
+					<span><?php shiro_safe_title( $title ); ?></span>
 				</p>
 			<?php endif; ?>
 			<h2 class="double-heading__primary is-style-h3">
-				<?php echo esc_html( $description ) ?>
+				<?php echo esc_html( $description ); ?>
 				<?php if ( ! empty( $authorlink ) ) : ?>
-					<span class="authorlink"><a
-								href="/news/author/<?php echo esc_attr( $authorlink ); ?>">View all</a></span>
+					<span class="authorlink">
+						<a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">View all</a>
+					</span>
 				<?php endif; ?>
 			</h2>
 		</div>

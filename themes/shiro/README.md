@@ -17,19 +17,19 @@ Build Process
 ---------------
 This theme uses [Gulp](http://gulpjs.com/) & [Webpack](https://webpack.js.org) for all its build process needs. They will help you to concatenate, lint and build your files. This also includes livereload, which will automatically inject CSS changes, and reload the live page whenever changes are made to JS or PHP files.
 
-In order to make sure your development environment works the way it should, drop this into your `wp-config.php` file.
-
-```
-define( 'RKV_ENV', 'local' );
-```
-
 The following tasks are available to you:
 
 * `npm run build`
 This builds out the assets and runs the following tasks: `styles`, `scripts`
 
 * `npm run lint`
-Lints all file types and runs the following tasks: `csslint`, `jslint` `phplint`
+Lints JavaScript and (modified) PHP files.
+
+* `npm run lint:js`
+Lints only JavaScript using `eslint`
+
+* `npm run lint:php`
+Lints only PHP files which have changed in the current branch, using `phpcs`.  To run PHPCS on all files, run `composer phpcs`.
 
 * `npm run start`
 Begins watching front-end assets (scripts and styles) and compiles them when changed. This will also start the livereload script, which refreshes the page when changes are made.

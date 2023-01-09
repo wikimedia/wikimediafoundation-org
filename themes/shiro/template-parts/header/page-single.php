@@ -13,8 +13,16 @@ $title        = ! empty( $page_header_data['h1_title'] ) ? $page_header_data['h1
 $meta         = ! empty( $page_header_data['page_meta'] ) ? $page_header_data['page_meta'] : '';
 $allowed_tags = [
 	'span' => [ 'class' => [] ],
-	'time' => [ 'datetime' => [], 'itemprop' => [] ],
-	'a'    => [ 'href' => [], 'class' => [], 'title' => [], 'rel' => [] ],
+	'time' => [
+		'datetime' => [],
+		'itemprop' => [],
+	],
+	'a'    => [
+		'href' => [],
+		'class' => [],
+		'title' => [],
+		'rel' => [],
+	],
 ];
 ?>
 
@@ -34,7 +42,7 @@ $allowed_tags = [
 
 		<div class="mw-784">
 			<?php if ( ! empty( $title ) ) : ?>
-				<h1><?php echo wp_kses( $title, array( 'span' => array( 'class' ) ) ); ?></h1>
+				<h1><?php shiro_safe_title( $title ); ?></h1>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $meta ) ) : ?>
@@ -43,10 +51,13 @@ $allowed_tags = [
 				</div>
 			<?php endif; ?>
 
-			<?php echo \WMF\Editor\Blocks\ShareArticle\render_block( array(
+			<?php
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo \WMF\Editor\Blocks\ShareArticle\render_block( [
 				'enableTwitter'  => true,
 				'enableFacebook' => true,
-			) ); ?>
+			] );
+			?>
 		</div>
 	</div>
 </div>

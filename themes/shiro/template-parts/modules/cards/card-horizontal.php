@@ -41,7 +41,7 @@ $class      = $card_data['class'] ?? 'blog-post';
 		<?php if ( ! empty( $title ) ) : ?>
 			<h3 class="blog-post__title">
 				<a href="<?php echo esc_url( $link ); ?>">
-					<?php echo esc_html( $title ); ?>
+					<?php shiro_safe_title( $title ); ?>
 				</a>
 			</h3>
 		<?php endif; ?>
@@ -49,10 +49,10 @@ $class      = $card_data['class'] ?? 'blog-post';
 		<?php if ( ! empty( $categories ) ) : ?>
 			<div class="blog-post__categories">
 				<?php
-					foreach ( $categories as $category ) {
-						printf( '<a class="blog-post__category-link" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
-					}
-					?>
+				foreach ( $categories as $category ) {
+					printf( '<a class="blog-post__category-link" href="%1$s">%2$s</a> ', esc_url( get_category_link( $category->term_id ) ), esc_html( $category->name ) );
+				}
+				?>
 			</div>
 		<?php endif; ?>
 
@@ -77,9 +77,10 @@ $class      = $card_data['class'] ?? 'blog-post';
 		</div>
 
 		<a href="<?php echo esc_url( $link ); ?>"
-		   class="blog-post__read-more"
-		   aria-label="<?php /* translators: 1. the post title. */
-		   esc_html_e( sprintf( 'Read more about %s', $title ), 'shiro' ); ?>">
+			class="blog-post__read-more"
+			aria-label="<?php
+			/* translators: 1. the post title. */
+			echo esc_attr( sprintf( __( 'Read more about %s', 'shiro' ), $title ) ); ?>">
 			<?php esc_html_e( 'Read more', 'shiro' ); ?>
 		</a>
 	</div>
