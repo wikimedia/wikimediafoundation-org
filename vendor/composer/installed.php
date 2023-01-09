@@ -3,7 +3,7 @@
         'name' => 'wikimedia/wikimediafoundation-org',
         'pretty_version' => 'dev-preprod',
         'version' => 'dev-preprod',
-        'reference' => 'db69a28d43b4320256df069b2133f90463176ebb',
+        'reference' => '3ace447857ff7c34cd3d38e78cec21c7f703e99b',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -112,15 +112,6 @@
                 0 => '*',
             ),
         ),
-        'shiro/wikimediafoundation' => array(
-            'pretty_version' => 'dev-preprod',
-            'version' => 'dev-preprod',
-            'reference' => 'db69a28d43b4320256df069b2133f90463176ebb',
-            'type' => 'wordpress-plugin',
-            'install_path' => __DIR__ . '/../../',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'squizlabs/php_codesniffer' => array(
             'pretty_version' => '3.7.1',
             'version' => '3.7.1.0',
@@ -142,7 +133,7 @@
         'wikimedia/wikimediafoundation-org' => array(
             'pretty_version' => 'dev-preprod',
             'version' => 'dev-preprod',
-            'reference' => '9d09c7c0b7c93482b9cfd9206fde8f0d39b9efac',
+            'reference' => '3ace447857ff7c34cd3d38e78cec21c7f703e99b',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
