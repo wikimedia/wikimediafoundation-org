@@ -13,7 +13,7 @@ jobs:
       # Enable deploy ssh keys in order to get private submodules and push built branch back to GitHub.
       - add_ssh_keys:
           fingerprints:
-            - "a8:74:af:5b:26:3d:75:6d:37:f0:e8:a3:54:9d:91:e9"
+            - "eb:ac:49:e9:33:8e:77:57:b2:47:07:b4:63:11:0a:d2"
       - run:
           name: Install composer dependencies
           command: composer install
