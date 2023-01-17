@@ -19,6 +19,9 @@ jobs:
           command: composer install
       # This is copypasta from VIP's boilerplate; it will probably be removed soon.
       - run:
+          name: Create build directory
+          command: mkdir -p build
+      - run:
           name: Create build readme
           command: echo "This was built in CI on $(date)" > build/README.md
       - run:
