@@ -53,6 +53,7 @@ workflows:
           filters:
             branches:
               only:
+                - develop
                 - preprod
               # Ensure job will never run on a branch with the `-built` suffix,
               # to prevent endless loops of deploy scripts.
