@@ -8,10 +8,6 @@ jobs:
   build:
     docker:
       - image: cimg/php:8.0.26-node
-    # Don't build from a branch with the `-built` suffix, to
-    # prevent endless loops of deploy scripts.
-    ignore:
-      - /^.*-built$/
     steps:
       - checkout
       # Enable deploy ssh keys in order to get private submodules and push built branch back to GitHub.
@@ -48,12 +44,14 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  build_and_deploy:
+  build-workflow:
     jobs:
       - build:
           filters:
             branches:
               only:
-                # - develop
                 - preprod
-                # - production
+              # Ensure job will never run on a branch with the `-built` suffix,
+              # to prevent endless loops of deploy scripts.
+              ignore:
+                - /^.*-built$/
