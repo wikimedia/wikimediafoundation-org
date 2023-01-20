@@ -6,23 +6,12 @@ plugins/user-switching
 plugins/duplicate-page
 *.log
 
-# Dependencies managed using composer
-plugins/asset-loader
-plugins/co-authors-plus
-plugins/fieldmanager
-plugins/hm-gutenberg-tools
-plugins/maintenance-mode
-plugins/safe-redirect-manager
-plugins/safe-svg
-plugins/wikipedia-preview
-themes/shiro
+# Meta and workflow-related info
+.github
 
 # Dependencies, except those from included plugins
 node_modules
-vendor
-!plugins/multilingualpress/vendor
-# If a plugin is distributed with a bundled vendor directory, keep it.
-!plugins/**/vendor
+/vendor
 
 # Built asset files
 *.sass-cache*
