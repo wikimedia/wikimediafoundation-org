@@ -56,7 +56,8 @@
     "wpackagist-plugin/duplicate-page": "^4.5",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
     "wpackagist-plugin/safe-svg": "^2.0",
-    "wpackagist-plugin/wikipedia-preview": "^1.6.0"
+    "wpackagist-plugin/wikipedia-preview": "^1.6.0",
+    "memberpress/members": "3.2.2"
   },
   "require-dev": {
     "automattic/vipwpcs": "^1.0",
