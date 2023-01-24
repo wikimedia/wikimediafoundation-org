@@ -1,42 +1,5 @@
 # Changelog for Co-Authors Plus
 
-**3.5.9 (Jan 19, 2023)**
-* Fix: Avoid Fatal errors reported in the Nav menu filters for Guest Authors #917
-
-**3.5.8 (Jan 18, 2023)**
-* Make CoAuthors_Plus::get_coauthor_by() compatible with unicode author usernames #909
-* Yoast: Prevent no-indexing of guest authors' archive pages by @adekbadek #912
-* Refactors Gutenberg Feature #870
-* Fixes guest author menu item to display accurate URL #913
-* Only update authors on Gutenberg post save #914
-
-**3.5.7 (Jan 5, 2023)**
-* Remove Composer autoloader dependency #898
-* Fixes Yoast deprecated warning for get_article_type_options_values() #901
-
-**3.5.6 (Nov 16, 2022)**
-* CI: Add new deployment workflow #890
-* Dependency update #891
-
-**3.5.5 (Nov 16, 2022)**
-* Add Yoast integration #877
-* CI: Add WP 6.1 #886 #887
-
-**3.5.4 (Nov 4, 2022)**
-* Handle `WP_Error` on failed guest author creation for method `create_guest_author()` #879
-* Only use `pre_handle_404` filter in non-paged result #874
-* Add CLI create-author command #880
-* Add template tag `co_authors_get_users()` #862
-* Change permission callback for authors and search endpoint and improve `current_user_can_set_authors()` #883
-* Fix tests and add IDE files #882
-* Bump dependencies #866 #865 #864
-
-**3.5.3 (Oct 24, 2022)**
-* Add author taxonomy labels #860
-* Add check for empty author in Jetpack Open Graph tags #861
-* Improve performance of search_authors() #872
-* Update WP versions in tests and grant permission to composer-installer packages #863
-
 **3.5.2 (June 1, 2022)**
 * Remove the `/wp/v2/coauthors` endpoint #851
 * Remove CSS hack that hides the add author box from core in the block editor #847
