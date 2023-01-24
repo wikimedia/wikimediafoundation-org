@@ -4,11 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1
+class ComposerStaticInit3b9866c996a6de381e9a3c7c6e81ddfe
 {
+    public static $files = array (
+        '41c664bd04a95c2d6a2f2a3e00f06593' => __DIR__ . '/..' . '/publishpress/wordpress-reviews/ReviewsController.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
+            'Psr\\Container\\' => 14,
+            'PPVersionNotices\\' => 17,
             'PHPCompatibility\\' => 17,
         ),
         'D' => 
@@ -22,6 +28,14 @@ class ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1
     );
 
     public static $prefixDirsPsr4 = array (
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PPVersionNotices\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/publishpress/wordpress-version-notices/src',
+        ),
         'PHPCompatibility\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpcompatibility/php-compatibility/PHPCompatibility',
@@ -36,6 +50,16 @@ class ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Pimple' => 
+            array (
+                0 => __DIR__ . '/..' . '/pimple/pimple/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -43,9 +67,10 @@ class ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit471df87d4a7127384cc8d98c4b51ead1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3b9866c996a6de381e9a3c7c6e81ddfe::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3b9866c996a6de381e9a3c7c6e81ddfe::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3b9866c996a6de381e9a3c7c6e81ddfe::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3b9866c996a6de381e9a3c7c6e81ddfe::$classMap;
 
         }, null, ClassLoader::class);
     }

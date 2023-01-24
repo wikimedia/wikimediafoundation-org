@@ -34,6 +34,10 @@
     },
     {
       "type": "vcs",
+      "url": "git@github.com:publishpress/PublishPress-Permissions.git"
+    },
+    {
+      "type": "vcs",
       "url": "git@github.com:wikimedia/shiro-wordpress-theme.git"
     },
     {
@@ -50,6 +54,7 @@
     "composer/installers": "^1.10",
     "humanmade/asset-loader": "^0.6.2",
     "humanmade/hm-gutenberg-tools": "^1.6.2",
+    "publishpress/publishpress-permissions": "^3.8.4",
     "wikimedia/shiro-wordpress-theme": "dev-release",
     "wikimedia/vegalite-wordpress-plugin": "^0.2.0",
     "wpackagist-plugin/co-authors-plus": "^3.5",
@@ -91,6 +96,9 @@
     "installer-paths": {
       "plugins/fieldmanager": [
         "alleyinteractive/wordpress-fieldmanager"
+      ],
+      "plugins/press-permit-core": [
+        "publishpress/publishpress-permissions"
       ],
       "plugins/maintenance-mode": [
         "automattic/maintenance-mode-wp"
