@@ -1,0 +1,22 @@
+{
+    "name": "wikimedia/vegalite-wordpress-plugin",
+    "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "composer/installers": "~1.0"
+    },
+    "require-dev": {
+        "humanmade/coding-standards": "^1.1.0"
+    },
+    "scripts": {
+        "lint": "phpcs plugin.php inc",
+        "lint:fix": "phpcbf plugin.php inc"
+	},
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
