@@ -35,6 +35,10 @@
     {
       "type": "vcs",
       "url": "git@github.com:wikimedia/shiro-wordpress-theme.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:wikimedia/vegalite-wordpress-plugin.git"
     }
   ],
   "minimum-stability": "dev",
@@ -47,6 +51,7 @@
     "humanmade/asset-loader": "^0.6.2",
     "humanmade/hm-gutenberg-tools": "^1.6.2",
     "wikimedia/shiro-wordpress-theme": "dev-release",
+    "wikimedia/vegalite-wordpress-plugin": "^0.2.0",
     "wpackagist-plugin/co-authors-plus": "^3.5",
     "wpackagist-plugin/duplicate-page": "^4.5",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
