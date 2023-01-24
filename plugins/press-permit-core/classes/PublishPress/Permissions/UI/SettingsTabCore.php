@@ -375,7 +375,6 @@ class SettingsTabCore
                     $ui->optionCheckbox('display_user_profile_groups', $tab, $section);
                     $ui->optionCheckbox('display_user_profile_roles', $tab, $section, $hint);
                     ?>
-
                 </td>
             </tr>
         <?php

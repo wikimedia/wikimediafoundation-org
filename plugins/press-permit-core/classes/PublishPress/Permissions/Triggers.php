@@ -141,8 +141,8 @@ class Triggers
     {
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
             if (defined('PRESSPERMIT_AUTOSAVE_BYPASS_SAVE_FILTERS')) {
-            	return;
-        	}
+	            return;
+	        }
         }
 
         if (!empty(presspermit()->flags['ignore_save_post'])) {

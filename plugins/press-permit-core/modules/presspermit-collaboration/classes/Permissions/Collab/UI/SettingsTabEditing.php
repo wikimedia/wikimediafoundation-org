@@ -192,7 +192,6 @@ class SettingsTabEditing
                                                     value="1"/><?php if ($do_force_option) : ?>&nbsp;<?php esc_html_e('lock', 'press-permit-core'); ?><?php endif; ?>
                                         </label>
                                         <?php endif; ?>
-
                                     </td>
                                 </tr>
                             <?php endforeach;

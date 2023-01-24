@@ -2,6 +2,8 @@
 
 namespace PublishPress\Permissions\UI\Dashboard;
 
+
+
 class ItemExceptionsData
 {
     public $agent_info = [];

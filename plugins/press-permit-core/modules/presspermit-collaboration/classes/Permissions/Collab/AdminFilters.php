@@ -195,7 +195,7 @@ class AdminFilters
 
             if ($tx_obj = get_taxonomy($taxonomy)) {
                 $role_title = sprintf(esc_html__('%s Manager', 'press-permit-core'), $tx_obj->labels->singular_name);
-            }
+        	}
         }
 
         return $role_title;
