@@ -98,6 +98,10 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
+
+		// Supported third-party blocks
+		'vegalite-plugin/visualization',
+		'vegalite-plugin/responsive-container',
 	];
 
 	if ( $post->post_type === 'post' ) {
