@@ -29,6 +29,7 @@ if ( empty( $featured_posts ) ) {
 			'post_status'    => 'publish',
 			'posts_per_page' => 2,
 			'no_found_rows'  => true,
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 			'meta_query'     => array(
 				array(
 					'key'     => 'featured_on',
@@ -37,7 +38,7 @@ if ( empty( $featured_posts ) ) {
 				),
 			),
 		)
-	); // WPCS: slow query ok.
+	);
 	wp_cache_add( $cache_key, $featured_posts );
 }
 
@@ -48,7 +49,7 @@ if ( ! $featured_posts->have_posts() ) {
 <div class="w-100p bg-white related-news-container mod-margin-bottom bg-ltgray">
 	<div class="mw-980 std-mod">
 		<p class="double-heading__secondary is-style-h5">
-			<?php echo esc_html( $title ); ?> —&nbsp;<span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?>&nbsp;</span>
+			<?php shiro_safe_title( $title ); ?> —&nbsp;<span lang="<?php echo esc_attr( $rand_translation_title['lang'] ?? '' ); ?>"><?php echo esc_html( $rand_translation_title['content'] ?? '' ); ?>&nbsp;</span>
 		</p>
 
 		<?php if ( ! empty( $subtitle ) ) : ?>

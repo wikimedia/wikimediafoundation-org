@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<ruleset name="shiro-wordpress-theme">
+	<description>The code standard for the shiro wordpress theme.</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+	<exclude-pattern>tests/</exclude-pattern>
+	<exclude-pattern>vendor/</exclude-pattern>
+	<exclude-pattern>feed-images.php</exclude-pattern>
+	<exclude-pattern>feed-offset1.php</exclude-pattern>
+	<exclude-pattern>inc/classes/walkers/class-walker-main-nav.php</exclude-pattern>
+	<!-- Add additional exclude directories here-->
+
+	<!-- How to scan -->
+	<arg value="sp"/> <!-- Show sniff and progress -->
+	<arg name="basepath" value="."/><!-- Strip the file paths down to the relevant bit -->
+	<arg name="colors" />
+	<arg name="extensions" value="php"/>
+	<arg name="report" value="full"/>
+	<arg name="report" value="summary"/>
+	<arg name="report" value="source"/>
+	<arg name="parallel" value="9"/>
+
+	<!-- Rules: Check PHP version compatibility -->
+	<config name="testVersion" value="8.0"/>
+	<rule ref="PHPCompatibilityWP" />
+
+	<!-- Rules: WordPress Coding Standards -->
+	<config name="minimum_supported_wp_version" value="4.5"/>
+	<rule ref="WordPress-VIP-Go" />
+	<rule ref="WordPress">
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_update_user_meta"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_get_user_meta"/>
+		<exclude name="WordPress.VIP.RestrictedFunctions.user_meta_delete_user_meta"/>
+		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+		<exclude name="Internal.NoCodeFound"/>
+		<!-- We prefer short arrays. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+		<!-- Do not require = and => alignment. -->
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning"/>
+		<!-- Talk like yoda, you should not. -->
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+		<!-- Permit single-line PHP statements. -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeOpen"/>
+		<!--
+			The following rules are ones we DO recommend. They are omitted for now
+			to speed up the process of getting to basic compliance with more critical
+			rules, and should be reinstated in the future as time permits.
+		-->
+		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.StringNotSnakeCase">
+		<!-- Block attributes use JS-style naming patterns. -->
+		<exclude-pattern>inc/editor/blocks/</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="wmf,shiro"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.Security.ValidatedSanitizedInput">
+		<properties>
+			<property name="customSanitizingFunctions" value="wmf_sanitize_post_type_array" type="array" />
+		</properties>
+	</rule>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="shiro,shiro-admin"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+		<properties>
+			<property name="blank_line_check" value="true"/>
+		</properties>
+	</rule>
+</ruleset>

@@ -7,21 +7,31 @@ Folder Structure
 ---------------
 The basic folder structure keeps things fairly simple and organized by type.
 
-The `assets` folder contains front-end files in the `src` sub-directory. Any files that need to be concatenated are output into `dist` and files are enqueued by the theme from there.
+The `assets` folder contains front-end files in the `src` sub-directory. Any files that need to be generated or built from source are output into `dist`, and files are enqueued by the theme from that directory.
 
 The `inc` folder contains all PHP files that aren't required in the root directory by WordPress.
 
 The `template-parts` folder contains template parts used by larger templates in the root directory.
 
+Deploy Process
+---------------
+The release and release-develop versions of the Shiro theme are built using [GitHub Actions](https://github.com/features/actions). Any time a pull request is merged into the `main` or `develop` branches, that code is built and pushed to the corresponding `release` and `release-develop` branches. **You should not commit to the release branches directly,** nor submit pull requests against them.
+
+Development workflow:
+
+- Implement a feature or bugfix in a feature branch created off of `main`
+- Submit a pull request from that feature branch back into `main`, and get code review
+- Merge the feature branch into `develop` manually.
+  - The `release-develop` branch will be automatically rebuilt
+- Update the preproduction or development environment for your project to reference the newest built version of the `release-develop` branch, to deploy and test the theme PR.
+- Once approved, merge the pull request into `main`
+  - The `release` branch will be automatically rebuilt
+- Update the production branch in your project repository to reference the newest built version of the `release` branch, to deploy the change to production.
+
+
 Build Process
 ---------------
 This theme uses [Gulp](http://gulpjs.com/) & [Webpack](https://webpack.js.org) for all its build process needs. They will help you to concatenate, lint and build your files. This also includes livereload, which will automatically inject CSS changes, and reload the live page whenever changes are made to JS or PHP files.
-
-In order to make sure your development environment works the way it should, drop this into your `wp-config.php` file.
-
-```
-define( 'RKV_ENV', 'local' );
-```
 
 The following tasks are available to you:
 
@@ -29,7 +39,13 @@ The following tasks are available to you:
 This builds out the assets and runs the following tasks: `styles`, `scripts`
 
 * `npm run lint`
-Lints all file types and runs the following tasks: `csslint`, `jslint` `phplint`
+Lints JavaScript and (modified) PHP files.
+
+* `npm run lint:js`
+Lints only JavaScript using `eslint`
+
+* `npm run lint:php`
+Lints only PHP files which have changed in the current branch, using `phpcs`.  To run PHPCS on all files, run `composer phpcs`.
 
 * `npm run start`
 Begins watching front-end assets (scripts and styles) and compiles them when changed. This will also start the livereload script, which refreshes the page when changes are made.
@@ -43,11 +59,13 @@ CSS should follow the BEM naming convention and files should be clearly commente
 
 JS
 ---------------
-JS should follow the [WordPress coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/). In addition, please use [JSDoc](http://eslint.org/docs/rules/require-jsdoc) when commenting on functions.
+JS should follow the project linting standards, which are based on the [WordPress core coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/) and [Human Made coding standards]([https://](https://www.npmjs.com/package/@humanmade/eslint-config)). In addition, please use [JSDoc](http://eslint.org/docs/rules/require-jsdoc) to document functions.
+
+Due to evolving JavaScript best practices over the lifecycle of this project, different pieces of JS code are held to slightly different coding standards. ESLint is configured in [`.eslintrc`](.eslintrc).
 
 PHP
 ---------------
-PHP should follow the [WordPress coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/). PHP Codesniffer is configured in `wp-content/.phpcs.xml.dist`.
+PHP should follow the [WordPress coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/). PHP Codesniffer is configured in [`phpcs.xml`](phpcs.xml).
 
 Icons
 ---------------

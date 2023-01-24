@@ -38,7 +38,7 @@ if ( ! empty( $image_id ) ) {
 
 <div class="card-content">
 	<h3 class="card-heading color-white">
-		<?php echo esc_html( $title ); ?>
+		<?php shiro_safe_title( $title ); ?>
 	</h3>
 </div>
 
