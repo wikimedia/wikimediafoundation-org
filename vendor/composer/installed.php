@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'c5ccd1c333d64c501483a6538c240025601584ea',
+        'reference' => '19f42bf00ad96ee647f67e6ac1d980ad057d0533',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -97,7 +97,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => '3fb5c587e6f149553b51f1f9a1e8dd1e2b4dd6e9',
+            'reference' => '3c4c1cc9bc3eed8e57f63780161896336c455de1',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -145,7 +145,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'c5ccd1c333d64c501483a6538c240025601584ea',
+            'reference' => '19f42bf00ad96ee647f67e6ac1d980ad057d0533',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -158,12 +158,12 @@
             'dev_requirement' => true,
         ),
         'wpackagist-plugin/co-authors-plus' => array(
-            'pretty_version' => '3.5.9',
-            'version' => '3.5.9.0',
+            'pretty_version' => '3.5.10',
+            'version' => '3.5.10.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/co-authors-plus',
             'aliases' => array(),
-            'reference' => 'tags/3.5.9',
+            'reference' => 'tags/3.5.10',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/duplicate-page' => array(
@@ -173,6 +173,15 @@
             'install_path' => __DIR__ . '/../../plugins/duplicate-page',
             'aliases' => array(),
             'reference' => 'trunk',
+            'dev_requirement' => false,
+        ),
+        'wpackagist-plugin/press-permit-core' => array(
+            'pretty_version' => '3.8.4',
+            'version' => '3.8.4.0',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../plugins/press-permit-core',
+            'aliases' => array(),
+            'reference' => 'tags/3.8.4',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/safe-redirect-manager' => array(

@@ -54,6 +54,7 @@
     "wikimedia/vegalite-wordpress-plugin": "^0.2.0",
     "wpackagist-plugin/co-authors-plus": "^3.5",
     "wpackagist-plugin/duplicate-page": "^4.5",
+    "wpackagist-plugin/press-permit-core":"3.8.4",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
     "wpackagist-plugin/safe-svg": "^2.0",
     "wpackagist-plugin/wikipedia-preview": "^1.6.0"
