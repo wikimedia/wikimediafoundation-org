@@ -1,7 +1,7 @@
-=== PublishPress Permissions: Control User Access for Posts, Pages, Categories, Tags ===
+=== PublishPress Permissions: Manage User Access for Posts, Pages, Media ===
 
 Contributors: publishpress, kevinB, stevejburge, andergmartins
-Tags: restrict, access, permissions, cms, user, private, category, pages, privacy, capabilities, role, scoper
+Tags: permissions, user access, user permissions, post permissions, page permissions, capabilities, user roles, hide posts, media library permissions, media permissions, edit posts, edit pages, publishing statuses, visibility statuses, user groups, edit permissions, viewing permisisons, user role permissions, access permissions, taxonomy permissions, personal permissions
 Requires at least: 4.9.7
 Tested up to: 6.1
 Requires PHP: 5.6.20
@@ -9,13 +9,17 @@ Stable tag: 3.8.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-With PublishPress Permissions you can enable or deny access to posts, pages, categories, tags and more. You can apply these permissions for user roles, individual users, and even custom groups.
+PublishPress Permissions is the best WordPress plugin to manage user access to posts, pages, media files, categories, tags and more. 
 
 == Description ==
 
-[PublishPress Permissions](https://publishpress.com/permissions) allows you to enable or deny access to posts, pages, categories, tags and more. You can apply these permissions for user roles, individual users, and even custom groups.
+PublishPress Permissions is the best WordPress plugin to manage user access to posts, pages, media files, categories, tags and more. You can apply your permissions to user roles, individual users, and even custom groups.
 
-With PublishPress Permissions, you can control who can view and edit your WordPress content. You can choose who can access images and files in your site's Media Library. For example, you can deny all direct access to files for logged out users.
+With PublishPress Permissions, you can control who can view and edit your WordPress content. Every post, page, and taxonomy term has a permissions box where you can choose who can read this content. You can also prevent users from seeing posts by other users in the WordPress admin area.
+
+PublishPresss Permissions has a flexible alternative to user roles. You can build groups of users who can be given their own custom permissions. Two default groups include Logged in and Logged out users.
+
+PublishPress Permissions offers access control your Media Library. Every media file as a permissions box where you can choose who can view that file.
 
 The Pro version of PublishPress Permissions has many advanced features such as teaser previews of restricted content, custom WordPress statuses, and automatically creating personal posts for users.
 

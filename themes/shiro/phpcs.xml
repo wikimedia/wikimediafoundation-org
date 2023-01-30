@@ -60,9 +60,15 @@
 		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
 		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
 	</rule>
+	<!-- Block attributes use JS-style naming patterns. -->
 	<rule ref="WordPress.NamingConventions.ValidVariableName.StringNotSnakeCase">
-		<!-- Block attributes use JS-style naming patterns. -->
-		<exclude-pattern>inc/editor/blocks/</exclude-pattern>
+		<exclude-pattern>inc/editor/blocks</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase">
+		<exclude-pattern>inc/editor/blocks</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase">
+		<exclude-pattern>inc/editor/blocks</exclude-pattern>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>

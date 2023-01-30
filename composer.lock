@@ -299,12 +299,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "c06ab9846545dd4549f7e3503ec69721072009a8"
+                "reference": "e79f0968f007d12b148359ff9f99ac0d7af6fe1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/c06ab9846545dd4549f7e3503ec69721072009a8",
-                "reference": "c06ab9846545dd4549f7e3503ec69721072009a8",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/e79f0968f007d12b148359ff9f99ac0d7af6fe1e",
+                "reference": "e79f0968f007d12b148359ff9f99ac0d7af6fe1e",
                 "shasum": ""
             },
             "require-dev": {
@@ -322,6 +322,9 @@
                 ],
                 "phpcs:changed": [
                     "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
+                ],
+                "phpcbf:changed": [
+                    "phpcbf $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
                 ]
             },
             "license": [
@@ -331,7 +334,7 @@
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
             },
-            "time": "2023-01-23T15:51:26+00:00"
+            "time": "2023-01-30T18:25:14+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",

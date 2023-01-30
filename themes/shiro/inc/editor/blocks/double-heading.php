@@ -38,9 +38,9 @@ function render_block( $attributes ) {
 	$translated_headings = [];
 	$site_language_heading = null;
 	$customClass = $attributes['className'] ?? false;
-	$className = $customClass ? "double-heading $customClass" : "double-heading";
+	$className = $customClass ? "double-heading $customClass" : 'double-heading';
 
-	foreach ( $attributes['secondaryHeadings'] as $heading ) {
+	foreach ( ( $attributes['secondaryHeadings'] ?? [] ) as $heading ) {
 		if ( $site_language['shortname'] ?? null === ( $heading['lang'] ?? '' ) ) {
 			$site_language_heading = $heading;
 			continue;
@@ -62,28 +62,28 @@ function render_block( $attributes ) {
 		$random_key         = array_rand( $translated_headings );
 		$translated_heading = $translated_headings[ $random_key ];
 	}
-	$primary_heading    = $attributes[ 'primaryHeading'] ?? null;
+	$primary_heading    = $attributes['primaryHeading'] ?? null;
 
 	ob_start()
 	?>
-		<div class="<?php echo esc_attr( $className ) ?>">
+		<div class="<?php echo esc_attr( $className ); ?>">
 			<?php if ( ! empty( $site_language_heading ) ) : ?>
 				<p class="double-heading__secondary is-style-h5">
-					<span><?php echo esc_html( $site_language_heading['text'] ) ?></span>
+					<span><?php echo esc_html( $site_language_heading['text'] ); ?></span>
 					<?php if ( ! empty( $translated_heading ) ) : ?>
 						—
 						<span
 							class="<?php echo esc_attr( $translated_heading['className'] ); ?>"
-							lang="<?php echo esc_attr( $translated_heading['lang'] ?? '' ) ?>"
+							lang="<?php echo esc_attr( $translated_heading['lang'] ?? '' ); ?>"
 						>
-							<?php echo esc_html( $translated_heading['text'] ) ?>
+							<?php echo esc_html( $translated_heading['text'] ); ?>
 						</span>
 					<?php endif; ?>
 				</p>
 			<?php endif; ?>
 			<?php if ( $primary_heading ) : ?>
 				<h2 class="double-heading__primary is-style-h3">
-					<?php echo esc_html( $primary_heading ) ?>
+					<?php echo esc_html( $primary_heading ); ?>
 				</h2>
 			<?php endif; ?>
 		</div>
