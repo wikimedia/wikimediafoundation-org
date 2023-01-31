@@ -299,16 +299,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "7b528e1c30a1f19e03f2db2bcf22180a401470b2"
+                "reference": "f62d392b764a9f21e7d41dffdc20cbb7630c1809"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/7b528e1c30a1f19e03f2db2bcf22180a401470b2",
-                "reference": "7b528e1c30a1f19e03f2db2bcf22180a401470b2",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/f62d392b764a9f21e7d41dffdc20cbb7630c1809",
+                "reference": "f62d392b764a9f21e7d41dffdc20cbb7630c1809",
                 "shasum": ""
             },
             "require-dev": {
                 "automattic/vipwpcs": "^2.0",
+                "cweagans/composer-patches": "^1.7",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
                 "phpcompatibility/phpcompatibility-wp": "^1.0",
                 "squizlabs/php_codesniffer": "^3.3",
@@ -316,6 +317,13 @@
                 "wp-coding-standards/wpcs": "^2.0"
             },
             "type": "wordpress-theme",
+            "extra": {
+                "patches": {
+                    "wp-coding-standards/wpcs": {
+                        "Fix php 8 error with vsprint snif": "https://github.com/WordPress/WordPress-Coding-Standards/commit/7cd46bed1e6a7a2af3fe24c7f4a044da3076d8f4.patch"
+                    }
+                }
+            },
             "scripts": {
                 "phpcs": [
                     "phpcs ."
@@ -334,7 +342,7 @@
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
             },
-            "time": "2023-01-30T22:17:15+00:00"
+            "time": "2023-01-31T19:11:26+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
