@@ -2,7 +2,7 @@
 
 Developed by [Human Made](https://humanmade.com) and the [Wikimedia Foundation](https://wikimediafoundation.org).
 
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 
 This plugin provides a flexible data visualization block using the [Vega-Lite](https://vega.github.io/) declarative JSON visualization grammar.
 
@@ -70,6 +70,12 @@ Once a release has been created, update the release's description using GitHub's
 Any code merged into the `develop` branch will be build and committed to the `release-develop` branch. This branch can be used in non-production applications to validate and test proposed changes.
 
 ### Changelog
+
+**0.2.1**
+
+- Fix issue where blocks did not render on frontend due to block.json being deleted on build.
+- Fix issue where CSV meta was not registered as an array.
+- Fix issue where block scripts loaded on all pages, not only when a block is present.
 
 **0.2.0**
 

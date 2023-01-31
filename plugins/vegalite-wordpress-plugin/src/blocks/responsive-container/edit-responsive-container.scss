@@ -1,0 +1,32 @@
+.responsive-visualization-container {
+	.block-editor-inner-blocks .wp-block-vegalite-plugin-visualization {
+		display: none;
+	}
+
+	.block-editor-block-list__block {
+		margin-bottom: 0;
+	}
+
+	.components-panel__row .block-editor-block-list__block {
+		// Align with parent container.
+		margin: 0 -16px;
+	}
+
+	.responsive-visualization-min-width-input {
+		label {
+			margin-bottom: 0;
+		}
+
+		div {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+	}
+
+	.responsive-visualization-container-add-new {
+		margin-top: 8px;
+		margin-bottom: 1rem;
+	}
+}
