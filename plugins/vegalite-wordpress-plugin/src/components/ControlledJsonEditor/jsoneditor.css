@@ -1,0 +1,4 @@
+.jsoneditor-mode-text .jsoneditor-text,
+.jsoneditor-mode-code .jsoneditor-text {
+	min-height: 400px;
+}
