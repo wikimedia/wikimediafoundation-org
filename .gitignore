@@ -15,6 +15,7 @@ plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
 plugins/simple-editorial-comments
+plugins/user-switching
 plugins/wikipedia-preview
 themes/shiro
 
