@@ -1,0 +1,22 @@
+{
+    "name": "humanmade/simple-editorial-comments",
+    "description": "A basic WordPress plugin allowing editors to leave comments that do not render on the frontend.",
+    "type": "wordpress-plugin",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "composer/installers": "~1.0"
+    },
+    "require-dev": {
+        "humanmade/coding-standards": "^1.1.0"
+    },
+    "scripts": {
+        "lint": "phpcs plugin.php inc",
+        "lint:fix": "phpcbf plugin.php inc"
+	},
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

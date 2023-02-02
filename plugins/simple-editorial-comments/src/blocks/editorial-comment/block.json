@@ -1,0 +1,18 @@
+{
+	"apiVersion": 2,
+	"name": "simple-editorial-comments/editorial-comment",
+	"title": "Editorial Comment",
+	"description": "Leave comments on posts which will not render publicly",
+	"textdomain": "simple-editorial-comments",
+	"category": "widgets",
+	"icon": "edit-large",
+	"supports": {
+		"inserter": true,
+		"reusable": true
+	},
+	"attributes": {
+		"comment": {
+			"type": "string"
+		}
+	}
+}
