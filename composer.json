@@ -34,6 +34,10 @@
     },
     {
       "type": "vcs",
+      "url": "git@github.com:humanmade/simple-editorial-comments.git"
+    },
+    {
+      "type": "vcs",
       "url": "git@github.com:wikimedia/shiro-wordpress-theme.git"
     },
     {
@@ -50,13 +54,16 @@
     "composer/installers": "^1.10",
     "humanmade/asset-loader": "^0.6.2",
     "humanmade/hm-gutenberg-tools": "^1.6.2",
+    "humanmade/simple-editorial-comments": "^0.1.0",
     "wikimedia/shiro-wordpress-theme": "dev-release",
     "wikimedia/vegalite-wordpress-plugin": "^0.2.0",
+    "wpackagist-plugin/broken-link-checker": "^1.11",
     "wpackagist-plugin/co-authors-plus": "^3.5",
     "wpackagist-plugin/duplicate-page": "^4.5",
     "wpackagist-plugin/press-permit-core":"3.8.4",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
     "wpackagist-plugin/safe-svg": "^2.0",
+    "wpackagist-plugin/user-switching": "^1.7.0",
     "wpackagist-plugin/wikipedia-preview": "^1.6.0"
   },
   "require-dev": {
