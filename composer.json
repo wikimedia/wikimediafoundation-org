@@ -58,10 +58,10 @@
     "wikimedia/shiro-wordpress-theme": "dev-release",
     "wikimedia/vegalite-wordpress-plugin": "^0.2.0",
     "wpackagist-plugin/co-authors-plus": "^3.5",
-    "wpackagist-plugin/user-switching": "^1.7.0",
     "wpackagist-plugin/duplicate-page": "^4.5",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
     "wpackagist-plugin/safe-svg": "^2.0",
+    "wpackagist-plugin/user-switching": "^1.7.0",
     "wpackagist-plugin/wikipedia-preview": "^1.6.0"
   },
   "require-dev": {
