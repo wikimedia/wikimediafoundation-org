@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc1511ff00cb9d3dbb00873e54c6709d",
+    "content-hash": "46e48ab99f5215c5c016e5fc33fa3579",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -421,6 +421,24 @@
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
             "time": "2023-01-31T18:57:15+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/broken-link-checker",
+            "version": "1.11.21",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/broken-link-checker/",
+                "reference": "tags/1.11.21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.21.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/broken-link-checker/"
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",
