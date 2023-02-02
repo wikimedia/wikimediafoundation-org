@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5f1fd7e9bcca3a017b83a428e4ec39f",
+    "content-hash": "ee68d7c16fa340cc4f4943dc120f90ed",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -292,6 +292,45 @@
                 "source": "https://github.com/humanmade/hm-gutenberg-tools/tree/v1.6.2"
             },
             "time": "2021-12-07T07:31:47+00:00"
+        },
+        {
+            "name": "humanmade/simple-editorial-comments",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/simple-editorial-comments.git",
+                "reference": "45291a6a45f99bc260d9b99120b7495efa4be595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/simple-editorial-comments/zipball/45291a6a45f99bc260d9b99120b7495efa4be595",
+                "reference": "45291a6a45f99bc260d9b99120b7495efa4be595",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "require-dev": {
+                "humanmade/coding-standards": "^1.1.0"
+            },
+            "type": "wordpress-plugin",
+            "scripts": {
+                "lint": [
+                    "phpcs plugin.php inc"
+                ],
+                "lint:fix": [
+                    "phpcbf plugin.php inc"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "A basic WordPress plugin allowing editors to leave comments that do not render on the frontend.",
+            "support": {
+                "source": "https://github.com/humanmade/simple-editorial-comments/tree/v0.1.0",
+                "issues": "https://github.com/humanmade/simple-editorial-comments/issues"
+            },
+            "time": "2023-02-02T21:17:09+00:00"
         },
         {
             "name": "wikimedia/shiro-wordpress-theme",

@@ -34,6 +34,10 @@
     },
     {
       "type": "vcs",
+      "url": "git@github.com:humanmade/simple-editorial-comments.git"
+    },
+    {
+      "type": "vcs",
       "url": "git@github.com:wikimedia/shiro-wordpress-theme.git"
     },
     {
@@ -50,6 +54,7 @@
     "composer/installers": "^1.10",
     "humanmade/asset-loader": "^0.6.2",
     "humanmade/hm-gutenberg-tools": "^1.6.2",
+    "humanmade/simple-editorial-comments": "^0.1.0",
     "wikimedia/shiro-wordpress-theme": "dev-release",
     "wikimedia/vegalite-wordpress-plugin": "^0.2.0",
     "wpackagist-plugin/co-authors-plus": "^3.5",
