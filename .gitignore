@@ -15,7 +15,6 @@ plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
 plugins/wikipedia-preview
-plugins/vegalite-wordpress-plugin
 plugins/press-permit-core
 themes/shiro
 
