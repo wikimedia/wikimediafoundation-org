@@ -13,7 +13,7 @@ use WMF\Assets;
  */
 function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
-	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
+	add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
@@ -41,12 +41,12 @@ function body_class( $body_classes ) {
  * relevant to the project. Can return true to include all blocks, or false to
  * include no blocks.
  *
- * @param bool|string[] $allowed_blocks
- * @param \WP_Post      $post
+ * @param bool|string[]            $allowed_block_types  Array of block type slugs, or boolean to enable/disable all.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
  *
- * @return bool|string[]
+ * @return bool|string[] Filtered allowed blocks list.
  */
-function filter_blocks( $allowed_blocks, \WP_Post $post ) {
+function filter_blocks( $allowed_block_types, $block_editor_context ) {
 	$blocks = [
 		// Custom blocks
 		'shiro/banner',
@@ -98,24 +98,26 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
-
-		// Supported third-party blocks
-		'vegalite-plugin/visualization',
-		'vegalite-plugin/responsive-container',
 	];
 
-	if ( $post->post_type === 'post' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'post' ) {
 		$blocks[] = 'shiro/read-more-categories';
 		$blocks[] = 'shiro/blog-post-heading';
 	}
 
-	if ( $post->post_type === 'page' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
 		$blocks[] = 'shiro/report-landing-hero';
 	}
 
-	return $blocks;
+	/**
+	 * Permit customization of the allowed block list.
+	 *
+ * @param string[]                 $allowed_blocks       Array of block type slugs which should be allowed.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
+	 */
+	return apply_filters( 'wmf_shiro_allowed_blocks', $blocks, $block_editor_context );
 }
 
 /**
@@ -130,18 +132,23 @@ function add_theme_supports() {
 
 	// Define alternate font sizes selectable in the editor (the default
 	// for body copy is 18px / 1.75 on desktop; 16px / 1.75 on mobile).
+	/* phpcs:disable WordPress.Arrays.CommaAfterArrayItem */
+	/* phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound */
 	add_theme_support( 'editor-font-sizes', [
-		[ 'name' => __( 'Small', 'shiro-admin' ),   'shortName' => __( 'S', 'shiro-admin' ),  'size' => 14, 'slug' => 'small'   ],
-		[ 'name' => __( 'Medium', 'shiro-admin' ),  'shortName' => __( 'M', 'shiro-admin' ),  'size' => 20, 'slug' => 'medium'  ],
-		[ 'name' => __( 'Large', 'shiro-admin' ),   'shortName' => __( 'L', 'shiro-admin' ),  'size' => 24, 'slug' => 'large'   ],
-		[ 'name' => __( 'X-Large', 'shiro-admin' ), 'shortName' => __( 'XL', 'shiro-admin' ), 'size' => 32, 'slug' => 'xlarge'  ],
-		[ 'name' => __( 'Jumbo', 'shiro-admin' ),   'shortName' => __( 'J', 'shiro-admin' ),  'size' => 40, 'slug' => 'jumbo'   ],
+		[ 'name' => __( 'Small', 'shiro-admin' ),   'shortName' => __( 'S', 'shiro-admin' ),  'size' => 14, 'slug' => 'small'  ],
+		[ 'name' => __( 'Medium', 'shiro-admin' ),  'shortName' => __( 'M', 'shiro-admin' ),  'size' => 20, 'slug' => 'medium' ],
+		[ 'name' => __( 'Large', 'shiro-admin' ),   'shortName' => __( 'L', 'shiro-admin' ),  'size' => 24, 'slug' => 'large'  ],
+		[ 'name' => __( 'X-Large', 'shiro-admin' ), 'shortName' => __( 'XL', 'shiro-admin' ), 'size' => 32, 'slug' => 'xlarge' ],
+		[ 'name' => __( 'Jumbo', 'shiro-admin' ),   'shortName' => __( 'J', 'shiro-admin' ),  'size' => 40, 'slug' => 'jumbo'  ],
 	] );
+	/* phpcs:enable */
 
 	// Remove the ability to set custom font sizes in the editor.
 	add_theme_support( 'disable-custom-font-sizes' );
 
 	// Define colors selectable in the editor.
+	/* phpcs:disable WordPress.Arrays.CommaAfterArrayItem */
+	/* phpcs:disable WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound */
 	add_theme_support( 'editor-color-palette', [
 		[ 'name' => __( 'Base 0', 'shiro-admin' ),    'slug' => 'base0',    'color' => '#000000' ],
 		[ 'name' => __( 'Base 10', 'shiro-admin' ),   'slug' => 'base10',   'color' => '#202122' ],
@@ -161,6 +168,7 @@ function add_theme_supports() {
 		[ 'name' => __( 'Light Blue', 'shiro-admin' ), 'slug' => 'light-blue', 'color' => '#effafd' ],
 		[ 'name' => __( 'Wiki Blue', 'shiro-admin' ), 'slug' => 'wiki-blue', 'color' => '#3366CC' ],
 	] );
+	/* phpcs:enable */
 
 	// Disable custom color and gradient selection in the editor.
 	add_theme_support( 'disable-custom-colors' );
@@ -229,8 +237,10 @@ function is_using_block_editor(): bool {
 	return admin_post_is_new() || admin_post_has_blocks();
 }
 
+/**
+ * Enqueue assets used only in the block editor.
+ */
 function enqueue_block_editor_assets() {
-
 	$manifest = Assets\get_manifest_path();
 
 	Asset_Loader\enqueue_asset(
@@ -277,8 +287,8 @@ function enqueue_block_editor_assets() {
 /**
  * Add categories relevant to Wikimedia
  *
- * @param array $categories Original categories
- * @return array Modified categories
+ * @param array $categories Original categories.
+ * @return array Modified categories.
  */
 function add_block_categories( $categories ) {
 	return array_merge(
