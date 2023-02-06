@@ -1,0 +1,46 @@
+.file-drop-zone {
+	position: relative;
+
+	&::before {
+		content: '';
+		pointer-events: none;
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: transparent;
+		transition: background 200ms;
+	}
+
+	&::after {
+		content: attr( data-message );
+		pointer-events: none;
+		position: absolute;
+		top: 0.5rem;
+		bottom: 0.5rem;
+		left: 0.5rem;
+		right: 0.5rem;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		text-align: center;
+		color: var(--wp-admin-theme-color);
+		font-weight: bold;
+		border: 2px dashed var(--wp-admin-theme-color);
+		border-radius: 1rem;
+		opacity: 0;
+		transition: opacity 200ms;
+	}
+
+	&.file-drop-zone-active::before {
+		background: rgba( 255, 255, 255, 0.8 );
+		transition: background 200ms;
+	}
+
+	&.file-drop-zone-active::after {
+		opacity: 1;
+		transition: opacity 200ms;
+	}
+}

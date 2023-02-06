@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "vegalite-plugin/responsive-container",
+	"title": "Responsive Visualization Container",
+	"textdomain": "vegalite-plugin",
+	"category": "widgets",
+	"icon": "smartphone",
+	"attributes": {
+		"breakpoints": {
+			"type": "object",
+			"default": {}
+		}
+	},
+	"providesContext": {
+		"vegalite-plugin/breakpoints": "breakpoints"
+	}
+}

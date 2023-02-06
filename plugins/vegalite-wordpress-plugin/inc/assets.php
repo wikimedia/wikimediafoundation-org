@@ -17,7 +17,7 @@ function bootstrap() : void {
 	}
 
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_assets' );
-	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\enqueue_vega' );
+	add_action( 'enqueue_block_assets', __NAMESPACE__ . '\\register_vega' );
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_frontend_assets' );
 }
 
@@ -29,11 +29,11 @@ function bootstrap() : void {
  *
  * @return void
  */
-function enqueue_vega() : void {
+function register_vega() : void {
 	$plugin_assets_dir = plugin_dir_url( __DIR__ ) . 'assets/';
-	wp_enqueue_script( 'vega', $plugin_assets_dir . 'vega.5.21.0.js' );
-	wp_enqueue_script( 'vega-lite', $plugin_assets_dir . 'vega-lite.5.2.0.js', [ 'vega' ] );
-	wp_enqueue_script( 'vega-embed', $plugin_assets_dir . 'vega-embed.6.20.2.js', [ 'vega-lite' ] );
+	wp_register_script( 'vega', $plugin_assets_dir . 'vega.5.21.0.js' );
+	wp_register_script( 'vega-lite', $plugin_assets_dir . 'vega-lite.5.2.0.js', [ 'vega' ] );
+	wp_register_script( 'vega-embed', $plugin_assets_dir . 'vega-embed.6.20.2.js', [ 'vega-lite' ] );
 }
 
 /**
@@ -43,7 +43,7 @@ function enqueue_vega() : void {
  * @param string   $asset        Name of script in asset manifest.
  * @param string[] $dependencies Array of script dependencies.
  */
-function enqueue_build_asset( $handle, $asset, $dependencies = [] ) : void {
+function register_build_asset( $handle, $asset, $dependencies = [] ) : void {
 	$plugin_path = trailingslashit( plugin_dir_path( dirname( __FILE__, 1 ) ) );
 
 	$manifest = Asset_Loader\Manifest\get_active_manifest( [
@@ -51,7 +51,12 @@ function enqueue_build_asset( $handle, $asset, $dependencies = [] ) : void {
 		$plugin_path . 'build/production-asset-manifest.json',
 	] );
 
-	Asset_Loader\enqueue_asset( $manifest, $asset, [
+	if ( empty( $manifest ) ) {
+		trigger_error( "No manifest available for $asset", E_USER_WARNING );
+		return;
+	}
+
+	Asset_Loader\register_asset( $manifest, $asset, [
 		'handle' => $handle,
 		'dependencies' => $dependencies,
 	] );
@@ -61,7 +66,7 @@ function enqueue_build_asset( $handle, $asset, $dependencies = [] ) : void {
  * Enqueue these assets in the block editor.
  */
 function enqueue_editor_assets() : void {
-	enqueue_build_asset(
+	register_build_asset(
 		'vegalite-plugin-editor',
 		'vegalite-plugin-editor.js',
 		[
@@ -73,19 +78,19 @@ function enqueue_editor_assets() : void {
 			'vega-embed',
 		]
 	);
-	enqueue_build_asset( 'vegalite-plugin-editor', 'vegalite-plugin-editor.css' );
+	register_build_asset( 'vegalite-plugin-editor', 'vegalite-plugin-editor.css' );
 }
 
 /**
  * Enqueue these assets only on the frontend.
  */
 function enqueue_frontend_assets() : void {
-	enqueue_build_asset(
+	register_build_asset(
 		'vegalite-plugin-frontend',
 		'vegalite-plugin-frontend.js',
 		[ 'vega-embed' ]
 	);
-	enqueue_build_asset(
+	register_build_asset(
 		'vegalite-plugin-frontend',
 		'vegalite-plugin-frontend.css'
 	);

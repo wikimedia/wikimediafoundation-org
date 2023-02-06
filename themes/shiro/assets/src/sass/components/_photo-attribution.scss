@@ -72,3 +72,60 @@
 		margin-bottom: rem(36);
 	}
 }
+
+.commons-tooltip-wrapper {
+	cursor: help;
+	display: inline-block;
+	text-align: center;
+	transform: translateZ(0) translateX(0%);
+
+	&::before {
+		background: url("./assets/src/images/commons-logo.svg");
+		background-repeat: no-repeat;
+		background-size: contain;
+		content: "";
+		display: block;
+		height: rem(16);
+		width: rem(14);
+	}
+
+	[role=tooltip] {
+		background: rgba(0, 0, 0, 0.75);
+		bottom: 100%;
+		border-radius: 2px;
+		color: #fff;
+		display: block;
+		filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.28));
+		font-size: rem(12);
+		left: 50%;
+		margin-bottom: rem(10);
+		opacity: 0;
+		padding: rem(5) rem(6);
+		pointer-events: none;
+		position: absolute;
+		text-align: center;
+		transform: translate(-50%, 0);
+		transition: all 0.25s ease-out;
+
+		&::after {
+			border-left: solid transparent rem(10);
+			border-right: solid transparent rem(10);
+			border-top: solid rgba(0, 0, 0, 0.75) rem(10);
+			bottom: 0;
+			content: "";
+			height: 0;
+			left: 50%;
+			position: absolute;
+			transform: translate(-50%, 100%);
+			width: 0;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		[role=tooltip] {
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
+}

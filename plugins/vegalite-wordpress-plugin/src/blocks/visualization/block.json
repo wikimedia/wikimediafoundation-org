@@ -1,0 +1,23 @@
+{
+	"apiVersion": 2,
+	"name": "vegalite-plugin/visualization",
+	"title": "Data Visualization",
+	"textdomain": "vegalite-plugin",
+	"category": "widgets",
+	"icon": "chart-line",
+	"editorScript": "vegalite-plugin-editor",
+	"editorStyle": "vegalite-plugin-editor",
+	"viewScript": "vegalite-plugin-frontend",
+	"viewStyle": "vegalite-plugin-frontend",
+	"attributes": {
+	  "chartId": {
+		"type": "string"
+	  },
+	  "json": {
+		"type": "object"
+	  }
+	},
+	"usesContext": [
+		"vegalite-plugin/breakpoints"
+	]
+}

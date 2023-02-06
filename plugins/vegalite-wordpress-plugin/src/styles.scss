@@ -1,0 +1,16 @@
+// Styles used both on frontend and within the editor.
+
+.visualization-block {
+	max-width: 100%;
+}
+
+.chart-wrapper,
+.chart-wrapper canvas {
+	max-width: 100%; // Never overflow container.
+	height: auto !important; // Use object dimension props for aspect ratio when width-constrained.
+}
+
+.chart-hidden .vega-embed,
+.chart-hidden div {
+	display: none;
+}

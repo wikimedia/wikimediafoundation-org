@@ -27,6 +27,7 @@ function register_dataset_meta() {
 			META_KEY,
 			[
 				'single'       => true,
+				'type'         => 'array',
 				'default'      => [],
 				'show_in_rest' => false, // Use custom REST routes for management.
 			]

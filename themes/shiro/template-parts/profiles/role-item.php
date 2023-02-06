@@ -28,7 +28,7 @@ $profile_img = get_the_post_thumbnail(
 );
 
 $profile_class = 'role__staff-list__item';
-if ( $profile_data['role'] ) {
+if ( $profile_data['role'] ?? false ) {
 	$profile_class .= ' role__staff-list__item--' . $profile_data['role'];
 }
 ?>
@@ -39,10 +39,10 @@ if ( $profile_data['role'] ) {
 	<div class="<?php echo esc_attr( $profile_class ); ?>">
 <?php endif;
 
-	if ( $profile_img ) :
-		echo wp_kses_post( $profile_img );
+if ( $profile_img ) :
+	echo wp_kses_post( $profile_img );
 	else :
-	?>
+		?>
 		<span class="role__staff-list__item__photo"></span>
 	<?php endif; ?>
 

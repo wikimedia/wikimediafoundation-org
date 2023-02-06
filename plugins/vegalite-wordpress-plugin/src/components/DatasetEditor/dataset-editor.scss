@@ -1,0 +1,43 @@
+.datasets-control-row {
+	align-items: flex-end;
+	margin-bottom: 0.5rem;
+
+	> :first-child {
+		flex: auto;
+	}
+
+	> * {
+		margin-right: 0.5rem;
+	}
+
+	> :last-child {
+		margin-right: 0;
+	}
+
+	select {
+		max-width: unset;
+	}
+
+	textarea {
+		min-width: 100%;
+		min-height: 300px;
+	}
+
+	.components-text-control__input {
+		min-height: unset;
+	}
+
+	&.components-panel__row label {
+		line-height: normal;
+		margin-bottom: 4px;
+	}
+}
+
+.dataset-control-button {
+	height: 30px;
+}
+
+.dataset-form-error {
+	font-size: 0.9rem;
+	color: #cc1818;
+}

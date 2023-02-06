@@ -80,3 +80,7 @@ wmf_show_icon( 'search' );
 
 When the SVG is output, it will include the `icon` and `icon-{icon-name}` CSS classes so that it can be targeted and styled.
 
+Additional Documentation
+---------------
+- [Code repository wiki](https://github.com/wikimedia/shiro-wordpress-theme/wiki)
+- [Meta-Wiki page](https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website/WordPress_theme)

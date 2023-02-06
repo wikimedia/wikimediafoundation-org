@@ -1,5 +1,6 @@
 // Modern JS
 
+import './block-accordion';
 import './block-hero-home';
 import clockBlock from './clock-block';
 import dimensionShim from './modules/dimension-shim';

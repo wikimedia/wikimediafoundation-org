@@ -22,7 +22,7 @@ $masterunit = $template_args['masterunit'];
 $iconMedia = ! empty( $template_args['icons'] ) ? $template_args['icons'] : [];
 $icons = [];
 for ($i = 0; $i <= count($iconMedia); $i++) {
-	$icon = is_numeric( $iconMedia[$i]['image'] ) ? wp_get_attachment_image_url( $iconMedia[$i]['image'] ) : '';
+	$icon = is_numeric( $iconMedia[$i]['image'] ?? '' ) ? wp_get_attachment_image_url( $iconMedia[$i]['image'] ) : '';
     array_push($icons, $icon);
 }
 
