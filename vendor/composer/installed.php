@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '8ced396eb154f44e32021eebc29079ae19da327d',
+        'reference' => '598b1e471330658278fc5898c238d47f68909407',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -136,7 +136,7 @@
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../themes/shiro',
             'aliases' => array(),
-            'reference' => '732fe9573e088d44eac2d2e757cec1f5d6e9512a',
+            'reference' => '7ace140fbc4fc5de47175c5fae633fd40492e8a2',
             'dev_requirement' => false,
         ),
         'wikimedia/vegalite-wordpress-plugin' => array(
@@ -154,7 +154,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '8ced396eb154f44e32021eebc29079ae19da327d',
+            'reference' => '598b1e471330658278fc5898c238d47f68909407',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(

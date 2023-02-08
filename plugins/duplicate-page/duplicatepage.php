@@ -4,7 +4,7 @@ Plugin Name: Duplicate Page
 Plugin URI: https://wordpress.org/plugins/duplicate-page/
 Description: Duplicate Posts, Pages and Custom Posts using single click.
 Author: mndpsingh287
-Version: 4.5
+Version: 4.5.1
 Author URI: https://profiles.wordpress.org/mndpsingh287/
 License: GPLv2
 Text Domain: duplicate-page
@@ -13,7 +13,7 @@ if (!defined('DUPLICATE_PAGE_PLUGIN_DIRNAME')) {
     define('DUPLICATE_PAGE_PLUGIN_DIRNAME', plugin_basename(dirname(__FILE__)));
 }
 if (!defined('DUPLICATE_PAGE_PLUGIN_VERSION')) {
-    define('DUPLICATE_PAGE_PLUGIN_VERSION', '4.5');
+    define('DUPLICATE_PAGE_PLUGIN_VERSION', '4.5.1');
 }
 if (!class_exists('duplicate_page')):
     class duplicate_page
@@ -207,27 +207,24 @@ if (!class_exists('duplicate_page')):
                 /*
                 * duplicate all post meta
                 */
-	            $post_meta = get_post_meta( $post_id );
-	            if ( ! empty( $post_meta ) ) {
-		            foreach ( $post_meta as $key => $item ) {
-			            $meta_value = current( $item );
-			            $update = $wpdb->update(
-							"{$wpdb->prefix}postmeta",
-				            [ 'meta_value' => $meta_value ],
-							[ 'post_id' => $new_post_id, 'meta_key' => $key, ]
-			            );
-						if(!$update || $update < 1){
-							$wpdb->insert( "{$wpdb->prefix}postmeta",
-								[ 'meta_key' => $key, 'meta_value' => $meta_value, 'post_id' => $new_post_id ]
-							);
-						}
-		            }
-	            }
-                    
-                    if(is_plugin_active( 'elementor/elementor.php' )){
+                $post_meta_keys = get_post_custom_keys( $post_id );
+                if(!empty($post_meta_keys)){
+                    foreach ( $post_meta_keys as $meta_key ) {
+                        $meta_values = get_post_custom_values( $meta_key, $post_id );
+                        foreach ( $meta_values as $meta_value ) {
+                            $meta_value = maybe_unserialize( $meta_value );
+                            update_post_meta( $new_post_id, $meta_key, wp_slash( $meta_value ) );
+                        }
+                    }
+                }
+                   
+                /**
+                 * Elementor compatibility fixes
+                 */
+                 if(is_plugin_active( 'elementor/elementor.php' )){
                         $css = Elementor\Core\Files\CSS\Post::create( $new_post_id );
                         $css->update();
-                        } 
+                 } 
                 /*
                 * finally, redirecting to your choice
                 */
@@ -253,6 +250,11 @@ if (!class_exists('duplicate_page')):
          */
         public function dt_duplicate_post_link($actions, $post)
         {
+			// Skip acf-field-group post type
+			if($post->post_type == 'acf-field-group'){
+				return $actions;
+			}
+
             $opt = get_option('duplicate_page_options');
             $post_status = !empty($opt['duplicate_post_status']) ? esc_attr($opt['duplicate_post_status']) : 'draft';
             if (current_user_can('edit_posts')) {
