@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "475cfa78d039f2c44a21c883eb836837",
+    "content-hash": "55ce448d7f7f5344b899cf7898a985ce",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -294,17 +294,56 @@
             "time": "2021-12-07T07:31:47+00:00"
         },
         {
+            "name": "humanmade/simple-editorial-comments",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/simple-editorial-comments.git",
+                "reference": "45291a6a45f99bc260d9b99120b7495efa4be595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/simple-editorial-comments/zipball/45291a6a45f99bc260d9b99120b7495efa4be595",
+                "reference": "45291a6a45f99bc260d9b99120b7495efa4be595",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "require-dev": {
+                "humanmade/coding-standards": "^1.1.0"
+            },
+            "type": "wordpress-plugin",
+            "scripts": {
+                "lint": [
+                    "phpcs plugin.php inc"
+                ],
+                "lint:fix": [
+                    "phpcbf plugin.php inc"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "A basic WordPress plugin allowing editors to leave comments that do not render on the frontend.",
+            "support": {
+                "source": "https://github.com/humanmade/simple-editorial-comments/tree/v0.1.0",
+                "issues": "https://github.com/humanmade/simple-editorial-comments/issues"
+            },
+            "time": "2023-02-02T21:17:09+00:00"
+        },
+        {
             "name": "wikimedia/shiro-wordpress-theme",
             "version": "dev-release",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "c007acc3de340b1d29d661d0a264c6bd26bc0058"
+                "reference": "7ace140fbc4fc5de47175c5fae633fd40492e8a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/c007acc3de340b1d29d661d0a264c6bd26bc0058",
-                "reference": "c007acc3de340b1d29d661d0a264c6bd26bc0058",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/7ace140fbc4fc5de47175c5fae633fd40492e8a2",
+                "reference": "7ace140fbc4fc5de47175c5fae633fd40492e8a2",
                 "shasum": ""
             },
             "require-dev": {
@@ -342,7 +381,7 @@
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
             },
-            "time": "2023-02-03T21:40:51+00:00"
+            "time": "2023-02-08T17:25:15+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -382,6 +421,24 @@
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
             "time": "2023-01-31T18:57:15+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/broken-link-checker",
+            "version": "1.11.21",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/broken-link-checker/",
+                "reference": "tags/1.11.21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.21.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/broken-link-checker/"
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",
@@ -472,6 +529,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/safe-svg/"
+        },
+        {
+            "name": "wpackagist-plugin/user-switching",
+            "version": "1.7.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/user-switching/",
+                "reference": "tags/1.7.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.7.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/user-switching/"
         },
         {
             "name": "wpackagist-plugin/wikipedia-preview",
@@ -732,12 +807,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "90538aab13dced1209eb1b30e169308fea0fd783"
+                "reference": "af283018ab49570a12ebd82b17f4578e5cff6994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/90538aab13dced1209eb1b30e169308fea0fd783",
-                "reference": "90538aab13dced1209eb1b30e169308fea0fd783",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/af283018ab49570a12ebd82b17f4578e5cff6994",
+                "reference": "af283018ab49570a12ebd82b17f4578e5cff6994",
                 "shasum": ""
             },
             "conflict": {
@@ -1295,7 +1370,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-04T01:32:15+00:00"
+            "time": "2023-02-02T20:04:23+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

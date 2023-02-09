@@ -8,12 +8,15 @@ plugins/duplicate-page
 
 # Dependencies managed using composer
 plugins/asset-loader
+plugins/broken-link-checker
 plugins/co-authors-plus
 plugins/fieldmanager
 plugins/hm-gutenberg-tools
 plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
+plugins/simple-editorial-comments
+plugins/user-switching
 plugins/wikipedia-preview
 plugins/press-permit-core
 themes/shiro
