@@ -12,6 +12,7 @@ import { __ } from '@wordpress/i18n';
 import BlockIcon from '../../../svg/blocks/card.svg';
 import CallToActionPicker from '../../components/cta';
 import ImagePicker from '../../components/image-picker';
+import sharedStyles from '../../helpers/block-styles';
 
 /**
  * Internal dependencies
@@ -19,6 +20,7 @@ import ImagePicker from '../../components/image-picker';
 import './style.scss';
 
 export const name = 'shiro/card';
+export const styles = sharedStyles;
 
 export const settings = {
 	apiVersion: 2,
