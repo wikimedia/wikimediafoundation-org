@@ -1227,17 +1227,17 @@
         },
         {
             "name": "wikimedia/shiro-wordpress-theme",
-            "version": "dev-release",
-            "version_normalized": "dev-release",
+            "version": "dev-release-develop",
+            "version_normalized": "dev-release-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "2e9f888432001f6616bced08b8eef1c054e31f9f"
+                "reference": "1a6839f2b2e4c189db4b488e3042944f58bdee86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/2e9f888432001f6616bced08b8eef1c054e31f9f",
-                "reference": "2e9f888432001f6616bced08b8eef1c054e31f9f",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/1a6839f2b2e4c189db4b488e3042944f58bdee86",
+                "reference": "1a6839f2b2e4c189db4b488e3042944f58bdee86",
                 "shasum": ""
             },
             "require-dev": {
@@ -1249,7 +1249,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-02-08T19:45:59+00:00",
+            "time": "2023-02-10T02:18:59+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
@@ -1275,7 +1275,7 @@
             ],
             "description": "Wikimedia Foundation website theme.",
             "support": {
-                "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
+                "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop"
             },
             "install-path": "../../themes/shiro"
         },

@@ -14,7 +14,7 @@ use Asset_Loader\Manifest;
  */
 function get_manifest_path() {
 	return  Manifest\get_active_manifest( [
-		get_template_directory() . '/assets/dist/asset-manifest.json',
+		get_template_directory() . '/assets/dist/development-asset-manifest.json',
 		get_template_directory() . '/assets/dist/production-asset-manifest.json'
 	] );
 }

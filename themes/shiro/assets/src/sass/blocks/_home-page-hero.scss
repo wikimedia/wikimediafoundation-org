@@ -10,6 +10,13 @@
 	}
 }
 
+.hero-home__rotator,
+.wp-block-shiro-home-page-hero-rotator {
+	.hero-home:not(.hero-home--current) {
+		display: none;
+	}
+}
+
 .hero-home {
 	@include global-margin-bottom;
 

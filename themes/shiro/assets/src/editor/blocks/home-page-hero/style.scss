@@ -1,5 +1,8 @@
 .editor-styles-wrapper.editor-styles-wrapper {
 	.hero-home {
+		max-width: none !important;
+		width: 100%;
+
 		&__header {
 			height: unset;
 			min-height: 454px;
@@ -20,6 +23,12 @@
 					width: 400px;
 					margin: 0 auto;
 				}
+			}
+
+			.hero-home__image {
+				width: 100%;
+				max-height: 100%;
+				object-fit: cover;
 			}
 		}
 

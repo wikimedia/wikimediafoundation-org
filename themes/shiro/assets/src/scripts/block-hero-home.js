@@ -8,78 +8,187 @@
  * - This file is loaded at the bottom of the body, so we don't need an onready.
  */
 const NO_CYCLING_HEADING_COUNT = 1;
-const CYCLE_TIME = 5000;
+const HERO_IMAGE_CYCLE_TIME = 6000;
+const HEADER_TEXT_CYCLE_TIME = 3000;
 const OPACITY_TRANSITION_TIME = 750;
 const BROWSER_PAINT_WAIT = 20;
-const headings = document.querySelectorAll( '.hero-home__heading' );
-let currentHeadingIndex = 0,
-	previousHeadingIndex = 0;
-let currentHeading = headings[ 0 ];
-let previousHeading = headings[ 0 ];
-let timeout = null;
 
-const targetLink = document.querySelector( '.hero-home__link' );
+const heroes = [ ...document.querySelectorAll( '.hero-home' ) ];
+const rotatingHeroes = [ ...document.querySelectorAll( '.hero-home__rotator' ) ];
+const heroesNotRotating = heroes.filter( block => ! block.closest( '.hero-home__rotator' ) );
+
+/**
+ * Start rotating the hero blocks inside a hero rotator block.
+ *
+ * If a hero rotator block has more than one hero in it, this will set the
+ * first one as visible and set an interval to begin cycling through the other
+ * images.
+ *
+ * @param {HTMLElement} heroRotatorBlock Hero rotator block.
+ */
+const startRotatingImages = heroRotatorBlock => {
+
+	// Ensure there are child blocks to rotate through.
+	const childBlocks = [ ...heroRotatorBlock.querySelectorAll( '.hero-home' ) ];
+
+	if ( ! childBlocks.length ) {
+		return;
+	}
+
+	// Start with only the first block visible.
+	childBlocks.forEach( block => block.classList.remove( 'hero-home--current' ) );
+	childBlocks[0].classList.add( 'hero-home--current' );
+
+	if ( childBlocks.length > NO_CYCLING_HEADING_COUNT ) {
+		heroRotatorBlock.rotateImagesTimeout = setTimeout(
+			() => showNextImage( heroRotatorBlock ),
+			HERO_IMAGE_CYCLE_TIME
+		);
+	}
+};
+
+/**
+ * Show the next hero image in a rotating hero series.
+ *
+ * @param {HTMLElement} heroRotatorBlock Div representing the hero-rotator block.
+ */
+const showNextImage = heroRotatorBlock => {
+	const currentImage = heroRotatorBlock.querySelector( '.hero-home--current' );
+	const images = heroRotatorBlock.querySelectorAll( '.hero-home:not(.hero-home--current)' );
+	const nextImage = images[ Math.floor( Math.random() * images.length ) ];
+
+	// clear headings rotate interval on the slide to hide, start it on the new one.
+	if ( currentImage.rotateHeadingsTimeout ) {
+		clearTimeout( currentImage.rotateHeadingsTimeout );
+	}
+	currentImage.classList.remove( 'hero-home--current' );
+	nextImage.classList.add( 'hero-home--current' );
+	nextImage.rotateHeadingsTimeout = setTimeout(
+		() => startRotatingHeadings( nextImage ),
+		HEADER_TEXT_CYCLE_TIME
+	);
+
+	// Set timer for the next iteration of this cycle.
+	heroRotatorBlock.rotateImagesTimeout = setTimeout(
+		() => showNextImage( heroRotatorBlock ),
+		HERO_IMAGE_CYCLE_TIME
+	);
+};
 
 /**
  * Setup variables for fading in and out.
  *
+ * @param {HTMLElement} heroBlock Div representing the hero block to rotate within.
  * @returns {void}
  */
-function cycleHeading() {
-	if ( ! targetLink || targetLink !== document.activeElement ) {
-		previousHeadingIndex = currentHeadingIndex;
-		currentHeadingIndex = ++currentHeadingIndex % headings.length;
+const startRotatingHeadings = heroBlock => {
+	const targetLink = heroBlock.querySelector( '.hero-home__link' );
 
-		currentHeading = headings[ currentHeadingIndex ];
-		previousHeading = headings[ previousHeadingIndex ];
-
-		if ( targetLink ) {
-			const targetLinkScreenReaderText = targetLink.querySelector( '.screen-reader-text' );
-			if ( targetLinkScreenReaderText ) {
-				targetLinkScreenReaderText.textContent = currentHeading.textContent;
-			}
-		}
-
-		fadeOutPreviousHeading();
-	} else {
-		// Setup the next cycle
-		timeout = setTimeout( cycleHeading, CYCLE_TIME );
+	// Don't animate if this element is focused already.
+	if ( targetLink && targetLink === document.activeElement ) {
+		heroBlock.rotateHeadingsTimeout = setTimeout( () => startRotatingHeadings( heroBlock ), HEADER_TEXT_CYCLE_TIME );
+		return;
 	}
-}
+
+	const headings = [ ...heroBlock.querySelectorAll( '.hero-home__heading' ) ];
+
+	let previousHeadingIndex;
+	let currentHeadingIndex = headings.findIndex(
+		heading => ! heading.classList.contains( 'hero-home__heading--transparent' )
+	);
+
+	previousHeadingIndex = currentHeadingIndex;
+	currentHeadingIndex = ++currentHeadingIndex % headings.length;
+
+	Object.assign(
+		heroBlock,
+		{
+			headings,
+			previousHeadingIndex,
+			currentHeadingIndex,
+			rotateHeadingsTimeout: null,
+		}
+	);
+
+	if ( targetLink ) {
+		const targetLinkScreenReaderText = targetLink.querySelector( '.screen-reader-text' );
+
+		if ( targetLinkScreenReaderText ) {
+			targetLinkScreenReaderText.textContent = headings[ currentHeadingIndex ].textContent;
+		}
+	}
+
+	fadeOutPreviousHeading( heroBlock );
+};
 
 /**
  * Fade out previous heading.
  *
+ * @param {HTMLElement} block Div representing the home-hero block.
  * @returns {void}
  */
-function fadeOutPreviousHeading() {
-	previousHeading.classList.add( 'hero-home__heading--transparent' );
-	timeout = setTimeout( fadeInCurrentHeading, OPACITY_TRANSITION_TIME );
+function fadeOutPreviousHeading( block ) {
+	const { headings, previousHeadingIndex } = block;
+
+	headings[ previousHeadingIndex ].classList.add( 'hero-home__heading--transparent' );
+	block.rotateHeadingsTimeout = setTimeout( () => fadeInCurrentHeading( block ), OPACITY_TRANSITION_TIME );
 }
 
 /**
  * Fade in the current heading and set display values.
  *
+ * @param {HTMLElement} block Div representing the home-hero block.
  * @returns {void}
  */
-function fadeInCurrentHeading() {
-	previousHeading.classList.add( 'hero-home__heading--hidden' );
-	currentHeading.classList.remove( 'hero-home__heading--hidden' );
+function fadeInCurrentHeading( block ) {
+	const {
+		headings,
+		previousHeadingIndex,
+		currentHeadingIndex,
+	} = block;
+
+	headings[ previousHeadingIndex ].classList.add( 'hero-home__heading--hidden' );
+	headings[ currentHeadingIndex ].classList.remove( 'hero-home__heading--hidden' );
 
 	// Allow the browser to display the element with opacity 0 before setting it to 1.
 	setTimeout( function () {
-		currentHeading.classList.remove( 'hero-home__heading--transparent' );
+		headings[ currentHeadingIndex ].classList.remove( 'hero-home__heading--transparent' );
 	}, BROWSER_PAINT_WAIT );
 
 	// Setup the next cycle
-	timeout = setTimeout( cycleHeading, CYCLE_TIME );
+	block.rotateHeadingsTimeout = setTimeout( () => startRotatingHeadings( block ), HEADER_TEXT_CYCLE_TIME );
 }
 
-if ( headings.length > NO_CYCLING_HEADING_COUNT ) {
-	timeout = setTimeout( cycleHeading, CYCLE_TIME );
-}
+/**
+ * Bootstrap module functionality.
+ */
+const init = () => {
+	if ( rotatingHeroes.length ) {
+		rotatingHeroes.forEach( startRotatingImages );
+	}
+
+	if ( heroesNotRotating.length ) {
+		heroesNotRotating.forEach( startRotatingHeadings );
+	}
+};
+
+/**
+ * Clear timeouts in preparation for hot module update.
+ */
+const dispose = () => {
+	if ( rotatingHeroes.length ) {
+		rotatingHeroes.forEach( block => clearTimeout( block.rotateImagesTimeout ) );
+	}
+
+	if ( heroes.length ) {
+		heroes.forEach( block => clearTimeout( block.rotateHeadingsTimeout ) );
+	}
+};
+
+init();
 
 if ( module.hot ) {
-	module.hot.dispose( () => timeout && clearTimeout( timeout ) );
+	module.hot.dispose( dispose );
 	module.hot.accept();
+	init();
 }

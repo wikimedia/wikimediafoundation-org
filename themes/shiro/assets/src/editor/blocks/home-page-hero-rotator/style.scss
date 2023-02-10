@@ -1,0 +1,23 @@
+// stylelint-ignore selector-class-pattern
+.editor-styles-wrapper.editor-styles-wrapper {
+	.wp-block-shiro-home-page-hero-rotator {
+		margin-left: 0;
+		margin-right: 0;
+		max-width: none !important;
+		padding: 0;
+		width: 100% !important;
+
+		.hero-home {
+			display: block !important;
+			max-width: 100%;
+		}
+	}
+
+	.block-list-appender {
+		display: block;
+		z-index: 1000;
+		margin-bottom: 6px;
+		border: 12px solid rgba( 255, 255, 255, .5 );
+	}
+}
+
