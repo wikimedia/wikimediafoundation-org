@@ -13,7 +13,7 @@ use WMF\Assets;
  */
 function bootstrap() {
 	add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
-	add_filter( 'allowed_block_types', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
+	add_filter( 'allowed_block_types_all', __NAMESPACE__ . '\\filter_blocks', 10, 2 );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 	add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_core_block_styles' );
 	add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
@@ -41,12 +41,12 @@ function body_class( $body_classes ) {
  * relevant to the project. Can return true to include all blocks, or false to
  * include no blocks.
  *
- * @param bool|string[] $allowed_blocks
- * @param \WP_Post      $post
+ * @param bool|string[]            $allowed_block_types  Array of block type slugs, or boolean to enable/disable all.
+ * @param \WP_Block_Editor_Context $block_editor_context The current block editor context.
  *
- * @return bool|string[]
+ * @return bool|string[] Filtered allowed blocks list.
  */
-function filter_blocks( $allowed_blocks, \WP_Post $post ) {
+function filter_blocks( $allowed_block_types, $block_editor_context ) {
 	$blocks = [
 		// Custom blocks
 		'shiro/banner',
@@ -98,18 +98,14 @@ function filter_blocks( $allowed_blocks, \WP_Post $post ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
-
-		// Supported third-party blocks
-		'vegalite-plugin/visualization',
-		'vegalite-plugin/responsive-container',
 	];
 
-	if ( $post->post_type === 'post' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'post' ) {
 		$blocks[] = 'shiro/read-more-categories';
 		$blocks[] = 'shiro/blog-post-heading';
 	}
 
-	if ( $post->post_type === 'page' ) {
+	if ( ( $block_editor_context->post->post_type ?? '' ) === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
 		$blocks[] = 'shiro/landing-page-hero';
 		$blocks[] = 'shiro/report-landing-hero';
@@ -131,11 +127,36 @@ function add_theme_supports() {
 	// Define alternate font sizes selectable in the editor (the default
 	// for body copy is 18px / 1.75 on desktop; 16px / 1.75 on mobile).
 	add_theme_support( 'editor-font-sizes', [
-		[ 'name' => __( 'Small', 'shiro-admin' ),   'shortName' => __( 'S', 'shiro-admin' ),  'size' => 14, 'slug' => 'small'   ],
-		[ 'name' => __( 'Medium', 'shiro-admin' ),  'shortName' => __( 'M', 'shiro-admin' ),  'size' => 20, 'slug' => 'medium'  ],
-		[ 'name' => __( 'Large', 'shiro-admin' ),   'shortName' => __( 'L', 'shiro-admin' ),  'size' => 24, 'slug' => 'large'   ],
-		[ 'name' => __( 'X-Large', 'shiro-admin' ), 'shortName' => __( 'XL', 'shiro-admin' ), 'size' => 32, 'slug' => 'xlarge'  ],
-		[ 'name' => __( 'Jumbo', 'shiro-admin' ),   'shortName' => __( 'J', 'shiro-admin' ),  'size' => 40, 'slug' => 'jumbo'   ],
+		[
+			'name' => __( 'Small', 'shiro-admin' ),
+			'shortName' => __( 'S', 'shiro-admin' ),
+			'size' => 14,
+			'slug' => 'small',
+		],
+		[
+			'name' => __( 'Medium', 'shiro-admin' ),
+			'shortName' => __( 'M', 'shiro-admin' ),
+			'size' => 20,
+			'slug' => 'medium',
+		],
+		[
+			'name' => __( 'Large', 'shiro-admin' ),
+			'shortName' => __( 'L', 'shiro-admin' ),
+			'size' => 24,
+			'slug' => 'large',
+		],
+		[
+			'name' => __( 'X-Large', 'shiro-admin' ),
+			'shortName' => __( 'XL', 'shiro-admin' ),
+			'size' => 32,
+			'slug' => 'xlarge',
+		],
+		[
+			'name' => __( 'Jumbo', 'shiro-admin' ),
+			'shortName' => __( 'J', 'shiro-admin' ),
+			'size' => 40,
+			'slug' => 'jumbo',
+		],
 	] );
 
 	// Remove the ability to set custom font sizes in the editor.
@@ -143,23 +164,211 @@ function add_theme_supports() {
 
 	// Define colors selectable in the editor.
 	add_theme_support( 'editor-color-palette', [
-		[ 'name' => __( 'Base 0', 'shiro-admin' ),    'slug' => 'base0',    'color' => '#000000' ],
-		[ 'name' => __( 'Base 10', 'shiro-admin' ),   'slug' => 'base10',   'color' => '#202122' ],
-		[ 'name' => __( 'Base 20', 'shiro-admin' ),   'slug' => 'base20',   'color' => '#54595d' ],
-		[ 'name' => __( 'Base 30', 'shiro-admin' ),   'slug' => 'base30',   'color' => '#72777d' ],
-		[ 'name' => __( 'Base 50', 'shiro-admin' ),   'slug' => 'base50',   'color' => '#a2a9b1' ],
-		[ 'name' => __( 'Base 70', 'shiro-admin' ),   'slug' => 'base70',   'color' => '#c8ccd1' ],
-		[ 'name' => __( 'Base 80', 'shiro-admin' ),   'slug' => 'base80',   'color' => '#eaecf0' ],
-		[ 'name' => __( 'Base 90', 'shiro-admin' ),   'slug' => 'base90',   'color' => '#f8f9fa' ],
-		[ 'name' => __( 'Base 100', 'shiro-admin' ),  'slug' => 'base100',  'color' => '#ffffff' ],
-		[ 'name' => __( 'Blue 50', 'shiro-admin' ),   'slug' => 'blue50',   'color' => '#3a25ff' ],
-		[ 'name' => __( 'Blue 90', 'shiro-admin' ),   'slug' => 'blue90',   'color' => '#eeeaff' ],
-		[ 'name' => __( 'Red 50', 'shiro-admin' ),    'slug' => 'red50',    'color' => '#d40356' ],
-		[ 'name' => __( 'Red 90', 'shiro-admin' ),    'slug' => 'red90',    'color' => '#fbe9f1' ],
-		[ 'name' => __( 'Yellow 50', 'shiro-admin' ), 'slug' => 'yellow50', 'color' => '#fffd33' ],
-		[ 'name' => __( 'Yellow 90', 'shiro-admin' ), 'slug' => 'yellow90', 'color' => '#fef6e7' ],
-		[ 'name' => __( 'Light Blue', 'shiro-admin' ), 'slug' => 'light-blue', 'color' => '#effafd' ],
-		[ 'name' => __( 'Wiki Blue', 'shiro-admin' ), 'slug' => 'wiki-blue', 'color' => '#3366CC' ],
+		[
+			'name' => __( 'Base 10', 'shiro-admin' ),
+			'slug' => 'base10',
+			'color' => '#202122',
+		],
+		[
+			'name' => __( 'Base 20', 'shiro-admin' ),
+			'slug' => 'base20',
+			'color' => '#54595d',
+		],
+		[
+			'name' => __( 'Base 30', 'shiro-admin' ),
+			'slug' => 'base30',
+			'color' => '#72777d',
+		],
+		[
+			'name' => __( 'Base 50', 'shiro-admin' ),
+			'slug' => 'base50',
+			'color' => '#a2a9b1',
+		],
+		[
+			'name' => __( 'Base 0', 'shiro-admin' ),
+			'slug' => 'base0',
+			'color' => '#000000',
+		],
+		[
+			'name' => __( 'Base 70', 'shiro-admin' ),
+			'slug' => 'base70',
+			'color' => '#c8ccd1',
+		],
+		[
+			'name' => __( 'Base 80', 'shiro-admin' ),
+			'slug' => 'base80',
+			'color' => '#eaecf0',
+		],
+		[
+			'name' => __( 'Base 90', 'shiro-admin' ),
+			'slug' => 'base90',
+			'color' => '#f8f9fa',
+		],
+		[
+			'name' => __( 'Base 100', 'shiro-admin' ),
+			'slug' => 'base100',
+			'color' => '#ffffff',
+		],
+		[
+			'name' => __( 'Blue', 'shiro-admin' ),
+			'slug' => 'blue',
+			'color' => '#0063bf',
+		],
+		[
+			'name' => __( 'Blue AAA', 'shiro-admin' ),
+			'slug' => 'blue-aaa',
+			'color' => '#0C57A8',
+		],
+		[
+			'name' => __( 'Blue 50', 'shiro-admin' ),
+			'slug' => 'blue50',
+			'color' => '#3a25ff',
+		],
+		[
+			'name' => __( 'Blue 70', 'shiro-admin' ),
+			'slug' => 'blue70',
+			'color' => '#c3d8ef',
+		],
+		[
+			'name' => __( 'Bright Blue', 'shiro-admin' ),
+			'slug' => 'bright-blue',
+			'color' => '#049dff',
+		],
+		[
+			'name' => __( 'Bright Blue 70', 'shiro-admin' ),
+			'slug' => 'bright-blue-70',
+			'color' => '#c0e6ff',
+		],
+		[
+			'name' => __( 'Dark Green', 'shiro-admin' ),
+			'slug' => 'dark-green',
+			'color' => '#305d70',
+		],
+		[
+			'name' => __( 'Dark Green 70', 'shiro-admin' ),
+			'slug' => 'dark-green-70',
+			'color' => '#cbd6db',
+		],
+		[
+			'name' => __( 'Blue 90', 'shiro-admin' ),
+			'slug' => 'blue90',
+			'color' => '#eeeaff',
+		],
+		[
+			'name' => __( 'Green AAA', 'shiro-admin' ),
+			'slug' => 'green-aaa',
+			'color' => '#246342',
+		],
+		[
+			'name' => __( 'Green', 'shiro-admin' ),
+			'slug' => 'green',
+			'color' => '#339966',
+		],
+		[
+			'name' => __( 'Green 70', 'shiro-admin' ),
+			'slug' => 'green70',
+			'color' => '#cbe0d5',
+		],
+		[
+			'name' => __( 'Bright Green', 'shiro-admin' ),
+			'slug' => 'bright-green',
+			'color' => '#71d1b3',
+		],
+		[
+			'name' => __( 'Bright Green 70', 'shiro-admin' ),
+			'slug' => 'bright-green70',
+			'color' => '#dbf3ec',
+		],
+		[
+			'name' => __( 'Orange', 'shiro-admin' ),
+			'slug' => 'orange',
+			'color' => '#ee8019',
+		],
+		[
+			'name' => __( 'Orange 70', 'shiro-admin' ),
+			'slug' => 'orange70',
+			'color' => '#fbdfc5',
+		],
+		[
+			'name' => __( 'Pink', 'shiro-admin' ),
+			'slug' => 'pink',
+			'color' => '#e679a6',
+		],
+		[
+			'name' => __( 'Pink 70', 'shiro-admin' ),
+			'slug' => 'pink70',
+			'color' => '#f9dde9',
+		],
+		[
+			'name' => __( 'Purple', 'shiro-admin' ),
+			'slug' => 'purple',
+			'color' => '#5748b5',
+		],
+		[
+			'name' => __( 'Purple 70', 'shiro-admin' ),
+			'slug' => 'purple70',
+			'color' => '#d5d1ec',
+		],
+		[
+			'name' => __( 'Red', 'shiro-admin' ),
+			'slug' => 'red',
+			'color' => '#900',
+		],
+		[
+			'name' => __( 'Red AAA', 'shiro-admin' ),
+			'slug' => 'red-aaa',
+			'color' => '#970302',
+		],
+		[
+			'name' => __( 'Red 70', 'shiro-admin' ),
+			'slug' => 'red70',
+			'color' => '#e5c0c0',
+		],
+		[
+			'name' => __( 'Red 50', 'shiro-admin' ),
+			'slug' => 'red50',
+			'color' => '#d40356',
+		],
+		[
+			'name' => __( 'Red 90', 'shiro-admin' ),
+			'slug' => 'red90',
+			'color' => '#fbe9f1',
+		],
+		[
+			'name' => __( 'Yellow', 'shiro-admin' ),
+			'slug' => 'yellow',
+			'color' => '#f0bc00',
+		],
+		[
+			'name' => __( 'Yellow 50', 'shiro-admin' ),
+			'slug' => 'yellow50',
+			'color' => '#fffd33',
+		],
+		[
+			'name' => __( 'Yellow 70', 'shiro-admin' ),
+			'slug' => 'yellow70',
+			'color' => '#fbeebf',
+		],
+		[
+			'name' => __( 'Yellow 90', 'shiro-admin' ),
+			'slug' => 'yellow90',
+			'color' => '#fef6e7',
+		],
+		[
+			'name' => __( 'Bright Yellow', 'shiro-admin' ),
+			'slug' => 'bright-yellow',
+			'color' => '#e9e7c4',
+		],
+		[
+			'name' => __( 'Bright Yellow 70', 'shiro-admin' ),
+			'slug' => 'bright-yellow-70',
+			'color' => '#f9f9f0',
+		],
+		[
+			'name' => __( 'Light Blue', 'shiro-admin' ),
+			'slug' => 'light-blue',
+			'color' => '#effafd',
+		],
 	] );
 
 	// Disable custom color and gradient selection in the editor.
@@ -229,8 +438,10 @@ function is_using_block_editor(): bool {
 	return admin_post_is_new() || admin_post_has_blocks();
 }
 
+/**
+ * Enqueue assets used only in the block editor.
+ */
 function enqueue_block_editor_assets() {
-
 	$manifest = Assets\get_manifest_path();
 
 	Asset_Loader\enqueue_asset(
@@ -275,10 +486,10 @@ function enqueue_block_editor_assets() {
 }
 
 /**
- * Add categories relevant to Wikimedia
+ * Add categories relevant to Wikimedia.
  *
- * @param array $categories Original categories
- * @return array Modified categories
+ * @param array $categories Original categories.
+ * @return array Modified categories.
  */
 function add_block_categories( $categories ) {
 	return array_merge(

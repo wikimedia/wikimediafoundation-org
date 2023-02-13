@@ -3,7 +3,7 @@ Contributors: mndpsingh287
 Tags: Page Duplicate, Post duplicate, duplicate custom posts, duplicate page, duplicate post, duplicate ,custom posts, post, page, duplicate this, duplicate, content duplicate, duplicate content, data duplicate, duplicate data, copy page, clone page,wordpress page duplicate, wordpress post duplicate, Copy post, wordpress page duplicator, wordpress post duplicator, Cloner, duplicate post
 Requires at least: 3.4
 Tested up to: 6.1.1
-Stable tag: 4.5
+Stable tag: 4.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,10 +57,15 @@ https://www.youtube.com/watch?v=Fj8BHxvebXs&feature=youtu.be
 
 == Changelog ==
 
-= 4.5(20th Dec, 2022)
+= 4.5.1(8th Feb, 2023)
+
+* Fixes compatibility issues with event calendar plugin.
+* Minor bug fixes
+
+= 4.5(14th Dec, 2022)
 
 * Checked compatibility with wordpress v6.1.1 
-* Checked with elementor to duplicate sections
+* Fixes elementor sections compatibility issue
 
 = 4.4.9(15th Jul, 2022)
 

@@ -1,4 +1,14 @@
 <?php
+/**
+ * "Content Language" taxonomy functions.
+ *
+ * In order to allow creating content in languages that don't have a dedicated
+ * site, we register "Content Language" as a taxonomy which can be set on a
+ * per-post basis. This allows for individual posts relevant to communities not
+ * otherwise served by the blog to be translated and associated with the
+ * original post in the same way that MultiLingual Press handles associating
+ * content between different lnaguage sites.
+ */
 
 /**
  * Register the content-language taxonomy.
@@ -9,12 +19,12 @@
  */
 function wmf_register_content_language_taxonomy(): void {
 	$language_type_args = array(
-		'heirarchical' => false,
+		'hierarchical' => false,
 		'show_in_rest' => true,
 		'rewrite' => false,
 		'label' => __( 'Content Language', 'shiro-admin' ),
 	);
-	register_taxonomy('content-language', apply_filters( 'wmf_content_language_post_types', [ 'post' ] ), $language_type_args );
+	register_taxonomy( 'content-language', apply_filters( 'wmf_content_language_post_types', [ 'post' ] ), $language_type_args );
 }
 
 /**
@@ -33,7 +43,7 @@ function wmf_get_current_content_language_slug(): string {
 	}
 	try {
 		return \Inpsyde\MultilingualPress\siteLocale( get_current_blog_id() );
-	} catch (\Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable $exception) {
+	} catch ( \Inpsyde\MultilingualPress\Framework\Database\Exception\NonexistentTable $exception ) {
 		return '';
 	}
 }
@@ -74,16 +84,22 @@ function wmf_get_and_maybe_create_current_language_term(): ?WP_Term {
  * @return \WP_Term|null
  */
 function wmf_create_current_language_term(): ?WP_Term {
+
 	// Make sure that we always have the "main language" term.
 	$main_locale = wmf_get_current_content_language_term();
-	if ( ! is_a( $main_locale, WP_Term::class ) ) {
-		$result = wp_create_term( wmf_get_current_content_language_slug(), 'content-language' );
-		if ( is_wp_error( $result ) ) {
-			return null;
-		}
-		return get_term( $result['term_id'], 'content-language' );
+
+	if ( is_a( $main_locale, WP_Term::class ) ) {
+		return $main_locale;
 	}
-	return $main_locale;
+
+	// If the current language term doesn't exist, create it now and return it.
+	$created_term = wp_insert_term( wmf_get_current_content_language_slug(), 'content-language' );
+
+	if ( is_wp_error( $created_term ) ) {
+		return null;
+	}
+
+	return get_term( $created_term['term_id'], 'content-language' );
 }
 
 /**
@@ -92,8 +108,7 @@ function wmf_create_current_language_term(): ?WP_Term {
  * Primarily this is used as a hook on wp_insert_post -- you usually won't be
  * calling it manually.
  *
- * @param int $post_ID
- *
+ * @param int $post_ID Post ID to set default language term on.
  * @return void
  */
 function wmf_add_default_content_language( int $post_ID ): void {
@@ -146,9 +161,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	 *    // Run command and make changes.
 	 *    wp vip apply-default-language --dry-run=false
 	 *
-	 * @param $args
-	 * @param $opts
-	 *
+	 * @param array $args Command-line positional args.
+	 * @param array $opts Command-line associative args.
 	 * @return void
 	 */
 	function wmf_cli_apply_default_language( $args, $opts ) {
@@ -161,7 +175,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		// Default to dry run.
 		$dry_run = ! ( ( $opts['dry-run'] ?? true ) === 'false' );
 
-		if ($dry_run) {
+		if ( $dry_run ) {
 			WP_CLI::warning( 'This is dry run; nothing will actually be changed.' );
 			sleep( 5 );
 		}
@@ -174,6 +188,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 		$query_args = [
 			'post_types' => apply_filters( 'wmf_content_language_post_types', [ 'post' ] ),
+
 			/*
 			 * Getting *all* posts is a bad practice, but in this case it's the
 			 * simplest solution:
@@ -190,14 +205,15 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			 */
 			'posts_per_page' => -1,
 			'fields' => 'ids',
+			// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			'tax_query' => [
 				[
 					'taxonomy' => 'content-language',
 					'field' => 'term_id',
 					'terms' => [ $term->term_id ],
 					'operator' => 'NOT EXISTS',
-				]
-			]
+				],
+			],
 		];
 		$posts = get_posts( $query_args );
 		$count = 0;
@@ -208,13 +224,13 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				$count++;
 				continue;
 			}
-			if ( count($terms) > 0 ) {
+			if ( count( $terms ) > 0 ) {
 				WP_CLI::success( "$post_id - Has languages; no need to update." );
 				$count++;
 				continue;
 			}
 
-			if ( ! $dry_run) {
+			if ( ! $dry_run ) {
 				wmf_add_default_content_language( $post_id );
 			}
 			WP_CLI::success( "$post_id - Updated content-language terms!" );

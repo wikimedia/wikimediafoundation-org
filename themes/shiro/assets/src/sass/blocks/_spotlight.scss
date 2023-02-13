@@ -70,7 +70,10 @@
 		border: 1px solid transparent;
 
 		.is-style-blue50 &,
-		.is-style-red50 & {
+		.is-style-red50 &,
+		.is-style-red &,
+		.is-style-purple &,
+		.is-style-bright-blue {
 			@include button-tertiary;
 		}
 
