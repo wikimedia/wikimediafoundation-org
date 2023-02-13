@@ -47,7 +47,6 @@ function body_class( $body_classes ) {
  * @return bool|string[] Filtered allowed blocks list.
  */
 function filter_blocks( $allowed_block_types, $block_editor_context ) {
-	error_log( print_r( $block_editor_context, true ) );
 	$blocks = [
 		// Custom blocks
 		'shiro/banner',
@@ -370,6 +369,11 @@ function add_theme_supports() {
 			'name' => __( 'Light Blue', 'shiro-admin' ),
 			'slug' => 'light-blue',
 			'color' => '#effafd',
+		],
+		[
+			'name' => __( 'Wiki Blue', 'shiro-admin' ),
+			'slug' => 'wiki-blue',
+			'color' => '#3366cc',
 		],
 	] );
 

@@ -12,8 +12,53 @@
 
 .hero-home__rotator,
 .wp-block-shiro-home-page-hero-rotator {
+	position: relative;
+
 	.hero-home:not(.hero-home--current) {
 		display: none;
+	}
+
+	.hero-home__controls {
+
+		display: none;
+
+		&--active {
+			display: block
+		}
+
+		&--previous,
+		&--next {
+			@include style-guide-button(
+				rgba( $wmui-color-base90, 0.4 ),
+				rgba( $wmui-color-base90, 0.8 ),
+				$wmui-color-base20,
+				transparent
+			);
+			position: absolute;
+			top: 50%;
+		}
+
+		&--previous {
+			left: rem(-20);
+			@include bp($width-breakpoint-tablet) {
+				left: rem(-40);
+			}
+			@include bp($width-breakpoint-desktop) {
+				left: calc(490px - 50vw);
+			}
+			transform: translateY(-50%) rotate(90deg);
+		}
+
+		&--next {
+			right: rem(-20);
+			@include bp($width-breakpoint-tablet) {
+				right: rem(-40);
+			}
+			@include bp($width-breakpoint-desktop) {
+				right: calc(490px - 50vw);
+			}
+			transform: translateY(-50%) rotate(-90deg);
+		}
 	}
 }
 

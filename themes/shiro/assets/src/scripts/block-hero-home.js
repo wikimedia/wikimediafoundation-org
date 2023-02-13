@@ -30,6 +30,7 @@ const startRotatingImages = heroRotatorBlock => {
 
 	// Ensure there are child blocks to rotate through.
 	const childBlocks = [ ...heroRotatorBlock.querySelectorAll( '.hero-home' ) ];
+	const controls = heroRotatorBlock.querySelector( '.hero-home__controls' );
 
 	if ( ! childBlocks.length ) {
 		return;
@@ -40,10 +41,20 @@ const startRotatingImages = heroRotatorBlock => {
 	childBlocks[0].classList.add( 'hero-home--current' );
 
 	if ( childBlocks.length > NO_CYCLING_HEADING_COUNT ) {
-		heroRotatorBlock.rotateImagesTimeout = setTimeout(
-			() => showNextImage( heroRotatorBlock ),
-			HERO_IMAGE_CYCLE_TIME
-		);
+
+		if ( controls ) {
+			controls.classList.add( 'hero-home__controls--active' );
+		}
+
+		controls.addEventListener( 'click', () => showNextImage( heroRotatorBlock ) );
+
+		// Disabled: the original request was for autorotating images, but
+		// client wanted to try navigation buttons instead. I suspect we'll
+		// switch back, so I'm leaving the timeout code in place for now.
+		//heroRotatorBlock.rotateImagesTimeout = setTimeout(
+		//	() => showNextImage( heroRotatorBlock ),
+		//	HERO_IMAGE_CYCLE_TIME
+		//);
 	}
 };
 
@@ -69,10 +80,10 @@ const showNextImage = heroRotatorBlock => {
 	);
 
 	// Set timer for the next iteration of this cycle.
-	heroRotatorBlock.rotateImagesTimeout = setTimeout(
-		() => showNextImage( heroRotatorBlock ),
-		HERO_IMAGE_CYCLE_TIME
-	);
+	//heroRotatorBlock.rotateImagesTimeout = setTimeout(
+	//	() => showNextImage( heroRotatorBlock ),
+	//	HERO_IMAGE_CYCLE_TIME
+	//);
 };
 
 /**
@@ -177,7 +188,13 @@ const init = () => {
  */
 const dispose = () => {
 	if ( rotatingHeroes.length ) {
-		rotatingHeroes.forEach( block => clearTimeout( block.rotateImagesTimeout ) );
+		//rotatingHeroes.forEach( block => clearTimeout( block.rotateImagesTimeout ) );
+		rotatingHeroes.forEach( block => {
+			const controls = block.querySelector( '.hero-home__controls' );
+			if ( controls ) {
+				controls.replaceWith( controls.clone( true ) );
+			}
+		} );
 	}
 
 	if ( heroes.length ) {

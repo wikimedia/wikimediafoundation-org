@@ -2,6 +2,8 @@
  * WordPress dependencies
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { createBlock } from '@wordpress/blocks';
+import { select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 import './style.scss';
@@ -40,7 +42,6 @@ export const settings = {
 				<InnerBlocks
 					template={ [ [ HERO_BLOCK ] ] }
 					allowedBlocks={ [ HERO_BLOCK ] }
-
 				/>
 			</div>
 		);
@@ -55,5 +56,30 @@ export const settings = {
 				<InnerBlocks.Content />
 			</div>
 		);
+	},
+
+	transforms: {
+		from: [
+			{
+				type: 'block',
+				blocks: [ HERO_BLOCK ],
+				isMatch: ( _, { clientId } ) => {
+					const { getBlocksByClientId, getBlockParents } = select( 'core/block-editor' );
+					const parentTypes = getBlocksByClientId( getBlockParents( clientId ) )
+						.map( ( { name } ) => name );
+					return ! parentTypes.includes( name );
+				},
+				transform: ( attributes ) => createBlock(
+					name,
+					{},
+					[
+						createBlock(
+							HERO_BLOCK,
+							attributes
+						),
+					]
+				),
+			},
+		],
 	},
 };
