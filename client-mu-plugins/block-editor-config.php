@@ -29,5 +29,4 @@ function wmf_filter_shiro_allowed_block_types( $allowed_block_types ) {
 	$allowed_block_types[] = 'simple-editorial-comments/hidden-group';
 
 	return $allowed_block_types;
-	);
 }
