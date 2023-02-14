@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46e48ab99f5215c5c016e5fc33fa3579",
+    "content-hash": "06c10b0ee1e5638655fb5d42f0a3707b",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "732fe9573e088d44eac2d2e757cec1f5d6e9512a"
+                "reference": "f5250190180463c09ddb30931dbe9161f8132c33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/732fe9573e088d44eac2d2e757cec1f5d6e9512a",
-                "reference": "732fe9573e088d44eac2d2e757cec1f5d6e9512a",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/f5250190180463c09ddb30931dbe9161f8132c33",
+                "reference": "f5250190180463c09ddb30931dbe9161f8132c33",
                 "shasum": ""
             },
             "require-dev": {
@@ -381,7 +381,7 @@
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
             },
-            "time": "2023-02-03T15:35:24+00:00"
+            "time": "2023-02-13T20:02:11+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -460,7 +460,7 @@
         },
         {
             "name": "wpackagist-plugin/duplicate-page",
-            "version": "4.5",
+            "version": "4.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duplicate-page/",
@@ -468,7 +468,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1671539394"
+                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1675851876"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
