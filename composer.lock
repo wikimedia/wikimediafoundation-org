@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f3b4e745648afc8f22450739e2a5d4d",
+    "content-hash": "2493025915095d7538f77644d93bbce0",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -385,16 +385,16 @@
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
-            "version": "dev-fix-frontend-style-meta-name",
+            "version": "dev-release-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/vegalite-wordpress-plugin.git",
-                "reference": "7812a62c3e791d66ef3a93494757ce5ea1aedaff"
+                "reference": "7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/7812a62c3e791d66ef3a93494757ce5ea1aedaff",
-                "reference": "7812a62c3e791d66ef3a93494757ce5ea1aedaff",
+                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed",
+                "reference": "7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed",
                 "shasum": ""
             },
             "require": {
@@ -417,10 +417,10 @@
             ],
             "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
             "support": {
-                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/fix-frontend-style-meta-name",
+                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/release-develop",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
-            "time": "2023-02-17T22:02:17+00:00"
+            "time": "2023-02-17T22:33:21+00:00"
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
