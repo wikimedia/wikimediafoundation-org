@@ -56,7 +56,7 @@
     "humanmade/hm-gutenberg-tools": "^1.6.2",
     "humanmade/simple-editorial-comments": "^0.1.0",
     "wikimedia/shiro-wordpress-theme": "dev-release-develop",
-    "wikimedia/vegalite-wordpress-plugin": "dev-fix-frontend-style-meta-name",
+    "wikimedia/vegalite-wordpress-plugin": "dev-release-develop",
     "wpackagist-plugin/broken-link-checker": "^1.11",
     "wpackagist-plugin/co-authors-plus": "^3.5",
     "wpackagist-plugin/duplicate-page": "^4.5",
