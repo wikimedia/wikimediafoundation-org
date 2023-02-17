@@ -1281,17 +1281,17 @@
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
-            "version": "v0.2.1",
-            "version_normalized": "0.2.1.0",
+            "version": "dev-fix-frontend-style-meta-name",
+            "version_normalized": "dev-fix-frontend-style-meta-name",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/vegalite-wordpress-plugin.git",
-                "reference": "fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8"
+                "reference": "7812a62c3e791d66ef3a93494757ce5ea1aedaff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8",
-                "reference": "fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8",
+                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/7812a62c3e791d66ef3a93494757ce5ea1aedaff",
+                "reference": "7812a62c3e791d66ef3a93494757ce5ea1aedaff",
                 "shasum": ""
             },
             "require": {
@@ -1300,7 +1300,7 @@
             "require-dev": {
                 "humanmade/coding-standards": "^1.1.0"
             },
-            "time": "2023-01-31T18:57:15+00:00",
+            "time": "2023-02-17T22:02:17+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "scripts": {
@@ -1316,7 +1316,7 @@
             ],
             "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
             "support": {
-                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.1",
+                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/fix-frontend-style-meta-name",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
             "install-path": "../../plugins/vegalite-wordpress-plugin"

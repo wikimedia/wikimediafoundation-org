@@ -1,0 +1,66 @@
+{
+  "name": "vegalite-plugin",
+  "version": "0.2.1",
+  "private": true,
+  "description": "A general-purpose WordPress data visualization block using the Vega visualization grammar",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "main": "index.js",
+  "author": "Human Made",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/wikimedia/vegalite-wordpress-plugin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wikimedia/vegalite-wordpress-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
+  },
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "block-editor"
+  ],
+  "scripts": {
+    "test": "jest",
+    "lint": "npm run eslint; npm run phpcs",
+    "eslint": "eslint src .eslintrc.js",
+    "phpcs": "composer lint",
+    "start": "webpack-dev-server --config=.webpack/webpack.config.dev.js",
+    "build": "webpack --config=.webpack/webpack.config.prod.js",
+    "bump:patch": "bump patch --commit 'Prepare v%s release' package.json README.md plugin.php",
+    "bump:minor": "bump minor --commit 'Prepare v%s release' package.json README.md plugin.php",
+    "bump:major": "bump major --commit 'Prepare v%s release' package.json README.md plugin.php"
+  },
+  "dependencies": {
+    "ajv": "^8.11.0",
+    "classnames": "^2.3.1",
+    "jsoneditor": "^9.9.0",
+    "jsoneditor-react": "^3.1.2",
+    "reselect": "^4.1.6",
+    "vega": "^5.22.1",
+    "vega-embed": "^6.21.0",
+    "vega-lite": "^5.2.0"
+  },
+  "devDependencies": {
+    "@humanmade/webpack-helpers": "^1.0.0-beta.15",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-flowtype": "^3.13.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^29.2.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-sort-destructure-keys": "^1.4.0",
+    "jest": "^28.1.0",
+    "lodash.throttle": "^4.1.1",
+    "react": "^17.0.2",
+    "sass": "^1.52.1",
+    "version-bump-prompt": "^6.1.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2"
+  }
+}
