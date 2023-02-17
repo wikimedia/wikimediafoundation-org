@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '8d997b650690727d5d5f7c1c8ed2483598d590da',
+        'reference' => '1e2c555f8238d111eb122580990bc90ae12ad674',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -154,7 +154,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '8d997b650690727d5d5f7c1c8ed2483598d590da',
+            'reference' => '1e2c555f8238d111eb122580990bc90ae12ad674',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
