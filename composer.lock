@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2493025915095d7538f77644d93bbce0",
+    "content-hash": "b08e29f9eed3f3f7f0ff4a59c31319c7",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -385,16 +385,16 @@
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
-            "version": "dev-release-develop",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/vegalite-wordpress-plugin.git",
-                "reference": "7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed"
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed",
-                "reference": "7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed",
+                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/e734cfd5e98e0637885138ef5c52bda7ec685be5",
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5",
                 "shasum": ""
             },
             "require": {
@@ -417,10 +417,10 @@
             ],
             "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
             "support": {
-                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/release-develop",
+                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
-            "time": "2023-02-17T22:33:21+00:00"
+            "time": "2023-02-20T15:31:19+00:00"
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
@@ -1485,7 +1485,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "wikimedia/shiro-wordpress-theme": 20,
-        "wikimedia/vegalite-wordpress-plugin": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
