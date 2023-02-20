@@ -1281,17 +1281,17 @@
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
-            "version": "dev-release-develop",
-            "version_normalized": "dev-release-develop",
+            "version": "v0.2.2",
+            "version_normalized": "0.2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/vegalite-wordpress-plugin.git",
-                "reference": "7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed"
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed",
-                "reference": "7be3f02f759193ccb7f552a8eb5ef5a4356bc8ed",
+                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/e734cfd5e98e0637885138ef5c52bda7ec685be5",
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5",
                 "shasum": ""
             },
             "require": {
@@ -1300,7 +1300,7 @@
             "require-dev": {
                 "humanmade/coding-standards": "^1.1.0"
             },
-            "time": "2023-02-17T22:33:21+00:00",
+            "time": "2023-02-20T15:31:19+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "scripts": {
@@ -1316,7 +1316,7 @@
             ],
             "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
             "support": {
-                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/release-develop",
+                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
             "install-path": "../../plugins/vegalite-wordpress-plugin"
