@@ -8,7 +8,7 @@
 	"editorScript": "vegalite-plugin-editor",
 	"editorStyle": "vegalite-plugin-editor",
 	"viewScript": "vegalite-plugin-frontend",
-	"viewStyle": "vegalite-plugin-frontend",
+	"style": "vegalite-plugin-frontend",
 	"attributes": {
 	  "chartId": {
 		"type": "string"
