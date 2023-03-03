@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06c10b0ee1e5638655fb5d42f0a3707b",
+    "content-hash": "b24f56fca971607b9ebe92f7af1956ee",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -385,16 +385,16 @@
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/vegalite-wordpress-plugin.git",
-                "reference": "fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8"
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8",
-                "reference": "fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8",
+                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/e734cfd5e98e0637885138ef5c52bda7ec685be5",
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5",
                 "shasum": ""
             },
             "require": {
@@ -417,10 +417,10 @@
             ],
             "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
             "support": {
-                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.1",
+                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
-            "time": "2023-01-31T18:57:15+00:00"
+            "time": "2023-02-20T15:31:19+00:00"
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
