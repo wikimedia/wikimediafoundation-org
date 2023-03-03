@@ -1,0 +1,14 @@
+{
+	"apiVersion": 2,
+	"name": "simple-editorial-comments/hidden-group",
+	"title": "Hidden Group",
+	"description": "Gather blocks in a hidden container which does not render on the frontend.",
+	"keywords": [ "container", "wrapper", "row", "section" ],
+	"textdomain": "simple-editorial-comments",
+	"category": "design",
+	"icon": "hidden",
+	"supports": {
+		"inserter": true,
+		"reusable": false
+	}
+}

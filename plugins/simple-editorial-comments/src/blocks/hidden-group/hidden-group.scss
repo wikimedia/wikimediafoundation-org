@@ -1,0 +1,4 @@
+.simple-editorial-comments-hidden-group,
+.block-editor-block-list__layout .block-editor-block-list__block.simple-editorial-comments-hidden-group:not([contenteditable]):focus {
+	outline: thick dotted goldenrod;
+}
