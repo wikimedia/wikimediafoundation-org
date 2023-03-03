@@ -8,14 +8,14 @@ updates:
   # Ensure all Wikimedia packages recieve update PRs
   allow:
   - dependency-name: wikimedia/shiro-wordpress-theme
-  target-branch: "production"
+  target-branch: production
 
 - package-ecosystem: composer
   directory: /
   schedule:
     interval: daily
-  versioning-strategy: lockfile-only
+  versioning-strategy: bump-versions
   # Ensure all Wikimedia packages recieve update PRs
   allow:
   - dependency-name: wikimedia/shiro-wordpress-theme
-  target-branch: "develop"
+  target-branch: develop
