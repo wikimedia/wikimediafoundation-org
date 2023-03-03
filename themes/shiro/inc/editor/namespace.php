@@ -370,11 +370,6 @@ function add_theme_supports() {
 			'slug' => 'light-blue',
 			'color' => '#effafd',
 		],
-		[
-			'name' => __( 'Wiki Blue', 'shiro-admin' ),
-			'slug' => 'wiki-blue',
-			'color' => '#3366cc',
-		],
 	] );
 
 	// Disable custom color and gradient selection in the editor.

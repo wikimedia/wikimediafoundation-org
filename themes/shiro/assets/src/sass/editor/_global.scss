@@ -81,3 +81,23 @@ body {
 		font-weight: 700;
 	}
 }
+
+.wp-block-button.is-style-as-link {
+	.has-blue-background-color &,
+	.has-bright-blue-background-color &,
+	.has-blue-50-background-color &,
+	.has-blue-aaa-background-color &,
+	.has-dark-green-background-color &,
+	.has-orange-background-color &,
+	.has-green-aaa-background-color &,
+	.has-green-background-color &,
+	.has-purple-background-color &,
+	.has-red-background-color &,
+	.has-red-50-background-color &,
+	.has-red-aaa-background-color & {
+		.wp-block-button__link,
+		.wp-block-button__link:hover {
+			color: $wmui-color-base100;
+		}
+	}
+}

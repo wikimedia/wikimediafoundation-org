@@ -397,6 +397,10 @@ $header-bp-mw: 1049px;
 		@include has-font-size( large );
 		font-family: $font-family-serif;
 		margin: 0;
+
+		> span {
+			display: block;
+		}
 	}
 
 	a {

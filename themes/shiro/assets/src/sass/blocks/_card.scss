@@ -1,5 +1,7 @@
 .content-card {
 	@include global-margin-bottom;
+	@include block-style-background-color;
+	@include block-style-text-color;
 
 	border: 1px solid $wmui-color-base80;
 	border-radius: 4px;
@@ -49,5 +51,19 @@
 		&::before {
 			@include absolute-full-cover();
 		}
+
+	}
+
+	&.is-style-base0,
+	&.is-style-blue50,
+	&.is-style-green,
+	&.is-style-red50,
+	&.is-style-red,
+	&.is-style-purple,
+	&.is-style-bright-blue {
+		.content-card__call-to-action  {
+			color: $wmui-color-base100;
+		}
 	}
 }
+
