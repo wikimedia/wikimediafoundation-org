@@ -107,7 +107,6 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 
 	if ( ( $block_editor_context->post->post_type ?? '' ) === 'page' ) {
 		$blocks[] = 'shiro/home-page-hero';
-		$blocks[] = 'shiro/home-page-hero-rotator';
 		$blocks[] = 'shiro/landing-page-hero';
 		$blocks[] = 'shiro/report-landing-hero';
 	}
