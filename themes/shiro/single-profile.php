@@ -69,46 +69,49 @@ while ( have_posts() ) :
 					<?php if ( ! empty( $share_links ) ) : ?>
 						<?php
 						foreach ( $share_links as $link ) :
+
 							?>
-							<div class="link-list mar-right">
-								<?php
-								$img = '';
-								if ( is_int( strpos( $link['link'], 'meta.wikimedia.org' ) ) ) {
-									$img = get_template_directory_uri() . '/assets/src/svg/globe.svg';
-								}
-								if ( is_int( strpos( $link['link'], 'mailto' ) ) ) {
-									$img = get_template_directory_uri() . '/assets/src/svg/email.svg';
-								}
-								if ( is_int( strpos( $link['link'], 'wikipedia.org' ) ) ) {
-									$img = get_template_directory_uri() . '/assets/src/svg/individual/wikipedia.svg';
-								}
-								if ( is_int( strpos( $link['link'], '/news/' ) ) ) {
-									$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
-								}
-								?>
-								<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
-									<img src="<?php echo esc_url( $img ); ?>" alt="">
-									<?php echo esc_html( $link['title'] ); ?>
-								</a></div>
-							</div>
+					<div class="link-list mar-right">
+							<?php
+							$img = '';
+							if ( is_int( strpos( $link['link'], 'meta.wikimedia.org' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/globe.svg';
+							}
+							if ( is_int( strpos( $link['link'], 'mailto' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/email.svg';
+							}
+							if ( is_int( strpos( $link['link'], 'wikipedia.org' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikipedia.svg';
+							}
+							if ( is_int( strpos( $link['link'], '/news/' ) ) ) {
+								$img = get_template_directory_uri() . '/assets/src/svg/individual/wikimedia-blue.svg';
+							}
+							?>
+						<div class="bold profile-contacts"><a href="<?php echo strpos( $link['link'], 'mailto' ) !== false ? esc_url( 'mailto:' . antispambot( str_replace( 'mailto:', '', $link['link'] ) ) ) : esc_url( $link['link'] ); ?>">
+							<img src="<?php echo esc_url( $img ); ?>" alt="">
+							<?php echo esc_html( $link['title'] ); ?>
+						</a></div>
+					</div>
 						<?php endforeach; ?>
-					<?php endif; ?>
+				<?php endif; ?>
 					<?php if ( ! empty( $connected_user ) ) : ?>
 						<?php
-							$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-ltr.svg";
-							if ( is_rtl() ) {
-								$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-rtl.svg";
-							}
-							$authorlink = wmf_get_author_link( $connected_user );
-							$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
+						$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-ltr.svg';
+						if ( is_rtl() ) {
+							$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
+						}
+						$authorlink = wmf_get_author_link( $connected_user );
+						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
 						?>
-						<div class="link-list mar-right">
-						<div class="bold profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
-								<img src="<?php echo esc_url($authorimg); ?>" alt="">
-								<?php echo esc_html( $authorlinkcopy ); ?>
-							</a></div>
+					<div class="link-list mar-right">
+						<div class="bold profile-contacts">
+							<a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
+							<img src="<?php echo esc_url( $authorimg ); ?>" alt="">
+							<?php echo esc_html( $authorlinkcopy ); ?>
+							</a>
 						</div>
-					<?php endif; ?>
+					</div>
+				<?php endif; ?>
 				</div>
 				<?php endif; ?>
 			</div>
@@ -125,7 +128,12 @@ while ( have_posts() ) :
 	get_template_part( 'template-parts/page/page', 'offsite-links' );
 
 	Credits::get_instance()->pause();
-	$template_args                  = get_post_meta( get_the_ID(), 'profiles', true );
+
+	$template_args = get_post_meta( get_the_ID(), 'profiles', true );
+	if ( ! is_array( $template_args ) ) {
+		$template_args = [];
+	}
+
 	$template_args['profiles_list'] = wmf_get_related_profiles( get_the_ID() );
 	$template_args['headline']      = ! empty( $template_args['headline'] ) ? $template_args['headline'] : $default_heading . $roles[0]->name;
 	get_template_part( 'template-parts/modules/profiles/list', null, $template_args );

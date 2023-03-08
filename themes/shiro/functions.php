@@ -336,6 +336,7 @@ Network_Settings\bootstrap();
 require get_template_directory() . '/inc/post-types/profile.php';
 require get_template_directory() . '/inc/post-types/story.php';
 require get_template_directory() . '/inc/post-types/post.php';
+require get_template_directory() . '/inc/post-types/page.php';
 
 /**
  * Logic for Custom Page Templates.
