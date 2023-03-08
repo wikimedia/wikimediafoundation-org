@@ -95,18 +95,20 @@ while ( have_posts() ) :
 					<?php endif; ?>
 					<?php if ( ! empty( $connected_user ) ) : ?>
 						<?php
-							$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-ltr.svg";
-							if ( is_rtl() ) {
-								$authorimg = get_template_directory_uri() . "/assets/src/svg/edit-rtl.svg";
-							}
-							$authorlink = wmf_get_author_link( $connected_user );
-							$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
+						$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-ltr.svg';
+						if ( is_rtl() ) {
+							$authorimg = get_template_directory_uri() . '/assets/src/svg/edit-rtl.svg';
+						}
+						$authorlink = wmf_get_author_link( $connected_user );
+						$authorlinkcopy = sprintf( /* translators: 1. post title */ __( 'Posts by %s', 'shiro' ), get_the_title() );
 						?>
 						<div class="link-list mar-right">
-						<div class="bold profile-contacts"><a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
-								<img src="<?php echo esc_url($authorimg); ?>" alt="">
+						<div class="bold profile-contacts">
+							<a href="/news/author/<?php echo esc_attr( $authorlink ); ?>">
+								<img src="<?php echo esc_url( $authorimg ); ?>" alt="">
 								<?php echo esc_html( $authorlinkcopy ); ?>
-							</a></div>
+							</a>
+						</div>
 						</div>
 					<?php endif; ?>
 				</div>
