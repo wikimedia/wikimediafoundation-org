@@ -212,7 +212,7 @@ $header-bp-mw: 1049px;
 		margin-top: rem(30);
 		width: 100%;
 
-		body.hide-page-title & {
+		body.hide-page-title & h1 {
 			@extend .visually-hidden
 		}
 	}

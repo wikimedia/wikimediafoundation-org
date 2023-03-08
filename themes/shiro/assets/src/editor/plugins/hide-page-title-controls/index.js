@@ -23,7 +23,7 @@ export const settings = {
 	render: function Render() {
 		const postType = select( 'core/editor' ).getCurrentPostType();
 
-		const [ hideTitle, setHideTitle ] = useMeta( '_wmf_hide_title', false );
+		const [ hideTitle, setHideTitle ] = useMeta( 'wmf_hide_title', false );
 
 		if ( postType !== 'page' ) {
 			return;
