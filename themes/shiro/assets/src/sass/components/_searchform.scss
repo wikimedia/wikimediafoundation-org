@@ -9,7 +9,7 @@
 		// remove browser button styling
 		border: none;
 		margin: 0;
-		width: auto;
+		width: max-content;
 		overflow: visible;
 		background: transparent;
 		color: inherit;
@@ -26,6 +26,7 @@
 		bottom: rem(2);
 		right: rem(2);
 		padding: 0 rem( 3 );
+		margin-left: auto;
 
 		&:focus {
 			@include focus-ring($hex: false, $inset: true);
