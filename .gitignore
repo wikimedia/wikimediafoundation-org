@@ -11,6 +11,7 @@ plugins/asset-loader
 plugins/broken-link-checker
 plugins/co-authors-plus
 plugins/fieldmanager
+plugins/gravityforms
 plugins/hm-gutenberg-tools
 plugins/maintenance-mode
 plugins/safe-redirect-manager

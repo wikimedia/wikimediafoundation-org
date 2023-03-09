@@ -12,8 +12,8 @@ add_filter( 'allowed_block_types_all', 'wmf_filter_shiro_allowed_block_types', 1
 /**
  * Filter the allowed block types.
  *
- * @param [] $allowed_block_types Array of block types which can be registered for the editor.
- * @return [] Filtered array of allowed block types.
+ * @param []|bool $allowed_block_types Array of allowed block types, or `true` to enable all.
+ * @return mixed Filtered array of allowed block types, or `true` if not limited.
  */
 function wmf_filter_shiro_allowed_block_types( $allowed_block_types ) {
 
@@ -22,12 +22,11 @@ function wmf_filter_shiro_allowed_block_types( $allowed_block_types ) {
 		return $allowed_block_types;
 	}
 
-	return array_merge(
-		$allowed_block_types,
-		[
-			// Supported third-party blocks
-			'vegalite-plugin/visualization',
-			'vegalite-plugin/responsive-container',
-		]
-	);
+	// Supported third-party blocks
+	$allowed_block_types[] = 'vegalite-plugin/visualization';
+	$allowed_block_types[] = 'vegalite-plugin/responsive-container';
+	$allowed_block_types[] = 'simple-editorial-comments/editorial-comment';
+	$allowed_block_types[] = 'simple-editorial-comments/hidden-group';
+
+	return $allowed_block_types;
 }
