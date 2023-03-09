@@ -1272,12 +1272,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "7d725bd1b3785278b85b3561072823131df2aba2"
+                "reference": "31207bd0e0edeba4110662e0d8c4194ffd19ed63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/7d725bd1b3785278b85b3561072823131df2aba2",
-                "reference": "7d725bd1b3785278b85b3561072823131df2aba2",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/31207bd0e0edeba4110662e0d8c4194ffd19ed63",
+                "reference": "31207bd0e0edeba4110662e0d8c4194ffd19ed63",
                 "shasum": ""
             },
             "require-dev": {
@@ -1289,7 +1289,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-03-08T17:01:19+00:00",
+            "time": "2023-03-09T16:35:39+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
@@ -1474,27 +1474,6 @@
             "installation-source": "dist",
             "homepage": "https://wordpress.org/plugins/duplicate-page/",
             "install-path": "../../plugins/duplicate-page"
-        },
-        {
-            "name": "wpackagist-plugin/press-permit-core",
-            "version": "3.8.4",
-            "version_normalized": "3.8.4.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/press-permit-core/",
-                "reference": "tags/3.8.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.8.4.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "installation-source": "dist",
-            "homepage": "https://wordpress.org/plugins/press-permit-core/",
-            "install-path": "../../plugins/press-permit-core"
         },
         {
             "name": "wpackagist-plugin/safe-redirect-manager",

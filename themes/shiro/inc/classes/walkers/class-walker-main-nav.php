@@ -14,7 +14,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 
 	// Private variable for the current menu item.
 	private $currentItemID;
-	
+
 	/**
 	 * Starts the list before the elements are added.
 	 *
@@ -32,7 +32,7 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 			'nav-sub-menu-'. $this->currentItemID,
 		);
 		$class_names = implode( ' ', $classes );
-	
+
 		// Build HTML for output.
 		$output .= "\n" . $indent . '<ul class="' . esc_attr( $class_names ) . '" data-dropdown-content="nav-sub-menu-'. $this->currentItemID . '">' . "\n";
 	}
@@ -70,7 +70,10 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 
 		// Build HTML.
 		$active_classes = [ 'current-menu-item', 'current-menu-ancestor' ];
-		$output .= 
+
+		$is_open = count( array_intersect( $active_classes, $classes ) ) > 0;
+
+		$output .=
 			$indent
 			. '<li id="nav-menu-item-'. $item->ID . '"'
 			. ' class="' . $class_names . '"'
@@ -78,8 +81,8 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 				' data-dropdown="nav-sub-menu-' . $item->ID . '"'
 				. ' data-dropdown-content=".nav-sub-menu-'. $item->ID . '"'
 				. ' data-dropdown-toggle=".nav-sub-menu-button-'. $item->ID . '"'
-				. ' data-visible="' . ( count( array_intersect( $active_classes, $classes ) ) > 0 ? 'yes' : 'no' ) . '"'
-				. ' data-toggleable="no"'
+				. ' data-visible="' . ( $is_open ? 'yes' : 'no' ) . '"'
+				. ' data-toggleable="' . ( $is_open ? 'no' : 'yes' ) . '"'
 			: '' )
 			. '>';
 
@@ -103,11 +106,12 @@ class Walker_Main_Nav extends \Walker_Nav_Menu {
 
 		if ( in_array( 'menu-item-has-children', $classes, true ) ) {
 			$label = __( 'Expand submenu for ', 'shiro' ) . apply_filters( 'the_title', $item->title, $item->ID );
-			$output .= 
+			$output .=
 			'<button class="menu-item__expand nav-sub-menu-button-'. $item->ID . '"'
 			. ' hidden'
 			. ' aria-label="' . esc_attr( $label ) . '"'
-			. ' aria-expanded="' . ( count( array_intersect( $active_classes, $classes ) ) > 0 ? 'true' : 'false' ) . '"'
+			. ' aria-expanded="' . ( $is_open ? 'true' : 'false' ) . '"'
+			. ( $is_open ? ' disabled="disabled"' : '' )
 			. ' data-dropdown-toggle="nav-sub-menu-'. $item->ID . '">'
 			. '<span class="btn-label-a11y">'
 			. esc_html( $label )

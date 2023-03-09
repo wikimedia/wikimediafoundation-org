@@ -133,6 +133,12 @@
 				flex-wrap: wrap;
 			}
 
+			// A toggleable sub-menu should be displayed over the open one.
+			&[data-toggleable="yes"][data-visible="yes"] .sub-menu {
+				background-color: $color-white;
+				z-index: 11; // Ensure this renders over the menu-item-bottom-line active item marker.
+			}
+
 			a {
 				align-items: flex-start;
 				color: $wmui-color-base0;

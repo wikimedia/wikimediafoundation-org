@@ -31,8 +31,10 @@
 }
 
 [data-dropdown-backdrop="active"] {
-	opacity: 0.6;
-	pointer-events: auto;
+	@media (max-width: $primary-nav-breakpoint) {
+		opacity: 0.6;
+		pointer-events: auto;
+	}
 }
 
 [data-dropdown-toggle][disabled] {

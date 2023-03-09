@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '19f62d1e3e6574e1b7624cd6d01a31ca1d31bce5',
+        'reference' => '4e99bc234c14817b9527150fa36e1cd0e18ff2d3',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -145,7 +145,7 @@
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../themes/shiro',
             'aliases' => array(),
-            'reference' => '7d725bd1b3785278b85b3561072823131df2aba2',
+            'reference' => '31207bd0e0edeba4110662e0d8c4194ffd19ed63',
             'dev_requirement' => false,
         ),
         'wikimedia/vegalite-wordpress-plugin' => array(
@@ -163,7 +163,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '19f62d1e3e6574e1b7624cd6d01a31ca1d31bce5',
+            'reference' => '4e99bc234c14817b9527150fa36e1cd0e18ff2d3',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -200,15 +200,6 @@
             'install_path' => __DIR__ . '/../../plugins/duplicate-page',
             'aliases' => array(),
             'reference' => 'trunk',
-            'dev_requirement' => false,
-        ),
-        'wpackagist-plugin/press-permit-core' => array(
-            'pretty_version' => '3.8.4',
-            'version' => '3.8.4.0',
-            'type' => 'wordpress-plugin',
-            'install_path' => __DIR__ . '/../../plugins/press-permit-core',
-            'aliases' => array(),
-            'reference' => 'tags/3.8.4',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/safe-redirect-manager' => array(
