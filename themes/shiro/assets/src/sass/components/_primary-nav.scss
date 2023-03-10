@@ -136,7 +136,15 @@
 			// A toggleable sub-menu should be displayed over the open one.
 			&[data-toggleable="yes"][data-visible="yes"] .sub-menu {
 				background-color: $color-white;
+				padding: rem(6) rem(40);
 				z-index: 11; // Ensure this renders over the menu-item-bottom-line active item marker.
+
+				// When toggled, the relative parent is different, so this needs to be positioned differently.
+				[data-subnav-visible="yes"] & {
+					box-sizing: content-box;
+					margin-left: rem(-40);
+					margin-right: rem(-40);
+				}
 			}
 
 			a {

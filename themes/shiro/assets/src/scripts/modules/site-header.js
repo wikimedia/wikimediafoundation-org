@@ -26,6 +26,19 @@ function createObserver() {
 }
 
 /**
+ * Is a sub-menu be opened by default?
+ *
+ * Detects whether an subnav item is expanded by virtue of being the current
+ * menu item or current menu ancestor.
+ *
+ * @param {HTMLElement} subNav Sub-menu to check.
+ * @returns {boolean} True if the element should be expanded by default.
+ */
+function isSubNavExpanded( subNav ) {
+	return !! subNav.closest( '.current-menu-item, .current-menu-parent' );
+}
+
+/**
  * Manipulate primary nav to have the viewport-correct behavior.
  *
  * The primary nav behaves differently on "mobile" and "desktop"--it uses
@@ -47,12 +60,11 @@ function processEntry( entry ) {
 			_primaryNav.dataset.visible = 'yes';
 			_primaryNav.dataset.toggleable = 'no';
 			_primaryNav.dataset.backdrop = 'inactive';
-			_primaryNav.dataset.trap = 'inactive';
+			_primaryNav.dataset.trap = 'active';
 
 			 // Make subnavs toggleable, and set visibilty as expected.
 			_subNavMenus.forEach( _subNavMenu => {
-				const isExpanded = !! _subNavMenu.closest( '.current-menu-item, .current-menu-parent' );
-
+				const isExpanded = isSubNavExpanded( _subNavMenu );
 				_subNavMenu.dataset.visible = isExpanded ? 'yes' : 'no';
 				_subNavMenu.dataset.toggleable = isExpanded ? 'no' : 'yes';
 				_subNavMenu.dropdown.toggle.removeAttribute( 'hidden' );
@@ -69,7 +81,17 @@ function processEntry( entry ) {
 			} );
 		}
 	} else if ( target.classList.contains( 'sub-menu' ) ) {
-		target.closest( '[data-dropdown]' ).dataset.trap = 'inactive';
+		const currentParentItem = target.closest( '[data-dropdown]' );
+
+		// If expanding one section, all others should close.
+		if ( currentParentItem.dataset.visible === 'yes' ) {
+			[ ..._subNavMenus ].filter( menu => menu !== currentParentItem )
+				.forEach( item => {
+					item.dataset.visible = isSubNavExpanded( item ) ? 'yes' : 'no';
+				} );
+		} else {
+			currentParentItem.dataset.trap = 'inactive';
+		}
 	}
 }
 
