@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "shiro/carousel",
+  "title": "Carousel",
+  "category": "media",
+  "icon": "images-alt2",
+  "description": "Content carousel",
+  "keywords": [
+    "carousel",
+    "gallery"
+  ],
+  "supports": {
+    "align": [
+      "center",
+      "wide",
+      "full"
+    ]
+  },
+  "version": "1.0.0",
+  "textdomain": "shiro-admin",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "currentBlock": {
+      "type": "string"
+    },
+    "perPage": {
+      "type": "integer"
+    },
+    "arrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "pagination": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "interval": {
+      "type": "integer",
+      "default": 5000
+    }
+  }
+}

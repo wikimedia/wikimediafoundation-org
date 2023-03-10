@@ -1,0 +1,15 @@
+/**
+Editor styles for the carousel block.
+*/
+
+// stylelint-disable selector-class-pattern
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > .wp-block[data-align=full] {
+	max-width: unset;
+}
+
+.editor-styles-wrapper .wp-block-shiro-carousel {
+	.inner-block-slider__navigation {
+		margin-top: 20px;
+	}
+}

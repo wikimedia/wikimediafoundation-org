@@ -1,6 +1,7 @@
 // Modern JS
 
 import './block-accordion';
+import './block-carousel';
 import './block-collapsible-text';
 import './block-hero-home';
 import clockBlock from './clock-block';
