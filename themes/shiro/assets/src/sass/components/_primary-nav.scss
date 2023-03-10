@@ -243,6 +243,10 @@
 		&:focus {
 			@include focus-ring;
 		}
+
+		@media ( min-width: #{$primary-nav-breakpoint} ) {
+			background-size: 37.5%;
+		}
 	}
 
 	.sub-menu {
