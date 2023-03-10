@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b24f56fca971607b9ebe92f7af1956ee",
+    "content-hash": "e695458ac4e3d2c90de59755ca24fcfa",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -229,6 +229,30 @@
                 }
             ],
             "time": "2021-09-13T08:19:44+00:00"
+        },
+        {
+            "name": "gravityforms/gravityforms",
+            "version": "2.6.6.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:humanmade/gravity-forms.git",
+                "reference": "a07f0a9934ccf358b06ac339b51fd6f8b7b060c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/gravity-forms/zipball/a07f0a9934ccf358b06ac339b51fd6f8b7b060c0",
+                "reference": "a07f0a9934ccf358b06ac339b51fd6f8b7b060c0",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0"
+            },
+            "type": "wordpress-plugin",
+            "support": {
+                "source": "https://github.com/humanmade/gravity-forms/tree/2.6.6.1",
+                "issues": "https://github.com/humanmade/gravity-forms/issues"
+            },
+            "time": "2022-09-11T13:16:17+00:00"
         },
         {
             "name": "humanmade/asset-loader",
