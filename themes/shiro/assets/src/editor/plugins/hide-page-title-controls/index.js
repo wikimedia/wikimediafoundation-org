@@ -6,8 +6,20 @@ import { __ } from '@wordpress/i18n';
 import useMeta from '../../hooks/useMeta';
 
 /**
- * Adds a toggle control to hide the page title, in the post status box.
+ * Render a toggle control to hide the page title.
  */
+function TogglePageTitleControl( { label, help } ) {
+	const [ hideTitle, setHideTitle ] = useMeta( 'wmf_hide_title', false );
+
+	return (
+		<ToggleControl
+			label={ label }
+			help={ help }
+			checked={ hideTitle }
+			onChange={ setHideTitle }
+		/>
+	);
+}
 
 /**
  * The name of this editor plugin. Required.
@@ -23,19 +35,15 @@ export const settings = {
 	render: function Render() {
 		const postType = select( 'core/editor' ).getCurrentPostType();
 
-		const [ hideTitle, setHideTitle ] = useMeta( 'wmf_hide_title', false );
-
 		if ( postType !== 'page' ) {
-			return;
+			return null;
 		}
 
 		return  (
 			<PluginPostStatusInfo>
-				<ToggleControl
+				<TogglePageTitleControl
 					label={ __( 'Hide this page title', 'shiro-admin' ) }
 					help={ __( 'Use this option to avoid redundant titles, for example if the page hero contains its title.', 'shiro-admin' ) }
-					checked={ hideTitle }
-					onChange={ setHideTitle }
 				/>
 			</PluginPostStatusInfo>
 		);
