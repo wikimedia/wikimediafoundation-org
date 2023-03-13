@@ -51,10 +51,6 @@ function render_block( $attributes ) {
 
 	$post_query = new \WP_Query( [
 		'post_type' => [ 'post', 'page' ],
-		'orderby'   => [
-			'relevance' => 'DESC',
-			'date'      => 'DESC',
-		],
 		'p'         => (int) $id,
 	] );
 

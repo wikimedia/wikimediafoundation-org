@@ -11,8 +11,7 @@ get_header();
 $wmf_results_copy = get_theme_mod( 'wmf_search_results_copy', /* translators: 1. search query */ __( 'Search results for %s', 'shiro-admin' ) );
 
 $template_args = array(
-	/* translators: Query that is currently being searched */
-	'h1_title' => sprintf( __( $wmf_results_copy, 'shiro' ), get_search_query() ), // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
+	'h1_title' => sprintf( $wmf_results_copy, get_search_query() ),
 );
 
 get_template_part( 'template-parts/header/page-noimage', null, $template_args );
@@ -44,25 +43,27 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 	<div class="search-results__tabs mw-980">
 		<?php
 			$options = [
-				'all' => 'All',
-				'post' => 'News',
-				'page' => 'Pages',
+				'all' => __( 'All', 'shiro' ),
+				'post' => __( 'News', 'shiro' ),
+				'page' => __( 'Pages', 'shiro' ),
 			];
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
-			if ( isset( $_GET['post_type'][0] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$query_option = sanitize_text_field( wp_unslash( $_GET['post_type'][0] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			}
+			$query_option = ( isset( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				? sanitize_text_field( wp_unslash( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				: 'all';
 			$option = array_key_exists( $query_option, $options ) ? $query_option : 'all';
 			$selected = esc_attr( $option );
 
 			foreach ( $options as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
 
-				$href = esc_url( home_url( '/' ) ) . '?s=' . get_search_query();
-				// Simplest way to get the all types is removing post_type param.
+				$href = add_query_arg( 's', get_search_query(), home_url( '/' ) );
+
+				// Simplest way to get the all types is not adding post_type param filter.
 				if ( $key !== 'all' ) {
-					$href .= '&post_type[]=' . $key;
+					$href = add_query_arg( 'post_type[]', $key, $href );
+
 					/* translators: post type, i.e., News or Pages */
 					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value );
 				} else {
