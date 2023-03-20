@@ -1,0 +1,33 @@
+// Group all style customizations for the 2019-2 transparency report together.
+.search-results {
+	&__tabs {
+		border-bottom: 1px solid $wmui-color-base70;
+		margin-bottom: 2rem !important;
+		padding-top: 2rem !important;
+
+		a {
+			padding: 0.5rem 1rem;
+			margin-right: 0.35rem;
+			border: 1px solid $wmui-color-base70;
+			border-bottom: none;
+			background-color: $wmui-color-base80;
+			text-decoration: none;
+			color: #000;
+			display: inline-block;
+
+			&:hover {
+				background-color: $wmui-color-base90;
+			}
+
+			&.active {
+				background-color: $wmui-color-base100;
+				border-bottom: 1px solid $wmui-color-base100;
+				font-weight: 800;
+			}
+		}
+	}
+}
+
+#search-results .blog-post:not(:last-child) {
+	border-bottom: 1px solid $wmui-color-base80;
+}

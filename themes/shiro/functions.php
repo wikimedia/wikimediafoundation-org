@@ -372,6 +372,11 @@ require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
 
 /**
+ * Search page customizations.
+ */
+require_once get_template_directory() . '/inc/search.php';
+
+/**
  * Modify the document title for the 404 page
  *
  * @param array $title_parts Document title parts.
@@ -509,6 +514,11 @@ add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
  */
 function shiro_add_slug_body_class( $classes ) {
 	global $post;
+
+	// ignore it for search pages
+	if ( is_search() ) {
+		return $classes;
+	}
 
 	if ( isset( $post ) ) {
 		$classes[] = $post->post_type . '-' . $post->post_name;
