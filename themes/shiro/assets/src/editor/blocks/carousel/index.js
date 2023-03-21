@@ -17,6 +17,7 @@ import {
 import { __ } from '@wordpress/i18n';
 
 import { InnerBlockSlider } from '../../components/inner-block-slider';
+import sharedStyles from '../../helpers/block-styles';
 
 import metadata from './block.json';
 import './style.scss';
@@ -47,6 +48,8 @@ const TEMPLATE = [
 ];
 
 export const { name } = metadata;
+
+export const styles = sharedStyles;
 
 export const settings = {
 	...metadata,

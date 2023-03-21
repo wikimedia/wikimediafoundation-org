@@ -29,7 +29,8 @@
       "default": ""
     },
     "currentBlock": {
-      "type": "string"
+      "type": "string",
+      "default": "shiro/home-page-hero"
     },
     "perPage": {
       "type": "integer"
