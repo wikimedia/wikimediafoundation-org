@@ -336,6 +336,7 @@ Network_Settings\bootstrap();
 require get_template_directory() . '/inc/post-types/profile.php';
 require get_template_directory() . '/inc/post-types/story.php';
 require get_template_directory() . '/inc/post-types/post.php';
+require get_template_directory() . '/inc/post-types/page.php';
 
 /**
  * Logic for Custom Page Templates.
@@ -369,6 +370,11 @@ require get_template_directory() . '/inc/shortcodes/focus-blocks.php';
  */
 require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
+
+/**
+ * Search page customizations.
+ */
+require_once get_template_directory() . '/inc/search.php';
 
 /**
  * Modify the document title for the 404 page
@@ -508,6 +514,11 @@ add_action( 'admin_menu', 'shiro_link_reusable_blocks_url' );
  */
 function shiro_add_slug_body_class( $classes ) {
 	global $post;
+
+	// ignore it for search pages
+	if ( is_search() ) {
+		return $classes;
+	}
 
 	if ( isset( $post ) ) {
 		$classes[] = $post->post_type . '-' . $post->post_name;

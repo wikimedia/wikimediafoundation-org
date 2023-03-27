@@ -211,6 +211,10 @@ $header-bp-mw: 1049px;
 		z-index: 2;
 		margin-top: rem(30);
 		width: 100%;
+
+		body.hide-page-title & h1 {
+			@extend .visually-hidden
+		}
 	}
 
 	&.featured-photo--content-left .header-content h2.eyebrow.h4:first-child {
@@ -397,6 +401,10 @@ $header-bp-mw: 1049px;
 		@include has-font-size( large );
 		font-family: $font-family-serif;
 		margin: 0;
+
+		> span {
+			display: block;
+		}
 	}
 
 	a {

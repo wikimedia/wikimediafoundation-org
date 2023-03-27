@@ -14,9 +14,6 @@
 		width: 100%;
 
 		@media ( min-width: #{$primary-nav-breakpoint} ) {
-			align-items: flex-start;
-			display: flex;
-			justify-content: flex-start;
 			width: 100%;
 		}
 
@@ -76,6 +73,7 @@
 		align-items: start;
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: space-between;
 		list-style: none;
 
 		[data-dropdown-status="initialized"] & {

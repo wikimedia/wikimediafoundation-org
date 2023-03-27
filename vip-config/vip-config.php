@@ -35,3 +35,7 @@ define( 'VIP_MAINTENANCE_MODE', false );
 
 // Enforce 2FA on Wednesday, Sept. 4 at 1800 UTC
 define( 'VIP_2FA_TIME_GATE', strtotime( '2019-09-04 18:00:00' ) );
+
+// Provide Gravity Forms license key through config rather than requiring users to manually input it.
+define( 'GF_LICENSE_KEY', '112b41c94e39756b66180bcd20520e9e' );
+

@@ -17,7 +17,7 @@ $translations = array_filter( wmf_get_translations(), function ( $translation ) 
 
 <div class="site-header">
 	<div class="site-header__inner"
-		<?php if ( count( $translations ) > 0 ): ?>
+		<?php if ( count( $translations ) > 0 ) : ?>
 			data-dropdown="language-switcher" data-dropdown-toggle=".language-switcher__button"
 			data-dropdown-status="uninitialized"
 			data-dropdown-content=".language-switcher__content"
@@ -25,9 +25,10 @@ $translations = array_filter( wmf_get_translations(), function ( $translation ) 
 		<?php endif; ?>>
 		<?php get_template_part( 'template-parts/site-header/toggle' ); ?>
 		<?php get_template_part( 'template-parts/site-header/logo' ); ?>
-		<?php get_template_part( 'template-parts/site-header/language-switcher',
-			null,
-			[ 'translations' => $translations ] ); ?>
+		<div class='nav-search nav-search--desktop'>
+			<?php get_template_part( 'template-parts/site-navigation/search' ); ?>
+		</div>
+		<?php get_template_part( 'template-parts/site-header/language-switcher', null, [ 'translations' => $translations ] ); ?>
 		<?php get_template_part( 'template-parts/site-header/donate' ); ?>
 	</div>
 </div>
