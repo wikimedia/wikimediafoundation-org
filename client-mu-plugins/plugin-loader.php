@@ -16,6 +16,7 @@
 wpcom_vip_load_plugin( 'asset-loader' );
 wpcom_vip_load_plugin( 'co-authors-plus' );
 wpcom_vip_load_plugin( 'fieldmanager' );
+wpcom_vip_load_plugin( 'gravityforms' );
 wpcom_vip_load_plugin( 'maintenance-mode' );
 wpcom_vip_load_plugin( 'safe-redirect-manager' );
 wpcom_vip_load_plugin( 'safe-svg' );

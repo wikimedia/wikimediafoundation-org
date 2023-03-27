@@ -1,0 +1,21 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: /
+  schedule:
+    interval: daily
+  versioning-strategy: lockfile-only
+  # Ensure all Wikimedia packages recieve update PRs
+  allow:
+  - dependency-name: wikimedia/shiro-wordpress-theme
+  target-branch: "production"
+
+- package-ecosystem: composer
+  directory: /
+  schedule:
+    interval: daily
+  versioning-strategy: lockfile-only
+  # Ensure all Wikimedia packages recieve update PRs
+  allow:
+  - dependency-name: wikimedia/shiro-wordpress-theme
+  target-branch: "develop"

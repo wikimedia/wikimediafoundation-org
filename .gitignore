@@ -11,12 +11,14 @@ plugins/asset-loader
 plugins/broken-link-checker
 plugins/co-authors-plus
 plugins/fieldmanager
+plugins/gravityforms
 plugins/hm-gutenberg-tools
 plugins/maintenance-mode
 plugins/safe-redirect-manager
 plugins/safe-svg
 plugins/simple-editorial-comments
 plugins/user-switching
+plugins/vegalite-wordpress-plugin
 plugins/wikipedia-preview
 themes/shiro
 

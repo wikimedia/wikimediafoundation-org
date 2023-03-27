@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55ce448d7f7f5344b899cf7898a985ce",
+    "content-hash": "e695458ac4e3d2c90de59755ca24fcfa",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -231,6 +231,30 @@
             "time": "2021-09-13T08:19:44+00:00"
         },
         {
+            "name": "gravityforms/gravityforms",
+            "version": "2.6.6.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:humanmade/gravity-forms.git",
+                "reference": "a07f0a9934ccf358b06ac339b51fd6f8b7b060c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/gravity-forms/zipball/a07f0a9934ccf358b06ac339b51fd6f8b7b060c0",
+                "reference": "a07f0a9934ccf358b06ac339b51fd6f8b7b060c0",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0"
+            },
+            "type": "wordpress-plugin",
+            "support": {
+                "source": "https://github.com/humanmade/gravity-forms/tree/2.6.6.1",
+                "issues": "https://github.com/humanmade/gravity-forms/issues"
+            },
+            "time": "2022-09-11T13:16:17+00:00"
+        },
+        {
             "name": "humanmade/asset-loader",
             "version": "v0.6.3",
             "source": {
@@ -338,12 +362,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "bd1fa0fa1de0ac86a9c3ae3b177f302f0edd0523"
+                "reference": "294685b2bb7a89c8a095ddcf8dc27781d334665e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/bd1fa0fa1de0ac86a9c3ae3b177f302f0edd0523",
-                "reference": "bd1fa0fa1de0ac86a9c3ae3b177f302f0edd0523",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/294685b2bb7a89c8a095ddcf8dc27781d334665e",
+                "reference": "294685b2bb7a89c8a095ddcf8dc27781d334665e",
                 "shasum": ""
             },
             "require-dev": {
@@ -381,20 +405,20 @@
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
             },
-            "time": "2023-03-27T13:35:34+00:00"
+            "time": "2023-03-20T13:58:19+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/vegalite-wordpress-plugin.git",
-                "reference": "fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8"
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8",
-                "reference": "fa512aead397fab5eb26f7d11cd57d2b0a1ea2e8",
+                "url": "https://api.github.com/repos/wikimedia/vegalite-wordpress-plugin/zipball/e734cfd5e98e0637885138ef5c52bda7ec685be5",
+                "reference": "e734cfd5e98e0637885138ef5c52bda7ec685be5",
                 "shasum": ""
             },
             "require": {
@@ -417,10 +441,10 @@
             ],
             "description": "Flexible data visualization using Vega Lite and per-post dataset management.",
             "support": {
-                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.1",
+                "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
-            "time": "2023-01-31T18:57:15+00:00"
+            "time": "2023-02-20T15:31:19+00:00"
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
@@ -460,7 +484,7 @@
         },
         {
             "name": "wpackagist-plugin/duplicate-page",
-            "version": "4.5",
+            "version": "4.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duplicate-page/",
@@ -468,7 +492,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1671539394"
+                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1675851876"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
