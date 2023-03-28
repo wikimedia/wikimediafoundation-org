@@ -42,7 +42,7 @@
 
 		@media (prefers-reduced-motion: no-preference) {
 			animation: hero-home-animation 300s linear infinite;
-		}
+	}
 
 		&--disable-animation {
 			animation-play-state: paused;

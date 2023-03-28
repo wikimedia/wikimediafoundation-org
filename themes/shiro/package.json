@@ -98,6 +98,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@splidejs/splide": "^4.1.4",
     "@wordpress/i18n": "^4.11.0",
     "bootstrap": "^4.6.1",
     "composer": "^4.1.0",

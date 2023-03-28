@@ -4,8 +4,8 @@
  * Plugin URI: https://github.com/wikimedia/wikipedia-preview
  * Description: Provide context to your readers by displaying a Wikipedia article preview when a reader clicks or hovers over a word or concept.
  * Text Domain: wikipedia-preview
- * Version: 1.6.0
- * Requires at least: 4.6
+ * Version: 1.9.0
+ * Requires at least: 6.1
  * Requires PHP: 5.6.39
  * Author: Wikimedia Foundation
  * Author URI: https://wikimediafoundation.org/
@@ -13,9 +13,12 @@
  * License URI: https://github.com/wikimedia/wikipedia-preview/blob/main/LICENSE
  */
 
-DEFINE( 'WIKIPEDIA_PREVIEW_PLUGIN_VERSION', '1.6.0' );
+DEFINE( 'WIKIPEDIA_PREVIEW_PLUGIN_VERSION', '1.9.0' );
 
 function wikipediapreview_enqueue_scripts() {
+	if ( ! in_array( get_post_type(), array( 'post', 'page' ), true ) ) {
+		return;
+	}
 	$build_dir       = plugin_dir_url( __FILE__ ) . 'build/';
 	$libs_dir        = plugin_dir_url( __FILE__ ) . 'libs/';
 	$media_type_all  = 'all';
@@ -111,6 +114,25 @@ function register_detectlinks_postmeta() {
 	register_post_meta( $all_post_types, $meta_name, $options );
 }
 
+function make_link( $text, $url ) {
+	return '<a target="_BLANK" href="' . esc_url( $url ) . '">' . $text . '</a>';
+}
+
+function add_meta_links( $links_array, $plugin_file_name, $plugin_data, $status ) {
+	if ( strpos( $plugin_file_name, basename( __FILE__ ) ) ) {
+		$links_array = array_merge(
+			$links_array,
+			array(
+				make_link( __( 'Review', 'wikipedia-preview' ), 'https://wordpress.org/support/plugin/wikipedia-preview/reviews/#new-post' ),
+				make_link( __( 'Support', 'wikipedia-preview' ), 'https://wordpress.org/support/plugin/wikipedia-preview/' ),
+			)
+		);
+	}
+
+	return $links_array;
+}
+
+add_filter( 'plugin_row_meta', 'add_meta_links', 10, 4 );
 register_deactivation_hook( __FILE__, 'wikipediapreview_detect_deletion' );
 add_action( 'wp_enqueue_scripts', 'wikipediapreview_enqueue_scripts' );
 add_action( 'enqueue_block_editor_assets', 'wikipediapreview_guten_enqueue' );
@@ -118,3 +140,4 @@ add_action( 'init', 'myguten_set_script_translations' );
 add_action( 'init', 'register_detectlinks_postmeta' );
 
 require __DIR__ . '/banner.php';
+require __DIR__ . '/intro.php';
