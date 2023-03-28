@@ -543,7 +543,3 @@ function shiro_safe_title( string $title ): void {
 		]
 	);
 }
-
-wp_register_script('var_tests', './assets/src/js/global.js');
-wp_localize_script('var_tests', 'var_test',true);
-wp_enqueue_script( 'var_tests' );
