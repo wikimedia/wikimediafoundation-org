@@ -33,6 +33,8 @@
 
 	&__image {
 		@include absolute-full-cover();
+		content: unset !important; // Overwritting content property from the mixin - see #799
+
 		object-fit: cover;
 	}
 

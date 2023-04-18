@@ -22,6 +22,7 @@
 
 @mixin absolute-full-cover() {
 	bottom: 0;
+	content: "";
 	display: block;
 	height: 100%;
 	left: 0;
