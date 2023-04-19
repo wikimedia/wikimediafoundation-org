@@ -144,7 +144,10 @@ class Module
                 ];
 
                 // Add the CSS class to change the item color and add a reference to the respective URL.
-                $newItemIndex = $this->getUpgradeMenuItemIndex($submenu[$settings['parent']], $settings);
+                $newItemIndex = false;
+                if (isset($submenu[$settings['parent']])) {
+                    $newItemIndex = $this->getUpgradeMenuItemIndex($submenu[$settings['parent']], $settings);
+                }
 
                 if (false !== $newItemIndex) {
                     $submenu[$settings['parent']][$newItemIndex][4] = 'pp-version-notice-upgrade-menu-item ' . $pluginName;
@@ -155,6 +158,10 @@ class Module
 
     private function getUpgradeMenuItemIndex($submenuItems, $settings)
     {
+        if (!is_array($submenuItems)) {
+            return false;
+        }
+
         foreach ($submenuItems as $index => $item) {
             if ($item[0] === $settings['label'] && $item[2] === $this->getSubmenuSlug($settings)) {
                 return $index;

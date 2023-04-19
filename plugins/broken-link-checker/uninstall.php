@@ -8,6 +8,9 @@
 
 if ( defined( 'ABSPATH' ) && defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
+	// Remove V2 options.
+	delete_option( 'blc_settings' );
+
 	// Remove the plugin's settings & installation log.
 	delete_option( 'wsblc_options' );
 	delete_option( 'blc_activation_enabled' );

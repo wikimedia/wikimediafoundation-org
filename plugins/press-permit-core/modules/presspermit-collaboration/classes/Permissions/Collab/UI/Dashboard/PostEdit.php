@@ -40,6 +40,8 @@ class PostEdit
             $descendants = \PublishPress\Permissions\Collab\PostSaveHierarchical::getPageDescendantIds($post->ID);
             $descendants[] = $post->ID;
             $clauses['where'] .= " AND $col_id NOT IN ('" . implode("','", $descendants) . "')";
+        } else {
+            $descendants = [];
         }
 
         if (!current_user_can('pp_associate_any_page')) {
@@ -51,6 +53,15 @@ class PostEdit
                 compact('col_id'))
             ) {
                 $clauses['where'] .= $restriction_where;
+            }
+
+            $user = presspermit()->getUser();
+
+            // If all included parent IDs are descendants (or the page itself), avoid treating it as unrestricted
+            if ($include_ids = $user->getExceptionPosts('associate', 'include', $post_type)) {
+                if (!array_diff($include_ids, $descendants)) {
+                    $clauses['where'] .= " AND 1=2";
+                }
             }
         }
 

@@ -244,7 +244,7 @@ class CapabilityFilters
 
                                 $exc_post_type = apply_filters('presspermit_exception_post_type', $item_type, $op, $_args);
 
-                                if ($additional_ids = $user->getExceptionPosts($op, 'additional', $exc_post_type, ['status' => true, 'merge_related_operations' => true])) {
+                                if ($additional_ids = $user->getExceptionPosts($op, 'additional', $exc_post_type, ['status' => true, 'merge_related_operations' => true, 'has_cap_check' => true])) {
                                     $additional_ids = Arr::flatten(array_intersect_key($additional_ids, $valid_stati));
 
                                     if (defined('PP_RESTRICTION_PRIORITY') && PP_RESTRICTION_PRIORITY) {
@@ -423,7 +423,8 @@ class CapabilityFilters
             'post_type' => $post_type,
             'post_id' => $post_id,
             'user_id' => (int) $args[1],
-            'required_operation' => $pp_args['required_operation']
+            'required_operation' => $pp_args['required_operation'],
+            'orig_reqd_caps' => $orig_reqd_caps
         ];
 
         if ($_vars = apply_filters_ref_array('presspermit_has_post_cap_vars', [$null_vars, $wp_sitecaps, $pp_reqd_caps, $post_cap_args])) {

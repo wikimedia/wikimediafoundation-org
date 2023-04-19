@@ -8,7 +8,7 @@ Library for displaying ads for Pro plugins in WordPress.
 ## Installation
 
 ```shell script
-$ composer update --no-dev
+$ composer require publishpress/wordpress-version-notices
 ```
 
 ## Integrating into a plugin
@@ -17,9 +17,11 @@ Due to a conflict in the tests we didn't register the include file in the Compos
 
 ### Loading the library
 
+```php
 if (!defined('PP_VERSION_NOTICES_LOADED')) {
     require_once __DIR__ . '/vendor/publishpress/wordpress-version-notices/includes.php';
 }
+```
 
 ### Top Notice
 

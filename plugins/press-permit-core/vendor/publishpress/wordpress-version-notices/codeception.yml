@@ -19,5 +19,7 @@ extensions:
 params:
     - .env.testing
 settings:
+    lint: true
     report_useless_tests: true
+    colors: true
 bootstrap: bootstrap.php

@@ -10,7 +10,7 @@
  * Plugin Name: Broken Link Checker
  * Plugin URI:  https://wordpress.org/plugins/broken-link-checker/
  * Description: Checks your blog for broken links and missing images and notifies you on the dashboard if any are found.
- * Version:     1.11.21
+ * Version:     2.0.0
  * Author:      WPMU DEV
  * Author URI:  https://wpmudev.com/
  * Text Domain: broken-link-checker
@@ -33,15 +33,99 @@ You should have received a copy of the GNU General Public License
 along with Broken Link Checker. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
-// Path to this file.
-if ( ! defined( 'BLC_PLUGIN_FILE' ) ) {
-	define( 'BLC_PLUGIN_FILE', __FILE__ );
+namespace WPMUDEV_BLC;
+
+// If this file is called directly, abort.
+defined( 'WPINC' ) || die;
+
+// Plugin version.
+if ( ! defined( 'WPMUDEV_BLC_VERSION' ) ) {
+	define( 'WPMUDEV_BLC_VERSION', '2.0.0' );
 }
 
-// Path to the plugin's directory.
-if ( ! defined( 'BLC_DIRECTORY' ) ) {
-	define( 'BLC_DIRECTORY', dirname( __FILE__ ) );
+// Define WPMUDEV_BLC_PLUGIN_FILE.
+if ( ! defined( 'WPMUDEV_BLC_PLUGIN_FILE' ) ) {
+	define( 'WPMUDEV_BLC_PLUGIN_FILE', __FILE__ );
 }
 
-// Load the actual plugin.
-require 'core/init.php';
+// Plugin directory.
+if ( ! defined( 'WPMUDEV_BLC_DIR' ) ) {
+	define( 'WPMUDEV_BLC_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+// Plugin url.
+if ( ! defined( 'WPMUDEV_BLC_URL' ) ) {
+	define( 'WPMUDEV_BLC_URL', plugin_dir_url( __FILE__ ) );
+}
+// Assets url.
+if ( ! defined( 'WPMUDEV_BLC_ASSETS_URL' ) ) {
+	define( 'WPMUDEV_BLC_ASSETS_URL', plugin_dir_url( __FILE__ ) . trailingslashit( 'assets' ) );
+}
+
+// Scripts version.
+if ( ! defined( 'WPMUDEV_BLC_SCIPTS_VERSION' ) ) {
+	define( 'WPMUDEV_BLC_SCIPTS_VERSION', '2.0.0' );
+}
+
+// SUI version number used in BLC_SHARED_UI_VERSION and enqueues.
+if ( ! defined( 'BLC_SHARED_UI_VERSION_NUMBER' ) ) {
+	define( 'BLC_SHARED_UI_VERSION_NUMBER', '2-12-15' );
+}
+
+// SUI version used in admin body class.
+if ( ! defined( 'BLC_SHARED_UI_VERSION' ) ) {
+	define( 'BLC_SHARED_UI_VERSION', 'sui-' . BLC_SHARED_UI_VERSION_NUMBER );
+}
+
+// Autoloader.
+require_once plugin_dir_path( __FILE__ ) . 'core/utils/autoloader.php';
+
+/**
+ * Run plugin activation hook to setup plugin.
+ *
+ * @since 2.0.0
+ */
+
+// Make sure wpmudev_blc_instance is not already defined.
+if ( ! function_exists( 'wpmudev_blc_instance' ) ) {
+	/**
+	 * Main instance of plugin.
+	 *
+	 * Returns the main instance of WPMUDEV_BLC to prevent the need to use globals
+	 * and to maintain a single copy of the plugin object.
+	 * You can simply call WPMUDEV_BLC\instance() to access the object.
+	 *
+	 * @since  2.0.0
+	 *
+	 * @return object WPMUDEV_BLC\Core\Loader
+	 */
+	function wpmudev_blc_instance() {
+		return Core\Loader::instance();
+	}
+
+	// Init the plugin and load the plugin instance for the first time.
+	add_action( 'plugins_loaded', 'WPMUDEV_BLC\\wpmudev_blc_instance' );
+
+	register_activation_hook(
+		__FILE__,
+		function() {
+			Core\Activation::instance();
+		}
+	);
+
+	register_deactivation_hook(
+		__FILE__,
+		function() {
+			Core\Deactivation::instance();
+		}
+	);
+}
+
+// Load the legacy plugin.
+add_action(
+	'plugins_loaded',
+	function() {
+		require 'legacy/init.php';
+	},
+	11
+);

@@ -4,22 +4,7 @@ This is a library for protecting WordPress plugins to run twice instances at the
 
 ## Installation
 
-This library should be added as a composer requirement.
-
-First you need to include the repository, adding the following code to the `composer.json` file:
-
-```json
-{
-    "repositories": [
-        {
-        "type": "git",
-        "url": "https://github.com/publishpress/publishpress-instance-protection"
-        }
-    ]
-}
-```
-
-Then require the library running the command:
+This library should be added as a composer requirement running the command:
 
 ```shell
 composer require publishpress/publishpress-instance-protection
@@ -100,6 +85,7 @@ if (class_exists('PublishPressInstanceProtection\\Config')) {
     $pluginCheckerConfig = new PublishPressInstanceProtection\Config();
     $pluginCheckerConfig->pluginSlug = 'publishpress-authors';
     $pluginCheckerConfig->pluginName = 'PublishPress Authors';
+    $pluginCheckerConfig->pluginFolder = 'publishpress-authors'; // Only required if the folder is different from the slug.
 
     $pluginChecker = new PublishPressInstanceProtection\InstanceChecker($pluginCheckerConfig);
 }
@@ -120,6 +106,7 @@ if (class_exists('PublishPressInstanceProtection\\Config')) {
     $pluginCheckerConfig = new PublishPressInstanceProtection\Config();
     $pluginCheckerConfig->pluginSlug = 'publishpress-authors-pro';
     $pluginCheckerConfig->pluginName = 'PublishPress Authors Pro';
+    $pluginCheckerConfig->pluginFolder = 'publishpress-authors-pro'; // Only required if the folder is different from the slug.
     $pluginCheckerConfig->isProPlugin = true;
     $pluginCheckerConfig->freePluginName = 'PublishPress Authors';
 

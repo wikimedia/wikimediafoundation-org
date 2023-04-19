@@ -26,9 +26,8 @@
 namespace PPVersionNotices\Module\TopNotice;
 
 use PPVersionNotices\Module\AdInterface;
-use PPVersionNotices\Template\TemplateLoaderInterface;
 use PPVersionNotices\Template\TemplateInvalidArgumentsException;
-use PPVersionNotices\Template\TemplateNotFoundException;
+use PPVersionNotices\Template\TemplateLoaderInterface;
 
 /**
  * Class Module
@@ -109,6 +108,10 @@ class Module implements AdInterface
 
         if (!empty($screen)) {
             foreach ($this->settings as $pluginName => $setting) {
+                if (!is_array($setting) || !isset($setting['screens'])) {
+                    continue;
+                }
+
                 foreach ($setting['screens'] as $screenParams) {
                     if ($screenParams === true) {
                         return $setting;

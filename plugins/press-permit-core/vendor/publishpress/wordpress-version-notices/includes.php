@@ -27,7 +27,7 @@ use Pimple\Container;
 use PPVersionNotices\ServicesProvider;
 
 if (!defined('PP_VERSION_NOTICES_LOADED')) {
-    define('PP_VERSION_NOTICES_VERSION', '1.1.1');
+    define('PP_VERSION_NOTICES_VERSION', '1.3.0');
     define('PP_VERSION_NOTICES_BASE_PATH', __DIR__);
     define('PP_VERSION_NOTICES_BASE_URL', untrailingslashit(plugin_dir_url(__FILE__)));
     define('PP_VERSION_NOTICES_SRC_PATH', PP_VERSION_NOTICES_BASE_PATH . '/src');

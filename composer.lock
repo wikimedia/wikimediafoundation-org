@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9a29ee9857fb19a3770ebc86823ce63",
+    "content-hash": "c93d867e8827c2e8cc5c2a5efa50d638",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -448,15 +448,15 @@
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
-            "version": "1.11.21",
+            "version": "2.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/broken-link-checker/",
-                "reference": "tags/1.11.21"
+                "reference": "tags/2.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.21.zip"
+                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.2.0.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -502,15 +502,15 @@
         },
         {
             "name": "wpackagist-plugin/press-permit-core",
-            "version": "3.8.4",
+            "version": "3.8.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/press-permit-core/",
-                "reference": "tags/3.8.4"
+                "reference": "tags/3.8.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.8.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.8.7.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

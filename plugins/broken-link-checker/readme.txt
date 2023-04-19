@@ -1,71 +1,123 @@
+
 === Broken Link Checker ===
 Contributors: managewp, wpmudev
 Tags: links, broken links, internal link, external link, broken images, seo, test links, check links, bad links
 Requires at least: 5.2
-Tested up to: 6.1
-Stable tag: 1.11.21
+Tested up to: 6.1.1
+Stable tag: 2.0.0
+Requires PHP: 7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Check posts, pages & all content for broken links & missing images to improve SEO. Get notified when bad links are found.
 
 == Description ==
-Broken Link Checker monitors and tests all internal links & external links on your site looking for broken links. It helps you fix bad links to improve SEO and user experience.
+The fastest and most accurate broken link checker for WordPress. Join over 700K people who use Broken Link Checker to monitor and detect broken links 20x faster than other plugins, with pinpoint accuracy. No page limits, no ads, no upsells. Enjoy effortless, unlimited, and automated broken link checking from the get-go.
 
-**Features**
+**Broken links can kill your SEO, user experience, and site health… Broken Link Checker helps you find and resolve them faster than similar plugins.**
 
-* Monitors external links and internal links in your posts, pages, comments, the blogroll, and custom fields (optional).
-* Detects links that don't work, missing images and redirects.
-* Notifies you either via the Dashboard or by email.
-* Makes broken links display differently in posts (optional).
-* Prevents search engines from following broken links (optional).
-* You can search and filter links by URL, anchor text and so on.
-* Links can be edited directly from the plugin's page, without manually updating each post.
-* Highly configurable.
+Finding and staying on top of broken links can feel like a never-ending battle, especially if you're dealing with large sites or managing multiple.
 
-**Basic Usage**
+Using a link checking tool can save you from having to find links manually, or avoid the frustration of discovering missed broken links months later (oops!).
 
-Once installed, the plugin will begin parsing your posts, bookmarks (AKA blogroll) and other content and looking for links. Depending on the size of your site this can take from a few minutes up to an hour or more. When parsing is complete, the plugin will start checking each link to see if it works. Again, how long this takes depends on how big your site is and how many links there are. You can monitor the progress and tweak various link checking options in *Settings -> Link Checker*.
+But not every broken link checker was created equal…
 
-The broken links, if any are found, will show up in a new tab of the WP admin panel - *Tools -> Broken Links*. A notification will also appear in the "Broken Link Checker" widget on the Dashboard. To save display space, you can keep the widget closed and configure it to expand automatically when problematic links are detected. E-mail notifications need to be enabled separately (in *Settings -> Link Checker*).
+You need a tool that not only automates the process, but also detects broken links quickly, thoroughly, and accurately.
 
-The "Broken Links" tab will by default display a list of broken links that have been detected so far. However, you can use the links on that page to view redirects or see a listing of all links - working or not - instead. You can also create new link filters by performing a search and clicking the "Create Custom Filter" button. For example, this can be used to create a filter that only shows comment links.
+**That’s where Broken Link Checker comes in…**
 
-There are several actions associated with each link. They show up when you move your mouse over to one of the links listed the aforementioned tab -
+BLC doesn’t *just* scan your sites faster than other solutions, it scans deeply and frequently to ensure no broken links are missed.
 
-* "Edit URL" lets you change the URL of that link. If the link is present in more than one place (e.g. both in a post and in the blogroll), all occurrences of that URL will be changed.
-* "Unlink" removes the link but leaves the link text intact.
-* "Not broken" lets you manually mark a "broken" link as working. This is useful if you know it was incorrectly detected as broken due to a network glitch or a bug. The marked link will still be checked periodically, but the plugin won't consider it broken unless it gets a new result.
-* "Dismiss" hides the link from the "Broken Links" and "Redirects" views. It will still be checked as normal and get the normal link styles (e.g. a strike-through effect for broken links), but won't be reported again unless its status changes. Useful if you want to acknowledge a link as broken/redirected and just leave as it is.
+Scan every inch of your sites, including external and internal links within your posts, pages, comments, blogroll, even custom fields.
 
-You can also click on the contents of the "Status" or "Link Text" columns to get more info about the status of each link.
+It’ll also detect missing images and redirects, helping to ensure your site's SEO and user experience are not compromised in any way. And if that isn't enough, you’ll also receive detection reports via email so you can quickly take corrective action.
 
-**Other Credits**
+**Choose from two different link checking engines:**
 
-This plugin uses some icons from the [Font Awesome icon font](http://fortawesome.github.io/Font-Awesome/). Font Awesome is licensed under SIL OFL 1.1.
+Broken Link Checker gives you the option of using two unique engines based on your needs. You can also easily switch between local and cloud broken link checking **without losing your saved settings.**
 
-**Contribute**
+**1.Cloud-based link checker**
 
-Broken Link Checker is now on [GitHub](https://github.com/wpmudev/broken-link-checker). Pull Requests welcome.
+This engine is 100% cloud-based and built directly on WPMU DEV’s servers (the owners of BLC), harnessing their powerful API.
 
-== Installation ==
+*Note that our cloud-based engine is still in beta. We’re working around the clock to make this new version even better. As mentioned, if it’s missing a feature you need, simply switch back to the local version.*
 
-To do a new installation of the plugin, please follow these steps
+This cloud-based engine gives you several advantages, including:
 
-1. Download the broken-link-checker.zip file to your computer.
-1. Unzip the file
-1. Upload `broken-link-checker` folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+-   **20x more speed** - Being cloud-based eliminates any dependence on the performance of your server, giving you a massive speed increase.
 
-To enable/disable various features and tweak the plugin's configuration go to *Settings -> Link Checker*.
+-   **Unlimited page & URL checker** - Enjoy limitless scanning for pages and URLs, ideal if you’re working with multiple sites or large sites with a lot of content.
+-   **Edit/unlink broken links (coming soon)** - Effortlessly resolve all detected links right from your BLC dashboard.
 
-To upgrade your installation
+-   **Crawl it all** - Standard pages and posts, menus, category pages... BLC ensures no URL is missed.
 
-1. Deactivate the plugin
-1. Retrieve and upload the new files (do steps 1. - 3. from "new installation" instructions)
-1. Reactivate the plugin. Your settings will be retained from the previous version.
+-   **Any site, any size** - Unlike plugin-based solutions, BLC is server-independent, making it capable of checking sites of any size and type.
+
+- **Fewer errors** - BLC’s cloud-based nature eliminates the occurrence of WP Errors, Fatal Errors, DB Errors, and PHP Errors often present with other plugins.
+
+- **Less chance of being blocked** - The cloud-based engine doesn't use your site's IP address to check external URLs, meaning you’re less likely to be blocked due to frequent requests.
+
+**Plus, manage broken links for unlimited sites from one place**
+
+Since the cloud-based engine connects you to WPMU DEV, you have the luxury of free access to their suite of powerful web development tools - including a convenient site management interface where you can manage broken links on multiple sites, rather than just one.
+
+**2. Local link checker**
+
+The main difference of our local link checker compared to the cloud engine, is that it uses your site/server resources to fetch and analyze site content and check the status of links.
+
+It also uses your site's IP address, which as mentioned above, increases your risk of being blocked by some external links, resulting in incomplete or inaccurate scan results.
+
+**Here are the standout features of the local link checking engine:**
+
+-   Monitors external links and internal links in your posts, pages, comments, the blogroll, and custom fields (optional).
+-   Detects broken links, missing images, and redirects.
+-   Receive notifications via your dashboard or email.
+-   Make broken links display differently in posts (optional).
+-   Prevent search engines from following broken links (optional).
+-   Search and filter links by URL, anchor text and more.
+-   Edit links directly from your interface, without manually updating each post.
+
+Whether you choose local or cloud-based, BLC’s user-friendly dashboard and powerful features makes staying on top of broken links as easy and automated as possible.
+
+### The best scanning & detection features on one dashboard:
+
+**Run manual scans or set an automatic schedule**
+
+Enjoy the flexibility to run scans manually, or schedule automatic daily, weekly, and monthly scans to suit your preference and the sites you manage.
+
+**Edit or unlink broken links (coming soon to cloud-based)**
+
+After BLC detects broken links, it gives you the option to edit or unlink them with a click from your main dashboard. It couldn’t be easier or faster.
+
+**Detailed broken link reports**
+
+After each scan you get a comprehensive summary of any broken links detected, along with the status of the links so you can instantly know how to resolve the issue.
+
+**Detection notifications via email**
+
+Stay on top of your link health and fix issues as fast as possible with broken link reports sent straight to an email address of your choice.
+
+**Advanced search filtering**
+
+BLC’s search and filtering tools make it faster and easier to find specific URLs or filter by status or error type.
+
+**Export report lists for further analysis**
+
+Export your broken link lists as a CSV file for greater analysis inside of Google Sheets, Microsoft Excel, and other spreadsheet/data software.
+
+### ABOUT US
+
+The developers of BLC, WPMU DEV is an all-in-one WordPress platform that has helped millions of web developers worldwide run and grow their businesses for over 15 years.
+
+Our WordPress offerings include site management tools, dedicated hosting, reseller domains, and 12 popular WP plugins totalling more than 80 million downloads. Check out our website: [https://wpmudev.com/](https://wpmudev.com/)
+
+Oh, and one more thing… we hope you enjoy our free offerings as much as we’ve loved making them for you!
 
 == Changelog ==
+
+= 2.0.0 =
+* Version 2 release
+* Added connection to free Hub features for cloud based Broken Link Checker.
 
 = 1.11.21 =
 * Fix strict comparison causing db queries
@@ -79,9 +131,6 @@ To upgrade your installation
 
 = 1.11.18 =
 * Updated UA string
-
-= 1.11.17 =
-* Fix security vulnerability
 
 = 1.11.16 =
 * Enhance compatibility with PHP 8
