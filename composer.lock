@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a464e3fe080e10f9f646dbbda5473f59",
+    "content-hash": "f9a29ee9857fb19a3770ebc86823ce63",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -538,15 +538,15 @@
         },
         {
             "name": "wpackagist-plugin/safe-svg",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/safe-svg/",
-                "reference": "tags/2.1.0"
+                "reference": "tags/2.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/safe-svg.2.1.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/safe-svg.2.1.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

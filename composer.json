@@ -66,7 +66,7 @@
     "wpackagist-plugin/press-permit-core":"3.8.4",
     "wpackagist-plugin/duplicate-page": "4.5.1",
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
-    "wpackagist-plugin/safe-svg": "^2.0",
+    "wpackagist-plugin/safe-svg": "^2.1.1",
     "wpackagist-plugin/user-switching": "^1.7.0",
     "wpackagist-plugin/wikipedia-preview": "^1.6.0",
     "gravityforms/gravityforms": "2.6.6.1"
