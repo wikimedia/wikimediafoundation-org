@@ -69,6 +69,7 @@
     "wpackagist-plugin/safe-redirect-manager": "^1.11",
     "wpackagist-plugin/safe-svg": "^2.1.1",
     "wpackagist-plugin/wikipedia-preview": "^1.6.0",
+    "wpackagist-plugin/wordpress-seo": "^19.6",
     "gravityforms/gravityforms": "^2.6.6.1"
   },
   "require-dev": {

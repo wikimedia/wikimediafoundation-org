@@ -4,7 +4,8 @@ plugins/monster-widget
 plugins/query-monitor
 plugins/duplicate-page
 plugins/gf-hcaptcha
-Plugins/press-permit-core
+plugins/press-permit-core
+plugins/wordpress-seo
 *.log
 
 # Dependencies managed using composer
