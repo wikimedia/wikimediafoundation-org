@@ -2,8 +2,9 @@
 plugins/log-deprecated-notices
 plugins/monster-widget
 plugins/query-monitor
-plugins/user-switching
 plugins/duplicate-page
+plugins/gf-hcaptcha
+Plugins/press-permit-core
 *.log
 
 # Dependencies managed using composer
