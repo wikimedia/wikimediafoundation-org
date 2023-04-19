@@ -1,0 +1,188 @@
+# Copyright (C) 2020 Web & App Easy B.V.
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: G-Forms hCaptcha 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gf-hcaptcha\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-11-17T09:15:55+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0-alpha\n"
+"X-Domain: gf-hcaptcha\n"
+
+#. Plugin Name of the plugin
+msgid "G-Forms hCaptcha"
+msgstr ""
+
+#. Description of the plugin
+msgid "A new way to monetize your site traffic with the hCaptcha addon for Gravity Forms."
+msgstr ""
+
+#. Author of the plugin
+msgid "Web & App Easy B.V."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.webandappeasy.com"
+msgstr ""
+
+#: class-hcaptchaaddon.php
+msgid "reCAPTCHA compatibility"
+msgstr ""
+
+#: class-hcaptchaaddon.php
+msgid "Check if including both hCaptcha and reCaptcha on the same page."
+msgstr ""
+
+#: class-hcaptchaaddon.php
+msgid "Disable"
+msgstr ""
+
+#: class-hcaptchaaddon.php
+msgid "Global hCaptcha settings"
+msgstr ""
+
+#: class-hcaptchaaddon.php:26
+msgid "Don't have a account?"
+msgstr ""
+
+#: class-hcaptchaaddon.php:26
+msgid "Register"
+msgstr ""
+
+#: class-hcaptchaaddon.php:26
+msgid "first on the hCaptcha website."
+msgstr ""
+
+#: class-hcaptchaaddon.php:30
+msgid "Secret key hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:30
+#: class-hcaptchaaddon.php:40
+#: class-hcaptchaaddon.php:73
+msgid "Please insert your"
+msgstr ""
+
+#: class-hcaptchaaddon.php:30
+#: class-hcaptchaaddon.php:40
+#: class-hcaptchaaddon.php:73
+#: includes/hcaptcha-field.php:21
+msgid "hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:30
+msgid "secret key here. You can find this in your"
+msgstr ""
+
+#: class-hcaptchaaddon.php:30
+#: class-hcaptchaaddon.php:40
+#: class-hcaptchaaddon.php:73
+msgid "dashboard under the tab"
+msgstr ""
+
+#: class-hcaptchaaddon.php:30
+msgid "settings"
+msgstr ""
+
+#: class-hcaptchaaddon.php:31
+msgid "Secret key"
+msgstr ""
+
+#: class-hcaptchaaddon.php:40
+msgid "Global site key hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:40
+#: class-hcaptchaaddon.php:73
+msgid "site key here. You can find this in your"
+msgstr ""
+
+#: class-hcaptchaaddon.php:40
+#: class-hcaptchaaddon.php:73
+msgid "sites"
+msgstr ""
+
+#: class-hcaptchaaddon.php:41
+msgid "Global site key"
+msgstr ""
+
+#: class-hcaptchaaddon.php:71
+msgid "Theme hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:71
+msgid "Choose for the light or the dark theme."
+msgstr ""
+
+#: class-hcaptchaaddon.php:72
+msgid "Size hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:72
+msgid "Choose for the standard or the compact size."
+msgstr ""
+
+#: class-hcaptchaaddon.php:73
+msgid "Overwriting site key hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:73
+msgid "This will overwrite the global site key from the main hCaptcha settings page."
+msgstr ""
+
+#: class-hcaptchaaddon.php:74
+msgid "Mode hCaptcha"
+msgstr ""
+
+#: class-hcaptchaaddon.php:74
+msgid "Choose for the visible or the invisible hCaptcha."
+msgstr ""
+
+#: class-hcaptchaaddon.php:86
+msgid "Choose theme"
+msgstr ""
+
+#: class-hcaptchaaddon.php:91
+msgid "Light"
+msgstr ""
+
+#: class-hcaptchaaddon.php:94
+msgid "Dark"
+msgstr ""
+
+#: class-hcaptchaaddon.php:100
+msgid "Choose size"
+msgstr ""
+
+#: class-hcaptchaaddon.php:105
+msgid "Standard"
+msgstr ""
+
+#: class-hcaptchaaddon.php:108
+msgid "Compact"
+msgstr ""
+
+#: class-hcaptchaaddon.php:121
+msgid "Overwriting site key"
+msgstr ""
+
+#: class-hcaptchaaddon.php:129
+msgid "Choose mode"
+msgstr ""
+
+#: class-hcaptchaaddon.php:134
+msgid "Visible"
+msgstr ""
+
+#: class-hcaptchaaddon.php:137
+msgid "Invisible"
+msgstr ""
+
+#: includes/hcaptcha-field.php:197
+msgid "The hCaptcha is invalid. Please try again."
+msgstr ""

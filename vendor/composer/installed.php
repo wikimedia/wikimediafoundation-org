@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '53d68801fe850d2e439422865737d70f10b13fc0',
+        'reference' => 'b32febea18e15932134d425166580676c330066f',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -115,7 +115,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => '08c832d96735c46a9d5849a5412fc4304e12d242',
+            'reference' => '39006a790754a68b3a476069297b0cb83abb17d2',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -145,7 +145,7 @@
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../themes/shiro',
             'aliases' => array(),
-            'reference' => 'c1e32e7855dc9dd9df40067ed6f89c4c5e38ef9e',
+            'reference' => '0f210558244e942c0b523a4650514f717e5f3379',
             'dev_requirement' => false,
         ),
         'wikimedia/vegalite-wordpress-plugin' => array(
@@ -163,7 +163,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '53d68801fe850d2e439422865737d70f10b13fc0',
+            'reference' => 'b32febea18e15932134d425166580676c330066f',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -202,6 +202,15 @@
             'reference' => 'trunk',
             'dev_requirement' => false,
         ),
+        'wpackagist-plugin/gf-hcaptcha' => array(
+            'pretty_version' => '1.3.1',
+            'version' => '1.3.1.0',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../plugins/gf-hcaptcha',
+            'aliases' => array(),
+            'reference' => 'trunk',
+            'dev_requirement' => false,
+        ),
         'wpackagist-plugin/press-permit-core' => array(
             'pretty_version' => '3.8.7',
             'version' => '3.8.7.0',
@@ -227,15 +236,6 @@
             'install_path' => __DIR__ . '/../../plugins/safe-svg',
             'aliases' => array(),
             'reference' => 'tags/2.1.1',
-            'dev_requirement' => false,
-        ),
-        'wpackagist-plugin/user-switching' => array(
-            'pretty_version' => '1.7.0',
-            'version' => '1.7.0.0',
-            'type' => 'wordpress-plugin',
-            'install_path' => __DIR__ . '/../../plugins/user-switching',
-            'aliases' => array(),
-            'reference' => 'tags/1.7.0',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/wikipedia-preview' => array(
