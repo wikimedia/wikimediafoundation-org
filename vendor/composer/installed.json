@@ -1278,12 +1278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "6dbf698d963329a29cde5347a61196e67888b8cc"
+                "reference": "7a4acfc904f9da69aada63ec73c0a9b844ba8064"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/6dbf698d963329a29cde5347a61196e67888b8cc",
-                "reference": "6dbf698d963329a29cde5347a61196e67888b8cc",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/7a4acfc904f9da69aada63ec73c0a9b844ba8064",
+                "reference": "7a4acfc904f9da69aada63ec73c0a9b844ba8064",
                 "shasum": ""
             },
             "require-dev": {
@@ -1295,7 +1295,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-04-18T18:43:27+00:00",
+            "time": "2023-04-20T21:50:04+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
@@ -1310,10 +1310,10 @@
                     "phpcs ."
                 ],
                 "phpcs:changed": [
-                    "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
+                    "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')"
                 ],
                 "phpcbf:changed": [
-                    "phpcbf $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
+                    "phpcbf $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')"
                 ]
             },
             "license": [

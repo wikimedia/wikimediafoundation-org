@@ -134,6 +134,73 @@ function wmf_add_default_content_language( int $post_ID ): void {
 	}
 }
 
+/**
+ * Filter posts by content language on post listings.
+ *
+ * This is used to ensure that posts having different current-language
+ * taxonomy are not displayed on the post listings.
+ *
+ * @param \WP_Query $query Query object to filter.
+ * @return void
+ */
+function wmf_filter_posts_by_content_language( WP_Query $query ) : void {
+
+	// Don't filter the admin.
+	if ( is_admin() ) {
+		return;
+	}
+
+	// Restrict content-language filtering to the main query.
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+
+	// Only filter posts.
+	if ( ! empty( $query->get( 'post_type' ) ) && ! in_array( $query->get( 'post_type' ), apply_filters( 'wmf_content_language_post_types', [ 'post' ] ), true ) ) {
+		return;
+	}
+
+	// Allow user to see single posts no matter what.
+	if ( is_singular() ) {
+		return;
+	}
+
+	// Allow users to see post history setting the content-language.
+	if ( $query->is_tax( 'content-language' ) ) {
+		return;
+	}
+
+	// Try to cover all the potential cases where we don't want the content-language filter to work.
+	if (
+			$query->is_post_type_archive() ||
+			$query->is_category() ||
+			$query->is_tag() ||
+			$query->is_author() ||
+			$query->is_date() ||
+			$query->is_search() ||
+			$query->is_feed() ||
+			$query->is_404()
+		) {
+		return;
+	}
+
+	// Get term of main language.
+	$main_locale = wmf_get_and_maybe_create_current_language_term();
+	if ( $main_locale === null ) {
+		return;
+	}
+
+	// Filter posts which has content-language set to main_locale.
+	$query->set( 'tax_query', [
+		[
+			'taxonomy' => 'content-language',
+			'field'    => 'slug',
+			'terms'    => $main_locale->slug,
+		],
+	] );
+}
+
+add_action( 'pre_get_posts', 'wmf_filter_posts_by_content_language' );
 add_action( 'wp_insert_post', 'wmf_add_default_content_language' );
 add_action( 'admin_init', 'wmf_create_current_language_term' );
 add_action( 'init', 'wmf_register_content_language_taxonomy' );
