@@ -362,12 +362,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "0f210558244e942c0b523a4650514f717e5f3379"
+                "reference": "7605440a593df8ea174c2ece4d62a8fc8d678933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/0f210558244e942c0b523a4650514f717e5f3379",
-                "reference": "0f210558244e942c0b523a4650514f717e5f3379",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/7605440a593df8ea174c2ece4d62a8fc8d678933",
+                "reference": "7605440a593df8ea174c2ece4d62a8fc8d678933",
                 "shasum": ""
             },
             "require-dev": {
@@ -405,7 +405,7 @@
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release"
             },
-            "time": "2023-04-19T01:07:31+00:00"
+            "time": "2023-04-21T16:58:04+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -849,12 +849,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "39006a790754a68b3a476069297b0cb83abb17d2"
+                "reference": "20f03d27a8ee2e23a29aa65c117f20cf31d2e531"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/39006a790754a68b3a476069297b0cb83abb17d2",
-                "reference": "39006a790754a68b3a476069297b0cb83abb17d2",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/20f03d27a8ee2e23a29aa65c117f20cf31d2e531",
+                "reference": "20f03d27a8ee2e23a29aa65c117f20cf31d2e531",
                 "shasum": ""
             },
             "conflict": {
@@ -882,6 +882,7 @@
                 "automad/automad": "<1.8",
                 "awesome-support/awesome-support": "<=6.0.7",
                 "aws/aws-sdk-php": ">=3,<3.2.1",
+                "azuracast/azuracast": "<0.18",
                 "backdrop/backdrop": "<=1.23",
                 "badaso/core": "<2.7",
                 "bagisto/bagisto": "<0.1.5",
@@ -1025,7 +1026,7 @@
                 "gregwar/rst": "<1.0.3",
                 "grumpydictator/firefly-iii": "<6",
                 "guzzlehttp/guzzle": "<6.5.8|>=7,<7.4.5",
-                "guzzlehttp/psr7": "<1.8.4|>=2,<2.1.1",
+                "guzzlehttp/psr7": "<1.9.1|>=2,<2.4.5",
                 "harvesthq/chosen": "<1.8.7",
                 "helloxz/imgurl": "= 2.31|<=2.31",
                 "hillelcoren/invoice-ninja": "<5.3.35",
@@ -1441,7 +1442,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-18T23:04:21+00:00"
+            "time": "2023-04-20T21:04:06+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

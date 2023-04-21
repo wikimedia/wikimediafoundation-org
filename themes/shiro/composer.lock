@@ -291,16 +291,16 @@
         },
         {
             "name": "sirbrillig/phpcs-variable-analysis",
-            "version": "v2.11.10",
+            "version": "v2.11.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirbrillig/phpcs-variable-analysis.git",
-                "reference": "0f25a3766f26df91d6bdda0c8931303fc85499d7"
+                "reference": "dc5582dc5a93a235557af73e523c389aac9a8e88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirbrillig/phpcs-variable-analysis/zipball/0f25a3766f26df91d6bdda0c8931303fc85499d7",
-                "reference": "0f25a3766f26df91d6bdda0c8931303fc85499d7",
+                "url": "https://api.github.com/repos/sirbrillig/phpcs-variable-analysis/zipball/dc5582dc5a93a235557af73e523c389aac9a8e88",
+                "reference": "dc5582dc5a93a235557af73e523c389aac9a8e88",
                 "shasum": ""
             },
             "require": {
@@ -345,20 +345,20 @@
                 "source": "https://github.com/sirbrillig/phpcs-variable-analysis",
                 "wiki": "https://github.com/sirbrillig/phpcs-variable-analysis/wiki"
             },
-            "time": "2023-01-05T18:45:16+00:00"
+            "time": "2023-03-31T16:46:32+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "1359e176e9307e906dc3d890bcc9603ff6d90619"
+                "reference": "ed8e00df0a83aa96acf703f8c2979ff33341f879"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/1359e176e9307e906dc3d890bcc9603ff6d90619",
-                "reference": "1359e176e9307e906dc3d890bcc9603ff6d90619",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ed8e00df0a83aa96acf703f8c2979ff33341f879",
+                "reference": "ed8e00df0a83aa96acf703f8c2979ff33341f879",
                 "shasum": ""
             },
             "require": {
@@ -394,27 +394,28 @@
             "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
             "keywords": [
                 "phpcs",
-                "standards"
+                "standards",
+                "static analysis"
             ],
             "support": {
                 "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2022-06-18T07:21:10+00:00"
+            "time": "2023-02-22T23:07:41+00:00"
         },
         {
             "name": "staabm/annotate-pull-request-from-checkstyle",
-            "version": "1.8.3",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/staabm/annotate-pull-request-from-checkstyle.git",
-                "reference": "4d2b7cd5cd5fb8f172e16ba81d4e80a97aec383d"
+                "reference": "9249112205cce34b65ef4586193da453e94e5115"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/staabm/annotate-pull-request-from-checkstyle/zipball/4d2b7cd5cd5fb8f172e16ba81d4e80a97aec383d",
-                "reference": "4d2b7cd5cd5fb8f172e16ba81d4e80a97aec383d",
+                "url": "https://api.github.com/repos/staabm/annotate-pull-request-from-checkstyle/zipball/9249112205cce34b65ef4586193da453e94e5115",
+                "reference": "9249112205cce34b65ef4586193da453e94e5115",
                 "shasum": ""
             },
             "require": {
@@ -438,9 +439,14 @@
                     "name": "Markus Staab"
                 }
             ],
+            "keywords": [
+                "Github Actions",
+                "continous integration",
+                "dev"
+            ],
             "support": {
                 "issues": "https://github.com/staabm/annotate-pull-request-from-checkstyle/issues",
-                "source": "https://github.com/staabm/annotate-pull-request-from-checkstyle/tree/1.8.3"
+                "source": "https://github.com/staabm/annotate-pull-request-from-checkstyle/tree/1.8.4"
             },
             "funding": [
                 {
@@ -448,7 +454,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-06-25T09:02:33+00:00"
+            "time": "2023-04-07T09:42:35+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
