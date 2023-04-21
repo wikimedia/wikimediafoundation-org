@@ -139,13 +139,19 @@ class WPSEO_Meta_Columns {
 				return;
 
 			case 'wpseo-title':
-				echo esc_html( $this->get_meta( $post_id )->title );
+				$meta = $this->get_meta( $post_id );
+				if ( $meta ) {
+					echo esc_html( $meta->title );
+				}
 
 				return;
 
 			case 'wpseo-metadesc':
-				$metadesc_val = $this->get_meta( $post_id )->meta_description;
-
+				$metadesc_val = '';
+				$meta         = $this->get_meta( $post_id );
+				if ( $meta ) {
+					$metadesc_val = $meta->meta_description;
+				}
 				if ( $metadesc_val === '' ) {
 					echo '<span aria-hidden="true">&#8212;</span><span class="screen-reader-text">',
 					esc_html__( 'Meta description not set.', 'wordpress-seo' ),
@@ -389,10 +395,27 @@ class WPSEO_Meta_Columns {
 		}
 
 		if ( $this->is_valid_filter( $current_keyword_filter ) ) {
-			$active_filters = array_merge(
-				$active_filters,
-				$this->get_keyword_filter( $current_keyword_filter )
+			/**
+			 * Adapt the meta query used to filter the post overview on keyphrase.
+			 *
+			 * @internal
+			 *
+			 * @api array $keyword_filter The current keyword filter.
+			 *
+			 * @param array $keyphrase The keyphrase used in the filter.
+			 */
+			$keyphrase_filter = \apply_filters(
+				'wpseo_change_keyphrase_filter_in_request',
+				$this->get_keyword_filter( $current_keyword_filter ),
+				$current_keyword_filter
 			);
+
+			if ( \is_array( $keyphrase_filter ) ) {
+				$active_filters = array_merge(
+					$active_filters,
+					[ $keyphrase_filter ]
+				);
+			}
 		}
 
 		return $active_filters;
@@ -690,7 +713,9 @@ class WPSEO_Meta_Columns {
 	private function parse_column_score( $post_id ) {
 		$meta = $this->get_meta( $post_id );
 
-		return $this->score_icon_helper->for_seo( $meta->indexable, '', __( 'Post is set to noindex.', 'wordpress-seo' ) );
+		if ( $meta ) {
+			return $this->score_icon_helper->for_seo( $meta->indexable, '', __( 'Post is set to noindex.', 'wordpress-seo' ) );
+		}
 	}
 
 	/**
@@ -702,8 +727,9 @@ class WPSEO_Meta_Columns {
 	 */
 	private function parse_column_score_readability( $post_id ) {
 		$meta = $this->get_meta( $post_id );
-
-		return $this->score_icon_helper->for_readability( $meta->indexable->readability_score );
+		if ( $meta ) {
+			return $this->score_icon_helper->for_readability( $meta->indexable->readability_score );
+		}
 	}
 
 	/**
