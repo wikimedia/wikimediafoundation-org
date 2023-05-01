@@ -2,8 +2,8 @@
 Contributors: wikimediafoundation
 Donate link: https://donate.wikimedia.org/wiki/Ways_to_Give
 Tags: wikipedia, facts, popup, card, wiki
-Stable tag: 1.6.0
-Tested up to: 6.0
+Stable tag: 1.9.0
+Tested up to: 6.1
 License: MIT
 License URI: https://github.com/wikimedia/wikipedia-preview/blob/main/LICENSE
 
@@ -40,20 +40,77 @@ https://youtu.be/_m6YzR0j8Fs
 * Can be disabled for any page using the post metadata sidebar.
 * Uses Gutenberg editor custom tool to search for Wikipedia articles and visualize Wikipedia Preview for readers.
 
-**How to use**
+**How to add preview links to your site**
 
-1. [Download and install](https://wordpress.org/support/article/managing-plugins/#finding-and-installing-plugins) the Wikipedia Preview plug-in for free.
-2. [Add a Preview link](https://wordpress.org/support/article/paragraph-block/#insert-hyperlinks) to your site’s content (i.e. a word or a phrase you want to provide context for).
-3. Wikipedia Preview will automatically turn the link into a preview of the relevant Wikipedia article.
+**Option 1 - How to add Wikipedia Preview links using the Classic Editor:**
+
+* Add a Wikipedia article link to your site’s content using the same process you use to add hyperlinks to your articles.
+
+**Option 2 - How to add Wikipedia Preview links using the Gutenberg/ Block Editor:**
+
+1. Highlight the text you want to link to a Wikipedia article.
+2. Select ‘Wikipedia Preview’ from the menu.
+3. You will see a list of suggested articles. Select the one you want to link to.
+4. Wikipedia Preview will automatically turn the link into a preview of the relevant Wikipedia article. You can easily edit or remove this.
+
+== Installation ==
+
+Setting up the Wikipedia Preview plugin requires two simple steps:
+
+1. Install and activate the plugin on your site for free.
+2. Add preview links to your site content to improve the experience for your site visitors.
+
+**INSTALLATION:**
+
+**Option 1 - Install using the automatic plug-in installer:**
+
+1. To add a plugin using the built-in plugin installer:
+2. Navigate to Plug-ins > select Add New.
+3. Use the search form in the top-right and search Wikipedia Preview.
+4. Click the Install Now button to install the plug-in.
+5. Once the plug-in installation is complete, click Activate to activate the plugin.
+
+**Option 2 - Upload via Wordpress Admin:**
+
+1. If you have a copy of the plug-in downloaded as a zip file, you can manually upload it and install it through the Plug-ins admin screen.
+2. Navigate to Plugins > Add New.
+3. Click the Upload Plugin button at the top of the screen.
+4. Select the zip file from your local filesystem.
+5. Click the Install Now button.
+6. When the installation is complete, you’ll see “Plug-in installed successfully.” Click the Activate Plug-in button.
+
+**AFTER ACTIVATION:**
+
+It’s easy to add Wikipedia Preview links to your site. It takes only a few seconds to add a preview link and create a richer experience for your site visitors.
+
+**Option 1 - How to add Wikipedia Preview links using the Classic Editor:**
+
+* Add a Wikipedia article link to your site’s content using the same process you use to add hyperlinks to your articles.
+
+**Option 2 - How to add Wikipedia Preview links using the Gutenberg/ Block Editor:**
+
+1. Highlight the text you want to link to a Wikipedia article.
+2. Select ‘Wikipedia Preview’ from the menu.
+3. You will see a list of suggested articles. Select the one you want to link to.
+4. Wikipedia Preview will automatically turn the link into a preview of the relevant Wikipedia article. You can easily edit or remove this.
+
+**GETTING STARTED:**
+
+Wikipedia Preview gives your site visitors context without leaving your site. We recommend adding links to words, pronouns, or phrases that you think your site visitors might be confused about or want more information about. Some sections of your site may be enhanced by adding a lot of links; other sections of your site might not need any.
+Take a few minutes to add links retroactively to your existing content, and take just a few seconds to add links to new content as you create it in the future. Your visitors will thank you!
+Let us know what you think about the product as you’re using it – we love to hear from you.
 
 == Screenshots ==
 
-1. Mobile view on touch
-2. Mobile view expanded
-3. Fullscreen image gallery
-4. Desktop view on hover
-5. Search for Wikipedia articles
-6. Visualization of Wikipedia Preview for readers
+1. Highlight a word in Gutenberg editor and access Wikipedia Preview option from dropdown menu
+2. Select a preview from the search results
+3. Preview is displayed for highlighted word
+4. Hover over cursor to view the preview
+5. Highlight a word in Classic editor for preview
+6. Insert Wikipedia article link to enable preview
+7. Preview can be discovered on mobile web by readers
+8. Tap on preview to show preview card
+9. Tap on an image within the preview card to open it in a gallery view
 
 == Frequently Asked Questions ==
 

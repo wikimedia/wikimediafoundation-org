@@ -1,0 +1,39 @@
+.wikipediapreview-intro {
+	width: 60%;
+	margin: auto;
+}
+
+.wikipediapreview-intro h1 {
+	font-weight: 700;
+}
+
+.wikipediapreview-intro p {
+	font-size: 18px;
+}
+
+.wikipediapreview-intro ol {
+	margin-left: 1.5em;
+}
+
+.wikipediapreview-intro li {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 28px;
+}
+
+.wikipediapreview-intro-wordmark {
+	width: 120px;
+	margin-top: 20px;
+}
+
+.wikipediapreview-intro-illustration {
+	margin: 20px auto;
+	width: 90%;
+}
+
+.wikipediapreview-intro-step {
+	margin: 20px 0 20px 20px;
+	width: 100%;
+	border: 1px solid #A2A9B1;
+}
+

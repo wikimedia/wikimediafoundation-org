@@ -1,0 +1,81 @@
+@import "../../../../node_modules/@splidejs/splide/src/css/core";
+@import "../helpers/mixins/mixins-buttons";
+
+.shiro-carousel {
+	// stylelint-disable selector-class-pattern
+	margin-bottom: rem(48);
+
+	.splide__arrow {
+		@include button-transparent;
+		border: none;
+		box-sizing: content-box;
+		height: 40px;
+		position: absolute;
+		top: 50%;
+		z-index: 1;
+
+		&--prev {
+			left: 0;
+			transform: translateY(-50%) rotate(180deg);
+		}
+
+		&--next {
+			right: 0;
+			transform: translateY(-50%);
+		}
+	}
+
+	// Override bottom margin from blocks used as slides
+	.splide__list > * {
+		margin-bottom: 0;
+	}
+}
+
+@each $name, $background-color, $text-color, $accent-color, $button-style in $block-styles  {
+	.is-style-#{$name} {
+		.splide__arrow {
+			background-color: #{$background-color}60;
+			--background-color: #{$background-color};
+
+			&:hover,
+			.hero-home__heading-color {
+				background-color: #{$background-color};
+			}
+
+			&[disabled] {
+				background-color: #{$background-color};
+				opacity: 0.5;
+			}
+
+			svg {
+				fill: $text-color;
+			}
+		}
+
+		.splide__pagination {
+			background: rgba($background-color, 0.5);
+			bottom: 6px;
+			left: 50%;
+			padding: 6px 12px;
+			position: absolute;
+			transform: translateX(-50%);
+			z-index: 1;
+
+			button {
+				background-color: $text-color;
+				border: none;
+				border-radius: 6px;
+				box-shadow: $box-shadow-dialog;
+				cursor: pointer;
+				height: 12px;
+				margin: 6px;
+				opacity: 0.5;
+				width: 12px;
+
+				&.is-active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}

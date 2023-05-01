@@ -29,8 +29,8 @@
     },
     "scripts": {
         "phpcs": "phpcs .",
-        "phpcs:changed": "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')",
-        "phpcbf:changed": "phpcbf $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base head main) | grep '\\.php')"
+        "phpcs:changed": "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')",
+        "phpcbf:changed": "phpcbf $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')"
     },
     "extra": {
         "patches": {
