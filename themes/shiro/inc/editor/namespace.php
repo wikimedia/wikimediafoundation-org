@@ -82,6 +82,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'core/image',
 		'core/heading',
 		'core/list',
+		'core/list-item',
 		'core/table',
 		'core/audio',
 		'core/video',
