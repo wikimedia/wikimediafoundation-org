@@ -129,7 +129,7 @@ function wmf_scripts() {
 	wp_enqueue_script( 'shiro-svg4everybody', get_template_directory_uri() . '/assets/dist/svg4everybody.min.js', array( 'jquery' ), '0.0.1', true );
 	wp_enqueue_script( 'shiro-script', get_template_directory_uri() . '/assets/dist/scripts.min.js', array( 'jquery', 'shiro-svg4everybody' ), $script_version, true );
 	Asset_Loader\enqueue_asset(
-		\WMF\Assets\get_manifest_path(),
+		\WMF\Assets\get_manifest_path( 'shiro.js' ),
 		'shiro.js',
 		[
 			'dependencies' => [],
