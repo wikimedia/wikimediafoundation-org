@@ -86,12 +86,12 @@ export const settings = {
 		buttonText: {
 			type: 'string',
 			source: 'html',
-			selector: '.hero__cta-button',
+			selector: '.hero__call-to-action',
 		},
 		buttonLink: {
 			type: 'string',
 			source: 'attribute',
-			selector: 'two .hero__cta-button',
+			selector: '.hero__call-to-action',
 			attribute: 'href',
 		},
 		pageIntro: {
