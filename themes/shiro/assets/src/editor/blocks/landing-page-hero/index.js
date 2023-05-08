@@ -49,7 +49,7 @@ export const settings = {
 			imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
 			buttonText: 'Learn More',
 			buttonLink: 'https://wikimediafoundation.org/',
-			ctaButtonStyle: 'no-icon-blue-background',
+			ctaButtonAdditionalStyle: '',
 		},
 	},
 
@@ -106,9 +106,9 @@ export const settings = {
 			selector: '.hero__description',
 			multiline: 'p',
 		},
-		ctaButtonStyle: {
+		ctaButtonAdditionalStyle: {
 			type: 'string',
-			default: 'no-icon-blue-background',
+			default: '',
 		},
 	},
 
@@ -126,7 +126,7 @@ export const settings = {
 			description,
 			pageIntro,
 			imageFilter,
-			ctaButtonStyle,
+			ctaButtonAdditionalStyle,
 		} = attributes;
 
 		const blockProps = useBlockProps( { className: 'hero' } );
@@ -136,31 +136,31 @@ export const settings = {
 				<InspectorControls key="setting">
 					<Panel>
 						<PanelBody
-							title={ __( 'Call-to-action button', 'shiro-admin' ) }
+							title={ __( 'Custom CTA styling', 'shiro-admin' ) }
 							initialOpen
 						>
 							<SelectControl
 								label={ __( 'Button style', 'shiro-admin' ) }
-								value={ ctaButtonStyle }
+								value={ ctaButtonAdditionalStyle }
 								options={ [
 									{
-										label: __( 'No icon / Blue background', 'shiro-admin' ),
-										value: 'no-icon-blue-background',
+										label: __( 'Theme default', 'shiro-admin' ),
+										value: '',
 									},
 									{
-										label: __( 'Info icon / Gray background', 'shiro-admin' ),
-										value: 'info-icon-gray-background',
+										label: __( 'Gray background / Black info icon', 'shiro-admin' ),
+										value: 'hero__cta-button--info-icon-gray-background',
 									},
 									{
-										label: __( 'Info icon / No background', 'shiro-admin' ),
-										value: 'info-icon-no-background',
+										label: __( 'Transparent background / Black info icon', 'shiro-admin' ),
+										value: 'hero__cta-button--info-icon-no-background',
 									},
 									{
-										label: __( 'Expand icon / Gray background', 'shiro-admin' ),
-										value: 'expand-icon-gray-background',
+										label: __( 'Gray background / Black down triangle icon', 'shiro-admin' ),
+										value: 'hero__cta-button--expand-icon-gray-background',
 									},
 								] }
-								onChange={ ( value ) => setAttributes( { ctaButtonStyle: value } ) }
+								onChange={ ( value ) => setAttributes( { ctaButtonAdditionalStyle: value } ) }
 							/>
 						</PanelBody>
 					</Panel>
@@ -193,7 +193,7 @@ export const settings = {
 							onChange={ ( description ) => setAttributes( { description } ) }
 						/>
 						<Cta
-							className={ `hero__call-to-action cta-button${ ctaButtonStyle }` }
+							className={ `hero__call-to-action ${ ctaButtonAdditionalStyle }` }
 							text={ buttonText }
 							url={ buttonLink }
 							onChangeLink={ ( buttonLink ) => setAttributes( { buttonLink } ) }
@@ -248,12 +248,10 @@ export const settings = {
 			description,
 			pageIntro,
 			imageFilter,
-			ctaButtonStyle,
+			ctaButtonAdditionalStyle,
 		} = attributes;
 
 		const blockProps = useBlockProps.save( { className: 'hero' } );
-
-		const ctaButtonAdditionalClass = ctaButtonStyle ? ` hero__cta-button hero__cta-button--${ ctaButtonStyle }` : '';
 
 		return (
 			<div { ...applyDefaultStyle( blockProps ) }>
@@ -279,7 +277,7 @@ export const settings = {
 						) }
 						{ buttonLink && (
 							<a
-								className={ `hero__call-to-action cta-button${ ctaButtonAdditionalClass }` }
+								className={ ` hero__call-to-action ${ ctaButtonAdditionalStyle }` }
 								href={ buttonLink }
 							>
 								{ buttonText }

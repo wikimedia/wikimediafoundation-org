@@ -82,6 +82,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'core/image',
 		'core/heading',
 		'core/list',
+		'core/list-item',
 		'core/table',
 		'core/audio',
 		'core/video',
@@ -443,10 +444,8 @@ function is_using_block_editor(): bool {
  * Enqueue assets used only in the block editor.
  */
 function enqueue_block_editor_assets() {
-	$manifest = Assets\get_manifest_path();
-
 	Asset_Loader\enqueue_asset(
-		$manifest,
+		Assets\get_manifest_path( 'editor.js' ),
 		'editor.js',
 		[
 			'dependencies' => [
@@ -477,9 +476,10 @@ function enqueue_block_editor_assets() {
 		)
 	);
 
+	$css_asset = is_rtl() ? 'editor.rtl.css' : 'editor.css';
 	Asset_Loader\enqueue_asset(
-		$manifest,
-		is_rtl() ? 'editor.rtl.css' : 'editor.css',
+		Assets\get_manifest_path( $css_asset ),
+		$css_asset,
 		[
 			'handle' => 'shiro_editor_css',
 		]
