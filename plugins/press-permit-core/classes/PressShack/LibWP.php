@@ -306,10 +306,11 @@ class LibWP
         }
 
         if (!empty($post) && is_object($post)) {
-            if ('auto-draft' == $post->post_status)
+            if (!empty($post->post_status) && ('auto-draft' == $post->post_status)) {
                 return 0;
-            else
+            } else {
                 return $post->ID;
+            }
         } elseif (!is_admin() && !empty($wp_query) && is_singular()) {
             if (!empty($wp_query)) {
                 if (!empty($wp_query->query_vars) && !empty($wp_query->query_vars['p'])) {
@@ -509,8 +510,8 @@ class LibWP
             if (defined('PRESSPERMIT_PRO_FILE')) {
                 $plugin_file = plugin_basename(PRESSPERMIT_PRO_FILE);
             } elseif (defined('PRESSPERMIT_FILE')) {
-            	$plugin_file = plugin_basename(PRESSPERMIT_FILE);
-        	}
+                $plugin_file = plugin_basename(PRESSPERMIT_FILE);
+            }
         }
         
         return (array_key_exists($plugin_file, (array)maybe_unserialize(get_site_option('active_sitewide_plugins'))));
