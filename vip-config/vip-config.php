@@ -12,8 +12,8 @@
  * - The WordPress.com VIP Team
  **/
 
-$http_host          = $_SERVER['HTTP_HOST'];
-$request_uri        = $_SERVER['REQUEST_URI'];
+$http_host          = $_SERVER['HTTP_HOST'] ?? '';
+$request_uri        = $_SERVER['REQUEST_URI'] ?? '';
 $redirect_to_domain = 'wikimediafoundation.org';
 $redirect_domains   = [
     'www.wikimediafoundation.org',
