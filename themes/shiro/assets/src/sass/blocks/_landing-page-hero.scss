@@ -119,55 +119,52 @@
 	}
 
 	&__cta-button {
-		background-position-x: 15px;
-		background-position-y: center;
-		background-repeat: no-repeat;
-		height: 44px;
-		line-height: 30px;
-		padding-left: 60px;
-		padding-right: 30px;
-		width: auto;
-
-		&--no-icon-blue-background {
-			// Reaplying current default button settings
-			color: #FFF !important;
-			background-color: #3a25ff;
-			padding: .375rem .75rem;
-			line-height: 1.25rem;
-			height: 34px;
-		}
 
 		&--info-icon-gray-background {
 			color: #000 !important;
-			background-color: #F4F4F4;
-			background-image: url("../../../../assets/src/svg/individual/info.svg");
+			background-color: #F4F4F4 !important;
+
+			&::before {
+				@include button-icon-rules;
+				background-image: url("./assets/src/svg/individual/info.svg") !important;
+			}
 
 			&:hover {
 				color: #000 !important;
-				background-color: #F4F4F4;
+				background-color: #F4F4F4 !important;
 			}
 		}
 
 		&--info-icon-no-background {
-			color: #FFF !important;
+			color: #000 !important;
+			background: unset !important;
 			background-color: transparent;
-			border: 2px solid white;
-			background-image: url("../../../../assets/src/svg/individual/info.svg");
+			border: 2px solid black !important;
+
+			&::before {
+				@include button-icon-rules;
+				background-image: url("./assets/src/svg/individual/info.svg") !important;
+			}
 
 			&:hover {
-				color: #FFF !important;
-				background-color: transparent;
+				color: #000 !important;
+				background-color: transparent !important;
 			}
 		}
 
 		&--expand-icon-gray-background {
 			color: #000 !important;
-			background-color: #F4F4F4;
-			background-image: url("../../../../assets/src/svg/individual/downTriangle.svg");
+			background: unset !important;
+			background-color: #F4F4F4 !important;
+
+			&::before {
+				@include button-icon-rules;
+				background-image: url("./assets/src/svg/individual/downTriangle.svg") !important;
+			}
 
 			&:hover {
 				color: #000 !important;
-				background-color: #F4F4F4;
+				background-color: #F4F4F4 !important;
 			}
 		}
 	}
