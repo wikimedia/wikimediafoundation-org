@@ -8,12 +8,18 @@ The production repository is privately hosted on GitHub and maintained by Automa
 
 A public repository is mirrored and made available: https://github.com/wikimedia/wikimediafoundation-org
 
+## Local development
+
+This site is intended to be developed using [WordPress VIP's Docker-based local development environment](https://docs.wpvip.com/technical-references/vip-local-development-environment/) via the `vip dev-env` CLI command.
+
+[Install the VIP CLI using these instructions](https://docs.wpvip.com/technical-references/vip-cli/), and then [refer to this guide in the repository wiki for local setup instructions](https://github.com/wpcomvip/wikimediafoundation-org/wiki/Local-development-setup).
+
 ## Updating mirror
 
 The process for updating the mirror is documented by GitHub: https://help.github.com/en/articles/duplicating-a-repository
 
 Command to run from private repository:
-  git push --mirror https://github.com/wikimedia/wikimediafoundation-org.gito a real git checkout of the repository.
+  git push --mirror https://github.com/wikimedia/wikimediafoundation-org.git
 
 ## Developing themes
 
