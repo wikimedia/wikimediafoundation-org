@@ -17,19 +17,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package     PPVersionNotices
+ * @package     PublishPress\WordpressVersionNotices
  * @category    Core
  * @author      PublishPress
  * @copyright   Copyright (c) 2020 PublishPress. All rights reserved.
  **/
 
-namespace PPVersionNotices;
+namespace PublishPress\WordpressVersionNotices;
 
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
-use PPVersionNotices\Module\TopNotice\Module as TopNoticeModule;
-use PPVersionNotices\Module\MenuLink\Module as MenuLinkModule;
-use PPVersionNotices\Template\TemplateLoader;
+use PublishPress\Pimple\Container;
+use PublishPress\Pimple\ServiceProviderInterface;
+use PublishPress\WordpressVersionNotices\Module\TopNotice\Module as TopNoticeModule;
+use PublishPress\WordpressVersionNotices\Module\MenuLink\Module as MenuLinkModule;
+use PublishPress\WordpressVersionNotices\Template\TemplateLoader;
 
 class ServicesProvider implements ServiceProviderInterface
 {

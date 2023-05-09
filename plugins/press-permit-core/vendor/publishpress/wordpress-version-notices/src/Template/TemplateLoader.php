@@ -17,13 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package     PPVersionNotices
+ * @package     PublishPress\WordpressVersionNotices
  * @category    Core
  * @author      PublishPress
  * @copyright   Copyright (c) 2020 PublishPress. All rights reserved.
  **/
 
-namespace PPVersionNotices\Template;
+namespace PublishPress\WordpressVersionNotices\Template;
 
 class TemplateLoader implements TemplateLoaderInterface
 {
