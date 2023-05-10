@@ -1,0 +1,34 @@
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+        - tad\WPBrowser\Extension\Copier
+    commands:
+        - Codeception\Command\GenerateWPUnit
+        - Codeception\Command\GenerateWPRestApi
+        - Codeception\Command\GenerateWPRestController
+        - Codeception\Command\GenerateWPRestPostTypeController
+        - Codeception\Command\GenerateWPAjax
+        - Codeception\Command\GenerateWPCanonical
+        - Codeception\Command\GenerateWPXMLRPC
+    config:
+        tad\WPBrowser\Extension\Copier:
+            files:
+                tests/_data/dumb-plugin-one: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-one"
+                tests/_data/dumb-plugin-two: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-two"
+                assets: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-one/vendor/publishpress/wordpress-version-notices/assets"
+                src: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-one/vendor/publishpress/wordpress-version-notices/src"
+                templates: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-one/vendor/publishpress/wordpress-version-notices/templates"
+                vendor: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-one/vendor/publishpress/wordpress-version-notices/vendor"
+                includes.php: "%WP_ROOT_FOLDER%/wp-content/plugins/dumb-plugin-one/vendor/publishpress/wordpress-version-notices/includes.php"
+params:
+    - .env.testing
+settings:
+    report_useless_tests: true
+bootstrap: bootstrap.php
