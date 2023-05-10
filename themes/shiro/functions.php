@@ -140,6 +140,7 @@ function wmf_scripts() {
 	wp_localize_script(
 		'shiro-script', 'shiro', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'object_id' => get_queried_object_id(),
 		)
 	);
 
@@ -527,14 +528,6 @@ function shiro_add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'shiro_add_slug_body_class' );
-
-function shiro_page_id() {
-	global $post;
-	wp_enqueue_script( 'shiro-page-id', 'assets/src/js/global.js' );
-	wp_localize_script( 'shiro-page-id', 'post_id', $post->ID );
-}
-
-add_action( 'wp_enqueue_scripts', 'shiro_page_id' );
 
 /**
  * Output a title string, allowing span and em tags within title content.

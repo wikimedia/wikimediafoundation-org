@@ -1278,12 +1278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "c32983b7f81555021cc99d2d1225038c2439106e"
+                "reference": "bf2f4958f4d278f6a5c0130ad1657f58082a4318"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/c32983b7f81555021cc99d2d1225038c2439106e",
-                "reference": "c32983b7f81555021cc99d2d1225038c2439106e",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/bf2f4958f4d278f6a5c0130ad1657f58082a4318",
+                "reference": "bf2f4958f4d278f6a5c0130ad1657f58082a4318",
                 "shasum": ""
             },
             "require-dev": {
@@ -1295,7 +1295,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-05-05T21:58:42+00:00",
+            "time": "2023-05-10T21:14:05+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
