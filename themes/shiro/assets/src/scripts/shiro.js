@@ -4,7 +4,6 @@ import './block-accordion';
 import './block-carousel';
 import './block-collapsible-text';
 import './block-hero-home';
-import './modules/donate-buttons';
 import clockBlock from './clock-block';
 import dimensionShim from './modules/dimension-shim';
 import dropdown from './modules/dropdown';

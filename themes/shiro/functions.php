@@ -140,7 +140,6 @@ function wmf_scripts() {
 	wp_localize_script(
 		'shiro-script', 'shiro', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'object_id' => get_queried_object_id(),
 		)
 	);
 

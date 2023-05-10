@@ -5,9 +5,6 @@
  * @package WPSEO\Admin\Tracking
  */
 
-use Yoast\WP\SEO\Analytics\Application\Missing_Indexables_Collector;
-use Yoast\WP\SEO\Analytics\Application\To_Be_Cleaned_Indexables_Collector;
-
 /**
  * This class handles the tracking routine.
  */
