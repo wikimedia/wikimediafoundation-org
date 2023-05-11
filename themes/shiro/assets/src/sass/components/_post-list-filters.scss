@@ -1,0 +1,164 @@
+.post-list-filter {
+
+	font-family: $font-family-system-sans;
+
+	&__head {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		margin-bottom: 2rem;
+
+		@media (max-width: $small-bp) {
+			flex-direction: column;
+			margin-bottom: 0;
+		}
+
+		h3 {
+			font-family: $font-family-system-sans;
+		}
+	}
+
+	&__toggle {
+		@include button-primary();
+		margin-left: auto;
+
+		@media (max-width: $small-bp) {
+			margin: 1rem;
+		}
+
+		&::before {
+			background-image: url("./assets/src/svg/individual/filter.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			content: "";
+			display: inline-block;
+			height: 1em;
+			margin-right: 0.5em;
+			position: relative;
+			top: 2px;
+			width: 1em;
+		}
+
+	}
+
+	&__container {
+		display: none;
+		flex-wrap: wrap;
+		column-gap: 1rem;
+		row-gap: 1rem;
+
+		> div {
+			flex-grow: 1;
+		}
+
+		a {
+			margin-left: auto;
+		}
+
+		.button-clear-filters {
+			@include button-primary();
+			margin-left: auto;
+			background-color: $color-dark-gray;
+			@media (max-width: $small-bp) {
+				margin-bottom: 2rem;
+			}
+		}
+
+		.button-apply-filters {
+			@include button-primary();
+			@media (max-width: $small-bp) {
+				margin-right: auto;
+				margin-bottom: 2rem;
+			}
+		}
+
+		.button-reset-date-filters {
+			@include button-primary();
+			background-color: $color-dark-gray;
+		}
+
+		.filter-by-category {
+			width: 100%;
+			position: relative;
+
+			h5 {
+				border-bottom: 1px solid $color-dark-gray;
+				padding-bottom: 0.5rem;
+			}
+
+			> ul {
+				display: flex;
+				flex-wrap: wrap;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				> button {
+					margin-right: 0;
+					margin-left: auto;
+				}
+
+				> li {
+					margin-bottom: 0;
+
+					> label {
+						display: flex;
+						align-items: center;
+						cursor: pointer;
+					}
+				}
+			}
+
+			.individual-category {
+				font-family: $font-family-system-sans;
+				font-size: 0.75rem;
+				background-color: $color-periwinkle;
+				border-radius: 0.25rem;
+				color: $color-blue;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+				margin-left: 0.5rem;
+				padding: 0.25rem;
+				padding-right: 0.75rem;
+
+				input {
+					margin: 0.25rem;
+				}
+
+				&:hover {
+					opacity: 0.75;
+					transition: opacity 0.25s ease-in-out;
+				}
+			}
+		}
+
+		.search-text-input-button,
+		.filter-date-inputs-container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			column-gap: 1rem;
+		}
+
+		.filter-date-inputs-container {
+			@media (max-width: $small-bp) {
+				flex-wrap: wrap;
+			}
+
+			button {
+				margin-left: auto;
+			}
+		}
+
+		.search-text-input-button input,
+		.filter-date-inputs-container input {
+			height: 2rem;
+		}
+
+		> div > form > button {
+			flex-basis: 100%;
+			margin-top: 1rem;
+		}
+	}
+}

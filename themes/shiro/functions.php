@@ -373,6 +373,12 @@ require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
 
 /**
+ * Post List Filters customizations.
+ */
+require get_template_directory() . '/inc/post-list-filters.php';
+WMF\Post_List_Filters\bootstrap();
+
+/**
  * Search page customizations.
  */
 require_once get_template_directory() . '/inc/search.php';
