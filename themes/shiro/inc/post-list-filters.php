@@ -27,20 +27,22 @@ function custom_post_list_filters( $query ) : void {
 		return;
 	}
 
-	if ( ! isset( $_GET['post_list_filters_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
+	if ( is_admin() ) {
 		return;
 	}
 
-	// Filter by search text.
-	$search_text = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : '';
-	if ( $search_text ) {
-		$query->set( 's', $search_text );
+	if ( is_search() ) {
+		return;
+	}
+
+	if ( ! isset( $_GET['post_list_filters_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['post_list_filters_nonce'] ), 'post_list_filters' ) ) {
+		return;
 	}
 
 	// Filter by date interval.
 	$date_from = isset( $_GET['date_from'] ) ? sanitize_text_field( $_GET['date_from'] ) : '';
 	$date_to   = isset( $_GET['date_to'] ) ? sanitize_text_field( $_GET['date_to'] ) : '';
-	if ( ! empty( $date_from ) && ! empty( $date_to ) ) {
+	if ( ! empty( $date_from ) || ! empty( $date_to ) ) {
 		$query->set( 'date_query', [
 			[
 				'after'     => $date_from,

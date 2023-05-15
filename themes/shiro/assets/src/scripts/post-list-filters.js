@@ -4,19 +4,16 @@
  * @param {HTMLElement} filterButton - The button used to toggle the filter container.
  * @param {HTMLElement} filterContainer - The filter container.
  */
-const toggleFilterContainer = ( filterButton, filterContainer ) => {
+const addFilterToggleHandler = ( filterButton, filterContainer ) => {
 	/**
 	 * Click event handler for the filter button.
 	 */
-	const clickHandler = () => {
-	  const isHidden = filterContainer.style.display === 'none' || filterContainer.style.display === '';
-	  filterContainer.style.display = isHidden ? 'flex' : 'none';
-
-	  const buttonLabel = filterButton.getAttribute( 'show-filters-applied-button-label' );
-	  filterButton.innerHTML = isHidden ? 'Hide filters' : buttonLabel;
+	const toggleFilterClickHandler = () => {
+		filterContainer.classList.toggle( 'post-list-filter__container--open' );
+		filterButton.classList.toggle( 'post-list-filter__toggle--open' );
 	};
 
-	filterButton.addEventListener( 'click', clickHandler );
+	filterButton.addEventListener( 'click', toggleFilterClickHandler );
 };
 
 /**
@@ -38,13 +35,13 @@ const resetDateFilters = ( fromDateInput, toDateInput ) => {
  */
 const resetFormFields = form => {
 
-	// Reset all inputs on form.
+	// Reset search and date inputs.
 	const inputs = form.querySelectorAll( 'input[type="text"], input[type="date"]' );
 	inputs.forEach( input => {
 		input.value = '';
 	} );
 
-	// Reset all checkboxes on form.
+	// Reset all category checkboxes.
 	const checkboxes = form.querySelectorAll( 'input[type="checkbox"]' );
 	checkboxes.forEach( checkbox => {
 		checkbox.checked = false;
@@ -58,12 +55,11 @@ const initializePostListFilters = () => {
 
 	// Controls filters container visibility toggle.
 	const filterButton = document.querySelector( '.post-list-filter__toggle' );
-	filterButton.setAttribute( 'show-filters-applied-button-label', filterButton.innerHTML );
 	const filterContainer = document.querySelector( '.post-list-filter__container' );
-	toggleFilterContainer( filterButton, filterContainer );
+	addFilterToggleHandler( filterButton, filterContainer );
 
 	// Controls date filters reset.
-	const resetDateFiltersButton = document.querySelector( '.button-reset-date-filters' );
+	const resetDateFiltersButton = document.getElementById( 'button-reset-date-filters' );
 	const fromDateInput = document.querySelector( 'input[name="date_from"]' );
 	const toDateInput = document.querySelector( 'input[name="date_to"]' );
 	resetDateFiltersButton.addEventListener( 'click', () => {
@@ -71,8 +67,8 @@ const initializePostListFilters = () => {
 	} );
 
 	// Controls form reset.
-	const resetFormButton = document.querySelector( '.button-clear-filters' );
 	const form = document.querySelector( '.post-list-filter__form' );
+	const resetFormButton = filterContainer.querySelector( '#button-clear-filters' );
 	resetFormButton.addEventListener( 'click', () => {
 		resetFormFields( form );
 		form.submit();
