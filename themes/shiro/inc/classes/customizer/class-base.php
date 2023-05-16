@@ -67,12 +67,18 @@ abstract class Base {
 		$posts = new WP_Query(
 			array(
 				'post_type'      => 'page',
-				'posts_per_page' => 100,
+				'posts_per_page' => -1,
+				'orderby'        => 'title',
+				'order'          => 'ASC',
+				'post_status'    => 'publish',
 			)
 		);
 
 		foreach ( $posts->posts as $post_choice ) {
-			$choices[ $post_choice->ID ] = $post_choice->post_title;
+			if ( ! empty( $post_choice->post_title ) ) {
+				$page_relative_link = str_replace( home_url(), '', get_permalink( $post_choice->ID ) );
+				$choices[ $post_choice->ID ] = $post_choice->post_title . ' (ID ' . $post_choice->ID . ' - ' . $page_relative_link . ')';
+			}
 		}
 
 		return $choices;
