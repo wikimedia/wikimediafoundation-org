@@ -25,6 +25,8 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 ?>
 
+<?php get_template_part( 'template-parts/post-list-filters' ); ?>
+
 <div class="blog-list">
 
 	<?php
@@ -55,7 +57,6 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				[ 'post_id' => $post->ID ]
 			) );
 		endwhile;
-
 	else :
 		get_template_part( 'template-parts/content', 'none' );
 	endif;

@@ -373,6 +373,12 @@ require_once get_template_directory() . '/inc/stories.php';
 Stories_Customisations\init();
 
 /**
+ * Post List Filters customizations.
+ */
+require get_template_directory() . '/inc/post-list-filters.php';
+WMF\Post_List_Filters\bootstrap();
+
+/**
  * Search page customizations.
  */
 require_once get_template_directory() . '/inc/search.php';
@@ -390,6 +396,12 @@ function wmf_filter_wp_404title( $title_parts ) {
 
 	return $title_parts;
 }
+
+/**
+ * Custom Page Breadcrumb Links functionality.
+ */
+require get_template_directory() . '/inc/breadcrumb-links.php';
+WMF\Breadcrumb_Links\init();
 
 // Hook into document_title_parts
 add_filter( 'document_title_parts', 'wmf_filter_wp_404title' );

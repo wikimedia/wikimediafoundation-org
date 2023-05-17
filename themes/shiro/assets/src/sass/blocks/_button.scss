@@ -12,20 +12,6 @@
 	}
 }
 
-@mixin button-icon-rules {
-	background-image: url("./assets/src/svg/lock-white.svg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	content: "";
-	display: inline-block;
-	height: 1em;
-	margin-right: 0.5em;
-	position: relative;
-	top: 2px;
-	width: 1em;
-}
-
 @mixin button-wrapper( $container-selector, $inner-selector ) {
 	#{ $container-selector } {
 		img {
