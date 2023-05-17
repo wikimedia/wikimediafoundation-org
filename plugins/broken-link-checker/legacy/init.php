@@ -1,12 +1,19 @@
 <?php
-// Path to legacy file.
-if ( ! defined( 'BLC_PLUGIN_FILE_LEGACY' ) ) {
-	define( 'BLC_PLUGIN_FILE_LEGACY', __FILE__ );
-}
-
-// Path to the plugin's legacy directory.
-if ( ! defined( 'BLC_DIRECTORY_LEGACY' ) ) {
-	define( 'BLC_DIRECTORY_LEGACY', dirname( __FILE__ ) );
+/**
+ * If Cloud version is enabled we can stop here to save resources used from Local.
+ * When Cloud is active we still need to load init on Local admin manu page.
+ * When Local is active we don't need to load on Cloud admin menu page.
+ */
+if ( empty( WPMUDEV_BLC\App\Options\Settings\Model::instance()->get( 'use_legacy_blc_version' ) ) ) {
+	if ( empty( $_GET['page'] ) || WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\Controller::instance()->get_menu_slug() !== $_GET['page'] ) {
+		if ( ! WPMUDEV_BLC\Core\Utils\Utilities::is_subsite() ) {
+			return;
+		}
+	}
+} else if ( ! empty( $_GET['page'] ) && WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\Controller::instance()->get_menu_slug() !== $_GET['page'] ) {
+	if ( ! WPMUDEV_BLC\Core\Utils\Utilities::is_subsite() ) {
+		return;
+	}
 }
 
 // To prevent conflicts, only one version of the plugin can be activated at any given time.

@@ -50,6 +50,7 @@ class Controller extends Base {
 		add_action( 'load-toplevel_page_blc_dash', array( $this, 'blc_pages_init' ) );
 		add_action( 'load-link-checker_page_view-broken-links', array( $this, 'blc_pages_init' ) );
 		add_action( 'load-link-checker_page_link-checker-settings', array( $this, 'blc_pages_init' ) );
+		//add_action( 'load-link-checker_page_blc_local', array( $this, 'blc_pages_init' ) );
 		//add_action( 'delete_user', array( $this,'adapt_schedule_recipients' ), 10, 2 );
 		add_action( 'deleted_user', array( $this, 'adapt_schedule_recipients' ), 10, 2 );
 		add_action( 'remove_user_from_blog', array( $this, 'remove_user_from_blog' ), 10, 3 );
@@ -114,9 +115,19 @@ class Controller extends Base {
 		}
 
 		if ( empty( $legacy_option->get() ) ) {
-			$this->settings->set( array( 'use_legacy_blc_version' => false ) );
+			//$this->settings->set( array( 'use_legacy_blc_version' => false ) );
+			if ( Utilities::site_connected() ) {
+				$this->settings->set( array( 'use_legacy_blc_version' => false ) );
+			} else {
+				$this->settings->set( array( 'use_legacy_blc_version' => true ) );
+			}
 		} else {
 			$this->settings->set( array( 'use_legacy_blc_version' => true ) );
+		}
+
+		// If installed from Hub no need to show plugins modal.
+		if ( isset( $_GET['wpmudev-hub'] ) ) {
+			$this->settings->set( array( 'activation_modal_shown' => true ) );
 		}
 
 		$this->settings->set( array( 'installation_timestamp' => time() ) );

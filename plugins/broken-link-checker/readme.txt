@@ -3,8 +3,8 @@
 Contributors: managewp, wpmudev
 Tags: links, broken links, internal link, external link, broken images, seo, test links, check links, bad links
 Requires at least: 5.2
-Tested up to: 6.1.1
-Stable tag: 2.0.0
+Tested up to: 6.2
+Stable tag: 2.1.0
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -114,6 +114,12 @@ Our WordPress offerings include site management tools, dedicated hosting, resell
 Oh, and one more thing… we hope you enjoy our free offerings as much as we’ve loved making them for you!
 
 == Changelog ==
+
+= 2.1.0 =
+* Improved admin menus, so they are separated to Cloud and Local Engine.
+* Fix multiple emails issue.
+* Fix Dashboard fonts.
+* Fix insisting line-through text decoration on links in front end.
 
 = 2.0.0 =
 * Version 2 release

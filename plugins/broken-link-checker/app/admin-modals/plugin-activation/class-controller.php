@@ -49,6 +49,9 @@ class Controller extends Base {
 	 * @return void
 	 */
 	public function init() {
+		// This modal is only for new features.
+		return false;
+
 		$this->settings = new Settings();
 
 		add_action( 'load-plugins.php', array( $this, 'boot' ) );

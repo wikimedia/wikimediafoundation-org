@@ -2,25 +2,23 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Broken Link Checker 2.0.0-beta-2\n"
+"Project-Id-Version: Broken Link Checker 2.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/broken-link-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-02-24T08:38:07+00:00\n"
+"POT-Creation-Date: 2023-05-16T06:13:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 
 #. Plugin Name of the plugin
-#: app/admin-pages/dashboard/class-controller.php:85
-#: app/admin-pages/links-submenu/class-controller.php:69
+#: app/admin-pages/cloud-page/class-controller.php:85
+#: app/admin-pages/cloud-submenu/class-controller.php:67
 #: app/emails/recipient-activation/class-controller.php:88
 #: app/emails/scan-report/class-controller.php:101
-#: legacy/core/core.php:3826
-#: assets/js/dashboard/main.js:12432
-#: assets/js/dashboard/main.js:12034
+#: legacy/core/core.php:3910
 msgid "Broken Link Checker"
 msgstr ""
 
@@ -40,9 +38,12 @@ msgstr ""
 msgid "https://wpmudev.com/"
 msgstr ""
 
+#: app/action-links/plugin/class-controller.php:75
+msgid "Cloud"
+msgstr ""
+
 #: app/action-links/plugin/class-controller.php:77
-#: app/action-links/plugin/class-controller.php:107
-msgid "Dashboard"
+msgid "Local"
 msgstr ""
 
 #: app/action-links/plugin/class-controller.php:79
@@ -51,44 +52,111 @@ msgstr ""
 msgid "Docs"
 msgstr ""
 
-#: app/action-links/plugin/class-controller.php:108
-#: legacy/core/core.php:417
-#: legacy/core/core.php:479
-msgid "Settings"
-msgstr ""
-
-#: app/action-links/plugin/class-controller.php:109
-msgid "Broken links"
+#: app/action-links/plugin/class-controller.php:99
+#: app/emails/scan-report/class-controller.php:80
+#: app/emails/scan-report/class-view.php:164
+#: legacy/core/core.php:419
+#: legacy/core/core.php:420
+#: legacy/includes/link-query.php:37
+msgid "Broken Links"
 msgstr ""
 
 #: app/admin-modals/legacy/class-controller.php:196
-#: app/admin-modals/plugin-activation/class-controller.php:161
-#: app/admin-pages/dashboard/class-controller.php:245
+#: app/admin-modals/local/class-controller.php:180
+#: app/admin-modals/plugin-activation/class-controller.php:164
+#: app/admin-notices/local/class-controller.php:122
+#: app/admin-pages/cloud-page/class-controller.php:245
 msgid "Something went wrong here."
 msgstr ""
 
-#: app/admin-notices/legacy/class-view.php:41
+#: app/admin-notices/legacy/class-view.php:42
 msgid "We have completely rebuilt BLC with a new cloud-based engine. It’s now 20x faster, more accurate, and works perfectly with any site. Plus, no page limits, no ads, and it’s still 100%% free! Check out Broken Link Checker's <a href=\"%1$s\">new dashboard</a>."
+msgstr ""
+
+#: app/admin-notices/local/class-view.php:51
+msgid "Cloud-based Broken Link Checker is currently active on your site. <a href=\"%1$s\">Activate the old version</a> to go back to using Local BLC."
 msgstr ""
 
 #: app/admin-notices/multisite/class-view.php:51
 #: app/admin-notices/multisite/class-view.php:63
-msgid "New BLC supports Multisite’s main site only and doesn’t support subsites. Subsites will continue using Legacy BLC"
+msgid "Cloud Engine supports Multisite’s main site only and doesn’t support subsites. Subsites will continue using Local BLC"
 msgstr ""
 
 #: app/admin-notices/multisite/class-view.php:64
-#: legacy/core/core.php:518
+#: legacy/core/core.php:541
 #: legacy/includes/admin/table-printer.php:296
 #: legacy/includes/admin/table-printer.php:727
 msgid "Dismiss"
 msgstr ""
 
-#: app/admin-pages/dashboard/class-controller.php:86
+#: app/admin-pages/cloud-page/class-controller.php:86
 msgid "Link Checker"
 msgstr ""
 
-#: app/admin-pages/links-submenu/class-controller.php:71
-msgid "BLC 2.0 %sBeta%s"
+#: app/admin-pages/cloud-submenu/class-controller.php:68
+msgid "Cloud [new]"
+msgstr ""
+
+#: app/admin-pages/local-submenu/class-controller.php:73
+#: app/admin-pages/local-submenu/class-view.php:71
+msgid "Local Broken Link Checker"
+msgstr ""
+
+#: app/admin-pages/local-submenu/class-controller.php:74
+msgid "Local [old]"
+msgstr ""
+
+#: app/admin-pages/local-submenu/class-view.php:77
+#: app/admin-pages/local-submenu/class-view.php:78
+msgid "Activate Cloud-based Link Checker"
+msgstr ""
+
+#: app/broken-links-actions/class-link.php:268
+msgid "Missing origins"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:47
+msgid "BLC is set to local. Can not perform Cloud actions"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:87
+msgid "Something went wrong"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:134
+msgid "Empty link"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:167
+msgid "Aborting as there are no links"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:217
+msgid "Missing input conversion params"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:232
+msgid "Invalid input json string"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:252
+msgid "Links params do not follow schema. Key `%1$s` missing"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:271
+msgid "Links param `%1$s` potentially malicious"
+msgstr ""
+
+#: app/broken-links-actions/class-router.php:287
+msgid "Invalid sub-site id"
+msgstr ""
+
+#: app/broken-links-actions/handlers/class-full-site-handler.php:263
+msgid "Missing Full Site Target Table"
+msgstr ""
+
+#: app/broken-links-actions/processors/class-main.php:330
+msgid "Unmapped action"
 msgstr ""
 
 #: app/emails/recipient-activation/class-controller.php:55
@@ -149,25 +217,11 @@ msgstr ""
 msgid "Here are your latest broken link test results."
 msgstr ""
 
-#: app/emails/scan-report/class-controller.php:80
-#: app/emails/scan-report/class-view.php:164
-#: legacy/core/core.php:419
-#: legacy/core/core.php:420
-#: legacy/includes/link-query.php:37
-#: assets/js/dashboard/main.js:12164
-#: assets/js/dashboard/main.js:11796
-msgid "Broken Links"
-msgstr ""
-
 #: app/emails/scan-report/class-controller.php:86
-#: assets/js/dashboard/main.js:12172
-#: assets/js/dashboard/main.js:11805
 msgid "Total Links"
 msgstr ""
 
 #: app/emails/scan-report/class-controller.php:89
-#: assets/js/dashboard/main.js:12180
-#: assets/js/dashboard/main.js:11814
 msgid "Unique URLs"
 msgstr ""
 
@@ -180,8 +234,6 @@ msgid "The list below shows a maximum of 20 broken links. Click the View Full Re
 msgstr ""
 
 #: app/emails/scan-report/class-controller.php:98
-#: assets/js/dashboard/main.js:12249
-#: assets/js/dashboard/main.js:11888
 msgid "View Full Report"
 msgstr ""
 
@@ -194,7 +246,7 @@ msgstr ""
 msgid "Broken links reports"
 msgstr ""
 
-#: app/emails/scan-report/class-model.php:56
+#: app/emails/scan-report/class-model.php:57
 msgid "BLC Report"
 msgstr ""
 
@@ -203,12 +255,8 @@ msgid "Unknown"
 msgstr ""
 
 #: app/emails/scan-report/class-view.php:167
-#: legacy/core/core.php:895
+#: legacy/core/core.php:923
 #: legacy/includes/admin/table-printer.php:215
-#: assets/js/dashboard/main.js:9719
-#: assets/js/dashboard/main.js:9940
-#: assets/js/dashboard/main.js:9388
-#: assets/js/dashboard/main.js:9617
 msgid "Status"
 msgstr ""
 
@@ -221,17 +269,17 @@ msgid "Scan for Broken Links is in progress. Please wait a few minutes until sca
 msgstr ""
 
 #: app/http-requests/scan/class-controller.php:174
-#: app/http-requests/sync-scan-results/class-controller.php:267
+#: app/http-requests/sync-scan-results/class-controller.php:276
 msgid "Scan could not be started because it seems you are on localhost. Broken Links Checker API can not reach sites on local hosts"
 msgstr ""
 
 #: app/http-requests/scan/class-controller.php:188
-#: app/http-requests/sync-scan-results/class-controller.php:281
+#: app/http-requests/sync-scan-results/class-controller.php:290
 msgid "Can not make request."
 msgstr ""
 
 #: app/http-requests/scan/class-controller.php:243
-#: app/http-requests/sync-scan-results/class-controller.php:336
+#: app/http-requests/sync-scan-results/class-controller.php:345
 msgid "Something went wrong with request."
 msgstr ""
 
@@ -239,27 +287,27 @@ msgstr ""
 msgid "Scan is currently in progress. Please try again in 15 minutes."
 msgstr ""
 
-#: app/http-requests/sync-scan-results/class-controller.php:241
+#: app/http-requests/sync-scan-results/class-controller.php:250
 msgid "Scan completed successfully."
 msgstr ""
 
-#: app/http-requests/sync-scan-results/class-controller.php:248
+#: app/http-requests/sync-scan-results/class-controller.php:257
 msgid "Data successfully updated."
 msgstr ""
 
-#: app/http-requests/sync-scan-results/class-controller.php:337
+#: app/http-requests/sync-scan-results/class-controller.php:346
 msgid "Scan is currently in progress. Please try again in a few minutes."
 msgstr ""
 
-#: app/http-requests/sync-scan-results/class-controller.php:338
+#: app/http-requests/sync-scan-results/class-controller.php:347
 msgid "Something went wrong while storing new data to DB. More likely there is nothing to update"
 msgstr ""
 
-#: app/http-requests/sync-scan-results/class-controller.php:339
+#: app/http-requests/sync-scan-results/class-controller.php:348
 msgid "The start time is missing. Aborting importing data."
 msgstr ""
 
-#: app/http-requests/sync-scan-results/class-controller.php:340
+#: app/http-requests/sync-scan-results/class-controller.php:349
 msgid "Results are missing. Aborting importing data."
 msgstr ""
 
@@ -418,32 +466,30 @@ msgstr ""
 msgid "Missing url."
 msgstr ""
 
-#: core/utils/class-utilities.php:714
+#: core/utils/class-utilities.php:779
 msgid "%d h "
 msgid_plural "%d h "
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/utils/class-utilities.php:725
+#: core/utils/class-utilities.php:790
 msgid "%d min "
 msgid_plural "%d min "
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/utils/class-utilities.php:735
+#: core/utils/class-utilities.php:800
 msgid "%d s "
 msgid_plural "%d s "
 msgstr[0] ""
 msgstr[1] ""
 
-#: core/utils/class-utilities.php:798
+#: core/utils/class-utilities.php:863
 msgctxt "date time sep"
 msgid " "
 msgstr ""
 
 #: core/views/class-admin-page.php:67
-#: assets/js/dashboard/main.js:12415
-#: assets/js/dashboard/main.js:12016
 msgid "View Documentation"
 msgstr ""
 
@@ -493,798 +539,774 @@ msgstr ""
 msgid "Membership"
 msgstr ""
 
-#: legacy/core/core.php:228
+#: legacy/core/core.php:233
 #: legacy/includes/admin/links-page-js.php:45
 msgid "Loading..."
 msgstr ""
 
-#: legacy/core/core.php:252
+#: legacy/core/core.php:257
 #: legacy/includes/admin/options-page-js.php:18
 msgid "[ Network error ]"
 msgstr ""
 
-#: legacy/core/core.php:296
+#: legacy/core/core.php:301
 msgid "Automatically expand the widget if broken links have been detected"
 msgstr ""
 
-#: legacy/core/core.php:391
+#: legacy/core/core.php:396
 msgid "Broken Links (Old)"
 msgstr ""
 
-#: legacy/core/core.php:412
-msgid "Settings (Old)"
+#: legacy/core/core.php:502
+msgid "Settings"
 msgstr ""
 
-#: legacy/core/core.php:429
-msgid "View Broken Links"
-msgstr ""
-
-#: legacy/core/core.php:439
-msgid "Legacy Settings"
-msgstr ""
-
-#: legacy/core/core.php:460
-msgid "Go to Broken Links"
-msgstr ""
-
-#: legacy/core/core.php:515
+#: legacy/core/core.php:538
 #: legacy/includes/admin/table-printer.php:292
 #: legacy/includes/admin/table-printer.php:710
 msgid "Edit URL"
 msgstr ""
 
-#: legacy/core/core.php:516
+#: legacy/core/core.php:539
 #: legacy/includes/admin/links-page-js.php:716
 #: legacy/includes/admin/table-printer.php:297
 #: legacy/includes/admin/table-printer.php:713
 msgid "Unlink"
 msgstr ""
 
-#: legacy/core/core.php:517
+#: legacy/core/core.php:540
 #: legacy/includes/admin/links-page-js.php:111
 #: legacy/includes/admin/table-printer.php:719
 msgid "Not broken"
 msgstr ""
 
-#: legacy/core/core.php:519
+#: legacy/core/core.php:542
 #: legacy/includes/admin/table-printer.php:293
 #: legacy/includes/admin/table-printer.php:739
 msgid "Recheck"
 msgstr ""
 
-#: legacy/core/core.php:520
+#: legacy/core/core.php:543
 #: legacy/includes/admin/table-printer.php:747
 msgctxt "link action; replace one redirect with a direct link"
 msgid "Fix redirect"
 msgstr ""
 
-#: legacy/core/core.php:810
+#: legacy/core/core.php:834
 msgid "Settings saved."
 msgstr ""
 
-#: legacy/core/core.php:817
+#: legacy/core/core.php:841
 msgid "Complete site recheck started."
 msgstr ""
 
-#: legacy/core/core.php:840
+#: legacy/core/core.php:864
 msgid "General"
 msgstr ""
 
-#: legacy/core/core.php:841
+#: legacy/core/core.php:865
 msgid "Look For Links In"
 msgstr ""
 
-#: legacy/core/core.php:842
+#: legacy/core/core.php:866
 msgid "Which Links To Check"
 msgstr ""
 
-#: legacy/core/core.php:843
+#: legacy/core/core.php:867
 msgid "Protocols & APIs"
 msgstr ""
 
-#: legacy/core/core.php:844
+#: legacy/core/core.php:868
 msgid "Advanced"
 msgstr ""
 
-#: legacy/core/core.php:859
-msgid "Broken Link Checker Options"
-msgstr ""
-
-#: legacy/core/core.php:898
+#: legacy/core/core.php:926
 #: legacy/includes/admin/options-page-js.php:56
 msgid "Show debug info"
 msgstr ""
 
-#: legacy/core/core.php:926
+#: legacy/core/core.php:954
 msgid "Check each link"
 msgstr ""
 
-#: legacy/core/core.php:931
+#: legacy/core/core.php:959
 msgid "Every %s hours"
 msgstr ""
 
-#: legacy/core/core.php:940
+#: legacy/core/core.php:968
 msgid "Existing links will be checked this often. New links will usually be checked ASAP."
 msgstr ""
 
-#: legacy/core/core.php:947
+#: legacy/core/core.php:975
 msgid "E-mail notifications"
 msgstr ""
 
-#: legacy/core/core.php:959
+#: legacy/core/core.php:987
 msgid "Send me e-mail notifications about newly detected broken links"
 msgstr ""
 
-#: legacy/core/core.php:973
+#: legacy/core/core.php:1001
 msgid "Send authors e-mail notifications about broken links in their posts"
 msgstr ""
 
-#: legacy/core/core.php:980
+#: legacy/core/core.php:1008
 msgid "Notification e-mail address"
 msgstr ""
 
-#: legacy/core/core.php:992
+#: legacy/core/core.php:1020
 msgid "Leave empty to use the e-mail address specified in Settings &rarr; General."
 msgstr ""
 
-#: legacy/core/core.php:1000
+#: legacy/core/core.php:1028
 msgctxt "settings page"
 msgid "Control external links"
 msgstr ""
 
-#: legacy/core/core.php:1007
+#: legacy/core/core.php:1035
 msgid "Configure <a target=\"_blank\" href=\"%s\">External Links</a> settings."
 msgstr ""
 
-#: legacy/core/core.php:1012
+#: legacy/core/core.php:1040
 msgid "Install the free <a href=\"%s\" class=\"thickbox open-plugin-details-modal\">External Links plugin</a> to control if external links open in a new tab, and their nofollow, noopener and UGC options."
 msgstr ""
 
-#: legacy/core/core.php:1016
+#: legacy/core/core.php:1044
 msgid "It's used on over 80,000 sites just like yours."
 msgstr ""
 
-#: legacy/core/core.php:1024
+#: legacy/core/core.php:1052
 msgid "Link tweaks"
 msgstr ""
 
-#: legacy/core/core.php:1036
+#: legacy/core/core.php:1064
 msgid "Apply custom formatting to broken links"
 msgstr ""
 
-#: legacy/core/core.php:1041
-#: legacy/core/core.php:1086
+#: legacy/core/core.php:1069
+#: legacy/core/core.php:1114
 msgid "Edit CSS"
 msgstr ""
 
-#: legacy/core/core.php:1063
+#: legacy/core/core.php:1091
 msgid "Example : Lorem ipsum <a %s>broken link</a>, dolor sit amet."
 msgstr ""
 
-#: legacy/core/core.php:1066
-#: legacy/core/core.php:1112
+#: legacy/core/core.php:1094
+#: legacy/core/core.php:1140
 msgid "Click \"Save Changes\" to update example output."
 msgstr ""
 
-#: legacy/core/core.php:1081
+#: legacy/core/core.php:1109
 msgid "Apply custom formatting to removed links"
 msgstr ""
 
-#: legacy/core/core.php:1109
+#: legacy/core/core.php:1137
 msgid "Example : Lorem ipsum <span %s>removed link</span>, dolor sit amet."
 msgstr ""
 
-#: legacy/core/core.php:1128
+#: legacy/core/core.php:1156
 msgid "Stop search engines from following broken links"
 msgstr ""
 
-#: legacy/core/core.php:1134
+#: legacy/core/core.php:1162
 msgctxt "\"Link tweaks\" settings"
 msgid "These settings only apply to the content of posts, not comments or custom fields."
 msgstr ""
 
-#: legacy/core/core.php:1145
+#: legacy/core/core.php:1173
 msgctxt "settings page"
 msgid "Suggestions"
 msgstr ""
 
-#: legacy/core/core.php:1151
+#: legacy/core/core.php:1179
 msgid "Suggest alternatives to broken links"
 msgstr ""
 
-#: legacy/core/core.php:1157
+#: legacy/core/core.php:1185
 msgctxt "settings page"
 msgid "Warnings"
 msgstr ""
 
-#: legacy/core/core.php:1162
+#: legacy/core/core.php:1190
 msgid "Show uncertain or minor problems as \"warnings\" instead of \"broken\""
 msgstr ""
 
-#: legacy/core/core.php:1166
+#: legacy/core/core.php:1194
 msgid "Turning off this option will make the plugin report all problems as broken links."
 msgstr ""
 
-#: legacy/core/core.php:1173
+#: legacy/core/core.php:1201
 msgid "YouTube API Key"
 msgstr ""
 
-#: legacy/core/core.php:1185
+#: legacy/core/core.php:1213
 msgid "Use your own %1$sapi key%2$s for checking youtube links."
 msgstr ""
 
-#: legacy/core/core.php:1192
+#: legacy/core/core.php:1220
 msgid "Post Modified Date"
 msgstr ""
 
-#: legacy/core/core.php:1197
+#: legacy/core/core.php:1225
 msgid "Disable post modified date change when link is edited"
 msgstr ""
 
-#: legacy/core/core.php:1212
+#: legacy/core/core.php:1240
 msgid "Look for links in"
 msgstr ""
 
-#: legacy/core/core.php:1229
+#: legacy/core/core.php:1257
 msgid "Post statuses"
 msgstr ""
 
-#: legacy/core/core.php:1263
+#: legacy/core/core.php:1291
 msgid "Link types"
 msgstr ""
 
-#: legacy/core/core.php:1269
+#: legacy/core/core.php:1297
 msgid "Error : All link parsers missing!"
 msgstr ""
 
-#: legacy/core/core.php:1276
+#: legacy/core/core.php:1304
 msgid "Exclusion list"
 msgstr ""
 
-#: legacy/core/core.php:1277
+#: legacy/core/core.php:1305
 msgid "Don't check links where the URL contains any of these words (one per line) :"
 msgstr ""
 
-#: legacy/core/core.php:1299
+#: legacy/core/core.php:1327
 msgid "Check links using"
 msgstr ""
 
-#: legacy/core/core.php:1319
+#: legacy/core/core.php:1347
 #: legacy/includes/links.php:1033
 msgid "Timeout"
 msgstr ""
 
-#: legacy/core/core.php:1325
-#: legacy/core/core.php:1422
-#: legacy/core/core.php:3935
+#: legacy/core/core.php:1353
+#: legacy/core/core.php:1450
+#: legacy/core/core.php:4019
 msgid "%s seconds"
 msgstr ""
 
-#: legacy/core/core.php:1334
+#: legacy/core/core.php:1362
 msgid "Links that take longer than this to load will be marked as broken."
 msgstr ""
 
-#: legacy/core/core.php:1341
+#: legacy/core/core.php:1369
 msgid "Link monitor"
 msgstr ""
 
-#: legacy/core/core.php:1354
+#: legacy/core/core.php:1382
 msgid "Run continuously while the Dashboard is open"
 msgstr ""
 
-#: legacy/core/core.php:1367
+#: legacy/core/core.php:1395
 msgid "Run hourly in the background"
 msgstr ""
 
-#: legacy/core/core.php:1375
+#: legacy/core/core.php:1403
 msgid "Show the dashboard widget for"
 msgstr ""
 
-#: legacy/core/core.php:1380
+#: legacy/core/core.php:1408
 msgctxt "dashboard widget visibility"
 msgid "Administrator"
 msgstr ""
 
-#: legacy/core/core.php:1381
+#: legacy/core/core.php:1409
 msgctxt "dashboard widget visibility"
 msgid "Editor and above"
 msgstr ""
 
-#: legacy/core/core.php:1382
+#: legacy/core/core.php:1410
 msgctxt "dashboard widget visibility"
 msgid "Nobody (disables the widget)"
 msgstr ""
 
-#: legacy/core/core.php:1398
+#: legacy/core/core.php:1426
 msgctxt "settings page"
 msgid "Show link actions"
 msgstr ""
 
-#: legacy/core/core.php:1416
+#: legacy/core/core.php:1444
 msgid "Max. execution time"
 msgstr ""
 
-#: legacy/core/core.php:1433
+#: legacy/core/core.php:1462
 msgid "The plugin works by periodically launching a background job that parses your posts for links, checks the discovered URLs, and performs other time-consuming tasks. Here you can set for how long, at most, the link monitor may run each time before stopping."
 msgstr ""
 
-#: legacy/core/core.php:1442
+#: legacy/core/core.php:1471
 msgid "Server load limit"
 msgstr ""
 
-#: legacy/core/core.php:1457
+#: legacy/core/core.php:1486
 msgid "Current load : %s"
 msgstr ""
 
-#: legacy/core/core.php:1462
+#: legacy/core/core.php:1491
 msgid "Link checking will be suspended if the average <a href=\"%s\">server load</a> rises above this number. Leave this field blank to disable load limiting."
 msgstr ""
 
-#: legacy/core/core.php:1471
+#: legacy/core/core.php:1500
 msgid "Not available"
 msgstr ""
 
-#: legacy/core/core.php:1473
+#: legacy/core/core.php:1502
 msgid "Load limiting only works on Linux-like systems where <code>/proc/loadavg</code> is present and accessible."
 msgstr ""
 
-#: legacy/core/core.php:1481
+#: legacy/core/core.php:1510
 msgid "Target resource usage"
 msgstr ""
 
-#: legacy/core/core.php:1501
+#: legacy/core/core.php:1530
 msgid "Logging"
 msgstr ""
 
-#: legacy/core/core.php:1507
+#: legacy/core/core.php:1536
 msgid "Enable logging"
 msgstr ""
 
-#: legacy/core/core.php:1514
+#: legacy/core/core.php:1543
 msgid "Log file location"
 msgstr ""
 
-#: legacy/core/core.php:1523
+#: legacy/core/core.php:1552
 msgctxt "log file location"
 msgid "Default"
 msgstr ""
 
-#: legacy/core/core.php:1539
+#: legacy/core/core.php:1568
 msgctxt "log file location"
 msgid "Custom"
 msgstr ""
 
-#: legacy/core/core.php:1549
+#: legacy/core/core.php:1578
 msgid "Log file clear schedule"
 msgstr ""
 
-#: legacy/core/core.php:1555
+#: legacy/core/core.php:1584
 #: legacy/includes/admin/table-printer.php:548
 msgid "Never"
 msgstr ""
 
-#: legacy/core/core.php:1577
+#: legacy/core/core.php:1606
 msgid "Forced recheck"
 msgstr ""
 
-#: legacy/core/core.php:1580
+#: legacy/core/core.php:1609
 msgid "Re-check all pages"
 msgstr ""
 
-#: legacy/core/core.php:1585
+#: legacy/core/core.php:1614
 msgid "The \"Nuclear Option\". Click this button to make the plugin empty its link database and recheck the entire site from scratch."
 msgstr ""
 
-#: legacy/core/core.php:1598
-#: assets/js/dashboard/main.js:10381
-#: assets/js/dashboard/main.js:10386
-#: assets/js/dashboard/main.js:10061
-#: assets/js/dashboard/main.js:10067
+#: legacy/core/core.php:1627
 msgid "Save Changes"
 msgstr ""
 
-#: legacy/core/core.php:1649
-#: assets/js/dashboard/main.js:9762
-#: assets/js/dashboard/main.js:10670
-#: assets/js/dashboard/main.js:9445
-#: assets/js/dashboard/main.js:10343
+#: legacy/core/core.php:1678
 msgid "Configure"
 msgstr ""
 
-#: legacy/core/core.php:1733
+#: legacy/core/core.php:1786
 msgid "Enter the names of custom fields you want to check (one per line). If a field contains HTML code, prefix its name with <code>html:</code>. For example, <code>html:field_name</code>."
 msgstr ""
 
-#: legacy/core/core.php:1748
+#: legacy/core/core.php:1801
 msgid "Enter the keys of acf fields you want to check (one per line). If a field contains HTML code, prefix its name with <code>html:</code>. For example, <code>html:field_586a3eaa4091b</code>."
 msgstr ""
 
-#: legacy/core/core.php:1887
-#: legacy/core/core.php:1973
-#: legacy/core/core.php:2005
+#: legacy/core/core.php:1940
+#: legacy/core/core.php:2030
+#: legacy/core/core.php:2062
 msgid "Database error : %s"
 msgstr ""
 
-#: legacy/core/core.php:1954
+#: legacy/core/core.php:2011
 msgid "You must enter a filter name!"
 msgstr ""
 
-#: legacy/core/core.php:1958
+#: legacy/core/core.php:2015
 msgid "Invalid search query."
 msgstr ""
 
-#: legacy/core/core.php:1968
+#: legacy/core/core.php:2025
 msgid "Filter \"%s\" created"
 msgstr ""
 
-#: legacy/core/core.php:1995
+#: legacy/core/core.php:2052
 msgid "Filter ID not specified."
 msgstr ""
 
-#: legacy/core/core.php:2002
+#: legacy/core/core.php:2059
 msgid "Filter deleted"
 msgstr ""
 
-#: legacy/core/core.php:2052
+#: legacy/core/core.php:2109
 msgid "Replaced %d redirect with a direct link"
 msgid_plural "Replaced %d redirects with direct links"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2063
+#: legacy/core/core.php:2120
 msgid "Failed to fix %d redirect"
 msgid_plural "Failed to fix %d redirects"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2074
+#: legacy/core/core.php:2131
 msgid "None of the selected links are redirects!"
 msgstr ""
 
-#: legacy/core/core.php:2155
+#: legacy/core/core.php:2218
 msgid "%d link updated."
 msgid_plural "%d links updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2166
+#: legacy/core/core.php:2229
 msgid "Failed to update %d link."
 msgid_plural "Failed to update %d links."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2259
+#: legacy/core/core.php:2322
 msgid "%d link removed"
 msgid_plural "%d links removed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2270
+#: legacy/core/core.php:2333
 msgid "Failed to remove %d link"
 msgid_plural "Failed to remove %d links"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2385
+#: legacy/core/core.php:2448
 msgid "%d item was skipped because it can't be moved to the Trash. You need to delete it manually."
 msgid_plural "%d items were skipped because they can't be moved to the Trash. You need to delete them manually."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2407
+#: legacy/core/core.php:2470
 msgid "Didn't find anything to delete!"
 msgstr ""
 
-#: legacy/core/core.php:2446
+#: legacy/core/core.php:2509
 msgid "%d link scheduled for rechecking"
 msgid_plural "%d links scheduled for rechecking"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2496
-#: legacy/core/core.php:3350
+#: legacy/core/core.php:2559
+#: legacy/core/core.php:3434
 msgid "This link was manually marked as working by the user."
 msgstr ""
 
-#: legacy/core/core.php:2504
-#: legacy/core/core.php:2568
+#: legacy/core/core.php:2567
+#: legacy/core/core.php:2631
 msgid "Couldn't modify link %d"
 msgstr ""
 
-#: legacy/core/core.php:2515
+#: legacy/core/core.php:2578
 msgid "%d link marked as not broken"
 msgid_plural "%d links marked as not broken"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2579
+#: legacy/core/core.php:2642
 msgid "%d link dismissed"
 msgid_plural "%d links dismissed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:2636
+#: legacy/core/core.php:2712
 msgid "The \"Warnings\" page lists problems that are probably temporary or suspected to be false positives.<br> Warnings that persist for a long time will usually be reclassified as broken links."
 msgstr ""
 
-#: legacy/core/core.php:2641
+#: legacy/core/core.php:2717
 msgctxt "admin notice under Tools - Broken links - Warnings"
 msgid "Hide notice"
 msgstr ""
 
-#: legacy/core/core.php:2647
+#: legacy/core/core.php:2723
 msgctxt "a link from the admin notice under Tools - Broken links - Warnings"
 msgid "Change warning settings"
 msgstr ""
 
-#: legacy/core/core.php:2672
+#: legacy/core/core.php:2748
 msgid "Table columns"
 msgstr ""
 
-#: legacy/core/core.php:2691
+#: legacy/core/core.php:2767
 msgid "Show on screen"
 msgstr ""
 
-#: legacy/core/core.php:2698
+#: legacy/core/core.php:2774
 msgid "links"
 msgstr ""
 
-#: legacy/core/core.php:2699
+#: legacy/core/core.php:2775
 #: legacy/includes/admin/table-printer.php:175
 msgid "Apply"
 msgstr ""
 
-#: legacy/core/core.php:2703
+#: legacy/core/core.php:2779
 msgid "Misc"
 msgstr ""
 
-#: legacy/core/core.php:2718
+#: legacy/core/core.php:2794
 msgid "Highlight links broken for at least %s days"
 msgstr ""
 
-#: legacy/core/core.php:2727
+#: legacy/core/core.php:2803
 msgid "Color-code status codes"
 msgstr ""
 
-#: legacy/core/core.php:2747
-#: legacy/core/core.php:3334
-#: legacy/core/core.php:3381
-#: legacy/core/core.php:3420
-#: legacy/core/core.php:3546
-#: legacy/core/core.php:3606
-#: legacy/core/core.php:3686
+#: legacy/core/core.php:2823
+#: legacy/core/core.php:3418
+#: legacy/core/core.php:3465
+#: legacy/core/core.php:3504
+#: legacy/core/core.php:3630
+#: legacy/core/core.php:3690
+#: legacy/core/core.php:3770
 msgid "You're not allowed to do that!"
 msgstr ""
 
-#: legacy/core/core.php:3202
+#: legacy/core/core.php:3286
 msgid "View broken links"
 msgstr ""
 
-#: legacy/core/core.php:3203
+#: legacy/core/core.php:3287
 msgid "Found %d broken link"
 msgid_plural "Found %d broken links"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:3209
+#: legacy/core/core.php:3293
 msgid "No broken links found."
 msgstr ""
 
-#: legacy/core/core.php:3216
+#: legacy/core/core.php:3300
 msgid "%d URL in the work queue"
 msgid_plural "%d URLs in the work queue"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:3220
+#: legacy/core/core.php:3304
 msgid "No URLs in the work queue."
 msgstr ""
 
-#: legacy/core/core.php:3226
+#: legacy/core/core.php:3310
 msgctxt "for the \"Detected X unique URLs in Y links\" message"
 msgid "%d unique URL"
 msgid_plural "%d unique URLs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:3230
+#: legacy/core/core.php:3314
 msgctxt "for the \"Detected X unique URLs in Y links\" message"
 msgid "%d link"
 msgid_plural "%d links"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:3236
+#: legacy/core/core.php:3320
 msgid "Detected %1$s in %2$s and still searching..."
 msgstr ""
 
-#: legacy/core/core.php:3242
+#: legacy/core/core.php:3326
 msgid "Detected %1$s in %2$s."
 msgstr ""
 
-#: legacy/core/core.php:3249
+#: legacy/core/core.php:3333
 msgid "Searching your blog for links..."
 msgstr ""
 
-#: legacy/core/core.php:3251
+#: legacy/core/core.php:3335
 msgid "No links detected."
 msgstr ""
 
-#: legacy/core/core.php:3277
+#: legacy/core/core.php:3361
 msgctxt "current load"
 msgid "Unknown"
 msgstr ""
 
-#: legacy/core/core.php:3342
-#: legacy/core/core.php:3389
-#: legacy/core/core.php:3443
-#: legacy/core/core.php:3560
-#: legacy/core/core.php:3629
-#: legacy/core/core.php:3709
+#: legacy/core/core.php:3426
+#: legacy/core/core.php:3473
+#: legacy/core/core.php:3527
+#: legacy/core/core.php:3644
+#: legacy/core/core.php:3713
+#: legacy/core/core.php:3793
 msgid "Oops, I can't find the link %d"
 msgstr ""
 
-#: legacy/core/core.php:3362
-#: legacy/core/core.php:3403
+#: legacy/core/core.php:3446
+#: legacy/core/core.php:3487
 msgid "Oops, couldn't modify the link!"
 msgstr ""
 
-#: legacy/core/core.php:3365
-#: legacy/core/core.php:3406
-#: legacy/core/core.php:3594
-#: legacy/core/core.php:3616
-#: legacy/core/core.php:3696
+#: legacy/core/core.php:3449
+#: legacy/core/core.php:3490
+#: legacy/core/core.php:3678
+#: legacy/core/core.php:3700
+#: legacy/core/core.php:3780
 msgid "Error : link_id not specified"
 msgstr ""
 
-#: legacy/core/core.php:3430
+#: legacy/core/core.php:3514
 msgid "Error : link_id or new_url not specified"
 msgstr ""
 
-#: legacy/core/core.php:3456
-#: legacy/core/core.php:3470
+#: legacy/core/core.php:3540
+#: legacy/core/core.php:3554
 msgid "Oops, the new URL is invalid!"
 msgstr ""
 
-#: legacy/core/core.php:3490
+#: legacy/core/core.php:3574
 msgid "An unexpected error occurred!"
 msgstr ""
 
-#: legacy/core/core.php:3573
+#: legacy/core/core.php:3657
 msgid "An unexpected error occured!"
 msgstr ""
 
-#: legacy/core/core.php:3745
+#: legacy/core/core.php:3829
 msgid "You don't have sufficient privileges to access this information!"
 msgstr ""
 
-#: legacy/core/core.php:3758
+#: legacy/core/core.php:3842
 msgid "Error : link ID not specified"
 msgstr ""
 
-#: legacy/core/core.php:3772
+#: legacy/core/core.php:3856
 msgid "Failed to load link details (%s)"
 msgstr ""
 
-#: legacy/core/core.php:3846
+#: legacy/core/core.php:3930
 msgid "PHP version"
 msgstr ""
 
-#: legacy/core/core.php:3852
+#: legacy/core/core.php:3936
 msgid "MySQL version"
 msgstr ""
 
-#: legacy/core/core.php:3865
+#: legacy/core/core.php:3949
 msgid "You have an old version of CURL. Redirect detection may not work properly."
 msgstr ""
 
-#: legacy/core/core.php:3876
-#: legacy/core/core.php:3892
-#: legacy/core/core.php:3897
+#: legacy/core/core.php:3960
+#: legacy/core/core.php:3976
+#: legacy/core/core.php:3981
 msgid "Not installed"
 msgstr ""
 
-#: legacy/core/core.php:3879
+#: legacy/core/core.php:3963
 msgid "CURL version"
 msgstr ""
 
-#: legacy/core/core.php:3885
+#: legacy/core/core.php:3969
 msgid "Installed"
 msgstr ""
 
-#: legacy/core/core.php:3898
+#: legacy/core/core.php:3982
 msgid "You must have either CURL or Snoopy installed for the plugin to work!"
 msgstr ""
 
-#: legacy/core/core.php:3908
+#: legacy/core/core.php:3992
 msgid "On"
 msgstr ""
 
-#: legacy/core/core.php:3909
+#: legacy/core/core.php:3993
 msgid "Redirects may be detected as broken links when safe_mode is on."
 msgstr ""
 
-#: legacy/core/core.php:3914
-#: legacy/core/core.php:3928
+#: legacy/core/core.php:3998
+#: legacy/core/core.php:4012
 msgid "Off"
 msgstr ""
 
-#: legacy/core/core.php:3922
+#: legacy/core/core.php:4006
 msgid "On ( %s )"
 msgstr ""
 
-#: legacy/core/core.php:3923
+#: legacy/core/core.php:4007
 msgid "Redirects may be detected as broken links when open_basedir is on."
 msgstr ""
 
-#: legacy/core/core.php:3941
+#: legacy/core/core.php:4025
 msgid "Database character set"
 msgstr ""
 
-#: legacy/core/core.php:3960
+#: legacy/core/core.php:4044
 msgid "If this value is zero even after several page reloads you have probably encountered a bug."
 msgstr ""
 
-#: legacy/core/core.php:4095
-#: legacy/core/core.php:4220
+#: legacy/core/core.php:4179
+#: legacy/core/core.php:4304
 msgid "[%s] Broken links detected"
 msgstr ""
 
-#: legacy/core/core.php:4100
+#: legacy/core/core.php:4184
 msgid "Broken Link Checker has detected %d new broken link on your site."
 msgid_plural "Broken Link Checker has detected %d new broken links on your site."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:4132
+#: legacy/core/core.php:4216
 msgid "Here's a list of the first %d broken links:"
 msgid_plural "Here's a list of the first %d broken links:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/core/core.php:4141
+#: legacy/core/core.php:4225
 msgid "Here's a list of the new broken links: "
 msgstr ""
 
-#: legacy/core/core.php:4151
+#: legacy/core/core.php:4235
 msgid "Link text : %s"
 msgstr ""
 
-#: legacy/core/core.php:4152
+#: legacy/core/core.php:4236
 msgid "Link URL : <a href=\"%1$s\">%2$s</a>"
 msgstr ""
 
-#: legacy/core/core.php:4153
+#: legacy/core/core.php:4237
 msgid "Source : %s"
 msgstr ""
 
-#: legacy/core/core.php:4167
+#: legacy/core/core.php:4251
 msgid "You can see all broken links here:"
 msgstr ""
 
-#: legacy/core/core.php:4225
+#: legacy/core/core.php:4309
 msgid "Broken Link Checker has detected %d new broken link in your posts."
 msgid_plural "Broken Link Checker has detected %d new broken links in your posts."
 msgstr[0] ""
 msgstr[1] ""
 
 #: legacy/core/init.php:235
-#: legacy/init.php:245
+#: legacy/init.php:252
 msgid "Every 10 minutes"
 msgstr ""
 
 #: legacy/core/init.php:242
-#: legacy/init.php:252
+#: legacy/init.php:259
 msgid "Once Weekly"
 msgstr ""
 
 #: legacy/core/init.php:248
-#: legacy/init.php:258
+#: legacy/init.php:265
 msgid "Twice a Month"
 msgstr ""
 
 #: legacy/core/init.php:321
-#: legacy/init.php:333
+#: legacy/init.php:340
 msgid "Broken Link Checker installation failed. Try deactivating and then reactivating the plugin."
 msgstr ""
 
@@ -1406,8 +1428,6 @@ msgstr ""
 
 #: legacy/includes/admin/search-form.php:32
 #: legacy/includes/link-query.php:81
-#: assets/js/dashboard/main.js:12031
-#: assets/js/dashboard/main.js:11699
 msgid "Search"
 msgstr ""
 
@@ -1651,7 +1671,7 @@ msgstr ""
 msgid "Use this URL"
 msgstr ""
 
-#: legacy/includes/any-post.php:477
+#: legacy/includes/any-post.php:484
 #: legacy/modules/containers/acf_field.php:248
 #: legacy/modules/containers/blogroll.php:46
 #: legacy/modules/containers/comment.php:159
@@ -1659,115 +1679,115 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: legacy/includes/any-post.php:485
+#: legacy/includes/any-post.php:492
 #: legacy/modules/containers/acf_field.php:252
 #: legacy/modules/containers/custom_field.php:258
 msgid "Move this item to the Trash"
 msgstr ""
 
-#: legacy/includes/any-post.php:487
+#: legacy/includes/any-post.php:494
 #: legacy/modules/containers/acf_field.php:252
 #: legacy/modules/containers/custom_field.php:260
 msgid "Trash"
 msgstr ""
 
-#: legacy/includes/any-post.php:492
+#: legacy/includes/any-post.php:499
 #: legacy/modules/containers/acf_field.php:254
 #: legacy/modules/containers/custom_field.php:265
 msgid "Delete this item permanently"
 msgstr ""
 
-#: legacy/includes/any-post.php:494
+#: legacy/includes/any-post.php:501
 #: legacy/modules/containers/acf_field.php:254
 #: legacy/modules/containers/blogroll.php:47
 #: legacy/modules/containers/custom_field.php:267
 msgid "Delete"
 msgstr ""
 
-#: legacy/includes/any-post.php:507
+#: legacy/includes/any-post.php:514
 msgid "Preview &#8220;%s&#8221;"
 msgstr ""
 
-#: legacy/includes/any-post.php:508
+#: legacy/includes/any-post.php:515
 msgid "Preview"
 msgstr ""
 
-#: legacy/includes/any-post.php:515
+#: legacy/includes/any-post.php:522
 msgid "View &#8220;%s&#8221;"
 msgstr ""
 
-#: legacy/includes/any-post.php:516
+#: legacy/includes/any-post.php:523
 #: legacy/modules/containers/acf_field.php:258
 #: legacy/modules/containers/comment.php:172
 #: legacy/modules/containers/custom_field.php:272
 msgid "View"
 msgstr ""
 
-#: legacy/includes/any-post.php:535
+#: legacy/includes/any-post.php:542
 #: legacy/modules/containers/acf_field.php:248
 #: legacy/modules/containers/custom_field.php:252
 msgid "Edit this item"
 msgstr ""
 
-#: legacy/includes/any-post.php:599
+#: legacy/includes/any-post.php:606
 #: legacy/modules/containers/blogroll.php:83
 #: legacy/modules/containers/comment.php:43
 msgid "Nothing to update"
 msgstr ""
 
-#: legacy/includes/any-post.php:613
+#: legacy/includes/any-post.php:620
 msgid "Updating post %d failed"
 msgstr ""
 
-#: legacy/includes/any-post.php:674
+#: legacy/includes/any-post.php:681
 #: legacy/modules/containers/acf_field.php:327
 #: legacy/modules/containers/custom_field.php:341
 msgid "Failed to delete post \"%1$s\" (%2$d)"
 msgstr ""
 
-#: legacy/includes/any-post.php:693
+#: legacy/includes/any-post.php:700
 #: legacy/modules/containers/acf_field.php:341
 #: legacy/modules/containers/custom_field.php:360
 msgid "Can't move post \"%1$s\" (%2$d) to the trash because the trash feature is disabled"
 msgstr ""
 
-#: legacy/includes/any-post.php:713
+#: legacy/includes/any-post.php:720
 #: legacy/modules/containers/acf_field.php:353
 #: legacy/modules/containers/custom_field.php:379
 msgid "Failed to move post \"%1$s\" (%2$d) to the trash"
 msgstr ""
 
-#: legacy/includes/any-post.php:820
+#: legacy/includes/any-post.php:827
 msgid "%d post deleted."
 msgid_plural "%d posts deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/any-post.php:822
+#: legacy/includes/any-post.php:829
 msgid "%d page deleted."
 msgid_plural "%d pages deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/any-post.php:824
+#: legacy/includes/any-post.php:831
 msgid "%1$d \"%2$s\" deleted."
 msgid_plural "%1$d \"%2$s\" deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/any-post.php:843
+#: legacy/includes/any-post.php:850
 msgid "%d post moved to the Trash."
 msgid_plural "%d posts moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/any-post.php:845
+#: legacy/includes/any-post.php:852
 msgid "%d page moved to the Trash."
 msgid_plural "%d pages moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/any-post.php:847
+#: legacy/includes/any-post.php:854
 msgid "%1$d \"%2$s\" moved to the Trash."
 msgid_plural "%1$d \"%2$s\" moved to the Trash."
 msgstr[0] ""
@@ -1890,8 +1910,6 @@ msgid "Parser '%s' not found."
 msgstr ""
 
 #: legacy/includes/link-query.php:25
-#: assets/js/dashboard/main.js:10850
-#: assets/js/dashboard/main.js:10496
 msgid "All"
 msgstr ""
 
@@ -2037,61 +2055,61 @@ msgstr ""
 msgid "Unlinking is not implemented in the '%s' parser"
 msgstr ""
 
-#: legacy/includes/utility-class.php:248
+#: legacy/includes/utility-class.php:259
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:249
+#: legacy/includes/utility-class.php:260
 msgid "%d second ago"
 msgid_plural "%d seconds ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:252
+#: legacy/includes/utility-class.php:263
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:253
+#: legacy/includes/utility-class.php:264
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:256
+#: legacy/includes/utility-class.php:267
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:257
+#: legacy/includes/utility-class.php:268
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:260
+#: legacy/includes/utility-class.php:271
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:261
+#: legacy/includes/utility-class.php:272
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:264
+#: legacy/includes/utility-class.php:275
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legacy/includes/utility-class.php:265
+#: legacy/includes/utility-class.php:276
 msgid "%d month ago"
 msgid_plural "%d months ago"
 msgstr[0] ""
@@ -2363,532 +2381,39 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: app/admin-modals/plugin-activation/assets/js/main.js:13
-#: assets/js/activation-popup/main.js:4737
-#: assets/js/activation-popup/main.js:4084
-msgid "Welcome to Broken Link Checker 2.0"
+#: app/admin-modals/plugin-activation/assets/js/main.js:16
+msgid "Welcome to Cloud Broken Link Checker 2.0"
 msgstr ""
 
-#: app/admin-modals/plugin-activation/assets/js/main.js:17
-#: assets/js/activation-popup/main.js:4740
-#: assets/js/activation-popup/main.js:4088
+#: app/admin-modals/plugin-activation/assets/js/main.js:20
 msgid "We have completely reengineered Broken Link Checker with a new API to work 20x faster, better, and more accurately. What’s more, it’s still completely free (and always will be)."
 msgstr ""
 
-#: app/admin-modals/plugin-activation/assets/js/main.js:67
-#: assets/js/activation-popup/main.js:4784
-#: assets/js/activation-popup/main.js:4138
+#: app/admin-modals/plugin-activation/assets/js/main.js:70
 msgid "Go to BLC 2.0"
 msgstr ""
 
-#: app/admin-modals/plugin-activation/assets/js/main.js:77
-#: assets/js/activation-popup/main.js:4795
-#: assets/js/activation-popup/main.js:4148
+#: app/admin-modals/plugin-activation/assets/js/main.js:84
 msgid "Continue with Old version"
 msgstr ""
 
 #: assets/common/js/react/components/modal.js:55
-#: assets/js/activation-popup/main.js:3746
-#: assets/js/dashboard/main.js:13373
-#: assets/js/legacy-modal/main.js:3972
-#: assets/js/activation-popup/main.js:3264
-#: assets/js/dashboard/main.js:12827
-#: assets/js/legacy-modal/main.js:3363
+#: assets/js/activation-popup/main.js:1
+#: assets/js/dashboard/main.js:1
+#: assets/js/local-modal/main.js:1
 msgid "Close this modal"
 msgstr ""
 
-#: assets/js/dashboard/main.js:9592
-#: assets/js/dashboard/main.js:11094
-#: assets/js/dashboard/main.js:9223
-#: assets/js/dashboard/main.js:10758
-msgid "Daily"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9595
-#: assets/js/dashboard/main.js:11104
-#: assets/js/dashboard/main.js:9226
-#: assets/js/dashboard/main.js:10767
-msgid "Weekly"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9607
-#: assets/js/dashboard/main.js:11116
-#: assets/js/dashboard/main.js:9240
-#: assets/js/dashboard/main.js:10779
-msgid "Monthly"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9636
-#: assets/js/dashboard/main.js:9270
-msgid "No recipients"
-msgstr ""
-
-#. translators: %d: Number of hidden recipients
-#: assets/js/dashboard/main.js:9677
-#: assets/js/dashboard/main.js:9329
-msgid "+ %d more"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9692
-#: assets/js/dashboard/main.js:9352
-msgid "Schedule has been disabled"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9717
-#: assets/js/dashboard/main.js:9938
-#: assets/js/dashboard/main.js:9385
-#: assets/js/dashboard/main.js:9614
-msgid "Notification"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9721
-#: assets/js/dashboard/main.js:9391
-msgid "Recipients"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9723
-#: assets/js/dashboard/main.js:9394
-msgid "Schedule"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9732
-#: assets/js/dashboard/main.js:9949
-#: assets/js/dashboard/main.js:9959
-#: assets/js/dashboard/main.js:9960
-#: assets/js/dashboard/main.js:12493
-#: assets/js/dashboard/main.js:9405
-#: assets/js/dashboard/main.js:9630
-#: assets/js/dashboard/main.js:9647
-#: assets/js/dashboard/main.js:9648
-#: assets/js/dashboard/main.js:12076
-msgid "Schedule Scan"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9736
-#: assets/js/dashboard/main.js:9409
-msgid "Enabled"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9748
-#: assets/js/dashboard/main.js:9426
-msgid "Enable Notification"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9767
-#: assets/js/dashboard/main.js:9454
-msgid "Disable"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9862
-#: assets/js/dashboard/main.js:9536
-msgid "Settings saved. Schedule has been deactivated successfully"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9894
-#: assets/js/dashboard/main.js:9579
-msgid "Deactivate"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9951
-#: assets/js/dashboard/main.js:9634
-msgid "Disabled"
-msgstr ""
-
-#: assets/js/dashboard/main.js:9953
-#: assets/js/dashboard/main.js:9639
-msgid "Schedule broken link checks and receive results via email."
-msgstr ""
-
-#: assets/js/dashboard/main.js:10016
-#: assets/js/dashboard/main.js:9682
-msgid "Run New Scan"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10053
-#: assets/js/dashboard/main.js:9719
-msgid "Membership seems to be expired. You can manage your Membership "
-msgstr ""
-
-#: assets/js/dashboard/main.js:10055
-#: assets/js/dashboard/main.js:9720
-msgid "here."
-msgstr ""
-
-#: assets/js/dashboard/main.js:10066
-#: assets/js/dashboard/main.js:9735
-msgid "Upgrade Membership"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10067
-#: assets/js/dashboard/main.js:9737
-msgid "Upgrade Membership to start a new scan."
-msgstr ""
-
-#: assets/js/dashboard/main.js:10097
-#: assets/js/dashboard/main.js:9775
-msgid "Site scan for broken links is in progress."
-msgstr ""
-
-#: assets/js/dashboard/main.js:10118
-#: assets/js/dashboard/main.js:9799
-msgid "Broken Link Checker is just catching her breath - you can run another test in a minute"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10120
-#: assets/js/dashboard/main.js:9804
-msgid "Broken Link Checker is just catching her breath - you can run another test in %d minutes"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10247
-#: assets/js/dashboard/main.js:9949
-msgid "A scan is currently in progress. Please wait for scan results."
-msgstr ""
-
-#: assets/js/dashboard/main.js:10378
-#: assets/js/legacy-modal/main.js:3395
-#: assets/js/dashboard/main.js:10057
-#: assets/js/legacy-modal/main.js:2973
-msgid "Continue"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10389
-#: assets/js/dashboard/main.js:10070
-msgid "Activate"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10408
-#: assets/js/dashboard/main.js:10091
-msgid "Notification saved successfully"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10653
-#: assets/js/dashboard/main.js:10692
-#: assets/js/dashboard/main.js:10324
-#: assets/js/dashboard/main.js:10366
-msgid "Add Recipients"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10687
-#: assets/js/dashboard/main.js:10365
-msgid "Schedule Date"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10762
-#: assets/js/dashboard/main.js:12083
-#: assets/js/dashboard/main.js:10417
-#: assets/js/dashboard/main.js:11728
-msgid "Select Day"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10836
-#: assets/js/dashboard/main.js:10481
-msgid "Default"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10838
-#: assets/js/dashboard/main.js:10482
-msgid "Recently Added"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10840
-#: assets/js/dashboard/main.js:10483
-msgid "A-Z"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10842
-#: assets/js/dashboard/main.js:10484
-msgid "Z-A"
-msgstr ""
-
-#: assets/js/dashboard/main.js:10860
-#: assets/js/dashboard/main.js:10512
-msgid "Clear all filters"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11019
-#: assets/js/dashboard/main.js:10682
-msgid "Search Users"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11023
-#: assets/js/dashboard/main.js:11534
-#: assets/js/dashboard/main.js:10691
-#: assets/js/dashboard/main.js:11190
-msgid "Added Recipients"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11036
-#: assets/js/dashboard/main.js:10712
-msgid "Users"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11133
-#: assets/js/dashboard/main.js:10798
-msgid "Frequency"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11189
-#: assets/js/dashboard/main.js:10836
-msgid "You've not added the users. In order to activate the schedule you need to add users first."
-msgstr ""
-
-#: assets/js/dashboard/main.js:11226
-#: assets/js/dashboard/main.js:10858
-msgid "Add users"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11231
-#: assets/js/dashboard/main.js:10859
-msgid "Add by email"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11238
-#: assets/js/dashboard/main.js:10866
-msgid "Add recipients to be notified of scheduled broken link check reports."
-msgstr ""
-
-#: assets/js/dashboard/main.js:11491
-#: assets/js/dashboard/main.js:11130
-msgid "Invite recipients by email address, and they will receive scheduled broken link check reports."
-msgstr ""
-
-#: assets/js/dashboard/main.js:11493
-#: assets/js/dashboard/main.js:11135
-msgid "Invite Recipients"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11497
-#: assets/js/dashboard/main.js:11141
-msgid "Name"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11498
-#: assets/js/dashboard/main.js:11142
-msgid "E.g. John"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11507
-#: assets/js/dashboard/main.js:11153
-msgid "Email Address"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11508
-#: assets/js/dashboard/main.js:11154
-msgid "E.g. John@doe.com"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11515
-#: assets/js/dashboard/main.js:11163
-msgid "The email address you entered is invalid."
-msgstr ""
-
-#: assets/js/dashboard/main.js:11518
-#: assets/js/dashboard/main.js:11169
-msgid "The email address is already in use."
-msgstr ""
-
-#: assets/js/dashboard/main.js:11522
-#: assets/js/dashboard/main.js:11176
-msgid "Add Recipient"
-msgstr ""
-
-#: assets/js/dashboard/main.js:11582
-#: assets/js/dashboard/main.js:11223
-msgid "Select Time"
-msgstr ""
-
 #. translators: %d: Minimum letter number in order to start remote search
-#: assets/js/dashboard/main.js:11756
-#: assets/js/dashboard/main.js:11411
+#: assets/js/dashboard/main.js:3
 msgid "You need to type at least %d characters."
 msgstr ""
 
 #. translators: %s: The search term
-#: assets/js/dashboard/main.js:11761
-#: assets/js/dashboard/main.js:11420
+#: assets/js/dashboard/main.js:4
 msgid "No user found for <strong>%s</strong> term."
 msgstr ""
 
-#. translators: %d: Minimum letter number in order to start remote search
-#: assets/js/dashboard/main.js:11888
-#: assets/js/dashboard/main.js:11514
-msgid "Nothing found for term %s."
-msgstr ""
-
-#. translators: %d: Minimum letter number in order to start remote search
-#: assets/js/dashboard/main.js:11953
-#: assets/js/dashboard/main.js:11599
-msgid "Please enter %d or more characters."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12030
-#: assets/js/dashboard/main.js:11698
-msgid "Type username"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12152
-#: assets/js/dashboard/main.js:11784
-msgid " URLs"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12192
-#: assets/js/dashboard/main.js:11838
-msgid "Start Time"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12200
-#: assets/js/dashboard/main.js:11847
-msgid "End Time"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12208
-#: assets/js/dashboard/main.js:11856
-msgid "Duration"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12371
-#: assets/js/dashboard/main.js:11984
-msgid "Click to close"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12496
-#: assets/js/dashboard/main.js:12083
-msgid "Enable scheduled broken link checks and be notified of results."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12683
-#: assets/js/dashboard/main.js:12276
-msgid "Connect to WPMU DEV"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12684
-#: assets/js/dashboard/main.js:12689
-#: assets/js/dashboard/main.js:12277
-#: assets/js/dashboard/main.js:12283
-msgid "Next-gen broken link detection is just a few clicks away. Activate Broken Link Checker 2.0 by connecting your site to WPMU DEV. It’s easy and 100% free. Run your first scan in minutes."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12690
-#: assets/js/dashboard/main.js:12284
-msgid "Activate WPMU DEV Dashboard"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12695
-#: assets/js/dashboard/main.js:12290
-msgid "Next-gen broken link detection is just a few clicks away. Activate Broken Link Checker 2.0 enabling BLC New Version. It’s easy and 100% free. Run your first scan in minutes."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12696
-#: assets/js/dashboard/main.js:12291
-msgid "Enable new version"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12702
-#: assets/js/dashboard/main.js:12299
-msgid "20x speed"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12703
-#: assets/js/dashboard/main.js:12300
-msgid "Being cloud-based eliminates any dependence on the performance of your server, resulting in a massive speed boost."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12705
-#: assets/js/dashboard/main.js:12303
-msgid "Unlimited page & URL scanning"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12706
-#: assets/js/dashboard/main.js:12304
-msgid "Enjoy limitless scanning for pages and URLs, ideal if you’re working with multiple sites or large sites with a lot of content."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12708
-#: assets/js/dashboard/main.js:12307
-msgid "Crawl it all"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12709
-#: assets/js/dashboard/main.js:12308
-msgid "Standard pages, posts, menus, category pages... BLC 2.0 ensures no URL is missed."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12711
-#: assets/js/dashboard/main.js:12311
-msgid "Any site, any size"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12712
-#: assets/js/dashboard/main.js:12312
-msgid "Unlike plugin-based solutions, BLC 2.0 is server-independent, making it capable of checking sites of any size and type."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12714
-#: assets/js/dashboard/main.js:12315
-msgid "Reduced errors"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12715
-#: assets/js/dashboard/main.js:12316
-msgid "BLC 2.0 completely eliminates the occurrence of WP Errors, Fatal Errors, DB Errors, and PHP Errors."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12717
-#: assets/js/dashboard/main.js:12319
-msgid "Set your schedule"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12718
-#: assets/js/dashboard/main.js:12320
-msgid "Easily set up daily, weekly, or monthly scans, with instant detection reports sent straight to your email."
-msgstr ""
-
-#: assets/js/dashboard/main.js:12736
-#: assets/js/dashboard/main.js:12339
-msgid "Activate BLC 2.0 for better accuracy & superior speed"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12750
-#: assets/js/dashboard/main.js:12365
-msgid "The company behind BLC 2.0, WPMU DEV is an all-in-one WordPress platform that has helped millions of web developers worldwide run and grow their businesses. Connecting your site to WPMU DEV allows you to harness BLC 2.0’s full capabilities (plus, you’ll gain access to a host of other powerful bonus web dev tools for free)"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12756
-#: assets/js/dashboard/main.js:12369
-msgid "What is WPMU DEV?"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12760
-#: assets/js/dashboard/main.js:12378
-msgid "Why switch to BLC 2.0?"
-msgstr ""
-
-#: assets/js/dashboard/main.js:12762
-#: assets/js/dashboard/main.js:12380
-msgid "100% cloud-based and built on WPMU DEV’s servers, Broken Link Checker 2.0 offers web developers several advantages that similar plugins do not."
-msgstr ""
-
-#: assets/js/legacy-modal/main.js:3324
-#: assets/js/legacy-modal/main.js:2921
-msgid "Back to BLC 2.0"
-msgstr ""
-
-#: assets/js/legacy-modal/main.js:3480
-#: assets/js/legacy-modal/main.js:3017
-msgid "BLC 2.0 will be automatically disabled when the old Broken Link Checker is enabled."
-msgstr ""
-
-#: assets/js/legacy-modal/main.js:3562
-#: assets/js/legacy-modal/main.js:3061
-msgid "You’re now enjoying the new Broken Link Checker 2.0, which means the old version has been disabled. (NB: If you wish to remain with the old BLC, for whatever reason, you can revert to that version below.)"
-msgstr ""
-
-#: assets/js/legacy-modal/main.js:3570
-#: assets/js/legacy-modal/main.js:3073
-msgid "Enable the old Broken Link Checker"
-msgstr ""
-
-#: assets/js/legacy-modal/main.js:3640
-#: assets/js/legacy-modal/main.js:3117
-msgid "The old Broken Link Checker is disabled"
+#: assets/js/legacy-modal/main.js:1
+msgid "Local Link Checker is inactive"
 msgstr ""

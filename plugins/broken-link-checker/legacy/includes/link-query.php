@@ -709,7 +709,7 @@ class blcLinkQuery {
 			}
 
 			$items[] = sprintf(
-				"<li><a href='admin.php?page=view-broken-links&filter_id=%s' %s>%s</a> <span class='count'>(<span class='%s'>%d</span>)</span>",
+				"<li><a href='admin.php?page=blc_local&filter_id=%s' %s>%s</a> <span class='count'>(<span class='%s'>%d</span>)</span>",
 				esc_attr( $filter ),
 				$class,
 				esc_html( $data['name'] ),

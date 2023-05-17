@@ -167,6 +167,13 @@ final class Loader extends Base {
 	 * @return void
 	 */
 	public function init_app() {
+		// Load text domain.
+		load_plugin_textdomain(
+			'broken-link-checker',
+			false,
+			dirname( WPMUDEV_BLC_BASENAME ) . '/languages'
+		);
+
 		/*
 		 * Load plugin components. (Admin pages, Shortcodes, Rest Endpoints etc).
 		 * Structures that build the plugins features and ui.

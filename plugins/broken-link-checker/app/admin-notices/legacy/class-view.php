@@ -32,7 +32,8 @@ class View extends Base {
 	 *
 	 */
 	public function render( $params = array() ) {
-		$this->render_body();
+		// For now, we won't be using the notice. We will keep only the button to switch to Cloud mode.
+		//$this->render_body();
 	}
 
 	public function render_body() {
