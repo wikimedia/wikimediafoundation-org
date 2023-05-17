@@ -17,6 +17,7 @@ namespace WPMUDEV_BLC\App\Scheduled_Events\Scan;
 // Abort if called directly.
 defined( 'WPINC' ) || die;
 
+use Exception;
 use WPMUDEV_BLC\App\Http_Requests\Scan\Controller as Scan_API;
 use WPMUDEV_BLC\Core\Utils\Abstracts\Base;
 use WPMUDEV_BLC\App\Options\Settings\Model as Settings;
@@ -68,17 +69,15 @@ class Controller extends Base {
 	}
 
 	/**
-	 * Returns the scheduled event's hook name.
-	 * Overriding Trait's method.
-	 */
-	public function get_hook_name() {
-		return $this->cron_hook_name;
-	}
-
-	/**
 	 * Starts the scheduled scan.
 	 */
 	public function process_scheduled_event() {
+		if ( ! $this->get_schedule( 'active' ) || ! apply_filters( 'wpmudev_blc_can_run_scan_schedule', $this->can_run_schedule() ) ) {
+			// Reset Schedule to make sure that it runs in time.
+			$this->set_scan_schedule();
+			return false;
+		}
+
 		// At his point we're setting the scan status flag to `in_progress`. So if it doesn't get `completed` there
 		// will ba a sync request fired on page load.
 		Settings::instance()->set( array( 'scan_status' => 'in_progress' ) );
@@ -86,10 +85,71 @@ class Controller extends Base {
 
 		$scan = Scan_API::instance();
 
+		// Setting scan schedule so that it doesn't run while scan still is running.
+		$this->set_scan_schedule();
 		$scan->start();
 		$this->set_scan_schedule_flag();
 		//$this->deactivate_cron();
-		$this->set_scan_schedule();
+		//$this->set_scan_schedule();
+	}
+
+	/**
+	 * Returns the schedule from settings, or if a key is set, it returns that key's value
+	 *
+	 * @param string $key .
+	 *
+	 * @return array|mixed|null
+	 */
+	private function get_schedule( string $key = '' ) {
+		if ( is_null( $this->settings ) ) {
+			$this->settings = Settings::instance()->get( 'schedule' );
+		}
+
+		if ( ! empty( $key ) && is_array( $this->settings ) ) {
+			return $this->settings[ $key ] ?? null;
+		}
+
+		return $this->settings;
+	}
+
+	/**
+	 * Makes sure that the cron does not get triggered long before it's time.
+	 *
+	 * @throws Exception
+	 * @return boolean
+	 */
+	protected function can_run_schedule() {
+		// For some reason this is called multiple times
+		$cur_date       = new \DateTimeImmutable();
+		$scan_results = Settings::instance()->get( 'scan_results' );
+		$last_timestamp = $scan_results['end_time'] ?? null;
+		$last_scan_date = new \DateTimeImmutable( date( 'Y-m-d H:i:s', $last_timestamp ) );
+		$interval_from_last = $cur_date->diff( $last_scan_date );
+
+		if ( 'in_progress' === Settings::instance()->get( 'scan_status' ) || abs( $interval_from_last->format( '%h' ) )  <= 5 ) {
+			$this->set_scan_schedule();
+			return false;
+		}
+
+		$next_timestamp = wp_next_scheduled( $this->get_hook_name() );
+
+		if ( empty( $next_timestamp ) ) {
+			$next_timestamp = $this->get_timestamp();
+		}
+
+		$next_scan_date = new \DateTimeImmutable( date( 'Y-m-d H:i:s', $next_timestamp ) );
+		$interval       = $next_scan_date->diff( $cur_date );
+		// If for some reason the schedule gets triggered long before its time, let's make sure it doesn't run the callback.
+		// We do allow some time span, by default 5 hours.
+		return 5 >= abs( $interval->format( '%h' ) );
+	}
+
+	/**
+	 * Returns the scheduled event's hook name.
+	 * Overriding Trait's method.
+	 */
+	public function get_hook_name() {
+		return $this->cron_hook_name;
 	}
 
 	/**
@@ -114,6 +174,8 @@ class Controller extends Base {
 			return false;
 		}
 
+		$settings = empty( $settings ) ?? Settings::instance();
+
 		// Deactivate cron if is already created, so we will replace it later on.
 		$this->deactivate_cron();
 
@@ -121,30 +183,9 @@ class Controller extends Base {
 		$this->is_single_event = true;
 		// Set the timestamp based on Schedule options.
 		$this->timestamp = intval( $this->get_timestamp( $settings['schedule'] ?? array() ) );
-		/*
-		* setup_cron() is handled by Cron trait.
-		*/
+
 		//$this->setup_cron();
 		return $this->activate_cron();
-	}
-
-	/**
-	 * Returns the schedule from settings, or if a key is set, it returns that key's value
-	 *
-	 * @param string $key .
-	 *
-	 * @return array|mixed|null
-	 */
-	private function get_schedule( string $key = '' ) {
-		if ( is_null( $this->settings ) ) {
-			$this->settings = Settings::instance()->get( 'schedule' );
-		}
-
-		if ( ! empty( $key ) && is_array( $this->settings ) ) {
-			return $this->settings[ $key ] ?? null;
-		}
-
-		return $this->settings;
 	}
 
 	/**

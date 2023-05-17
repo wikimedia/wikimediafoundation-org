@@ -71,6 +71,8 @@ class Controller extends Admin_Notice {
 	 *
 	 */
 	public function can_boot() {
+		// TODO: Probably remove this notice completely.
+		//return false;
 		/**
 		 * Until multisites are officially supported, BLC v2 menus are disabled in subsites.
 		 * Legacy menus are loaded instead. Lagecy admin notification does not need to appear on subsites at this point.
@@ -110,6 +112,7 @@ class Controller extends Admin_Notice {
 		$this->admin_pages = array(
 			'view-broken-links',
 			'link-checker-settings',
+			'blc_local',
 		);
 	}
 }

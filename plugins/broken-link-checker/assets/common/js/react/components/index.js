@@ -1,3 +1,4 @@
+import Accordion from './accordion';
 import Button from './button';
 import Notification from './notification';
 import Modal from './modal';
@@ -7,6 +8,7 @@ import BoxSection from './boxSection';
 import {Grid, Row, Column} from './grid';
 
 export {
+	Accordion,
 	Button,
 	Notification,
 	Modal,

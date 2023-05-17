@@ -113,7 +113,7 @@ class Controller extends Mailer {
 				$this
 			);
 
-		if ( ! empty( $recipients ) ) {
+		if ( ! empty( $recipients ) && apply_filters( 'wpmudev_blc_can_send_scan_report', true, $recipients, $broken_links_count, Model::instance() ) ) {
 			foreach ( $recipients as $recipient ) {
 				$this->body_variables['{{USERNAME}}']         = $recipient['name'] ?? '';
 				$this->body_variables['{{UNSUBSCRIBE_LINK}}'] = $recipient['unsubscribe_link'] ?? '';

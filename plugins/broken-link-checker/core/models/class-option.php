@@ -117,7 +117,9 @@ class Option extends Base {
 
 			if ( ! empty( $props ) ) {
 				foreach ( $props as $property_name => $property_value ) {
-					$this->__set( $property_name, $property_value );
+					if ( property_exists( $this, $property_name ) ) {
+						$this->__set( $property_name, $property_value );
+					}
 				}
 			}
 		}

@@ -150,6 +150,62 @@ final class Utilities {
 	}
 
 	/**
+	 * Checks if subsite id is valid.
+	 * @param int|null $id
+	 *
+	 * @return false|void
+	 */
+	public static function valid_subsite_id( int $id = null ) {
+		if ( empty( $id ) || ! is_multisite() ) {
+			return false;
+		}
+
+		return in_array( $id, get_sites( array( 'fields' => "ids" ) ) );
+	}
+
+	/**
+	 * Checks if given url belongs to author and returns author WP_User object else false.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param string $url
+	 *
+	 * @return WP_User|bool
+	 */
+	public static function is_author_url( string $url = '' ) {
+		$site_url = site_url();
+
+		if ( substr( $url, 0, strlen( $site_url ) ) !== $site_url ) {
+			return false;
+		}
+
+		global $wp_rewrite;
+
+		$parsed_url = wp_parse_url( $url );
+		$user       = null;
+
+		// Check url when it has plain permalink structure.
+		if ( ! empty( $parsed_url['query'] ) ) {
+			$parsed_query = array();
+			parse_str( $parsed_url['query'], $parsed_query );
+
+			if ( ! empty( $parsed_query[ $wp_rewrite->author_base ] ) ) {
+				$user_key = is_numeric( $parsed_query[ $wp_rewrite->author_base ] ) ? 'id' : 'login';
+				$user     = get_user_by( $user_key, sanitize_user( $parsed_query[ $wp_rewrite->author_base ] ) );
+			}
+		} else if ( ! empty( $parsed_url['path'] ) ) {
+			// Check url with pretty permalink structure.
+			$path        = trim( $parsed_url['path'], '/\\' );
+			$author_base = "{$wp_rewrite->author_base}/";
+			$user_name   = sanitize_user( str_replace( $author_base, '', $path ) );
+
+			$user = get_user_by( 'login', $user_name );
+		}
+
+		return $user;
+	}
+
+	/**
 	 * Generate random unique id. Useful for creating element ids in scripts
 	 *
 	 * @since 2.0.0
@@ -409,6 +465,15 @@ final class Utilities {
 		}
 
 		return apply_filters( 'result_api_sync_url', $url );
+	}
+
+	/**
+	 * Returns the hub url to send edit link results when edit link queue gets completed.
+	 *
+	 * @return string
+	 */
+	public static function hub_edit_link_completed() {
+		return apply_filters( 'hub_edit_link_completed', self::wpmudev_base_url() . "api/blc/v1/edit-link-completed" );
 	}
 
 	/**
@@ -1075,6 +1140,10 @@ final class Utilities {
 	 * @return void
 	 */
 	public static function log( string $message = '', string $file_path = '' ) {
+		if ( ! defined( 'WPMUDEV_BLC_LOG' ) || ! WPMUDEV_BLC_LOG ) {
+			return;
+		}
+
 		$month            = date( 'm' );
 		$year             = date( 'Y' );
 		$default_log_file = "/blc-logs/debug-{$year}-{$month}.log";
@@ -1103,4 +1172,14 @@ final class Utilities {
 		error_log( "[{$dt_string}] $message \n", 3, $file_path );
 	}
 
+	/**
+	 * Provides a flag that determines if plugin should go through links more extensively.
+	 *
+	 * @param $param
+	 *
+	 * @return bool
+	 */
+	public static function process_extensive( $param = null ) {
+		return apply_filters( 'wpmudev_blc_process_extensive', false, $param );
+	}
 }

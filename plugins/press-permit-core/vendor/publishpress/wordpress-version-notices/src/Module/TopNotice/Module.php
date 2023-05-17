@@ -17,22 +17,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package     PPVersionNotices
+ * @package     PublishPress\WordpressVersionNotices
  * @category    Core
  * @author      PublishPress
  * @copyright   Copyright (c) 2020 PublishPress. All rights reserved.
  **/
 
-namespace PPVersionNotices\Module\TopNotice;
+namespace PublishPress\WordpressVersionNotices\Module\TopNotice;
 
-use PPVersionNotices\Module\AdInterface;
-use PPVersionNotices\Template\TemplateInvalidArgumentsException;
-use PPVersionNotices\Template\TemplateLoaderInterface;
+use PublishPress\WordpressVersionNotices\Module\AdInterface;
+use PublishPress\WordpressVersionNotices\Template\TemplateInvalidArgumentsException;
+use PublishPress\WordpressVersionNotices\Template\TemplateLoaderInterface;
 
 /**
  * Class Module
  *
- * @package PPVersionNotices
+ * @package PublishPress\WordpressVersionNotices
  */
 class Module implements AdInterface
 {
@@ -63,9 +63,9 @@ class Module implements AdInterface
     public function init()
     {
         add_action(self::DISPLAY_ACTION, [$this, 'display'], 10, 2);
-        add_action('admin_enqueue_scripts', [$this, 'adminEnqueueStyle']);
         add_action('in_admin_header', [$this, 'displayTopNotice']);
         add_action('admin_init', [$this, 'collectTheSettings'], 5);
+        add_action('admin_head', [$this, 'adminHeadAddStyle']);
     }
 
     public function collectTheSettings()
@@ -134,16 +134,81 @@ class Module implements AdInterface
         return false;
     }
 
-    public function adminEnqueueStyle()
+    public function adminHeadAddStyle()
     {
-        if ($this->isValidScreen()) {
-            wp_enqueue_style(
-                'pp-version-notice-bold-purple-style',
-                PP_VERSION_NOTICES_BASE_URL . '/assets/css/top-notice-bold-purple.css',
-                false,
-                PP_VERSION_NOTICES_VERSION
-            );
+        if (! $this->isValidScreen()) {
+            return;
         }
+
+        ?>
+        <style>
+            .pp-version-notice-bold-purple {
+                background: #655997;
+                height: auto;
+                box-sizing: border-box;
+                padding: 18px 7px 20px 7px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                line-height: 20px;
+                margin-left: -20px;
+                font-size: 16px;
+                color: #fff;
+            }
+
+            .pp-version-notice-bold-purple .pp-version-notice-bold-purple-button a {
+                background: #FEB123;
+                color: #000 !important;
+                font-weight: normal;
+                text-decoration: none;
+                padding: 9px 12px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                box-sizing: border-box;
+                border: 1px solid #fca871;
+                break-inside: avoid;
+                white-space: nowrap;
+            }
+
+            .pp-version-notice-bold-purple .pp-version-notice-bold-purple-button a:hover {
+                background: #fcca46;
+                color: #000 !important;
+            }
+
+            @media only screen and (min-width: 1075px) {
+                .pp-version-notice-bold-purple-message,
+                .pp-version-notice-bold-purple-button {
+                    display: inline-block;
+                }
+
+                .pp-version-notice-bold-purple-message {
+                    margin-right: 25px;
+                }
+            }
+
+            @media only screen and (max-width: 1074px) {
+                .pp-version-notice-bold-purple-message,
+                .pp-version-notice-bold-purple-button {
+                    display: block;
+                }
+
+                .pp-version-notice-bold-purple-button {
+                    margin-top: 20px;
+                }
+
+                .pp-version-notice-bold-purple-button a {
+                    max-width: 170px;
+                }
+            }
+
+            @media only screen and (max-width: 600px) {
+                .pp-version-notice-bold-purple {
+                    padding-top: 60px;
+                }
+            }
+        </style>
+        <?php
     }
 
     public function displayTopNotice()

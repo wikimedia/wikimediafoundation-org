@@ -43,7 +43,7 @@ class Controller extends Base {
 	 *
 	 * @since 2.0.0
 	 */
-	public static $unique_id = null;
+	public $unique_id = null;
 
 	/**
 	 * The admin pages the notice will be visible at.

@@ -16,6 +16,7 @@ namespace WPMUDEV_BLC\App\Emails\Scan_Report;
 // Abort if called directly.
 use WPMUDEV_BLC\App\Options\Settings\Model as Settings;
 use WPMUDEV_BLC\App\Webhooks\Recipient_Activation\Controller as Activation_Webhook;
+use WPMUDEV_BLC\Core\Utils\Abstracts\Base;
 use WPMUDEV_BLC\Core\Utils\Utilities;
 
 defined( 'WPINC' ) || die;
@@ -25,7 +26,7 @@ defined( 'WPINC' ) || die;
  *
  * @package WPMUDEV_BLC\App\Admin_Pages\Dashboard
  */
-class Model {
+class Model extends Base {
 	/**
 	 * The scan results from DB.
 	 *

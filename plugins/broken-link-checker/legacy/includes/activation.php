@@ -7,9 +7,17 @@ if ( get_option( 'blc_activation_enabled' ) ) {
 global $blclog, $blc_config_manager, $wpdb;
 $queryCnt = $wpdb->num_queries;
 
+require_once BLC_DIRECTORY_LEGACY . '/includes/utility-class.php';
+
 //Completing the installation/upgrade is required for the plugin to work, so make sure
 //the script doesn't get aborted by (for example) the browser timing out.
-set_time_limit( 300 );  //5 minutes should be plenty, anything more would probably indicate an infinite loop or a deadlock
+//set_time_limit( 300 );  //5 minutes should be plenty, anything more would probably indicate an infinite loop or a deadlock
+if ( blcUtility::is_host_wp_engine() || blcUtility::is_host_flywheel() ) {
+	set_time_limit( 60 );
+} else {
+	set_time_limit( 300 );
+}
+
 ignore_user_abort( true );
 
 //Log installation progress to a DB option
@@ -34,7 +42,7 @@ $blclog->info( 'Installation/update begins.' );
 require_once BLC_DIRECTORY_LEGACY . '/includes/links.php';
 require_once BLC_DIRECTORY_LEGACY . '/includes/link-query.php';
 require_once BLC_DIRECTORY_LEGACY . '/includes/instances.php';
-require_once BLC_DIRECTORY_LEGACY . '/includes/utility-class.php';
+//require_once BLC_DIRECTORY_LEGACY . '/includes/utility-class.php';
 
 //Load the module subsystem
 require_once BLC_DIRECTORY_LEGACY . '/includes/modules.php';

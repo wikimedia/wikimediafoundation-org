@@ -211,8 +211,10 @@ class Controller extends Base {
 		}
 
 		if ( Settings::instance()->get( 'blc_schedule_scan_in_progress' ) ) {
-			ReportMailer::instance()->init();
-			ReportMailer::instance()->send_email();
+			// TODO Ensure that notification is sent after schedule scan completed even if HUB response fails.
+			//Currently we need to remove this notification due to possible duplicates: BLC-392.
+			//ReportMailer::instance()->init();
+			//ReportMailer::instance()->send_email();
 			Settings::instance()->set( array( 'blc_schedule_scan_in_progress' => false ) );
 		}
 

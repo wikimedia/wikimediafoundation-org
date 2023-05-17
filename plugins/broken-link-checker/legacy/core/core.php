@@ -99,8 +99,10 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 
-			if ( ! WPMUDEV_BLC\App\Options\Settings\Model::instance()->get( 'use_legacy_blc_version' ) ) {
-				return;
+			if ( empty( WPMUDEV_BLC\App\Options\Settings\Model::instance()->get( 'use_legacy_blc_version' ) ) ) {
+				if ( ! WPMUDEV_BLC\Core\Utils\Utilities::is_subsite() ) {
+					return;
+				}
 			}
 
 			// Load jQuery on Dashboard pages (probably redundant as WP already does that).
@@ -135,16 +137,19 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 
 			// Set the footer hook that will call the worker function via AJAX.
 			add_action( 'admin_footer', array( $this, 'admin_footer' ) );
-			// Add a "Screen Options" panel to the "Broken Links" page.
-			add_screen_options_panel(
-				'blc-screen-options',
-				'',
-				array( $this, 'screen_options_html' ),
-				'tools_page_view-broken-links',
-				array( $this, 'ajax_save_screen_options' ),
-				true
-			);
 
+			if ( empty( $_GET['local-settings'] ) ){
+				// Add a "Screen Options" panel to the "Broken Links" page.
+				add_screen_options_panel(
+					'blc-screen-options',
+					'',
+					array( $this, 'screen_options_html' ),
+					'link-checker_page_blc_local',
+					array( $this, 'ajax_save_screen_options' ),
+					true
+				);
+			}
+			
 			// Display an explanatory note on the "Tools -> Broken Links -> Warnings" page.
 			add_action( 'admin_notices', array( $this, 'show_warnings_section_notice' ) );
 
@@ -192,7 +197,7 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
                     blcDoWork();
 
                     //Then call it periodically every X seconds
-                    setInterval(blcDoWork, <?php echo ( intval( $this->conf->options['max_execution_time'] ) + 1 ) * 1000; ?>);
+                    setInterval(blcDoWork, <?php echo ( intval( $this->max_execution_time_option() ) + 1 ) * 1000; ?>);
 
                 })(jQuery);
             </script>
@@ -408,6 +413,26 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			 * Until multisites are officially supported, BLC v2 menus are disabled in subsites.
 			 * Legacy menus are loaded instead.
 			 */
+			if ( WPMUDEV_BLC\Core\Utils\Utilities::is_subsite() ) {
+				$page_controler_cloud = WPMUDEV_BLC\App\Admin_Pages\Cloud_Page\Controller::instance();
+				$links_page_hook      = add_menu_page(
+					__( 'Broken Links', 'broken-link-checker' ),
+					__( 'Broken Links', 'broken-link-checker' ),
+					'edit_others_posts',
+					WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\Controller::instance()->get_menu_slug(),
+					array( WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\Controller::instance(), 'output' ),
+					$page_controler_cloud->__get( 'icon_url' )
+				);
+
+				// Add plugin-specific scripts and CSS only to its own pages.
+				add_action( 'admin_print_styles-' . $links_page_hook, array( $this, 'options_page_css' ) );
+				add_action( 'admin_print_styles-' . $links_page_hook, array( $this, 'links_page_css' ) );
+
+				add_action( 'admin_print_scripts-' . $links_page_hook, array( $this, 'enqueue_settings_scripts' ) );
+				add_action( 'admin_print_scripts-' . $links_page_hook, array( $this, 'enqueue_link_page_scripts' ) );
+			}
+
+            /*
 			$submenu_parent_slug = 'blc_dash';
 			$settings_menu_title = __( 'Settings (Old)', 'broken-link-checker' );
 
@@ -450,18 +475,15 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			add_action( 'admin_print_scripts-' . $options_page_hook, array( $this, 'enqueue_settings_scripts' ) );
 			add_action( 'admin_print_scripts-' . $links_page_hook, array( $this, 'enqueue_link_page_scripts' ) );
 
-			if ( WPMUDEV_BLC\App\Options\Settings\Model::instance()->get( 'use_legacy_blc_version' ) ) {
-				return;
-			}
-
 			// Make the Settings page link to the link list.
 			add_screen_meta_link(
-				'blc-links-page-link',
+				'link-checker-settings',
 				__( 'Go to Broken Links', 'broken-link-checker' ),
 				admin_url( 'admin.php?page=view-broken-links' ),
 				$options_page_hook,
 				array( 'style' => 'font-weight: bold;' )
 			);
+            */
 		}
 
 		/**
@@ -476,7 +498,8 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 		 */
 		public function plugin_action_links( $links, $file ) {
 			if ( $file === $this->my_basename ) {
-				$links[] = "<a href='admin.php?page=link-checker-settings'>" . __( 'Settings' ) . '</a>';
+				//$links[] = "<a href='admin.php?page=link-checker-settings'>" . __( 'Settings' ) . '</a>';
+				$links[] = "<a href='admin.php?page=blc_local&local-settings=true'>" . __( 'Settings' ) . '</a>';
 			}
 
 			return $links;
@@ -554,7 +577,8 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 				$this->conf->options['enabled_post_statuses'] = $enabled_post_statuses;
 
 				//The execution time limit must be above zero
-				$new_execution_time = intval( $_POST['max_execution_time'] );
+				$new_execution_time = ( $this->is_host_wp_engine() || $this->is_host_flywheel() ) ? 60 : intval( $_POST['max_execution_time'] );
+
 				if ( $new_execution_time > 0 ) {
 					$this->conf->options['max_execution_time'] = $new_execution_time;
 				}
@@ -856,13 +880,17 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
             </style>
             <![endif]-->
             <div class="wrap" id="blc-settings-wrap">
-                <h2><?php _e( 'Broken Link Checker Options', 'broken-link-checker' ); ?></h2>
+               <!-- <h2><?php //_e( 'Broken Link Checker Options', 'broken-link-checker' ); ?></h2>-->
+
+	            <?php WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\View::instance()->local_header(); ?>
+                <?php WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\View::instance()->local_nav(); ?>
 
                 <div id="blc-admin-content">
 
                     <form name="link_checker_options" id="link_checker_options" method="post" action="
 				<?php
-					echo admin_url( 'admin.php?page=link-checker-settings&noheader=1' );
+					//echo admin_url( 'admin.php?page=link-checker-settings&noheader=1' );
+                    echo admin_url( 'admin.php?page=blc_local&local-settings=true&noheader=1' );
 					?>
 			">
 						<?php
@@ -1411,7 +1439,7 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 											?>
                                         </td>
                                     </tr>
-
+                                    <?php if ( ! $this->is_host_wp_engine() && ! $this->is_host_flywheel() ) :?>
                                     <tr valign="top">
                                         <th scope="row"><?php _e( 'Max. execution time', 'broken-link-checker' ); ?></th>
                                         <td>
@@ -1422,7 +1450,8 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 												__( '%s seconds', 'broken-link-checker' ),
 												sprintf(
 													'<input type="text" name="max_execution_time" id="max_execution_time" value="%d" size="5" maxlength="5" />',
-													$this->conf->options['max_execution_time']
+													//$this->conf->options['max_execution_time']
+                                                $this->max_execution_time_option()
 												)
 											);
 
@@ -1437,7 +1466,7 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 
                                         </td>
                                     </tr>
-
+                                    <?php endif; ?>
                                     <tr valign="top">
                                         <th scope="row"><?php _e( 'Server load limit', 'broken-link-checker' ); ?></th>
                                         <td>
@@ -1668,6 +1697,30 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			}
 		}
 
+        protected function max_execution_time_option() {
+            // It's safe to return the conf property as it is set in constructor.
+            if ( $this->is_host_wp_engine() || $this->is_host_flywheel() ) {
+	            $this->conf->options['max_execution_time'] = 60;
+            }
+
+            return apply_filters( 'wpmudev_blc_max_execution_time', $this->conf->options['max_execution_time'] );
+        }
+
+        protected function is_host_wp_engine() {
+	        //return ( function_exists( 'is_wpe' ) && is_wpe() ) || ( defined( 'IS_WPE' ) && IS_WPE );
+            return blcUtility::is_host_wp_engine();
+        }
+
+        protected function is_host_flywheel() {
+	        return blcUtility::is_host_flywheel();
+            /*
+	        $host_name = 'flywheel';
+
+	        return ! empty( $_SERVER['SERVER_SOFTWARE'] ) &&
+	               substr( strtolower( $_SERVER['SERVER_SOFTWARE'] ), 0, strlen( $host_name ) ) === strtolower( $host_name );
+            */
+        }
+
 		/**
 		 * Output a checkbox for a module.
 		 *
@@ -1897,7 +1950,11 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 
             <div class="wrap">
 				<?php
-				$blc_link_query->print_filter_heading( $current_filter );
+				//$blc_link_query->print_filter_heading( $current_filter );
+
+				WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\View::instance()->local_header();
+				WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\View::instance()->local_nav();
+
 				$blc_link_query->print_filter_menu( $filter_id );
 
 				//Display the "Search" form and associated buttons.
@@ -2115,7 +2172,13 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			}
 
 			if ( count( $selected_links ) > 0 ) {
-				set_time_limit( 300 ); //In case the user decides to edit hundreds of links at once
+				//In case the user decides to edit hundreds of links at once
+				if ( $this->is_host_wp_engine() || $this->is_host_flywheel() ) {
+					set_time_limit( 60 );
+				} else {
+					set_time_limit( 300 );
+				}
+
 
 				//Fetch all the selected links
 				$links = blc_get_links(
@@ -2597,6 +2660,19 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 		 */
 		function links_page_css() {
 			wp_enqueue_style( 'blc-links-page', plugins_url( 'css/links-page.css', $this->loader ), array(), '20141113-2' );
+
+			if ( WPMUDEV_BLC\Core\Utils\Utilities::is_subsite() ) {
+                $local_style = WPMUDEV_BLC\App\Admin_Pages\Local_Submenu\Controller::instance()->get_local_style_data();
+
+                if ( ! empty( $local_style['blc_local_style'] ) ) {
+                    $src = $local_style['blc_local_style']['src'] ?? null;
+                    $ver = $local_style['blc_local_style']['ver'] ?? null;
+
+                    if ( ! empty( $src ) && ! empty( $ver ) ) {
+	                    wp_enqueue_style( 'blc-local-style', $src, array(), $ver );
+                    }
+                }
+			}
 		}
 
 		/**
@@ -2607,7 +2683,7 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			$is_warnings_section = isset( $_GET['filter_id'] )
 			                       && ( 'warnings' === $_GET['filter_id'] )
 			                       && isset( $_GET['page'] )
-			                       && ( 'view-broken-links' === $_GET['page'] );
+			                       && ( 'blc_local' === $_GET['page'] );
 
 			if ( ! ( $is_warnings_section && current_user_can( 'edit_others_posts' ) ) ) {
 				return;
@@ -2808,7 +2884,8 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			$this->start_timer();
 			$blclog->info( 'work() starts' );
 
-			$max_execution_time = $this->conf->options['max_execution_time'];
+			//$max_execution_time = $this->conf->options['max_execution_time'];
+			$max_execution_time = $this->max_execution_time_option();
 
 			/*****************************************
 			 * Preparation
@@ -2821,8 +2898,12 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 					$max_execution_time = $t - 1;
 				}
 			} else {
-				// Do it the regular way
-				@set_time_limit( $max_execution_time * 2 ); //x2 should be plenty, running any longer would mean a glitch.
+                if ( $this->is_host_wp_engine() || $this->is_host_flywheel() ) {
+	                @set_time_limit( $max_execution_time );
+                } else {
+	                // Do it the regular way
+	                @set_time_limit( $max_execution_time * 2 ); //x2 should be plenty, running any longer would mean a glitch.
+                }
 			}
 
 			//Don't stop the script when the connection is closed
@@ -3068,7 +3149,10 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 		 */
 		function cron_check_links() {
 			if ( ! WPMUDEV_BLC\App\Options\Settings\Model::instance()->get( 'use_legacy_blc_version' ) ) {
-				return;
+				//return;
+				if ( ! WPMUDEV_BLC\Core\Utils\Utilities::is_subsite() ) {
+					return;
+				}
 			}
 
 			$this->work();
@@ -3202,7 +3286,7 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 					"<a href='%s' title='" . __( 'View broken links', 'broken-link-checker' ) . "'><strong>" .
 					_n( 'Found %d broken link', 'Found %d broken links', $status['broken_links'], 'broken-link-checker' ) .
 					'</strong></a>',
-					esc_attr( admin_url( 'admin.php?page=view-broken-links' ) ),
+					esc_attr( admin_url( 'admin.php?page=blc_local' ) ),
 					$status['broken_links']
 				);
 			} else {
@@ -4165,7 +4249,7 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 			//Add a link to the "Broken Links" tab.
 			if ( $add_admin_link ) {
 				$result .= __( 'You can see all broken links here:', 'broken-link-checker' ) . '<br>';
-				$result .= sprintf( '<a href="%1$s">%1$s</a>', admin_url( 'admin.php?page=view-broken-links' ) );
+				$result .= sprintf( '<a href="%1$s">%1$s</a>', admin_url( 'admin.php?page=blc_local' ) );
 			}
 
 			return $result;

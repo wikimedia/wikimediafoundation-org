@@ -498,6 +498,11 @@ div.search-box{
 	color: white;
 }
 
+#screen-meta-links {
+	position: absolute;
+    right: 20px;
+}
+
 @media screen and (max-width: 768px) {
 	table#blc-links {
 		table-layout: auto;

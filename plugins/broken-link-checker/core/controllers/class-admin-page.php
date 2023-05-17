@@ -115,6 +115,15 @@ abstract class Admin_Page extends Base {
 	 */
 	protected $position = null;
 
+	/**
+	 * The Admin Menu's hook suffix.
+	 *
+	 * @since 2.1.0
+	 * @var string $hook_suffix
+	 *
+	 */
+	protected $hook_suffix;
+
 
 	/**
 	 * Init Admin Page
@@ -163,8 +172,8 @@ abstract class Admin_Page extends Base {
 			return;
 		}
 
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'admin_menu', array( $this, 'admin_submenu' ), 99 );
+		add_action( 'admin_menu', array( $this, 'admin_menu' ), 9 );
+		add_action( 'admin_menu', array( $this, 'admin_submenu' ) );
 		add_action( 'admin_init', array( $this, 'boot' ) );
 	}
 
@@ -177,7 +186,7 @@ abstract class Admin_Page extends Base {
 	 */
 	public function admin_menu() {
 		if ( ! $this->is_submenu() && ! empty( $this->page_prop( 'menu_slug' ) ) ) {
-			add_menu_page(
+			$this->hook_suffix = add_menu_page(
 				$this->page_prop( 'page_title' ),
 				$this->page_prop( 'menu_title' ),
 				$this->page_prop( 'capability' ),
@@ -247,14 +256,8 @@ abstract class Admin_Page extends Base {
 	 * @return void Creates the admin sub menu(s). Should check if menu or submenu.
 	 */
 	public function admin_submenu() {
-		global $submenu;
-
-		if ( isset( $submenu[ $this->page_prop( 'parent_slug' ) ] ) ) {
-			remove_submenu_page( $this->page_prop( 'parent_slug' ), $this->page_prop( 'parent_slug' ) );
-		}
-
 		if ( $this->is_submenu() && ! empty( $this->page_prop( 'parent_slug' ) ) ) {
-			add_submenu_page(
+			$this->hook_suffix = add_submenu_page(
 				$this->page_prop( 'parent_slug' ),
 				$this->page_prop( 'page_title' ),
 				$this->page_prop( 'menu_title' ),

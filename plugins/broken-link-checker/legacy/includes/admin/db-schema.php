@@ -22,6 +22,9 @@ if ( ! function_exists( 'blc_get_db_schema' ) ) {
 			$charset_collate .= " COLLATE {$wpdb->collate}";
 		}
 
+		// To try and fix the wrong collation issue.
+		//$collate = $wpdb->has_cap( 'collation' ) ? $wpdb->get_charset_collate() : '';
+
 		$blc_db_schema = <<<EOM
 
 	CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}blc_filters` (

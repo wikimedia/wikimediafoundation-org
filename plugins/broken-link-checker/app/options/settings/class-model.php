@@ -17,6 +17,7 @@ namespace WPMUDEV_BLC\App\Options\Settings;
 defined( 'WPINC' ) || die;
 
 use WPMUDEV_BLC\Core\Models\Option;
+use WPMUDEV_BLC\Core\Utils\Utilities;
 use function array_filter;
 
 /**
@@ -101,5 +102,13 @@ class Model extends Option {
 		);
 
 		return $active_recipients;
+	}
+
+	public function get( string $settings_key = null, string $option_name = null, $default = null, bool $force = false ) {
+		if ( Utilities::is_subsite() && 'use_legacy_blc_version' === $settings_key ) {
+			return false;
+		}
+
+		return parent::get( $settings_key, $option_name, $default, $force );
 	}
 }

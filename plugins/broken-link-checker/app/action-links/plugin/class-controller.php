@@ -47,17 +47,11 @@ class Controller extends Base {
 	 * @return array
 	 */
 	public function action_links( $actions = array(), $plugin_file = '', $plugin_data = null, $context = '' ) {
-		$new_actions = array();
-
 		if ( ! is_array( $actions ) ) {
 			$actions = array();
 		}
 
-		if ( boolval( Settings::instance()->get( 'use_legacy_blc_version' ) ) ) {
-			$new_actions = $this->legacy_action_links();
-		} else {
-			$new_actions = $this->get_action_links();
-		}
+		$new_actions = $this->get_action_links();
 
 		return apply_filters(
 			'wpmudev_blc_plugin_action_links',
@@ -75,14 +69,16 @@ class Controller extends Base {
 	 *
 	 * @return array
 	 */
-	public function get_action_links () {
-		$actions = array();
+	public function get_action_links() {
+		$actions         = array();
 		$dashboard_url   = menu_page_url( 'blc_dash', false );
-		$dashboard_label = esc_html__( 'Dashboard', 'broken-link-checker' );
-		$docs_url = 'https://wpmudev.com/docs/wpmu-dev-plugins/broken-link-checker';
-		$docs_label = esc_html__( 'Docs', 'broken-link-checker' );
+		$dashboard_label = esc_html__( 'Cloud', 'broken-link-checker' );
+		$local_url       = menu_page_url( 'blc_local', false );
+		$local_label     = esc_html__( 'Local', 'broken-link-checker' );
+		$docs_url        = 'https://wpmudev.com/docs/wpmu-dev-plugins/broken-link-checker';
+		$docs_label      = esc_html__( 'Docs', 'broken-link-checker' );
 
-		if ( is_multisite() && Utilities::is_network_admin() ) {
+		if ( ! Utilities::is_subsite() ) {
 			$admin_url     = get_admin_url( get_main_site_id(), 'admin.php' );
 			$dashboard_url = add_query_arg(
 				array(
@@ -90,60 +86,29 @@ class Controller extends Base {
 				),
 				$admin_url
 			);
+			$local_url     = add_query_arg(
+				array(
+					'page' => 'blc_local',
+				),
+				$admin_url
+			);
+
+			$actions['cloud'] = "<a href=\"{$dashboard_url}\">{$dashboard_label}</a>";
+			$actions['local'] = "<a href=\"{$local_url}\">{$local_label}</a>";
+		} else {
+			$local_label = esc_html__( 'Broken Links', 'broken-link-checker' );
+			$local_url   = add_query_arg(
+				array(
+					'page' => 'blc_local',
+				),
+				get_admin_url()
+			);
+
+			$actions['local'] = "<a href=\"{$local_url}\">{$local_label}</a>";
 		}
 
-		$actions['dashboard'] = "<a href=\"{$dashboard_url}\">{$dashboard_label}</a>";
 		$actions['docs'] = "<a href=\"{$docs_url}\" target=\"_blank\">{$docs_label}</a>";
 
 		return $actions;
 	}
-
-	/**
-	 * Returns the plugin action links in plugins page when legacy mode is active.
-	 *
-	 * @return array
-	 */
-	public function legacy_action_links() {
-		$actions = array();
-		$dashboard_url   = menu_page_url( 'blc_dash', false );
-		$settings_url    = menu_page_url( 'link-checker-settings', false );
-		$link_url        = menu_page_url( 'view-broken-links', false );
-		$dashboard_label = esc_html__( 'Dashboard', 'broken-link-checker' );
-		$settings_label  = esc_html__( 'Settings', 'broken-link-checker' );
-		$links_label     = esc_html__( 'Broken links', 'broken-link-checker' );
-
-
-		if ( is_multisite() && Utilities::is_network_admin() ) {
-			$admin_url     = get_admin_url( get_main_site_id(), 'admin.php' );
-			$dashboard_url = add_query_arg(
-				array(
-					'page' => 'blc_dash',
-				),
-				$admin_url
-			);
-			$settings_url  = add_query_arg(
-				array(
-					'page' => 'link-checker-settings',
-				),
-				$admin_url
-			);
-			$link_url      = add_query_arg(
-				array(
-					'page' => 'view-broken-links',
-				),
-				$admin_url
-			);
-		}
-
-		$actions['dashboard'] = "<a href=\"{$dashboard_url}\">{$dashboard_label}</a>";
-		$actions['settings']  = "<a href=\"{$settings_url}\">{$settings_label}</a>";
-		$actions['links']     = "<a href=\"{$link_url}\">{$links_label}</a>";
-
-		if ( is_multisite() && ! ( is_main_site() || Utilities::is_network_admin() ) ) {
-			unset( $actions['dashboard'] );
-		}
-
-		return $actions;
-	}
-
 }

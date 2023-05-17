@@ -48,7 +48,7 @@ class View extends Base {
 	}
 
 	public function render_onboarding_notification() {
-		$message = __( 'New BLC supports Multisite’s main site only and doesn’t support subsites. Subsites will continue using Legacy BLC', 'broken-link-checker' );
+		$message = __( 'Cloud Engine supports Multisite’s main site only and doesn’t support subsites. Subsites will continue using Local BLC', 'broken-link-checker' );
 
 		printf( '
 			<div class="wrap multisite-onboarding-notice notice notice-info is-dismissible">
@@ -60,7 +60,7 @@ class View extends Base {
 	}
 
 	public function render_dashboard_notification() {
-		$message       = __( 'New BLC supports Multisite’s main site only and doesn’t support subsites. Subsites will continue using Legacy BLC', 'broken-link-checker' );
+		$message       = __( 'Cloud Engine supports Multisite’s main site only and doesn’t support subsites. Subsites will continue using Local BLC', 'broken-link-checker' );
 		$close_message = __( 'Dismiss', 'broken-link-checker' );
 
 		printf( '

@@ -68,6 +68,17 @@ if ( ! class_exists( 'blcUtility' ) ) {
 			}
 		}
 
+		public static function is_host_wp_engine() {
+			return ( function_exists( 'is_wpe' ) && is_wpe() ) || ( defined( 'IS_WPE' ) && IS_WPE );
+		}
+
+		public static function is_host_flywheel() {
+			$host_name = 'flywheel';
+
+			return ! empty( $_SERVER['SERVER_SOFTWARE'] ) &&
+			       substr( strtolower( $_SERVER['SERVER_SOFTWARE'] ), 0, strlen( $host_name ) ) === strtolower( $host_name );
+		}
+
 		/**
 		* blcUtility::is_open_basedir()
 		* Checks if open_basedir is enabled
