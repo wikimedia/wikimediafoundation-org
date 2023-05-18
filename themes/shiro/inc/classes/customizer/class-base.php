@@ -67,7 +67,7 @@ abstract class Base {
 		$posts = new WP_Query(
 			array(
 				'post_type'      => 'page',
-				'posts_per_page' => -1,
+				'posts_per_page' => 1000, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page
 				'orderby'        => 'title',
 				'order'          => 'ASC',
 				'post_status'    => 'publish',
@@ -76,7 +76,7 @@ abstract class Base {
 
 		foreach ( $posts->posts as $post_choice ) {
 			if ( ! empty( $post_choice->post_title ) ) {
-				$page_relative_link = str_replace( home_url(), '', get_permalink( $post_choice->ID ) );
+				$page_relative_link = wp_make_link_relative( get_permalink( $post_choice->ID ) );
 				$choices[ $post_choice->ID ] = $post_choice->post_title . ' (ID ' . $post_choice->ID . ' - ' . $page_relative_link . ')';
 			}
 		}

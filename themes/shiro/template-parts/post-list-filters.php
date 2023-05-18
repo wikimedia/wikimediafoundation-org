@@ -117,7 +117,7 @@ if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text
 				<div class="filter-date-inputs-container">
 					<input type="date" name="date_from" placeholder="From" value="<?php echo esc_attr( $query_var_date_from ); ?>">
 					<input type="date" name="date_to" placeholder="To" value="<?php echo esc_attr( $query_var_date_to ); ?>">
-					<button type="button" class="action-button action-button--clear" id="button-reset-date-filters"><?php printf( esc_html__( 'Reset', 'shiro' ) ); ?></button>
+					<button type="button" class="action-button action-button--clear" id="button-reset-date-filters"><?php printf( esc_html__( 'Reset dates', 'shiro' ) ); ?></button>
 				</div>
 			</div>
 
@@ -144,7 +144,7 @@ if ( isset( $_GET['post_list_filters_nonce'] ) && wp_verify_nonce( sanitize_text
 				</ul>
 			</div>
 
-			<button class='action-button action-button--clear' id="button-clear-filters" type="reset"><?php esc_html_e( 'Clear filters', 'shiro' ); ?></button>
+			<button class='action-button action-button--clear' id="button-clear-filters" type="reset"><?php esc_html_e( 'Clear all filters', 'shiro' ); ?></button>
 			<button class="action-button action-button--right" id="button-apply-filters" type="submit"><?php esc_html_e( 'Apply filters', 'shiro' ); ?></button>
 
 		</div>

@@ -1278,12 +1278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "31e3f8e6b2ce3191cd9a011e6a84a760fb82e66f"
+                "reference": "02ea9af7edab6fe7e61412873c3da6bc488363cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/31e3f8e6b2ce3191cd9a011e6a84a760fb82e66f",
-                "reference": "31e3f8e6b2ce3191cd9a011e6a84a760fb82e66f",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/02ea9af7edab6fe7e61412873c3da6bc488363cd",
+                "reference": "02ea9af7edab6fe7e61412873c3da6bc488363cd",
                 "shasum": ""
             },
             "require-dev": {
@@ -1295,7 +1295,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-05-16T19:28:08+00:00",
+            "time": "2023-05-18T15:22:34+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
@@ -1321,7 +1321,8 @@
             ],
             "description": "Wikimedia Foundation website theme.",
             "support": {
-                "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop"
+                "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop",
+                "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
             "install-path": "../../themes/shiro"
         },

@@ -65,6 +65,7 @@
 	.action-button {
 		@include button-primary();
 		margin-left: auto;
+		white-space: nowrap;
 
 		@media (max-width: $small-bp) {
 			margin-right: auto;

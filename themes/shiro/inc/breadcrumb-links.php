@@ -20,7 +20,7 @@ function init() {
 function add_breadcrumb_link_meta_box() {
 	add_meta_box(
 		'breadcrumb_link_meta_box',
-		'Breadcrumb Link Setup',
+		__( 'Breadcrumb Link Setup', 'shiro-admin' ),
 		__NAMESPACE__ . '\\display_breadcrumb_link_meta_box',
 		'page',
 		'side',
@@ -44,28 +44,28 @@ function display_breadcrumb_link_meta_box( $post ) : void {
 
 	<label for="show_breadcrumb_links">
 		<input type="checkbox" id="show_breadcrumb_links" name="show_breadcrumb_links" <?php checked( $show_breadcrumb_links, 'on' ); ?> />
-		Show Breadcrumb Link
+		<?php esc_html_e( 'Show Breadcrumb Link', 'shiro-admin' ); ?>
 	</label><br /><br />
 
 	<label for="breadcrumb_link_url">
-		Custom Link
+		<?php esc_html_e( 'Custom Link', 'shiro-admin' ); ?>
 		<input
 			type="text"
 			id="breadcrumb_link_url"
 			name="breadcrumb_link_url"
 			value="<?php echo esc_attr( $breadcrumb_link_url ); ?>"
-			placeholder="Leave blank to use default link"
+			placeholder="<?php esc_attr_e( 'Leave blank to use default link', 'shiro-admin' ); ?>"
 		/>
 	</label><br /><br />
 
 	<label for="breadcrumb_link_title">
-		Custom Text
+		<?php esc_html_e( 'Custom Text', 'shiro-admin' ); ?>
 		<input
 			type="text"
 			id="breadcrumb_link_title"
 			name="breadcrumb_link_title"
 			value="<?php echo esc_attr( $breadcrumb_link_title ); ?>"
-			placeholder="Leave blank to use default title"
+			placeholder="<?php esc_attr_e( 'Leave blank to use default title', 'shiro-admin' ); ?>"
 		/>
 	</label>
 
