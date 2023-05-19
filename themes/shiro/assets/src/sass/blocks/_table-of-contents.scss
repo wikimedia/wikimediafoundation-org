@@ -193,13 +193,7 @@
 	}
 
 	&__nested &__link {
-		padding-left: rem(44);
-
-		&--active,
-		&--active:hover {
-			background-color: inherit;
-			color: $wmui-color-base0;
-		}
+		padding-left: rem(40);
 	}
 
 	&__section {

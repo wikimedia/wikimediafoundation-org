@@ -13,6 +13,16 @@ const headerHeight = document
 	.getBoundingClientRect()[ 'height' ];
 
 /**
+ * Does this tag node name correspond to a supported level of header?
+ *
+ * @param {string} tagName Node name (H2, LI, etc).
+ * @returns {boolean} Whether this node is an H2 or H3.
+ */
+function isHeaderNode( tagName ) {
+	return /^H[2-3]$/.test( tagName );
+}
+
+/**
  * @returns {IntersectionObserver} A configured observer, ready to observe.
  *
  * @param {object} options The options to use with the observer.
@@ -66,20 +76,20 @@ function processEntry( entry ) {
 			nav.dataset.toggleable = 'yes';
 			nav.dataset.sticky = 'no';
 		}
-	} else if ( [ 'H2', 'P', 'LI' ].includes( target.tagName ) ) {
+	} else if ( [ 'H2', 'H3', 'P', 'LI' ].includes( target.tagName ) ) {
 		if (
 			isIntersecting &&
 			intersectionRatio >= 0.5 &&
-			target.tagName === 'H2'
+			isHeaderNode( target.tagName )
 		) {
 			target.dataset.visible = 'yes';
-		} else if ( target.tagName === 'H2' ) {
+		} else if ( isHeaderNode( target.tagName ) ) {
 			target.dataset.visible = 'no';
 		}
 
 		if ( _tocNav.dataset.observeScroll === 'yes' ) {
 			const allH2s = Object.values(
-				_contentColumn.querySelectorAll( 'h2[id]' )
+				_contentColumn.querySelectorAll( 'h2[id],h3[id]' )
 			);
 			const firstH2 = allH2s.filter(
 				h2 => h2.dataset.visible === 'yes'
@@ -297,7 +307,7 @@ function initializeTocNav() {
 				rootMargin: headerHeight + 'px 0px 0px 0px',
 				threshold: [ 0, 0.25, 0.5, 0.75, 1 ],
 			} );
-			_contentColumn.querySelectorAll( 'h2, p, li' ).forEach( _el => {
+			_contentColumn.querySelectorAll( 'h2, h3, p, li' ).forEach( _el => {
 				_contentColumn.observer.observe( _el );
 			} );
 		}
@@ -314,7 +324,7 @@ function initializeTocNav() {
 				processActiveLink( activeTocItem, hash );
 			}
 
-			// Turn on sticky nav so that it can do it's own detections.
+			// Turn on sticky nav so that it can do its own detections.
 			if ( _tocNav.dataset.toggleable === 'no' ) {
 				_tocNav.dataset.sticky = 'yes';
 			}
