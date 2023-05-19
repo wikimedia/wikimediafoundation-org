@@ -10,13 +10,14 @@
 namespace WMF\Editor\Blocks\LinkedTOCItem;
 
 const BLOCK_NAME = 'shiro/linked-toc-item';
+const PLACEHOLDER = '%MENU_PLACEHOLDER%';
 
 /**
  * Bootstrap this block functionality.
  */
 function bootstrap() {
 	add_filter( 'render_block', __NAMESPACE__ . '\\update_toc_item', 10, 2 );
-	add_filter( 'render_block', __NAMESPACE__ . '\\maybe_create_nested_toc', 20, 2 );
+	add_filter( 'render_block', __NAMESPACE__ . '\\maybe_create_nested_toc', 20, 3 );
 }
 
 /**
@@ -93,7 +94,7 @@ function maybe_create_nested_toc( string $block_content, array $block ) {
 
 		// Find the linked-toc block.
 		$link_toc_block = array_shift( $left_blocks['innerBlocks'] );
-		// Verify we are are still on track. Should be at the column.
+		// Verify we are are still on track. Should be at the ToC.
 		if ( 'shiro/linked-toc' !== $link_toc_block['blockName'] ) {
 			continue;
 		}

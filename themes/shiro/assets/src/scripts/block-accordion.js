@@ -50,6 +50,22 @@ const addAccordionToggleHandlers = item => {
 const initializeAccordionItems = () => {
 	// Hook in click events to each item.
 	[ ...document.querySelectorAll( '.accordion-item' ) ].forEach( item => addAccordionToggleHandlers( item ) );
+
+	// Open and scroll FAQ into view if visiting page with the anchor link for a section.
+	if ( document.location.hash ) {
+		const targetNode = document.querySelector( document.location.hash );
+		const targetedItem = targetNode && targetNode.closest( '.accordion-item' );
+		if ( targetedItem ) {
+			targetedItem.querySelector( 'button' ).click();
+			setTimeout( () => {
+				// scroll-margin-top is not working as expected, possibly due to
+				// the overflow on the accordion item container. Do it in JS.
+				const position = targetedItem.getBoundingClientRect();
+				const headerHeight = document.body.classList.contains( 'admin-bar' ) ? 94 : 62;
+				window.scrollTo( 0, position.top + window.scrollY - headerHeight );
+			} );
+		}
+	}
 };
 
 document.addEventListener( 'DOMContentLoaded', initializeAccordionItems );
