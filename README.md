@@ -8,6 +8,13 @@ The production repository is privately hosted on GitHub and maintained by Automa
 
 A public repository is mirrored and made available: https://github.com/wikimedia/wikimediafoundation-org
 
+## Additional documentation
+
+- [Meta-Wiki page on Wikimedia Foundation website](https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website)
+- [Meta-Wiki page on Shiro theme](https://meta.wikimedia.org/wiki/Wikimedia_Foundation_website/WordPress_theme)
+- [Private development documentation](https://github.com/humanmade/Wikimedia/wiki)
+- [Public usage and design documentation on Shiro theme](https://github.com/wikimedia/shiro-wordpress-theme/wiki)
+
 ## Local development
 
 This site is intended to be developed using [WordPress VIP's Docker-based local development environment](https://docs.wpvip.com/technical-references/vip-local-development-environment/) via the `vip dev-env` CLI command.
