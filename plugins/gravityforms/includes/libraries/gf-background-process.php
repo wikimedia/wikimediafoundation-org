@@ -4,6 +4,10 @@ if ( ! class_exists( 'GFForms' ) ) {
 	die();
 }
 
+if ( ! class_exists( 'WP_Async_Request' ) ) {
+	require_once GF_PLUGIN_DIR_PATH . 'includes/libraries/wp-async-request.php';
+}
+
 /**
  * GF Background Process
  *
@@ -632,6 +636,7 @@ if ( ! class_exists( 'GF_Background_Process' ) ) {
 		 */
 		public function handle_cron_healthcheck() {
 			GFCommon::log_debug( sprintf( '%s(): Running for %s.', __METHOD__, $this->action ) );
+			GFCommon::record_cron_event( $this->cron_hook_identifier );
 
 			if ( $this->is_process_running() ) {
 				// Background process already running.
@@ -733,6 +738,8 @@ if ( ! class_exists( 'GF_Background_Process' ) ) {
 			WHERE {$column} LIKE %s
 		", $key ) );
 
+			$this->data = array();
+
 			return $result;
 		}
 
@@ -751,6 +758,23 @@ if ( ! class_exists( 'GF_Background_Process' ) ) {
 		 * @return mixed
 		 */
 		abstract protected function task( $item );
+
+		/**
+		 * Allows filtering of the form before the task is processed.
+		 *
+		 * @since 2.6.9
+		 *
+		 * @param array $form The form being processed.
+		 * @param array $entry The entry being processed.
+		 *
+		 * @return array
+		 */
+		public function filter_form( $form, $entry ) {
+			return gf_apply_filters( array(
+				'gform_form_pre_process_async_task',
+				absint( rgar( $form, 'id' ) ),
+			), $form, $entry );
+		}
 
 	}
 }

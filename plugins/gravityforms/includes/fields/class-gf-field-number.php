@@ -135,6 +135,27 @@ class GF_Field_Number extends GF_Field {
 	}
 
 	/**
+	 * Is the given value considered empty for this field.
+	 *
+	 * Adds a check to the parent method because a value of 0 returns a false positive.
+	 *
+	 * @since 2.7.1
+	 *
+	 * @param $value
+	 *
+	 * @return bool
+	 */
+	public function is_value_empty( $value ) {
+		$empty = parent::is_value_empty( $value );
+
+		if ( $empty && ! rgblank( $value ) ) {
+			return false;
+		}
+
+		return $empty;
+	}
+
+	/**
 	 * Validates the range of the number according to the field settings.
 	 *
 	 * @param string $value A decimal_dot formatted string
@@ -179,8 +200,6 @@ class GF_Field_Number extends GF_Field {
 			$message = sprintf( esc_html__( 'Please enter a number greater than or equal to %s.', 'gravityforms' ), "<strong>$min</strong>" );
 		} elseif ( is_numeric( $numeric_max ) ) {
 			$message = sprintf( esc_html__( 'Please enter a number less than or equal to %s.', 'gravityforms' ), "<strong>$max</strong>" );
-		} elseif ( $this->failed_validation && $this->isRequired ) {
-			$message = ''; // Required validation will take care of adding the message here.
 		} elseif ( $this->failed_validation ) {
 			$message = esc_html__( 'Please enter a valid number.', 'gravityforms' );
 		}
@@ -218,7 +237,7 @@ class GF_Field_Number extends GF_Field {
 				$validation_class = $this->failed_validation ? 'validation_message' : '';
 
 				if ( ! $this->failed_validation && ! empty( $message ) && empty( $this->errorMessage ) ) {
-					$instruction = "<div class='instruction $validation_class' id='gfield_instruction_{$this->formId}_{$this->id}'>" . $message . '</div>';
+					$instruction = "<div class='gfield_description instruction $validation_class' id='gfield_instruction_{$this->formId}_{$this->id}'>" . $message . '</div>';
 				}
 			}
 		} elseif ( rgget( 'view' ) == 'entry' ) {

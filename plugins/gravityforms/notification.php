@@ -634,6 +634,9 @@ Class GFNotification {
 						$notification_id = $notification['id'] = uniqid();
 					}
 
+					// Removing legacy (pre-1.7) admin/user notification property.
+					unset( $notification['type'] );
+
 					// Save values to the confirmation object in advance so non-custom values will be rewritten when we apply values below.
 					$notification = GFFormSettings::save_changed_form_settings_fields( $notification, $values );
 
@@ -665,6 +668,8 @@ Class GFNotification {
 						$routing_logic           = GFFormsModel::sanitize_conditional_logic( $routing_logic );
 						$notification['routing'] = $routing_logic['rules'];
 					}
+
+					$notification = GFCommon::fix_notification_routing( $notification );
 
 					/**
 					 * Filters the notification before it is saved
@@ -1184,6 +1189,11 @@ Class GFNotification {
 			$new_notification['toType'] = 'email';
 		}
 
+		// Removing legacy (pre-1.7) admin/user notification property.
+		unset( $new_notification['type'] );
+
+		$new_notification = GFCommon::fix_notification_routing( $new_notification );
+
 		$form['notifications'][ $new_id ] = $new_notification;
 
 		// Clear form cache so next retrieval of form meta will return duplicated notification
@@ -1486,7 +1496,7 @@ class GFNotificationTable extends WP_List_Table {
 		}
 		?>
 		<button type="button" class="gform-status-indicator <?php echo esc_attr( $class ); ?>" onclick="ToggleActive( this, '<?php echo esc_js( $item['id'] ); ?>' );" onkeypress="ToggleActive( this, '<?php echo esc_js( $item['id'] ); ?>' );">
-			<svg viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="2" r="1" stroke-width="2"/></svg>
+			<svg role="presentation" focusable="false" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="2" r="1" stroke-width="2"/></svg>
 			<span class="gform-status-indicator-status"><?php echo esc_html( $text ); ?></span>
 		</button>
 		<?php
