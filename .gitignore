@@ -2,8 +2,10 @@
 plugins/log-deprecated-notices
 plugins/monster-widget
 plugins/query-monitor
-plugins/user-switching
 plugins/duplicate-page
+plugins/gf-hcaptcha
+plugins/press-permit-core
+plugins/wordpress-seo
 *.log
 
 # Dependencies managed using composer
@@ -35,6 +37,9 @@ vendor
 
 # Uploads directory
 uploads
+
+# DB exports
+*.sql
 
 # mu-plugins; these are managed at the platform-level
 mu-plugins
