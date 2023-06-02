@@ -20,7 +20,9 @@
     "sort-order": true,
     "allow-plugins": {
       "composer/installers": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "ffraenz/private-composer-installer": true,
+      "gotoandplay/gravityforms-composer-installer": true
     }
   },
   "repositories": [
@@ -34,10 +36,6 @@
     },
     {
       "type": "vcs",
-      "url": "git@github.com:humanmade/gravity-forms.git"
-    },
-    {
-      "type": "vcs",
       "url": "git@github.com:humanmade/simple-editorial-comments.git"
     },
     {
@@ -47,6 +45,22 @@
     {
       "type": "vcs",
       "url": "git@github.com:wikimedia/vegalite-wordpress-plugin.git"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "gravityforms/gravityforms",
+        "version": "2.7.7",
+        "type": "wordpress-plugin",
+        "dist": {
+          "type": "zip",
+          "url": "https://www.gravityhelp.com/wp-content/plugins/gravitymanager/api.php?op=get_plugin&slug=gravityforms&key={%WP_PLUGIN_GF_KEY}"
+        },
+        "require": {
+          "composer/installers": "^1.4",
+          "gotoandplay/gravityforms-composer-installer": "^2.3"
+        }
+      }
     }
   ],
   "minimum-stability": "dev",
@@ -69,7 +83,7 @@
     "wpackagist-plugin/safe-svg": "^2.1.1",
     "wpackagist-plugin/wikipedia-preview": "^1.6.0",
     "wpackagist-plugin/wordpress-seo": "^20.7",
-    "gravityforms/gravityforms": "^2.6.6.1"
+    "gravityforms/gravityforms": "^2.7.7"
   },
   "require-dev": {
     "automattic/vipwpcs": "^1.0",
