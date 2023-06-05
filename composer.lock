@@ -948,12 +948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "02ea9af7edab6fe7e61412873c3da6bc488363cd"
+                "reference": "9990656e00b018e0211d8cec6eb8721334ddf9ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/02ea9af7edab6fe7e61412873c3da6bc488363cd",
-                "reference": "02ea9af7edab6fe7e61412873c3da6bc488363cd",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/9990656e00b018e0211d8cec6eb8721334ddf9ce",
+                "reference": "9990656e00b018e0211d8cec6eb8721334ddf9ce",
                 "shasum": ""
             },
             "require-dev": {
@@ -992,7 +992,7 @@
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
-            "time": "2023-05-18T15:22:34+00:00"
+            "time": "2023-06-05T22:56:49+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
