@@ -100,6 +100,7 @@ function filter_blocks( $allowed_block_types, $block_editor_context ) {
 		'core/buttons',
 		'core/latest-posts',
 		'core/quote',
+		'core/shortcode',
 	];
 
 	if ( ( $block_editor_context->post->post_type ?? '' ) === 'post' ) {
