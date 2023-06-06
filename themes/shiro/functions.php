@@ -405,6 +405,12 @@ function wmf_filter_wp_404title( $title_parts ) {
 require get_template_directory() . '/inc/breadcrumb-links.php';
 WMF\Breadcrumb_Links\init();
 
+/**
+ * Security related functions
+ */
+require get_template_directory() . '/inc/security.php';
+WMF\Security\init();
+
 // Hook into document_title_parts
 add_filter( 'document_title_parts', 'wmf_filter_wp_404title' );
 
