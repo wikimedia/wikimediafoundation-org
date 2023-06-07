@@ -38,8 +38,10 @@ function get_headings_from_post_content( string $content ) : array {
 	$xpath = new DOMXPath( $heading_block_doc );
 
 	// Query for h2 and h3 elements that have an id attribute.
-	$matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );
+	// $matching_elements = $xpath->query( '//h2[@id] | //h3[@id]' );
+	$matching_elements = $xpath->query( '//h2[@id]' ); // quickfix regarding to ticket #873.
 
+	$headings = [];
 	foreach ( $matching_elements as $header_element ) {
 		// DOMDocument properties do not follow WP style guidelines.
 		/* phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase */
@@ -149,6 +151,7 @@ function render_toc_block( string $block_content, array $block ) : string {
 
 	$headings = get_headings_from_post_content( get_post()->post_content ?? '' );
 	$max_depth = ( $block['attrs']['includeH3s'] ?? false ) ? 'h3' : 'h2';
+	$max_depth = 'h2'; // quickfix regarding to ticket #873.
 	$headings = headings_to_nested_list( $headings, $max_depth );
 
 	if ( empty( $headings ) ) {
