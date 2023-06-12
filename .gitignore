@@ -12,7 +12,6 @@ plugins/wordpress-seo
 plugins/asset-loader
 plugins/broken-link-checker
 plugins/co-authors-plus
-plugins/disable-emojis
 plugins/fieldmanager
 plugins/gravityforms
 plugins/hm-gutenberg-tools
