@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '16b66cea438b5548d51af2dd82a87b9eb3ea3b94',
+        'reference' => '50b2bdc708d980ca483620e2009f781cd40db828',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -151,7 +151,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => '3ee134dbd68d15df3dd8f1e43399bc71cccd2c03',
+            'reference' => '22b763b5abdc69572b66c462cd85c2b2135f56aa',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '16b66cea438b5548d51af2dd82a87b9eb3ea3b94',
+            'reference' => '50b2bdc708d980ca483620e2009f781cd40db828',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -263,6 +263,15 @@
             'install_path' => __DIR__ . '/../../plugins/co-authors-plus',
             'aliases' => array(),
             'reference' => 'tags/3.5.10',
+            'dev_requirement' => false,
+        ),
+        'wpackagist-plugin/disable-emojis' => array(
+            'pretty_version' => '1.7.4',
+            'version' => '1.7.4.0',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../plugins/disable-emojis',
+            'aliases' => array(),
+            'reference' => 'tags/1.7.4',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/duplicate-page' => array(
