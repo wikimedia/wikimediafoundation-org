@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3a48518d31ddd51c7e121a7f7edc86e",
+    "content-hash": "e282b8b7e3b8f96a66e1fbb6b0d46188",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1068,24 +1068,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/co-authors-plus/"
-        },
-        {
-            "name": "wpackagist-plugin/disable-emojis",
-            "version": "1.7.4",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/disable-emojis/",
-                "reference": "tags/1.7.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.4.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/disable-emojis/"
         },
         {
             "name": "wpackagist-plugin/gf-hcaptcha",
