@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5d0f0fefcc1a9636e8565240c6767ea",
+    "content-hash": "d3a48518d31ddd51c7e121a7f7edc86e",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -271,7 +271,7 @@
             ],
             "authors": [
                 {
-                    "name": "Fr√§nz Friederes",
+                    "name": "Fr‰nz Friederes",
                     "email": "fraenz@frieder.es",
                     "homepage": "https://fraenz.frieder.es"
                 }
@@ -992,7 +992,7 @@
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
-            "time": "2023-06-07T18:15:02+00:00"
+            "time": "2023-06-07T20:29:12+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -1080,12 +1080,23 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1683202842"
+            "name": "wpackagist-plugin/disable-emojis",
+            "version": "1.7.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/disable-emojis/",
+                "reference": "tags/1.7.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/duplicate-page/"
+            "homepage": "https://wordpress.org/plugins/disable-emojis/"
         },
         {
             "name": "wpackagist-plugin/gf-hcaptcha",
