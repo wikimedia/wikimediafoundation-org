@@ -2193,16 +2193,16 @@
         },
         {
             "name": "wpackagist-plugin/wikipedia-preview",
-            "version": "1.9.0",
-            "version_normalized": "1.9.0.0",
+            "version": "1.10.0",
+            "version_normalized": "1.10.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wikipedia-preview/",
-                "reference": "tags/1.9.0"
+                "reference": "tags/1.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wikipedia-preview.1.9.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wikipedia-preview.1.10.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

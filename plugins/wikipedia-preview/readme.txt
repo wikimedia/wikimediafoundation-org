@@ -2,8 +2,8 @@
 Contributors: wikimediafoundation
 Donate link: https://donate.wikimedia.org/wiki/Ways_to_Give
 Tags: wikipedia, facts, popup, card, wiki
-Stable tag: 1.9.0
-Tested up to: 6.1
+Stable tag: 1.10.0
+Tested up to: 6.2
 License: MIT
 License URI: https://github.com/wikimedia/wikipedia-preview/blob/main/LICENSE
 
@@ -129,6 +129,21 @@ When writing articles, decide which words show a Wikipedia popup on a particular
 = After the implementation of Wikipedia Preview will there be any impact on the size of the page? Will it get laggy? =
 
 The words that will have a Wikipedia Preview popup on your site need to be annotated. Those annotations add to the page size but not more than the regular hyperlinks you already use.
+
+= How does one customise the preview style? =
+
+In the admin site, go to “Appearance / customize”, then select the “Additional CSS” option from the left side menu. In the text box, the following CSS should reset the existing term style so you can adjust it to your liking.
+
+```
+.wmf-wp-with-preview {
+    border: 0;
+    background-color: unset;
+    padding: unset;
+}
+.wmf-wp-with-preview::after {
+    content: '';
+}
+```
 
 = Is it compatible with all the browsers? =
 
