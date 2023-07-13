@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
 Tested up to: 6.2
-Stable tag: 20.8
+Stable tag: 20.11
 Requires PHP: 7.2.5
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -245,51 +245,49 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Changelog ==
 
-= 20.8 =
+= 20.11 =
 
-Release date: 2023-05-23
+Release date: 2023-07-11
 
-Today, we're launching Yoast SEO 20.8. In this release, you'll find improvements to our content analyses and regular fixes and enhancements. Find out more about what's new in Yoast SEO 20.8 in [our release post](https://yoa.st/release-23-5-23)!
-
-#### Enhancements
-
-* Improves feedback strings for the _keyphrase density_ assessment by referring to the keyphrase in general instead of the focus keyphrase.
-* Improves the accuracy of the content analysis by excluding texts within textarea tags from the analysis.
-
-#### Bugfixes
-
-* Fixes a bug where an entry in the indexable table would be created when an archive of a non-public but publicly queryable post type would be visited.
-* Fixes a bug where a warning about a missing key in a component would be thrown in the console in the Yoast SEO Settings page.
-* Fixes a bug where entries in the indexable table would be created for archives of excluded post types.
-* Fixes a bug where the score icon for the SEO and Readability tabs would not show a sad emoji when the post is empty or there is no set keyphrase.
-
-#### Other
-
-* Renames "SEO Framework" to "The SEO Framework".
-
-= 20.7 =
-
-Release date: 2023-05-09
-
-Yoast SEO 20.7 is out now! With this release, our team has rolled out essential fixes and improvements to help you improve your SEO work. Upgrade today to benefit from the latest and greatest! Find out more about what's new in Yoast SEO 20.7 in [our release post](https://yoa.st/release-9-5-23)!
+Time for another release, time for Yoast SEO 20.11. This latest release includes fixes and enhancements, plus a new notification that pops up when you add a new content type. This reminds you to optimize these. Find out more about what's new in Yoast SEO 20.11 in [our release post](https://yoa.st/release-11-7-23)!
 
 #### Enhancements
 
-* Adds a link to a taxonomy edit page in its settings section when the taxonomy has no public post types associated.
-* Adds an academy page in the Yoast menu for easy access to all of Yoast’s e-learning modules.
-* Ensures compatibility with upcoming Elementor accessibility improvements.
+* Adds badges to new content types in the settings page.
+* Adds a notification in the settings whenever there is a new content type.
+* Adds a notification for new content in the notification center and removes it once it was reviewed.
 
 #### Bugfixes
 
-* Fixes a bug where a fatal error would be thrown when visiting Yoast SEO admin pages while Yoast SEO for WooCommerce is active but never executed.
+* Fixes a bug where placeholders would be displayed in the wrong color in the Yoast SEO settings and the First-time configuration.
+
+= 20.10 =
+
+Release date: 2023-06-27
+
+Upgrade now to Yoast SEO 20.10! This latest release includes fixes, enhancements to the crawl optimization settings, and a brand-new support page that helps you get support quickly. Find out more about what's new in Yoast SEO 20.10 in [our release post](https://yoa.st/release-27-6-23)!
+
+#### Enhancements
+
+* Adds a support page to the Yoast admin. This page allows you to easily access Yoast FAQs and support resources from the WordPress admin.
+* Excludes the Yoast SEO Breadcrumbs widget from the content analysis in Elementor Pro.
+* Expands the list of HTML elements excluded from the content analysis.
+* Introduces a new setting for crawl optimization, that disallows AdsBot crawling when enabled.
+* Introduces more robust HTML processing for the _competing links_, _keyphrase in introduction_, _image keyphrase_, and _images_ assessments.
+* Removes any meta tags for enhanced Slack sharing from static home pages.
+
+#### Bugfixes
+
+* Fixes a bug where adding a link in the block editor would result in displaying the URL instead of the post title.
+* Fixes a bug where deletion notice would not appear when deleting a term when the `term_id` is different from `taxonomy_term_id`.
+* Fixes a bug where terms with custom canonical URLs would get added in the sitemap.
+* Fixes a bug where the WordPress native sitemap would not work properly after Yoast SEO was deactivated, until rewrite rules were flushed.
+* Fixes a bug where the wrong taxonomy name would appear in the notice when deleting a term.
 
 #### Other
 
-* Removes the introductory modal for the settings page.
-* Removes the Zapier integration card.
-* Removes the Zapier post-publish slot and network admin integration toggle.
-* Sets the minimum supported WooCommerce version to 7.1.
-* Sets the minimum supported WordPress version to 6.1
+* Adds the Wincher upgrade callout to the Wincher performance report on the dashboard and to the Wincher SEO performance on the edit post page.
+* Deprecates the `Old_Premium_Integration`.
 
 = Earlier versions =
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/yoast-seo-changelog).
