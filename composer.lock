@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6fe9a5d6024a34737b3896e91da85af",
+    "content-hash": "8c4ccf713ca8c84bf7b09c65c6aa1d4e",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -948,12 +948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "19fa3c3eb6d901a8382be7151e86a9c51829c18a"
+                "reference": "443d931470c3587c6b5aea027eadb7c6ee354374"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/19fa3c3eb6d901a8382be7151e86a9c51829c18a",
-                "reference": "19fa3c3eb6d901a8382be7151e86a9c51829c18a",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/443d931470c3587c6b5aea027eadb7c6ee354374",
+                "reference": "443d931470c3587c6b5aea027eadb7c6ee354374",
                 "shasum": ""
             },
             "require-dev": {
@@ -992,7 +992,7 @@
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
-            "time": "2023-07-13T14:20:30+00:00"
+            "time": "2023-07-13T21:54:39+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",

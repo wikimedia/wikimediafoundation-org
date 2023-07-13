@@ -54,13 +54,7 @@ function set_content_security_policy() {
 	 * sure that functionality of site remains not affected.
 	 */
 
-	header( "Content-Security-Policy:
-				default-src 'self';
-				script-src 'self' 'unsafe-inline' https://piwik.wikimedia.org https://stats.wp.com;
-				style-src 'self' 'unsafe-inline';
-				img-src 'self' data:;
-				font-src 'self';
-			" );
+	header( "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://piwik.wikimedia.org https://stats.wp.com https://pixel.wp.com http://localhost https://localhost http://localhost:8080; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://piwik.wikimedia.org; font-src 'self' data:; connect-src 'self' wss://public-api.wordpress.com;" );
 }
 
 /**
