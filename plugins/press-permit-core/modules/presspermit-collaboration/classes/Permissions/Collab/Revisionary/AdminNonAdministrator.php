@@ -1,7 +1,6 @@
 <?php
 namespace PublishPress\Permissions\Collab\Revisionary;
 
-
 class AdminNonAdministrator
 {
     function __construct() {

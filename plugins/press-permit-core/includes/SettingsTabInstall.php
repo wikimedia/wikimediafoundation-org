@@ -186,6 +186,7 @@ class SettingsTabInstall
                 </th>
 
                 <td>
+
                     <?php
                     $update_info = [];
 
@@ -232,6 +233,7 @@ class SettingsTabInstall
 
                     <p>
                     <?php
+
                     global $wp_version;
                     printf(esc_html__("WordPress Version: %s", 'press-permit-core'), esc_html($wp_version));
                     ?>

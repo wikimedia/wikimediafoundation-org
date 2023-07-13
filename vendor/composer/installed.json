@@ -2130,16 +2130,16 @@
         },
         {
             "name": "wpackagist-plugin/press-permit-core",
-            "version": "3.9.3",
-            "version_normalized": "3.9.3.0",
+            "version": "3.10.0",
+            "version_normalized": "3.10.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/press-permit-core/",
-                "reference": "tags/3.9.3"
+                "reference": "tags/3.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.9.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.10.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

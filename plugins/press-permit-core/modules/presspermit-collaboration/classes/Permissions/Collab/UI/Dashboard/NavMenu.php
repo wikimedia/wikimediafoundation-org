@@ -31,7 +31,6 @@ class NavMenu
         if (!presspermit_empty_POST()) {
             add_filter('update_post_metadata', [$this, 'flt_police_menu_item_data_edit'], 10, 5);
             add_action('pre_post_update', [$this, 'act_police_menu_item_edit']);
-
             add_action('presspermit_delete_object', [$this, 'act_police_menu_item_deletion'], 10, 3);
             add_filter('wp_insert_post_parent', [$this, 'flt_police_menu_item_parent'], 10, 4);
         }
