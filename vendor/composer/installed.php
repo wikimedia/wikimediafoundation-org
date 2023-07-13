@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '30acd08e2c2760c3c7a838e655b51ff74737bec4',
+        'reference' => 'abf8e37b5d75111328d220083ea0c4e94d14a825',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -101,12 +101,12 @@
             'dev_requirement' => false,
         ),
         'humanmade/hm-gutenberg-tools' => array(
-            'pretty_version' => 'v1.6.2',
-            'version' => '1.6.2.0',
+            'pretty_version' => 'v1.6.3',
+            'version' => '1.6.3.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/hm-gutenberg-tools',
             'aliases' => array(),
-            'reference' => '89052d4e9827793931bf0cd6d4a40c985da60898',
+            'reference' => '5b7ca1d0d76bf4f3ba78cf22ae2819032c1e35be',
             'dev_requirement' => false,
         ),
         'humanmade/simple-editorial-comments' => array(
@@ -151,7 +151,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => '3ee134dbd68d15df3dd8f1e43399bc71cccd2c03',
+            'reference' => 'e8f8fa0b9beaf8905026c13d8bd1153baa9f686c',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -217,7 +217,7 @@
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../themes/shiro',
             'aliases' => array(),
-            'reference' => '26ff8aa70200931a26e1b1e007145395098b8c90',
+            'reference' => 'a2a8e78fd69c625920a169ea08afee63e94b25ca',
             'dev_requirement' => false,
         ),
         'wikimedia/vegalite-wordpress-plugin' => array(
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '30acd08e2c2760c3c7a838e655b51ff74737bec4',
+            'reference' => 'abf8e37b5d75111328d220083ea0c4e94d14a825',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
