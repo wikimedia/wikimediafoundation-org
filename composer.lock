@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4f557168ea580bdb4909a0dbde54080",
+    "content-hash": "e9671a46684e094a71c36aa49bd03bf5",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1161,15 +1161,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.8",
+            "version": "20.11",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.8"
+                "reference": "tags/20.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.11.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
