@@ -78,7 +78,7 @@
     "wpackagist-plugin/broken-link-checker": "^2.2.0",
     "wpackagist-plugin/co-authors-plus": "^3.5",
     "wpackagist-plugin/gf-hcaptcha": "^1.3",
-    "wpackagist-plugin/press-permit-core":"^3.9.3",
+    "wpackagist-plugin/press-permit-core":"^3.10.0",
     "wpackagist-plugin/safe-redirect-manager": "^2.0.1",
     "wpackagist-plugin/safe-svg": "^2.1.1",
     "wpackagist-plugin/wikipedia-preview": "^1.10.0",

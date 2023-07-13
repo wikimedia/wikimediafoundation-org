@@ -1089,15 +1089,15 @@
         },
         {
             "name": "wpackagist-plugin/press-permit-core",
-            "version": "3.9.3",
+            "version": "3.10.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/press-permit-core/",
-                "reference": "tags/3.9.3"
+                "reference": "tags/3.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.9.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.10.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1161,15 +1161,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.8",
+            "version": "20.11",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.8"
+                "reference": "tags/20.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.11.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
