@@ -337,7 +337,6 @@ class GroupsListTable extends GroupsListTableBase
 
                     echo '</td>';
                     break;
-
                 case 'num_users':
                     echo "<td class='posts column-num_users num' style='" . esc_attr($style) . "'>";
 
@@ -358,14 +357,12 @@ class GroupsListTable extends GroupsListTableBase
 
                     echo '</td>';
                     break;
-
                 case 'roles':
                 case 'exceptions':
                     echo "<td class='" . esc_attr($class) . "' style='" . esc_attr($style) . "'>";
                     $this->single_row_role_column($column_name, $group_id, $can_manage_group, $edit_link);
                     echo '</td>';
                     break;
-
                 case 'description':
                     echo "<td class='" . esc_attr($class) . "' style='" . esc_attr($style) . "'>";
                     echo esc_html($group->group_description);

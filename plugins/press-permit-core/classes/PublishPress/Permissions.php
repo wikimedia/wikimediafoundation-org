@@ -1075,8 +1075,8 @@ class Permissions
 		if ($this->isPro()) {
         	require_once(PRESSPERMIT_PRO_ABSPATH . '/includes-pro/library/Factory.php');
         	$container = \PublishPress\Permissions\Factory::get_container();
-            
-            if (!empty($container['edd_container'])) {
+			
+			if (!empty($container['edd_container'])) {
                 return $container['edd_container']['update_manager'];
             } else {
                 return false;

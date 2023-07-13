@@ -69,7 +69,7 @@ class UserGroupsUpdate
             if (('pp_group' == $agent_type) && in_array('pp_net_group', $group_types, true) && $is_main_site) {
                 continue;
 			}
-	
+
             $posted_groups = (presspermit_is_POST($agent_type)) ? array_map('intval', presspermit_POST_var($agent_type)) : [];
 
             $stored_groups = array_keys($pp->groups()->getGroupsForUser($user_id, $agent_type, ['cols' => 'id']));

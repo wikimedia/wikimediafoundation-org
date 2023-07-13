@@ -166,7 +166,6 @@ class Settings
 
             <div class="submit pp-submit" style="border:none;">
                 <input type="submit" name="presspermit_submit" class="button-primary" value="<?php esc_attr_e('Save Changes', 'press-permit-core'); ?>"/>
-
                 <input type="hidden" name="pp_tab"
                         value="<?php if ($pp_tab = presspermit_REQUEST_key('pp_tab')) echo esc_attr($pp_tab); ?>"/>
             </div>

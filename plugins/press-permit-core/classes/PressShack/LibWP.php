@@ -510,8 +510,8 @@ class LibWP
             if (defined('PRESSPERMIT_PRO_FILE')) {
                 $plugin_file = plugin_basename(PRESSPERMIT_PRO_FILE);
             } elseif (defined('PRESSPERMIT_FILE')) {
-                $plugin_file = plugin_basename(PRESSPERMIT_FILE);
-            }
+            	$plugin_file = plugin_basename(PRESSPERMIT_FILE);
+        	}
         }
         
         return (array_key_exists($plugin_file, (array)maybe_unserialize(get_site_option('active_sitewide_plugins'))));
