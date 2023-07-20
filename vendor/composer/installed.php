@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '9feaa3adae9e8be0165b7b860d72172cd9226d24',
+        'reference' => 'f8ec1d052876f750640c841e924cbab502ce4a6a',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -101,12 +101,12 @@
             'dev_requirement' => false,
         ),
         'humanmade/hm-gutenberg-tools' => array(
-            'pretty_version' => 'v1.6.2',
-            'version' => '1.6.2.0',
+            'pretty_version' => 'v1.6.3',
+            'version' => '1.6.3.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/hm-gutenberg-tools',
             'aliases' => array(),
-            'reference' => '89052d4e9827793931bf0cd6d4a40c985da60898',
+            'reference' => '5b7ca1d0d76bf4f3ba78cf22ae2819032c1e35be',
             'dev_requirement' => false,
         ),
         'humanmade/simple-editorial-comments' => array(
@@ -151,7 +151,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => '7d728f50cf52ce838ac1c1504190823b4dc06b4d',
+            'reference' => 'e6a0aa0baeab789037e42639af83612bffa23e70',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '9feaa3adae9e8be0165b7b860d72172cd9226d24',
+            'reference' => 'f8ec1d052876f750640c841e924cbab502ce4a6a',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
