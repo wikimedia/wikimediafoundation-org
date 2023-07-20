@@ -66,6 +66,15 @@ foreach ( $post_list as $term_id => $term_data ) {
 		</h3>
 		<ul class="role__staff-list">
 			<?php
+
+			// Sort executives by `last_name`, a custom meta field.
+			usort( $executives, function( $a, $b ) {
+				$last_name_a = get_post_meta( $a, 'last_name', true );
+				$last_name_b = get_post_meta( $b, 'last_name', true );
+
+				return strnatcasecmp( $last_name_a, $last_name_b );
+			} );
+
 			foreach ( $executives as $executive_id ) {
 				get_template_part(
 					'template-parts/profiles/role',
@@ -88,6 +97,14 @@ foreach ( $post_list as $term_id => $term_data ) {
 		</h3>
 		<ul class="role__staff-list">
 			<?php
+			// Sort experts by `last_name`, a custom meta field.
+			usort( $experts, function( $a, $b ) {
+				$last_name_a = get_post_meta( $a, 'last_name', true );
+				$last_name_b = get_post_meta( $b, 'last_name', true );
+
+				return strnatcasecmp( $last_name_a, $last_name_b );
+			} );
+
 			foreach ( $experts as $expert_id ) {
 				get_template_part(
 					'template-parts/profiles/role',

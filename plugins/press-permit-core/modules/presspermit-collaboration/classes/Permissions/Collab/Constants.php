@@ -6,6 +6,7 @@ class Constants
     function __construct()
     {
         add_filter('presspermit_constants', [$this, 'flt_pp_constants']);
+
     }
 
     function flt_pp_constants($pp_constants)

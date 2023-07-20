@@ -348,7 +348,7 @@ class NavMenus
                         'attribute' => 'post_excerpt', 
                         'description' => 'post_content', 
                     ];
-  
+
                     foreach ($check_fields as $property => $col) {
                         $stored_vals[$property] = trim($menu_item->$col);
                     }

@@ -351,7 +351,6 @@ class Profile
                 ?>
             </h3>
         <?php 
-
         if (!$any_exceptions_listed = self::listAgentExceptions($agent_type, $agent_id, $args)) :
             ob_clean();
         else :?>

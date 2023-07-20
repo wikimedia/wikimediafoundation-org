@@ -368,6 +368,5 @@ class Ancestry
 
         if ($remapped_items)
             $items = array_merge($items, $remapped_items);
-
     } // end function remapTree
 }
