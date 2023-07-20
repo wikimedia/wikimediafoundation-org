@@ -130,6 +130,8 @@ function wmf_get_role_posts( $term_id ) {
 			'post_type'      => 'profile',
 			'fields'         => 'ids',
 			'orderby'        => 'title',
+			'meta_key'       => 'last_name',
+			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
 			'posts_per_page' => 100,
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
@@ -144,20 +146,19 @@ function wmf_get_role_posts( $term_id ) {
 		)
 	);
 
-	$post_list     = wmf_sort_by_last_name( $posts->posts );
 	$featured_list = array();
 
-	foreach ( $post_list as $i => $post_id ) {
+	foreach ( $posts->posts as $i => $post_id ) {
 		$featured = get_post_meta( $post_id, 'profile_featured', true );
 
 		if ( $featured ) {
-			unset( $post_list[ $i ] );
-			$featured_list[ $i ] = $post_id;
+			unset( $posts->posts[ $i ] );
+			$featured_list[] = $post_id;
 		}
 	}
 
 	return array(
-		'posts' => $featured_list + $post_list,
+		'posts' => $featured_list + $posts->posts,
 		'name'  => $term_query->name,
 		'slug'  => $term_query->slug,
 	);
@@ -515,19 +516,6 @@ function wmf_filter_caption_shortcode( $output, $attr, $content ) {
 	return $html;
 }
 add_filter( 'img_caption_shortcode', 'wmf_filter_caption_shortcode', 10, 3 );
-
-/**
- * Initiates a new Profile\Sorter and returns the sorted posts.
- *
- * @param array $posts The posts to sort.
- *
- * @return array
- */
-function wmf_sort_by_last_name( $posts ) {
-	$sorter = new WMF\Profiles\Sorter( $posts );
-
-	return $sorter->get_sorted();
-}
 
 /**
  * Register custom RSS templates.
