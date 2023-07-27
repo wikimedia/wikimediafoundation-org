@@ -83,6 +83,8 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 		 * @param blcConfigurationManager $conf An instance of the configuration manager.
 		 */
 		public function __construct( $loader, blcConfigurationManager $conf ) {
+			static $method_called = false;
+			
 			$this->db_version = BLC_DATABASE_VERSION;
 
 			$this->conf        = $conf;
@@ -104,6 +106,12 @@ if ( ! class_exists( 'wsBrokenLinkChecker' ) ) {
 					return;
 				}
 			}
+
+			if ( $method_called ) {
+				return;
+			}
+
+			$method_called = true;
 
 			// Load jQuery on Dashboard pages (probably redundant as WP already does that).
 			// add_action( 'admin_print_scripts', array( $this, 'admin_print_scripts' ) );.

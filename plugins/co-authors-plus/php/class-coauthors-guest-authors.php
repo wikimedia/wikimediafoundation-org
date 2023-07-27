@@ -8,7 +8,7 @@
 
 class CoAuthors_Guest_Authors {
 
-
+	public $labels;
 	var $post_type              = 'guest-author';
 	var $parent_page            = 'users.php';
 	var $list_guest_authors_cap = 'list_users';
@@ -139,9 +139,6 @@ class CoAuthors_Guest_Authors {
 			'query_var'           => false,
 		);
 		register_post_type( $this->post_type, $args );
-
-		// Some of the common sizes used by get_avatar
-		$this->avatar_sizes = array();
 
 		// Hacky way to remove the title and the editor
 		remove_post_type_support( $this->post_type, 'title' );

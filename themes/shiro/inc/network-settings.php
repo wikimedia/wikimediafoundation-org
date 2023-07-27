@@ -61,6 +61,23 @@ function add_menu_and_fields() {
 		'seo_settings_page',
 		'ogmeta_settings_section'
 	);
+
+	add_settings_section(
+		'mastodon_settings_section',
+		__( 'Mastodon settings', 'shiro-seo-admin' ),
+		__NAMESPACE__ . '\\mastodon_settings_section_content',
+		'seo_settings_page'
+	);
+
+	register_setting( 'seo_settings_page', 'mastodon_handle_verify' );
+
+	add_settings_field(
+		'mastodon_handle_verify_field',
+		__( 'Set wikimedia.social handle - without "@" prefix - for Mastodon verification', 'shiro-seo-admin' ),
+		__NAMESPACE__ . '\\mastodon_handle_verify_field_content',
+		'seo_settings_page',
+		'mastodon_settings_section'
+	);
 }
 
 /**
@@ -142,6 +159,31 @@ function ogmeta_ogimageurl_field_content() {
 }
 
 /**
+ * Mastodon settings section content.
+ */
+function mastodon_settings_section_content() {
+	esc_html_e( 'Use the options below to configure Mastodon values for the entire network of sites.', 'shiro-seo-admin' );
+}
+
+/**
+ * Mastodon wikimedia.social handle verification field content.
+ */
+function mastodon_handle_verify_field_content() {
+
+	$mastodon_handle_verify = get_site_option( 'mastodon_handle_verify' );
+
+		?>
+		<label>
+			<input
+				type="text"
+				name="mastodon_handle_verify"
+				value="<?php echo esc_attr( $mastodon_handle_verify ); ?>"
+			>
+		</label>
+		<?php
+}
+
+/**
  * Update the SEO and social media settings.
  */
 function seo_settings_page_update() {
@@ -155,6 +197,11 @@ function seo_settings_page_update() {
 	$ogmeta_ogimageurl = sanitize_text_field( $_POST['ogmeta_ogimageurl'] );
 	if ( $ogmeta_ogimageurl ) {
 		update_site_option( 'ogmeta_ogimageurl', $ogmeta_ogimageurl );
+	}
+
+	$mastodon_handle_verify = sanitize_text_field( $_POST['mastodon_handle_verify'] );
+	if ( $mastodon_handle_verify ) {
+		update_site_option( 'mastodon_handle_verify', $mastodon_handle_verify );
 	}
 
 	wp_safe_redirect( add_query_arg( 'updated', 'true', network_admin_url( 'settings.php?page=seo_settings_page' ) ) );
