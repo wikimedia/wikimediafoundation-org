@@ -25,21 +25,32 @@ $wmf_select_language_label = get_theme_mod( 'wmf_select_language_label', __( 'Se
 $wmf_current_language_label = get_theme_mod( 'wmf_current_language_label', __( 'Current language:', 'shiro-admin' ) );
 $wmf_post_thumbnail_url = get_the_post_thumbnail_url( get_the_ID() );
 $wmf_ogmeta_ogimageurl = get_site_option( 'ogmeta_ogimageurl' );
+$wmf_mastodon_handle_verify = get_site_option( 'mastodon_handle_verify' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php 
+
+<!-- Setting up 'og:image' variable within <head> -->
+<?php
 // If set, configure 'featured image' as 'og:image'.
-if ( $wmf_post_thumbnail_url  && !( is_plugin_active('wordpress-seo/wp-seo.php') )): ?>
+if ( $wmf_post_thumbnail_url && ! ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) )): ?>
     <meta property="og:image" content="<?php echo esc_url( $wmf_post_thumbnail_url ) ?>" />
 <?php
 // If set, configure 'ogmeta_ogimageurl' as 'og:image'.
-elseif ( $wmf_ogmeta_ogimageurl  && !( is_plugin_active('wordpress-seo/wp-seo.php') )): ?>
+elseif ( $wmf_ogmeta_ogimageurl && ! ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) )): ?>
 	<meta property="og:image" content="<?php echo esc_url( $wmf_ogmeta_ogimageurl ) ?>" />
 <?php endif; ?>
+
+<!-- Setting up Mastodon handle variable for verification from within <head> -->
+<?php
+// If set, configure Mastodon handle for verification.
+if ( $wmf_mastodon_handle_verify ): ?>
+    <link rel="me" href="https://wikimedia.social/@<?php echo esc_attr( $wmf_mastodon_handle_verify ) ?>">
+<?php endif; ?>
+
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
 </head>

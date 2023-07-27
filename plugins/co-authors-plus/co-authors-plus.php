@@ -3,7 +3,7 @@
 Plugin Name: Co-Authors Plus
 Plugin URI: http://wordpress.org/extend/plugins/co-authors-plus/
 Description: Allows multiple authors to be assigned to a post. This plugin is an extended version of the Co-Authors plugin developed by Weston Ruter.
-Version: 3.5.10
+Version: 3.5.11
 Author: Mohammad Jangda, Daniel Bachhuber, Automattic
 Copyright: 2008-2015 Shared and distributed between Mohammad Jangda, Daniel Bachhuber, Weston Ruter
 
@@ -32,7 +32,7 @@ Co-author - in the context of a single post, a guest author or user assigned to 
 Author - user with the role of author
 */
 
-define( 'COAUTHORS_PLUS_VERSION', '3.5.10' );
+define( 'COAUTHORS_PLUS_VERSION', '3.5.11' );
 
 require_once dirname( __FILE__ ) . '/template-tags.php';
 require_once dirname( __FILE__ ) . '/deprecated.php';
@@ -67,6 +67,11 @@ class CoAuthors_Plus {
 	var $having_terms = '';
 
 	var $to_be_filtered_caps = array();
+
+	/**
+	 * @var CoAuthors_Guest_Authors
+	 */
+	public $guest_authors;
 
 	/**
 	 * __construct()
@@ -141,6 +146,9 @@ class CoAuthors_Plus {
 
 		// Block editor assets for the sidebar plugin.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_sidebar_plugin_assets' ) );
+
+		// REST API: Depending on user capabilities, hide author term description.
+		add_action( 'rest_prepare_author', array( $this, 'conditionally_hide_author_term_description' ) );
 	}
 
 	/**
@@ -231,6 +239,8 @@ class CoAuthors_Plus {
 			'sort'         => true,
 			'args'         => array( 'orderby' => 'term_order' ),
 			'show_ui'      => false,
+			'show_in_rest' => true,
+			'rest_base'    => 'coauthors',
 		);
 
 		// If we use the nasty SQL query, we need our custom callback. Otherwise, we still need to flush cache.
@@ -1832,6 +1842,39 @@ class CoAuthors_Plus {
 			}
 		}
 		return $args;
+	}
+
+	/**
+	 * Conditionally Hide Author Term Description
+	 *
+	 * If the current user does not have the required capability,
+	 * hide the author term description by unsetting it.
+	 *
+	 * @link https://github.com/Automattic/Co-Authors-Plus/issues/930
+	 * @param WP_REST_Response $response Response for an individual author taxonomy term.
+	 * @return WP_REST_Response $response Same response, possibly mutated to eliminate value of description.
+	 */
+	public function conditionally_hide_author_term_description( WP_REST_Response $response ) : WP_REST_Response {
+		$capability = apply_filters(
+			'coauthors_rest_view_description_cap',
+			'edit_posts'
+		);
+
+		if ( current_user_can( $capability ) ) {
+			return $response;
+		}
+
+		$data = $response->get_data();
+
+		if ( ! is_array( $data ) || ! array_key_exists( 'description', $data ) ) {
+			return $response;
+		}
+
+		unset( $data['description'] );
+
+		$response->set_data( $data );
+
+		return $response;
 	}
 }
 

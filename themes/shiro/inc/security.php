@@ -64,7 +64,7 @@ function set_content_security_policy() {
 		"connect-src 'self' wss://public-api.wordpress.com",
 	];
 
-	header( "Content-Security-Policy: " . implode( '; ', $csp_allowed ) );
+	header( 'Content-Security-Policy: ' . implode( '; ', $csp_allowed ) );
 	header( 'X-Frame-Options: SAMEORIGIN' );
 }
 
