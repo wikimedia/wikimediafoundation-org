@@ -36,19 +36,19 @@ $wmf_mastodon_handle_verify = get_site_option( 'mastodon_handle_verify' );
 <!-- Setting up 'og:image' variable within <head> -->
 <?php
 // If set, configure 'featured image' as 'og:image'.
-if ( $wmf_post_thumbnail_url && ! ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) )): ?>
-    <meta property="og:image" content="<?php echo esc_url( $wmf_post_thumbnail_url ) ?>" />
+if ( $wmf_post_thumbnail_url && ! ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) ) : ?>
+    <meta property="og:image" content="<?php echo esc_url( $wmf_post_thumbnail_url ); ?>" />
 <?php
-// If set, configure 'ogmeta_ogimageurl' as 'og:image'.
-elseif ( $wmf_ogmeta_ogimageurl && ! ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) )): ?>
-	<meta property="og:image" content="<?php echo esc_url( $wmf_ogmeta_ogimageurl ) ?>" />
+    // If set, configure 'ogmeta_ogimageurl' as 'og:image'.
+elseif ( $wmf_ogmeta_ogimageurl && ! ( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) ) : ?>
+    <meta property="og:image" content="<?php echo esc_url( $wmf_ogmeta_ogimageurl ); ?>" />
 <?php endif; ?>
 
 <!-- Setting up Mastodon handle variable for verification from within <head> -->
 <?php
 // If set, configure Mastodon handle for verification.
 if ( $wmf_mastodon_handle_verify ): ?>
-    <link rel="me" href="https://wikimedia.social/@<?php echo esc_attr( $wmf_mastodon_handle_verify ) ?>">
+    <link rel="me" href="https://wikimedia.social/@<?php echo esc_attr( $wmf_mastodon_handle_verify ); ?>">
 <?php endif; ?>
 
 <link rel="profile" href="http://gmpg.org/xfn/11">

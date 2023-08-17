@@ -3,7 +3,7 @@
 Contributors: managewp, wpmudev
 Tags: links, broken links, internal link, external link, broken images, seo, test links, check links, bad links
 Requires at least: 5.2
-Tested up to: 6.2
+Tested up to: 6.3
 Stable tag: 2.2.1
 Requires PHP: 7.2
 License: GPLv2 or later
