@@ -2189,16 +2189,16 @@
         },
         {
             "name": "wpackagist-plugin/safe-redirect-manager",
-            "version": "2.0.1",
-            "version_normalized": "2.0.1.0",
+            "version": "2.1.0",
+            "version_normalized": "2.1.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/safe-redirect-manager/",
-                "reference": "tags/2.0.1"
+                "reference": "tags/2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/safe-redirect-manager.2.0.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/safe-redirect-manager.2.1.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
