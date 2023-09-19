@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c4ccf713ca8c84bf7b09c65c6aa1d4e",
+    "content-hash": "6f0019e5574834a45ceeaf634e0ea658",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1053,15 +1053,15 @@
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",
-            "version": "3.5.11",
+            "version": "3.5.15",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/co-authors-plus/",
-                "reference": "tags/3.5.11"
+                "reference": "tags/3.5.15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/co-authors-plus.3.5.11.zip"
+                "url": "https://downloads.wordpress.org/plugin/co-authors-plus.3.5.15.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2194,5 +2194,5 @@
         "php": "^7.4|^8"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
