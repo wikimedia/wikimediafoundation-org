@@ -1053,15 +1053,15 @@
         },
         {
             "name": "wpackagist-plugin/co-authors-plus",
-            "version": "3.5.11",
+            "version": "3.5.15",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/co-authors-plus/",
-                "reference": "tags/3.5.11"
+                "reference": "tags/3.5.15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/co-authors-plus.3.5.11.zip"
+                "url": "https://downloads.wordpress.org/plugin/co-authors-plus.3.5.15.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
