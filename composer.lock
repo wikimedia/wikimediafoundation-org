@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb465a5230420cf79d18ecd13229aa40",
+    "content-hash": "d572e042ab391e4f8ad565d7077b1abc",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1107,15 +1107,15 @@
         },
         {
             "name": "wpackagist-plugin/press-permit-core",
-            "version": "3.10.0",
+            "version": "3.11.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/press-permit-core/",
-                "reference": "tags/3.10.0"
+                "reference": "tags/3.11.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.10.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/press-permit-core.3.11.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
