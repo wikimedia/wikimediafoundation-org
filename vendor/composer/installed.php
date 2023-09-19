@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'eac194fbf4018fe18a675e8bd84efd9bbb689b78',
+        'reference' => '6ed5a61267f9281fd8ebb9dcb312bd30bea749b9',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'eac194fbf4018fe18a675e8bd84efd9bbb689b78',
+            'reference' => '6ed5a61267f9281fd8ebb9dcb312bd30bea749b9',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -275,12 +275,12 @@
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/press-permit-core' => array(
-            'pretty_version' => '3.10.0',
-            'version' => '3.10.0.0',
+            'pretty_version' => '3.11.1',
+            'version' => '3.11.1.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/press-permit-core',
             'aliases' => array(),
-            'reference' => 'tags/3.10.0',
+            'reference' => 'tags/3.11.1',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/safe-redirect-manager' => array(
