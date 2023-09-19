@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a776a264bd051620a1c5101a046b43fa0f7b867f',
+        'reference' => '35b8c007a2adfffa2cf70512fbed06bc855b7050',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a776a264bd051620a1c5101a046b43fa0f7b867f',
+            'reference' => '35b8c007a2adfffa2cf70512fbed06bc855b7050',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -248,12 +248,12 @@
             'dev_requirement' => true,
         ),
         'wpackagist-plugin/broken-link-checker' => array(
-            'pretty_version' => '2.2.1',
-            'version' => '2.2.1.0',
+            'pretty_version' => '2.2.2',
+            'version' => '2.2.2.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/broken-link-checker',
             'aliases' => array(),
-            'reference' => 'tags/2.2.1',
+            'reference' => 'tags/2.2.2',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/co-authors-plus' => array(
