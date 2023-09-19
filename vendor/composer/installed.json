@@ -2126,8 +2126,8 @@
         },
         {
             "name": "wpackagist-plugin/duplicate-page",
-            "version": "4.5.2",
-            "version_normalized": "4.5.2.0",
+            "version": "4.5.3",
+            "version_normalized": "4.5.3.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duplicate-page/",
@@ -2135,7 +2135,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1683202842"
+                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1694416817"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

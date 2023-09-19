@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '64858859d248fb9454f9d4071e9b63c84d5c4946',
+        'reference' => '332c9ad40535f2aefd3b23b5d806582908c40414',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '64858859d248fb9454f9d4071e9b63c84d5c4946',
+            'reference' => '332c9ad40535f2aefd3b23b5d806582908c40414',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -266,8 +266,8 @@
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/duplicate-page' => array(
-            'pretty_version' => '4.5.2',
-            'version' => '4.5.2.0',
+            'pretty_version' => '4.5.3',
+            'version' => '4.5.3.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/duplicate-page',
             'aliases' => array(),

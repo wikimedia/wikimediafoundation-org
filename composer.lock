@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "375aea3307c36aa3859240b3729b2c86",
+    "content-hash": "d2e10101d494fbbbb2d17daee5a7a3bc",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1071,7 +1071,7 @@
         },
         {
             "name": "wpackagist-plugin/duplicate-page",
-            "version": "4.5.2",
+            "version": "4.5.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duplicate-page/",
@@ -1079,7 +1079,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1683202842"
+                "url": "https://downloads.wordpress.org/plugin/duplicate-page.zip?timestamp=1694416817"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
