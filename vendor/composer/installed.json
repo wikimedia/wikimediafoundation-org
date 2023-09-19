@@ -2210,16 +2210,16 @@
         },
         {
             "name": "wpackagist-plugin/safe-svg",
-            "version": "2.1.1",
-            "version_normalized": "2.1.1.0",
+            "version": "2.2.0",
+            "version_normalized": "2.2.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/safe-svg/",
-                "reference": "tags/2.1.1"
+                "reference": "tags/2.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/safe-svg.2.1.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/safe-svg.2.2.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
