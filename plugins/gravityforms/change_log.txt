@@ -1,3 +1,16 @@
+### 2.7.14 | 2023-09-19
+- Added validation to name, post title, post body, single line text, paragraph text & address fields to prevent empty entries when fields are filled with text encoded with invalid charset for the database table.
+- Fixed an issue where editing an entry with a multifile upload field could result in broken links to files.
+- AF: Fixed the `strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated` notice that can occur with PHP 8.1 when getting a setting value.
+
+### 2.7.13 | 2023-08-23
+- Updated the minimum WordPress version on the System Status page to 6.2.
+- Updated product usage data so it is processed in the background.
+
+### 2.7.12 | 2023-08-08
+- Fixed a fatal error that occurs when a mapped setup_fee field is hidden by conditional logic.
+- AF: Added the [`$_min_compatible_gravityforms_version`](https://docs.gravityforms.com/gfaddon/#h-the-class-variables) property to the `GFFAddOn` class, enabling add-ons to specify the minimum Gravity Forms version that is compatible with all the add-on features.
+
 ### 2.7.11 | 2023-07-27
 - Added a block theme setting for form input accent color.
 - Fixed an issue that causes JavaScript errors in the theme if certain script optimization plugins are used.
@@ -20,6 +33,7 @@
 - Updated the Orbital theme to support max-height/scroll for the consent field.
 - Updated the thumbnail image in the template library for the eCommerce template.
 - Updated the name of the form block to "Form" to make it easier to find in the block inserter.
+
 
 ### 2.7.9 | 2023-06-22
 - Fixed an issue where an empty Number type Quantity field fails validation with a decimals-related error message.
