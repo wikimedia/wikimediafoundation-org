@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "246a4a36e50e80b7a27a9e1b1fe6421e",
+    "content-hash": "17248b2f457fe81a35a8e6b83e2cb627",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1143,15 +1143,15 @@
         },
         {
             "name": "wpackagist-plugin/wikipedia-preview",
-            "version": "1.10.0",
+            "version": "1.11.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wikipedia-preview/",
-                "reference": "tags/1.10.0"
+                "reference": "tags/1.11.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wikipedia-preview.1.10.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wikipedia-preview.1.11.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
