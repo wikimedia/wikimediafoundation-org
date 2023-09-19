@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03b67ce2db81d3384ac650dfd33ab37e",
+    "content-hash": "e0a956f2136813bb78f277f235dadc33",
     "packages": [
         {
             "name": "alleyinteractive/wordpress-fieldmanager",
@@ -1035,15 +1035,15 @@
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/broken-link-checker/",
-                "reference": "tags/2.2.1"
+                "reference": "tags/2.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.2.2.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.2.2.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2176,5 +2176,5 @@
         "php": "^7.4|^8"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
