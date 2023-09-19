@@ -1,9 +1,12 @@
 === Co-Authors Plus ===
-Contributors: batmoo, danielbachhuber, automattic
-Tags: authors, users, multiple authors, coauthors, multi-author, publishing
-Tested up to: 6.2
+Contributors: batmoo, danielbachhuber, automattic, GaryJ
+Tags: authors, users, multiple authors, co-authors, multi-author, publishing
 Requires at least: 4.1
-Stable tag: 3.5.11
+Tested up to: 6.3
+Stable tag: 3.5.15
+Requires PHP: 5.6
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Assign multiple bylines to posts, pages, and custom post types via a search-as-you-type input box
 
@@ -57,19 +60,8 @@ Yep! Guest authors can be disabled entirely through an apt filter. Having the fo
 == Screenshots ==
 
 1. Multiple authors can be added to a Post, Page, or Custom Post Type using an auto-complete interface.
-2. The order of your co-authors can be changed by drag and drop.
-3. Guest authors allow you to assign bylines without creating WordPress user accounts. You can also override existing WordPress account meta by mapping a guest author to a WordPress user.
+2. Guest authors allow you to assign bylines without creating WordPress user accounts. You can also override existing WordPress account meta by mapping a guest author to a WordPress user.
 
 == Changelog ==
 
-= 3.5.11 (Jul 24, 2023) =
-* Author select improvements #924
-* Show author taxonomy in REST API, hide description based on capabilities #931
-* Guest Authors: Add labels property #942
-* Define dynamic guest_authors property #947
-* Bump NPM dependencies #927 #933 #943 #944
-* Workflows: Fix runner image and matrix #946
-* CI: Split out CS and update integration tests workflow #948
-* Improve tests setup #949
-
-For all previous changes, [view the Changelog](https://github.com/Automattic/Co-Authors-Plus/blob/master/CHANGELOG.md)
+[View the change log](https://github.com/Automattic/Co-Authors-Plus/blob/master/CHANGELOG.md).
