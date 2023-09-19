@@ -22,9 +22,12 @@
 		}
 
 		&__heading-wrapper {
-			z-index: 1;
-			position: relative;
+			height: 100%;
+			mask: linear-gradient(to bottom, #000 90%, #0000 100%) repeat-x;
+			overflow-y: scroll;
 			padding-top: 4rem;
+			position: relative;
+			z-index: 1;
 		}
 
 		&__heading {
