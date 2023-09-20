@@ -1,7 +1,7 @@
 {
     "name": "wikimedia/shiro-wordpress-theme",
     "version": "1.0.0",
-    "description": "Wikimedia Foundation website theme.",
+    "description": "Wikimedia Foundation's primary Wordpress theme",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "stable",
     "type": "wordpress-theme",
