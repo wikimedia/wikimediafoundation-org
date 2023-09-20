@@ -1963,12 +1963,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "1b3dc3801ca42f80da47bbec4886c87896df86de"
+                "reference": "484363cc5fbaf3d4e94204f9d9d630497c91e85b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/1b3dc3801ca42f80da47bbec4886c87896df86de",
-                "reference": "1b3dc3801ca42f80da47bbec4886c87896df86de",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/484363cc5fbaf3d4e94204f9d9d630497c91e85b",
+                "reference": "484363cc5fbaf3d4e94204f9d9d630497c91e85b",
                 "shasum": ""
             },
             "require-dev": {
@@ -1980,7 +1980,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-09-19T17:43:12+00:00",
+            "time": "2023-09-20T02:53:01+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
@@ -2009,6 +2009,12 @@
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
+            "funding": [
+                {
+                    "type": "custom",
+                    "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=shiro"
+                }
+            ],
             "install-path": "../../themes/shiro"
         },
         {
@@ -2051,6 +2057,12 @@
                 "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
+            "funding": [
+                {
+                    "type": "custom",
+                    "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=vegaliteWordpress"
+                }
+            ],
             "install-path": "../../plugins/vegalite-wordpress-plugin"
         },
         {

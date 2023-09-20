@@ -31,7 +31,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 		} else {
 			printf(
 				/* translators: 1. first result, 2. last result, 3. total results */
-				esc_html__( 'Showing %1$s - %2$s of %3$s results', 'shiro' ),
+				esc_html__( 'Showing %1$s-%2$s of %3$s results', 'shiro' ),
 				esc_html( $first_result ),
 				esc_html( $last_result ),
 				esc_html( $total_results )
@@ -42,10 +42,34 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 
 	<div class="search-results__tabs mw-980">
 		<?php
+			$sorting_options = [
+				'relevance' => [
+					'query' => 'orderby=relevance',
+					'label' => __( 'Relevance', 'shiro' ),
+				],
+				'date-desc' => [
+					'query' => 'orderby=date&order=DESC',
+					'label' => __( 'Date (newest)', 'shiro' ),
+				],
+				'date-asc' => [
+					'query' => 'orderby=date&order=ASC',
+					'label' => __( 'Date (oldest)', 'shiro' ),
+				],
+			];
+
 			$options = [
-				'all' => __( 'All', 'shiro' ),
-				'post' => __( 'News', 'shiro' ),
-				'page' => __( 'Pages', 'shiro' ),
+				'all' => [
+					'label' => __( 'All', 'shiro' ),
+					'sort' => 'relevance',
+				],
+				'post' => [
+					'label' => __( 'News', 'shiro' ),
+					'sort' => 'date-desc',
+				],
+				'page' => [
+					'label' => __( 'Pages', 'shiro' ),
+					'sort' => 'relevance',
+				],
 			];
 
 			// All is the default option if none is selected, or if the post_type provided isn't in the list.
@@ -58,28 +82,79 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			foreach ( $options as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
 
-				$href = add_query_arg( 's', get_search_query(), home_url( '/' ) );
+				$current_url = add_query_arg( 's', get_search_query(), home_url( '/' ) );
+
+				// Add the default sorting option for the current post_type
+				if ( isset( $sorting_options[ $value['sort'] ] ) ) {
+					$sort_query = $sorting_options[ $value['sort'] ]['query'];
+					$current_url = add_query_arg( $sort_query, '', $current_url );
+				}
 
 				// Simplest way to get the all types is not adding post_type param filter.
 				if ( $key !== 'all' ) {
-					$href = add_query_arg( 'post_type[]', $key, $href );
+					$current_url = add_query_arg( 'post_type[]', $key, $current_url );
 
 					/* translators: post type, i.e., News or Pages */
-					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value );
+					$aria_label = sprintf( __( 'Filter search for %s only', 'shiro' ), $value['label'] );
 				} else {
-					$aria_label = sprintf( __( 'Show all search results', 'shiro' ), $value );
+					$aria_label = sprintf( __( 'Show all search results', 'shiro' ), $value['label'] );
 				}
 
 				printf(
 					'<a href="%1$s" class="search-results__tab %2$s" aria-label="%3$s" title="%3$s">%4$s</a>',
-					esc_url( $href ),
+					esc_url( $current_url ),
 					esc_attr( $active ),
 					esc_attr( $aria_label ),
-					esc_html( $value )
+					esc_html( $value['label'] )
 				);
 			}
+
+			// Default sort option.
+			$current_sort = 'relevance';
+
+			// Check the URL for each sorting option's parameters
+			foreach ( $sorting_options as $sort_key => $option ) {
+				$query_params = [];
+				parse_str( $option['query'], $query_params );
+				$match = true;
+				foreach ( $query_params as $param => $value ) {
+					if ( ! isset( $_GET[ $param ] ) || sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) !== $value ) {
+						$match = false;
+						break;
+					}
+				}
+				if ( $match ) {
+					$current_sort = $sort_key;
+					break;
+				}
+			}
+
+			$current_sort_label = $sorting_options[ $current_sort ]['label'];
 			?>
+
+			<div class="search-results__tabs__sort">
+
+				<button aria-haspopup="true" aria-expanded="false">
+					<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
+					<span class="dropdown-icon"></span>
+				</button>
+
+				<div class="sort-dropdown" role="menu">
+					<?php
+					foreach ( $sorting_options as $sort_key => $option ) {
+						$option_query_params = [];
+						parse_str( $option['query'], $option_query_params );
+						$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
+					?>
+						<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
+							<?php echo esc_html( $option['label'] ); ?>
+						</a>
+					<?php } ?>
+				</div>
+
+			</div>
 	</div>
+
 <?php endif; ?>
 
 <div class="mw-980 mod-margin-bottom flex flex-medium news-card-list">
