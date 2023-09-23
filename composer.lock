@@ -1037,12 +1037,6 @@
                 "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
-            "funding": [
-                {
-                    "type": "custom",
-                    "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=vegaliteWordpress"
-                }
-            ],
             "time": "2023-02-20T15:31:19+00:00"
         },
         {
