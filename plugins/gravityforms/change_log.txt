@@ -1,3 +1,12 @@
+### 2.7.14.2
+- Fixed an issue that causes fatal errors on some sites during the background processing of telemetry data.
+
+### 2.7.14.1
+- AF: Fixed the `Creation of dynamic property CLASS::$delayed_payment_integration is deprecated` notice with PHP 8.2.
+- AF: Fixed an issue where the background feed processor uses a stale instance of the add-on to process the feed preventing the {apc_media} merge tags from outputting values.
+- Fixed an issue where feed settings for ActiveCampaign, Agile CRM, Breeze, Mailchimp, Trello, Twilio, and ZohoCRM display a deprecation warning when using PHP 8.1.
+
+
 ### 2.7.14 | 2023-09-19
 - Added validation to name, post title, post body, single line text, paragraph text & address fields to prevent empty entries when fields are filled with text encoded with invalid charset for the database table.
 - Fixed an issue where editing an entry with a multifile upload field could result in broken links to files.

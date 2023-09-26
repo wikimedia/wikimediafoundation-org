@@ -10,7 +10,6 @@ import FormFieldSelect from './form-field-select';
 
 const { Button } = wp.components;
 const { __ } = wp.i18n;
-const { postStatuses } = window.hmGbToolsData;
 
 const PostBrowseFilters = ( {
 	formId,
@@ -76,23 +75,6 @@ const PostBrowseFilters = ( {
 				} ) }
 			/>
 		) ) }
-
-		<FormFieldSelect
-			key={ 'status-filter' }
-			fieldId={ `${formId}-status` }
-			label={ __( 'Filter by Status', 'hm-gb-tools' ) }
-			options={
-				Object.entries( postStatuses ).map( ( [ key, label ] ) => ( {
-					label: label.charAt( 0 ).toUpperCase() + label.slice( 1 ),
-					value: key,
-				} ) )
-			}
-			placeholder={ __( 'Filter by Status', 'hm-gb-tools' ) }
-			onChange={ filterValue => onUpdateFilters( {
-				...value,
-				status: filterValue.map( ( { value } ) => value ),
-			} ) }
-		/>
 
 		<Button
 			isPrimary

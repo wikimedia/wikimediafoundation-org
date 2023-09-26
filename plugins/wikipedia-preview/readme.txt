@@ -2,8 +2,8 @@
 Contributors: wikimediafoundation
 Donate link: https://donate.wikimedia.org/wiki/Ways_to_Give
 Tags: wikipedia, facts, popup, card, wiki
-Stable tag: 1.11.0
-Tested up to: 6.3
+Stable tag: 1.10.0
+Tested up to: 6.2
 License: MIT
 License URI: https://github.com/wikimedia/wikipedia-preview/blob/main/LICENSE
 
@@ -134,7 +134,7 @@ The words that will have a Wikipedia Preview popup on your site need to be annot
 
 In the admin site, go to “Appearance / customize”, then select the “Additional CSS” option from the left side menu. In the text box, the following CSS should reset the existing term style so you can adjust it to your liking.
 
-~~~
+```
 .wmf-wp-with-preview {
     border: 0;
     background-color: unset;
@@ -143,7 +143,7 @@ In the admin site, go to “Appearance / customize”, then select the “Additi
 .wmf-wp-with-preview::after {
     content: '';
 }
-~~~
+```
 
 = Is it compatible with all the browsers? =
 

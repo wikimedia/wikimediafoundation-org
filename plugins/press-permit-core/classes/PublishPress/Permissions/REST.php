@@ -14,7 +14,6 @@ class REST
     var $is_terms_request = false;
     var $operation = '';
     var $params = [];
-    var $referer = '';
 
     private static $instance = null;
 

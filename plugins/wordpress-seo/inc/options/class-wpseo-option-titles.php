@@ -964,11 +964,11 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 				'label'  => __( 'Dash', 'wordpress-seo' ),
 			],
 			'sc-ndash'  => [
-				'option' => '&#8211;',
+				'option' => '&ndash;',
 				'label'  => __( 'En dash', 'wordpress-seo' ),
 			],
 			'sc-mdash'  => [
-				'option' => '&#8212;',
+				'option' => '&mdash;',
 				'label'  => __( 'Em dash', 'wordpress-seo' ),
 			],
 			'sc-colon'  => [
@@ -976,11 +976,11 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 				'label'  => __( 'Colon', 'wordpress-seo' ),
 			],
 			'sc-middot' => [
-				'option' => '&#183;',
+				'option' => '&middot;',
 				'label'  => __( 'Middle dot', 'wordpress-seo' ),
 			],
 			'sc-bull'   => [
-				'option' => '&#8226;',
+				'option' => '&bull;',
 				'label'  => __( 'Bullet', 'wordpress-seo' ),
 			],
 			'sc-star'   => [
@@ -1000,19 +1000,19 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 				'label'  => __( 'Small tilde', 'wordpress-seo' ),
 			],
 			'sc-laquo'  => [
-				'option' => '&#171;',
+				'option' => '&laquo;',
 				'label'  => __( 'Left angle quotation mark', 'wordpress-seo' ),
 			],
 			'sc-raquo'  => [
-				'option' => '&#187;',
+				'option' => '&raquo;',
 				'label'  => __( 'Right angle quotation mark', 'wordpress-seo' ),
 			],
 			'sc-lt'     => [
-				'option' => '&#062;',
+				'option' => '&lt;',
 				'label'  => __( 'Less than sign', 'wordpress-seo' ),
 			],
 			'sc-gt'     => [
-				'option' => '&#060;',
+				'option' => '&gt;',
 				'label'  => __( 'Greater than sign', 'wordpress-seo' ),
 			],
 		];
