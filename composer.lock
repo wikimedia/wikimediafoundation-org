@@ -948,12 +948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "484363cc5fbaf3d4e94204f9d9d630497c91e85b"
+                "reference": "54fee53444361f92d78c894cff2429c924b95d3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/484363cc5fbaf3d4e94204f9d9d630497c91e85b",
-                "reference": "484363cc5fbaf3d4e94204f9d9d630497c91e85b",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/54fee53444361f92d78c894cff2429c924b95d3e",
+                "reference": "54fee53444361f92d78c894cff2429c924b95d3e",
                 "shasum": ""
             },
             "require-dev": {
@@ -987,7 +987,7 @@
             "license": [
                 "GPL-2.0-or-later"
             ],
-            "description": "Wikimedia Foundation website theme.",
+            "description": "Wikimedia Foundation's primary Wordpress theme",
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release-develop",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
@@ -998,7 +998,7 @@
                     "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=shiro"
                 }
             ],
-            "time": "2023-09-20T02:53:01+00:00"
+            "time": "2023-09-26T16:31:03+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -2231,5 +2231,5 @@
         "php": "^7.4|^8"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
