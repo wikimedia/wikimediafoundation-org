@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f45234ae1b672dc40e6cf72f5fd6ae9b156e9d8c',
+        'reference' => 'ab8d228a58b44b8db2c81b4b80fba8e1440d8cac',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -151,7 +151,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => 'a4a221e6b171fe5eadf48e21ad8247304738bcd5',
+            'reference' => 'ea3fc67b2c04a0af64eb18579946c5b83b6f3067',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f45234ae1b672dc40e6cf72f5fd6ae9b156e9d8c',
+            'reference' => 'ab8d228a58b44b8db2c81b4b80fba8e1440d8cac',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(
