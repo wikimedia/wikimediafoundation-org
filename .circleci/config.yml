@@ -14,7 +14,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "4f:bd:8c:e8:dd:58:5d:b3:01:12:e4:19:31:0c:7d:19"
-            - "SHA256:Cy1jq14sMPL+xFM/Y0cF5nfr+G2hnKSjSTOAM5/miY0"
+            - "e9:e0:4d:e9:49:cc:f3:cd:9e:91:96:12:2b:23:5e:da"
       - run:
           name: Install composer dependencies
           command: composer install
