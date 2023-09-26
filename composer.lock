@@ -948,12 +948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "343e5a585c32a9e0e05a4d261bcad7a6b2ea5a82"
+                "reference": "940b5ce07c1cfdadc2cc9d5e683256617ff651c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/343e5a585c32a9e0e05a4d261bcad7a6b2ea5a82",
-                "reference": "343e5a585c32a9e0e05a4d261bcad7a6b2ea5a82",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/940b5ce07c1cfdadc2cc9d5e683256617ff651c3",
+                "reference": "940b5ce07c1cfdadc2cc9d5e683256617ff651c3",
                 "shasum": ""
             },
             "require-dev": {
@@ -987,12 +987,18 @@
             "license": [
                 "GPL-2.0-or-later"
             ],
-            "description": "Wikimedia Foundation website theme.",
+            "description": "Wikimedia Foundation's primary Wordpress theme",
             "support": {
                 "source": "https://github.com/wikimedia/shiro-wordpress-theme/tree/release",
                 "issues": "https://github.com/wikimedia/shiro-wordpress-theme/issues"
             },
-            "time": "2023-07-27T18:50:05+00:00"
+            "funding": [
+                {
+                    "type": "custom",
+                    "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=shiro"
+                }
+            ],
+            "time": "2023-09-20T01:49:59+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -1031,6 +1037,12 @@
                 "source": "https://github.com/wikimedia/vegalite-wordpress-plugin/tree/v0.2.2",
                 "issues": "https://github.com/wikimedia/vegalite-wordpress-plugin/issues"
             },
+            "funding": [
+                {
+                    "type": "custom",
+                    "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=vegaliteWordpress"
+                }
+            ],
             "time": "2023-02-20T15:31:19+00:00"
         },
         {
