@@ -37,7 +37,7 @@ function restrict_public_rest_api_access( $errors ) {
 	if ( ! current_user_can( 'edit_posts' ) ) {
 		return new WP_Error(
 			'rest_disabled',
-			__( 'You do not have sufficient permissions.', 'wmf-rest-api' ),
+			__( 'You do not have permission to access the REST API.', 'wmf-rest-api' ),
 			[ 'status' => rest_authorization_required_code() ]
 		);
 	}
