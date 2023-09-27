@@ -56,7 +56,7 @@ function set_content_security_policy() {
 
 	$csp_allowed = [
 		"default-src 'self'",
-		"script-src 'self' 'unsafe-inline' https://piwik.wikimedia.org https://stats.wp.com https://pixel.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
+		"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://piwik.wikimedia.org https://stats.wp.com https://pixel.wp.com https://www.youtube.com https://player.vimeo.com http://localhost https://localhost http://localhost:8080",
 		"frame-src 'self' https://www.youtube.com https://player.vimeo.com",
 		"style-src 'self' 'unsafe-inline'",
 		"img-src 'self' data: https://piwik.wikimedia.org https://wikipedia.org https://upload.wikimedia.org",
