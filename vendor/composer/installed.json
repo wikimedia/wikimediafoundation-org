@@ -889,12 +889,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "ea3fc67b2c04a0af64eb18579946c5b83b6f3067"
+                "reference": "06fb047db82f673c63ba3e71e029129e78e88df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ea3fc67b2c04a0af64eb18579946c5b83b6f3067",
-                "reference": "ea3fc67b2c04a0af64eb18579946c5b83b6f3067",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/06fb047db82f673c63ba3e71e029129e78e88df9",
+                "reference": "06fb047db82f673c63ba3e71e029129e78e88df9",
                 "shasum": ""
             },
             "conflict": {
@@ -1339,7 +1339,7 @@
                 "simplesamlphp/simplesamlphp-module-openidprovider": "<0.9",
                 "simplito/elliptic-php": "<1.0.6",
                 "sitegeist/fluid-components": "<3.5",
-                "sjbr/sr-freecap": "<=2.5.2",
+                "sjbr/sr-freecap": "<2.4.6|>=2.5,<2.5.3",
                 "slim/psr7": "<1.4.1|>=1.5,<1.5.1|>=1.6,<1.6.1",
                 "slim/slim": "<2.6",
                 "slub/slub-events": "<3.0.3",
@@ -1523,7 +1523,7 @@
                 "zfr/zfr-oauth2-server-module": "<0.1.2",
                 "zoujingli/thinkadmin": "<6.0.22"
             },
-            "time": "2023-09-25T18:04:45+00:00",
+            "time": "2023-09-27T02:10:19+00:00",
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1972,12 +1972,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "54fee53444361f92d78c894cff2429c924b95d3e"
+                "reference": "a08352fb2c3ce0369030c82f39532bc83417e1d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/54fee53444361f92d78c894cff2429c924b95d3e",
-                "reference": "54fee53444361f92d78c894cff2429c924b95d3e",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/a08352fb2c3ce0369030c82f39532bc83417e1d3",
+                "reference": "a08352fb2c3ce0369030c82f39532bc83417e1d3",
                 "shasum": ""
             },
             "require-dev": {
@@ -1989,7 +1989,7 @@
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
                 "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2023-09-26T16:31:03+00:00",
+            "time": "2023-09-27T02:10:09+00:00",
             "type": "wordpress-theme",
             "extra": {
                 "patches": {
