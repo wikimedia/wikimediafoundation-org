@@ -948,12 +948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "5137895382455b3fedcb9b89318d66b80afd8485"
+                "reference": "99fdf9196b532508ea6fbfe07a5e69f36b177d2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/5137895382455b3fedcb9b89318d66b80afd8485",
-                "reference": "5137895382455b3fedcb9b89318d66b80afd8485",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/99fdf9196b532508ea6fbfe07a5e69f36b177d2c",
+                "reference": "99fdf9196b532508ea6fbfe07a5e69f36b177d2c",
                 "shasum": ""
             },
             "require-dev": {
@@ -998,7 +998,7 @@
                     "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=shiro"
                 }
             ],
-            "time": "2023-09-26T16:31:02+00:00"
+            "time": "2023-09-27T02:47:58+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -1424,12 +1424,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "ed458bcfb6ea743356d152730c1dda4028458835"
+                "reference": "06fb047db82f673c63ba3e71e029129e78e88df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ed458bcfb6ea743356d152730c1dda4028458835",
-                "reference": "ed458bcfb6ea743356d152730c1dda4028458835",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/06fb047db82f673c63ba3e71e029129e78e88df9",
+                "reference": "06fb047db82f673c63ba3e71e029129e78e88df9",
                 "shasum": ""
             },
             "conflict": {
@@ -2093,7 +2093,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-09-26T17:04:26+00:00"
+            "time": "2023-09-27T02:10:19+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
