@@ -1,8 +1,8 @@
 {
-  "name": "shiro-wordpress-theme-develop",
+  "name": "shiro-wordpress-theme",
   "private": true,
   "version": "1.0.0",
-  "description": "Wikimedia Foundation parent theme",
+  "description": "Wikimedia Foundation's primary Wordpress theme",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -39,8 +39,8 @@
     "type": "git",
     "url": "git+ssh://git@github.com/wikimedia/shiro-wordpress-theme-develop.git"
   },
-  "author": "Reaktiv Studios <info@reaktivstudios.com>",
-  "license": "GPL-3.0",
+  "author": "Wikimedia Foundation",
+  "license": "GPL-2.0-or-later",
   "bugs": {
     "url": "https://github.com/wikimedia/shiro-wordpress-theme-develop/issues"
   },
