@@ -948,12 +948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/shiro-wordpress-theme.git",
-                "reference": "99fdf9196b532508ea6fbfe07a5e69f36b177d2c"
+                "reference": "5fe156c9da9389d16ea51e24f0b8a352328aa237"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/99fdf9196b532508ea6fbfe07a5e69f36b177d2c",
-                "reference": "99fdf9196b532508ea6fbfe07a5e69f36b177d2c",
+                "url": "https://api.github.com/repos/wikimedia/shiro-wordpress-theme/zipball/5fe156c9da9389d16ea51e24f0b8a352328aa237",
+                "reference": "5fe156c9da9389d16ea51e24f0b8a352328aa237",
                 "shasum": ""
             },
             "require-dev": {
@@ -998,7 +998,7 @@
                     "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=shiro"
                 }
             ],
-            "time": "2023-09-27T02:47:58+00:00"
+            "time": "2023-09-28T08:57:04+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -1424,12 +1424,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "06fb047db82f673c63ba3e71e029129e78e88df9"
+                "reference": "4570a7d6bd6649a3ee2e5eaec97bbbffe192d1f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/06fb047db82f673c63ba3e71e029129e78e88df9",
-                "reference": "06fb047db82f673c63ba3e71e029129e78e88df9",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4570a7d6bd6649a3ee2e5eaec97bbbffe192d1f8",
+                "reference": "4570a7d6bd6649a3ee2e5eaec97bbbffe192d1f8",
                 "shasum": ""
             },
             "conflict": {
@@ -1569,7 +1569,7 @@
                 "ezsystems/ezplatform-richtext": ">=2.3,<2.3.7.1-dev",
                 "ezsystems/ezplatform-user": ">=1,<1.0.1",
                 "ezsystems/ezpublish-kernel": "<6.13.8.2-dev|>=7,<7.5.30",
-                "ezsystems/ezpublish-legacy": "<=2017.12.7.3|>=2018.06,<=2019.03.5.1",
+                "ezsystems/ezpublish-legacy": "<=2017.12.7.3|>=2018.6,<=2019.03.5.1",
                 "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1-dev|>=2.5,<2.5.15",
                 "ezyang/htmlpurifier": "<4.1.1",
@@ -1755,7 +1755,7 @@
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
                 "open-web-analytics/open-web-analytics": "<1.7.4",
-                "opencart/opencart": "<=3.0.3.7",
+                "opencart/opencart": "<=3.0.3.7|>=4,<4.0.2.3-dev",
                 "openid/php-openid": "<2.3",
                 "openmage/magento-lts": "<=19.5|>=20,<=20.1",
                 "opensource-workshop/connect-cms": "<1.7.2|>=2,<2.3.2",
@@ -1797,6 +1797,7 @@
                 "pimcore/admin-ui-classic-bundle": "<1.1.2",
                 "pimcore/customer-management-framework-bundle": "<3.4.2",
                 "pimcore/data-hub": "<1.2.4",
+                "pimcore/demo": "<10.3",
                 "pimcore/perspective-editor": "<1.5.1",
                 "pimcore/pimcore": "<10.6.8",
                 "pixelfed/pixelfed": "<=0.11.4",
@@ -2093,7 +2094,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-09-27T02:10:19+00:00"
+            "time": "2023-09-28T05:04:13+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
