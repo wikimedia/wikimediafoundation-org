@@ -22,6 +22,7 @@ plugins/simple-editorial-comments
 plugins/user-switching
 plugins/vegalite-wordpress-plugin
 plugins/wikipedia-preview
+plugins/press-permit-core
 themes/shiro
 
 # Dependencies, except those from included plugins
