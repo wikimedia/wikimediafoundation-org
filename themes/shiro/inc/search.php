@@ -31,19 +31,21 @@ add_action( 'pre_get_posts', 'wmf_restrict_search' );
  * @return void
  */
 function wmf_custom_sort( WP_Query $query ) {
-	if ( $query->is_search() && $query->is_main_query() ) {
-		$order_by = sanitize_text_field( $_GET['orderby'] ?? '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		switch ( $order_by ) {
-			case 'date':
-				$order_direction = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( $_GET['order'] ) ) : 'DESC';
-				$query->set( 'order', $order_direction );
-				$query->set( 'orderby', 'date' );
-				break;
+	if ( ! $query->is_main_query() || ! $query->is_search() ) {
+		return;
+	}
 
-			default:
-				$query->set( 'orderby', 'relevance' );
-				break;
-		}
+	$order_by = sanitize_text_field( $_GET['orderby'] ?? '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	switch ( $order_by ) {
+		case 'date':
+			$order_direction = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( $_GET['order'] ) ) : 'DESC'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$query->set( 'order', $order_direction );
+			$query->set( 'orderby', 'date' );
+			break;
+
+		default:
+			$query->set( 'orderby', 'relevance' );
+			break;
 	}
 }
 add_action( 'pre_get_posts', 'wmf_custom_sort' );
@@ -55,8 +57,8 @@ add_action( 'pre_get_posts', 'wmf_custom_sort' );
  * @return string The updated URL.
  */
 function wmf_set_custom_sort_url( $additional_params = [] ) {
-	$current_url = home_url( add_query_arg( NULL, NULL ) );
-	$parsed_url = parse_url( $current_url );
+	$current_url = home_url( add_query_arg( null, null ) );
+	$parsed_url = wp_parse_url( $current_url );
 
 	$current_query_params = [];
 	if ( isset( $parsed_url['query'] ) ) {

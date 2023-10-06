@@ -4,8 +4,9 @@
  *
  * @package shiro
  */
-$newer = get_theme_mod( 'wmf_pagination_newer', __( 'Next', 'shiro-admin' ) );
-$older = get_theme_mod( 'wmf_pagination_older', __( 'Previous', 'shiro-admin' ) );
+
+$newer = get_theme_mod( 'wmf_pagination_newer', __( 'Previous', 'shiro-admin' ) );
+$older = get_theme_mod( 'wmf_pagination_older', __( 'Next', 'shiro-admin' ) );
 
 $previous_arrow = <<<SVG
 <svg fill="none" height="18" viewBox="0 0 12 18" width="12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m9.75 0-9 9 9 9 1.5-1.5-7.5-7.5 7.5-7.5z" fill="#000" fill-rule="evenodd"/></svg>
@@ -44,7 +45,7 @@ if ( ! empty( $additional_args ) ) {
 				echo wp_kses_post(
 					paginate_links( $pagination_args )
 				);
-			?>
+				?>
 		</div>
 
 		<div class="pagination__next-page">

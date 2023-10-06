@@ -57,18 +57,22 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				],
 			];
 
-			$options = [
+			/**
+			 * An empty sort_by value means sorting isn't applied for that post_type,
+			 * so the sort dropdown will not be displayed.
+			 */
+			$search_results_tabs = [
 				'all' => [
 					'label' => __( 'All', 'shiro' ),
-					'sort' => 'relevance',
+					'sort_by' => 'relevance',
 				],
 				'post' => [
 					'label' => __( 'News', 'shiro' ),
-					'sort' => 'date-desc',
+					'sort_by' => 'date-desc',
 				],
 				'page' => [
 					'label' => __( 'Pages', 'shiro' ),
-					'sort' => 'relevance',
+					'sort_by' => false, // No sorting option for pages.
 				],
 			];
 
@@ -76,17 +80,17 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$query_option = ( isset( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				? sanitize_text_field( wp_unslash( $_GET['post_type'][0] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				: 'all';
-			$option = array_key_exists( $query_option, $options ) ? $query_option : 'all';
+			$option = array_key_exists( $query_option, $search_results_tabs ) ? $query_option : 'all';
 			$selected = esc_attr( $option );
 
-			foreach ( $options as $key => $value ) {
+			foreach ( $search_results_tabs as $key => $value ) {
 				$active = $selected === $key ? 'active' : '';
 
 				$current_url = add_query_arg( 's', get_search_query(), home_url( '/' ) );
 
 				// Add the default sorting option for the current post_type
-				if ( isset( $sorting_options[ $value['sort'] ] ) ) {
-					$sort_query = $sorting_options[ $value['sort'] ]['query'];
+				if ( isset( $sorting_options[ $value['sort_by'] ] ) ) {
+					$sort_query = $sorting_options[ $value['sort_by'] ]['query'];
 					$current_url = add_query_arg( $sort_query, '', $current_url );
 				}
 
@@ -118,7 +122,7 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 				parse_str( $option['query'], $query_params );
 				$match = true;
 				foreach ( $query_params as $param => $value ) {
-					if ( ! isset( $_GET[ $param ] ) || sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) !== $value ) {
+					if ( ! isset( $_GET[ $param ] ) || sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) !== $value ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						$match = false;
 						break;
 					}
@@ -132,27 +136,31 @@ get_template_part( 'template-parts/header/page-noimage', null, $template_args );
 			$current_sort_label = $sorting_options[ $current_sort ]['label'];
 			?>
 
-			<div class="search-results__tabs__sort">
+			<?php if ( ! empty( $search_results_tabs[ $selected ]['sort_by'] ) ) : ?>
 
-				<button aria-haspopup="true" aria-expanded="false">
-					<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
-					<span class="dropdown-icon"></span>
-				</button>
+				<div class="search-results__tabs__sort">
 
-				<div class="sort-dropdown" role="menu">
-					<?php
-					foreach ( $sorting_options as $sort_key => $option ) {
-						$option_query_params = [];
-						parse_str( $option['query'], $option_query_params );
-						$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
-					?>
-						<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
-							<?php echo esc_html( $option['label'] ); ?>
-						</a>
-					<?php } ?>
+					<button aria-haspopup="true" aria-expanded="false">
+						<span>Sort by</span>&nbsp;<span class="selected-sort"><?php echo esc_html( $current_sort_label ); ?></span>
+						<span class="dropdown-icon"></span>
+					</button>
+
+					<div class="sort-dropdown" role="menu">
+						<?php
+						foreach ( $sorting_options as $sort_key => $option ) {
+							$option_query_params = [];
+							parse_str( $option['query'], $option_query_params );
+							$custom_sort_url = wmf_set_custom_sort_url( $option_query_params );
+							?>
+							<a href="<?php echo esc_url( $custom_sort_url ); ?>" class="sort-option" data-sort="<?php echo esc_attr( $sort_key ); ?>" role="menuitem">
+								<?php echo esc_html( $option['label'] ); ?>
+							</a>
+						<?php } ?>
+					</div>
+
 				</div>
 
-			</div>
+			<?php endif; ?>
 	</div>
 
 <?php endif; ?>

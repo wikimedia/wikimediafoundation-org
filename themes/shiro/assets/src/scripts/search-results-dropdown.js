@@ -5,6 +5,11 @@ function initializeDropdownFunctionality() {
 	const dropdown = document.querySelector( '.sort-dropdown' );
 	const toggleButton = document.querySelector( '.search-results__tabs__sort button' );
 
+	// Short-circuit if dropdown or toggleButton is not found.
+	if ( ! dropdown || ! toggleButton ) {
+		return;
+	}
+
 	/**
 	 * Checks if dropdown is visible.
 	 *
