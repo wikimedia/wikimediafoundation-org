@@ -1,4 +1,3 @@
-// Group all style customizations for the 2019-2 transparency report together.
 .search-results {
 	&__tabs {
 		border-bottom: 1px solid $wmui-color-base70;
@@ -23,6 +22,42 @@
 				background-color: $wmui-color-base100;
 				border-bottom: 1px solid $wmui-color-base100;
 				font-weight: 800;
+			}
+		}
+
+		&__sort {
+			display: block;
+			position: relative;
+			float: right;
+
+			@media (max-width: 500px) {
+				right: 0;
+				position: absolute;
+				float: none;
+			}
+
+			.dropdown-icon::before {
+				content: '\25BC';
+				margin-left: 10px;
+			}
+
+			.sort-dropdown {
+				display: none;
+				position: absolute;
+				top: 100%;
+				right: 0;
+				z-index: 1;
+
+				&.is-visible {
+					display: block;
+				}
+
+				.sort-option {
+					display: block;
+					padding: 10px 20px;
+					text-decoration: none;
+					border-bottom: 1px solid $wmui-color-base70;
+				}
 			}
 		}
 	}

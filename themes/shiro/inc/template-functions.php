@@ -553,7 +553,7 @@ function wmf_is_transparency_report_page() {
 		'page-report-section.php',
 		'page-stories.php',
 	);
-	return in_array( get_page_template_slug(), $included_templates, true );
+	return ( ! is_search() ) && in_array( get_page_template_slug(), $included_templates, true );
 }
 
 /**
