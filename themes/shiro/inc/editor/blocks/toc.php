@@ -34,7 +34,17 @@ function get_headings_from_post_content( string $content ) : array {
 	// within PHP rendering code, even once the content is parsed as blocks.
 	// DOMDocument is the most reliable tool to locate the values we want.
 	$heading_block_doc = new DOMDocument();
+
+	/**
+	 * Temporarily suppress libxml errors. This is a band-aid solution to silence
+	 * warnings when loading HTML content.
+	 *
+	 * @see Issue #907 for planned enhancements to this approach.
+	 */
+	libxml_use_internal_errors( true );
 	$heading_block_doc->loadHTML( $content );
+	libxml_clear_errors(); // Clear any errors that were raised during the loadHTML operation.
+
 	$xpath = new DOMXPath( $heading_block_doc );
 
 	// Query for h2 and h3 elements that have an id attribute.
