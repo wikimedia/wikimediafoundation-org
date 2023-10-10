@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '46ed0bf65ad72b4a21667941189a762a4c26e141',
+        'reference' => 'f62668ee19700846b2ac5901d63d59a79ae12898',
         'name' => 'wikimedia/wikimediafoundation-org',
         'dev' => true,
     ),
@@ -83,8 +83,8 @@
             'dev_requirement' => false,
         ),
         'gravityforms/gravityforms' => array(
-            'pretty_version' => '2.7.7',
-            'version' => '2.7.7.0',
+            'pretty_version' => '2.7.15',
+            'version' => '2.7.15.0',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../plugins/gravityforms',
             'aliases' => array(),
@@ -151,7 +151,7 @@
             'type' => 'metapackage',
             'install_path' => NULL,
             'aliases' => array(),
-            'reference' => '85afa852eeecec97cec35d987dcfbc602c025620',
+            'reference' => '138c8164ca26fdf365c2d3091040d78b0723735f',
             'dev_requirement' => true,
         ),
         'roundcube/plugin-installer' => array(
@@ -235,7 +235,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '46ed0bf65ad72b4a21667941189a762a4c26e141',
+            'reference' => 'f62668ee19700846b2ac5901d63d59a79ae12898',
             'dev_requirement' => false,
         ),
         'wp-coding-standards/wpcs' => array(

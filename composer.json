@@ -50,7 +50,7 @@
       "type": "package",
       "package": {
         "name": "gravityforms/gravityforms",
-        "version": "2.7.7",
+        "version": "2.7.15",
         "type": "wordpress-plugin",
         "dist": {
           "type": "zip",
@@ -73,7 +73,7 @@
     "humanmade/asset-loader": "^0.6.2",
     "humanmade/hm-gutenberg-tools": "^1.6.2",
     "humanmade/simple-editorial-comments": "^0.1.0",
-    "gravityforms/gravityforms": "^2.7.7",
+    "gravityforms/gravityforms": "^2.7.15",
     "wikimedia/shiro-wordpress-theme": "dev-release-develop",
     "wikimedia/vegalite-wordpress-plugin": "^0.2.2",
     "wpackagist-plugin/broken-link-checker": "^2.2.2",
@@ -96,6 +96,7 @@
   },
   "scripts": {
     "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
+    "check-php-compatibility": "phpcs --standard=PHPCompatibilityWP --severity=1 --runtime-set testVersion 8.1- --extensions=php .",
     "make-shiro-frontend-pot": "wp i18n make-pot themes/shiro languages/themes/shiro.pot --domain=shiro --exclude=assets/dist",
     "make-shiro-admin-pot": "wp i18n make-pot themes/shiro languages/themes/shiro-admin.pot --domain=shiro-admin --exclude=assets/dist",
     "make-shiro-pot": [
