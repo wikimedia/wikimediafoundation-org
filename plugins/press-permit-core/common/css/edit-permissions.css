@@ -81,27 +81,30 @@ div.pp-add-exceptions {
 #wpbody-content #pp_add_exception #menu-settings-column {
     padding-top: 3px;
 }
-#pp_add_exception th.pp-select-x-operation,
-#pp_add_exception th.pp-select-x-mod-type {
+#pp_add_exception .pp-select-x-operation,
+#pp_add_exception .pp-select-x-mod-type {
     text-align: left;
     padding-left: 15px;
 }
-#pp_add_exception td.pp-select-x-operation,
-#pp_add_exception td.pp-select-x-mod-type,
-#pp_add_exception td.pp-select-x-via-type {
+#pp_add_exception .pp-select-x-operation,
+#pp_add_exception .pp-select-x-mod-type,
+#pp_add_exception .pp-select-x-via-type {
     padding-top: 5px;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-#pp_add_exception td.pp-select-x-via-type {
-  padding-left: 0;
+#pp_add_exception .pp-select-x-via-type {
     padding-right: 10px;
 }
-#pp_add_exception td.pp-select-x-operation label,
-#pp_add_exception td.pp-select-x-mod-type label {
+#pp_add_exception .pp-select-x-operation label,
+#pp_add_exception .pp-select-x-mod-type label {
     padding-bottom: 20px;
     white-space: nowrap;
+}
+
+#pp_add_exception div.pp-checkbox {
+    margin-bottom: 10px;
 }
 
 #pp_add_exception #select-role-item {
@@ -125,6 +128,10 @@ div.pp-add-exceptions {
 #pp_add_exception .nav-tabs-nav,
 #pp_add_exception button.handlediv {
     display: none;
+}
+
+#pp_add_exception .pp-select-items {
+    padding-left: 15px;
 }
 
 span.nav-tab {
@@ -334,6 +341,10 @@ label.pp_faded {
     font-style: italic;
 }
 
+#pp_current_exceptions table td.pp_item_role_caption {
+    padding-top: 5px;
+}
+
 .pp_exceptions_notes {
   margin: 0 0 20px;
   padding: 20px;
@@ -410,6 +421,8 @@ td.pp-select-items #nav-menu-meta div.tabs-panel ul li label {
 #pp-permissions-wrapper table tr td {
   text-align: left;
   vertical-align: top;
+  user-select: none;
+  -moz-user-select: none;
 }
 #pp-permissions-wrapper .pp-edit-msg {
   padding: .7em 0.9em;

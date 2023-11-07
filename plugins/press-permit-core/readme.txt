@@ -3,9 +3,9 @@
 Contributors: publishpress, kevinB, stevejburge, andergmartins
 Tags: restrict, access, permissions, cms, user, private, category, pages, privacy, capabilities, role, scoper
 Requires at least: 5.5
-Tested up to: 6.3.1
+Tested up to: 6.3
 Requires PHP: 7.2.5
-Stable tag: 3.11.1
+Stable tag: 3.11.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -239,6 +239,29 @@ Yes, we use the phrase "publishpress-ppcore-install" to share install links. You
 9. Create your own Privacy Statuses: Create visibility options for your content. One example is a "Premium" status that makes content visible only for paying members. 
 
 == Changelog ==
+
+= 3.11.5 - 1 Nov 2023 =
+* Compat : Beaver Builder - Queries within BB shortcodes were improperly filtered
+* Fixed : Supplemental role captions were blank
+* Fixed : PHP Warning "Attempt to read property 'count' on string"
+* Fixed : PHP Warning "Undefined variable $admin_post_new_url"
+
+= 3.11.4 - 26 Oct 2023 =
+* Fixed : Collaborative Publishing module was not loaded correctly on some installations
+* Fixed : Caption for Permissions: Assign Term metabox in post editor
+* Fixed : PHP Warnings on Permission Groups screen
+
+= 3.11.3 - 25 Oct 2023 =
+* Fixed : Some Permissions filtering was not applied on sites with a custom wp-admin URL
+* Fixed : Type-specific Supplemental Roles also granted most generic capabliities in Pattern Role. Introduce new Permissions > Advanced > Role Integration setting to restore previous behavior if needed.
+* Fixed : On page edit, if the Page Parent is not editable by the logged in user, it is hidden from the Page Parent selector. This occurred only with WP >= 6.3 and with a non-standard advanced Permissions configuration.
+* Fixed : PHP Warning in term filtering (Attempt to read property "term_taxonomy_id" on string) under some configurations
+* Fixed : Filtering of default category / term by other plugin was overridden
+* Fixed : Edit User Permissions - PHP Warning "compact(): Argument must be string..."
+* Fixed : Fatal error "Call to a member function init() on null" under some configurations
+* Fixed : Version update script triggering could be skipped on Pro installation under some conditions
+* Compat : Polylang + WP 6.3 - Language filter was no longer applied to Page Parent dropdown
+* Change : Added installation log to Permissions > Settings > Install
 
 = 3.11.1 - 30 Aug 2023 =
 * Fixed : Rest API access error on some sites (potentially preventing login)

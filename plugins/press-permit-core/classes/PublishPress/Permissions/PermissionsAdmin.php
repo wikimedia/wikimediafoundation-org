@@ -83,7 +83,9 @@ class PermissionsAdmin
                 $warning = '';
 
                 if (isset($pp->role_defs->pattern_roles[$arr_name[0]])) {
-                    $role_caption = $pp->role_defs->pattern_roles[$arr_name[0]]->labels->$caption_prop;
+                    $role_caption = (isset($pp->role_defs->pattern_roles[$arr_name[0]]->labels->$caption_prop)) 
+                    ? $pp->role_defs->pattern_roles[$arr_name[0]]->labels->$caption_prop 
+                    : '';
 
                     if (
                         $include_warnings && isset($wp_roles->role_names[$arr_name[0]])
@@ -158,7 +160,7 @@ class PermissionsAdmin
                 } else {
                     if (!empty($args['echo'])) {
                         printf(
-                            esc_html__('%1$s&nbsp;%2$s&nbsp;%3$s', 'press-permit-core'),
+                            esc_html__('%1$s&nbsp;%2$s%3$s', 'press-permit-core'),
                             esc_html($type_caption),
                             esc_html($role_caption),
                             ''
@@ -177,10 +179,10 @@ class PermissionsAdmin
                     } else {
                         $role_name = trim(
                             sprintf(
-                                esc_html__('%1$s&nbsp;%2$s&nbsp;%3$s', 'press-permit-core'),
+                                esc_html__('%1$s&nbsp;%2$s%3$s', 'press-permit-core'),
                                 esc_html($type_caption),
                                 esc_html($role_caption),
-                                $warning // previously escaped in this function
+                                " $warning" // previously escaped in this function
                             )
                         );
                     }

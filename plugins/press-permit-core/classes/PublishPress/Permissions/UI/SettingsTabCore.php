@@ -140,9 +140,10 @@ class SettingsTabCore
 	                        }
                         }
 
-                        $hidden_types = apply_filters('presspermit_hidden_taxonomies', []);
+                        $hidden_types = apply_filters('presspermit_hidden_taxonomies', array_fill_keys(['nav_menu', 'post_status_core_wp_pp', 'pseudo_status_pp', 'post_visibility_pp'], true));
 
-                        //$locked_types = apply_filters('presspermit_locked_taxonomies', ['nav_menu' => true]);
+                        // Legacy Nav Menu filtering is currently locked on by a filter in the Collaborative Editing module, so reflect that in option storage
+                        $locked_types = apply_filters('presspermit_locked_taxonomies', defined('PRESSPERMIT_COLLAB_VERSION') ? ['nav_menu' => true] : []);
 
                         if (defined('PRESSPERMIT_FILTER_PRIVATE_TAXONOMIES')) {
                             $hidden_types = [];
@@ -163,7 +164,7 @@ class SettingsTabCore
 
                         $hidden_types = apply_filters('presspermit_hidden_post_types', []);
 
-                        $locked_types = apply_filters('presspermit_locked_post_types', []);
+                        $locked_types = apply_filters('presspermit_locked_post_types', ['nav_menu' => 'nav_menu']);
 
                         $types = $pp->admin()->orderTypes($types);
                     }
@@ -171,7 +172,9 @@ class SettingsTabCore
                     $ui->all_otype_options[] = $option_name;
 
                     if (isset($pp->default_options[$option_name])) {
-                        if (!$enabled = apply_filters('presspermit_enabled_post_types', $ui->getOption($option_name))) {
+                        $filter_name = ('term' == $scope) ? 'presspermit_enabled_taxonomies_by_key' : 'presspermit_enabled_post_types';
+                    	
+                        if (!$enabled = apply_filters($filter_name, $ui->getOption($option_name))) {
                             $enabled = [];
                         }
 
