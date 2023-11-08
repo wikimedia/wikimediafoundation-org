@@ -102,3 +102,4 @@ This projects includes some scripts and basic configuration to use [BackstopJS](
 - `npm run report` -- Opens the latest Backstop report in your browser.
 
 For more information on how to use or modify Backstop, read the documentation: https://github.com/garris/BackstopJS/blob/master/README.md
+
