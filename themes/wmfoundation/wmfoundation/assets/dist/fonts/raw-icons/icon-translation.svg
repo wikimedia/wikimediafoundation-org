@@ -1,0 +1,54 @@
+<svg width="22" height="20" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Translation Icon</title>
+<g id="Canvas" transform="translate(516 17763)">
+<rect x="-516" y="-17763" width="22" height="20" fill="#E5E5E5"/>
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -10843L -556 -10843L -556 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Landing &#226;&#128;&#148;&#194;&#160;Support Us" clip-path="url(#clip-0)">
+<path d="M -556 -17795L 884 -17795L 884 -10843L -556 -10843L -556 -17795Z" fill="#FFFFFF"/>
+<clipPath id="clip-1" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -16882L -556 -16882L -556 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="C02 - Key Image" clip-path="url(#clip-1)">
+<path d="M -556 -17795L 884 -17795L 884 -16882L -556 -16882L -556 -17795Z" fill="#3A25FF"/>
+<g id="Cyrus_cylinder_extractBy E.A">
+<use xlink:href="#path0_fill" fill="url(#pattern0)" transform="translate(-1083 -18043)" style="mix-blend-mode:multiply"/>
+</g>
+</g>
+<g id="Primary nav">
+<g id="Gradient">
+<use xlink:href="#path1_fill" transform="translate(-556 -17795)" fill="url(#paint1_linear)"/>
+</g>
+<clipPath id="clip-2" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -17715L -556 -17715L -556 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Translation" clip-path="url(#clip-2)">
+<path d="M -556 -17795L 884 -17795L 884 -17715L -556 -17715L -556 -17795Z" fill="#301FD5"/>
+<clipPath id="clip-3" clip-rule="evenodd">
+<path d="M -516 -17769L 811 -17769L 811 -17742L -516 -17742L -516 -17769Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Languages" clip-path="url(#clip-3)">
+<g id="Translation Icon">
+<g id="Translation Icon">
+<use xlink:href="#path2_fill" transform="translate(-516 -17763)" fill="#05E9D1"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<pattern id="pattern0" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0" transform="matrix(0.000478927 0 0 0.000884956 0 0)"/>
+</pattern>
+<linearGradient id="paint1_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(8.81746e-14 152 -1440 9.30732e-15 1440 -9.30732e-15)">
+<stop offset="0.348066" stop-color="#301FD5" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#301FD5" stop-opacity="0"/>
+</linearGradient>
+<path id="path0_fill" d="M 0 0L 2088 0L 2088 1130L 0 1130L 0 0Z"/>
+<path id="path1_fill" d="M 0 0L 1440 0L 1440 152L 0 152L 0 0Z"/>
+<path id="path2_fill" d="M 11.9 13.1L 9.4 10.6C 11.1 8.7 12.4 6.4 13.1 4.1L 16 4.1L 16 2L 9 2L 9 0L 7 0L 7 2L 0 2L 0 4L 11.2 4C 10.5 5.9 9.5 7.8 8 9.4C 7.1 8.4 6.3 7.2 5.7 6L 3.7 6C 4.4 7.6 5.4 9.2 6.7 10.6L 1.6 15.6L 3 17L 8 12L 11.1 15.1L 11.9 13.1ZM 17.5 8L 15.5 8L 11 20L 13 20L 14.1 17L 18.8 17L 19.9 20L 21.9 20L 17.5 8ZM 14.9 15L 16.5 10.7L 18.1 15L 14.9 15Z"/>
+</defs>
+</svg>
