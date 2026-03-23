@@ -1,0 +1,10 @@
+// Custom styles
+.social-list {
+
+	li {
+		margin: 0 .5rem 0 0;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}

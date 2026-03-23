@@ -1,0 +1,49 @@
+<svg width="27" height="8" viewBox="0 0 27 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Scroll Arrow</title>
+<g id="Canvas" transform="translate(-817 17756)">
+<rect x="817" y="-17756" width="27" height="8" fill="#E5E5E5"/>
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -10843L -556 -10843L -556 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Landing &#226;&#128;&#148;&#194;&#160;Support Us" clip-path="url(#clip-0)">
+<path d="M -556 -17795L 884 -17795L 884 -10843L -556 -10843L -556 -17795Z" fill="#FFFFFF"/>
+<clipPath id="clip-1" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -16882L -556 -16882L -556 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="C02 - Key Image" clip-path="url(#clip-1)">
+<path d="M -556 -17795L 884 -17795L 884 -16882L -556 -16882L -556 -17795Z" fill="#3A25FF"/>
+<g id="Cyrus_cylinder_extractBy E.A">
+<use xlink:href="#path0_fill" fill="url(#pattern0)" transform="translate(-1083 -18043)" style="mix-blend-mode:multiply"/>
+</g>
+</g>
+<g id="Primary nav">
+<g id="Gradient">
+<use xlink:href="#path1_fill" transform="translate(-556 -17795)" fill="url(#paint1_linear)"/>
+</g>
+<clipPath id="clip-2" clip-rule="evenodd">
+<path d="M -556 -17795L 884 -17795L 884 -17715L -556 -17715L -556 -17795Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Translation" clip-path="url(#clip-2)">
+<path d="M -556 -17795L 884 -17795L 884 -17715L -556 -17715L -556 -17795Z" fill="#301FD5"/>
+<g id="Scroll Arrow">
+<g id="Scroll Arrow">
+<use xlink:href="#path2_fill" transform="translate(817 -17756)" fill="#2087E8"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<pattern id="pattern0" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0" transform="matrix(0.000478927 0 0 0.000884956 0 0)"/>
+</pattern>
+<linearGradient id="paint1_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(8.81746e-14 152 -1440 9.30732e-15 1440 -9.30732e-15)">
+<stop offset="0.348066" stop-color="#301FD5" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#301FD5" stop-opacity="0"/>
+</linearGradient>
+<path id="path0_fill" d="M 0 0L 2088 0L 2088 1130L 0 1130L 0 0Z"/>
+<path id="path1_fill" d="M 0 0L 1440 0L 1440 152L 0 152L 0 0Z"/>
+<path id="path2_fill" d="M 23 0L 23 3L 0 3L 0 5L 23 5L 23 8L 27 4L 23 0Z"/>
+</defs>
+</svg>

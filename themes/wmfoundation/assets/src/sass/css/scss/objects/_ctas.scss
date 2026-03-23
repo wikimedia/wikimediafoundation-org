@@ -1,0 +1,288 @@
+// CTAs
+$highlight-width: 10px;
+.img-left-content-right {
+  .bg-img-container {
+    left: 0;
+    right: auto;
+  }
+
+  .card {
+
+    @media (min-width: $medium-bp) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.img-right-content-left {
+  .bg-img-container {
+    right: 0;
+    left: auto;
+  }
+
+  .card {
+
+    @media (min-width: $medium-bp) {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.cta {
+  .card-content {
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: $medium-bp) {
+      padding: rem(96) 0;
+    }
+
+    .h2,
+    p {
+      @include marginBottom (24, 32, $medium-bp);
+    }
+
+    .h2 {
+      @include font-size(56, 27);
+    }
+  }
+
+  @media (max-width: 767px) {
+
+    & .bg-img-container,
+    &.cta-secondary .bg-img-container {
+      position: relative;
+      width: 100%;
+      height: 50vw;
+    }
+  }
+
+}
+
+.cta-primary {
+  background: $color-pink;
+
+  .mw-1360 {
+    padding-bottom: rem(40);
+
+    @media (min-width: $medium-bp) {
+      padding-top: rem(40);
+    }
+  }
+
+  .card {
+    color: #fff;
+  }
+
+  .card-content {
+
+    margin-top: -20px;
+
+    @media (min-width: $medium-bp) {
+      padding: 4.5rem 0;
+      margin-top: 0;
+    }
+  }
+
+  .h2 {
+    @include highlightHeading($highlight-width, $color-pink);
+    line-height: 1.6;
+
+  }
+
+  p:first-of-type {
+    @include marginTop(32, 32, $medium-bp);
+  }
+  @media (max-width: $medium-bp) {
+    .bg-img-container {
+      top: -20px;
+    }
+  }
+}
+
+.cta-secondary {
+  .h2 {
+    @include highlightHeading($highlight-width, $color-black);
+    line-height: 1.3;
+
+  }
+  .bg-img-container {
+    @include bgImgPositioning();
+    right: 0;
+  }
+
+  .card-content {
+    margin-top: -30px;
+
+    @media (min-width: $medium-bp) {
+
+      .card-content {
+        padding: 7.5rem 0;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.cta-news {
+
+  .bg-img-container {
+    left: 0;
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: 0; bottom: 0; right: 0; left: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: 0.3s all;
+    }
+  }
+
+  .darken-img {
+
+    .bg-img-container {
+
+      &:after {
+        background: rgba(0, 0, 0, .25);
+      }
+    }
+  }
+
+  .card-content{
+    @include paddingTop(16, 32, $medium-bp);
+    padding-bottom: 0;
+    margin-top: 0;
+    right: 0;
+
+    @media (min-width: $medium-bp) {
+      padding-top: 5rem;
+    }
+  }
+
+  .h2 {
+
+    a {
+      transition: 0.3s all;
+
+      &:hover {
+        color: $color-blue;
+      }
+    }
+  }
+
+  // Overriding .w-45p to extend h2 out more into the image.
+  .w-45p {
+
+    @media (min-width: $medium-bp) {
+      width: 60%;
+    }
+
+    .category {
+      transition: 0.3s all;
+
+      &:hover {
+        color: $color-blue;
+      }
+    }
+
+    .post-meta {
+      @media (min-width: $medium-bp) {
+        max-width: 42%;
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
+.no-duotone {
+
+  &:not(.cta-news) {
+    .bg-img-container {
+      @include white-gradient;
+    }
+
+    a {
+      text-transform: uppercase;
+      @include font-size(20, 16);
+      padding-bottom: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:not(.link-with-arrow) {
+      //$highlightColor, $highlightTextColor, $underlineThicknessMobile, $underlineThicknessDesktop, $highlightHeightMobile, $highlightHeightDesktop, $desktopBreakpoint
+      @include linkHighlight($color-turquoise, #000, 4, 8, 50, 50, $medium-bp);
+    }
+
+    a.link-with-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: rem(10);
+      line-height: 1.4;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: rem(4);
+        background-color: $color-turquoise;
+      }
+
+      &:hover,
+      &:focus {
+        color: #000;
+      }
+
+      .link-with-arrow__icon {
+        display: inline-block;
+        line-height: 1;
+        transition: transform 0.2s ease-out;
+        will-change: transform;
+      }
+
+      &:hover .link-with-arrow__icon,
+      &:focus .link-with-arrow__icon {
+        transform: translateX(rem(4));
+      }
+    }
+
+    @media (min-width: $medium-bp) {
+
+      .card-content {
+        padding: 8.5rem 0;
+      }
+    }
+  }
+
+  .bg-img {
+    overflow: hidden;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
+}
+
+.cta-footer {
+  margin-top: 5rem;
+  @include marginTop(0, 80, $medium-bp);
+}
+
+// add white background to text
+.cta-description {
+  @include highlightText($highlight-width, $color-black);
+}
+
+// move button left to align to highlight
+.cta-btn {
+  margin-left: -$highlight-width;
+}
