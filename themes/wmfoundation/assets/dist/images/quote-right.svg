@@ -1,0 +1,12 @@
+<svg width="91" height="65" viewBox="0 0 91 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Quote</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-5326 15027)">
+<g id="Quote">
+<use xlink:href="#path0_fill" transform="matrix(1 5.34378e-24 -5.34378e-24 1 5326 -15027)" fill="#05E9D1"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 6.5 65L 26 65L 39 39L 39 0L 0 0L 0 39L 19.5 39L 6.5 65ZM 58.5 65L 78 65L 91 39L 91 0L 52 0L 52 39L 71.5 39L 58.5 65Z"/>
+</defs>
+</svg>
