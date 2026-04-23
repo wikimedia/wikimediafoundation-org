@@ -953,25 +953,21 @@
                 "shasum": ""
             },
             "require-dev": {
-                "automattic/vipwpcs": "^2.0",
+                "automattic/vipwpcs": "^3.0.1",
                 "cweagans/composer-patches": "^1.7",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
                 "phpcompatibility/phpcompatibility-wp": "^1.0",
-                "squizlabs/php_codesniffer": "^3.3",
+                "squizlabs/php_codesniffer": "^3.9",
                 "staabm/annotate-pull-request-from-checkstyle": "^1.8",
-                "wp-coding-standards/wpcs": "^2.0"
+                "wp-coding-standards/wpcs": "^3.1.0"
             },
             "type": "wordpress-theme",
-            "extra": {
-                "patches": {
-                    "wp-coding-standards/wpcs": {
-                        "Fix php 8 error with vsprint snif": "https://github.com/WordPress/WordPress-Coding-Standards/commit/7cd46bed1e6a7a2af3fe24c7f4a044da3076d8f4.patch"
-                    }
-                }
-            },
             "scripts": {
                 "phpcs": [
                     "phpcs ."
+                ],
+                "phpcbf": [
+                    "phpcbf ."
                 ],
                 "phpcs:changed": [
                     "phpcs $(git diff --name-only --diff-filter=ACMRTUXB $(git merge-base HEAD main) | grep '\\.php')"
@@ -991,10 +987,10 @@
             "funding": [
                 {
                     "type": "custom",
-                    "url": "https://donate.wikimedia.org/?utm_medium=gitHub&utm_campaign=sponsorButton&utm_source=shiro"
+                    "url": "https://donate.wikimedia.org/?wmf_medium=gitHub&wmf_campaign=sponsorButton&wmf_source=shiro"
                 }
             ],
-            "time": "2024-04-11T04:26:25+00:00"
+            "time": "2026-04-16T14:17:14+00:00"
         },
         {
             "name": "wikimedia/vegalite-wordpress-plugin",
@@ -2441,16 +2437,16 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "roave/security-advisories": 20,
         "wikimedia/shiro-wordpress-theme": 20,
         "wikimedia/wikimedia-wordpress-annual-report-plugin": 20,
-        "wikimedia/wikimedia-wordpress-security-plugin": 20,
-        "roave/security-advisories": 20
+        "wikimedia/wikimedia-wordpress-security-plugin": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4|^8"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
